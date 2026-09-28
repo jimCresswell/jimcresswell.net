@@ -4,11 +4,13 @@ import { describe, expect, it } from 'vitest';
 import type { GitCommandResult, GitExecutor } from './git-executor.js';
 import type { RetireGit } from './retire-git-read.js';
 import { worktreesUsing } from './retire-worktrees.js';
+import { failureMessage } from './test-helpers/result-failure.js';
 
 /**
  * Whether any worktree is using the branch: checked out there, or named by
- * git's rebase or bisect state. git's answers are a table keyed by argv, and
- * the state files a table keyed by path.
+ * git's rebase or bisect state. git's answers are a table keyed by argv (an
+ * argv the table does not hold answers 128), and the state files a table
+ * keyed by path. The adapter's argv against real git is proven by the smokes.
  */
 
 const SHA_A = 'a'.repeat(40);
@@ -18,8 +20,16 @@ function answer(status: number, stdout = ''): GitCommandResult {
   return { status, signal: null, stdout, stderr: '' };
 }
 
+/** Any argv the table does not hold: git's usage failure, never an answer that reads as a result. */
+const unanswered: GitCommandResult = {
+  status: 128,
+  signal: null,
+  stdout: '',
+  stderr: 'unanswered',
+};
+
 function gitAnswering(answers: Readonly<Record<string, GitCommandResult>>): RetireGit {
-  const exec: GitExecutor = (_file, args) => answers[args.join(' ')] ?? answer(1);
+  const exec: GitExecutor = (_file, args) => answers[args.join(' ')] ?? unanswered;
   return { git: { file: 'git', exec }, cwd: '/srv/repo', env: {} };
 }
 
@@ -50,7 +60,7 @@ describe('worktreesUsing', () => {
   const filesWith =
     (path: string, content: string) =>
     (asked: string): Promise<Result<string | undefined, Error>> =>
-      Promise.resolve(ok(asked === path ? content : undefined));
+      Promise.resolve(ok({ [path]: content }[asked]));
 
   it('names a worktree that has the branch checked out, by its basename', async () => {
     expect(await worktreesUsing(gitAnswering(answers), 'main', noFiles)).toEqual({
@@ -102,15 +112,14 @@ describe('worktreesUsing', () => {
     expect((await worktreesUsing(gitAnswering(unanswered), 'feat/x', noFiles)).ok).toBe(false);
   });
 
-  it('skips the state of a worktree git marks prunable, whose directory is gone', async () => {
-    const pruned = `${porcelain}worktree /srv/gone-wt\nHEAD ${SHA_B}\ndetached\nprunable gitdir file points to non-existent location\n`;
+  it('fails, rather than reading "not in use", when a worktree is prunable: its state stays until it is pruned', async () => {
+    const pruned = `${porcelain}\nworktree /srv/gone-wt\nHEAD ${SHA_B}\ndetached\nprunable gitdir file points to non-existent location\n`;
+    const result = await worktreesUsing(
+      gitAnswering({ ...answers, 'worktree list --porcelain': answer(0, pruned) }),
+      'feat/x',
+      noFiles,
+    );
 
-    expect(
-      await worktreesUsing(
-        gitAnswering({ ...answers, 'worktree list --porcelain': answer(0, pruned) }),
-        'feat/x',
-        noFiles,
-      ),
-    ).toEqual({ ok: true, value: [] });
+    expect(failureMessage(result)).toContain('gone-wt');
   });
 });

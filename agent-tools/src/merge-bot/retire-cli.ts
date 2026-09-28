@@ -3,7 +3,6 @@ import { basename } from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { printable } from '../pr-watch/printable.js';
 import { DEFAULT_BRANCH_NAMES, type BranchArgSeams } from './branch-arg.js';
 import type { GitExecutor } from './git-executor.js';
 import { realFetch } from './github-fetch.js';
@@ -119,7 +118,7 @@ async function originMismatch(
   if (repo === undefined) {
     return ok(`origin is not a github.com URL; the bot deletes only in ${wanted}`);
   }
-  const named = printable(`${repo.owner}/${repo.repo}`);
+  const named = `${repo.owner}/${repo.repo}`;
   return named.toLowerCase() === wanted.toLowerCase()
     ? ok(undefined)
     : ok(`origin names ${named}, not ${wanted}, the repository the bot would delete in`);

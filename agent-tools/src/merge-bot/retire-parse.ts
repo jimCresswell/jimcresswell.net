@@ -1,3 +1,5 @@
+import { basename } from 'node:path';
+
 import { err, ok, type Result } from '@engraph/result';
 
 import { printable } from '../pr-watch/printable.js';
@@ -46,7 +48,9 @@ export function parseSymrefHead(stdout: string): Result<DefaultBranchReading, Er
   const name = symrefName(lines);
   const sha = headSha(lines);
   if (name === undefined || sha === undefined) {
-    return err(new Error(`the remote's HEAD could not be read from: ${JSON.stringify(stdout)}`));
+    return err(
+      new Error(`the remote's HEAD could not be read from: ${printable(JSON.stringify(stdout))}`),
+    );
   }
   if (name.startsWith('-') || !isRetirableBranchName(name)) {
     return err(
@@ -154,7 +158,7 @@ export interface WorktreeEntry {
   readonly path: string;
   /** The full refname checked out there; undefined when HEAD is detached. */
   readonly branch: string | undefined;
-  /** Whether git marks it prunable: its directory is gone, so it has no state left to read. */
+  /** Whether git marks it prunable: its directory is not where git recorded it. */
   readonly prunable: boolean;
 }
 
@@ -180,15 +184,16 @@ export interface GithubRepo {
 }
 
 const GITHUB_URL_FORMS: readonly RegExp[] = [
-  /^https:\/\/(?:[^@/]+@)?github\.com\/([^/]+)\/([^/]+?)(?:\.git)?\/?$/,
-  /^git@github\.com:([^/]+)\/([^/]+?)(?:\.git)?$/,
-  /^ssh:\/\/git@github\.com\/([^/]+)\/([^/]+?)(?:\.git)?$/,
+  /^https:\/\/(?:[^@/]+@)?github\.com\/([A-Za-z0-9-]+)\/([A-Za-z0-9._-]+?)(?:\.git)?\/?$/,
+  /^git@github\.com:([A-Za-z0-9-]+)\/([A-Za-z0-9._-]+?)(?:\.git)?$/,
+  /^ssh:\/\/git@github\.com\/([A-Za-z0-9-]+)\/([A-Za-z0-9._-]+?)(?:\.git)?$/,
 ];
 
 /**
  * The owner and repository a GitHub remote URL names, in the https (with or
- * without credentials in it), scp-like and ssh forms; undefined for anything
- * else. The URL itself is never echoed: an https URL can carry a token. Read from the RAW configured
+ * without credentials in it), scp-like and ssh forms, held to the characters
+ * GitHub allows in each; undefined for anything else, a query or a fragment
+ * included. The URL itself is never echoed: an https URL can carry a token. Read from the RAW configured
  * URL: `git remote get-url` applies `insteadOf` rewriting, which would bind
  * the check to whatever a rewrite made of it.
  */
@@ -202,4 +207,26 @@ export function githubRepoOf(url: string): GithubRepo | undefined {
     }
   }
   return undefined;
+}
+
+/** A local absolute path in git's words: after the line's start, a space or a quote. */
+const LOCAL_PATH = /(^|[\s'"`])(\/[^\s'"`]+)/gu;
+
+/**
+ * git's own words for a failure, as the report carries them: its first
+ * `fatal:` or `error:` line (a leading `warning:` can come before the cause),
+ * else its first line that is not a `hint:`; each local absolute path cut to
+ * its last part (a report can be pasted into a tracked record, and a path
+ * names the machine); and no control or format characters (a remote's
+ * `remote:` text reaches git's stderr).
+ */
+export function gitWords(stderr: string): string {
+  const lines = stderr
+    .split('\n')
+    .map((text) => text.trim())
+    .filter((text) => text !== '' && !text.startsWith('hint:'));
+  const line = lines.find((text) => /^(?:fatal|error):/u.test(text)) ?? lines[0] ?? '';
+  return printable(
+    line.replaceAll(LOCAL_PATH, (_match, lead: string, path: string) => `${lead}${basename(path)}`),
+  );
 }

@@ -3,6 +3,7 @@ import { err, ok, type Result } from '@engraph/result';
 import type { GitCommandResult } from './git-executor.js';
 import { describeGitChildEnd, type GitContext } from './push-git.js';
 import {
+  gitWords,
   parseExactRemoteRef,
   parseRefListing,
   parseSymrefHead,
@@ -54,7 +55,7 @@ export async function runGit(
 
 /** A failed git call as an Error that names the question and git's own words. */
 export function gitFailure(question: string, result: GitCommandResult): Error {
-  return new Error(`${question}: git ${describeGitChildEnd(result)}: ${result.stderr.trim()}`);
+  return new Error(`${question}: git ${describeGitChildEnd(result)}: ${gitWords(result.stderr)}`);
 }
 
 /**

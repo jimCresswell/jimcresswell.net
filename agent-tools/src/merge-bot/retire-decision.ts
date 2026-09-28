@@ -1,3 +1,4 @@
+import { printable } from '../pr-watch/printable.js';
 import type { DefaultBranchReading, RemoteRefReading } from './retire-parse.js';
 
 /**
@@ -144,24 +145,34 @@ export function classifyRemoteReread(
 }
 
 /** What the remote delete left, read back after GitHub answered. */
-export type RemoteDeleteOutcome = 'deleted' | 'absent' | 'unchanged' | 'moved';
+export type RemoteDeleteOutcome =
+  | { readonly kind: 'deleted' }
+  | { readonly kind: 'absent' }
+  | { readonly kind: 'unchanged' }
+  | { readonly kind: 'moved'; readonly sha: string }
+  | { readonly kind: 'replaced'; readonly sha: string };
 
 /**
  * Classify the remote delete by the ref read back, never by GitHub's answer
  * alone: a stale `beforeOid` answers a generic error, and a 5xx can follow a
- * delete that happened. An absent ref is this command's delete only when
- * GitHub accepted it; otherwise someone else removed it.
+ * delete that happened. The ref gone after an accepted delete is this
+ * command's delete; gone after a refused one is reported absent, since
+ * either another writer removed it or the delete happened behind an error.
+ * A ref at another sha after an ACCEPTED delete was deleted and then
+ * re-created (replaced); after a refused one, it moved before the swap.
  */
 export function classifyRemoteReadback(
   target: PlannedDelete,
   accepted: boolean,
   readback: RemoteRefReading,
 ): RemoteDeleteOutcome {
-  const reread = classifyRemoteReread(target, readback);
-  if (reread === 'absent') {
-    return accepted ? 'deleted' : 'absent';
+  if (readback.kind === 'absent') {
+    return { kind: accepted ? 'deleted' : 'absent' };
   }
-  return reread === 'same' ? 'unchanged' : 'moved';
+  if (readback.sha === target.expectedSha) {
+    return { kind: 'unchanged' };
+  }
+  return { kind: accepted ? 'replaced' : 'moved', sha: readback.sha };
 }
 
 /**
@@ -178,7 +189,7 @@ export function baseMismatch(
   if (read?.name === proven.name && read.sha === proven.sha) {
     return undefined;
   }
-  const seen = read === undefined ? 'no default branch' : `${read.name}@${read.sha}`;
+  const seen = read === undefined ? 'no default branch' : `${printable(read.name)}@${read.sha}`;
   return `the bot's repository reads ${seen} as its default, not ${proven.name}@${proven.sha} as proven: origin's traffic reaches another repository, or the default moved; re-run`;
 }
 

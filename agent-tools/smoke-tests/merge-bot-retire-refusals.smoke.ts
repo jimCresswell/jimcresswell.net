@@ -11,18 +11,19 @@ import {
   withRig,
   type RetireRig,
 } from './merge-bot-retire-fixture';
-import { fakeGithub } from './merge-bot-retire-github-double';
+import { fakeGithub, type GithubDoubleOptions } from './merge-bot-retire-github-double';
 
 /**
  * `merge-bot retire` against real git: the tips and remotes it must not
  * retire, so it deletes NOTHING. Each case snapshots every ref of the branch
  * in the bare remote and the work clone, runs the command, and checks the
- * exit code, that every ref is where it was, and that no token was minted
- * where no remote delete was due. The retire paths are
+ * exit code, that every ref is where it was (or, where another writer pushed
+ * while the command ran, where that push left it), and that no token was
+ * minted where no remote delete was due. The retire paths are
  * `merge-bot-retire.smoke.ts`; the states that refuse (in use, symbolic,
  * case collisions, the default by name) are `merge-bot-retire-in-use.smoke.ts`.
  *
- * Real IO makes this a smoke; `test:e2e` gates it.
+ * Run by the smoke runner against real git, outside the test suite.
  */
 
 const BRANCH = 'feat/keep-me';
@@ -35,19 +36,34 @@ function snapshot(rig: RetireRig): readonly (string | undefined)[] {
   ];
 }
 
-/** Run the command and check the exit code, and that no ref of the branch moved. */
-async function expectUntouched(rig: RetireRig, exit: number, onMint?: () => void): Promise<string> {
-  const before = snapshot(rig);
-  const github = fakeGithub(rig, onMint === undefined ? {} : { onMint });
+/**
+ * Run the command and check the exit code, every ref of the branch where
+ * `expected` says (where it was, unless a hook moved it), and the tokens
+ * minted: none unless a remote delete was due.
+ */
+async function expectUntouched(
+  rig: RetireRig,
+  exit: number,
+  moves: { readonly options: GithubDoubleOptions; readonly remote: string } | undefined = undefined,
+): Promise<string> {
+  const [, local, tracking] = snapshot(rig);
+  const expected = moves === undefined ? snapshot(rig) : [moves.remote, local, tracking];
+  const github = fakeGithub(rig, moves?.options ?? {});
   const run = await retire(rig, BRANCH, github.fetchImpl);
 
   assert.equal(run.exit, exit, `expected exit ${exit}: ${run.err}`);
-  if (onMint === undefined) {
-    assert.deepEqual(snapshot(rig), before, 'a ref of the branch moved');
-    assert.equal(github.mints(), 0, 'a token was minted for a refusal');
-  }
+  assert.deepEqual(snapshot(rig), expected, 'a ref of the branch is not where it should be');
+  assert.equal(github.mints(), moves === undefined ? 0 : 1, 'a token was minted for a refusal');
   // Under --json the refusal is the outcome object on stdout.
   return `${run.out}${run.err}`;
+}
+
+/** A commit on the branch in the seed, made now and pushed only when `push` runs. */
+function pendingPush(rig: RetireRig): { readonly sha: string; readonly push: () => void } {
+  git(rig, rig.seed, 'switch', '-q', BRANCH);
+  git(rig, rig.seed, 'commit', '-q', '--allow-empty', '-m', 'pushed while the command ran');
+  const sha = git(rig, rig.seed, 'rev-parse', 'HEAD');
+  return { sha, push: () => git(rig, rig.seed, 'push', '-q', 'origin', `${BRANCH}:${BRANCH}`) };
 }
 
 /** A merged branch with a local copy and a cached tracking ref in the work clone. */
@@ -103,20 +119,21 @@ async function keepsAnUnmergedRemoteCommit(): Promise<void> {
 async function keepsARemoteThatMovesAtTheMint(): Promise<void> {
   await withRig(async (rig) => {
     mergedAndTracked(rig);
-    let moved: string | undefined;
-    await expectUntouched(rig, 3, () => {
-      moved = commitAndPush(rig, BRANCH, 'pushed while the command ran');
+    const next = pendingPush(rig);
+    await expectUntouched(rig, 3, { options: { onMint: next.push }, remote: next.sha });
+  });
+}
+
+/** The push lands after the re-read, as the delete arrives: GitHub's compare-and-swap keeps it. */
+async function keepsARemoteThatMovesBeforeTheSwap(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedAndTracked(rig);
+    const next = pendingPush(rig);
+    const err = await expectUntouched(rig, 3, {
+      options: { beforeUpdate: next.push },
+      remote: next.sha,
     });
-    assert.equal(
-      refAt(rig, rig.origin, `refs/heads/${BRANCH}`),
-      moved,
-      'the new remote tip was lost',
-    );
-    assert.notEqual(
-      refAt(rig, rig.work, `refs/heads/${BRANCH}`),
-      undefined,
-      'the local branch was deleted',
-    );
+    assert.match(err, new RegExp(`reads at ${next.sha}`, 'u'));
   });
 }
 
@@ -136,5 +153,6 @@ await keepsACacheTheRemoteNoLongerHas();
 await keepsAnUnmergedLocalCommit();
 await keepsAnUnmergedRemoteCommit();
 await keepsARemoteThatMovesAtTheMint();
+await keepsARemoteThatMovesBeforeTheSwap();
 await keepsEverythingWhenTheRemoteCannotBeRead();
-process.stdout.write('merge-bot retire refusals smoke: OK (six cases, nothing deleted)\n');
+process.stdout.write('merge-bot retire refusals smoke: OK (seven cases, nothing deleted)\n');

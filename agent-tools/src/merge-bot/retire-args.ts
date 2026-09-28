@@ -27,8 +27,10 @@ export const RETIRE_USAGE = `merge-bot retire --branch <name> [--json]
   the bot's repository exactly as they were proven.
 
   No ref this command may delete is written while reading: a remote branch's
-  objects arrive by an objects-only fetch. The bot token is minted only when
-  a remote delete is due, and only with the branch-retire scope (contents).
+  objects arrive by an objects-only fetch. The reads refresh the default
+  branch's tracking ref and origin/HEAD, and follow no tag. The bot token is
+  minted only when a remote delete is due, and only with the branch-retire
+  scope (contents).
 
   Refuses (exit 3, nothing deleted): main, master, HEAD and the default
   branch in any case; a tip that is not an ancestor of the default; a branch
@@ -40,8 +42,10 @@ export const RETIRE_USAGE = `merge-bot retire --branch <name> [--json]
   the caller's. Names are limited to ASCII letters, digits and . _ / -.
 
   --json puts EXACTLY the outcome object on stdout; diagnostics go to stderr.
-  Exit map: 0 retired (or nothing to retire), 1 operational failure (with a
-  per-name report when a delete has already happened), 2 usage, 3 refusal.
+  Exit map: 0 retired (or nothing to retire), 1 operational failure, 2 usage,
+  3 refusal. A failure after a delete may have happened reports every name:
+  deleted, absent, kept (it moved, or was re-created, at the sha it holds),
+  failed (the delete did not take), unknown, or not reached.
 `;
 
 /** Flags that will never exist here, and why. */

@@ -2,7 +2,7 @@ import { err, ok, type Result } from '@engraph/result';
 
 import { classifyCasOutcome, type CasOutcome, type PlannedDelete } from './retire-decision.js';
 import { gitFailure, runGit, type RetireGit } from './retire-git-read.js';
-import { parseRefListing, REF_LISTING_FORMAT } from './retire-parse.js';
+import { gitWords, parseRefListing, REF_LISTING_FORMAT } from './retire-parse.js';
 import { describeGitChildEnd } from './push-git.js';
 
 /**
@@ -28,7 +28,7 @@ export async function deletePlannedRef(
     target.ref,
     target.expectedSha,
   ]);
-  const detail = `git ${describeGitChildEnd(deleted)}: ${deleted.stderr.trim()}`;
+  const detail = `git ${describeGitChildEnd(deleted)}: ${gitWords(deleted.stderr)}`;
   if (deleted.status === 0) {
     return ok(classifyCasOutcome(target, { exitedClean: true, rereadSha: undefined, detail }));
   }

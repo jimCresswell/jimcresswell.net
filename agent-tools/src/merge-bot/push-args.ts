@@ -67,12 +67,9 @@ interface CollectedPushFlags {
   json: boolean;
 }
 
-/** The seams this parser will construct for itself when not supplied one. */
-export type PushArgsSeams = BranchArgSeams;
-
 export function parsePushArgs(
   rest: readonly string[],
-  seams: PushArgsSeams = {},
+  seams: BranchArgSeams = {},
 ): Result<PushArgs, Error> {
   const state: CollectedPushFlags = { json: false };
   for (let index = 0; index < rest.length; index += 1) {

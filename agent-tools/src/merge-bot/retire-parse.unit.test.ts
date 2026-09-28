@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
+import { failureMessage } from './test-helpers/result-failure.js';
 import {
   caseCollisionsOf,
+  gitWords,
   githubRepoOf,
   isRetirableBranchName,
   parseExactRemoteRef,
@@ -37,7 +39,7 @@ describe('parseSymrefHead', () => {
     const parsed = parseSymrefHead(`ref: refs/heads/a\u001b[31m\tHEAD\n${SHA_A}\tHEAD\n`);
 
     expect(parsed.ok).toBe(false);
-    expect(parsed.ok ? '' : parsed.error.message).not.toContain('\u001b');
+    expect(failureMessage(parsed)).not.toContain('\u001b');
   });
 });
 
@@ -78,10 +80,11 @@ describe('parseRefListing', () => {
     expect(listing.get('refs/heads/alias')).toEqual({ sha: SHA_A, symref: 'refs/heads/main' });
   });
 
-  it('keeps names exact, so a case-folded spelling never resolves another ref', () => {
-    const listing = parseRefListing(`refs/heads/main ${SHA_A} \n`);
+  it('keeps names exact, so two refs that differ only in case stay two', () => {
+    const listing = parseRefListing(`refs/heads/main ${SHA_A} \nrefs/heads/Main ${SHA_B} \n`);
 
-    expect(listing.get('refs/heads/Main')).toBeUndefined();
+    expect(listing.get('refs/heads/main')).toEqual({ sha: SHA_A, symref: undefined });
+    expect(listing.get('refs/heads/Main')).toEqual({ sha: SHA_B, symref: undefined });
   });
 });
 
@@ -138,35 +141,64 @@ describe('parseWorktrees', () => {
 });
 
 describe('githubRepoOf', () => {
-  it('reads the owner and repository from every GitHub URL form git accepts', () => {
-    for (const url of [
-      'https://github.com/acme/widgets.git',
-      'https://github.com/acme/widgets',
-      'git@github.com:acme/widgets.git',
-      'ssh://git@github.com/acme/widgets.git',
-      'https://x-access-token:s3cret@github.com/acme/widgets.git',
-      'https://s3cret@github.com/acme/widgets',
-    ]) {
-      expect(githubRepoOf(url)).toEqual({ owner: 'acme', repo: 'widgets' });
-    }
+  it.each([
+    'https://github.com/acme/widgets.git',
+    'https://github.com/acme/widgets',
+    'git@github.com:acme/widgets.git',
+    'ssh://git@github.com/acme/widgets.git',
+    'https://x-access-token:s3cret@github.com/acme/widgets.git',
+    'https://s3cret@github.com/acme/widgets',
+  ])('reads the owner and repository from a GitHub URL form git accepts: %s', (url) => {
+    expect(githubRepoOf(url)).toEqual({ owner: 'acme', repo: 'widgets' });
   });
 
-  it('reads nothing from a URL that is not GitHub', () => {
-    expect(githubRepoOf('https://example.com/acme/widgets.git')).toBeUndefined();
-    expect(githubRepoOf('/srv/git/widgets.git')).toBeUndefined();
+  it.each([
+    'https://example.com/acme/widgets.git',
+    '/srv/git/widgets.git',
+    'https://github.com/ac\u200bme/widgets.git',
+    'https://github.com/acme/widgets?access_token=s3cret',
+    'https://github.com/acme/widgets#s3cret',
+  ])('reads nothing from a URL that is not a plain GitHub repository: %s', (url) => {
+    expect(githubRepoOf(url)).toBeUndefined();
   });
 });
 
 describe('isRetirableBranchName', () => {
-  it('admits the names this estate cuts', () => {
-    for (const name of ['feat/branch-retire', 'coordination/2026-09-28-87689e', 'docs/a_b.c']) {
+  it.each(['feat/branch-retire', 'coordination/2026-09-28-87689e', 'docs/a_b.c'])(
+    'admits a name this estate cuts: %s',
+    (name) => {
       expect(isRetirableBranchName(name)).toBe(true);
-    }
+    },
+  );
+
+  it.each(['issue#12', '%2e%2e/tags/v1', 'a b', 'naïve', ''])(
+    'refuses a name a URL or a ref path would read as something else: %s',
+    (name) => {
+      expect(isRetirableBranchName(name)).toBe(false);
+    },
+  );
+});
+
+describe('gitWords', () => {
+  it("keeps git's first line that is not a hint, with each local absolute path cut to its last part", () => {
+    const stderr = [
+      "fatal: Unable to create '/srv/repo/.git/refs/heads/feat/x.lock': File exists.",
+      '',
+      'Another git process seems to be running in this repository.',
+    ].join('\n');
+
+    expect(gitWords(stderr)).toBe("fatal: Unable to create 'x.lock': File exists.");
   });
 
-  it('refuses characters a URL or a ref path would read as something else', () => {
-    for (const name of ['issue#12', '%2e%2e/tags/v1', 'a b', 'naïve', '']) {
-      expect(isRetirableBranchName(name)).toBe(false);
-    }
+  it("prefers git's fatal or error line to a warning before it", () => {
+    expect(
+      gitWords('warning: redirecting to https://github.com/acme/w\nfatal: repository not found'),
+    ).toBe('fatal: repository not found');
+  });
+
+  it('leaves ref names and URLs whole, and drops control characters', () => {
+    expect(
+      gitWords("hint: try again\nerror: refs/heads/feat/x at 'https://github.com/acme/w'\u001b[2J"),
+    ).toBe("error: refs/heads/feat/x at 'https://github.com/acme/w'[2J");
   });
 });

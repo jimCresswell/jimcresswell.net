@@ -8,16 +8,19 @@ import type { DefaultBranchReading } from './retire-parse.js';
 
 /**
  * What happened to one name of the branch: deleted (at the sha it was proven
- * at); absent; kept, because it moved after its proof (at the sha it moved
- * to); failed, a delete that did not take, the ref still at its proven sha;
- * or unknown, when the delete ran and its outcome could not be read.
+ * at); absent; kept, because it moved after its proof or was re-created (at
+ * the sha it now holds); failed, a delete that did not take, the ref still at
+ * its proven sha; unknown, when the delete ran and its outcome could not be
+ * read; or not reached, a planned delete never attempted because an earlier
+ * name's outcome stopped the run.
  */
 export type NameReport =
   | { readonly state: 'deleted'; readonly sha: string }
   | { readonly state: 'absent' }
   | { readonly state: 'kept'; readonly sha: string }
   | { readonly state: 'failed' }
-  | { readonly state: 'unknown' };
+  | { readonly state: 'unknown' }
+  | { readonly state: 'not-reached' };
 
 /** The three names a branch can have. */
 export interface NameReports {
@@ -67,38 +70,52 @@ function nameLines(names: NameReports): string {
     .join('');
 }
 
+/** The outcome as the two streams carry it. */
+export interface RenderedOutcome {
+  readonly stdout: string;
+  readonly stderr: string;
+}
+
+/** Render the outcome: exactly the object on stdout under `--json`; otherwise success to stdout and the rest to stderr. */
+export function renderRetireOutcome(outcome: RetireOutcome, json: boolean): RenderedOutcome {
+  if (json) {
+    return { stdout: `${JSON.stringify(outcome)}\n`, stderr: '' };
+  }
+  if (outcome.kind === 'retired') {
+    return {
+      stdout: `retired: ${outcome.branch} (on ${outcome.base.name}@${outcome.base.sha})\n${nameLines(outcome.names)}`,
+      stderr: '',
+    };
+  }
+  if (outcome.kind === 'absent') {
+    return {
+      stdout: `nothing to retire: ${outcome.branch} has no local, tracking or remote name\n`,
+      stderr: '',
+    };
+  }
+  if (outcome.kind === 'refused') {
+    return { stdout: '', stderr: `merge-bot retire: refused: ${outcome.reason}\n` };
+  }
+  return outcome.kind === 'partial'
+    ? {
+        stdout: '',
+        stderr: `merge-bot retire: ${outcome.branch} partly retired: ${outcome.reason}\n${nameLines(outcome.names)}`,
+      }
+    : { stdout: '', stderr: `merge-bot retire: ${outcome.reason}\n` };
+}
+
 interface Sinks {
   readonly stdout: Pick<NodeJS.WriteStream, 'write'>;
   readonly stderr: Pick<NodeJS.WriteStream, 'write'>;
 }
 
-/** Write the outcome: exactly the object on stdout under `--json`; otherwise success to stdout and the rest to stderr. */
+/** Write the rendered outcome to the two streams. */
 export function writeRetireOutcome(outcome: RetireOutcome, json: boolean, sinks: Sinks): void {
-  if (json) {
-    sinks.stdout.write(`${JSON.stringify(outcome)}\n`);
-    return;
+  const rendered = renderRetireOutcome(outcome, json);
+  if (rendered.stdout !== '') {
+    sinks.stdout.write(rendered.stdout);
   }
-  switch (outcome.kind) {
-    case 'retired':
-      sinks.stdout.write(
-        `retired: ${outcome.branch} (on ${outcome.base.name}@${outcome.base.sha})\n${nameLines(outcome.names)}`,
-      );
-      return;
-    case 'absent':
-      sinks.stdout.write(
-        `nothing to retire: ${outcome.branch} has no local, tracking or remote name\n`,
-      );
-      return;
-    case 'refused':
-      sinks.stderr.write(`merge-bot retire: refused: ${outcome.reason}\n`);
-      return;
-    case 'partial':
-      sinks.stderr.write(
-        `merge-bot retire: ${outcome.branch} partly retired: ${outcome.reason}\n${nameLines(outcome.names)}`,
-      );
-      return;
-    case 'failed':
-      sinks.stderr.write(`merge-bot retire: ${outcome.reason}\n`);
-      return;
+  if (rendered.stderr !== '') {
+    sinks.stderr.write(rendered.stderr);
   }
 }

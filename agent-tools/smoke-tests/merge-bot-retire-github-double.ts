@@ -20,6 +20,10 @@ import { GIT, git, refAt, SMOKE_TOKEN, type RetireRig } from './merge-bot-retire
 export interface GithubDoubleOptions {
   /** Runs when a token is minted, before GitHub answers. */
   readonly onMint?: () => void;
+  /** Runs when `updateRefs` arrives, before GitHub applies it: a push landing between the re-read and the swap. */
+  readonly beforeUpdate?: () => void;
+  /** Runs after `updateRefs` is applied, before GitHub answers: a writer re-creating the branch. */
+  readonly afterUpdate?: () => void;
   /** Answer the mint with a 500. */
   readonly failMint?: boolean;
   /** `updateRefs` answers success and changes nothing, or deletes and then answers an error. */
@@ -60,25 +64,32 @@ function answerRead(rig: RetireRig, ref: string): unknown {
 }
 
 /** `updateRefs` with `beforeOid` and `afterOid`, applied to the bare repository as the options say. */
+const UPDATED = { data: { updateRefs: { clientMutationId: null } } };
+
+/** Apply `afterOid` to the bare repository, deleting the ref when it is all zeros. */
+function applyUpdate(rig: RetireRig, ref: string, current: string, after: string): void {
+  const update =
+    after === ZERO_OID ? ['update-ref', '-d', ref, current] : ['update-ref', ref, after, current];
+  spawnSync(GIT, update, { cwd: rig.origin, env: rig.env });
+}
+
 function answerUpdate(
   rig: RetireRig,
   variables: z.infer<typeof graphqlDocument>['variables'],
-  mode: GithubDoubleOptions['updateRefs'],
+  options: GithubDoubleOptions,
 ): unknown {
+  options.beforeUpdate?.();
   const { ref, before, after } = variables;
   const current = refAt(rig, rig.origin, ref);
   if (current === undefined || current !== before || after === undefined) {
     return GRAPHQL_ERROR;
   }
-  if (mode === 'accepts-without-deleting') {
-    return { data: { updateRefs: { clientMutationId: null } } };
+  if (options.updateRefs === 'accepts-without-deleting') {
+    return UPDATED;
   }
-  const update =
-    after === ZERO_OID ? ['update-ref', '-d', ref, current] : ['update-ref', ref, after, current];
-  spawnSync(GIT, update, { cwd: rig.origin, env: rig.env });
-  return mode === 'errors-after-deleting'
-    ? GRAPHQL_ERROR
-    : { data: { updateRefs: { clientMutationId: null } } };
+  applyUpdate(rig, ref, current, after);
+  options.afterUpdate?.();
+  return options.updateRefs === 'errors-after-deleting' ? GRAPHQL_ERROR : UPDATED;
 }
 
 /**
@@ -114,7 +125,7 @@ export function fakeGithub(
     return reply(
       200,
       document.query.includes('updateRefs')
-        ? answerUpdate(rig, document.variables, options.updateRefs)
+        ? answerUpdate(rig, document.variables, options)
         : answerRead(rig, document.variables.ref),
     );
   };

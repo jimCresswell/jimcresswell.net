@@ -7,9 +7,13 @@ import type { GitCommandResult, GitExecutor } from '../git-executor.js';
 import type { GithubApiFetch } from '../mint-installation-token.js';
 
 /**
- * The doubles behind the `merge-bot retire` front-door tests: git answers by
- * argv with the literal text it prints, and GitHub answers the two mint
- * calls, then each GraphQL call in turn from a list of literal bodies.
+ * The doubles behind the `merge-bot retire` front-door tests. git answers by
+ * argv with the literal text it prints, and an argv the table does not hold
+ * answers 128 (git's usage failure), never a status that reads as a result.
+ * GitHub is a lookup by endpoint, branch-free: the two mint endpoints, and
+ * one constant GraphQL answer for the run. The mints are recorded, the one
+ * effect read: a credential issued. Paths that need GitHub to change
+ * between calls run against real git in the smokes.
  */
 
 const { privateKey } = generateKeyPairSync('rsa', {
@@ -33,6 +37,13 @@ export const LISTING_QUERY =
 export function answer(status: number, stdout = ''): GitCommandResult {
   return { status, signal: null, stdout, stderr: '' };
 }
+
+const UNANSWERED: GitCommandResult = {
+  status: 128,
+  signal: null,
+  stdout: '',
+  stderr: 'unanswered',
+};
 
 /** Every git answer for a branch merged into main, present locally and cached, absent on the remote. */
 export function mergedLocally(): Record<string, GitCommandResult> {
@@ -84,34 +95,30 @@ export function refRead(sha: string | undefined, defaultName = 'main'): unknown 
   };
 }
 
-export const DELETE_ACCEPTED: unknown = { data: { updateRefs: { clientMutationId: null } } };
 export const GRAPHQL_ERROR: unknown = {
   errors: [{ message: 'Something went wrong while executing your query' }],
 };
 
-/** GitHub: the two mint endpoints, then each GraphQL call answered in turn (the last answer repeats). */
-function githubAnswering(graphql: readonly unknown[]): {
-  fetchImpl: GithubApiFetch;
-  minted: () => boolean;
-} {
-  let mints = 0;
-  let calls = 0;
-  const fetchImpl: GithubApiFetch = (url) => {
-    if (url.endsWith('/installation')) {
-      return Promise.resolve({ status: 200, json: () => Promise.resolve({ id: 55 }) });
-    }
-    if (url.endsWith('/graphql')) {
-      const body = graphql[Math.min(calls, graphql.length - 1)];
-      calls += 1;
-      return Promise.resolve({ status: 200, json: () => Promise.resolve(body) });
-    }
-    mints += 1;
-    return Promise.resolve({
-      status: 201,
-      json: () => Promise.resolve({ token: TOKEN, expires_at: '2026-09-28T15:00:00Z' }),
-    });
+/** GitHub by endpoint: the installation, the token mint (recorded), and one GraphQL answer. */
+function githubAnswering(graphql: unknown): { fetchImpl: GithubApiFetch; mints: string[] } {
+  const mints: string[] = [];
+  const reply = (status: number, body: unknown): ReturnType<GithubApiFetch> =>
+    Promise.resolve({ status, json: () => Promise.resolve(body) });
+  const endpoints: Readonly<Record<string, () => ReturnType<GithubApiFetch>>> = {
+    installation: () => reply(200, { id: 55 }),
+    access_tokens: () => {
+      mints.push(TOKEN);
+      return reply(201, { token: TOKEN, expires_at: '2026-09-28T15:00:00Z' });
+    },
+    graphql: () => reply(200, graphql),
   };
-  return { fetchImpl, minted: () => mints > 0 };
+  const fetchImpl: GithubApiFetch = (url) => {
+    const answerFor = endpoints[url.slice(url.lastIndexOf('/') + 1)];
+    return answerFor === undefined
+      ? Promise.reject(new Error(`the GitHub double has no endpoint for ${url}`))
+      : answerFor();
+  };
+  return { fetchImpl, mints };
 }
 
 export interface RetireRun {
@@ -121,18 +128,35 @@ export interface RetireRun {
   readonly minted: boolean;
 }
 
-/** Run `merge-bot retire` over the doubles; `graphql` answers GitHub's GraphQL calls in turn. */
+/** What a front-door run may vary besides argv and git's answers. */
+export interface RetireRunOptions {
+  /** GitHub's one answer to every GraphQL call. */
+  readonly graphql?: unknown;
+  readonly readConfigFileImpl?: (path: string) => string;
+  /** The worktree state files, by path; a path not listed does not exist. */
+  readonly stateFiles?: Readonly<Record<string, string>>;
+  /** git's ref-format grammar: whether it accepts a branch name. */
+  readonly refFormatLegal?: boolean;
+}
+
+const IDENTITY_CONFIG = JSON.stringify({
+  appSlug: 'jimbot-oakington-iii',
+  appId: '4352989',
+  repo: 'acme/widgets',
+});
+
+/** Run `merge-bot retire` over the doubles. */
 export async function runRetire(
   args: readonly string[],
   answers: Readonly<Record<string, GitCommandResult>>,
-  graphql: readonly unknown[] = [{}],
-  readConfigFileImpl: (path: string) => string = () =>
-    JSON.stringify({ appSlug: 'jimbot-oakington-iii', appId: '4352989', repo: 'acme/widgets' }),
+  options: RetireRunOptions = {},
 ): Promise<RetireRun> {
   const out: string[] = [];
   const errText: string[] = [];
-  const github = githubAnswering(graphql);
-  const gitExecutor: GitExecutor = (_file, argv) => answers[argv.join(' ')] ?? answer(1);
+  const github = githubAnswering(options.graphql ?? {});
+  const stateFiles = options.stateFiles ?? {};
+  const legal = options.refFormatLegal ?? true;
+  const gitExecutor: GitExecutor = (_file, argv) => answers[argv.join(' ')] ?? UNANSWERED;
   const exit = await runMergeBotCli({
     args: ['retire', ...args],
     env: { HOME: '/test-home' },
@@ -140,15 +164,15 @@ export async function runRetire(
     stderr: { write: (chunk: string) => errText.push(chunk) > 0 },
     fetchImpl: github.fetchImpl,
     readFileImpl: () => Promise.resolve(privateKey),
-    readConfigFileImpl,
+    readConfigFileImpl: options.readConfigFileImpl ?? (() => IDENTITY_CONFIG),
     repoRoot: '/srv/repo',
     runGitImpl: () => 'worktree /srv/repo\n',
     nowEpochSeconds: () => 1_800_000_000,
     gitExecutor,
     gitPath: '/usr/bin/git',
     baseEnv: { PATH: '/usr/bin' },
-    readOptionalFileImpl: () => Promise.resolve(ok(undefined)),
-    branchArgSeams: { refFormatOracle: () => true },
+    readOptionalFileImpl: (path) => Promise.resolve(ok(stateFiles[path])),
+    branchArgSeams: { refFormatOracle: () => legal },
   });
-  return { exit, out: out.join(''), err: errText.join(''), minted: github.minted() };
+  return { exit, out: out.join(''), err: errText.join(''), minted: github.mints.length > 0 };
 }

@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { renameSync } from 'node:fs';
 import { join } from 'node:path';
 
 import {
+  GIT,
   git,
   mergedBranch,
   refAt,
@@ -19,7 +22,7 @@ import { fakeGithub } from './merge-bot-retire-github-double';
  * clone, and no token minted. The tip refusals are
  * `merge-bot-retire-refusals.smoke.ts`.
  *
- * Real IO makes this a smoke; `test:e2e` gates it.
+ * Run by the smoke runner against real git, outside the test suite.
  */
 
 const BRANCH = 'feat/keep-me';
@@ -125,9 +128,79 @@ async function refusesTheDefaultByName(): Promise<void> {
   });
 }
 
+/**
+ * A worktree stopped mid-rebase of the branch, then moved: git lists it as
+ * prunable, but its rebase state still names the branch until it is pruned.
+ * The question is unanswered, so the run fails (exit 1) and keeps the branch.
+ */
+async function failsOnAMovedWorktreeMidRebase(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedAndTracked(rig);
+    const lane = join(rig.root, 'rebasing');
+    git(rig, rig.work, 'worktree', 'add', '-q', lane, BRANCH);
+    spawnSync(GIT, ['rebase', '-q', '-x', 'false', 'HEAD~1'], { cwd: lane, env: rig.env });
+    renameSync(lane, join(rig.root, 'rebasing-moved'));
+    const before = snapshot(rig, OWN_REFS);
+    const github = fakeGithub(rig);
+    const run = await retire(rig, BRANCH, github.fetchImpl);
+
+    assert.equal(run.exit, 1, `expected a failure: ${run.out}${run.err}`);
+    assert.match(run.out, /prunable/u);
+    assert.deepEqual(snapshot(rig, OWN_REFS), before, 'a ref moved');
+    assert.equal(github.mints(), 0, 'a token was minted for a failure');
+  });
+}
+
+/**
+ * A bisect started on the branch in the checkout the command runs from:
+ * git's state paths there are relative unless asked for absolute ones, so
+ * the check must still find `BISECT_START` naming the branch.
+ */
+async function refusesABranchUnderBisectInThisCheckout(): Promise<void> {
+  await withRig(async (rig) => {
+    git(rig, rig.seed, 'switch', '-q', '-c', BRANCH, 'main');
+    for (const message of ['first', 'second', 'third']) {
+      git(rig, rig.seed, 'commit', '-q', '--allow-empty', '-m', message);
+    }
+    git(rig, rig.seed, 'push', '-q', 'origin', `${BRANCH}:${BRANCH}`);
+    git(rig, rig.seed, 'switch', '-q', 'main');
+    git(rig, rig.seed, 'merge', '-q', '--no-ff', '-m', `merge ${BRANCH}`, BRANCH);
+    git(rig, rig.seed, 'push', '-q', 'origin', 'main:main');
+    git(rig, rig.work, 'fetch', '-q', 'origin');
+    git(rig, rig.work, 'switch', '-q', '--track', `origin/${BRANCH}`);
+    git(rig, rig.work, 'bisect', 'start', 'HEAD', 'HEAD~3');
+    await expectRefused(rig, BRANCH, OWN_REFS, /work/u);
+  });
+}
+
+/** The branch becomes a symbolic ref to main after its proof: its delete must not follow it. */
+async function keepsMainWhenTheBranchTurnsSymbolic(): Promise<void> {
+  await withRig(async (rig) => {
+    git(rig, rig.seed, 'switch', '-q', '-c', BRANCH, 'main');
+    git(rig, rig.seed, 'push', '-q', 'origin', `${BRANCH}:${BRANCH}`);
+    git(rig, rig.work, 'fetch', '-q', 'origin');
+    git(rig, rig.work, 'branch', '-q', '--track', BRANCH, `origin/${BRANCH}`);
+    const main = refAt(rig, rig.work, 'refs/heads/main');
+    const turn = (): string =>
+      git(rig, rig.work, 'symbolic-ref', `refs/heads/${BRANCH}`, 'refs/heads/main');
+    await retire(rig, BRANCH, fakeGithub(rig, { onMint: turn }).fetchImpl);
+
+    assert.equal(
+      refAt(rig, rig.work, 'refs/heads/main'),
+      main,
+      'the delete followed a symbolic ref',
+    );
+  });
+}
+
 await refusesABranchCheckedOutInAWorktree();
+await refusesABranchUnderBisectInThisCheckout();
+await keepsMainWhenTheBranchTurnsSymbolic();
+await failsOnAMovedWorktreeMidRebase();
 await refusesABranchUnderBisect();
 await refusesACaseCollision();
 await refusesASymbolicRefToTheDefault();
 await refusesTheDefaultByName();
-process.stdout.write('merge-bot retire in-use smoke: OK (five refusing states, nothing deleted)\n');
+process.stdout.write(
+  'merge-bot retire in-use smoke: OK (six refusing states, a moved worktree, and main kept past a late symbolic ref)\n',
+);

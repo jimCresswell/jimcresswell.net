@@ -1,8 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { assert, describe, expect, it } from 'vitest';
 
 import type { GithubApiFetch } from './mint-installation-token.js';
 import { decideRetirement, type PlannedDelete } from './retire-decision.js';
 import { readRemoteRefByApi, requestRefDelete } from './retire-github-api.js';
+import { failureMessage } from './test-helpers/result-failure.js';
 
 /**
  * The retire command's two GraphQL calls against GitHub: the re-read of the
@@ -32,9 +33,10 @@ function plannedRemote(): PlannedDelete {
     caseCollisions: [],
     symbolic: [],
   });
-  if (decision.kind !== 'plan' || decision.plan.remote === undefined) {
-    throw new Error('the fixture plans a remote delete');
-  }
+  assert(
+    decision.kind === 'plan' && decision.plan.remote !== undefined,
+    'the fixture plans a remote delete',
+  );
   return decision.plan.remote;
 }
 
@@ -91,11 +93,8 @@ describe('requestRefDelete', () => {
     };
     const result = await requestRefDelete(fetchAnswering(200, body), 't', 'R_1', plannedRemote());
 
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.error.message).toContain('Something went wrong');
-      expect(result.error.message).not.toContain('\u001b');
-    }
+    expect(failureMessage(result)).toContain('Something went wrong');
+    expect(failureMessage(result)).not.toContain('\u001b');
   });
 
   it('never puts the token in a failure message', async () => {
@@ -107,8 +106,6 @@ describe('requestRefDelete', () => {
     );
 
     expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.error.message).not.toContain('tok_secret');
-    }
+    expect(failureMessage(result)).not.toContain('tok_secret');
   });
 });

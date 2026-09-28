@@ -88,7 +88,9 @@ export async function withRig<T>(run: (rig: RetireRig) => Promise<T>): Promise<T
   };
   try {
     git(rig, root, 'init', '-q', '--bare', '-b', 'main', rig.origin);
-    git(rig, root, 'clone', '-q', rig.origin, rig.seed);
+    // The seed is made, not cloned: a clone of the empty bare repository warns.
+    git(rig, root, 'init', '-q', '-b', 'main', rig.seed);
+    git(rig, rig.seed, 'remote', 'add', 'origin', rig.origin);
     git(rig, rig.seed, 'config', 'user.name', 'smoke');
     git(rig, rig.seed, 'config', 'user.email', 'smoke@example.invalid');
     git(rig, rig.seed, 'commit', '-q', '--allow-empty', '-m', 'base');
@@ -109,7 +111,7 @@ export function bindOrigin(rig: RetireRig, target: string): void {
   git(rig, rig.work, 'config', '--replace-all', `url.${target}.insteadOf`, GITHUB_URL);
 }
 
-const nameReport = z.looseObject({ state: z.string() });
+const nameReport = z.looseObject({ state: z.string(), sha: z.string().optional() });
 
 /** The `--json` outcome object, as far as the smokes read it. */
 const outcomeSchema = z.looseObject({
@@ -124,16 +126,20 @@ export function outcomeOf(run: { readonly out: string }): z.infer<typeof outcome
   return outcomeSchema.parse(JSON.parse(run.out));
 }
 
-/** Run `merge-bot retire --branch <branch> --json` in the work clone; the token must reach neither stream. */
+/**
+ * Run `merge-bot retire --branch <branch>` in the work clone, with `--json`
+ * unless `json` is false; the token must reach neither stream in either mode.
+ */
 export async function retire(
   rig: RetireRig,
   branch: string,
   fetchImpl: GithubApiFetch,
+  json = true,
 ): Promise<{ readonly exit: number; readonly out: string; readonly err: string }> {
   const out: string[] = [];
   const err: string[] = [];
   const exit = await runMergeBotCli({
-    args: ['retire', '--branch', branch, '--json'],
+    args: ['retire', '--branch', branch, ...(json ? ['--json'] : [])],
     env: { HOME: rig.root },
     stdout: { write: (chunk: string) => out.push(chunk) > 0 },
     stderr: { write: (chunk: string) => err.push(chunk) > 0 },

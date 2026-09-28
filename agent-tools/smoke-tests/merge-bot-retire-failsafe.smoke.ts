@@ -3,6 +3,7 @@ import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import {
+  commitAndPush,
   git,
   mergedBranch,
   outcomeOf,
@@ -16,19 +17,21 @@ import { fakeGithub, type GithubDoubleOptions } from './merge-bot-retire-github-
 /**
  * `merge-bot retire` against real git: failures around the delete. Each case
  * runs a merged branch present on the remote, in the cache and locally, with
- * GitHub or git failing at one step, and checks exit 1 and where every name
- * is afterwards. No local name may go unless the remote reads back absent;
- * a local delete that fails is reported as failed, never as moved.
+ * GitHub or git failing, or another writer moving a name, at one step, and
+ * checks exit 1 and where every name is afterwards. No local name may go
+ * unless the remote reads back absent; a name that moved after its proof is
+ * kept and reported at the sha it moved to; a local delete that fails is
+ * reported as failed, never as moved.
  *
- * Real IO makes this a smoke; `test:e2e` gates it.
+ * Run by the smoke runner against real git, outside the test suite.
  */
 
 const BRANCH = 'feat/fail-me';
 
-type Where = 'kept' | 'gone';
+type Where = 'kept' | 'gone' | 'moved';
 
-/** Whether each name (remote, tracking, local) is where its proof left it, or gone. */
-function names(rig: RetireRig, tip: string): readonly (Where | string)[] {
+/** Where each name (remote, tracking, local) is: at its proven tip, gone, or moved. */
+function names(rig: RetireRig, tip: string): readonly Where[] {
   return [
     refAt(rig, rig.origin, `refs/heads/${BRANCH}`),
     refAt(rig, rig.work, `refs/remotes/origin/${BRANCH}`),
@@ -37,27 +40,45 @@ function names(rig: RetireRig, tip: string): readonly (Where | string)[] {
     if (sha === undefined) {
       return 'gone';
     }
-    return sha === tip ? 'kept' : sha;
+    return sha === tip ? 'kept' : 'moved';
   });
+}
+
+/** A new commit on top of `tip` in the work clone, made without moving anything. */
+function commitOnTop(rig: RetireRig, tip: string): string {
+  return git(rig, rig.work, 'commit-tree', `${tip}^{tree}`, '-p', tip, '-m', 'moved');
+}
+
+interface Failure {
+  readonly outcome: ReturnType<typeof outcomeOf>;
+  /** Where each name is afterwards, by sha: remote, tracking, local. */
+  readonly shas: readonly (string | undefined)[];
+  readonly config: string;
 }
 
 /** Retire the branch under `options`; check exit 1, the outcome kind, and where each name is. */
 async function expectFailure(
-  options: (rig: RetireRig) => GithubDoubleOptions,
+  options: (rig: RetireRig, tip: string) => GithubDoubleOptions,
   kind: 'failed' | 'partial',
   expected: readonly Where[],
-): Promise<string> {
+): Promise<Failure> {
   return withRig(async (rig) => {
     const tip = mergedBranch(rig, BRANCH);
     git(rig, rig.work, 'fetch', '-q', 'origin');
     git(rig, rig.work, 'branch', '-q', '--track', BRANCH, `origin/${BRANCH}`);
-    const run = await retire(rig, BRANCH, fakeGithub(rig, options(rig)).fetchImpl);
+    const run = await retire(rig, BRANCH, fakeGithub(rig, options(rig, tip)).fetchImpl);
 
     assert.equal(run.exit, 1, `expected a failure: ${run.out}${run.err}`);
     const outcome = outcomeOf(run);
     assert.equal(outcome.kind, kind);
     assert.deepEqual(names(rig, tip), expected, 'a name is not where the failure should leave it');
-    return outcome.reason ?? '';
+    const config = git(rig, rig.work, 'config', '--list', '--local');
+    const shas = [
+      refAt(rig, rig.origin, `refs/heads/${BRANCH}`),
+      refAt(rig, rig.work, `refs/remotes/origin/${BRANCH}`),
+      refAt(rig, rig.work, `refs/heads/${BRANCH}`),
+    ];
+    return { outcome, shas, config };
   });
 }
 
@@ -71,11 +92,55 @@ await expectFailure(() => ({ updateRefs: 'accepts-without-deleting' }), 'failed'
 // The token cannot be minted: nothing is read or deleted after it.
 await expectFailure(() => ({ failMint: true }), 'failed', ['kept', 'kept', 'kept']);
 
+// GitHub refuses the delete with an error and changes nothing: the read-back decides.
+await expectFailure(() => ({ failGraphqlCall: 2 }), 'failed', ['kept', 'kept', 'kept']);
+
 // The re-read at the mint fails: nothing is deleted.
 await expectFailure(() => ({ failGraphqlCall: 1 }), 'failed', ['kept', 'kept', 'kept']);
 
 // The remote is deleted but its read-back fails: its state is unknown, so no local name goes.
-await expectFailure(() => ({ failGraphqlCall: 3 }), 'failed', ['gone', 'kept', 'kept']);
+const unread = await expectFailure(() => ({ failGraphqlCall: 3 }), 'partial', [
+  'gone',
+  'kept',
+  'kept',
+]);
+assert.deepEqual(
+  [unread.outcome.names?.remote.state, unread.outcome.names?.local.state],
+  ['unknown', 'not-reached'],
+);
+
+// Another writer re-creates the branch after the delete: it is kept, and no local name goes.
+const replaced = await expectFailure(
+  (rig) => ({ afterUpdate: () => commitAndPush(rig, BRANCH, 're-created') }),
+  'partial',
+  ['moved', 'kept', 'kept'],
+);
+assert.deepEqual(replaced.outcome.names?.remote, { state: 'kept', sha: replaced.shas[0] });
+
+// The local branch moves after its proof: it is kept at the sha it moved to, with its config.
+const localMoved = await expectFailure(
+  (rig, tip) => ({
+    onMint: () => git(rig, rig.work, 'update-ref', `refs/heads/${BRANCH}`, commitOnTop(rig, tip)),
+  }),
+  'partial',
+  ['gone', 'gone', 'moved'],
+);
+assert.deepEqual(localMoved.outcome.names?.local, { state: 'kept', sha: localMoved.shas[2] });
+assert.match(localMoved.config, new RegExp(String.raw`^branch\.${BRANCH}\.remote=`, 'mu'));
+
+// The tracking ref moves after its proof: it is kept, and the local branch still goes.
+const trackingMoved = await expectFailure(
+  (rig, tip) => ({
+    onMint: () =>
+      git(rig, rig.work, 'update-ref', `refs/remotes/origin/${BRANCH}`, commitOnTop(rig, tip)),
+  }),
+  'partial',
+  ['gone', 'moved', 'gone'],
+);
+assert.deepEqual(trackingMoved.outcome.names?.tracking, {
+  state: 'kept',
+  sha: trackingMoved.shas[1],
+});
 
 // The local branch is locked when its delete runs: failed at its proven sha, never "moved".
 const locked = await expectFailure(
@@ -85,8 +150,8 @@ const locked = await expectFailure(
   'partial',
   ['gone', 'gone', 'kept'],
 );
-assert.match(locked, /was not deleted/u);
-assert.doesNotMatch(locked, /moved/u);
+assert.match(locked.outcome.reason ?? '', /was not deleted/u);
+assert.doesNotMatch(locked.outcome.reason ?? '', /moved/u);
 
 // The config is locked when its section is removed: the names go, and the section is reported left.
 const configLeft = await expectFailure(
@@ -94,6 +159,17 @@ const configLeft = await expectFailure(
   'partial',
   ['gone', 'gone', 'gone'],
 );
-assert.match(configLeft, /config was left/u);
+assert.match(configLeft.outcome.reason ?? '', /config was left/u);
 
-process.stdout.write('merge-bot retire failsafe smoke: OK (six failures, no name lost early)\n');
+// The same unknown read-back in human output: the report goes to stderr, the token to neither stream.
+await withRig(async (rig) => {
+  mergedBranch(rig, BRANCH);
+  git(rig, rig.work, 'fetch', '-q', 'origin');
+  git(rig, rig.work, 'branch', '-q', '--track', BRANCH, `origin/${BRANCH}`);
+  const run = await retire(rig, BRANCH, fakeGithub(rig, { failGraphqlCall: 3 }).fetchImpl, false);
+
+  assert.equal(run.exit, 1, run.err);
+  assert.match(run.err, /partly retired/u);
+});
+
+process.stdout.write('merge-bot retire failsafe smoke: OK (ten failures, no name lost early)\n');

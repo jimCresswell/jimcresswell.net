@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { assert, describe, expect, it } from 'vitest';
 
 import {
   baseMismatch,
@@ -7,6 +7,7 @@ import {
   classifyRemoteReread,
   decideRetirement,
   type PlannedDelete,
+  type RetireDecision,
   type RetireReadings,
   type TipState,
 } from './retire-decision.js';
@@ -42,51 +43,76 @@ function readingsFor(states: Readonly<Record<TipName, TipCase>>): RetireReadings
   };
 }
 
-/** No names at all is "absent"; otherwise the plan holds exactly the present names at their shas. */
-function expectPlanOfPresentNames(states: Readonly<Record<TipName, TipCase>>): void {
-  const decision = decideRetirement(readingsFor(states));
-  if (TIP_NAMES.every((tip) => states[tip] === 'absent')) {
-    expect(decision).toEqual({ kind: 'absent' });
-    return;
-  }
-  expect(decision.kind).toBe('plan');
-  const plan = decision.kind === 'plan' ? decision.plan : undefined;
-  for (const tip of TIP_NAMES) {
-    const expected = states[tip] === 'merged' ? shaFor(tip) : undefined;
-    expect(plan?.[tip]?.expectedSha).toBe(expected);
-  }
-}
+type TipStates = Readonly<Record<TipName, TipCase>>;
 
-function everyCombination(): readonly Readonly<Record<TipName, TipCase>>[] {
-  const cases: TipCase[] = ['absent', 'merged', 'unmerged'];
-  return cases.flatMap((local) =>
-    cases.flatMap((tracking) => cases.map((remote) => ({ local, tracking, remote }))),
-  );
-}
+/** A refusal's reason; any other decision reads as a reason no assertion expects. */
+const reasonOf = (decision: RetireDecision): string =>
+  decision.kind === 'refused' ? decision.reason : `(not refused: ${decision.kind})`;
+
+const CASES: readonly TipCase[] = ['absent', 'merged', 'unmerged'];
+
+/** Every combination of the three names' cases: 27 rows. */
+const COMBINATIONS: readonly TipStates[] = CASES.flatMap((local) =>
+  CASES.flatMap((tracking) => CASES.map((remote) => ({ local, tracking, remote }))),
+);
+
+/** What each case plans for its tip: only a merged tip is planned, at the sha read. */
+const PLANNED: Readonly<Record<TipCase, (tip: TipName) => { expectedSha: string } | undefined>> = {
+  absent: () => undefined,
+  merged: (tip) => ({ expectedSha: shaFor(tip) }),
+  unmerged: () => undefined,
+};
+
+/** Every combination with exactly one tip off the default, with that tip's sha: the one the refusal names. */
+const REFUSING = TIP_NAMES.flatMap((tip) =>
+  COMBINATIONS.filter(
+    (states) =>
+      states[tip] === 'unmerged' &&
+      TIP_NAMES.filter((other) => states[other] === 'unmerged').length === 1,
+  ).map((states) => ({ states, sha: shaFor(tip) })),
+);
+
+/** Every combination with at least one name, all on the default, with the plan it must produce. */
+const PLANNING = COMBINATIONS.filter(
+  (states) =>
+    TIP_NAMES.every((tip) => states[tip] !== 'unmerged') &&
+    TIP_NAMES.some((tip) => states[tip] === 'merged'),
+).map((states) => ({
+  states,
+  plan: {
+    local: PLANNED[states.local]('local'),
+    tracking: PLANNED[states.tracking]('tracking'),
+    remote: PLANNED[states.remote]('remote'),
+  },
+}));
 
 describe('decideRetirement over every combination of the three names', () => {
-  it('refuses whenever any present tip is off the default, naming that tip and its sha', () => {
-    for (const states of everyCombination()) {
-      const unmerged = TIP_NAMES.filter((tip) => states[tip] === 'unmerged');
-      if (unmerged.length === 0) {
-        continue;
-      }
-      const decision = decideRetirement(readingsFor(states));
-      expect(decision.kind).toBe('refused');
-      if (decision.kind === 'refused') {
-        expect(unmerged.some((tip) => decision.reason.includes(shaFor(tip)))).toBe(true);
-        expect(decision.reason).toContain(`main@${BASE.sha}`);
-      }
-    }
+  it.each(REFUSING)(
+    'refuses when a tip is off the default, naming it: $states',
+    ({ states, sha }) => {
+      expect(reasonOf(decideRetirement(readingsFor(states)))).toMatch(
+        new RegExp(`${sha}.*main@${BASE.sha}`, 'u'),
+      );
+    },
+  );
+
+  it('names the local branch first when every tip is off the default', () => {
+    const states = { local: 'unmerged', tracking: 'unmerged', remote: 'unmerged' } as const;
+
+    expect(reasonOf(decideRetirement(readingsFor(states)))).toContain(shaFor('local'));
   });
 
-  it('plans exactly the present names at the shas read, when every tip is on the default', () => {
-    for (const states of everyCombination()) {
-      if (TIP_NAMES.some((tip) => states[tip] === 'unmerged')) {
-        continue;
-      }
-      expectPlanOfPresentNames(states);
-    }
+  it.each(PLANNING)(
+    'plans exactly the present names at the shas read: $states',
+    ({ states, plan }) => {
+      expect(decideRetirement(readingsFor(states))).toMatchObject({ kind: 'plan', plan });
+    },
+  );
+
+  it('reports nothing to retire when the branch has no name anywhere', () => {
+    expect(
+      decideRetirement(readingsFor({ local: 'absent', tracking: 'absent', remote: 'absent' })),
+    ).toEqual({ kind: 'absent' });
   });
 
   it('plans the refs by their exact full names', () => {
@@ -94,23 +120,22 @@ describe('decideRetirement over every combination of the three names', () => {
       readingsFor({ local: 'merged', tracking: 'merged', remote: 'merged' }),
     );
 
-    expect(decision.kind).toBe('plan');
-    if (decision.kind === 'plan') {
-      expect(decision.plan.local?.ref).toBe('refs/heads/feat/x');
-      expect(decision.plan.tracking?.ref).toBe('refs/remotes/origin/feat/x');
-      expect(decision.plan.remote?.ref).toBe('refs/heads/feat/x');
-    }
+    expect(decision).toMatchObject({
+      kind: 'plan',
+      plan: {
+        local: { ref: 'refs/heads/feat/x' },
+        tracking: { ref: 'refs/remotes/origin/feat/x' },
+        remote: { ref: 'refs/heads/feat/x' },
+      },
+    });
   });
 });
 
 describe('decideRetirement refusals decided before the tips', () => {
   const merged = readingsFor({ local: 'merged', tracking: 'merged', remote: 'merged' });
 
-  it('refuses the default branch in any case', () => {
-    for (const branch of ['main', 'Main', 'MAIN']) {
-      const decision = decideRetirement({ ...merged, branch });
-      expect(decision.kind).toBe('refused');
-    }
+  it.each(['main', 'Main', 'MAIN'])('refuses the default branch in any case: %s', (branch) => {
+    expect(decideRetirement({ ...merged, branch })).toMatchObject({ kind: 'refused' });
   });
 
   it('reads the default branch from the remote, not from a fixed name', () => {
@@ -120,31 +145,12 @@ describe('decideRetirement refusals decided before the tips', () => {
     expect(decideRetirement({ ...engraph, branch: 'main' }).kind).toBe('plan');
   });
 
-  it('refuses a branch whose own ref is symbolic, and names that ref', () => {
-    const decision = decideRetirement({ ...merged, symbolic: ['refs/heads/feat/x'] });
-
-    expect(decision.kind).toBe('refused');
-    if (decision.kind === 'refused') {
-      expect(decision.reason).toContain('refs/heads/feat/x');
-    }
-  });
-
-  it('refuses a name that another existing ref matches when case is ignored, and names that ref', () => {
-    const decision = decideRetirement({ ...merged, caseCollisions: ['refs/heads/Feat/X'] });
-
-    expect(decision.kind).toBe('refused');
-    if (decision.kind === 'refused') {
-      expect(decision.reason).toContain('refs/heads/Feat/X');
-    }
-  });
-
-  it('refuses a branch some worktree is using, and names the worktree', () => {
-    const decision = decideRetirement({ ...merged, inUseBy: ['jcnet-wt-x'] });
-
-    expect(decision.kind).toBe('refused');
-    if (decision.kind === 'refused') {
-      expect(decision.reason).toContain('jcnet-wt-x');
-    }
+  it.each([
+    { field: 'symbolic', value: 'refs/heads/feat/x' },
+    { field: 'caseCollisions', value: 'refs/heads/Feat/X' },
+    { field: 'inUseBy', value: 'jcnet-wt-x' },
+  ] as const)('refuses on $field, naming $value', ({ field, value }) => {
+    expect(reasonOf(decideRetirement({ ...merged, [field]: [value] }))).toContain(value);
   });
 });
 
@@ -153,9 +159,10 @@ function remoteOnly(): PlannedDelete {
   const planned = decideRetirement(
     readingsFor({ local: 'absent', tracking: 'absent', remote: 'merged' }),
   );
-  if (planned.kind !== 'plan' || planned.plan.remote === undefined) {
-    throw new Error('the decision planned no remote delete');
-  }
+  assert(
+    planned.kind === 'plan' && planned.plan.remote !== undefined,
+    'the decision planned a remote delete',
+  );
   return planned.plan.remote;
 }
 
@@ -171,23 +178,23 @@ describe('classifyRemoteReread', () => {
 
 describe('classifyRemoteReadback', () => {
   const target = remoteOnly();
-  const moved = { kind: 'present', sha: 'd'.repeat(40) } as const;
+  const other = 'd'.repeat(40);
+  const moved = { kind: 'present', sha: other } as const;
   const unchanged = { kind: 'present', sha: target.expectedSha } as const;
 
-  it('reads an absent ref as deleted only when GitHub accepted the delete', () => {
-    expect(classifyRemoteReadback(target, true, { kind: 'absent' })).toBe('deleted');
-    expect(classifyRemoteReadback(target, false, { kind: 'absent' })).toBe('absent');
-  });
-
-  it('reads a ref still at the proven sha as unchanged, whatever GitHub answered', () => {
-    expect(classifyRemoteReadback(target, true, unchanged)).toBe('unchanged');
-    expect(classifyRemoteReadback(target, false, unchanged)).toBe('unchanged');
-  });
-
-  it('reads a ref at any other sha as moved, whatever GitHub answered', () => {
-    expect(classifyRemoteReadback(target, true, moved)).toBe('moved');
-    expect(classifyRemoteReadback(target, false, moved)).toBe('moved');
-  });
+  it.each([
+    { accepted: true, readback: { kind: 'absent' } as const, outcome: { kind: 'deleted' } },
+    { accepted: false, readback: { kind: 'absent' } as const, outcome: { kind: 'absent' } },
+    { accepted: true, readback: unchanged, outcome: { kind: 'unchanged' } },
+    { accepted: false, readback: unchanged, outcome: { kind: 'unchanged' } },
+    { accepted: true, readback: moved, outcome: { kind: 'replaced', sha: other } },
+    { accepted: false, readback: moved, outcome: { kind: 'moved', sha: other } },
+  ])(
+    'reads $readback.kind after accepted=$accepted as $outcome.kind',
+    ({ accepted, readback, outcome }) => {
+      expect(classifyRemoteReadback(target, accepted, readback)).toEqual(outcome);
+    },
+  );
 });
 
 describe('baseMismatch', () => {
@@ -195,15 +202,19 @@ describe('baseMismatch', () => {
     expect(baseMismatch(BASE, BASE)).toBeUndefined();
   });
 
-  it('names the difference when the name, the tip, or the default itself differs', () => {
-    for (const read of [
-      { name: 'trunk', sha: BASE.sha },
-      { name: 'main', sha: 'e'.repeat(40) },
-      undefined,
-    ]) {
-      expect(baseMismatch(BASE, read)).toContain(`main@${BASE.sha}`);
-    }
-  });
+  it.each([
+    { read: { name: 'trunk', sha: BASE.sha }, seen: `trunk@${BASE.sha}` },
+    { read: { name: 'main', sha: 'e'.repeat(40) }, seen: `main@${'e'.repeat(40)}` },
+    { read: undefined, seen: 'no default branch' },
+  ])(
+    'names what the identity repository read, $seen, against the proven default',
+    ({ read, seen }) => {
+      const mismatch = baseMismatch(BASE, read);
+
+      expect(mismatch).toContain(seen);
+      expect(mismatch).toContain(`main@${BASE.sha}`);
+    },
+  );
 });
 
 describe('classifyCasOutcome', () => {

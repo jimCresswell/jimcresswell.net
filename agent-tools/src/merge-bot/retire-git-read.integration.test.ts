@@ -24,7 +24,8 @@ function answer(status: number, stdout = '', stderr = ''): GitCommandResult {
 }
 
 function gitAnswering(answers: Readonly<Record<string, GitCommandResult>>): RetireGit {
-  const exec: GitExecutor = (_file, args) => answers[args.join(' ')] ?? answer(1, '', 'unanswered');
+  const exec: GitExecutor = (_file, args) =>
+    answers[args.join(' ')] ?? answer(128, '', 'unanswered');
   return { git: { file: 'git', exec }, cwd: '/srv/repo', env: {} };
 }
 

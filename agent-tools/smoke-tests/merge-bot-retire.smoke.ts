@@ -18,7 +18,7 @@ import { fakeGithub } from './merge-bot-retire-github-double';
  * `merge-bot-retire-in-use.smoke.ts`; the failures around the delete are
  * `merge-bot-retire-failsafe.smoke.ts`.
  *
- * Real IO makes this a smoke; `test:e2e` gates it.
+ * Run by the smoke runner against real git, outside the test suite.
  */
 
 const BRANCH = 'feat/retire-me';
@@ -46,9 +46,13 @@ async function retiresEveryName(): Promise<void> {
   await withRig(async (rig) => {
     mergedBranch(rig, BRANCH);
     trackLocally(rig, BRANCH);
-    // A tag made after the clone, on the default's new tip: no fetch may follow it.
+    // Tags made after the clone, on the default's new tip and on the branch's
+    // tip, with the clone set to fetch every tag (tagOpt --tags, which even a
+    // fetch that stores no ref obeys): neither fetch may bring one.
+    git(rig, rig.work, 'config', 'remote.origin.tagOpt', '--tags');
     git(rig, rig.seed, 'tag', 'v1', 'main');
-    git(rig, rig.seed, 'push', '-q', 'origin', 'v1');
+    git(rig, rig.seed, 'tag', 'v0', BRANCH);
+    git(rig, rig.seed, 'push', '-q', 'origin', 'v1', 'v0');
     const run = await retire(rig, BRANCH, fakeGithub(rig).fetchImpl);
 
     assert.equal(run.exit, 0, run.err);
@@ -59,6 +63,7 @@ async function retiresEveryName(): Promise<void> {
       'the branch config section survived',
     );
     assert.equal(refAt(rig, rig.work, 'refs/tags/v1'), undefined, 'a fetch followed a tag');
+    assert.equal(refAt(rig, rig.work, 'refs/tags/v0'), undefined, 'a fetch followed a tag');
   });
 }
 

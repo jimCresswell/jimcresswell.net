@@ -358,8 +358,11 @@ pnpm agent-tools merge-bot retire --branch <name>
   - a name another ref matches when case is ignored;
   - an `origin` that is not the bot identity's repository;
   - a remote, or a default branch, that moved after its proof.
-- A failure (exit 1) reports each name as deleted, absent, kept (it moved),
-  failed (the delete did not take) or unknown. The origin URL itself is never
-  printed, only the repository parsed from it.
+- A failure (exit 1) after a delete may have happened reports every name:
+  deleted, absent, kept (it moved, or was re-created, at the sha it holds),
+  failed (the delete did not take), unknown, or not reached. A worktree that
+  cannot be asked for its rebase and bisect state, a prunable one included,
+  fails the run until it is repaired or pruned. The origin URL itself is
+  never printed, only the repository parsed from it.
 - Whether a branch is wanted is the caller's judgement; the command checks
   no pull request.

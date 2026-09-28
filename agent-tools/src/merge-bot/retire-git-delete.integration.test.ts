@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { assert, describe, expect, it } from 'vitest';
 
 import type { GitCommandResult, GitExecutor } from './git-executor.js';
 import { decideRetirement, type PlannedDelete } from './retire-decision.js';
@@ -19,7 +19,8 @@ function answer(status: number, stdout = '', stderr = ''): GitCommandResult {
 }
 
 function gitAnswering(answers: Readonly<Record<string, GitCommandResult>>): RetireGit {
-  const exec: GitExecutor = (_file, args) => answers[args.join(' ')] ?? answer(1);
+  const exec: GitExecutor = (_file, args) =>
+    answers[args.join(' ')] ?? answer(128, '', 'unanswered');
   return { git: { file: 'git', exec }, cwd: '/srv/repo', env: {} };
 }
 
@@ -34,9 +35,10 @@ function plannedLocal(): PlannedDelete {
     caseCollisions: [],
     symbolic: [],
   });
-  if (decision.kind !== 'plan' || decision.plan.local === undefined) {
-    throw new Error('the fixture plans a local delete');
-  }
+  assert(
+    decision.kind === 'plan' && decision.plan.local !== undefined,
+    'the fixture plans a local delete',
+  );
   return decision.plan.local;
 }
 
@@ -77,12 +79,11 @@ describe('deletePlannedRef', () => {
       [cas]: answer(1, '', 'fatal: cannot lock ref\n'),
       [reread]: answer(0, `refs/heads/feat/x ${SHA_A} \n`),
     });
-    const deleted = await deletePlannedRef(git, plannedLocal());
 
-    expect(deleted.ok && deleted.value.kind).toBe('unchanged');
-    expect(deleted.ok && deleted.value.kind === 'unchanged' ? deleted.value.detail : '').toContain(
-      'cannot lock ref',
-    );
+    expect(await deletePlannedRef(git, plannedLocal())).toEqual({
+      ok: true,
+      value: { kind: 'unchanged', detail: 'git exited 1: fatal: cannot lock ref' },
+    });
   });
 
   it('ignores a longer ref the re-read pattern also lists', async () => {

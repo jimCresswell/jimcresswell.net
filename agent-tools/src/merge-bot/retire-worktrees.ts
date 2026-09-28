@@ -59,12 +59,11 @@ export async function worktreesUsing(
 }
 
 /**
- * Whether a listed worktree's rebase or bisect state names the branch. Only
- * a worktree git marks prunable is skipped: its directory is gone, and its
- * branch line was already checked. Any other worktree that cannot be asked
- * (moved, unmounted, locked on removable media) keeps its state in the
- * common git directory until it is pruned, so the question is unanswered,
- * and an unanswered question is a failure, never "not in use".
+ * Whether a listed worktree's rebase or bisect state names the branch. A
+ * worktree that cannot be asked, prunable ones included (moved, deleted,
+ * unmounted), still keeps its state in the common git directory until it
+ * is pruned or repaired, so the question is unanswered, and an unanswered
+ * question is a failure, never "not in use".
  */
 async function stateOfListedWorktree(
   retire: RetireGit,
@@ -73,7 +72,11 @@ async function stateOfListedWorktree(
   readFile: ReadOptionalFile,
 ): Promise<Result<boolean, Error>> {
   if (entry.prunable) {
-    return ok(false);
+    return err(
+      new Error(
+        `worktree ${basename(entry.path)} is prunable, so its rebase and bisect state cannot be read; if it was moved, run \`git worktree repair <its new path>\`; prune it only if it was deleted (pruning drops a rebase in progress); then re-run`,
+      ),
+    );
   }
   const paths = await runGit(retire, [
     '-C',
