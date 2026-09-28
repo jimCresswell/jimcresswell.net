@@ -131,7 +131,7 @@ function mergeActionInputFrom(input: MergeBotCliInput): MergeActionInput {
 }
 
 /** The injection seams the push and retire actions share. */
-type GitActionInput = Omit<PushActionInput, 'tokenFiles'>;
+type GitActionInput = Omit<PushActionInput, 'tokenFiles' | 'sleepImpl'>;
 
 function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
   return {
@@ -155,7 +155,7 @@ function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
 
 /** Forward the CLI's injection seams to the push action. */
 function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
-  return { ...gitActionInputFrom(input), tokenFiles: input.tokenFiles };
+  return { ...gitActionInputFrom(input), tokenFiles: input.tokenFiles, sleepImpl: input.sleepImpl };
 }
 
 /** Forward the CLI's injection seams to the retire action. */

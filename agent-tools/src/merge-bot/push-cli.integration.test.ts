@@ -55,21 +55,54 @@ interface GitCall {
   readonly env: Readonly<Record<string, string | undefined>>;
 }
 
-/** Value-returning git seam (the Result pattern): a non-zero exit is a RESULT, never a throw. */
-function gitFake(overrides: { revParse?: GitCommandResult; push?: GitCommandResult } = {}): {
+/**
+ * Value-returning git seam (the Result pattern): a non-zero exit is a RESULT,
+ * never a throw. `pushes` answers successive pushes in order, the last answer
+ * standing for any push after it. `viaSink` answers as the real file-backed
+ * executor does when given an output sink: the output replayed to the sink,
+ * none in the result.
+ */
+function gitFake(
+  overrides: {
+    revParse?: GitCommandResult;
+    push?: GitCommandResult;
+    pushes?: readonly GitCommandResult[];
+    viaSink?: boolean;
+  } = {},
+): {
   gitExecutor: GitExecutor;
   calls: GitCall[];
 } {
   const calls: GitCall[] = [];
+  const pushes = [...(overrides.pushes ?? [])];
   const gitExecutor: GitExecutor = (file, args, options) => {
     calls.push({ file, args, cwd: options.cwd, env: options.env });
     if (args[0] === 'rev-parse') {
       return overrides.revParse ?? { status: 0, signal: null, stdout: `${BRANCH}\n`, stderr: '' };
     }
-    return overrides.push ?? { status: 0, signal: null, stdout: '', stderr: TRANSFER };
+    const next = pushes.length > 1 ? pushes.shift() : pushes[0];
+    const answer = next ??
+      overrides.push ?? { status: 0, signal: null, stdout: '', stderr: TRANSFER };
+    if (overrides.viaSink !== true || options.onOutput === undefined) {
+      return answer;
+    }
+    options.onOutput(`${answer.stdout}${answer.stderr}`);
+    return { ...answer, stdout: '', stderr: '' };
   };
   return { gitExecutor, calls };
 }
+
+/** GitHub's refusal at the ref advertisement, as git printed it on 2026-09-28, renamed to the fixture's repository. */
+const REFUSED_PUSH: GitCommandResult = {
+  status: 128,
+  signal: null,
+  stdout: '',
+  stderr:
+    'remote: Permission to acme/widgets.git denied to jimbot-oakington-iii[bot].\n' +
+    `fatal: unable to access '${REMOTE}/': The requested URL returned error: 403\n`,
+};
+
+const PUSHED: GitCommandResult = { status: 0, signal: null, stdout: '', stderr: TRANSFER };
 
 /** Serves the mint endpoints and records every call URL and body. */
 function mintFetch(token = TOKEN): {
@@ -524,6 +557,51 @@ describe('merge-bot push outcomes and refusals', () => {
     expect(run.errText()).toContain('non-fast-forward');
     expect(run.out()).not.toContain(TOKEN);
     expect(run.errText()).not.toContain(TOKEN);
+  });
+
+  it('tries a push GitHub refused before the hook ran again, and reports the push that went through', async () => {
+    const run = runPush({
+      args: ['--json'],
+      git: gitFake({ pushes: [REFUSED_PUSH, PUSHED], viaSink: true }),
+      overrides: { sleepImpl: () => Promise.resolve() },
+    });
+
+    expect(await run.exit).toBe(0);
+    expect(JSON.parse(run.out())).toEqual({ kind: 'pushed', branch: BRANCH, remote: REMOTE });
+    expect(run.errText()).toContain('denied to jimbot-oakington-iii[bot]');
+    expect(run.errText()).toContain('GitHub refused attempt 1 of 3 before the pre-push hook ran');
+    expect(run.errText()).toContain('abc1234..def5678');
+    expect(run.errText()).not.toContain(TOKEN);
+  });
+
+  it('surfaces the third refusal as an operational failure, each refusal shown', async () => {
+    const run = runPush({
+      args: ['--json'],
+      git: gitFake({ pushes: [REFUSED_PUSH] }),
+      overrides: { sleepImpl: () => Promise.resolve() },
+    });
+
+    expect(await run.exit).toBe(1);
+    expect(run.out()).toBe('');
+    expect(run.errText().match(/returned error: 403/gu)).toHaveLength(3);
+    expect(run.errText()).toContain(
+      'GitHub refused the push 3 times before the pre-push hook ran, each refusal shown above; nothing was pushed',
+    );
+  });
+
+  it('never tries again a push that failed after the hook ran', async () => {
+    const afterGate: GitCommandResult = {
+      ...REFUSED_PUSH,
+      stderr: `Running pre-push checks...\nPre-push checks completed!\n${REFUSED_PUSH.stderr}`,
+    };
+    const run = runPush({
+      git: gitFake({ pushes: [afterGate, PUSHED], viaSink: true }),
+      overrides: { sleepImpl: () => Promise.resolve() },
+    });
+
+    expect(await run.exit).toBe(1);
+    expect(run.errText().match(/Running pre-push checks/gu)).toHaveLength(1);
+    expect(run.errText()).not.toContain('trying again');
   });
 
   it('never lets an EMPTY token reach git — the run fails first', async () => {
