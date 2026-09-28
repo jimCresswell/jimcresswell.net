@@ -191,4 +191,20 @@ describe('merge-bot retire, front door', () => {
 
     expect((await runRetire(['--branch', BRANCH], answers)).exit).toBe(0);
   });
+
+  it("fails with exit 1 when nothing is left to retire but the branch's config section cannot be removed", async () => {
+    const answers = {
+      ...mergedLocally(),
+      [LISTING_QUERY]: answer(0, `refs/heads/main ${MAIN_SHA} \n`),
+      [String.raw`config --local --name-only --get-regexp ^branch\.feat/x\.[^.]+$`]: answer(
+        0,
+        `branch.${BRANCH}.remote\n`,
+      ),
+    };
+    const run = await runRetire(['--branch', BRANCH, '--json'], answers);
+
+    expect(run.exit).toBe(1);
+    expect(JSON.parse(run.out)).toMatchObject({ kind: 'failed' });
+    expect(run.out).toContain('config was left');
+  });
 });

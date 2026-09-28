@@ -112,8 +112,11 @@ export const REF_LISTING_FORMAT = '--format=%(refname) %(objectname) %(symref)';
  * Read `git for-each-ref` in {@link REF_LISTING_FORMAT} into a map from the
  * exact full refname to its object name and, for a symbolic ref, its target.
  * Lookups are case-sensitive by construction, whatever the filesystem folds.
- * A symbolic ref lists its TARGET's sha, which is why the target is read: a
- * delete through a symbolic ref lands on the ref it points at.
+ * A symbolic ref lists its TARGET's sha, which is why the target is read:
+ * the decision refuses a symbolic ref of the branch's own, since
+ * `git worktree list` names the branch an alias resolves to (so the in-use
+ * check cannot see a worktree on the alias), and a symbolic ref whose target
+ * is deleted first would read back as absent.
  */
 export function parseRefListing(stdout: string): ReadonlyMap<string, ListedRef> {
   const refs = new Map<string, ListedRef>();

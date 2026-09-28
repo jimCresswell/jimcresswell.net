@@ -18,6 +18,7 @@ import {
 import { parseRetireArgs, RETIRE_USAGE } from './retire-args.js';
 import { decideRetirement } from './retire-decision.js';
 import { executePlan } from './retire-execute.js';
+import { removeBranchConfig } from './retire-git-delete.js';
 import { readOriginUrl, type RetireGit } from './retire-git-read.js';
 import { githubRepoOf } from './retire-parse.js';
 import { gatherReadings } from './retire-readings.js';
@@ -148,6 +149,22 @@ async function bindGit(
     : { kind: 'refused', branch, reason: mismatch.value };
 }
 
+/**
+ * Nothing to retire: no name exists. Any section the branch still has in
+ * the repository's config goes now, whether a failed removal or a hand-run
+ * delete left it, so the re-run a failed removal advises finishes it.
+ */
+async function retireAbsent(branch: string, retireGit: RetireGit): Promise<RetireOutcome> {
+  const config = await removeBranchConfig(retireGit, branch);
+  return config.ok
+    ? { kind: 'absent', branch }
+    : {
+        kind: 'failed',
+        branch,
+        reason: `no name is left to retire, but branch.${branch}'s config was left: ${config.error.message}`,
+      };
+}
+
 /** Everything after the argv: bind, read, decide, write. */
 async function retire(
   branch: string,
@@ -169,7 +186,7 @@ async function retire(
   const decision = decideRetirement(readings.value);
   if (decision.kind !== 'plan') {
     return decision.kind === 'absent'
-      ? { kind: 'absent', branch }
+      ? retireAbsent(branch, retireGit)
       : { kind: 'refused', branch, reason: decision.reason };
   }
   return executePlan(

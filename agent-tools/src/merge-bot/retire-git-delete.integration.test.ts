@@ -100,7 +100,7 @@ describe('deletePlannedRef', () => {
 });
 
 describe('removeBranchConfig', () => {
-  const query = String.raw`config --name-only --get-regexp ^branch\.feat/x\.y\.[^.]+$`;
+  const query = String.raw`config --local --name-only --get-regexp ^branch\.feat/x\.y\.[^.]+$`;
 
   it('does nothing when the branch has no config', async () => {
     expect((await removeBranchConfig(gitAnswering({ [query]: answer(1) }), 'feat/x.y')).ok).toBe(

@@ -176,7 +176,7 @@ function remoteStepFor(outcome: RemoteDeleteOutcome, readback: Readback): Remote
         'failed',
         accepted
           ? `GitHub accepted the delete, but the remote branch still reads at ${target.expectedSha}; nothing local was deleted; re-run`
-          : `the remote delete did not take${detail}; nothing local was deleted`,
+          : `the remote branch still reads at ${target.expectedSha} after a delete GitHub did not accept${detail}; nothing local was deleted`,
       );
     case 'replaced':
       return stopPartial(
@@ -185,11 +185,13 @@ function remoteStepFor(outcome: RemoteDeleteOutcome, readback: Readback): Remote
         `GitHub deleted the remote branch at ${target.expectedSha}, but it now reads at ${outcome.sha}: another writer re-created it; nothing local was deleted`,
       );
     default: {
+      // GitHub's error cannot say whether a delete happened first, so this is
+      // reported as what reads back, never as a refusal (nothing deleted).
       const moved: Extract<RemoteDeleteOutcome, { kind: 'moved' }> = outcome;
-      return stopWith(
+      return stopPartial(
         context,
-        'refused',
-        `the remote branch reads at ${moved.sha}, not ${target.expectedSha} as proven${detail}; no local name was touched`,
+        { state: 'kept', sha: moved.sha },
+        `the remote branch reads at ${moved.sha}, not ${target.expectedSha} as proven, after a delete GitHub did not accept${detail}: it moved after its proof, or was re-created after a delete that happened behind the error; nothing local was deleted`,
       );
     }
   }

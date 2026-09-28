@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import {
   git,
@@ -152,6 +154,35 @@ async function readsTheRemoteBackWhenTheDeleteErrs(): Promise<void> {
   });
 }
 
+/** The local branch is already gone and its config section stayed: the section goes with the other names. */
+async function removesALeftConfigSection(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedBranch(rig, BRANCH);
+    trackLocally(rig, BRANCH);
+    git(rig, rig.work, 'update-ref', '-d', `refs/heads/${BRANCH}`);
+    const run = await retire(rig, BRANCH, fakeGithub(rig).fetchImpl);
+
+    assert.equal(run.exit, 0, run.err);
+    assert.ok(
+      !configKeys(rig).some((key) => key.startsWith(`branch.${BRANCH}.`)),
+      'the section stayed',
+    );
+  });
+}
+
+/** A section of the branch's in a config file the repository includes is not the repository's to remove. */
+async function leavesASectionInAnIncludedFile(): Promise<void> {
+  await withRig(async (rig) => {
+    const included = join(rig.root, 'included.gitconfig');
+    writeFileSync(included, `[branch "${BRANCH}"]\n\tremote = origin\n`);
+    git(rig, rig.work, 'config', 'include.path', included);
+    const run = await retire(rig, BRANCH, fakeGithub(rig).fetchImpl);
+
+    assert.equal(run.exit, 0, run.err);
+    assert.equal(outcomeOf(run).kind, 'absent');
+  });
+}
+
 async function reportsNothingToRetire(): Promise<void> {
   await withRig(async (rig) => {
     const github = fakeGithub(rig);
@@ -169,5 +200,7 @@ await leavesASiblingBranchsConfig();
 await followsADefaultBranchThatChanged();
 await retiresWhenNamesVanishAtTheMint();
 await readsTheRemoteBackWhenTheDeleteErrs();
+await removesALeftConfigSection();
+await leavesASectionInAnIncludedFile();
 await reportsNothingToRetire();
-process.stdout.write('merge-bot retire smoke: OK (seven retire paths)\n');
+process.stdout.write('merge-bot retire smoke: OK (nine retire paths)\n');

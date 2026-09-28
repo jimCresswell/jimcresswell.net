@@ -124,12 +124,16 @@ async function keepsARemoteThatMovesAtTheMint(): Promise<void> {
   });
 }
 
-/** The push lands after the re-read, as the delete arrives: GitHub's compare-and-swap keeps it. */
+/**
+ * The push lands after the re-read, as the delete arrives: GitHub's
+ * compare-and-swap keeps it. Its error cannot say whether a delete happened
+ * first, so the run fails (exit 1) reporting the remote where it reads.
+ */
 async function keepsARemoteThatMovesBeforeTheSwap(): Promise<void> {
   await withRig(async (rig) => {
     mergedAndTracked(rig);
     const next = pendingPush(rig);
-    const err = await expectUntouched(rig, 3, {
+    const err = await expectUntouched(rig, 1, {
       options: { beforeUpdate: next.push },
       remote: next.sha,
     });

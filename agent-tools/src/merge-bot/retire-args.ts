@@ -37,15 +37,20 @@ export const RETIRE_USAGE = `merge-bot retire --branch <name> [--json]
   checked out, or mid-rebase or bisect, in any worktree; a local or tracking
   ref that is symbolic; a name another ref matches when case is ignored; an
   origin that is not the bot identity's repository; a remote, or a default
-  branch, that moved after its proof. It does not look for
-  open pull requests: the judgement that a branch is merged and unwanted is
-  the caller's. Names are limited to ASCII letters, digits and . _ / -.
+  branch, that GitHub reads at the mint as moved after its proof. It does not
+  look for open pull requests: the judgement that a branch is merged and
+  unwanted is the caller's. Names are limited to ASCII letters, digits and
+  . _ / -.
 
   --json puts EXACTLY the outcome object on stdout; diagnostics go to stderr.
   Exit map: 0 retired (or nothing to retire), 1 operational failure, 2 usage,
   3 refusal. A failure after a delete may have happened reports every name:
   deleted, absent, kept (it moved, or was re-created, at the sha it holds),
-  failed (the delete did not take), unknown, or not reached.
+  failed (the delete did not take), unknown, or not reached. A delete GitHub
+  does not accept, read back at another sha, is such a failure: GitHub's
+  error cannot say whether a delete happened first. The branch's config
+  section goes once it has no local ref; a re-run removes one a failed
+  removal left.
 `;
 
 /** Flags that will never exist here, and why. */

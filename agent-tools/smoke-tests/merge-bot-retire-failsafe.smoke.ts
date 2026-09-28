@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { writeFileSync } from 'node:fs';
+import { rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import {
@@ -117,6 +117,18 @@ const replaced = await expectFailure(
 );
 assert.deepEqual(replaced.outcome.names?.remote, { state: 'kept', sha: replaced.shas[0] });
 
+// GitHub deletes, answers an error, and another writer re-creates the branch before the read-back:
+// whether this command deleted it is not known, so it is reported kept, never refused.
+const unanswered = await expectFailure(
+  (rig) => ({
+    updateRefs: 'errors-after-deleting',
+    afterUpdate: () => commitAndPush(rig, BRANCH, 're-created'),
+  }),
+  'partial',
+  ['moved', 'kept', 'kept'],
+);
+assert.deepEqual(unanswered.outcome.names?.remote, { state: 'kept', sha: unanswered.shas[0] });
+
 // The local branch moves after its proof: it is kept at the sha it moved to, with its config.
 const localMoved = await expectFailure(
   (rig, tip) => ({
@@ -172,6 +184,36 @@ const configLeft = await expectFailure(
 );
 assert.match(configLeft.outcome.reason ?? '', /config was left/u);
 
+// A re-run after the config was left finishes it: no name is left, and the section goes.
+await withRig(async (rig) => {
+  mergedBranch(rig, BRANCH);
+  git(rig, rig.work, 'fetch', '-q', 'origin');
+  git(rig, rig.work, 'branch', '-q', '--track', BRANCH, `origin/${BRANCH}`);
+  const lock = join(rig.work, '.git', 'config.lock');
+  const first = await retire(
+    rig,
+    BRANCH,
+    fakeGithub(rig, { onMint: () => writeFileSync(lock, '') }).fetchImpl,
+  );
+  const section = new RegExp(String.raw`^branch\.${BRANCH}\.`, 'mu');
+  assert.equal(first.exit, 1, first.err);
+  assert.match(
+    git(rig, rig.work, 'config', '--list', '--local'),
+    section,
+    'the lock left no section',
+  );
+  rmSync(lock);
+  const rerun = await retire(rig, BRANCH, fakeGithub(rig).fetchImpl);
+
+  assert.equal(rerun.exit, 0, rerun.err);
+  assert.equal(outcomeOf(rerun).kind, 'absent');
+  assert.doesNotMatch(
+    git(rig, rig.work, 'config', '--list', '--local'),
+    section,
+    'the section stayed',
+  );
+});
+
 // The same unknown read-back in human output: the report goes to stderr, the token to neither stream.
 await withRig(async (rig) => {
   mergedBranch(rig, BRANCH);
@@ -183,4 +225,6 @@ await withRig(async (rig) => {
   assert.match(run.err, /partly retired/u);
 });
 
-process.stdout.write('merge-bot retire failsafe smoke: OK (eleven failures, no name lost early)\n');
+process.stdout.write(
+  'merge-bot retire failsafe smoke: OK (twelve failures, no name lost early, and a re-run that finishes)\n',
+);

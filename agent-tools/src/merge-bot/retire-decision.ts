@@ -159,7 +159,9 @@ export type RemoteDeleteOutcome =
  * command's delete; gone after a refused one is reported absent, since
  * either another writer removed it or the delete happened behind an error.
  * A ref at another sha after an ACCEPTED delete was deleted and then
- * re-created (replaced); after a refused one, it moved before the swap.
+ * re-created (replaced); after a refused one, it moved after its proof, or
+ * was re-created after a delete that happened behind the error, and which
+ * is not known (moved).
  */
 export function classifyRemoteReadback(
   target: PlannedDelete,

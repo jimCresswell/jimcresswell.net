@@ -67,7 +67,7 @@ export function mergedLocally(): Record<string, GitCommandResult> {
     [`merge-base --is-ancestor ${TIP} ${MAIN_SHA}`]: answer(0),
     [`update-ref --no-deref -d refs/remotes/origin/${BRANCH} ${TIP}`]: answer(0),
     [`update-ref --no-deref -d refs/heads/${BRANCH} ${TIP}`]: answer(0),
-    [String.raw`config --name-only --get-regexp ^branch\.feat/x\.[^.]+$`]: answer(1),
+    [String.raw`config --local --name-only --get-regexp ^branch\.feat/x\.[^.]+$`]: answer(1),
   };
 }
 

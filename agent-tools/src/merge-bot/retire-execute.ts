@@ -81,6 +81,26 @@ async function localBranchTaken(
     : `worktree ${inUse.value.join(', ')} began using the branch after its proof; the local names were kept; re-run once it is free`;
 }
 
+/**
+ * Remove the branch's config section once the branch has no local ref, as
+ * `git branch -d` removes it with the branch: `update-ref -d` leaves it, and
+ * a later branch of the same name would inherit the old upstream. A section
+ * a failed removal left goes on a re-run, which finds no local ref.
+ */
+async function configStep(
+  local: LocalStep,
+  context: Context,
+  seams: ExecuteSeams,
+): Promise<string | undefined> {
+  if (local.report.state !== 'deleted' && local.report.state !== 'absent') {
+    return undefined;
+  }
+  const config = await removeBranchConfig(seams.retire, context.branch);
+  return config.ok
+    ? undefined
+    : `branch.${context.branch}'s config was left: ${config.error.message}; re-run to remove it`;
+}
+
 /** Carry out a plan. */
 export async function executePlan(
   plan: RetirePlan,
@@ -98,13 +118,7 @@ export async function executePlan(
   }
   const tracking = await retireLocal(plan.tracking, seams, 'the tracking ref');
   const local = await retireLocal(plan.local, seams, 'the local branch');
-  const problems = [tracking.problem, local.problem];
-  if (local.report.state === 'deleted') {
-    const config = await removeBranchConfig(seams.retire, context.branch);
-    problems.push(
-      config.ok ? undefined : `branch.${context.branch}'s config was left: ${config.error.message}`,
-    );
-  }
+  const problems = [tracking.problem, local.problem, await configStep(local, context, seams)];
   const names: NameReports = {
     remote: remote.report,
     tracking: tracking.report,

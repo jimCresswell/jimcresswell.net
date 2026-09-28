@@ -58,13 +58,13 @@ describe('merge-bot retire, the remote delete', () => {
 
     expect(run.exit).toBe(1);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'failed' });
-    expect(run.out).toContain('did not take');
+    expect(run.out).toContain('did not accept');
   });
 
   it('keeps the token off both streams in human output after a mint', async () => {
     const run = await retireRemote(refRead(TIP), false);
 
     expect(run).toMatchObject({ exit: 1, minted: true, out: '' });
-    expect(run.err).toContain('did not take');
+    expect(run.err).toContain('did not accept');
   });
 });
