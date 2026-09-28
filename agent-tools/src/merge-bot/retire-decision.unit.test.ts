@@ -152,6 +152,15 @@ describe('decideRetirement refusals decided before the tips', () => {
   ] as const)('refuses on $field, naming $value', ({ field, value }) => {
     expect(reasonOf(decideRetirement({ ...merged, [field]: [value] }))).toContain(value);
   });
+
+  it('refuses a symbolic name with every tip absent (a dangling symbolic ref), never "nothing to retire"', () => {
+    const dangling = {
+      ...readingsFor({ local: 'absent', tracking: 'absent', remote: 'absent' }),
+      symbolic: ['refs/heads/feat/x'],
+    };
+
+    expect(reasonOf(decideRetirement(dangling))).toContain('refs/heads/feat/x');
+  });
 });
 
 /** The plan for a branch present only on the remote. */

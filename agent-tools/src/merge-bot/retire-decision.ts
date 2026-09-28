@@ -182,7 +182,9 @@ export function classifyRemoteReadback(
  * the default branch the proofs were made on, by name and by tip. `origin`'s
  * traffic can be rewritten (`insteadOf`), so the repository git read may not
  * be the one the bot deletes in; equal shas make the proofs hold in both,
- * because ancestry is a fact about commits, not about repositories.
+ * because ancestry is a fact about commits, not about repositories. That
+ * holds because the proofs read the commits as they are: replacement refs
+ * and grafts, which can give a commit other parents, are off for every read.
  */
 export function baseMismatch(
   proven: DefaultBranchReading,

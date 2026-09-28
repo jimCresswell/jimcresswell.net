@@ -87,6 +87,79 @@ async function retiresEachTipAtItsOwnSha(): Promise<void> {
 }
 
 /**
+ * No local branch at the proof; a writer checks one out, with its upstream,
+ * while the remote delete runs. The config section is read again just
+ * before its removal, as `git branch -d` reads the branch before its own:
+ * the new branch keeps its section, and the other names still go. The
+ * outcome reports each name as proven: the local name was absent at the
+ * proof, and a name another writer makes after it is not this run's.
+ */
+async function keepsTheSectionOfABranchMadeMidRun(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedBranch(rig, BRANCH);
+    git(rig, rig.work, 'fetch', '-q', 'origin');
+    const github = fakeGithub(rig, {
+      onMint: () => git(rig, rig.work, 'branch', '-q', '--track', BRANCH, `origin/${BRANCH}`),
+    });
+    const run = await retire(rig, BRANCH, github.fetchImpl);
+
+    assert.equal(run.exit, 0, run.err);
+    assert.equal(outcomeOf(run).names?.local.state, 'absent');
+    assert.ok(
+      git(rig, rig.work, 'config', '--list', '--local').includes(`branch.${BRANCH}.remote=origin`),
+      "the new branch's section went",
+    );
+    assert.ok(refAt(rig, rig.work, `refs/heads/${BRANCH}`) !== undefined, 'the new branch went');
+    assert.deepEqual(
+      [
+        refAt(rig, rig.origin, `refs/heads/${BRANCH}`),
+        refAt(rig, rig.work, `refs/remotes/origin/${BRANCH}`),
+      ],
+      [undefined, undefined],
+      'the remote or tracking name survived',
+    );
+  });
+}
+
+/**
+ * A section left by an earlier run, and no local name at the proof; a writer
+ * makes the name a dangling symbolic ref during the remote delete, which the
+ * listing omits. The raw read finds it, so the section stays with it.
+ */
+async function keepsTheSectionOfADanglingNameMadeMidRun(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedBranch(rig, BRANCH);
+    git(rig, rig.work, 'fetch', '-q', 'origin');
+    git(rig, rig.work, 'config', `branch.${BRANCH}.remote`, 'origin');
+    const local = `refs/heads/${BRANCH}`;
+    const onMint = () => git(rig, rig.work, 'symbolic-ref', local, 'refs/heads/gone');
+    const run = await retire(rig, BRANCH, fakeGithub(rig, { onMint }).fetchImpl);
+
+    assert.equal(run.exit, 0, run.err);
+    assert.equal(git(rig, rig.work, 'config', '--get', `branch.${BRANCH}.remote`), 'origin');
+    assert.equal(git(rig, rig.work, 'symbolic-ref', local), 'refs/heads/gone');
+  });
+}
+
+/**
+ * The local branch's name is a symbolic ref in a loop with another, which
+ * `for-each-ref` does not list and git cannot say is symbolic (it exits 128,
+ * not 0 or 1): the run fails rather than read the name as not symbolic and
+ * retire the other two, and the loop stays.
+ */
+async function failsOnASymbolicLoop(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedAndTracked(rig);
+    const local = `refs/heads/${BRANCH}`;
+    git(rig, rig.work, 'update-ref', '-d', local);
+    git(rig, rig.work, 'symbolic-ref', local, 'refs/heads/loop');
+    git(rig, rig.work, 'symbolic-ref', 'refs/heads/loop', local);
+    await expectFailed(rig, /is a symbolic ref/u);
+    assert.equal(git(rig, rig.work, 'symbolic-ref', '--no-recurse', local), 'refs/heads/loop');
+  });
+}
+
+/**
  * The local branch holds two commits never pushed, and the first one's
  * object is gone: git cannot say whether the tip is on the default (it
  * exits 128, not 0 or 1), so the run fails rather than read an answer.
@@ -162,10 +235,13 @@ async function failsOnAnOriginWithNoUrl(): Promise<void> {
 
 await retiresEachTipAtItsOwnSha();
 await leavesALookAlikeSection();
+await keepsTheSectionOfABranchMadeMidRun();
+await keepsTheSectionOfADanglingNameMadeMidRun();
+await failsOnASymbolicLoop();
 await failsOnAMissingCommitObject();
 await failsWhenOriginHeadCannotBeRefreshed();
 await failsOnAnOriginWithTwoUrls();
 await failsOnAnOriginWithNoUrl();
 process.stdout.write(
-  'merge-bot retire reads smoke: OK (two tips at their own shas, a look-alike config section kept, four failed reads)\n',
+  'merge-bot retire reads smoke: OK (two tips at their own shas, three config sections kept, five failed reads)\n',
 );

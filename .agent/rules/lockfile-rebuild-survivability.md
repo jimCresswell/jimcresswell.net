@@ -6,7 +6,6 @@ globs:
   - "**/package.json"
   - pnpm-lock.yaml
   - pnpm-workspace.yaml
-  - .npmrc
 ---
 
 # Lockfile-Rebuild Survivability
@@ -123,7 +122,7 @@ those manifests move in the same change, with the lockfile regenerated.
   pnpm of 2026-07-25; on pnpm 12.4.2 the same manifest move alone no longer
   fails (the silent direction above), so this instance is history, not the
   current behaviour. Cured by aligning the override — the same alignment
-  `21fdff136` made for the esbuild security floor, and the same class recorded
+  the lineage's `21fdff136` made for the esbuild security floor, and the same class recorded
   upstream for PR #296.
 
 ## Related Surfaces

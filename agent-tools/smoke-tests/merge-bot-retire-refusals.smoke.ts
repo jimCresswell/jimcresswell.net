@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { join } from 'node:path';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 
 import {
   bindOrigin,
@@ -107,6 +108,51 @@ async function keepsAnUnmergedLocalCommit(): Promise<void> {
   });
 }
 
+/**
+ * A local-only branch at a commit the default never had, and the parents
+ * `main`'s tip would need for that commit to read as merged: `main`'s own,
+ * then the branch's.
+ */
+function unmergedWithForgedParents(rig: RetireRig): {
+  readonly main: string;
+  readonly parents: readonly string[];
+} {
+  const main = git(rig, rig.work, 'rev-parse', 'refs/remotes/origin/main');
+  const tip = git(rig, rig.work, 'commit-tree', `${main}^{tree}`, '-m', 'never merged');
+  git(rig, rig.work, 'update-ref', `refs/heads/${BRANCH}`, tip);
+  const own = git(rig, rig.work, 'rev-parse', `${main}^@`).split('\n').filter(Boolean);
+  return { main, parents: [...own, tip] };
+}
+
+/** A replacement ref gives `main`'s tip the branch as a parent: the proof reads the commit's own parents, and refuses. */
+async function keepsATipAReplaceRefWouldMerge(): Promise<void> {
+  await withRig(async (rig) => {
+    const { main, parents } = unmergedWithForgedParents(rig);
+    git(rig, rig.work, 'replace', '--graft', main, ...parents);
+    const err = await expectUntouched(rig, 3);
+    assert.match(err, /not an ancestor/u);
+  });
+}
+
+/** A graft gives `main`'s tip the branch as a parent: the proof reads the commit's own parents, and refuses. */
+async function keepsATipAGraftWouldMerge(): Promise<void> {
+  await withRig(async (rig) => {
+    const { main, parents } = unmergedWithForgedParents(rig);
+    const file = git(
+      rig,
+      rig.work,
+      'rev-parse',
+      '--path-format=absolute',
+      '--git-path',
+      'info/grafts',
+    );
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, `${[main, ...parents].join(' ')}\n`);
+    const err = await expectUntouched(rig, 3);
+    assert.match(err, /not an ancestor/u);
+  });
+}
+
 async function keepsAnUnmergedRemoteCommit(): Promise<void> {
   await withRig(async (rig) => {
     git(rig, rig.seed, 'switch', '-q', '-c', BRANCH, 'main');
@@ -155,8 +201,10 @@ async function keepsEverythingWhenTheRemoteCannotBeRead(): Promise<void> {
 await keepsACachedPostMergeCommit();
 await keepsACacheTheRemoteNoLongerHas();
 await keepsAnUnmergedLocalCommit();
+await keepsATipAReplaceRefWouldMerge();
+await keepsATipAGraftWouldMerge();
 await keepsAnUnmergedRemoteCommit();
 await keepsARemoteThatMovesAtTheMint();
 await keepsARemoteThatMovesBeforeTheSwap();
 await keepsEverythingWhenTheRemoteCannotBeRead();
-process.stdout.write('merge-bot retire refusals smoke: OK (seven cases, nothing deleted)\n');
+process.stdout.write('merge-bot retire refusals smoke: OK (nine cases, nothing deleted)\n');

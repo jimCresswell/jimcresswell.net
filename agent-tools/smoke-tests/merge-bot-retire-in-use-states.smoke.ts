@@ -20,7 +20,8 @@ import { fakeGithub } from './merge-bot-retire-github-double';
  * which `merge-bot-retire-in-use.smoke.ts` does not hold. Every ref of the
  * branch reads as MERGED in every case, so a state the check missed would
  * delete it (exit 0), never refuse it as unmerged. A rebase that names the
- * branch, or a symbolic tracking ref, refuses (exit 3); a worktree whose
+ * branch, or a symbolic local or tracking ref (a dangling one included),
+ * refuses (exit 3); a worktree whose
  * state cannot be read fails the run (exit 1). Each case checks every ref of
  * the branch where it was, no token minted, and no rig path in the output
  * (a report names worktrees by basename only).
@@ -181,6 +182,24 @@ async function refusesASymbolicTrackingRef(): Promise<void> {
   });
 }
 
+/**
+ * The local branch's name is a DANGLING symbolic ref (its target gone),
+ * which `for-each-ref` does not list, beside a merged remote and cached
+ * tracking ref. Read raw, it is symbolic: the run refuses, and the dangling
+ * ref stays, where a listing alone would retire the other two names.
+ */
+async function refusesADanglingSymbolicRef(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedAndTracked(rig);
+    const local = `refs/heads/${BRANCH}`;
+    git(rig, rig.work, 'update-ref', '-d', local);
+    git(rig, rig.work, 'symbolic-ref', local, 'refs/heads/gone');
+    await expectKept(rig, 3, /symbolic/u);
+    assert.equal(git(rig, rig.work, 'symbolic-ref', local), 'refs/heads/gone');
+  });
+}
+
+await refusesADanglingSymbolicRef();
 await refusesABranchMidRebase();
 await refusesABranchMidApplyRebase();
 await refusesABranchARebaseWillUpdate();
@@ -188,5 +207,5 @@ await refusesASymbolicTrackingRef();
 await failsOnAnUnreadableStateFile();
 await failsOnAWorktreeThatCannotBeAsked();
 process.stdout.write(
-  'merge-bot retire in-use states smoke: OK (three rebases that name the branch, a symbolic tracking ref, two worktrees that cannot be read)\n',
+  'merge-bot retire in-use states smoke: OK (a dangling symbolic ref, three rebases that name the branch, a symbolic tracking ref, two worktrees that cannot be read)\n',
 );

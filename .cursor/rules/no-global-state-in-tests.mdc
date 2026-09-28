@@ -1,6 +1,6 @@
 ---
 description: Keep tests isolated from global-state mutation
-globs: '**/*.test.*,e2e/**/*,**/smoke-tests/**/*'
+globs: '**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/smoke-tests/**/*,**/test-helpers/**/*,**/*setup.ts,**/tests/**/*,**/*fixture*.ts'
 alwaysApply: false
 ---
 
