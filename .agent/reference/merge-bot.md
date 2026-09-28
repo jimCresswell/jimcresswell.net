@@ -327,10 +327,16 @@ pushes to the default branch refuse by name (see
 [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).
 
 GitHub has refused a freshly minted token's push at its first request,
-before git runs the pre-push hook: `remote: Permission to <repo> denied to
-<bot>`, then `The requested URL returned error: 403`, and nothing else. A
-second push went through each time. The push therefore tries that refusal
-again with a fresh token, 10 seconds on, up to three attempts in all, and
+before git runs the pre-push hook. The transcript is these two lines and
+nothing else:
+
+```text
+remote: Permission to <repo> denied to <bot>.
+fatal: unable to access '<url>': The requested URL returned error: 403
+```
+
+A later push went through each time. The push therefore tries the push
+again with a fresh token, 30 seconds on, up to three attempts in all, and
 names each retry on stderr. It reports a third refusal as an operational
 failure, with every refusal shown. Any other failure is final at once,
 including a 403 after the hook ran: trying that again would run the whole

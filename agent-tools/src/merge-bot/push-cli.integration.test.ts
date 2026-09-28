@@ -104,14 +104,18 @@ const REFUSED_PUSH: GitCommandResult = {
 
 const PUSHED: GitCommandResult = { status: 0, signal: null, stdout: '', stderr: TRANSFER };
 
-/** Serves the mint endpoints and records every call URL and body. */
-function mintFetch(token = TOKEN): {
+/**
+ * Serves the mint endpoints and records every call URL and body. Successive
+ * mints answer `tokens` in order, the last standing for any mint after it.
+ */
+function mintFetch(...tokens: readonly string[]): {
   fetchImpl: GithubApiFetch;
   urls: string[];
   bodies: { url: string; body: string }[];
 } {
   const urls: string[] = [];
   const bodies: { url: string; body: string }[] = [];
+  const answers = tokens.length === 0 ? [TOKEN] : [...tokens];
   const fetchImpl: GithubApiFetch = (url, init) => {
     urls.push(url);
     if (init?.body !== undefined) {
@@ -120,6 +124,7 @@ function mintFetch(token = TOKEN): {
     if (url.endsWith('/installation')) {
       return Promise.resolve({ status: 200, json: () => Promise.resolve({ id: 55 }) });
     }
+    const token = answers.length > 1 ? answers.shift() : answers[0];
     return Promise.resolve({
       status: 201,
       json: () => Promise.resolve({ token, expires_at: '2026-08-06T10:00:00Z' }),
@@ -572,6 +577,27 @@ describe('merge-bot push outcomes and refusals', () => {
     expect(run.errText()).toContain('GitHub refused attempt 1 of 3 before the pre-push hook ran');
     expect(run.errText()).toContain('abc1234..def5678');
     expect(run.errText()).not.toContain(TOKEN);
+  });
+
+  it('mints a fresh token per attempt: GitHub refuses the first token, and the second lands', async () => {
+    const store = tokenStoreFake();
+    const refusedToken = 'installation-token-refused';
+    const gitExecutor: GitExecutor = (_file, args) =>
+      args[0] === 'rev-parse'
+        ? { status: 0, signal: null, stdout: `${BRANCH}\n`, stderr: '' }
+        : store.writes.at(-1)?.content === refusedToken
+          ? REFUSED_PUSH
+          : PUSHED;
+    const run = runPush({
+      git: { gitExecutor, calls: [] },
+      fetch: mintFetch(refusedToken, 'installation-token-fresh'),
+      store,
+      overrides: { sleepImpl: () => Promise.resolve() },
+    });
+
+    expect(await run.exit).toBe(0);
+    expect(run.errText()).toContain('GitHub refused attempt 1 of 3');
+    expect(run.errText()).not.toContain('installation-token');
   });
 
   it('surfaces the third refusal as an operational failure, each refusal shown', async () => {
