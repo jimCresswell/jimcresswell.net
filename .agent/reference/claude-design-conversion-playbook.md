@@ -12,7 +12,7 @@ playbook stands alone here as the recipe.
 
 **The spec is the surface, never the source** (owner-ruled 2026-08-10).
 The export defines what the converted app LOOKS LIKE and DOES — appearance
-and behaviour, at every canonical width, in every identity and theme. It
+and behaviour, at every width, in every identity and theme. It
 defines nothing about how the app is BUILT. Its markup, its inline hacks,
 and its bundled demo components are out of bounds as source, however
 right their names look: the app is built from the design system's
@@ -44,8 +44,8 @@ ratified first-class. Do not let that frame in the door.
 ## Reference first
 
 **And visual first** (owner directive, 2026-08-10): every comparison
-against the reference includes a rendered-image pair at matched canonical
-widths, looked at with eyes — computed-style probes corroborate and
+against the reference includes a rendered-image pair at the matched
+harness viewport, looked at with eyes — computed-style probes corroborate and
 localise but never substitute (the probe-said-match-while-pixels-differed
 incident is recorded in the reference-first rule).
 
@@ -57,10 +57,11 @@ this pipeline's work; this section is its application here):
    thing is the specification, and no amount of reading its source
    substitutes for seeing it.
 2. Capture the reference set with Playwright — full-page and fold, per
-   identity — at the canonical measurement widths
-   (the lineage's design decision "measurement happens at canonical widths";
-   here the widths are the visual-regression harness's configured viewports). The capture tooling refuses free-hand
-   widths, so a comparison outside the canonical set cannot be produced.
+   identity — at the harness viewport (the lineage's design decision
+   "measurement happens at canonical widths"; here that is the single fixed
+   viewport the visual-regression harness owns, `HARNESS_VIEWPORT` in
+   `jcdotnet/visual-regression-harness/shared.ts`). Nothing mechanical pins a
+   reference capture to that viewport, so hold it by hand.
 3. Every fidelity claim thereafter cites the captured reference, and the
    reference-vs-rebuild comparison runs from the first buildable slice —
    never only at the end.
