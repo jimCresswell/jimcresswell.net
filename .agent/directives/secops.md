@@ -128,9 +128,10 @@ Before making this repository public (or changing visibility), audit for:
 - [ ] Physical location specifics beyond what is intentionally public
 - [ ] Political specifics (year, party, ward, outcome)
 - [ ] Third-party names without consent. Exception: under privacy.md's [LinkedIn workspace
-      authorisation][linkedin-authorisation], published works by others may be cited by author as
-      bibliographic attribution in `linkedin/`; colleagues, co-authors and recommenders still need
-      their consent
+      authorisation][linkedin-authorisation], a published paper, book or article may be cited by
+      its authors, up to its full author list with Jim's co-authors, as bibliographic attribution
+      in `linkedin/`; colleagues and recommenders named otherwise, and anything beyond the
+      citation, still need consent
 - [ ] Private editorial sources, drafts or analysis outside the ignored private repository.
       Exception: the non-sensitive LinkedIn material listed in privacy.md's [LinkedIn workspace
       authorisation][linkedin-authorisation] belongs in

@@ -24,9 +24,9 @@ AI.
 - Career breadth details: specific roles, employers, and biographical items not already visible on
   the published site, outside the LinkedIn workspace authorisation below
 - Third-party names without explicit consent. Exception: under the LinkedIn workspace authorisation
-  below, published works by others may be cited by author as bibliographic attribution in
-  [`linkedin/`](../../linkedin/README.md); colleagues, co-authors and recommenders still need their
-  consent
+  below, a published paper, book or article may be cited by its authors, up to its full author
+  list with Jim's co-authors, as bibliographic attribution in `linkedin/`; colleagues and
+  recommenders named otherwise, and anything beyond the citation, still need consent
 - Biographical details that narrow physical location beyond what is publicly known
 
 ### Public (version-controlled)
@@ -47,9 +47,11 @@ AI.
 
 2. **Third-party individuals must not be named in version-controlled files without explicit
    consent.** Reference them indirectly or store the detail in the private editorial repository.
-   Under the LinkedIn workspace authorisation, citing another person’s published work by its
-   authors is permitted as bibliographic attribution in `linkedin/`; colleagues, co-authors and
-   recommenders still need their consent.
+   Under the LinkedIn workspace authorisation, a published paper, book or article may be cited in
+   `linkedin/` by its authors, up to its full author list with Jim's co-authors (Jim's word of 28
+   September 2026 for one of his papers; the other follows by the same concept). Colleagues and
+   recommenders named otherwise, and a role, relationship, member identity, correspondence or
+   activity beyond the citation, still need the person's consent.
 
 3. **Biographical details that narrow physical location beyond "UK" require explicit approval.**
    Borough-level ("Hackney") is acceptable in published content. Year, ward, and party for political
@@ -82,12 +84,12 @@ in its existing home.
 
 **Reach.** This file's reading of the authorisation: for `linkedin/` only, and only as far as each
 entry states, this authorisation qualifies two Private categories above: career breadth details, and
-third-party names for bibliographic attribution of published works (rule 2 likewise; colleagues,
-co-authors and recommenders still need consent). It changes where the listed material lives, not the
-confidentiality of private editorial material: §Private editorial material below applies inside
-`linkedin/` unchanged, so private material is never quoted, summarised or identified there. Every
-other category and rule in this file applies inside `linkedin/` unchanged, and secops.md's
-public-visibility audit covers `linkedin/` too.
+third-party names in citations of published papers, books and articles by their authors (rule 2
+likewise; colleagues and recommenders named otherwise still need consent). It changes where the
+listed material lives, not the confidentiality of private editorial material: §Private editorial
+material below applies inside `linkedin/` unchanged, so private material is never quoted, summarised
+or identified there. Every other category and rule in this file applies inside `linkedin/`
+unchanged, and secops.md's public-visibility audit covers `linkedin/` too.
 
 ## Private editorial material
 
