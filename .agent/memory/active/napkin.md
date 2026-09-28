@@ -4472,3 +4472,61 @@ Copilot ruling as the door's state), the suite about 23:1xZ, both stances, ident
 check-in 74 with the suite's tally; the rollover folds at 00:00Z: the lineage fold by the scripts
 on Codex's leg; JC.net's fold by the take-merged recipe up to its door, which has no vendor leg
 while Copilot errors, so it lands by the owner's hand or waits for the lift.
+
+## 2026-09-28T23:1xZ — Director suite 49 tally, the pre-fold suite for the rollover folds; check-in 74
+
+THE FRAME (`suite-49-frame.md`: SOURCES the owner's words of 2026-09-26 and 2026-09-28 verbatim
+(the fold cadence, the suite cadence, the charter's ratification, the decision-method and
+"owed" words, the push word, the card bar, the extension-skills word, the ready-list word), the
+20:4xZ Copilot ruling and its 21:04Z reinstatement, todo 6 in part and todos 7 and 8, the
+proxy-recipe memory, PDR-117; READING built at 23:0xZ from the 23:00:16Z snapshot, both streams,
+the reviews and comments, with GitHub's status page ADDED at 23:02Z; a three-part QUESTION on
+the JC.net fold under the outage, the ruling's scope, and unowned holds), sixteen dispatches
+(the four Cricket roles, two per stance), fifteen returned at this write. Work verdicts:
+ON-TRACK fifteen. Frame verdicts: SOUND four, NARROWED five, CONTRADICTED six.
+
+THE LOAD-BEARING FINDING (six roles CONTRADICTED; adopted before the tally, on both streams at
+23:07Z): the READING's "JC.net has no door while Copilot errors" contradicts the 20:4xZ ruling's
+own JC.net clause ("the door runs ... with the checks and the posted leg on JC.net"), and the
+reconciling fact (the merge-bot refuses a blank expectation) was the Director's reading with no
+method line. Cure: the clause is recorded unimplemented until the merge-bot mechanism lands
+(Siren's lane after B1, lineage first), with the bot's refusal quoted from Nova's first-hand
+read at 21:01Z ("REQUIRED ... a defaulted or blank set never merges"); until then a JC.net PR
+green with zero threads and its posted expert legs goes on the owner's ready list with its
+link, never held open-ended. THE SECOND (eleven roles): the landing hold "by the owner's hand or
+Copilot's lift" had an owner and no clock. Cure: Copilot re-requested on 257 at 23:03:40Z on
+the vendor's recovery word (GitHub's status page: the incident resolved at 22:08 UTC), and on
+241 at its ready-mark; if no Copilot review with content has landed on either by check-in 75
+(about 00:45Z), both go on the ready list in that check-in and the terminal note; Nova owns the
+re-requests and 241's watch, the Director the list. THE THIRD (five roles NARROWED): owner words
+in SOURCES with no receiver in READING. Mapped: the extension-skills word is a tracked Review
+dispositions row on the exchange node in Nova's residue PR (commit 678f0b2e, behind 257); the
+18:3xZ push word landed in 254's authorisation paragraph, and for the fold the primary's
+untracked linkedin/ copies are superseded working copies of landed content (252) that the fold
+never touches, their refresh Nova's after the fold on a containment proof; todo 7 (the re-pin)
+and the lessons batch and the sub-agent comparison are the lineage's exchange seat's after the
+partials, counted among the charter's four acts in the 27. MINOR (three roles): INTENT and NEXT
+still said "while Copilot errors" after the ADDED vendor word; the frame's premise is the
+recovery, the re-request first and the owner's hand the fallback. One role placed the status
+quote under READING rather than SOURCES (a provenance-placement note). Behaviour note: no
+procedure seat acted; one adversarial procedure seat tested the card bar as counter-evidence to
+the fold's consumer and correctly rejected it.
+
+CHECK-IN 74 (the snapshot at 23:00:16Z): open non-coordination PRs 2 of 3 at the read (lineage
+291 at its door on Codex's leg; JC.net 257 on the ready list), 3 of 3 from 23:0xZ with lineage
+293 (Nova's N6, Copilot and Codex requested, SonarCloud passed); landings since check-in 73:
+lineage 292 (8ebd923, 22:48:51Z, Siren's C1, the pinned shellcheck gate; its door read Codex's
+22:38:11Z comment as the leg); heads with CI in flight: 293. Coordination drafts: JC.net 241
+(CLEAN at 7f7bbc8b), lineage 283 (ten files). Corrections recorded: Myrtle's Codex-silence
+report of 23:0xZ (her wait filtered the login without its [bot] suffix and read empty output as
+silence; Siren and the Director read the comments first-hand; against her seat, on her napkin).
+Copilot: GitHub's status page lists the incident resolved at 22:08 UTC; no content review yet on
+either estate at the write; the ruling lifts on the first. The fold preparation: the proxy sync
+script (the merge made in the proxy and pushed; the primary taking it by the proven take-merged
+recipe), the two fold bodies, the two successor bodies and the two fold entries drafted with
+placeholders. The 628e21c1 branch: still local; the owner's hand.
+
+NEXT: the lineage fold at 00:00Z by the scripts (yielding to 291 at its door, then N6 and C2 by
+the one rule); the JC.net fold by the proxy recipe to its door, Copilot requested by the
+operator at the ready-mark; check-in 75 after the folds with the ready list if either JC.net
+door is still without a content review.
