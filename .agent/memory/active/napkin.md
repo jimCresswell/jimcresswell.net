@@ -2890,3 +2890,79 @@ record, the handoff's live block, the exchange plan node's two routed findings) 
 landings 226, 228 to 233 folded in. The lineage's fold, PR 264, is at its door on 74e89d2da
 (two rounds cured in two settlement pushes: the continuity index's 261 row; the day entry's J2
 sentence); its entry follows on this branch when it lands.
+
+## 2026-09-28T01:15Z — Director check-in 53, the post-fold state: 227 folded and 234 cut; 264 held at its door on the Codex evidence shape; the count 3; the pulse lapsed and recreated
+
+THE FOUR NUMBERS (`checkin-53-raw.md`, 01:11Z): open non-coordination PRs 3 of 3 (lineage 250,
+the owner's draft, on THE READY LIST; lineage 273, the non-blocking profile read, BEHIND, its cure
+committed locally by Siren and syncing after 264; JC.net 235, the profile git runner's
+`core.symlinks=false` with the push leg refusing a mode-120000 entry, the register's J3 and J7
+landings and the parked guard under `.agent/research/`, at round two, Siren's); landings since
+check-in 52: 227 (00:34:06Z, 87689ea1f, the JC.net fold); opened: 234 (the JC.net successor
+draft), 235; heads with CI in flight: none; slot-holder age: the lineage slot free since 264's
+door refusal at 01:09Z. Remote branches outside a PR: none in either estate. Local branches: the
+lineage's fix/profile-git-no-links (Siren's, 235's twin in the making) and
+fix/operator-profile-read-nonblocking (273's), siren/250-settlement, codex/user-value-across-levels
+and docs/fold-sweep-and-chmod-bits (Nova's, both estates); JC.net's fix/profile-read-whole-path
+(235's). Host load 4.57. The JC.net primary on coordination/2026-09-28-87689e (draft PR 234) at
+c943c553 on the remote plus this block; the lineage primary on coordination/2026-09-27-d6c9e5 at
+1f97bfc2f, clean.
+
+THE FOLDS: JC.net done (the fold entry above: two rounds, one settlement push, two round-two
+findings Rejected with rationale; the successor 234; the rotation line posted with one token left
+unfilled and corrected by a further line; Copilot needed the operator's add-reviewer twice). The
+lineage's 264 is HELD at its door on 1f97bfc2f: three rounds (Copilot's stale 261 row; Codex's
+contradictory J2 sentence; Codex's two arithmetic findings on the lane's records, the round-one
+thread breakdown and the reader cycle's line count, both verified first-hand), three settlement
+pushes under one rebudget recorded on the body (PDR-140 clause 4), every thread signed and
+resolved, checks green; the merge-bot read SILENT-WAIT-NO-REVIEWER with Codex OWED because
+Codex's clean run on the tip is recorded only by its edited summary comment (created 00:14:53Z)
+and a thumbs-up at 00:47:55Z, the shape the evidence reader refuses; Copilot's review on the tip
+pending its 01:08:49Z re-request. The Copilot-only door stays ruled out (suite 41). The blocking
+defect is the reader (`agent-tools/src/pr-watch/completion-comments.ts` should accept the summary
+comment when its completed row resolves to the tip, edited or not); ROUTED to Siren as the next
+item after 235 lands, its own door and 264's run with the fixed reader from her worktree. The
+lineage successor is cut when 264 lands; the fold entry and the rotation line are pre-filled.
+
+THE PULSE: the Director's heartbeat lapsed from 23:14:51Z to 01:11Z (the pulse script was
+missing from the session scratchpad at the arm-20 re-arm; the monitor's pulse leg failed silently
+into its output file); found at check-in 53's snapshot (the heartbeat list), cured: a manual
+heartbeat on both streams at 01:11Z, the pulse recreated (both streams' heartbeat events and both
+registries' claims heartbeats every 240 s, failures emitted), a Director claim opened on the
+lineage registry under the same id 58c2684a (none existed there), the monitor re-armed (arm 24),
+heartbeat_at read back advancing on both registries. Toolkit row: the monitor script must fail
+loud when its pulse leg cannot start.
+
+RULINGS this window (native, and on the lineage stream): the whole-path guard re-scoped to
+`core.symlinks=false` on the profile git runner after the assumptions class check (the guard
+conserved under `.agent/research/operator-profile-whole-path-guard/` with a ledger row for the
+core-primitive option; native Windows no longer refuses; the owner FYI replaced by one line);
+the sync-push-during-merge defect (the prescribed cure after a conflicting pull fails on
+`commit --only`) placed after 235's lineage twin and ahead of the L1 flow-back, one small PR per
+estate; Siren's order from here: 235's door, the reader row, 264's door, 273, 235's lineage twin,
+the sync-push cure, the L1 flow-back, the shellcheck gate, the smoke pair.
+
+NOVA: no line since 16:05:37Z on 2026-09-27 (nine hours). The owner: no word to the Director
+since the 12:0xZ start word of 2026-09-27.
+
+THE READY LIST (the owner's act): PR 250,
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/250>, 388 files, the owner's
+draft, BEHIND engraph; the eval readings' human review open at body line 39; the ready-mark
+yours.
+
+THE OWNER CARD (batched; unanswered): (b) 250: the action moment above; its lane passed to
+Siren by the dated default, which you may overturn; Nova's worktree on 250's branch carries her
+unpushed sync merge and nine modified files whose cures Siren landed, hers until her return or
+your word; (c) shellcheck as a lineage dependency (default CI and pre-push; Siren's item
+proceeds on it); (d) the bash floor (default none); (e) the vendored scripts (default cure ours,
+ask for the vendored); (f) goal two has no live seat and goal one has one (Siren) with seven
+rows carrying no lineage landing; the owner starts seats. FYI: the lineage fold 264 is held on
+the merge-bot's Codex evidence gap, the reader cure in flight with Siren; the whole-path guard
+was built, judged disproportionate, re-scoped to the git flag and conserved; the Director runs
+the coordination folds under the plan's Lane 1; the Director's heartbeat lapsed two hours and
+is restored.
+
+NEXT: 235's door, the reader row PR, 264's door with the fixed reader (Siren, the Director at
+264's door); the lineage successor, its fold entry and rotation line; check-in 54 at about
+02:00Z; the next suite (46) after 264 lands, on the folds' outcome; Nova's return or the owner's
+word.
