@@ -204,6 +204,18 @@ export function symbolicReading(result: GitCommandResult, ref: string): Result<b
     : err(gitFailure(`asking whether ${ref} is a symbolic ref`, result));
 }
 
+/**
+ * A raw `show-ref --exists` read of `ref` as an answer. It reads the ref
+ * without resolving it, so exit 0 is a ref of that name, plain, packed or
+ * symbolic (its target gone or not); 2 is none; and anything else, a
+ * corrupt loose ref included, is a failure.
+ */
+export function existsReading(result: GitCommandResult, ref: string): Result<boolean, Error> {
+  return result.status === 0 || result.status === 2
+    ? ok(result.status === 0)
+    : err(gitFailure(`asking whether ${ref} exists`, result));
+}
+
 /** Every local and `origin` tracking ref, by exact full name. */
 export async function listBranchRefs(
   retire: RetireGit,

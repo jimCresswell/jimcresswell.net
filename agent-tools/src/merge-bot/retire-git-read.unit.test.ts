@@ -1,7 +1,7 @@
 import { assert, describe, expect, it } from 'vitest';
 
 import type { GitCommandResult } from './git-executor.js';
-import { probeReading, symbolicReading } from './retire-git-read.js';
+import { existsReading, probeReading, symbolicReading } from './retire-git-read.js';
 
 /**
  * git's answers read as the command's, over literal results. A failed read
@@ -59,4 +59,18 @@ describe('symbolicReading', () => {
       expect(reading.error.message).toContain('refs/heads/feat/x');
     },
   );
+});
+
+describe('existsReading', () => {
+  it('reads exit 0 as a ref of that name and exit 2 as none', () => {
+    expect(existsReading(answered(0, ''), 'refs/heads/feat/x')).toEqual({ ok: true, value: true });
+    expect(existsReading(answered(2, ''), 'refs/heads/feat/x')).toEqual({ ok: true, value: false });
+  });
+
+  it.each([1, 128])('reads exit %i as a failure naming the ref, never as no ref', (status) => {
+    const reading = existsReading(answered(status, '', 'error: bad ref'), 'refs/heads/feat/x');
+
+    assert(!reading.ok);
+    expect(reading.error.message).toContain('refs/heads/feat/x');
+  });
 });
