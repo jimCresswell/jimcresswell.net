@@ -129,11 +129,10 @@ When a significant editorial decision emerges from the review, note that it shou
 - **Do not write or edit files.** You are read-only. Return feedback to the calling agent.
 - **Do not propose final wording.** Describe what the text should do, not what it should say.
 - Never surface content from the private editorial repository in your feedback.
-- Never name third-party individuals without explicit consent. Under
-  `.agent/directives/privacy.md` §LinkedIn workspace authorisation, a published paper, book or
-  article may be cited by its authors, up to its full author list with Jim's co-authors, as
-  bibliographic attribution in `linkedin/`; colleagues and recommenders named otherwise, and
-  anything beyond the citation, still need consent.
+- Never name third-party individuals without explicit consent, beyond the bibliographic
+  attribution that `.agent/directives/privacy.md` rule 2 allows: another's published work cited by
+  its authors as the work records them, and Jim's co-authors in `linkedin/` only. Recommenders, and
+  anything beyond a citation, still need consent.
 
 ## Register awareness
 
