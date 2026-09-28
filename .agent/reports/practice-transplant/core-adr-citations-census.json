@@ -52,21 +52,6 @@
       "count": 1
     },
     {
-      "file": ".agent/practice-core/decision-records/PDR-050-state-memory-substrate-contracts.md",
-      "adr": "ADR-182",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-050-state-memory-substrate-contracts.md",
-      "adr": "ADR-186",
-      "count": 2
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-050-state-memory-substrate-contracts.md",
-      "adr": "ADR-220",
-      "count": 1
-    },
-    {
       "file": ".agent/practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md",
       "adr": "ADR-125",
       "count": 1
@@ -97,36 +82,6 @@
       "count": 1
     },
     {
-      "file": ".agent/practice-core/decision-records/PDR-074-director-value-is-mind-coherence-per-owner-attention.md",
-      "adr": "ADR-183",
-      "count": 5
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-075-director-substrate-writing-discipline.md",
-      "adr": "ADR-183",
-      "count": 8
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-075-director-substrate-writing-discipline.md",
-      "adr": "ADR-185",
-      "count": 5
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-077-marshal-as-cycle-discipline.md",
-      "adr": "ADR-185",
-      "count": 9
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-078-liveness-heartbeat-contract.md",
-      "adr": "ADR-183",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-078-liveness-heartbeat-contract.md",
-      "adr": "ADR-186",
-      "count": 1
-    },
-    {
       "file": ".agent/practice-core/decision-records/PDR-081-curator-role-and-substrate-care-lane.md",
       "adr": "ADR-221",
       "count": 1
@@ -145,16 +100,6 @@
       "file": ".agent/practice-core/decision-records/PDR-100-decision-debt-as-a-first-class-pillar.md",
       "adr": "ADR-144",
       "count": 3
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-119-agent-memory-as-an-event-graph-with-renderers.md",
-      "adr": "ADR-183",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-119-agent-memory-as-an-event-graph-with-renderers.md",
-      "adr": "ADR-199",
-      "count": 4
     },
     {
       "file": ".agent/practice-core/decision-records/PDR-119-agent-memory-as-an-event-graph-with-renderers.md",
