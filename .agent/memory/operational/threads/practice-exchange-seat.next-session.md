@@ -2766,3 +2766,40 @@ is named above, so the recursion closes here.
   `repairableTree` flag-pin test.
 - The context reading at 18:45Z was 52.2% (session-metadata). Directive edits wait for a
   compaction.
+
+**19:01Z to 20:04Z: 289 landed; 290 open; C1 built.**
+
+- Myrtle's PR 255 merged at 19:23Z as SHA:a9aa00d38, so the J11, J15, J19, J23 and #272 (J22)
+  rows are landed.
+- Lineage #289 (J3 slice 2) merged at 19:45Z as 4a302b18c. The remote branch was deleted by the
+  bot's API delete and read back gone. The worktree was removed without force, and the local ref
+  was deleted by compare-and-swap after the ancestry proof. It had no config section.
+- Lineage #290 (J3 slice 3, the script cures) opened at 19:52Z at 1e05f1435, after its pre-push
+  gate passed. Copilot is requested (read on the timeline) and Codex is asked by comment. The
+  review watch is a Monitor with the bot's login. WIP is 2 of 3, with Nova's rule-glob PR on
+  JC.net.
+- Slice 4 is re-cut. C1 is the working gate: the agent-tools modules, the installer, `.tools/`
+  ignored, the CI install step, the cloud hook's installer call, the `lint:shell` swap, and the
+  troubleshooting line. C2 is the README, CONTRIBUTING, ADR-121 and the onboarding docs.
+  - Why the re-cut: an agent-tools-only C1 ships an installer whose header says CI and the cloud
+    hook install it, and a merged swap falsifies the troubleshooting note. Each would be false
+    until C2.
+  - C1 is built, uncommitted, in the worktree `oce-wt-j3-shellcheck-gate`, on
+    feat/exchange-j3-shellcheck-gate from 4a302b18c.
+  - It commits after #290 lands, because the pre-commit hook runs the new gate and this tree
+    lacks #290's cures. The gate run over it refuses exactly those scripts, and nothing else.
+  - The lineage additions:
+    - the two tsx shebang forms, as non-shell forms;
+    - `apps/` exempt from the floor only;
+    - a pure lock module (`repo-check-skills-lock.ts`) keying the vendored-skill exclusion on
+      `skills-lock.json`;
+    - a Result-returning tracked read.
+  - The integration test is rewritten to constant fakes, asserting status and written lines. The
+    second estate's version records calls, and that rewrite flows back.
+  - Nine mutants are killed. Four post-build reviews (code, test, config, security) are running.
+- B1's push retry: the refusal was read first-hand in the scratchpad's `retire/push-port2.log`.
+  GitHub refuses at the ref advertisement, before the pre-push hook runs, so a retry costs no
+  gate time. The design notes are in the scratchpad's `b1-retry/design.md`. One question stays
+  open: a 403 after the gate reruns it; none has been seen yet.
+- Next safe step: on #290's rounds, cure or reject by signed line. When #290 lands, sync C1 by
+  merge, run the gate over the synced tree, commit, push and open C1 (WIP permitting).
