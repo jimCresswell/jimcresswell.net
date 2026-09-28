@@ -18,6 +18,8 @@ ratified_where: >-
   Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21, and by those of
   2026-09-23 in §Rulings of 2026-09-23, and by the owner's words of 2026-09-24, recorded
   verbatim in §Rulings of 2026-09-24.
+  The ratification of 2026-09-28 (the close bar for goal one) is recorded verbatim in §Rulings
+  of 2026-09-28.
 serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
@@ -197,6 +199,37 @@ a plan for exploring that Practice delta, and any other advancements that have h
 time we get to it. We have also developed our Practice beyond theirs. We will need a thoughtful
 two way exchange to bring both Practices up to the highest level that either of them define."
 
+## Rulings of 2026-09-28
+
+The owner's word on 2026-09-28, given through the question tool to the Director (Wick binds
+Temper, ed7b48), who relayed it to both exchange seats at 16:2xZ; verbatim where quoted. The
+numbering continues from the rulings above. Terms: goal one is ruling 35's first purpose (this
+estate's J rows into the lineage); the batch-six triage is
+`.agent/reports/practice-transplant/batch-six-triage-2026-09-25.md` (state key BRING, COMPARE,
+LOCAL, PARITY, UNCLEAR); "settled" in the bar is the register's "landed" (§Disposition
+vocabulary: a §Landings row without `PARTIAL`); "Not taken" is the outcome the lineage's own
+node names in its §Acceptance criteria.
+
+40. The close charter for goal one, ratified as drafted: the selected option verbatim, "Ratify
+    as drafted (Recommended)". The ratified bar: goal one is closed when (1) every owed J row
+    reads settled in the register, or declined by the lineage with the reason recorded (the
+    lineage node's "Not taken"); a PARTIAL whose remainder the batch-six triage classes LOCAL
+    or PARITY is settled by a §Landings row citing the triage, not by a PR; (2) todo 8 on both
+    estates: the doctrine twin and the gate's twin landed; (3) the lessons batch (ruling 36)
+    and the sub-agent comparison (ruling 37) delivered as register rows, landed or declined;
+    (4) todo 7's re-pin recorded, forty-character ids, the driver failing closed; (5) the
+    register's count reads N of N beside both heads and todo 6 records the close with the
+    owner's word. Then "then we review" opens: the inbound direction and the installable
+    entity, outside this node. The order: a residue census first (one line per owed row, the
+    triage's BRING items minus the landings; a records commit on the lineage's coordination
+    branch, no PR of its own), then todo 6, then the unlanded rows in the triage's order (the
+    code rows sliced to the optimum, the text rows one PR each), the partials' remainders as
+    the census names them, the doctrine twin and the gate's twin closing todo 8, the lessons
+    and the comparison as two rows, the re-pin last; the
+    charter reopens if the census names more than thirty PRs. The owner owns the bar and the
+    declines, the lineage's exchange seat the landings and the register, the Director the order
+    and the count.
+
 ## Problem
 
 Two living Practice instances share an ancestor: the lineage commit this transplant was pinned
@@ -352,7 +385,23 @@ entries composed whole and appended in one write.
 3. The cards for conflicting rows, one batch.
 4. Inbound landings, one pull request per eight claims, in the register's order.
 5. The outbound note and material, delivered through the join ceremony.
-6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+6. The close, on the owner's ratified bar (ruling 40), one pull request, prose-class, when the
+   bar is met: every owed J row landed by the register's rule (a §Landings row without
+   `PARTIAL`) or declined by the lineage with its reason (a PARTIAL whose remainder the triage
+   classes LOCAL or PARITY landed by a §Landings row citing the triage); todo 8 on both estates
+   (its text cure and its validator); the lessons batch and the
+   sub-agent comparison as register rows; todo 7's re-pin recorded; the register reading N of
+   N beside both heads, and this todo recording the close with the owner's word. The residue
+   census of 2026-09-28 (in the lineage's tree,
+   `.agent/reports/practice-exchange/goal-one-residue-census-2026-09-28.md`, records commit
+   SHA:a9c9d1bf8 on its coordination branch until the fold, then its main) opened it: 21 rows
+   owed by the register's own rule (J5's lineage cell reads `graduated into L9`, J12's
+   `decline`), 4 landed, 11
+   partial, 6 with no landing, 20 residue PRs (24 with this todo, the lessons, the comparison
+   and the re-pin), three cards for the owner (J11's exchange instrument, J17's gate-running
+   doctrine, the count). §Close's provenance, audit and Box steps, and the doctrine amendments as
+   register candidates, stay the node's, after the bar. Next act after this amendment lands: the
+   census's order, J1's N1 (the rule-generator slice) first.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
