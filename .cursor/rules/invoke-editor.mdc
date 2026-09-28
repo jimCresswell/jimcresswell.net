@@ -1,6 +1,6 @@
 ---
 description: Route editorial and public-copy changes through the editor
-globs: content/**/*,docs/editorial/**/*,app/**/*,lib/jsonld.ts,linkedin/**/*
+globs: jcdotnet/content/**/*,docs/editorial/**/*,jcdotnet/app/**/*,jcdotnet/lib/jsonld.ts,linkedin/**/*
 alwaysApply: false
 ---
 

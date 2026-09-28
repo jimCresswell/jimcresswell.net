@@ -1,7 +1,8 @@
 ---
 paths:
   - "**/*.test.*"
-  - e2e/**/*
+  - jcdotnet/e2e/**/*
+  - agent-tools/e2e-tests/**/*
   - "**/smoke-tests/**/*"
 ---
 

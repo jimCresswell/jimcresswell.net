@@ -1,9 +1,9 @@
 ---
 paths:
-  - content/**/*
+  - jcdotnet/content/**/*
   - docs/editorial/**/*
-  - app/**/*
-  - lib/jsonld.ts
+  - jcdotnet/app/**/*
+  - jcdotnet/lib/jsonld.ts
   - linkedin/**/*
 ---
 

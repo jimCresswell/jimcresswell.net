@@ -1,11 +1,11 @@
 ---
 classification: situational
 description: Validate external data at entry boundaries
-trigger: surface:**/*.ts,**/*.tsx,content/**/*
+trigger: surface:**/*.ts,**/*.tsx,jcdotnet/content/**/*
 globs:
   - "**/*.ts"
   - "**/*.tsx"
-  - content/**/*
+  - jcdotnet/content/**/*
 ---
 
 # Strict Validation at External Boundaries

@@ -1,6 +1,6 @@
 ---
 description: Validate external data at entry boundaries
-globs: '**/*.ts,**/*.tsx,content/**/*'
+globs: '**/*.ts,**/*.tsx,jcdotnet/content/**/*'
 alwaysApply: false
 ---
 
