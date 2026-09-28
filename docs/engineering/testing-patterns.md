@@ -171,7 +171,11 @@ features spanning multiple modules, add a **composition check** that exercises t
 integration seam. The site's content negotiation is the local example: the
 proxy, the route handler and the rendered document each have their own tests,
 and `e2e/behaviour/markdown-content-negotiation.e2e-api.test.ts` proves the
-composed path (an `Accept` header in, the right representation out). A
+composed path (an `Accept` header in, the right representation out).
+A composition check that proves content flow asserts a sentinel content item
+through the public result, never a counter or a call argument
+(`testing-strategy.md` §Rules: in the lineage, the hidden lesson's keyword
+appears only when the switch admits it). A
 composition check IS the enforcement for multi-module integration — it is what
 catches a knip or depcruise cleanup that removed a module every unit test had
 already stopped exercising.
