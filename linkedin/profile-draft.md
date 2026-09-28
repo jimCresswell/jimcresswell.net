@@ -2,6 +2,8 @@
 
 28 September 2026 · Draft 1 · For Jim’s review
 
+AI-drafted proposal in Jim Cresswell’s voice; not his words until he approves them.
+
 The proposed profile text is below. Dates needing confirmation and editorial choices are in
 [editing notes](editing-notes.md). Nothing here has been applied to LinkedIn.
 
