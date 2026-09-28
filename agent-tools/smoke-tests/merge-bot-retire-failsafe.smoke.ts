@@ -174,6 +174,8 @@ const locked = await expectFailure(
   ['gone', 'gone', 'kept'],
 );
 assert.match(locked.outcome.reason ?? '', /was not deleted/u);
+// git's own words carry through to the report.
+assert.match(locked.outcome.reason ?? '', /lock/u);
 assert.doesNotMatch(locked.outcome.reason ?? '', /moved/u);
 
 // The config is locked when its section is removed: the names go, and the section is reported left.
