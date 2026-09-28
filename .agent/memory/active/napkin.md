@@ -3893,3 +3893,113 @@ drafts CI watch re-pointed at 241 and the lineage successor; 281's sync and door
 rebuild, mark and door (Nova); branch retire's PR at the next slot (Siren); Myrtle's ledger cure
 forward and her exchange lane on the owner's word; the charter draft for goal one's close after
 the folds; check-in 64 in about 45 minutes, on change.
+
+## 2026-09-28T14:2xZ — Director: the inquiry charter for goal one's close, drafted for the owner's ratification on the owner's "Draft it after the folds"
+
+THE QUESTION. Goal one (the owner, 2026-09-24, verbatim): "All JC.net Practice innovations
+integrated into the OCE Practice". The owner's arc (2026-09-25, verbatim): "This is a fixed
+process with an end, not an ongoing effort. Once the Practice contains the best of both it will
+be extracted into an installable entity." The charter asks one thing: what closes goal one,
+proven where, by whom, and what it costs from here.
+
+DECISION OWNER AND DEPTH. The owner owns the close bar and the declines; the exchange seat
+(Myrtle) owns the landings and the register; the Director owns the order and the count. Core
+depth: the evidence is first-hand (the register and the exchange node at origin/main 55942376,
+the batch-six triage of 2026-09-25, both estates' Core at their default tips), every act below
+is a PR on a two-way door, and the only one-way decision is the owner's word that the goal is
+closed.
+
+THE STATE, read at origin/main 55942376 and origin/engraph cdd5b0463 at 14:1xZ. The register's
+rule: an owed J row has landed when §Landings holds a lineage row for it without PARTIAL. Owed
+to the lineage: 22 of the 23 J rows (J12 is local). Settled: 4 (J4, J9, J13, J14). Partial: 11
+(J1, J3, J7, J10, J11, J15, J17, J18, J19, J21, J22). No landing: 7 (J2 the validators, J5 the
+merge bot, J6 the smoke runner, J8 corpus-analysis and workflow-build, J16 the root entrypoints,
+J20 the root configuration, J23 the five ADRs). By the rule the outbound count reads 4 of 22.
+Todo 8: JC.net's Core carries zero ADR citations in its PDRs at origin/main and the ratchet gate
+landed (PR 239, b5d95420, 12:54:43Z); the lineage's Core also reads zero; its doctrine twin is
+PR 281 (Nova, in CI); the gate's twin has no row and no seat. Todo 7 (the re-pin): the pins
+carry ten-character ids; not started. Todo 5 (the outbound note and material through the join
+ceremony): superseded in practice, the exchange seat lands J rows directly under the lineage's
+gates; the lessons (ruling 36) and the sub-agent comparison (ruling 37) have no row and no
+landing. Todo 6 (the close) is unwritten. Inbound: seven L rows carry a JC.net landing; that
+direction follows the review by the owner's word (ruling 35).
+
+THE CLOSE BAR (the Director's verdict, for ratification). Goal one is closed when: (1) every
+owed J row reads settled in the register, or declined by the lineage with the reason recorded
+(the lineage node's "Not taken"); a PARTIAL whose remainder the triage classes LOCAL or PARITY is
+settled by a §Landings row citing the triage, not by a PR; (2) todo 8 on both estates: the
+doctrine twin (281) and the gate's twin landed; (3) the lessons batch (ruling 36) and the
+sub-agent comparison (ruling 37) delivered as register rows, landed or declined; (4) todo 7's
+re-pin recorded, forty-character ids, the driver failing closed; (5) the register's count reads
+N of N beside both heads and the exchange node's todo 6 records the close with the owner's word.
+Then "then we review" opens: the inbound direction and the installable entity, outside this
+node.
+
+THE COUNTERFRAME, held. "Goal one is already closed in substance: the seven unlanded rows and
+the eleven partials are transplant-time adaptation the lineage does not want, and the PARTIAL
+label overstates the residue." Test: a residue census, one line per owed row, the triage's BRING
+items minus the landings (Myrtle's read; one records commit on the lineage's coordination
+branch, no PR of its own). A row the census finds the lineage declines is settled by the recorded
+reason. The census is the first act, before any new landing lane opens.
+
+ORDER AND BUDGET. The census first (one seat, about an hour). Then the seven unlanded rows in the
+triage's order: the code rows (J2, J5, J6, J8) sliced to the optimum (PDR-132 §Decision item 7),
+the text rows (J16, J20, J23) one PR each; the partials' remainders as the census names them; 281
+and the gate's twin close todo 8; the lessons and the comparison as two rows; the re-pin last.
+The residue's PR count is the census's output; until it reads, the bound is the triage's path
+counts (J1 357, J15 118, J8 74, J6 27, J7 18, J16 2; J17 to J23 in triage B) against the observed
+pace: nine exchange landings across both estates on 2026-09-27 (five lineage, four JC.net) by two
+seats. Stopping: the count reads N of N, or the owner declares the close on the census. Reopen
+if the census names more than thirty PRs: then the bar is wrong, not the pace.
+
+DEFEATERS. A ratified row the lineage would decline (the lineage node forbids "Not taken" for
+owner-ratified text: the owner's card, not the seat's); the lessons batch turning into doctrine
+(it is material; a lesson that needs a rule goes to the plan ledger); the WIP limit (three
+non-coordination PRs across both estates: the code rows queue behind 240, 281 and 282); the
+register validator refusing a settled-by-note row (its rule counts §Landings rows, so the note
+is a §Landings row, which the validator never reads).
+
+THE CARD. One question to the owner: ratify the close bar as drafted, or amend it. The ratified
+bar is the owner's word; its wording lands as seat work under review, one PR by Myrtle onto the
+exchange node as todo 6, with the census as its first act.
+
+## 2026-09-28T14:2xZ — Director check-in 64, on change: the lineage fold landed (275 → cdd5b0463); the count 4 of 3 with an automation arrival; the charter drafted; two corrections
+
+THE FOUR NUMBERS (the snapshot at 14:20:06Z): open non-coordination PRs 4 of 3 (lineage 281,
+Nova's PDR-079 twin, synced 14:13Z at 8f3c1cb19, CI in flight; lineage 282, Myrtle's recipes
+follow-up closing PR 217's cure list, opened 14:01:30Z, synced 14:15Z at 5f5a54b10, CI in
+flight; lineage 284, the automation's upstream carrier, the mirror at 9772f33 four commits
+ahead, opened 14:18:28Z as a draft, an arrival; JC.net 240, the LinkedIn workspace, rebuilt and
+live at 112cf4ce (Nova, 14:10Z), awaiting her two forward commits, the expert's re-read, the mark
+and Copilot); landings since check-in 63: lineage 275 (cdd5b0463, 14:04:13Z, the midday fold,
+after Copilot's review at 13:54:00Z and the bot's quiet window); heads with CI in flight: two on
+the lineage (281, 282), an off-slot double sync, this seat's (below); the slot: the first at its
+legs takes the door, the other holds. Coordination drafts: JC.net 241 (CLEAN, 13:54Z); lineage
+283 (the successor coordination/2026-09-28-cdd5b0, cut 14:07Z from cdd5b0463, first commit
+e75e22c7e, opened 14:13:55Z; Myrtle's records commit 69bae0328 rides it). Remote branches
+outside a PR: none in either estate; the folded coordination/2026-09-28-96b273 deleted remote
+and local, read back absent. Ready list: empty on both estates.
+
+RULINGS THIS WINDOW. Nova's two PR 240 questions (14:0xZ), both ruled (a) as seat work under
+the PR's review, no owner card: the privacy directive's two Private bullets qualified by the
+workspace authorisation, with published works citable by author (a reconciliation of two owner
+texts already on the page, granting nothing new; PDR-052 read before the directive edit), and one
+provenance header on the profile draft ("AI-drafted proposal in Jim's voice; not his words until
+he approves them"); grounds: the owner's narrowing of 2026-09-23 (wording that implements a
+ruling is seat work under review, never a card) and the owner's words of 12:0xZ and 13:4xZ; the
+owner may overrule here before the mark. PR 284 routed to Nova under the cross-fork-integration
+skill after 281 and 240 land; it counts, so no new PR opens until two land.
+
+CORRECTIONS against this seat: two go-lines at once (the message to Nova at 14:0xZ, "281 syncs
+once now", and the rotation at 14:14Z, "282 ... first if 281's legs are not in") named no holder,
+and both seats synced within two minutes; the cost is one extra sync for the second to land; every
+slot line names the holder from now. The fold env's label doubled "the" in two stream titles;
+cured in the script.
+
+THE CHARTER for goal one's close is the block above, for the owner's ratification by one card;
+its first act is Myrtle's residue census on the lineage's coordination branch.
+
+NEXT: the card; 281 and 282's doors in leg order; 240's forward commits, re-read, mark and door
+(Nova); 284's integration (Nova, after); Siren's branch retire PR at the next JC.net slot;
+Myrtle's 69bae0328 read for the fold's round-two ledger routing; the pre-fold suite before the
+rollover folds; check-in 65 in about 45 minutes, on change.
