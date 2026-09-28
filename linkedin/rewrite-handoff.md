@@ -81,8 +81,11 @@ Investigate further only when a selected claim or consequential choice could cha
 Once Jim chooses exact wording, check the affected live fields, links, truncation and current
 platform limits as part of applying that wording. Website contradictions are specific later
 repairs, including Oak’s superseded title/start date and the differences in editing notes.
-This workspace does not authorise those edits, a repository push, messages, recommendation
-requests, publication or recurring work.
+This workspace does not authorise those edits, messages, recommendation requests, publication or
+recurring work. Workspace content itself is repository content under the normal rules: commit,
+push and merge, as the [authorisation][linkedin-authorisation] records.
+
+[linkedin-authorisation]: ../.agent/directives/privacy.md#linkedin-workspace-authorisation--28-september-2026
 
 **Parallax status: qualified.** The draft is a source-checked proposal ready for Jim’s review.
 Additional agents used shared models and sources; their challenges are not independent

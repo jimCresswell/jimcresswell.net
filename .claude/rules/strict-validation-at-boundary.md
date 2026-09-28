@@ -2,7 +2,7 @@
 paths:
   - "**/*.ts"
   - "**/*.tsx"
-  - content/**/*
+  - jcdotnet/content/**/*
 ---
 
 Read and follow `.agent/rules/strict-validation-at-boundary.md`.

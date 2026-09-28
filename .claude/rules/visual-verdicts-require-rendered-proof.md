@@ -1,8 +1,10 @@
 ---
 paths:
-  - apps/**/*.{ts,tsx,css,html}
-  - demos/**/*.{ts,tsx,css,html}
-  - packages/design/**
+  - jcdotnet/app/**/*.{ts,tsx,css,html}
+  - jcdotnet/components/**/*.{ts,tsx,css,html}
+  - jcdotnet/lib/**/*.tsx
+  - jcdotnet/lib/pdf-config.ts
+  - jcdotnet/scripts/generate-pdf.ts
 ---
 
 Read and follow `.agent/rules/visual-verdicts-require-rendered-proof.md`.

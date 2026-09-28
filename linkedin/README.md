@@ -31,20 +31,27 @@ Write from actual contribution, clear attribution and Jim’s voice. LinkedIn co
 understanding of his work; factual completeness alone is insufficient. Use the research to
 improve the copy, without making every editorial decision a new research project.
 
-Jim authorised this repository workspace on 28 September 2026. Non-sensitive professional
-drafts, research and supporting analysis belong here. Confidential correspondence, personal
-vulnerabilities, account details, third-party activity records and sensitive source material do
-not. Ordinary bibliographic attribution belongs with the research it supports.
+Jim authorised this repository workspace on 28 September 2026. The non-sensitive LinkedIn
+material listed in privacy.md's [LinkedIn workspace authorisation][linkedin-authorisation]
+belongs here. Personal vulnerabilities, private correspondence, account details, third-party
+activity records and sensitive or confidential source material do not. Ordinary bibliographic
+attribution belongs with the research it supports.
 
-Drafting, approval and live publication are separate states. Review exact wording with Jim
-before changing LinkedIn. Local preparation does not authorise a push, account-setting change,
-message, recommendation request or reader experiment.
+[linkedin-authorisation]: ../.agent/directives/privacy.md#linkedin-workspace-authorisation--28-september-2026
+
+Drafting, approval and live publication are separate states. Workspace content is repository
+content under the normal rules: commit, push and merge. Changing LinkedIn is a separate activity
+that needs Jim's request, as the [authorisation][linkedin-authorisation] records; that covers
+copy, account settings, messages, recommendation requests and reader experiments. Review exact
+wording with Jim before any change there.
 
 ## Editorial authorities and related surfaces
 
 - [Editorial strategy](../.agent/directives/editorial-strategy.md)
 - [Voice and guidance](../.agent/directives/editorial-guidance.md)
 - [Privacy](../.agent/directives/privacy.md)
+- [Editor review](../.agent/rules/invoke-editor.md) and the
+  [editorial voice skill](../.agent/skills/editorial-voice/SKILL-CANONICAL.md)
 - [Current CV source](../jcdotnet/content/cv.content.json)
 - [Current front page source](../jcdotnet/content/frontpage.content.json)
 - [Shared identity facts](../jcdotnet/content/entities.json)

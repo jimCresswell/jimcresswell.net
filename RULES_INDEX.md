@@ -62,7 +62,7 @@ edit it by hand.
 | `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / global CSS / colour palette / spacing / typography / motion / layout rhythm / breakpoint / multi-surface (page and PDF) styling / shared-component styling / visual-consistency change` |
 | `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Doctrine, rule, ADR, PDR, reference, engineering or governance doc added, removed, renamed, rewritten or restructured; onboarding entry point changed; command, skill or agent renamed across files` |
 | `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces` |
-| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, structured-data descriptions, editorial docs` |
+| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, LinkedIn workspace drafts, structured-data descriptions, editorial docs` |
 | `.agent/rules/invoke-pkg-expert.md` | situational | `surface:jcdotnet/content/entities.json, the graph and JSON-LD modules in jcdotnet/lib/, JSON-LD emission, Schema.org types, @id conventions, graph-backed metadata` |
 | `.agent/rules/invoke-react-component-expert.md` | situational | `surface:react-component — React component edit (hooks, render performance, prop API, composition, client or server boundaries, hydration, lifecycle)` |
 | `.agent/rules/invoke-security-expert.md` | situational | `surface:headers, CSP, secrets, env loading, middleware, proxy, dependencies, auth, public attack surface` |
@@ -83,11 +83,11 @@ edit it by hand.
 | `.agent/rules/never-use-git-to-remove-work.md` | core | — |
 | `.agent/rules/new-rule-vs-pdr-clause.md` | core | — |
 | `.agent/rules/no-conditional-tests.md` | situational | `surface:test-authoring` |
-| `.agent/rules/no-global-state-in-tests.md` | situational | `surface:**/*.test.*,e2e/**/*,**/smoke-tests/**/*` |
+| `.agent/rules/no-global-state-in-tests.md` | situational | `surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/smoke-tests/**/*,**/test-helpers/**/*,**/*setup.ts,**/tests/**/*,**/*fixture*.ts` |
 | `.agent/rules/no-hedging-vocabulary.md` | core | — |
 | `.agent/rules/no-moving-targets-in-permanent-docs.md` | core | — |
 | `.agent/rules/no-parallel-long-lived-branches.md` | core | — |
-| `.agent/rules/no-skipped-tests.md` | situational | `surface:**/*.test.*,e2e/**/*` |
+| `.agent/rules/no-skipped-tests.md` | situational | `surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/vitest*.config*.ts,jcdotnet/playwright.config.ts` |
 | `.agent/rules/no-speed-pressure.md` | core | — |
 | `.agent/rules/no-tombstones-for-removed-ideas.md` | core | — |
 | `.agent/rules/no-type-shortcuts.md` | situational | `surface:**/*.ts,**/*.tsx` |
@@ -128,7 +128,7 @@ edit it by hand.
 | `.agent/rules/skill-naming-and-description-quality.md` | situational | `ceremony:skill-authoring — Creating/renaming/editing any skill or its description; vendoring gate` |
 | `.agent/rules/source-is-typescript-esm-only.md` | situational | `surface:source-authoring` |
 | `.agent/rules/stage-by-explicit-pathspec.md` | situational | `ceremony:commit` |
-| `.agent/rules/strict-validation-at-boundary.md` | situational | `surface:**/*.ts,**/*.tsx,content/**/*` |
+| `.agent/rules/strict-validation-at-boundary.md` | situational | `surface:**/*.ts,**/*.tsx,jcdotnet/content/**/*` |
 | `.agent/rules/subagent-practice-core-protection.md` | situational | `surface:AGENTS.md,CLAUDE.md,.agent/practice-core/**/*,.agent/directives/**/*,.agent/rules/**/*` |
 | `.agent/rules/tdd-for-refactoring.md` | core | — |
 | `.agent/rules/test-immediate-fails.md` | situational | `surface:**/*.test.ts` |
