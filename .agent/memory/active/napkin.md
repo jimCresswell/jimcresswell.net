@@ -3846,3 +3846,50 @@ Correction to the paragraph above, written at 13:1xZ: the fold ran four rounds, 
   any cached tracking tip before deleting that one ref, and prunes nothing else. Until it
   lands, a fold seat checks `git rev-parse --verify --quiet "origin/$FOLDED"` before step 9's
   absent path and proves that tip against the base.
+
+## 2026-09-28T13:5xZ — Director check-in 63, the thinner write: the count 2; five landings since the resume; both folds, one landed; the owner's four words
+
+THE FOUR NUMBERS (gh at 13:50Z): open non-coordination PRs 2 of 3 (lineage 281, Nova's PDR-079
+withdrawal twin, at its legs, waits for the fold's landing to sync once; JC.net 240, the LinkedIn
+workspace draft, held at 628e21c1 for Nova's public-history recovery on the owner's word); landings
+since check-in 62 (08:06Z): JC.net 238 (25e30f77, 12:13:32Z), 239 (b5d95420, 12:55Z, todo 8's
+gate and PDR-079's amendment), 234 (55942376, 13:09:10Z, the midday fold); lineage 280 (ab8976719,
+12:19:02Z), 250 (2da2e89ec, 13:18:16Z, the owner's draft through Myrtle's door); heads with CI in
+flight: none outside the fold; the lineage slot: the fold (275) at its door on aebf5b82f, Copilot
+re-requested at 13:49:54Z after Myrtle's records rode the re-sync. Coordination drafts: JC.net 241
+(the successor coordination/2026-09-28-559423, cut 13:09:29Z); lineage 275 at its door, its
+successor next. Remote branches outside a PR: none in either estate. Local: the lineage's
+superseded/250-local-sync-82aae23cd deleted by Myrtle on the owner's word (13:35Z), Siren's
+settle worktree and branch gone (13:24Z), Nova's spare PDR-079 worktree gone (13:36Z); JC.net's
+proxy worktree jcnet-wt-fold-push stays while the primary's tree carries the Codex agent's edits.
+
+THE OWNER'S WORDS SINCE THE ANSWERS BLOCK (verbatim): 13:3xZ by the question tool: PR 240 "Yes:
+Nova runs the recovery now (Nova's recommendation)"; the purge "No, the rewrite is enough"; the
+superseded ref "Delete it by the forced path on this word (Recommended)"; the stale-lock worktree
+"Yes, remove it (Recommended)". 13:4xZ: "the linkedin work is finished for now, it is ready for
+review and merge, it is a first draft and does not require editorial review yet"; then "some more
+linkedin work is happening now, that need not prevent the current work being merged". Relayed on
+the streams with their scope (events c31f28c7 and 2975ebca; 78720351; 0a5b514c); JC.net pushes
+quiesced 13:34Z to Nova's capture-done line at 13:42:33Z.
+
+RULINGS THIS WINDOW, one line each: the lineage slot order (11:48Z, d8994d05); the doctrine pair's
+one late-cure push per copy (11:5xZ, ecf21666); PDR-105 governs PDR-079's identifier permission,
+amended beside the gate, no owner word needed (12:19Z, cd85231f); the LinkedIn workspace to its
+own branch, off the fold, copied never moved (12:13Z, 1d742ac0); the JC.net primary's push gate
+blocked by the Codex agent's edits, the Director pushes from a clean proxy worktree at the same
+shas (12:15Z, 401acdab); Siren's order confirmed, branch retire first (12:21Z); PR 240's review
+before the mark is the privacy and security read plus Copilot, no editorial pass (13:35Z). A
+records finding on another seat's file is routed to that seat for a forward cure, never cured on
+the fold (three instances today: Siren's thread record, Nova's cost figure, Myrtle's ledger line).
+
+CORRECTIONS against this seat, recorded: the 10:22Z review's verdict 4 read the coordination
+branch's register copy, not origin/main (Siren, 12:2xZ); the suite thinning was a seat changing an
+owner cadence (Wilma, 10:2xZ; withdrawn, then chosen by the owner's word); the fold entry named
+two rounds where the fold ran four (appended). Gendered pronouns for seats stop from the 11:4xZ
+answers block.
+
+NEXT: the lineage fold's door, cut, first commit, draft PR, rotation, the old branch deleted; the
+drafts CI watch re-pointed at 241 and the lineage successor; 281's sync and door (Nova); PR 240's
+rebuild, mark and door (Nova); branch retire's PR at the next slot (Siren); Myrtle's ledger cure
+forward and her exchange lane on the owner's word; the charter draft for goal one's close after
+the folds; check-in 64 in about 45 minutes, on change.
