@@ -2733,3 +2733,36 @@ is named above, so the recursion closes here.
 - The review watch was mis-armed at 17:22Z: its fifth argument skips the seat's own bot, and
   Copilot's login was passed there, so round one never showed. It is re-armed as a Monitor with
   the bot's login.
+
+**18:00Z to 19:01Z: 251 landed; J3 started as four slices.**
+
+- PR 251 merged at 18:07Z as SHA:be6b5141, after two Copilot rounds and a settlement.
+  - Round two's race was cured with one raw `show-ref --exists` read. The window before
+    `--remove-section` is git's own, as `git branch -d`'s.
+  - The branch was retired by the merged command from a worktree detached at main, and every
+    name read back gone.
+- The Director confirmed the order at 18:0xZ: J3's slices, then B1 to B4, then the retire port
+  inside L9's window. B1 waits built at SHA:ae154449, with its security review's two items
+  cured (the usage prints permission levels; the row's doc names the probed repository).
+- J3 is four lineage slices; #269 was slice 1. The census's J3 line reads 3, and the count is 26
+  on the Director's word.
+  - Slice 2 is the second estate's PR 232 module cures plus a real-tool repair smoke. It is open
+    as lineage #289 at 8ba88a805, with both legs requested at 19:01Z.
+  - Slice 3 is the script cures: 13 lineage-owned scripts (the four `#!/bin/bash` cloud scripts
+    move to env bash), the floor guard, SC2064, and the README's bash 5.2 and WSL 24.04 note.
+  - Slice 4 is the shellcheck gate with its installer, CI, docs and the lock-keyed skill
+    exclusion.
+  - The Director's rulings (18:3xZ): the floor stays off the four `apps/**` scripts behind a
+    path-keyed exemption named in the gate's docs, whose lifting is the owner's call; the
+    vendored clerk-backend-api scripts are excluded, keyed on skills-lock.json; the bash 5.2
+    host requirement goes in the README.
+  - The plan and its review conditions are in the scratchpad's `j3-plan.md`. The lineage claim
+    is b6f97ce6, with its own heartbeat.
+- Rows delivered: J11 (declined), J15, J19, J23 and #272 (J22) ride Myrtle's JC.net PR 255
+  (commit 273de601). Mark them landed when 255 merges.
+- Owed: the batch-six triage's Not-determined bullet on notes 1 and 4 becomes a pointer at its
+  preamble (the owner confirmed that reading on the J17 card, 17:5xZ). It rides the JC.net
+  register PR that records J3's landings. Also owed: a flow-back to JC.net that removes its
+  `repairableTree` flag-pin test.
+- The context reading at 18:45Z was 52.2% (session-metadata). Directive edits wait for a
+  compaction.
