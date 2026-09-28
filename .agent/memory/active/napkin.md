@@ -3835,3 +3835,14 @@ at the successor. The old branch deleted locally after the remote read-back. The
 2 of 3 (lineage 250 at its door after its pure sync; JC.net 240, the LinkedIn workspace draft). One toolkit row from Copilot on PR 239, routed by Nova at 12:38Z and acknowledged: validators that read their own tree resolve their root from the working directory and git, never from CLAUDE_PROJECT_DIR alone.
 
 Correction to the paragraph above, written at 13:1xZ: the fold ran four rounds, not two. Round three (three threads on the late-cure head da3d80e8): one Rejected with rationale (the stale-capture probe is dated to its merge and main is not strict), two Fixed in a clause 9(b) late-cure push at 4bda1644 (the live-reading pointers name every Director block after 10:22Z). Round four (one thread on 4bda1644): Rejected with rationale and routed to the handoff drain (the brief's dated 2026-09-24 suite-cadence lines beside the live block's 11:4xZ answer), the door taken on that head, rounds never going up.
+
+- 2026-09-28, Siren herds Rudder (158275), routed from JC.net PR 238's last review leg
+  (thread 4121951009) by the Director's ruling. It is the ledger row for the `branch retire`
+  instrument until that lands. `coordination-fold` step 9's absent-remote path runs
+  `git fetch --prune origin` before any proof. When `origin/$FOLDED` holds a post-merge commit
+  fetched earlier and the remote branch is then deleted, the prune removes that commit's last
+  name, and the local-only proof passes and deletes the local branch. The prune also drops
+  every other stale tracking ref. Reproduced against a local bare origin. The instrument proves
+  any cached tracking tip before deleting that one ref, and prunes nothing else. Until it
+  lands, a fold seat checks `git rev-parse --verify --quiet "origin/$FOLDED"` before step 9's
+  absent path and proves that tip against the base.

@@ -3,9 +3,10 @@
 **Thread identity.** JC.net's exchange seat on the node `practice-two-way-exchange`: outbound
 delivery into the lineage's Box and joint sets with the lineage's seat (goal one), inbound
 landings here (goal two). **Participating agent identities:** Brazier spins Temper (c70341),
-then Siren herds Rudder (158275). **Landing target for the next session:** the seat resumed on
-2026-09-25 and at 10:58Z put queue item 5 (K4) before item 1 (batch six), so the target is K4,
-then batch six, then the queue as written. **Grounding order:** `AGENT.md`, the start-right-team
+then Siren herds Rudder (158275). **Landing target for the next session:** the latest dated block
+governs. The Director confirmed the order on 2026-09-28 at 12:2xZ: `branch retire` first as a
+pair (JC.net builds it in `jcnet-wt-branch-retire`, the lineage ports it), then the J3
+shellcheck slice, the pr-watch slice, then the L1 flow-back. **Grounding order:** `AGENT.md`, the start-right-team
 skill, this record, the node's §Rulings and §Todos at main, the register, then the lineage's
 comms stream from OCE event 269c5e97 onwards.
 
@@ -2536,3 +2537,69 @@ the session scratchpad.
   drafts are conveniences; this block is the durable copy.
 - A third pass would only re-find the unpushed pair, which is named above, so the recursion
   closes here.
+
+**The second doctrine pair landed; `branch retire` confirmed first (block written 13:13Z, 2026-09-28).**
+
+- Resumed at 11:34Z on the owner's word, carried in the compaction order ("post compaction carry
+  on"). Watchers, heartbeat and liveness re-armed. The pair's two claims had run past their
+  four-hour freshness at 11:28Z and were refreshed at 11:37Z. Neither base had moved.
+- 280's settlement push was refused by the lineage's review-cost gate: exhausted, 41.52 of 40,
+  two settlement pushes spent. The owed ordering (SHA:f92122177) had gone up as its own push,
+  where it belonged with round one's cures (SHA:807218c98). PDR-140 clause 4 prescribes the
+  case: record budget-exceeded, ask the generator question, take the one rebudget per PR by
+  recorded decision. Both bodies' intake lines went to 3, with a Rebudget section. The push
+  then passed at warn, 41.52 of 60.
+- Correction to the 08:22Z block's round-two list: 280's round had six threads, not four.
+  Codex's review of SHA:807218c98 at 08:03:51Z raised two more: 4119853030 (the failed read,
+  the same defect as 4119897886) and 4119853036 (two owed branches deadlocked over one slot).
+  Both were cured by the pending commits and answered as items 1 and 2 of 6 at 11:47Z; the
+  other four became items 3 to 6. The Director's records pass found the gap in this record.
+  The PR was right.
+- The settlement legs (Copilot and Codex on SHA:4a81861b4, Copilot on SHA:2d383990) found two
+  over-bar edges in fold step 9, both reproduced first-hand:
+  - under errexit, `ls-remote`'s status 2 ended the shell before `PROBE=$?`;
+  - in a clone that predates a default change, `set-head --auto` exits 1 and the block cut the
+    successor from the old default.
+
+  The Director ruled one late-cure push per copy, the last (SHA:d4cdcf751, SHA:c02f0715): the
+  probe captured inside an `if`, and step 9's default lines replaced by `cut-coordination-branch`'s
+  own. The three below-bar items on 238 were Rejected.
+- The late cure's legs: Codex's one item on 280 (the root fixers' "every tracked file") was
+  Rejected. Copilot's two on 238:
+  - the prune finding, over the bar: `git fetch --prune` deletes a tracking ref that is the
+    last name of a post-merge commit, and the local-only proof then deletes the branch.
+    Reproduced. It is the block's seventh edge, routed by the Director's ruling to the
+    `branch retire` instrument; its row is on the napkin.
+  - markdownlint on a non-Markdown file, Rejected: a by-name run exits 0, and the gate lints
+    Markdown only.
+- JC.net PR 238 merged at 12:13Z as SHA:25e30f77; lineage PR 280 at 12:19Z as SHA:ab8976719.
+  Cleanup for both: remote branches deleted by API and read back absent, worktrees removed,
+  local refs deleted after the ancestry proof, claims 07d423a8 and 5ffbf1ab closed. The count at this
+  write is 3 of 3: lineage 250 and 281 (Nova's PDR-079 twin), and JC.net 240 (Nova's LinkedIn
+  draft).
+- Item 4 of the Director's resume order, recomputed: main's register already had #269, #270,
+  #271 and 232. JC.net 230 is J7's origin-side change, not a landing. Lineage #272 is the one
+  candidate, a J22 PARTIAL, and rides the first exchange PR of this seat's next lanes. The
+  Director took the correction and recorded its own read of the coordination branch's copy.
+- The Director confirmed the order (12:2xZ): `branch retire` first as a pair (JC.net builds,
+  the lineage ports), then the J3 shellcheck slice, the pr-watch slice, then the L1 flow-back.
+  - Worktree `jcnet-wt-branch-retire` on `feat/branch-retire` from SHA:25e30f77, claim 30dab0b7.
+    It opens at the next free slot.
+  - The pre-execution code and security reviews reshaped the design. Among the changes: GraphQL
+    `updateRefs` with `beforeOid`, so the name never sits in a URL path and the remote delete is
+    a compare-and-swap; exact-name reads with a case-collision refusal; objects-only fetches, so
+    no read writes a ref the command may delete; `origin` bound to the bot identity; and a new
+    contents-only `branch-retire` scope.
+  - A live probe on JC.net at 12:41Z (a throwaway branch made and deleted by the bot) showed
+    a contents-only token can delete with `updateRefs`. A stale `beforeOid` keeps the ref and
+    returns a generic error. The result is recorded on the scope row.
+  - Built as of 13:1xZ: unit and integration tests, and two smokes against real git (three
+    retire paths, six refusals with every ref unchanged); one mutant was killed. Tests, lint,
+    type check, knip and depcruise all pass. Post-implementation code and security reviews are
+    running. Nothing is committed yet.
+- Process notes:
+  - Push every round's cures as one push: a cure pushed on its own spends a settlement push.
+  - Before any settlement, list every unresolved thread with GraphQL; do not trust the drafted
+    set. Two Codex threads had no drafted line.
+  - The Director's session name now has a double dash: "Wick binds Temper (ed7b48) --
+    Director".
