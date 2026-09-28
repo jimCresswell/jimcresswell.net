@@ -5,6 +5,7 @@ trigger: surface:design — Design token / theming / CSS custom property / globa
 globs:
   - "**/*.css"
   - jcdotnet/components/**/*.tsx
+  - jcdotnet/lib/**/*.tsx
 ---
 
 # Invoke Design System Reviewer
