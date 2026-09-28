@@ -142,6 +142,17 @@ assert.deepEqual(trackingMoved.outcome.names?.tracking, {
   sha: trackingMoved.shas[1],
 });
 
+// A worktree checks the branch out after its proof: the in-use check is read again before the
+// local deletes, so both local names are kept (the remote was proven and is gone).
+const taken = await expectFailure(
+  (rig) => ({
+    onMint: () => git(rig, rig.work, 'worktree', 'add', '-q', join(rig.root, 'late'), BRANCH),
+  }),
+  'partial',
+  ['gone', 'kept', 'kept'],
+);
+assert.match(taken.outcome.reason ?? '', /late/u);
+
 // The local branch is locked when its delete runs: failed at its proven sha, never "moved".
 const locked = await expectFailure(
   (rig) => ({
@@ -172,4 +183,4 @@ await withRig(async (rig) => {
   assert.match(run.err, /partly retired/u);
 });
 
-process.stdout.write('merge-bot retire failsafe smoke: OK (ten failures, no name lost early)\n');
+process.stdout.write('merge-bot retire failsafe smoke: OK (eleven failures, no name lost early)\n');

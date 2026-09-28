@@ -1,7 +1,9 @@
 import { removeBranchConfig, deletePlannedRef } from './retire-git-delete.js';
 import type { CasOutcome, PlannedDelete, RetirePlan } from './retire-decision.js';
+import { worktreesUsing } from './retire-worktrees.js';
 import {
   ABSENT,
+  partialOutcome,
   retireRemote,
   type Context,
   type ExecuteSeams,
@@ -54,6 +56,31 @@ function localStepFor(outcome: CasOutcome, target: PlannedDelete, label: string)
     : { report: { state: 'failed' }, problem: `${label} was not deleted: ${outcome.detail}` };
 }
 
+/**
+ * Why the local names must be kept, or undefined when they are free to go.
+ * A worktree may have checked the branch out, or begun a rebase or bisect
+ * naming it, since the proof; `update-ref -d` would delete it under that
+ * worktree, so the in-use check is read again just before the local deletes,
+ * as `git branch -d` checks just before its own. A worktree taking the branch
+ * between this read and the delete is a race git itself has.
+ */
+async function localBranchTaken(
+  plan: RetirePlan,
+  context: Context,
+  seams: ExecuteSeams,
+): Promise<string | undefined> {
+  if (plan.local === undefined) {
+    return undefined;
+  }
+  const inUse = await worktreesUsing(seams.retire, context.branch, seams.readFile);
+  if (!inUse.ok) {
+    return `the in-use check before the local deletes failed: ${inUse.error.message}; the local names were kept; re-run`;
+  }
+  return inUse.value.length === 0
+    ? undefined
+    : `worktree ${inUse.value.join(', ')} began using the branch after its proof; the local names were kept; re-run once it is free`;
+}
+
 /** Carry out a plan. */
 export async function executePlan(
   plan: RetirePlan,
@@ -64,6 +91,10 @@ export async function executePlan(
   const remote = await retireRemote(plan.remote, context, seams);
   if (remote.kind === 'stop') {
     return remote.outcome;
+  }
+  const taken = await localBranchTaken(plan, context, seams);
+  if (taken !== undefined) {
+    return partialOutcome(context, remote.report, taken);
   }
   const tracking = await retireLocal(plan.tracking, seams, 'the tracking ref');
   const local = await retireLocal(plan.local, seams, 'the local branch');

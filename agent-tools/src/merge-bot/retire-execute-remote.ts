@@ -13,6 +13,7 @@ import type { RetireGit } from './retire-git-read.js';
 import { readRemoteRefByApi, requestRefDelete, type IdentityRepo } from './retire-github-api.js';
 import type { DefaultBranchReading } from './retire-parse.js';
 import type { NameReport, RetireOutcome } from './retire-report.js';
+import type { ReadOptionalFile } from './retire-worktrees.js';
 
 /**
  * The retire command's remote write: the branch deleted by compare-and-swap
@@ -32,6 +33,8 @@ export interface ExecuteSeams {
   readonly mintToken: () => Promise<Result<string, Error>>;
   readonly fetchImpl: GithubApiFetch;
   readonly repo: IdentityRepo;
+  /** Reads a worktree's rebase and bisect state files, for the in-use check before the local deletes. */
+  readonly readFile: ReadOptionalFile;
 }
 
 /** The branch and the default it was proven on, as the caller names them. */
@@ -126,24 +129,29 @@ export async function retireRemote(
   return remoteStepFor(outcome, { target, context, detail, accepted: requested.ok });
 }
 
-/** A stop after a delete that may have happened: every name reported, the local ones not reached. */
-function stopPartial(context: Context, remote: NameReport, reason: string): RemoteStep {
+/** A partial retire after the remote step: every name reported, the planned local ones not reached. */
+export function partialOutcome(
+  context: Context,
+  remote: NameReport,
+  reason: string,
+): RetireOutcome {
   const untouched = (planned: PlannedDelete | undefined): NameReport =>
     planned === undefined ? ABSENT : { state: 'not-reached' };
   return {
-    kind: 'stop',
-    outcome: {
-      kind: 'partial',
-      branch: context.branch,
-      base: context.base,
-      names: {
-        remote,
-        tracking: untouched(context.plan.tracking),
-        local: untouched(context.plan.local),
-      },
-      reason,
+    kind: 'partial',
+    branch: context.branch,
+    base: context.base,
+    names: {
+      remote,
+      tracking: untouched(context.plan.tracking),
+      local: untouched(context.plan.local),
     },
+    reason,
   };
+}
+
+function stopPartial(context: Context, remote: NameReport, reason: string): RemoteStep {
+  return { kind: 'stop', outcome: partialOutcome(context, remote, reason) };
 }
 
 interface Readback {

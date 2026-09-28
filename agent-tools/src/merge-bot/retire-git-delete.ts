@@ -9,9 +9,9 @@ import { describeGitChildEnd } from './push-git.js';
  * The retire command's local writes. Each delete is a compare-and-swap
  * (`update-ref --no-deref -d <ref> <expected>`) of a ref the decision
  * planned, so a ref that moved after its proof is kept, never deleted, and a
- * symbolic ref is never followed to the ref it points at (the decision
- * refuses symbolic refs too; `--no-deref` holds even if one appears between
- * the listing and the delete). git exits 1 when the ref is already gone,
+ * symbolic ref is never followed to the ref it points at: `--no-deref`
+ * deletes the symbolic ref itself, even one that appears between the listing
+ * and the delete (the decision refuses symbolic refs it lists). git exits 1 when the ref is already gone,
  * when it has moved and when it cannot be locked, so a failed delete is
  * classified by re-reading the exact ref, never by git's text.
  */

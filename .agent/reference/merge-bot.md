@@ -353,7 +353,10 @@ pnpm agent-tools merge-bot retire --branch <name>
   - a default branch;
   - a tip that is not on the default;
   - a branch in use in any worktree (checked out, or named by a rebase or
-    bisect);
+    bisect), read at the proof and read again just before the local
+    deletes; a worktree that takes the branch between that last read and
+    the delete is a race git itself has, since `git branch -d` also checks
+    before it deletes;
   - a local or tracking ref that is symbolic;
   - a name another ref matches when case is ignored;
   - an `origin` that is not the bot identity's repository;

@@ -180,6 +180,7 @@ async function retire(
       mintToken: () => mintToken(identity, input),
       fetchImpl: input.fetchImpl ?? realFetch(),
       repo: identity,
+      readFile: input.readOptionalFileImpl ?? readOptionalFile,
     },
   );
 }

@@ -83,7 +83,7 @@ function standingRefusal(readings: RetireReadings): string | undefined {
     return `"${readings.branch}" is the repository's default branch; it is never retired`;
   }
   if (readings.symbolic.length > 0) {
-    return `${readings.symbolic.join(', ')} is a symbolic ref; a delete through it lands on the ref it points at, so retire it by hand`;
+    return `${readings.symbolic.join(', ')} is a symbolic ref, which this command does not retire; retire it by hand`;
   }
   if (readings.caseCollisions.length > 0) {
     return `"${readings.branch}" matches ${readings.caseCollisions.join(', ')} when case is ignored; on a case-insensitive filesystem a delete could land on either, so retire it by hand`;
