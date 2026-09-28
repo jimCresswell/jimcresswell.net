@@ -13,7 +13,7 @@ delivery grouping. Neither duplicates the other.
 
 | Area                  | What it covers                                                                                                         |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `editorial-content`   | The CV and page copy under the editorial directives, the entity facts they draw on, and the private LinkedIn boundary |
+| `editorial-content`   | The CV and page copy under the editorial directives, the entity facts they draw on, and the LinkedIn workspace under privacy.md's dated authorisation |
 | `knowledge-graph`     | The personal knowledge graph: entities, relationships, JSON-LD and negotiated representations, and their proof         |
 | `site`                | The Next.js site: routes, layouts, components, metadata, PDF generation, and the deployment contract                    |
 | `visual-system`       | Theme tokens, typography, the statusline mark, the visual regression harness and its baselines                         |

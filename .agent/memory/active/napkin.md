@@ -4003,3 +4003,59 @@ NEXT: the card; 281 and 282's doors in leg order; 240's forward commits, re-read
 (Nova); 284's integration (Nova, after); Siren's branch retire PR at the next JC.net slot;
 Myrtle's 69bae0328 read for the fold's round-two ledger routing; the pre-fold suite before the
 rollover folds; check-in 65 in about 45 minutes, on change.
+
+## 2026-09-28T16:2xZ — Director check-in 65, on change: the charter ratified; eleven landings; the count 0 of 3; two check-ins missed on the card; the LinkedIn routing lines cured
+
+THE FOUR NUMBERS (the snapshot at 16:24:49Z): open non-coordination PRs 0 of 3 on both estates;
+landings since check-in 64 (14:20Z), eleven: lineage 281 (2987637, 14:33:42Z, Nova's PDR-079
+twin), 282 (174f8a8, 14:50:21Z, Myrtle's recipes follow-up), 284 (9951a8d, 15:24:54Z, the
+upstream carrier), 285 (b61b145, 15:47:57Z) and 286 (631d307, 16:20:11Z, todo 8's gate twins by
+Nova); JC.net 240 (03cac8b, 14:48:24Z, the LinkedIn workspace, three settlement rounds), 243
+(f84326d, 15:05:25Z), 244 (2833388, 15:24:26Z), 242 (e9b06f1, 15:55:52Z, Siren's merge-bot
+retire), 245 (63f4891, 15:57:19Z) and 246 (22e97b5, 16:21:37Z, the last ADR citations and the
+Core gate); heads with CI in flight: none; the slot: free on both estates. Coordination drafts:
+JC.net 241 (CLEAN, 14:25Z), lineage 283 (six files, 15:33Z). Remote branches outside a PR: none
+in either estate (read 16:28Z). Local worktrees: the lineage's oce-wt-core-adr-tooling and
+oce-wt-metacognition-graduation (Myrtle's held edit, routed to commit and push as a draft);
+JC.net's proxy jcnet-wt-fold-push, Siren's jcnet-wt-retire-git-port and Nova's
+jcnet-wt-secops-linkedin.
+
+THE OWNER'S WORD (the question tool, answered by 16:2xZ, the selected option verbatim): "Ratify
+as drafted (Recommended)": the goal-one close charter (the block before check-in 64) is
+ratified; its five conditions are the owner's word; Myrtle's residue census is the first act,
+then todo 6 onto the exchange node as seat work under review with the word verbatim in §Rulings
+of 2026-09-28 (relayed 16:2xZ, absorbed by Myrtle; both streams carry the word).
+
+THE GAP, recorded against this seat: the card blocked the seat from 14:25Z to 16:24Z; check-ins
+65 (about 15:10Z) and 66 (about 15:55Z) were not written in that window; the seats ran on the one
+rule and the routing; the pulse ran throughout; the monitor's arm 35 ended at its hourly cap and
+was re-armed at 16:25Z as arm 36; the drafts CI watch re-armed. The next card is batched and
+comes after this write, with the same cost named.
+
+RULINGS THIS WINDOW, one line each: Siren's retire git-port PR first, before J3 (the owner's tests
+rule applied by the assumptions review; a pure refactor, one moderate PR), opened now at 0 of 3;
+Nova's three PR 240 follow-ups: the repo-continuity and impact-areas LinkedIn lines are this
+seat's records lane (cured in this commit: the paused-private-headline-only bullet replaced by the
+workspace's current state; the impact area names the workspace under the dated authorisation),
+the secops.md checklist exception a one-file directive PR by Nova (PDR-052 read first; line 130
+in the same shape stays), the lineage-names integration test's live read of policy.json a code PR
+by Nova (behaviour on injected blocks, the gate the live proof); Nova's removals: the pruned
+tracking ref (done 16:27Z, read back absent), the rebuild clone removed by Nova (read back
+absent), the unmerged 628e21c1 branch to the owner by card; Myrtle's held metacognition edit
+committed and pushed as a draft, never held uncommitted; Myrtle's correction of her 15:0xZ lane
+line (goal one's code rows are the exchange, not the parked Codex work) noted; lineage 287 (the
+last todo 8 twin) in review, so the count reads 1 of 3 from 16:3xZ.
+
+THE JC.NET FOLD RECIPE, computed (a scratch repository, 16:27Z): git refuses both a merge and a
+branch switch on a dirty tracked file even when its content already equals the incoming version.
+So while the primary carries the Codex agent's second batch (privacy.md +2/-6 against main, all
+ten linkedin/ files, two files main lacks), the rollover fold merges main in the proxy worktree
+and pushes; the primary then takes the merged sha by a mixed reset, and the paths the merge
+changed that no agent edited are refreshed from the index one by one; the successor cut then
+switches clean. If the owner's word lands the second batch first, the same steps apply once (the
+index is stale either way).
+
+NEXT: the card (the 628e21c1 branch; the second LinkedIn batch's state); Myrtle's census and todo
+6; Siren's git-port PR at its door; Nova's secops and integration-test PRs; the pre-fold suite
+about 23:2xZ; the rollover folds at 00:00Z by the recipe above; check-in 66 in about 45 minutes,
+on change.

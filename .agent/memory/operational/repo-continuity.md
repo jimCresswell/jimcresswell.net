@@ -386,6 +386,10 @@ names a live branch):
 
 ## Active Threads
 
+- LinkedIn workspace (`linkedin/`): reopened on 2026-09-28 under privacy.md's dated workspace
+  authorisation; the first draft landed as PR 240 (03cac8b3f, 14:48:24Z), no editorial pass yet;
+  a second batch from the owner's Codex agent sits uncommitted in the primary checkout until the
+  owner's word and a Practice seat's follow-up pull request.
 - JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
   (158275), live on 2026-09-28. The second doctrine pair landed (JC.net PR 238 at 12:13Z, lineage
   PR 280 at 12:19Z). Next, in the Director's confirmed order (12:2xZ): `branch retire` as a pair,
@@ -396,8 +400,6 @@ names a live branch):
 
 ## Paused Threads
 
-- LinkedIn editorial pass (owner-led, private boundary; headline is the only
-  settled field).
 - Track B Source-of-Truth Design, Phase B2.1.
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
