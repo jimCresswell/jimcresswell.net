@@ -67,13 +67,15 @@ that takes it, and the horizon from the observed pace, all in the same breath) o
 (the reason; the owner's word where the row is ratified). A decline after the window, or a
 settlement by the triage's or a ruling's read with no pull request, is a dated §Landings row
 saying so; a decline's cell begins `declined`. The unit is the residue pull request as the
-census names it (24 for goal one, the census of 2026-09-28; the inbound direction's count waits
-on its own census, todo 4 after the review, ruling 44), and each direction reads as landed of
-total beside both estates' `main` heads the register was read at, so the count moves daily. A
-count that does not fall between two coordination folds is routed to the Director (the node's
-ruling 21) as a failure, never re-labelled; a row queued across two folds with no movement is
-routed the same way. `PARTIAL` on a landing names a remainder, a residue pull request the census
-names; the row takes its remainder's state.
+census names it, recounted when a row's design read changes its slicing (26 for goal one: the
+census of 2026-09-28 read 24, and J3's design read the same day split its one slice into three
+on the Director's word of 18:3xZ; the inbound direction's count waits on its own census, todo 4
+after the review, ruling 44), and each direction reads as landed of total beside both estates'
+`main` heads the register was read at, so the count moves daily. A count that does not fall
+between two coordination folds is routed to the Director (the node's ruling 21) as a failure,
+never re-labelled; a row queued across two folds with no movement is routed the same way.
+`PARTIAL` on a landing names a remainder, a residue pull request the census names; the row takes
+its remainder's state.
 
 ## Rows from the lineage's delta (since `e477e62f7e`)
 

@@ -444,10 +444,11 @@ entries composed whole and appended in one write.
    PRs (24 with this todo, the lessons, the comparison and the re-pin), three cards for the
    owner, answered on 2026-09-28 as rulings 41 to 43. The count runs under ruling 43's flow
    contract: every row landed, in flight, queued or declined, no fifth state; the count in
-   residue pull requests, landed of total (N of 24), beside both heads (the 24 are the census's
-   20 residue pull requests and its four charter acts; the 4 rows landed before the census sit
-   outside it; the Director's check-ins carry N); a count that does not fall between two folds
-   routed as a failure, never re-labelled. Seats (ruling 43): the lineage's exchange seat on
+   residue pull requests, landed of total (N of 26: the census's 20 residue pull requests, two
+   more from J3's design read of 2026-09-28 18:3xZ, which split its one slice into three on the
+   Director's word, and the four charter acts; the 4 rows landed before the census sit outside
+   it; the Director's check-ins carry N); a count that does not fall between two folds routed
+   as a failure, never re-labelled. Seats (ruling 43): the lineage's exchange seat on
    J1's N1, J2 and the partials J10, J17 (notes 4 and 8), J18 and J21; Nova turns Penumbra on
    J6 and J8; Siren herds Rudder on J3's shellcheck slice and the register's settling rows
    (J15, J19 and J23 citing the triage; J11's decline); the census's order otherwise stands
