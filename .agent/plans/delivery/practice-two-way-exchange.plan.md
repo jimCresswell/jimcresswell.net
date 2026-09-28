@@ -367,7 +367,7 @@ entries composed whole and appended in one write.
    ADR citation in a PDR, offered in the outbound note. Copilot's observation on pull request
    145 (review 5268801620), verified and widened, routed here below the bar. Done in this
    estate on 2026-09-28. The text cure landed in three slices by concept family, merge
-   commits `28333882` (PR 244), `63f48914` (PR 245) and `22e97b52` (PR 246). The Core holds
+   commits SHA:28333882 (PR 244), SHA:63f48914 (PR 245) and SHA:22e97b52 (PR 246). The Core holds
    no ADR identifier, the census is deleted, and `validate-core-adr-citations` is strict-only.
    The lineage takes the same bytes in its own pull requests.
 
