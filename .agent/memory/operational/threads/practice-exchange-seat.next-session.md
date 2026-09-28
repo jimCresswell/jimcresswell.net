@@ -1549,3 +1549,598 @@ notice.
   Point outside scrutiny at this seat's procedure prose and its budget claims.
 - Fixed point: a third pass would only re-find the classifier item and the Director's in-flight
   commit. The recursion closes here.
+
+## Boundary delta, 2026-09-27 15:4xZ (the seventh compaction word, a post-compaction step)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes, post compaction write the
+retrospective brief and pass it to the Director to carry out /jc-retrospective".
+
+**Since the 12:0xZ wrap:** JC.net PR 225 merged at 12:39:05Z. It folded this seat's 12:0xZ wrap
+block and 12:1xZ napkin block (commit 194ecf86), now in main at SHA:3699c155. Lineage PR 261
+merged at 14:30:03Z. The Director's retrospective of the drain is open as lineage PR 265
+(docs/retrospective-the-twenty-four-open-prs), a sibling of this one, not the same arc. PR 226 is
+still held at SHA:8af432a5, level with its remote and 12 commits behind main. The letter
+`2026-09-27-siren-herds-rudder-the-fuzzer-and-the-pointer.md` is untracked on the primary.
+
+**Order after the compaction:**
+
+0. The owner's post-compaction step, before anything else: write the retrospective brief from
+   primary sources and pass it to the Director natively, with a durable copy in this record.
+   Then hold for "carry on".
+1. On "carry on": the 12:0xZ block's order, steps 1 to 5 (226's settlement first; it is now 12
+   behind main, so its settlement push takes a merge of main).
+2. Commit the untracked letter with the next records commit.
+
+**The brief's frame (from this boundary's metacognition, to keep the retrospective from confirming
+this seat's own conclusion).** The question: why did the review rounds on the transplant
+runbook's rollback and the WIP clause grow instead of shrinking, and what did that cost? State
+this seat's hypothesis (procedure written as prose, untested) as one rival among five, each with a
+falsifier:
+
+- prose with no test, so reviewers sample one edge per round;
+- disproportion: edge cases in a rollback never yet run, where a ledger row was the proportionate
+  answer;
+- the byte-equal twin requirement doubled every carried cure;
+- the two-round budget binds per PR, not per concept, so carried findings reopened it;
+- the ruling to fix now rather than ledger, and this seat's skipped pre-open review.
+
+The arc's boundary: lineage PR 258's landing (2026-09-26 16:38:41Z) to PR 263's (11:34:36Z) is
+closed; JC.net PR 226 and the lineage follow-up are its open tail. The retrospective skill is for
+completed arcs, so the brief offers the Director both: run now on the closed part, or after the
+tail lands.
+
+**The brief's primary sources (an index, so the post-compaction seat needs no dead context):**
+
+- PRs: lineage 258 (the runbook born sketch), JC.net 224 (its twin), lineage 260 (the WIP
+  clause), lineage 263 (convergence and the rollback cure), JC.net 226 (the mirror, open, held);
+  lineage 265 is the Director's sibling retrospective.
+- Review threads, by PR and round. 260: 4112921701, 4112921720, 4112922894 (one); 4112942475,
+  4112946255 (two); 4114808296, 4114808298 (the review of GitHub's update-branch head);
+  4114998240, 4114998489, 4114998517 (the final tip). 263: 4115068769, 4115068791, 4115068803,
+  4115071282 (one); 4115106244, 4115106267, 4115112721, 4115112723 (two); 4115135812, 4115143194
+  (the settlement head). 224: 4114931836. 226: 4115214013, 4115214051 (one); 4115238912,
+  4115238942 (two, open).
+- The Director's rulings on the JC.net and lineage streams and natively: c664195c (the routing at
+  the resume); ruling 1 on 260 (the worktree-hygiene exception) and its reversal on this seat's
+  warrant; the "fix now" ruling on the rollback with the return to sketch; the settlement-push
+  reading on 263; suite 30's order; the card's corrected default (both stay sketch until the owner
+  answers).
+- Records: the napkin blocks of 09:1xZ (the overnight stall), 10:1xZ and 12:1xZ (the cascade's
+  exploration, proposals P1 to P3); this record's 09:3xZ and 12:0xZ blocks; the letters
+  `2026-09-27-siren-herds-rudder-the-night-watch.md` and `...-the-fuzzer-and-the-pointer.md`.
+- Cost: the team-wide usage-limit boundary at about 11:50Z (the Director's and Swallow's events of
+  11:50Z to 11:51Z); agent time by the `arc-metrics` run the runbook's measurements cite.
+
+**Metaloss, for this delta.** Promises: the brief to the Director (owed, step 0); everything in
+the 12:0xZ block's promises sweep stands, with one discharged (the records fold, 194ecf86).
+Attribution: that the owner's "retrospective" means this seat's offered arc, not PR 265's, is
+inference from this seat's offer at 12:1xZ ("a retrospective on the rollback cascade is
+available"); the brief names that reading, and the Director can merge the two. Index of homes:
+this block and the 12:0xZ block. Fixed point: a third pass would only re-find the retrospective's
+scope reading. The recursion closes here.
+
+## The retrospective brief, 2026-09-27 15:5xZ (sent to the Director on the owner's word)
+
+The owner's word, verbatim: "post compaction write the retrospective brief and pass it to the
+Director to carry out /jc-retrospective". This block is the durable copy of the brief sent natively
+to the Director (Wick binds Temper, ed7b48).
+
+**Scope reading (an inference, named).** "The retrospective" is read as the arc this seat offered
+at 12:1xZ ("a retrospective on the rollback cascade is available"), not the arc of lineage PR 265
+(the twenty-four open PRs). The two share PRs 260, 263 and 226: 265's §9 reads them as the WIP
+serialiser working, and this arc reads their review rounds. The Director may run this as its own
+record or fold it into 265's; 265 is past its review budget, so an addendum there reopens a round.
+
+**The question.** Why did the review rounds on the transplant runbook's rollback and on the WIP
+clause grow instead of shrinking, and what did that cost?
+
+**The arc, from the forge (read at 15:5xZ).** Threads are review comments with no
+`in_reply_to_id` (`gh api repos/<repo>/pulls/<n>/comments --paginate`); recompute before writing.
+
+| PR | estate | opened (UTC) | merged (UTC) | commits | threads |
+| --- | --- | --- | --- | --- | --- |
+| 258 | lineage | 2026-09-26T15:29:51Z | 2026-09-26T16:38:41Z, SHA:95518f880 | 4 | 15 |
+| 260 | lineage | 2026-09-26T21:49:18Z | 2026-09-27T10:43:58Z, SHA:71988aaa6 | 7 | 10 |
+| 224 | JC.net | 2026-09-27T09:53:57Z | 2026-09-27T10:17:01Z, SHA:eeaeef8c5 | 4 | 1 |
+| 263 | lineage | 2026-09-27T10:56:15Z | 2026-09-27T11:34:36Z, SHA:54b969b20 | 3 | 10 |
+| 226 | JC.net | 2026-09-27T11:41:01Z | open, held at SHA:8af432a5 | 2 | 4, two unanswered |
+
+**Boundary and timing.** The closed part runs from 258's opening to 263's landing; 226 and the
+lineage follow-up that matches 226's final bytes are the open tail. The skill is for completed
+arcs, so the Director chooses: run now on the closed part with the tail as an addendum, or run when
+the tail lands.
+
+**Five rival hypotheses, each with a falsifier.** The first is this seat's own reading and is one
+rival, not the finding. This seat authored 260, 224, 263 and 226, so its account is a source to
+check, not evidence.
+
+1. Prose with no test: a procedure written as prose has no test, so each round samples one edge
+   case and each cure adds text for the next round. Falsifier: the findings do not concentrate in
+   the procedural paragraphs (the rollback, the reservation steps), or the new defects per round
+   on those paragraphs fell round by round.
+2. Disproportion: the rollback has never run, so a ledger row ("harden at first use") was the
+   proportionate answer and each cure spent a round on a path with no user. Falsifier: a finding
+   names a failure that a first real run would hit and not recover from, at a cost above the
+   rounds spent.
+3. The byte-equal twin: the same-bytes requirement doubled every carried cure, each twin with a
+   fresh budget. Falsifier: the twins' rounds cost little against the originals' (thread counts,
+   open-to-merge), or the twins found real defects the originals missed, making the second copy a
+   second review rather than a duplicate cost.
+4. The per-PR budget: two rounds bind per PR, not per concept, so a concept carried through 258,
+   224, 263, 226 and the follow-up had no bound. Falsifier: each later PR's findings were defects
+   in that PR's own new text, not the concept's old gaps re-found, so a per-concept budget would
+   not have bounded them.
+5. The process choices: the Director's "fix now" ruling on the rollback (with the return to
+   sketch) where a ledger row was possible, and this seat's skipped pre-open review of rule text
+   (the lesson of 2026-09-26, recorded and not applied). Falsifier: a pre-open expert pass run now
+   on 263's opening text (SHA:737f26d04, SHA:a8d820a11) finds none of the defects the bots found
+   in later rounds; and the growth predates the ruling.
+
+**Counterfactual candidates.** 224, the arc's shortest segment (one thread, 23 minutes open to
+merge), carried text already reviewed; whether it counts as the cured process is for the
+retrospective to judge. The pre-open pass in rival 5's falsifier is a test that can be run now.
+
+**Cost, to recompute.** Rounds, threads and pushes per PR; open-to-merge per PR; the Director's
+rulings on the arc; agent time by `arc-metrics`; the owner's re-ratification, waiting while both
+runbook copies are sketch. The team-wide usage limit at about 11:50Z fell inside the arc (226's
+round two landed at 11:55Z); whether the arc's rounds contributed is a question, not a fact.
+
+**Primary sources.**
+
+- Threads by PR and the head the forge attaches them to. 258: SHA:df30d9e0c 4111832931,
+  4111839000, 4111839018, 4111839044, 4111839053, 4111839059, 4111839069; SHA:8926e3620
+  4111868128, 4111871714, 4111871729; SHA:00fc1504f 4111868132, 4111906688, 4111906693,
+  4111976887, 4111986742. 260: SHA:d5ac4c3a4 4112921701, 4112921720, 4112922894; SHA:96d424d12
+  4112942475, 4112946255, then 4114808296, 4114808298 eleven hours later on the same head;
+  SHA:33d225657 4114998240, 4114998489, 4114998517. 224: SHA:9503108dd 4114931836. 263:
+  SHA:737f26d04 and SHA:a8d820a11 4115068769, 4115068791, 4115068803, 4115071282, then
+  4115106244, 4115106267, 4115112721, 4115112723; SHA:eed1f6e44 4115135812, 4115143194. 226:
+  SHA:d0d1b9ac2 4115214013, 4115214051; SHA:8af432a5a 4115238912, 4115238942 (unanswered).
+- The Director's rulings, on the two streams and natively: c664195c (the routing at the resume);
+  ruling 1 on 260 (the worktree-hygiene exception) and its reversal on this seat's warrant; "fix
+  now" on the rollback with the return to sketch; the settlement-push reading on 263; suite 30's
+  order; the card's corrected default (both copies stay sketch until the owner answers). The
+  Director's check-in blocks carry the instants.
+- Records: the JC.net napkin at SHA:194ecf86, blocks "2026-09-27T09:1xZ", "10:1xZ" and "12:1xZ"
+  (the last holds proposals P1 to P3: the rollback as a pointer to the never-use-git-to-remove-work
+  invariant, a tested forward-write restore tool, a WIP count-and-reserve tool); this record's
+  09:3xZ, 12:0xZ and 15:4xZ blocks; the letters `2026-09-27-siren-herds-rudder-the-night-watch.md`
+  and `2026-09-27-siren-herds-rudder-the-fuzzer-and-the-pointer.md` (the second untracked until
+  the next records commit).
+
+**Landing.** The count reads three of three (JC.net 226, lineage 250 and 265). The next two slots
+are Nova's doctrine twins (the Director's routing at 15:46Z), so a separate record waits behind
+them; the Director places it.
+
+## Resumed after compaction 7, 2026-09-27 15:5xZ onwards (Siren herds Rudder, 158275)
+
+The owner's word after the compaction: `/jc-start-right-team carry on`. The brief went to the
+Director at 15:5xZ, and the Director took it the same minute. It runs as its own record, on the
+closed part of the arc now (258's opening to 263's landing), with 226 and the lineage follow-up as
+an addendum when the tail lands. It opens on the lineage at a freed slot after Nova's OCE doctrine
+PR.
+
+**The Director's answers (native, 15:5xZ):**
+
+- Card line (c) is withdrawn; 226 is this seat's again.
+- P2 and P3 are two rows in the JC.net napkin's tool findings, for the toolkit lane (written at
+  15:5xZ, PDR-140 clause 9(c)).
+- The slot order from 15:5xZ: Nova's OCE doctrine PR at 265's landing; this seat's lineage
+  follow-up at the next slot freed after 226 lands (goal one, ahead of records work); Nova's JC.net
+  doctrine twin; then the Director's retrospective record.
+
+**Records commit SHA:897d76ad** (local on coordination/2026-09-27-3699c1, riding the Director's
+next records push): the brief, the 15:4xZ delta, the napkin entries and the letter. It also
+carries the Director's suite 36 tally block. The Director's own commit of that block had been
+refused on header length and left it staged; this seat's script compared staged file names, not
+content, and the napkin was on both lists. The Director left the commit unamended and records the
+collision in check-in 42.
+
+**226's settlement push, SHA:55d81dc9 at 16:1xZ.** It carries a merge of main at 3699c155 (SHA:ab87c215),
+plus the older zero-PR sentence in pr-lifecycle, marked superseded at its own site by the
+work-in-progress limit and naming the coordination PR as the one that still opens. Signed lines
+and resolved threads:
+
+- 4115238942: Fixed.
+- 4115238912: Accepted, deferred to the P2 restore tool.
+
+Copilot was requested by the owner path. The sweep is clean: two files, no deletion.
+
+**The pointer, drafted and withdrawn before the push.** The rollback was rewritten as one pointer
+at never-use-git-to-remove-work's forward-write invariant, with the restore revision in HEAD's
+place. The pre-push review (architecture-expert-wilma) found six issues, four of them in the
+pointer:
+
+- The invariant carries a `git status` proof that a correct rollback always fails.
+- Its not-held case moves added paths to the scratchpad.
+- Its regular-file guard stops a deleted path from being restored.
+- "And nowhere else" contradicts step 7's own recovery.
+
+The invariant is scoped to HEAD and to clearing a dirty worktree, so it is not a home for a
+rollback's mechanics; the only single home would be the P2 tool. The rollback text stays as round
+two left it.
+
+Two further items from the same review:
+
+- "For a drop" is ambiguous in the rollback. This wording predates the push; it is ledgered here
+  for the runbook's next instance or the P2 tool.
+- The supersession mark gained the coordination-PR exception.
+
+This is data for the retrospective: the pre-open review caught four real defects in new text
+before any bot round, and it falsified proposal P1 as written.
+
+**226 landed, 266 opened (16:1xZ to 16:2xZ).**
+
+- **226 merged at 16:18:03Z as SHA:02f0ffbd by the merge-bot door.**
+  - Copilot's review of the settlement head raised two findings, each answered by a signed line:
+    - the PR body's stale byte-equality claim, fixed in the body with no push;
+    - the rollback's standing-grant parenthetical, accepted and ledgered below.
+  - Cleanup: the remote branch deleted as the bot and read back absent; claim 78e0415a closed;
+    the worktree removed without force; the local branch deleted by the safe form.
+- **Lineage PR 266 opened at 16:25Z** (docs/exchange-226-convergence, SHA:b8d1499f0,
+  worktree oce-wt-226-convergence, claim d67512e8), under this seat's 16:19Z reservation.
+  - It carries three sections as bytes from 226's merged head: the lapse sentence, the
+    supersession mark, and the rollback's revision-for-mode and general type clauses. Each
+    section diffs empty against the JC.net copy.
+  - At 16:24:49Z the Director's live order gave 226's freed slot to Nova's OCE doctrine PR first.
+    265 then landed at 16:25:04Z, and the first-hand count read 250 alone, so both fit. Nothing
+    was withdrawn.
+  - 266 is BEHIND engraph; its one sync rides its slot turn.
+- **The ledger for the runbook's re-ratification** (one joint cure in both copies before the
+  owner ratifies again; the Director's card):
+  - "for a drop" is ambiguous in the rollback;
+  - the parenthetical "(its standing grant for proven paths)" reads as authority for the
+    rollback, but the grant covers clearing a dirty path to HEAD.
+
+**266 landed, 228 opened (16:3xZ to 17:0xZ).**
+
+- **Round one on 266 (SHA:ff330377d).** Copilot raised two findings: chmod on a symlink, and the
+  scan counting lapsed reservations. Codex's leg was clean. Both findings were cured.
+  - The cure push also carried the ledgered standing-grant wording from 226.
+  - A pre-push expert pass on that wording found three more edges, all cured before the push:
+    - the rule's surfacing clause does not bind a rollback;
+    - the content write was unscoped;
+    - a count/scan race.
+  - Its fourth point was wrong (it recalled the withdrawn pointer as JC.net's text) and was
+    rejected after reading JC.net main.
+- **Round two, and the landing.** Round two was clean on both legs, the arc's first zero-finding
+  round.
+  - The slot was taken at 16:41:47Z, and the settlement push SHA:d0251962d was a pure sync of
+    engraph at 9b622d827.
+  - Codex's P2 on the settlement head (an opener past thirty minutes on a stale count) was
+    rejected by a signed line quoting the fresh-reservation sentence.
+  - **266 merged at 16:58:46Z as SHA:96bb08963.** The remote branch was deleted and read back
+    absent. Claim d67512e8 was closed. The worktree was removed, and the local branch deleted
+    by the safe form after pointing its upstream at origin/engraph.
+- **JC.net PR 228** (docs/exchange-266-twin, SHA:1d86c5b1, worktree jcnet-wt-266-twin, claim
+  3362debe) opened at 17:02Z under the 16:59Z reservation, on the Director's order.
+  - It carries the WIP bullet and the rollback as bytes from 266's merged head; each diffs empty.
+  - Copilot was requested by the owner path.
+  - The count is two, and three with the Director's 17:02:49Z reservation for the second
+    retrospective's record.
+- **Still ledgered:** "for a drop" in the rollback. It names two kinds of path, each read from a
+  different source. It goes to the runbook's next instance or the P2 tool, before the owner
+  ratifies again.
+
+**228 landed; the pair closed (17:06Z).** PR 228 merged at 17:06:19Z as SHA:33514ec1 after one
+round (Copilot: approval recommended, no findings). The remote branch was deleted and read back
+absent, claim 3362debe closed, the worktree removed and the local branch deleted by the safe form.
+
+Convergence, read first-hand at 17:07Z by a script that fails on an empty extraction: the WIP
+bullet (44 lines), the zero-PR sentence (13) and the rollback (28) are byte-identical on JC.net
+main and lineage engraph. The zsh one-liner tried first did not word-split its command variable
+and compared empty files; the script refuses that case.
+
+The arc's tail has landed (226, 266, 228). The runbook copies now carry the same rollback, so the
+owner's re-ratification card can go; "for a drop" stays ledgered.
+
+**229 landed: the register true at main (17:26Z).** The Director's order at 17:14Z put the
+register PR first, then J3 and J2.
+
+- The queued row corrections (J2, J11, J13, J14, L12) had already landed with PR 210, read by
+  `git log -S` on each corrected phrase. So PR 229 carried only twelve §Landings rows, from PR
+  210's read (engraph 81e126e8e9) to engraph 96bb08963 and main 33514ec1:
+  - J13 settled on the lineage with #256;
+  - J11 gained six PARTIAL rows, three per estate;
+  - J19 (#234), J21 (#238) and J14's JC.net piece (PR 213) gained one row each.
+- Joint-cure PRs that land no row stayed out.
+- By the predicate, outbound reads 4 of 21 and inbound 6 of 28.
+- Copilot's only round: approval recommended, no findings.
+- Merged at 17:26:04Z as SHA:f88e2657. The branch, worktree and claim d3f6a57f are gone.
+
+The Director withdrew card line (a) at 17:14Z, so both runbook copies stay sketch with no card
+pending. Worth one question at the next message: does the re-ratification now wait for the
+runbook's next instance?
+
+Next: J3 into the lineage, test-first, at the next free slot; the two-sided survey is running.
+
+**J3 blocked by the guard; route 2 open as PR 230 (18:09Z).** J3 slice 1 could not write the
+lineage's result-package import into the lineage worktree: JC.net's `lineage-name` content block
+reads every path. The Director ruled route 2 (scope the guard) as seat work.
+
+- PR 230 (fix/content-guard-repository-scope, head SHA:af1aa40f8) adds an optional block flag,
+  `excludes_other_repositories`, set on `lineage-name` only. The write-hook drops the block for a
+  file positively found in another git repository, judged by the common git directory's identity
+  on disk (device and inode). Every JC.net worktree and every spelling of its path stays
+  guarded; every unknown keeps the block.
+- Pre-open passes: config-expert and security-expert, each APPROVE WITH NOTES after cures. The
+  security first pass found a real regression: a string compare of real paths read a
+  case-variant or firmlink spelling as another repository. Cured by identity.
+- Found in review and fixed in the same PR: main's anchored exemptions accepted a `..` climb
+  out of an exempt directory; `placePath` now resolves `..`.
+- Copilot requested at 18:09:43Z; the count is three of three.
+
+Next: settle 230 through the door. Then the primary's `agent-tools/dist` needs a rebuild with the
+fix (after main folds into the coordination branch) before J3 slice 1 can write its import.
+The lineage twin of the flag is owed as its own exchange slice.
+
+**230 landed: the guard scoped by repository identity (18:41Z).** PR 230 merged at 18:41:28Z as
+SHA:f5f60ab9 after two Copilot rounds and the settlement head.
+
+- Cures on the way:
+  - CodeQL's race: one-descriptor reads;
+  - moved content: an `apply_patch` move is now scanned in full against an empty destination
+    (the gap was on main too);
+  - git's one-line gitfile format;
+  - the no-follow open shared from `core/no-follow-read.ts` with the skills-adapter reader.
+- Two settlement-head findings (git's `objects/`/`refs/` check; a bounded pointer read) took
+  signed Below-bar lines. They are routed by the exchange node's §Review dispositions rows of
+  2026-09-27 to the guard's lineage twin slice, for both estates.
+- Branch, worktree and claim 79178f8e are gone. The count is one of three (lineage 250).
+
+Next: J3 slice 1 needs the fix in the live hook. That means main folded into the coordination
+branch and the primary's `agent-tools/dist` rebuilt: the Director's call, asked at 18:4xZ. Then
+restore the universe-test draft into `oce-wt-j3-s1` (local commit b9c8ef3b2) and go on test-first.
+The guard's lineage twin slice follows as its own exchange slice.
+
+**J3 slice 1 pushing (19:09Z); 250 passes to this seat after it.** Once the rebuild landed, the
+17:32Z refused write passed the live hook (18:45Z). J3 slice 1 is committed in `oce-wt-j3-s1` as
+SHA:f570edc64 on SHA:b9c8ef3b2. The four root gates read git's index, chunked, and fail closed.
+
+- Pre-open review:
+  - code-expert requested changes, all cured: the glob-significant refusal, exit-status gate
+    tests plus a CLI smoke, `diff-files`, the shared `gitFailed`, `--deduplicate`, and `--help`
+    with the separator and a guarded run;
+  - config-expert approved with notes, and its true notes are cured.
+- Evidence: markdownlint read 2147 files before and 972 + 1175 after. A planted untracked file
+  reds the old gate and not the new one.
+- The reservation was posted at 19:09Z, with the count 2 of 3 (268, 250). The PR opens after
+  the gate.
+- The lineage commit-msg hook refused a body line that began `on:`, the same footer-token trap
+  as 17:0xZ's `back:`. Run commitlint on the message file before the long pre-commit.
+
+The Director's order (19:0xZ): S1, then 250, then the guard's lineage twin slice. 250's
+rebudget path passed to this seat at the 19:05Z default (the owner may overturn it). Work from
+250's remote head 560016310; Nova's worktree `oce-wt-user-value` stays hers. The four steps under
+PDR-140 clause 4:
+
+1. Record budget-exceeded and the generator question in the body's working notes.
+2. Edit the intake line's budget to N plus one, as the bot, with the reason below it.
+3. Push the conflict-resolving sync alone.
+4. Push one settlement carrying the cures and dispositions, then the door.
+
+Steps 1 and 2 are body edits and may run during S1's rounds.
+
+**269 landed (20:00:27Z); 250's settlement and sync pushed (block written 20:05Z).** J3 slice 1
+merged as SHA:d0154fb5a by the two-leg door.
+
+- Round two on SHA:9937b0831:
+  - Codex's P2 was over the bar and cured: a file staged and then deleted from the working tree
+    was dropped and the gate passed. A check now refuses such a file by name; a repair skips it.
+  - Copilot's Windows note was cured: the chunk budget is now 12 KiB on win32, where pnpm launches
+    through the Node binary with a 32,767-unit command line. windows-basic passed on the new test.
+  - Its markdownlint-header note was rejected: every claim in the paragraph holds.
+  - The cures and the sync with engraph went in one settlement push, SHA:8731c4dc9.
+- On the settlement head, signed lines only:
+  - Copilot's "empty stage listing omits paths" was rejected: the stage read only removes symlinks.
+  - Its `#` note was rejected with a probe: markdownlint-cli2 reads a leading `#` as a comment.
+- The Codex leg was an unedited completion comment. The merge-bot reads that as the tip's leg (the
+  owner's ruling of 2026-09-16, `pr-watch/completion-comments.ts`); it refuses only an edited one.
+  The Director's evidence-reader row narrowed to the edited shape (267 and 268): a toolkit row,
+  not built now.
+- Cleanup: the branch is deleted by API, the worktree removed, the local ref deleted at its merged
+  tip, and claim 4eeba865 closed.
+
+250, from my worktree `oce-wt-250-settle` (Nova's `oce-wt-user-value` untouched):
+
+- The settlement push, SHA:b0b2d181a, cures the three skill-evals findings test-first:
+  - the loader refuses an outside skill directory before any read;
+  - the versions are captured at staging;
+  - a same-second run refuses a fresh results directory.
+- Three threads are resolved. The two plan-routing threads are signed Over-bar and left open: their
+  cure edits an evaluated skill and needs a rerun and a human read, which is the owner's item. The
+  body records the push and the reversed order.
+- The sync is SHA:d2df9a558. Its one conflict, `agent-tools/README.md`, kept both new sections.
+  It was pushing at 20:05Z, with legs on the sync head next. The door waits on the owner's
+  ready-mark.
+
+Two stream stamps were typed while the clock read ran in the same parallel block. Both are
+corrected on the stream, and the clock memory now says a read must be the only call in its block.
+
+Next: 250's legs, then release the slot. Then the guard's lineage twin slice, in the Director's
+order. After it comes the J3 flow-back to JC.net under the same-bytes goal: the glob refusal,
+`diff-files`, `--deduplicate`, `--` before files, the exit-status gate tests, the lost-file
+refusal and the platform budget.
+
+**250's sync legs answered; PR 231 open (block written 20:23Z).**
+
+- 250's sync SHA:d2df9a558 passed its gate, and both legs reviewed it. Every finding took a signed
+  line only:
+  - Codex: the fresh results directory makes `worktree_clean` false. Rejected with a probe: git
+    lists no empty directory, even with `--untracked-files=all`.
+  - Copilot, three below the bar and true, listed in the body as follow-ups for the tool:
+    - a no-follow read of the canonical fixtures;
+    - refusing a fixture whose `skill_name` differs from its directory's basename (all sixteen
+      match);
+    - hashing the staged inputs themselves.
+  - Copilot, one over the bar and left open for the owner beside plan's case 3: the projected links
+    to `specify`'s shared references resolve to a path the projector never writes. The cure goes
+    with the two skills' reruns.
+  - The slot was released at 20:15:37Z. The door waits on the owner's ready-mark.
+- The guard twin, step 1: PR 231 is open (JC.net, 2 of 3) at SHA:9c4ed371.
+  - The pre-open code review widened the cure to git's own directory test: a valid HEAD of the
+    git directory's own, and `objects/` and `refs/` git can enter in the common directory.
+  - The pointer read is bounded at the cap plus one byte.
+  - A six-row live probe on the built hook: four plant shapes flip from allow to deny; a real
+    other repository allows; this repository denies.
+- A slip: 231's first push went out ungated. The new worktree had no `.husky/_`, because the failed
+  first install never ran husky's prepare. It was corrected on the stream at 20:20:16Z, and the full
+  gate ran green on that head before the PR opened. The lesson is in per-user memory.
+- Step 2, the lineage port, waits for 231 to land, then takes its own slot. The Director ruled at
+  20:2xZ for the whole mechanism, for the same-bytes goal: the walk, the probe, the bounded read,
+  the no-follow read, the move-aware content pair and the schema option.
+  - No lineage block sets `excludes_other_repositories`, and the body says so plainly.
+  - The fire and no-fire probe runs against a fixture policy, in a scratch checkout, that sets the
+    flag on one block. Its transcript rides the body.
+- The Director named this seat the fallback keeper of the rollover folds. If no Director line has
+  landed on either stream by 00:10Z on 2026-09-28, run the folds from the JC.net napkin block "THE
+  FOLD RECIPE AND STATE" (the coordination-fold skill; the lineage's 264 needs its sync, and JC.net's
+  227 is current).
+
+Next: 231's legs and door, then step 2 on the Director's ruling. After that comes the J3 flow-back.
+
+**231 landed (block written 20:49Z); 270 (J7) open; the J3 flow-back next.**
+
+- PR 231 merged as SHA:275e8df99 after one cure round.
+  - Copilot's round one found `VALID_HEAD` broader than git: git reads 255 bytes and skips only
+    ASCII whitespace. That was cured in SHA:6083904d, with its bound's comment.
+  - Round two recommended approval with no findings.
+  - The Copilot leg on JC.net needs `gh pr edit N --add-reviewer @copilot` as the operator; the
+    bot's request is a silent no-op there (per-user memory).
+  - Cleanup: branch, worktree, local ref and claim 60571693 are all gone.
+- Step 2 depends on J7. The lineage lacked JC.net's path-scope layer (register row J7), which 230's
+  adapter and evaluator hunks sit on. The Director approved J7 first. Lineage PR 270 is open at
+  SHA:a0f878157 with both legs requested.
+  - The six source files are byte-identical to JC.net's copies.
+  - The pre-open review's blocker is cured: the machine-local-path exemption of the policy file is
+    anchored (`./.agent/hooks/policy.json`).
+  - Two path-scope comments name JC.net-only things. Their neutral wording is routed to the J3
+    flow-back.
+- The local worktree `oce-wt-guard-port` holds a partial `git apply --reject` of 230's patch. It is
+  reproducible from the patch, and step 2 rebuilds on engraph after 270 lands.
+- Next, approved at 20:4xZ: the J3 flow-back to JC.net at 3 of 3. That is 269's cures into JC.net's
+  repo-check, plus the two neutral comments. The guard port opens behind 270.
+
+**270 settled; JC.net 232 (the J3 flow-back) open (block written 21:23Z).**
+
+- PR 270 (J7) is settled at SHA:e60cb3f9c.
+  - windows-basic failed on a POSIX literal in the `placePath` test. The cure in SHA:7e8163270
+    compares placed paths across hosts; windows-basic then passed.
+  - Copilot's round two found that `placePath` kept an absolute path's `..` segments. A Write to
+    `<root>/docs/exempt/../../src/x.md` claimed the anchored exemption; the live probe allowed it.
+    The cure takes JC.net's later `placePath`, byte-identical, and the probe now denies.
+  - Codex was clean on both heads, and Copilot recommended approval on SHA:e60cb3f9c.
+  - Next: CI and the Codex leg on that head, the sweep, the door, and cleanup.
+- JC.net PR 232 opened at SHA:1a321625, 3 of 3. It brings the J3 cures home, plus the
+  code-expert's cures:
+  - the shellcheck gate refuses a lost file;
+  - a leading `:` is refused;
+  - each read fails in git's own words;
+  - a test proves the repair modes repair.
+  The Copilot request was made as the operator; the timeline shows it.
+- Owed to the lineage, with J3's next slice (the shellcheck gate): the `:` refusal and the
+  repair-mode test, so the shared files match again. The two neutral path-scope comments go with
+  the next agent-tools port. `repo-check-files.ts` is at 250 lines, so its next edit splits it in
+  both estates.
+- The guard port (step 2) opens after 270 lands.
+
+**270 and 232 landed; JC.net 233 open with four live guard cures; the port waits on it (block
+written 22:19Z).**
+
+- Lineage PR 270 (J7) merged as SHA:bd320b710, and JC.net PR 232 (the J3 flow-back) as
+  SHA:45093dca. Branches, worktrees, local refs and claims are all cleaned.
+  - 232's round one had two findings. The cure: only a stage-0 index entry counts as a symlink.
+    The rejection: an unstaged modification reads the working tree, as every gate leg does.
+  - Owed to the lineage with J3's next slice (the shellcheck gate): the leading-colon refusal, the
+    repair-mode test and the stage-0 symlink read.
+- The guard port (step 2) is built in `oce-wt-guard-port`, on `feat/exchange-guard-repository-scope`
+  (local only: SHA:176cb889 plus the merge of engraph, SHA:a3fe94345, with an uncommitted
+  host-neutral test change). Its pre-open reviews:
+  - config and code approved with notes;
+  - security requested changes, and found four defects live in JC.net `main` since 230.
+- JC.net PR 233 (`fix/guard-read-and-link-cures`, SHA:b23b8aa3, 2 of 3) cures them:
+  - a move source or Write prior is read through one non-blocking descriptor, regular files only,
+    with one 1 MiB budget per request;
+  - a dangling link and a hard link keep the block;
+  - a `posixPath` test helper, for the lineage's Windows leg;
+  - the complete README keep-the-block list.
+  The security re-verification approved with notes. The before-and-after probe is in the body.
+- Next: 233's two rounds and its door. Then rebuild the port's targets from JC.net `main`,
+  byte for byte, adding `path-scope.ts` and its test, whose neutral comments the code-expert asked
+  for. Then commit, push, open the port as 3 of 3, and run its rounds.
+- Follow-ups recorded in 233's body, for both estates:
+  - `operator-profile-fs.ts` opens without `O_NONBLOCK`;
+  - the turbo test inputs omit `policy.json`;
+  - a smoke test with a flagged fixture policy;
+  - memoising the walk within a request.
+
+**233 and 271 landed: the hook-policy layer matches in both estates (block written 22:59Z).**
+
+- JC.net PR 233 merged as SHA:67bc75ec, curing four live guard defects: a FIFO or device move
+  source, the size of large sources (one 1 MiB read budget per request), a dangling link, and a
+  hard link. Round one had one low finding (the budget's comment named no probe byte), cured.
+  Round two approved.
+- Lineage PR 271 (the guard port, step 2) merged as SHA:bfd9e07f0.
+  - It carries JC.net `main` at SHA:67bc75ec byte for byte in 22 of 24 files. The README and one
+    ADR-path fixture keep lineage text.
+  - windows-basic passed with the `posixPath` helper.
+  - Copilot's one finding was rejected with git's own verdict: git 2.50.1 accepts 40 hex followed
+    by junk as a detached HEAD and refuses 39, as `VALID_HEAD` does.
+  - Codex found nothing.
+  - Branches, worktrees, local refs and claims for both are cleaned up.
+- Correction to 233's body: its follow-up "`operator-profile-fs.ts` opens without `O_NONBLOCK`" is
+  lineage-only. JC.net's `operator-profile-read.ts` already opens non-blocking and proves a regular
+  file.
+- Owed:
+  - The register's §Landings lacks today's J3 (#269, JC.net 232) and J7 (#270, #271) rows; they ride
+    the next substantive JC.net PR.
+  - To the lineage: J3's next slice (the shellcheck gate, with the colon refusal, the repair-mode
+    test and the stage-0 symlink read), and JC.net's non-blocking operator-profile read.
+  - Both estates: `.agent/hooks/policy.json` in the agent-tools test task's cache inputs, a smoke
+    test with a flagged fixture policy, and memoising the walk.
+
+**Lineage 272 open at round one; item 1a pushed; item 3 measured (block written 23:18Z).**
+
+- Lineage PR 272 (item 2, `fix/agent-tools-test-policy-input`, SHA:3499ccf12): the agent-tools
+  test task hashes `.agent/hooks/policy.json`. Round one: Copilot and Codex both found nothing.
+  - CI's `build` failed in the hub's Next build, inside `next/font/google` ("queries have exactly
+    one entry"). engraph passed at SHA:bfd9e07f0 nine minutes earlier, and 272 changes only one
+    test-task input. It is a first sighting, so the failed jobs were re-run (attempt 2).
+- Correction to the 22:59Z block: the turbo input gap is lineage-only as well. JC.net runs that
+  task uncached.
+- Item 1a (`fix/operator-profile-read-nonblocking`, SHA:8eba0173f, worktree `oce-wt-profile-read`,
+  lineage claim 3a98544d) is pushed through the gate, not yet opened.
+  - It takes JC.net's `operator-profile-read.ts` (same bytes bar the result package) and its
+    `readDocument` tests.
+  - A live probe on a fifo: the base read held past 2 s and pinned the process until a writer
+    opened the fifo; the cured read is refused at once.
+  - Two mutants, both killed. Pre-open code and security reviews are running. It opens as 3 of 3.
+- Item 3 measured: shellcheck 0.11.0 finds 17 findings in 7 of the lineage's 29 tracked shell
+  files: five husky hooks (SC2034 and SC1091), one sonar-secrets build script (SC2064) and one
+  vendored skill script (SC1090). The gate is six modules and tests (about 1,000 lines), plus the
+  pinned installer's CI step. The proposed split is two PRs: the script cures first, then the gate.
+
+**272 landed; 273 (item 1a) open; the whole-path guard ruled next (block written 23:36Z).**
+
+- Lineage PR 272 merged as SHA:48f70d4ba at 23:34:56Z (both legs clean, CI green on the rerun).
+  Its branch (remote and local), worktree and claim are cleaned.
+- Lineage PR 273 (`fix/operator-profile-read-nonblocking`, SHA:60f1c658a, claim 3a98544d, 3 of 3
+  at its open; now 2 of 3 with 250) is at round one. Copilot found nothing; Codex is pending.
+  - Pre-open code review required four reader tests to name their host: on a host without
+    `O_NOFOLLOW` (the Windows leg), the first push's tests failed 4 of 25. Cured: 26 of 26 pass
+    with the host probe forced. A fake-fifo test now proves the non-blocking open (the
+    `O_NONBLOCK` mutant fails it), and the comments are narrowed to the final component.
+  - The second push's first try was refused at connection (a 403 to the bot). A receive-pack probe
+    read 200 a minute later, and the retry passed its gate.
+  - It is behind engraph by 272, so it syncs after the 00:00Z fold of 264, then door.
+- The Director ruled (23:3xZ, native message): 1a lands as is. Then the whole-path guard follows
+  as one moderate PR per estate: macOS `O_NOFOLLOW_ANY` after a `realpath` of the root, a Linux
+  `/proc/self/fd` readlink, and a narrowing-only check on Windows. It closes the pre-existing
+  gap both reviews found: a directory above a document swapped for a symlink after the listing
+  is followed. The L1 flow-back follows on converged bytes.
+  - Riders: the guard's JC.net half is the next substantive JC.net PR, and the register's J3
+    (#269, 232) and J7 (#270, #271) landings ride it.
+  - Order: the JC.net half first, since the lineage half builds on 273's reader. It also carries
+    273's test and comment cures back, so the two copies converge. Its design goes to security
+    review before any build.
