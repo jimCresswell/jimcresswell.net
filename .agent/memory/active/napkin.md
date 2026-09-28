@@ -3306,3 +3306,51 @@ The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. Th
 NEXT: 278's and 279's legs and doors, 279's twin at the freed slot (Siren); check-in 60 at about
 06:35Z; the pre-fold suite at about 11:15Z; the midday folds at 12:00Z with the recipe and its
 addenda (a) to (f); the owner's word.
+
+## 2026-09-28T06:35Z — Director check-in 60: the count 3; 278 at its settlement head; 279 settled, waiting for its twin; two rulings (main kept; first green after a pure sync)
+
+THE FOUR NUMBERS (`checkin-60-raw.md`, 06:35Z): open non-coordination PRs 3 of 3 (lineage 250,
+the owner's draft, BEHIND, its three threads the owner's; 278, P1, 35 files, at its settlement
+head a16249ec1 pushed 06:31:17Z with round two's cure, one thread open, CI in flight, both legs
+requested (Copilot 06:30:55Z); 279, Nova's doctrine commit, four files, settled on review at
+a8320853c since 05:54Z with signed lines, waiting for its JC.net twin), all Siren's; landings
+since check-in 59: none; heads with CI in flight: 278; slot-holder age: 278 the lineage door
+holder since 05:08:25Z (87 minutes at the snapshot; two rounds, one settlement push; the door
+at its legs). Remote branches outside a PR: none in either estate. Local branches not merged:
+the lineage's siren/250-settlement, feat/pr-watch-content-binding (278),
+docs/fold-sweep-and-chmod-bits (279); JC.net's docs/fold-sweep-and-chmod-bits (279's twin,
+committed, waiting for a slot). Host load 3.35. The JC.net primary on
+coordination/2026-09-28-87689e (draft PR 234, green on 90c82192) carries Siren's record d1a5427f;
+this block pushes with it. The lineage primary on coordination/2026-09-28-96b273 (draft PR 275)
+clean. Both registries' `heartbeat_at` 06:34:27Z and 06:35:11Z; the standalone pulse alive.
+
+Since the rollover: the lineage landed 274, 264, 273, 276, 277 (five); JC.net 227, 235, 236
+(three). Goal one: rows J2, J3 and J7 with lineage landings on top of the register's thirteen;
+L1 (the operator-profile row) flows back after its divergence read. Goal two: 278 is a goal-two
+row; no live Codex seat. The retrospective trigger: one-shot, fulfilled; its count condition
+holds at 3 of 3.
+
+RULINGS this window (both to Siren, both read first-hand first). (1) The lineage remote's
+`main` (90b523cd1, the upstream's own release commit "release(1.185.2)" of 2026-09-25, an
+ancestor of engraph with zero commits of its own) stays: the repo is a fork of
+oaknational/oak-open-curriculum-ecosystem and `main` is the line the fork sync lands on; the
+owner's approved plan of 2026-09-26 keeps it by name in the Lane 6 deletion list ("The lineage's
+`main` (the upstream mirror) and JC.net's branches are kept") under the answer "Delete all
+listed"; no PR, no deletion, no card. (2) P1 settles at first green after a pure sync and holds
+only for a deliberately requested round; an unrequested Codex run that reports after the merge is
+a post-merge finding, fixed forward (the owner's 2026-09-16 word). Grounds: the plan's Lane 3
+concept "a pure sync push requests nothing" under the owner's 2026-09-14 word on rounds; Codex's
+automatic runs reported 6 to 8 minutes after each commit on 267 and 14 minutes on 264, engraph's
+CI ran 17 minutes on 277's last tip, and the door's quiet window is a further ten minutes
+(`QUIET_WINDOW_MS` in reviewer-legs.ts), so first green sits past the run's window; no
+composing-run signal exists on any surface read. Conditions met by Siren's settlement push per
+her 06:31:17Z line: the body's premise corrected, a unit test naming the no-run first-green
+case, the composing-run signal a recorded limit with its reopen condition (an over-bar finding
+from such a run after a merge reopens the question on that instance).
+
+The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. The card (b) to
+(f) stands as in check-in 58.
+
+NEXT: 278's legs and door, then 279 with its twin at the freed slot, then the doctrine PR for
+items 1 and 2 (Siren); check-in 61 at about 07:20Z; the pre-fold suite at about 11:15Z; the
+midday folds at 12:00Z with the recipe and its addenda (a) to (f); the owner's word.
