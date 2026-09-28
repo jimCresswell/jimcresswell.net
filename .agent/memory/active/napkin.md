@@ -3401,3 +3401,56 @@ The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. Th
 NEXT: 279's threads and door (Siren), then the doctrine PR for items 1 and 2; check-in 62 at
 about 08:05Z; the pre-fold suite at about 11:15Z; the midday folds at 12:00Z with the recipe and
 its addenda (a) to (f); the owner's word.
+
+## 2026-09-28T08:06Z — Director check-in 62: the count 3; 279 landed; the second doctrine pair open as 280 and 238; two routing answers reversed a home
+
+THE FOUR NUMBERS (`checkin-62-raw.md`, 08:05Z): open non-coordination PRs 3 of 3 (lineage 250,
+the owner's draft, its three threads the owner's; lineage 280 and JC.net 238, the second doctrine
+pair "the remote-branch rule and the shared-primary check", six files, opened 07:50Z, both at
+their second round-one commit (280 at f92122177) with CI in flight, 280's round two from Codex
+at 08:03:50Z with two threads open and Siren's signed lines landing at 08:05Z, 238 with none
+open), all Siren's; landings since check-in 61: 279 (07:25:22Z, 1e3870b60, Nova's doctrine
+commit, the lineage copy), Siren's, its branch, worktree and claim cleaned up; heads with CI in
+flight: 280 and 238; slot-holder age: no door holder, both pair PRs at their reviews. Remote
+branches outside a PR: none in either estate. Local branches not merged: the lineage's
+siren/250-settlement, codex/user-value-across-levels and
+docs/remote-branch-rule-and-shared-primary-check (280); JC.net's
+docs/remote-branch-rule-and-shared-primary-check (238). Host load 18.60 at the snapshot (two
+pair gates at 08:02:59Z beside CI's local runs). The JC.net primary on
+coordination/2026-09-28-87689e (draft PR 234, green on 8825bc41) carries Siren's record
+4ad38ae8; this block pushes with it. The lineage primary on coordination/2026-09-28-96b273
+(draft PR 275) clean. Both registries' `heartbeat_at` 08:02:43Z and 08:03:24Z; the standalone
+pulse alive.
+
+Since the rollover: the lineage landed 274, 264, 273, 276, 277, 278, 279 (seven); JC.net 227,
+235, 236, 237 (four). Goal one: rows J2, J3 and J7 with lineage landings on top of the
+register's thirteen; Nova's fold and chmod doctrine on both defaults (237, 279); L1 (the
+operator-profile row) flows back after its divergence read. Goal two: P1 landed (278); no live
+Codex seat. The retrospective trigger: one-shot, fulfilled; its count condition holds at 3 of 3.
+
+TWO ANSWERS to Siren on the pair (07:4xZ), surfaces read first. (1) The owner's remote-branch
+rule of 2026-09-24 is homed in worktree-hygiene §1 (every pushed branch has at least a draft
+PR, the owner's 2026-08-03 word) and §6 (the standing prune policy, the owner's 2026-07-21
+grant), not in a new rule file: Wilma's pre-open read found the substance already there and
+the new file drifted from it in two places before it opened. This reverses the Director's
+05:3xZ routing, made on a phrase grep that found no "in a PR or deleted"; the classifier's own
+line decides it (the first matching home, never a duplicate). (2) The WIP ordering sentence is
+ratified as Siren wrote it: "a wanted branch found with no PR takes the next free slot ahead
+of any new opening, and is named on the stream as owed until it opens"; an ordering inside the
+owner's limit, not an exception to it, homed beside the WIP clause in pr-lifecycle §Phase 7.
+The pair carries both, plus clause 5 as the one home of the shared-primary write check and one
+firing point (the first push that carries a commit).
+
+280'S ROUNDS, read from its reviews and threads: round one (Codex 07:53:58Z, Copilot 07:54:12Z,
+four threads) resolved by the push 807218c98 at 07:57Z; round two (Codex 08:03:50Z, two threads
+on the fold skill and pr-lifecycle) open at the snapshot, with the second round-one commit
+f92122177 pushed at 08:02:59Z under the two-gate bound. The body reads "budget: 2". Siren's
+lane: after round two, cure-or-Rejected in the last push's slot turn; the Director watches the
+budget at check-in 63.
+
+The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. The card (b) to
+(f) stands as in check-in 58.
+
+NEXT: 280's and 238's rounds and doors (Siren); check-in 63 at about 08:50Z; the pre-fold suite
+at about 11:15Z; the midday folds at 12:00Z with the recipe and its addenda (a) to (f); the
+owner's word.
