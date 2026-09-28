@@ -1,9 +1,11 @@
 ---
 paths:
-  - content/**/*
+  - jcdotnet/content/**/*
   - docs/editorial/**/*
-  - app/**/*
-  - lib/jsonld.ts
+  - jcdotnet/app/**/*
+  - jcdotnet/components/**/*.tsx
+  - jcdotnet/lib/jsonld.ts
+  - linkedin/**/*
 ---
 
 Read and follow `.agent/rules/invoke-editor.md`.

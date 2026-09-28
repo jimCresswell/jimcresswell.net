@@ -117,9 +117,7 @@ export function classifyLayer(repoRelPath: string): ArtefactLayer {
  * "widen" extraction to backticks without first revisiting that convention. One
  * written name is not safe: an ADR identifier inside the portable Core names a record
  * that is absent wherever the Core arrives. The sibling `validate-core-adr-citations`
- * polices it, written in prose or in backticks: it refuses any citation beyond
- * its census of the citations that predate it, and refuses every citation once
- * that census is empty.
+ * polices it, written in prose or in backticks, and refuses every citation.
  */
 export function extractReferences(sourcePath: string, content: string): ExtractedReference[] {
   const sourceDir = posix.dirname(sourcePath.replace(/^\.\//, ''));

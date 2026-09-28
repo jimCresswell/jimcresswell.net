@@ -4,23 +4,15 @@ import { fileURLToPath } from 'node:url';
 
 /**
  * CLI smoke for the Core ADR-citation gate's entry point: the validator runs
- * end to end over the live tracked tree (the Core listed and read as text, the
- * census loaded and parsed, the live counts compared with it) and reports its
- * green line on stdout, exit 0. The green line has two forms: the census
- * matched while it holds rows, or no citation at all once the last cure has
- * emptied it.
+ * end to end over the live tracked tree (the Core listed, read as text and
+ * scanned) and reports its green line on stdout, exit 0.
  *
- * What this smoke does not prove, and where each is proven instead:
- * - the verdict on divergence (new, stale, a swap, an empty census as strict,
- *   the order of findings): the `compareToCensus` cells;
- * - the census refusal decisions (not JSON, an unknown key, a bad count, a file
- *   outside the Core, a non-canonical ADR, a duplicate row): the
- *   `parseCensusText` cells, which prove the `Err` only.
+ * What this smoke does not prove, and where it is proven instead:
+ * - what reads as a citation, and where each is placed: the `findAdrCitations`
+ *   and `findCoreCitations` cells.
  *
  * Observed by hand, not proven by any cell:
- * - the entry's exit 1, and its report, on a new citation, a stale row and a
- *   swap;
- * - the entry's exit 2 on a malformed census;
+ * - the entry's exit 1, and its report, on a citation;
  * - the exit 2 refusals for zero tracked Core files and for a Core file that
  *   cannot be read as text.
  */
@@ -30,8 +22,7 @@ const entry = resolve(
   packageDir,
   'src/validators/core-adr-citations/validate-core-adr-citations.ts',
 );
-const GREEN =
-  /^✓ (?:Core ADR citations match the census: \d+ in \d+ of \d+ Core files, none new|no ADR citations in \d+ Core files)$/mu;
+const GREEN = /^✓ no ADR citations in \d+ Core files$/mu;
 
 function fail(message: string): never {
   process.stderr.write(`validate-core-adr-citations CLI smoke: ${message}\n`);

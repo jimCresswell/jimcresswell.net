@@ -127,8 +127,19 @@ Before making this repository public (or changing visibility), audit for:
 - [ ] Psychological profile content (see [privacy.md](privacy.md) for categories)
 - [ ] Physical location specifics beyond what is intentionally public
 - [ ] Political specifics (year, party, ward, outcome)
-- [ ] Third-party names without consent
-- [ ] Private editorial sources, drafts or analysis outside the ignored private repository
+- [ ] Third-party names without consent, beyond the bibliographic attribution that privacy.md's
+      rule 2 allows (its `linkedin/` clause, under the [LinkedIn workspace
+      authorisation][linkedin-authorisation], covers Jim's co-authors, there only)
+- [ ] Private editorial sources, drafts or analysis outside the ignored private repository.
+      Exception: the non-sensitive LinkedIn material listed in privacy.md's [LinkedIn workspace
+      authorisation][linkedin-authorisation] belongs in
+      [`linkedin/`](../../linkedin/README.md); personal vulnerabilities, private correspondence,
+      account details, third-party activity records and sensitive or confidential source material
+      stay private
+- [ ] `linkedin/` holds no personal vulnerabilities, private correspondence, account details,
+      third-party activity records or sensitive or confidential source material
+
+[linkedin-authorisation]: privacy.md#linkedin-workspace-authorisation--28-september-2026
 
 ## Content in plan files
 
@@ -137,9 +148,13 @@ should be written as if they will be read by anyone.
 
 - Store editorial constraints and decisions in plan files.
 - Store private sources, drafts, evidence and analysis in the ignored private editorial repository,
-  not in plan files.
-- Point only to its local routing README. Never publish the private remote, commit identifiers or
-  source-level details in a public plan.
+  not in plan files. Exception: the non-sensitive LinkedIn material listed in privacy.md's [LinkedIn
+  workspace authorisation][linkedin-authorisation] belongs in `linkedin/`, not in plan files.
+  Existing private records stay where they are; personal vulnerabilities, private correspondence,
+  account details, third-party activity records and sensitive or confidential source material stay
+  private.
+- Point only to the private repository's local routing README. Never publish the private remote,
+  commit identifiers or source-level details in a public plan.
 
 ## History-rewrite boundary
 

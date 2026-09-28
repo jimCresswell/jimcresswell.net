@@ -1,12 +1,11 @@
 ---
 classification: situational
-description: Any work whose acceptance is "matches a reference" opens by rendering the reference and capturing it at the canonical measurement widths (DDR-009); every fidelity claim cites the captured reference, and comparison runs from the first buildable slice, never only at the end.
+description: Any work whose acceptance is "matches a reference" opens by rendering the reference and capturing it at the visual-regression harness viewport (ADR-016); every fidelity claim cites the captured reference, and comparison runs from the first buildable slice, never only at the end.
 trigger: surface:design — Beginning or reviewing work whose acceptance is likeness to a reference artefact
 globs:
-  - apps/**/*.{ts,tsx,css,html}
-  - demos/**/*.{ts,tsx,css,html}
-  - packages/design/**
-  - docs/design/**
+  - jcdotnet/app/**/*.{ts,tsx,css}
+  - jcdotnet/components/**/*.{ts,tsx,css}
+  - jcdotnet/lib/**/*.tsx
 ---
 
 # Render the Reference Before Reproducing
@@ -26,14 +25,15 @@ artefact; or reviewing such work's fidelity claim.
 
 1. Serve or render the reference ITSELF — not a description of it, not its
    source — and look at it before building anything against it.
-2. Capture it at the canonical measurement widths — the viewports the
-   visual-regression harness owns (`jcdotnet/scripts/run-visual-regression-harness.ts`,
-   ADR-022) — into the work's reference set. Playwright is the standard instrument
-   for both capture and probes.
+2. Capture it at the harness viewport — the single fixed viewport the
+   visual-regression harness owns (`HARNESS_VIEWPORT` in
+   `jcdotnet/visual-regression-harness/shared.ts`, ADR-016) — into the work's
+   reference set. Playwright is the standard instrument for both capture and
+   probes.
 3. Cite the captured reference in every "matches" claim. A likeness claim
    with no reference capture behind it is unverifiable, and is treated as
    unmade.
-4. Compare at the same widths, reference against rebuild, from the first
+4. Compare at the same viewport, reference against rebuild, from the first
    buildable slice onward — never only at the end.
 
 ## Why This Rule Exists (Worked Instance)
@@ -51,7 +51,7 @@ last.
 ## Comparison is visual first (owner directive, 2026-08-10)
 
 Comparing a rebuild against its reference ALWAYS includes comparing
-IMAGES — capture both sides at the same canonical viewport and look at
+IMAGES — capture both sides at the same harness viewport and look at
 them — never markup, styling, or computed styles alone. The failure mode
 is recorded from the day the directive landed: a computed-style probe
 over matched selectors reported near-total equality while the rendered
@@ -62,8 +62,10 @@ localise; only the rendered pair decides.
 
 ## Related Surfaces
 
+- [ADR-016 — review-oriented visual regression harness](../../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)
+  — the harness: the WHERE of every capture.
 - [ADR-022 — rendering risk needs blocking visual proof](../../docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md)
-  and the visual-regression harness: the WHERE of every capture.
+  — why a rendering-risk change needs blocking visual proof.
 - [The Claude Design conversion playbook](../reference/claude-design-conversion-playbook.md)
   §"Reference first" — this rule's application inside that pipeline.
 - [`claude-design-pipeline` SKILL](../skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md)
@@ -73,9 +75,9 @@ localise; only the rendered pair decides.
 
 ## Enforcement
 
-Behavioural at work-start; mechanical downstream. The fidelity capture
-tooling refuses free-hand widths (`assertCanonicalWidth` beside the
-canonical set), so a comparison outside the canonical widths cannot be
-produced; and the review workflow requires every declared pair to carry a
-reference target or an explicit exemption — absence is recorded, never
-silent.
+Behavioural at work-start and review. The one mechanical constraint is
+narrow: the visual-regression harness takes its ref-to-ref captures at a
+single fixed viewport (`HARNESS_VIEWPORT` in
+`jcdotnet/visual-regression-harness/shared.ts`). Nothing mechanical pins a
+reference-versus-rebuild capture to that viewport or checks declared pairs;
+the lineage's fidelity tool that did is not ported.

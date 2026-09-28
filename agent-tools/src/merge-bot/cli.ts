@@ -8,8 +8,12 @@ import type { GithubApiFetch } from './mint-installation-token.js';
 import { mintForConfig, type MintedToken } from './mint-for-config.js';
 import { PUSH_USAGE } from './push-args.js';
 import { runPushAction, type PushActionInput } from './push-cli.js';
+import { RETIRE_USAGE } from './retire-args.js';
+import { runRetireAction, type RetireActionInput } from './retire-cli.js';
+import type { BranchArgSeams } from './branch-arg.js';
 import type { GitExecutor } from './git-executor.js';
 import type { TokenFileStore } from './push-git.js';
+import type { RetireGitPort } from './retire-git-port.js';
 import type { GitRunner } from '../collaboration-state/coordination-home.js';
 import { resolveMintTokenConfig } from './resolve-config.js';
 import { permissionNamesFor, TOKEN_SCOPE_NAMES } from './token-scopes.js';
@@ -79,6 +83,9 @@ export interface MergeBotCliInput {
   readonly gitPath?: string;
   readonly baseEnv?: Readonly<Record<string, string | undefined>>;
   readonly tokenFiles?: TokenFileStore;
+  /** Retire-action seams: git as the command asks of it, and the `--branch` check's oracle. */
+  readonly retireGitPort?: RetireGitPort;
+  readonly branchArgSeams?: BranchArgSeams;
 }
 
 const USAGE = `merge-bot mint-token --scope <${TOKEN_SCOPE_NAMES.join('|')}> [--app-id <id>] [--private-key-path <pem-path>] [--repo <owner/name>] [--json]
@@ -100,7 +107,8 @@ ${TOKEN_SCOPE_NAMES.map((name) => `    ${name}: ${permissionNamesFor(name).join(
   Other 403s (ruleset refusals, rate limits) are not scope problems.
 
 ${MERGE_USAGE}
-${PUSH_USAGE}`;
+${PUSH_USAGE}
+${RETIRE_USAGE}`;
 
 /** Forward the CLI's injection seams to the merge action. */
 function mergeActionInputFrom(input: MergeBotCliInput): MergeActionInput {
@@ -122,8 +130,10 @@ function mergeActionInputFrom(input: MergeBotCliInput): MergeActionInput {
   };
 }
 
-/** Forward the CLI's injection seams to the push action. */
-function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
+/** The injection seams the push and retire actions share. */
+type GitActionInput = Omit<PushActionInput, 'tokenFiles'>;
+
+function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
   return {
     identityInput: {
       envHome: input.env.HOME,
@@ -140,7 +150,20 @@ function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
     gitExecutor: input.gitExecutor,
     gitPath: input.gitPath,
     baseEnv: input.baseEnv,
-    tokenFiles: input.tokenFiles,
+  };
+}
+
+/** Forward the CLI's injection seams to the push action. */
+function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
+  return { ...gitActionInputFrom(input), tokenFiles: input.tokenFiles };
+}
+
+/** Forward the CLI's injection seams to the retire action. */
+function retireActionInputFrom(input: MergeBotCliInput): RetireActionInput {
+  return {
+    ...gitActionInputFrom(input),
+    gitPort: input.retireGitPort,
+    branchArgSeams: input.branchArgSeams,
   };
 }
 
@@ -168,6 +191,9 @@ export async function runMergeBotCli(input: MergeBotCliInput): Promise<number> {
   }
   if (action === 'push') {
     return runPushAction(rest, pushActionInputFrom(input));
+  }
+  if (action === 'retire') {
+    return runRetireAction(rest, retireActionInputFrom(input));
   }
   if (action !== 'mint-token') {
     input.stderr.write(`merge-bot: unknown action "${action}"\n${USAGE}`);

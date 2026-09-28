@@ -7,7 +7,8 @@ import { readPrStateReading, type ReadPrStateOptions } from '../pr-watch/state-g
 import type { PrStateReading, PrVerdict } from '../pr-watch/state-types.js';
 import { computePrVerdict } from '../pr-watch/states.js';
 import { decideMergeAction, type MergeDecision } from './merge-decision.js';
-import { readMergeSettings, realFetch, putMerge } from './merge-github-api.js';
+import { realFetch } from './github-fetch.js';
+import { readMergeSettings, putMerge } from './merge-github-api.js';
 import { mintForConfig, type MintedToken, type MintSeams } from './mint-for-config.js';
 import type { GithubApiFetch } from './mint-installation-token.js';
 import type { BotIdentity } from './resolve-identity.js';

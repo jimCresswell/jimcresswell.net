@@ -1,11 +1,11 @@
 ---
 classification: situational
 description: Validate external data at entry boundaries
-trigger: surface:**/*.ts,**/*.tsx,content/**/*
+trigger: surface:boundary-data — TypeScript and authored content where external data enters
 globs:
   - "**/*.ts"
   - "**/*.tsx"
-  - content/**/*
+  - jcdotnet/content/**/*
 ---
 
 # Strict Validation at External Boundaries
