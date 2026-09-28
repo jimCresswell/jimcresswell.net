@@ -63,7 +63,7 @@ export async function gatherReadings(
   });
 }
 
-/** The remote branch's tip with its objects here to test, or undefined when the remote has no such branch. */
+/** The remote branch's tip, its objects fetched to test, or undefined when the remote has no such branch. */
 async function readRemoteTip(
   retire: RetireGit,
   branch: string,
@@ -75,7 +75,7 @@ async function readRemoteTip(
   if (probe.value.kind === 'absent') {
     return ok(undefined);
   }
-  const fetched = await fetchRemoteObjects(retire, branch, probe.value.sha);
+  const fetched = await fetchRemoteObjects(retire, branch);
   return fetched.ok ? ok(probe.value.sha) : fetched;
 }
 

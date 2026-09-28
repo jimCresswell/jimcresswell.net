@@ -143,12 +143,13 @@ export async function probeRemoteBranch(
 
 /**
  * The remote branch's objects, with NO ref written (`--refmap=` and no
- * destination), then proof that the probed commit is here to test.
+ * destination). The probed commit's ancestry read follows, and a commit the
+ * fetch did not bring fails that read (git exits 128), so the run fails
+ * before any write without a presence check of its own.
  */
 export async function fetchRemoteObjects(
   retire: RetireGit,
   branch: string,
-  sha: string,
 ): Promise<Result<undefined, Error>> {
   const fetched = await runGit(
     retire,
@@ -163,13 +164,9 @@ export async function fetchRemoteObjects(
     ],
     true,
   );
-  if (fetched.status !== 0) {
-    return err(gitFailure(`fetching the remote branch ${branch}'s objects`, fetched));
-  }
-  const present = await runGit(retire, ['cat-file', '-e', `${sha}^{commit}`]);
-  return present.status === 0
+  return fetched.status === 0
     ? ok(undefined)
-    : err(gitFailure(`reading the remote tip ${sha}`, present));
+    : err(gitFailure(`fetching the remote branch ${branch}'s objects`, fetched));
 }
 
 /** Every local and `origin` tracking ref, by exact full name, with the target of any symbolic one. */
