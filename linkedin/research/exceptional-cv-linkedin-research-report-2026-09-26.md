@@ -184,7 +184,7 @@ The sample was deliberately varied, not representative or ranked. It contains fi
 | C05 artist's CV                  | A chronological account includes exhibitions, commissions and other professional activity.                                                           | This offers a further creative-practice contrast without inferring capability or success from public prominence.                  |
 | C06–C08 three LinkedIn records   | Indexed identity/about/activity fragments were available; full profiles were inaccessible.                                                           | These demonstrate access limits, not complete composition patterns. The C01 and C08 pair cannot support a consistency assessment. |
 
-The sample does not justify a “best profiles” gallery. It does show why a single ideal length, sequence or narrative style is a poor starting assumption. Source URLs, access depth, observation/interpretation separation and case-specific hypotheses are in the companion.
+The sample does not justify a “best profiles” gallery. It does show why a single ideal length, sequence or narrative style is a poor starting assumption. Access depth, observation/interpretation separation and case-specific hypotheses are in the companion. The cases are described by role, without source references, so they cannot be independently reopened from these documents.
 
 ## 11. Conditional guidance and when to stop
 
