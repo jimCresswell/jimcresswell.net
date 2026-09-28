@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Do not leave skipped tests in the tree
-trigger: surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/vitest*.config*.ts,jcdotnet/playwright.config.ts
+trigger: surface:test-authoring — tests, e2e specs and the Vitest and Playwright configs
 globs:
   - "**/*.test.*"
   - jcdotnet/e2e/**/*
