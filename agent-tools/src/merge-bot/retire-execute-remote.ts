@@ -9,11 +9,10 @@ import {
   type RemoteDeleteOutcome,
   type RetirePlan,
 } from './retire-decision.js';
-import type { RetireGit } from './retire-git-read.js';
+import type { RetireGitPort } from './retire-git-port.js';
 import { readRemoteRefByApi, requestRefDelete, type IdentityRepo } from './retire-github-api.js';
 import type { DefaultBranchReading } from './retire-parse.js';
 import type { NameReport, RetireOutcome } from './retire-report.js';
-import type { ReadOptionalFile } from './retire-worktrees.js';
 
 /**
  * The retire command's remote write: the branch deleted by compare-and-swap
@@ -28,13 +27,12 @@ import type { ReadOptionalFile } from './retire-worktrees.js';
 
 /** What the writes need beyond the plan. */
 export interface ExecuteSeams {
-  readonly retire: RetireGit;
+  /** git, for the in-use check before the local deletes and the local writes. */
+  readonly git: RetireGitPort;
   /** Mints the `branch-retire` token; called only when a remote delete is planned. */
   readonly mintToken: () => Promise<Result<string, Error>>;
   readonly fetchImpl: GithubApiFetch;
   readonly repo: IdentityRepo;
-  /** Reads a worktree's rebase and bisect state files, for the in-use check before the local deletes. */
-  readonly readFile: ReadOptionalFile;
 }
 
 /** The branch and the default it was proven on, as the caller names them. */

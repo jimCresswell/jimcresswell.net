@@ -59,25 +59,23 @@ export function gitFailure(question: string, result: GitCommandResult): Error {
 }
 
 /**
- * The RAW configured URL of `origin`, which must be exactly one. Not
- * `git remote get-url`, which applies `insteadOf` rewriting: the check binds
- * the configured name, and the mint-time read binds the proofs to that
- * repository by sha. Several URLs are refused: fetch reads the first, and a
- * single `config --get` the last, so a check of one would not bind the other.
+ * The RAW configured URLs of `origin`, every one, in config order. Not
+ * `git remote get-url`, which applies `insteadOf` rewriting: the front door
+ * binds the configured name, and the mint-time read binds the proofs to that
+ * repository by sha. git exits non-zero when the key is unset, which reads
+ * as no URL.
  */
-export async function readOriginUrl(retire: RetireGit): Promise<Result<string, Error>> {
+export async function readOriginUrls(retire: RetireGit): Promise<Result<readonly string[], Error>> {
   const result = await runGit(retire, ['config', '--get-all', 'remote.origin.url']);
-  const urls = result.stdout.split('\n').filter((line) => line.trim() !== '');
-  const [url] = urls;
-  if (result.status !== 0 || url === undefined) {
-    return err(new Error('this checkout has no origin URL configured'));
+  if (result.status !== 0) {
+    return ok([]);
   }
-  if (urls.length > 1) {
-    return err(
-      new Error(`origin has ${urls.length} URLs configured; this command binds exactly one`),
-    );
-  }
-  return ok(url.trim());
+  return ok(
+    result.stdout
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line !== ''),
+  );
 }
 
 /**
@@ -124,16 +122,23 @@ export async function readDefaultBranch(
   return reading;
 }
 
-/** The remote branch, read by its exact name; a failed read is a failure, never "absent". */
+/** A remote-branch probe as run, as a reading: a failed read is a failure, never "absent". */
+export function probeReading(
+  result: GitCommandResult,
+  branch: string,
+): Result<RemoteRefReading, Error> {
+  return result.status === 0
+    ? ok(parseExactRemoteRef(result.stdout, branch))
+    : err(gitFailure(`reading the remote branch ${branch}`, result));
+}
+
+/** The remote branch, read by its exact name. */
 export async function probeRemoteBranch(
   retire: RetireGit,
   branch: string,
 ): Promise<Result<RemoteRefReading, Error>> {
   const result = await runGit(retire, ['ls-remote', 'origin', `refs/heads/${branch}`], true);
-  if (result.status !== 0) {
-    return err(gitFailure(`reading the remote branch ${branch}`, result));
-  }
-  return ok(parseExactRemoteRef(result.stdout, branch));
+  return probeReading(result, branch);
 }
 
 /**

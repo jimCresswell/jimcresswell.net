@@ -1,19 +1,21 @@
 import { generateKeyPairSync } from 'node:crypto';
 
-import { ok } from '@engraph/result';
+import { err, ok, type Result } from '@engraph/result';
 
 import { runMergeBotCli } from '../cli.js';
-import type { GitCommandResult, GitExecutor } from '../git-executor.js';
 import type { GithubApiFetch } from '../mint-installation-token.js';
+import type { CasOutcome, RetireReadings, TipState } from '../retire-decision.js';
+import type { RetireGitPort } from '../retire-git-port.js';
 
 /**
- * The doubles behind the `merge-bot retire` front-door tests. git answers by
- * argv with the literal text it prints, and an argv the table does not hold
- * answers 128 (git's usage failure), never a status that reads as a result.
- * GitHub is a lookup by endpoint, branch-free: the two mint endpoints, and
- * one constant GraphQL answer for the run. The mints are recorded, the one
- * effect read: a credential issued. Paths that need GitHub to change
- * between calls run against real git in the smokes.
+ * The doubles behind the `merge-bot retire` front-door tests. git is the
+ * command's own port, answered by a constant world: what origin is set to,
+ * what the readings are, who uses the branch, and what each ref's
+ * compare-and-swap leaves, looked up by its full name. No argv, and no call
+ * is recorded. GitHub is a lookup by endpoint, branch-free: the two mint
+ * endpoints, and one constant GraphQL answer for the run. The mints are
+ * counted, the one effect read: a credential issued. Paths that need git or
+ * GitHub to change between calls run against real git in the smokes.
  */
 
 const { privateKey } = generateKeyPairSync('rsa', {
@@ -25,60 +27,88 @@ const { privateKey } = generateKeyPairSync('rsa', {
 export const TOKEN = 'sekrit-retire-token';
 export const BRANCH = 'feat/x';
 export const MAIN_SHA = '1'.repeat(40);
-export const TIP = 'a'.repeat(40);
-export const OTHER = 'c'.repeat(40);
+/** Each name's tip is its own sha, so a report that swaps two names shows it. */
+export const LOCAL_TIP = 'a'.repeat(40);
+export const TRACKING_TIP = 'b'.repeat(40);
+export const REMOTE_TIP = 'c'.repeat(40);
+export const OTHER = 'd'.repeat(40);
 
-const STATE_QUERY =
-  'rev-parse --path-format=absolute --git-path rebase-merge/head-name --git-path rebase-apply/head-name --git-path BISECT_START --git-path rebase-merge/update-refs';
+export const LOCAL_REF = `refs/heads/${BRANCH}`;
+export const TRACKING_REF = `refs/remotes/origin/${BRANCH}`;
 
-export const LISTING_QUERY =
-  'for-each-ref --format=%(refname) %(objectname) %(symref) refs/heads/ refs/remotes/origin/';
+const merged = (sha: string): TipState => ({ sha, onBase: true });
 
-export function answer(status: number, stdout = ''): GitCommandResult {
-  return { status, signal: null, stdout, stderr: '' };
-}
-
-const UNANSWERED: GitCommandResult = {
-  status: 128,
-  signal: null,
-  stdout: '',
-  stderr: 'unanswered',
-};
-
-/** Every git answer for a branch merged into main, present locally and cached, absent on the remote. */
-export function mergedLocally(): Record<string, GitCommandResult> {
+/** A branch merged into main, present locally and cached, absent on the remote. */
+export function mergedLocally(branch: string): RetireReadings {
   return {
-    'config --get-all remote.origin.url': answer(0, 'https://github.com/acme/widgets.git\n'),
-    [LISTING_QUERY]: answer(
-      0,
-      `refs/heads/main ${MAIN_SHA} \nrefs/heads/${BRANCH} ${TIP} \nrefs/remotes/origin/${BRANCH} ${TIP} \n`,
-    ),
-    'worktree list --porcelain': answer(
-      0,
-      `worktree /srv/repo\nHEAD ${MAIN_SHA}\nbranch refs/heads/main\n`,
-    ),
-    [`-C /srv/repo ${STATE_QUERY}`]: answer(0, '/g/a\n/g/b\n/g/c\n/g/d\n'),
-    'ls-remote --symref origin HEAD': answer(0, `ref: refs/heads/main\tHEAD\n${MAIN_SHA}\tHEAD\n`),
-    'fetch --quiet --no-write-fetch-head --no-tags --refmap= origin refs/heads/main:refs/remotes/origin/main':
-      answer(0),
-    'remote set-head origin --auto': answer(0),
-    [`cat-file -e ${MAIN_SHA}^{commit}`]: answer(0),
-    [`ls-remote origin refs/heads/${BRANCH}`]: answer(0, ''),
-    [`merge-base --is-ancestor ${TIP} ${MAIN_SHA}`]: answer(0),
-    [`update-ref --no-deref -d refs/remotes/origin/${BRANCH} ${TIP}`]: answer(0),
-    [`update-ref --no-deref -d refs/heads/${BRANCH} ${TIP}`]: answer(0),
-    [String.raw`config --local --name-only --get-regexp ^branch\.feat/x\.[^.]+$`]: answer(1),
+    branch,
+    base: { name: 'main', sha: MAIN_SHA },
+    local: merged(LOCAL_TIP),
+    tracking: merged(TRACKING_TIP),
+    remote: undefined,
+    inUseBy: [],
+    caseCollisions: [],
+    symbolic: [],
   };
 }
 
 /** The same branch also present, and merged, on the remote. */
-export function mergedEverywhere(): Record<string, GitCommandResult> {
+function mergedEverywhere(branch: string): RetireReadings {
+  return { ...mergedLocally(branch), remote: merged(REMOTE_TIP) };
+}
+
+/** What git holds and answers, for one run. */
+export interface GitWorld {
+  readonly originUrls: Result<readonly string[], Error>;
+  /** The readings for the branch asked about. */
+  readonly readings: (branch: string) => Result<RetireReadings, Error>;
+  /** The worktrees using the branch when the check is read again before the local deletes. */
+  readonly inUseBy: Result<readonly string[], Error>;
+  /** What a compare-and-swap of each full ref name leaves. */
+  readonly swaps: ReadonlyMap<string, Result<CasOutcome, Error>>;
+  readonly removeConfig: Result<undefined, Error>;
+}
+
+const DELETED: Result<CasOutcome, Error> = ok({ kind: 'deleted' });
+
+/** The identity's repository as origin, the branch merged locally, every delete taking. */
+export const LOCAL_WORLD: GitWorld = {
+  originUrls: ok(['https://github.com/acme/widgets.git']),
+  readings: (branch) => ok(mergedLocally(branch)),
+  inUseBy: ok([]),
+  swaps: new Map([
+    [LOCAL_REF, DELETED],
+    [TRACKING_REF, DELETED],
+  ]),
+  removeConfig: ok(undefined),
+};
+
+/** As {@link LOCAL_WORLD}, with the branch also on the remote. */
+export const REMOTE_WORLD: GitWorld = {
+  ...LOCAL_WORLD,
+  readings: (branch) => ok(mergedEverywhere(branch)),
+};
+
+/** A git that fails every question: a run that reads nothing never notices it. */
+export const UNREADABLE: GitWorld = {
+  originUrls: err(new Error('git was read')),
+  readings: () => err(new Error('git was read')),
+  inUseBy: err(new Error('git was read')),
+  swaps: new Map(),
+  removeConfig: err(new Error('git was written')),
+};
+
+/** The port over a constant world. A ref the world holds no swap for answers a failure naming it. */
+function portOver(world: GitWorld): RetireGitPort {
   return {
-    ...mergedLocally(),
-    [`ls-remote origin refs/heads/${BRANCH}`]: answer(0, `${TIP}\trefs/heads/${BRANCH}\n`),
-    [`fetch --quiet --no-write-fetch-head --no-tags --refmap= origin refs/heads/${BRANCH}`]:
-      answer(0),
-    [`cat-file -e ${TIP}^{commit}`]: answer(0),
+    originUrls: () => Promise.resolve(world.originUrls),
+    readings: (branch) => Promise.resolve(world.readings(branch)),
+    inUseBy: () => Promise.resolve(world.inUseBy),
+    deleteRef: (target) =>
+      Promise.resolve(
+        world.swaps.get(target.ref) ?? err(new Error(`the world holds no swap for ${target.ref}`)),
+      ),
+    removeBranchConfig: () => Promise.resolve(world.removeConfig),
   };
 }
 
@@ -99,7 +129,7 @@ export const GRAPHQL_ERROR: unknown = {
   errors: [{ message: 'Something went wrong while executing your query' }],
 };
 
-/** GitHub by endpoint: the installation, the token mint (recorded), and one GraphQL answer. */
+/** GitHub by endpoint: the installation, the token mint (counted), and one GraphQL answer. */
 function githubAnswering(graphql: unknown): { fetchImpl: GithubApiFetch; mints: string[] } {
   const mints: string[] = [];
   const reply = (status: number, body: unknown): ReturnType<GithubApiFetch> =>
@@ -128,13 +158,11 @@ export interface RetireRun {
   readonly minted: boolean;
 }
 
-/** What a front-door run may vary besides argv and git's answers. */
+/** What a front-door run may vary besides argv and git's world. */
 export interface RetireRunOptions {
   /** GitHub's one answer to every GraphQL call. */
   readonly graphql?: unknown;
   readonly readConfigFileImpl?: (path: string) => string;
-  /** The worktree state files, by path; a path not listed does not exist. */
-  readonly stateFiles?: Readonly<Record<string, string>>;
   /** git's ref-format grammar: whether it accepts a branch name. */
   readonly refFormatLegal?: boolean;
 }
@@ -148,15 +176,13 @@ const IDENTITY_CONFIG = JSON.stringify({
 /** Run `merge-bot retire` over the doubles. */
 export async function runRetire(
   args: readonly string[],
-  answers: Readonly<Record<string, GitCommandResult>>,
+  world: GitWorld,
   options: RetireRunOptions = {},
 ): Promise<RetireRun> {
   const out: string[] = [];
   const errText: string[] = [];
   const github = githubAnswering(options.graphql ?? {});
-  const stateFiles = options.stateFiles ?? {};
   const legal = options.refFormatLegal ?? true;
-  const gitExecutor: GitExecutor = (_file, argv) => answers[argv.join(' ')] ?? UNANSWERED;
   const exit = await runMergeBotCli({
     args: ['retire', ...args],
     env: { HOME: '/test-home' },
@@ -168,10 +194,7 @@ export async function runRetire(
     repoRoot: '/srv/repo',
     runGitImpl: () => 'worktree /srv/repo\n',
     nowEpochSeconds: () => 1_800_000_000,
-    gitExecutor,
-    gitPath: '/usr/bin/git',
-    baseEnv: { PATH: '/usr/bin' },
-    readOptionalFileImpl: (path) => Promise.resolve(ok(stateFiles[path])),
+    retireGitPort: portOver(world),
     branchArgSeams: { refFormatOracle: () => legal },
   });
   return { exit, out: out.join(''), err: errText.join(''), minted: github.mints.length > 0 };

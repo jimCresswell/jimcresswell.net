@@ -1,6 +1,3 @@
-import { readFile } from 'node:fs/promises';
-import { basename } from 'node:path';
-
 import { err, ok, type Result } from '@engraph/result';
 
 import { DEFAULT_BRANCH_NAMES, type BranchArgSeams } from './branch-arg.js';
@@ -18,17 +15,16 @@ import {
 import { parseRetireArgs, RETIRE_USAGE } from './retire-args.js';
 import { decideRetirement } from './retire-decision.js';
 import { executePlan } from './retire-execute.js';
-import { removeBranchConfig } from './retire-git-delete.js';
-import { readOriginUrl, type RetireGit } from './retire-git-read.js';
+import { gitRetirePort, type RetireGitPort } from './retire-git-port.js';
 import { githubRepoOf } from './retire-parse.js';
-import { gatherReadings } from './retire-readings.js';
 import { exitCodeFor, writeRetireOutcome, type RetireOutcome } from './retire-report.js';
-import type { ReadOptionalFile } from './retire-worktrees.js';
+import { readOptionalFile } from './retire-worktrees.js';
 
 /**
  * The `merge-bot retire` action: parse, bind, read, decide, write, report.
  * The argv contract and the usage text are in `retire-args.ts`; the proof is
- * `retire-decision.ts`; the writes are `retire-execute.ts`.
+ * `retire-decision.ts`; the writes are `retire-execute.ts`; git is reached
+ * only through `retire-git-port.ts`.
  *
  * Two bindings come before any read that could lead to a write. The branch is
  * never main, master or HEAD, in any case. And `origin`'s one configured URL
@@ -60,24 +56,10 @@ export interface RetireActionInput {
   readonly gitPath?: string;
   /** Base environment for git; defaults to `process.env` at the leaf, with prompting turned off. */
   readonly baseEnv?: Readonly<Record<string, string | undefined>>;
-  /** Reads a worktree's rebase and bisect state files. */
-  readonly readOptionalFileImpl?: ReadOptionalFile;
+  /** git, as the command asks of it; defaults to real git in `repoRoot`. */
+  readonly gitPort?: RetireGitPort;
   readonly branchArgSeams?: BranchArgSeams;
 }
-
-/** The real state-file reader: a missing file is undefined; any other failure is a failure. */
-const readOptionalFile: ReadOptionalFile = async (path) => {
-  try {
-    return ok(await readFile(path, 'utf8'));
-  } catch (cause) {
-    const code = cause instanceof Error && 'code' in cause ? cause.code : undefined;
-    if (code === 'ENOENT' || code === 'ENOTDIR') {
-      return ok(undefined);
-    }
-    // The basename and the code only: a node error message carries the full path.
-    return err(new Error(`reading worktree state file ${basename(path)}: ${String(code)}`));
-  }
-};
 
 function mintSeamsFrom(input: RetireActionInput): MintSeams {
   return {
@@ -102,19 +84,30 @@ async function mintToken(
 }
 
 /**
- * Refuse unless `origin` names the bot identity's repository. The URL itself
- * is never echoed, only the repository parsed from it: an https URL can
- * carry a token.
+ * Refuse unless `origin` has exactly one configured URL and it names the bot
+ * identity's repository. Several URLs fail: fetch reads the first, and a
+ * single `config --get` the last, so a check of one would not bind the
+ * other. The URL itself is never echoed, only the repository parsed from it:
+ * an https URL can carry a token.
  */
 async function originMismatch(
-  retire: RetireGit,
+  port: RetireGitPort,
   identity: BotIdentity,
 ): Promise<Result<string | undefined, Error>> {
-  const url = await readOriginUrl(retire);
-  if (!url.ok) {
-    return url;
+  const urls = await port.originUrls();
+  if (!urls.ok) {
+    return urls;
   }
-  const repo = githubRepoOf(url.value);
+  const [url, ...others] = urls.value;
+  if (url === undefined) {
+    return err(new Error('this checkout has no origin URL configured'));
+  }
+  if (others.length > 0) {
+    return err(
+      new Error(`origin has ${urls.value.length} URLs configured; this command binds exactly one`),
+    );
+  }
+  const repo = githubRepoOf(url);
   const wanted = `${identity.owner}/${identity.repoName}`;
   if (repo === undefined) {
     return ok(`origin is not a github.com URL; the bot deletes only in ${wanted}`);
@@ -125,27 +118,39 @@ async function originMismatch(
     : ok(`origin names ${named}, not ${wanted}, the repository the bot would delete in`);
 }
 
-/** The git context bound to the identity's repository, or the outcome that stops before any read. */
-async function bindGit(
+/** The injected port, or real git in the invoking repository with prompting turned off. */
+function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
+  if (input.gitPort !== undefined) {
+    return ok(input.gitPort);
+  }
+  const git = resolveGitContext(input);
+  if (!git.ok) {
+    return git;
+  }
+  const env = {
+    ...(input.baseEnv ?? process.env),
+    GIT_TERMINAL_PROMPT: '0',
+    GCM_INTERACTIVE: 'never',
+  };
+  return ok(gitRetirePort({ git: git.value, cwd: input.repoRoot, env }, readOptionalFile));
+}
+
+/** The port bound to the identity's repository, or the outcome that stops before any read. */
+async function bindPort(
   branch: string,
   identity: BotIdentity,
   input: RetireActionInput,
-): Promise<RetireGit | RetireOutcome> {
-  const git = resolveGitContext(input);
-  if (!git.ok) {
-    return { kind: 'failed', branch, reason: git.error.message };
+): Promise<RetireGitPort | RetireOutcome> {
+  const port = portFrom(input);
+  if (!port.ok) {
+    return { kind: 'failed', branch, reason: port.error.message };
   }
-  const retireGit: RetireGit = {
-    git: git.value,
-    cwd: input.repoRoot,
-    env: { ...(input.baseEnv ?? process.env), GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'never' },
-  };
-  const mismatch = await originMismatch(retireGit, identity);
+  const mismatch = await originMismatch(port.value, identity);
   if (!mismatch.ok) {
     return { kind: 'failed', branch, reason: mismatch.error.message };
   }
   return mismatch.value === undefined
-    ? retireGit
+    ? port.value
     : { kind: 'refused', branch, reason: mismatch.value };
 }
 
@@ -154,8 +159,8 @@ async function bindGit(
  * the repository's config goes now, whether a failed removal or a hand-run
  * delete left it, so the re-run a failed removal advises finishes it.
  */
-async function retireAbsent(branch: string, retireGit: RetireGit): Promise<RetireOutcome> {
-  const config = await removeBranchConfig(retireGit, branch);
+async function retireAbsent(branch: string, port: RetireGitPort): Promise<RetireOutcome> {
+  const config = await port.removeBranchConfig(branch);
   return config.ok
     ? { kind: 'absent', branch }
     : {
@@ -171,33 +176,28 @@ async function retire(
   identity: BotIdentity,
   input: RetireActionInput,
 ): Promise<RetireOutcome> {
-  const retireGit = await bindGit(branch, identity, input);
-  if ('kind' in retireGit) {
-    return retireGit;
+  const port = await bindPort(branch, identity, input);
+  if ('kind' in port) {
+    return port;
   }
-  const readings = await gatherReadings(
-    retireGit,
-    branch,
-    input.readOptionalFileImpl ?? readOptionalFile,
-  );
+  const readings = await port.readings(branch);
   if (!readings.ok) {
     return { kind: 'failed', branch, reason: readings.error.message };
   }
   const decision = decideRetirement(readings.value);
   if (decision.kind !== 'plan') {
     return decision.kind === 'absent'
-      ? retireAbsent(branch, retireGit)
+      ? retireAbsent(branch, port)
       : { kind: 'refused', branch, reason: decision.reason };
   }
   return executePlan(
     decision.plan,
     { branch, base: readings.value.base },
     {
-      retire: retireGit,
+      git: port,
       mintToken: () => mintToken(identity, input),
       fetchImpl: input.fetchImpl ?? realFetch(),
       repo: identity,
-      readFile: input.readOptionalFileImpl ?? readOptionalFile,
     },
   );
 }

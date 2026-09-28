@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
@@ -26,6 +27,20 @@ const WORKTREE_STATE_PATHS = [
  * in use": that would let a delete through on a question left unanswered.
  */
 export type ReadOptionalFile = (path: string) => Promise<Result<string | undefined, Error>>;
+
+/** The real state-file reader: a missing file is undefined; any other failure is a failure. */
+export const readOptionalFile: ReadOptionalFile = async (path) => {
+  try {
+    return ok(await readFile(path, 'utf8'));
+  } catch (cause) {
+    const code = cause instanceof Error && 'code' in cause ? cause.code : undefined;
+    if (code === 'ENOENT' || code === 'ENOTDIR') {
+      return ok(undefined);
+    }
+    // The basename and the code only: a node error message carries the full path.
+    return err(new Error(`reading worktree state file ${basename(path)}: ${String(code)}`));
+  }
+};
 
 /**
  * The worktrees (by basename) using `branch`: checked out there, or named by
