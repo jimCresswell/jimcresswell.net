@@ -394,14 +394,14 @@ entries composed whole and appended in one write.
    N beside both heads, and this todo recording the close with the owner's word. The residue
    census of 2026-09-28 (in the lineage's tree,
    `.agent/reports/practice-exchange/goal-one-residue-census-2026-09-28.md`, records commit
-   a9c9d1bf8 on its coordination branch until the fold, then its main) opened it: 21 rows
+   SHA:a9c9d1bf8 on its coordination branch until the fold, then its main) opened it: 21 rows
    owed by the register's own rule (J5's lineage cell reads `graduated into L9`, J12's
    `decline`), 4 landed, 11
    partial, 6 with no landing, 20 residue PRs (24 with this todo, the lessons, the comparison
    and the re-pin), three cards for the owner (J11's exchange instrument, J17's gate-running
-   doctrine, the count). Provenance, audit and Box close with it; the doctrine amendments are
-   register candidates. Next act after this todo lands: the census's order, J1's N1 (the
-   rule-generator slice) first.
+   doctrine, the count). §Close's provenance, audit and Box steps, and the doctrine amendments as
+   register candidates, stay the node's, after the bar. Next act after this amendment lands: the
+   census's order, J1's N1 (the rule-generator slice) first.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
