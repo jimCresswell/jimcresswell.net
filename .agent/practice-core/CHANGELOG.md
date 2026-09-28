@@ -4,6 +4,18 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-28 — PDR-079 withdraws the ADR-identifier permission
+
+- PDR-079 §PDR Portability Rule allowed a PDR to name an ADR by its
+  identifier. That contradicted PDR-105's portability axis (a PDR must never
+  cite an ADR) wherever a seat read the two together, and PDRs were written
+  by it. A dated amendment-log entry withdraws the permission: a PDR names
+  the concept the ADR records, and the pairing of a PDR with a host's ADR
+  lives in that host's practice-index bridge. PDR-079's Status line and its
+  row in the decision-record index carry the amendment. PDR-105 governs, by
+  the Director's ruling of 2026-09-28, and the lineage takes the same entry
+  as a pair.
+
 ## [jimcresswell.net] 2026-09-26 — PDR-132's cost model and two-round text; PDR-140 clause 4 joins
 
 - PDR-132 §Decision item 7: a pull request pays a flat cost whatever its
