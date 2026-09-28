@@ -283,13 +283,13 @@ describes the work; its website does not independently verify Jim’s participat
 
 **PU01 — Scale Dependent Galaxy Bias in the SDSS as a function of Luminosity and Colour.**
 Monthly Notices of the Royal Astronomical Society; displayed 1 January 2009.
-[Paper and full author list](https://arxiv.org/abs/0808.1101).
+[Paper](https://arxiv.org/abs/0808.1101); James G. Cresswell and Will J. Percival.
 Submission in 2008 and journal publication in 2009 are compatible. The LinkedIn other-author
 overlay was empty, although the paper retained its author list.
 
 **PU02 — Cosmic microwave background multipole alignments in slab topologies.** Physical
-Review D; displayed 1 February 2006. [Paper and full author
-list](https://arxiv.org/abs/astro-ph/0512017). The LinkedIn overlay
+Review D; displayed 1 February 2006. [Paper](https://arxiv.org/abs/astro-ph/0512017);
+James G. Cresswell, Andrew R. Liddle, Pia Mukherjee and Alain Riazuelo. The LinkedIn overlay
 exposed only one co-author, despite displaying three other-author avatars.
 
 **O01 — Institute of Physics.** January 2002–present, with no additional description rendered.
