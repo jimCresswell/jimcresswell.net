@@ -2144,3 +2144,40 @@ written 22:19Z).**
   - Order: the JC.net half first, since the lineage half builds on 273's reader. It also carries
     273's test and comment cures back, so the two copies converge. Its design goes to security
     review before any build.
+
+**The whole-path guard re-scoped; JC.net PR 235 open; 273 cured locally (block written 00:54Z,
+2026-09-28).**
+
+- The Director ruled a whole-path guard for the operator-profile read, one PR per estate. It was
+  built in JC.net and probed live:
+  - macOS `O_NOFOLLOW_ANY` refuses a swapped `repos/` or root with ELOOP;
+  - in a throwaway Linux container, the `/proc/self/fd` comparison refuses both;
+  - the base read the outside file on both kernels.
+- The assumptions-expert class check rated it DISPROPORTIONATE, and the Director re-scoped it to
+  `-c core.symlinks=false` on every call of the profile git runner. That removes the one realistic
+  source of a link that is not the operator's own (a pull), on every host, and native Windows keeps
+  the profile.
+  - The built guard is conserved at `.agent/research/operator-profile-whole-path-guard/` (a patch
+    that applies at `67bc75ecb7`, with its probes) as the core-primitive option.
+- JC.net PR 235 (`fix/profile-read-whole-path`, SHA:03d9feef, 3 of 3, claim f6f44dc4) is open.
+  Copilot was requested as the operator.
+  - Pre-open code, test and security reviews: all findings taken.
+  - The push leg refuses a document git still records as a link (mode 120000), which the flag would
+    otherwise let through; this was reproduced first-hand.
+  - The reader takes core's `NO_FOLLOW_READ_FLAGS`. The fake-fifo test and the rejecting probe went
+    from the shared test block, in both estates.
+  - A hermetic real-git smoke fails with the flag removed.
+- Lineage 273 carries the same test and reader edit, committed locally as SHA:b2c124c6a. It pushes
+  with the sync merge after 264 lands.
+- The lineage twin of 235 (the flag, the push refusal, the smoke) follows 273. Until it lands, a
+  lineage pull can still write a link into the shared profile.
+- The ledger (the exchange node's §Review dispositions) gained four rows:
+  - the re-scope;
+  - a StrictModes-style ownership and mode check, after the L1 flow-back;
+  - a torn-read observation;
+  - the conflict cure that cannot complete, routed to the Director for a slot.
+- Corrections to earlier blocks:
+  - The 22:59Z "the hook-policy layer matches in both estates" is too broad. The repository-scope
+    guard and the bounded reads match; the argument matcher and several core files still differ
+    (J7's compare half).
+  - The 23:36Z block rode the Director's check-in commit SHA:613a7c07.
