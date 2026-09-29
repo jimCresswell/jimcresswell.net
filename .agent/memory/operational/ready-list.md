@@ -1,24 +1,28 @@
 # Ready list
 
-Kept by the Director during the exchange's finishing window (2026-09-29). Every open pull
-request on both estates that is green with zero unresolved threads, smallest changed-file count
-first: the order the owner lands in when the owner chooses to land by hand. Refreshed at every
-landing; re-derivable from `gh pr list --json number,mergeStateStatus` at any time.
+Every open pull request on both estates that is green with zero unresolved threads, smallest
+changed-file count first: the order the owner lands in when the owner chooses to land by hand
+(the owner's word, 2026-09-26: "don't block small green PRs on manual, but do maintain a list so
+that when I ask you can give me links"). Re-derivable at any time from
+`gh pr list --json number,mergeStateStatus`; the seat holding the work keeps it current.
 
 ## Ready now
 
-- None.
+- None (read 2026-09-29 13:4xZ).
 
-## Open, not yet ready (the door order at the Director's compaction 12, 11:3xZ)
+## Open, not yet ready (2026-09-29 13:4xZ, at the Director's close; the n=1 seat's order)
 
-| Order | PR | Estate | Files | State at the last read | Holder |
-| --- | --- | --- | --- | --- | --- |
-| 1 | 312 | lineage | 1 | the Turbo cache by OIDC; clean on both legs; red on the OIDC step until the organisation variable's repository access reaches this public repository (the owner); then re-run the failed jobs, no push | Myrtle |
-| 2 | 310 | lineage | 10 | B1; synced and pushed at 44ab80289; needs its title, body, legs and the round-one thread's answer | the Director (Siren's handoff) |
-| 3 | 309 | lineage | 3 | J3's round cures; head ef4c19a62 local in oce-wt-repair-smoke-group, unpushed; after 310 | the Director (Siren's handoff) |
+| Order | PR | Estate | State at the last read |
+| --- | --- | --- | --- |
+| 1 | 310 | lineage | B1, the merge-bot push retry; BEHIND at 44ab80289; three unresolved threads, Codex P1 first |
+| 2 | 309 | lineage | J3's round cures; remote 2cb3eb56d, two local commits in `oce-wt-repair-smoke-group`; one thread |
 
-## Landed in the window
+The coordination drafts (lineage 299 and this estate's) fold at the half-day boundary and are not
+listed.
 
-- 305 (lineage, 09:21Z, Myrtle): N1 slice 2.
-- 272 (JC.net, 09:24Z, the Director): the LinkedIn work; its branch retired.
-- 311 (lineage, 11:27Z, Nova): J8's B2 and B3; J8 complete; the register closes it at 16 of 32.
+## Landed on 2026-09-29
+
+- Lineage 305 (09:21Z), 311 (11:27Z, J8 whole), 312 (12:12Z, the Turbo remote cache in CI, by the
+  owner's hand).
+- JC.net 272 (09:24Z), 264 (12:39Z, the coordination fold, by the owner's hand), 273 (13:25Z, the
+  LinkedIn agent's workspace fix).

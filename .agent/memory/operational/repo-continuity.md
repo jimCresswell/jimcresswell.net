@@ -21,12 +21,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- **2026-09-29T11:3xZ, the Director's COMPACTION BOUNDARY 12** (Wick binds Temper, ed7b48): the block
-  is on the lineage's estate-coordination thread record (committed at 8d232779f), with the finishing
-  plan's state, the door order, the owner's words of the day and the handoffs from Siren and Nova; the
-  finishing plan itself is the exchange node's §Finish on both estates and the lineage report
-  `.agent/reports/practice-exchange/finishing-plan-2026-09-29.md`; the ready list is
-  `.agent/memory/operational/ready-list.md`. Resume on "carry on".
+- **2026-09-29T13:4xZ: the Director lane closed; one seat (n=1) takes the work on both estates**
+  (Wick binds Temper, ed7b48, at the owner's word). The handoff is on the lineage: its
+  `estate-coordination` thread record's journal entry "2026-09-29T13:4xZ — HANDOFF to the n=1
+  seat", with the retrospective
+  `.agent/reports/agentic-engineering/why-five-days-of-landings-closed-nine-stories-2026-09-29.md`.
+  JC.net has no open pull request of this lane apart from its coordination draft; `main` is green
+  at b6232c77. The LinkedIn agent (Galaxy binds Gravity) works in `linkedin/` and in the primary
+  checkout on `main`, a separate lane by the owner's word: write JC.net records from a worktree.
 
 - **2026-09-28T08:26Z, the Director's COMPACTION BOUNDARY 10** (Wick binds Temper, ed7b48), at the
   owner's word "prepare for compaction … then stop all processes". Since the rollover: the lineage

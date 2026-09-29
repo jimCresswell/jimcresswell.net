@@ -115,7 +115,7 @@ Every line answered first-hand, none inferred:
   retrospective; the late-cure leg ruling (PDR-140 clause 4) and PR 224's private-citation
   disposition are ratified; the transplant runbook is ratified in both estates; the three local
   lineage branches are deleted on the owner's word; goal two's Codex items ride Swallow's lane in
-  order; Dependabot PRs count and a seat lands each green one at its size turn; the word "Clef"
+  order; Dependabot PRs count and a seat lands each green one at its size turn; the word "[the owner's local-only wording]"
   stays out of the repository for now and reads "Student Support Experiments".
 - The WIP limit (owner, 2026-09-26 19:2xZ, verbatim summary: "Each repo is allowed one
   coordination PR"; "The total number of allowed PRs not including coordination PRs is the number
@@ -135,6 +135,15 @@ Every line answered first-hand, none inferred:
   2026-09-27T09:39Z and 09:52Z blocks.
 
 ## Current handoff state (2026-09-28 12:2xZ, resumed on the owner's "carry on"; pointer-biased by design)
+
+**§POINTER, 2026-09-29 13:4xZ (Wick binds Temper, `ed7b48`, the Director seat, at the owner's
+word).** The Director lane closed on 2026-09-29; the owner handed the work to one seat (n=1) across
+both estates. That seat's handoff is on the lineage: its `estate-coordination` thread record's
+journal entry "2026-09-29T13:4xZ — HANDOFF to the n=1 seat", with the retrospective
+`.agent/reports/agentic-engineering/why-five-days-of-landings-closed-nine-stories-2026-09-29.md`.
+Every "napkin's <time> block" named below, from 2026-09-27T09:06Z on, now reads in
+`.agent/memory/active/archive/napkin-2026-09-27-to-2026-09-29.md`; earlier ones in
+`archive/napkin-2026-09-21-to-2026-09-27.md`. The text below is the 2026-09-28 state, kept.
 
 **Resumed 2026-09-28 11:4xZ on the owner's "carry on".** The live reading is the napkin's
 2026-09-28T10:22Z block (the owner's review) and every Director block after it, read in order to

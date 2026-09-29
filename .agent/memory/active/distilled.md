@@ -282,3 +282,27 @@ the lane: read an identifier before writing it (a commit sha from nowhere caught
 and chain `git add` to `git commit` with `&&`, never `;`, because a rename staged by `git mv`
 matches no old-path pathspec and the add fails silently. Source: Siren's J13 lessons, 2026-09-26;
 routing: `oce-and-jcnet-practice-alignment-is-the-goal`, `bash-tool-chains-use-and-not-set-e`.
+
+## Five lessons from the napkin rotation of 2026-09-29 (Wick binds Temper, ed7b48)
+
+Sources are in `archive/napkin-2026-09-27-to-2026-09-29.md` under the dates given.
+
+- **Read the governing text before a ruling or a new home.** On 2026-09-27 and 09-28 a status was
+  ruled from the plan schema's general scope-change clause while the runbook template's own line
+  governed, a divergence was called while an open PR carried the convergence, and a new rule file
+  was routed on a phrase search that `worktree-hygiene` already answered. Read the governing
+  template's line, the file's open PRs and the candidate homes' headings first.
+- **The napkin is a lesson log, not a state log.** At 876 KB (2026-09-27) it passed the Read tool's
+  256 KB cap, so no reviewer could read it whole; two days after its rotation it held 5,161 lines,
+  mostly check-in blocks, and start-right loads it into every session. Check-ins go on the stream;
+  the napkin takes behaviour-changing lessons; rotate it at its trigger.
+- **The review-cost gate reads the first budget line and trips a round late.** It reads the FIRST
+  `budget — N` match in the PR body (the intake line), so a rebudget edits that line; GitHub moves
+  a comment's commit id to the head, so attribute rounds by comment time (2026-09-27).
+- **A fold's ready-mark follows a records pass.** Every finding of the 2026-09-28 rollover fold's
+  review was a records slip; before the mark, a read-only reviewer checks every carried file
+  against the day's landings, and on JC.net the timeline is read after the mark.
+- **A subagent's return is a lead, not evidence** (the owner, 2026-09-29: "The work and claims of
+  all subagents MUST be verified by you, yourself"). Re-read every figure, file:line and state it
+  reports from the primary surface before it enters a record or a message; mark the rest
+  unverified. On 2026-09-29 the re-read corrected four of nine gatherers' claims.
