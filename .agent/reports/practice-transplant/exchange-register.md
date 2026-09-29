@@ -84,7 +84,7 @@ units, and the row takes its remainder's state.
 Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
 read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
 estate's J rows into the lineage), read on 2026-09-29 at jcnet `507f581185` and lineage
-`eb1ad3f803`: **11 of 30**. The 30 are the census's 20 residue pull requests, J3's four from its
+`eb1ad3f807`: **11 of 30**. The 30 are the census's 20 residue pull requests, J3's four from its
 recounts (two at 18:3xZ on 2026-09-28; two more at 01:4xZ on 2026-09-29, when the recount's third
 slice, the shellcheck gate with its installer, CI step and docs, landed as three pull requests),
 J6's one from the recount of 21:4xZ (four lineage pull requests, not three), and the charter's five
