@@ -2924,3 +2924,30 @@ is named above, so the recursion closes here.
 - Next: C3; then unavailable-vendor slice A (after B1, now landed); then the J3 flow-back to JC.net
   carrying the twins (list in the scratchpad's `j3-port/flow-back.md`, plus C3's twin and
   start-right's two lines).
+
+**2026-09-29 00:20Z to 01:45Z: C3 (#297) landed; unavailable-vendor slice A open as #300.**
+
+- A host fork burst (near 2,450 processes at 00:24Z, a peer's gate failing with EAGAIN) came from
+  the C3 security read's scratch probe, not the installer. pnpm's shim for a dependency bin named
+  `uname` runs `uname -a`, which resolves to the shim itself under a lifecycle `PATH`. The
+  Director accepted the cause and two guards, and ruled no re-entry-marker test. The lineage's
+  frictions register carries it as F-213.
+- C3 took both guards: the bootstrap takes `node_modules` bin directories off the installer's
+  `PATH`; the installer pins each host's binary sha256 and runs nothing at `.tools/bin` unchecked.
+  The security read was GO with no conditions; its curl caps were taken.
+- #297 rounds: round one (a failed install leaving a binary for the gate) cured in af462866e (clear
+  before fetch, extract aside, rename in). Round two: start-right §8 cured in 57b51d6e6; the two
+  digest-gate items Rejected (ADR-121 pins by version). The door-evidence review's FIFO
+  Observation Rejected below the bar. Merged at 01:36Z as ef0ba83c1. J3's lineage slices are all
+  landed; the J3 claim is closed.
+- Owed from #297 (one shellcheck follow-up, with the policy ADR docs-adr named): a `-f` guard on
+  the installer's early hash, and whether the gate should check the binary digest.
+- The JC.net claim 30dab0b7 (branch retire, landed) is closed. The lineage claim for the
+  unavailable-vendor lane is 2965b380.
+- Slice A opened as lineage #300 at 9ac52201e: `pr-watch/vendor-error-reviews.ts` knows the
+  recorded Copilot error body whole; the leg counts it and never reads it SATISFIED; the body
+  tally leaves it out. Eight mutants killed. Open WIP at 01:44Z: lineage 296, 298, 300.
+- Nova ports N7 (the rooted install-time closure) to JC.net's bootstrap. C3's JC.net twin rides
+  the J3 flow-back and touches the same `bootstrap.ts`: order the two with Nova at port time.
+- Next: #300's rounds and door; slice B (the declared stand-in: `roundRequests` already carries
+  the timed review-request events the sixty-minute proof needs); slice C; the J3 flow-back.
