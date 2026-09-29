@@ -4,7 +4,7 @@
  * pre-commit hook and the tracked tree for the root gates.
  *
  * @remarks
- * A tracked gate reads the tree through {@link readTrackedTree}, which fails
+ * A tracked gate reads the tree through {@link readTrackedTreeResult}, which fails
  * closed: a gate whose git read failed checked nothing, so it fails rather
  * than pass, and a check refuses a tracked file the working tree has lost
  * ({@link planUnlessLost}). Its files run in chunks within the host's
@@ -16,7 +16,6 @@
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { failureAsError } from '../core/failure-as-error.js';
 import { writeErrorLine, writeLine } from '../core/terminal-output.js';
 
 import {
@@ -34,7 +33,7 @@ import {
 } from './repo-check-files.js';
 import { defaultRuntime } from './repo-check-runtime.js';
 import type { RepoCheckRuntime } from './repo-check-types.js';
-import { readTrackedTree, stagedFiles } from './repo-check-universe.js';
+import { readTrackedTreeResult, stagedFiles } from './repo-check-universe.js';
 
 /** markdownlint over the staged Markdown files (the pre-commit hook). */
 export async function runMarkdownlintStaged(
@@ -58,15 +57,6 @@ export async function runPrettierStaged(
     return 0;
   }
   return runtime.runInherited('pnpm', prettierArgs('check', files));
-}
-
-/** The tracked tree, or why git could not give it. */
-function trackedTree(runtime: RepoCheckRuntime): Result<TrackedTreeReading, string> {
-  try {
-    return ok(readTrackedTree(runtime));
-  } catch (error: unknown) {
-    return err(failureAsError(error, 'readTrackedTree').message);
-  }
 }
 
 /**
@@ -126,7 +116,7 @@ async function runTrackedGate(
   label: string,
   plan: (reading: TrackedTreeReading) => GatePlan,
 ): Promise<number> {
-  const reading = trackedTree(runtime);
+  const reading = readTrackedTreeResult(runtime);
   if (!reading.ok) {
     writeErrorLine(`repo-check ${label}: ${reading.error}; the gate checked nothing.`);
     return 1;

@@ -16,7 +16,8 @@ dist
 
 # Repo-scoped tool binaries: .agent/setup/install-shellcheck.sh installs the
 # pinned shellcheck here, and the lint:shell gate runs it before any on PATH.
-.tools/
+# No trailing slash, so a `.tools` symlink is ignored too.
+.tools
 
 # Merge bot: per-checkout and never tracked (the tracked surface is the
 # .example template beside it; see .agent/reference/merge-bot.md).
