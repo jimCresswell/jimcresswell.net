@@ -4791,3 +4791,39 @@ reads. Cards to the owner: none.
 
 NEXT: 302's and 303's doors, 268's round; the lineage draft's sync push; N1 slice 2's build;
 check-in 80 about 04:30Z; the midday folds at 12:00Z with a pre-fold suite (51).
+
+## 2026-09-29T04:2xZ — Director check-in 80: the count 3; N8 and slice B landed; 12 of 30; the host-load generator named
+
+THE FOUR NUMBERS (gh at 04:28Z): open non-coordination PRs 3 of 3 (lineage 304, Siren's
+unavailable-vendor slice C, the door takes --unavailable and merges on a declared stand-in,
+opened 04:12:59Z after two host-load refusals, BEHIND after 303; lineage 305, Myrtle's N1 second
+slice, the sub-agent adapters rendered from the templates' declarations, 138 files in three
+commits, opened 04:24:57Z on the slot 303 freed, at its legs; JC.net 268, Myrtle's register at
+11 of 30, its build-and-test running); landings since check-in 79: lineage 302 (1bdddf3,
+03:47:53Z, Siren's slice B), 303 (b026527, 04:19:04Z, Nova's N8 with the 298 rider); JC.net none;
+heads with CI in flight: 304, 305, 268. Coordination drafts: JC.net 264 (CLEAN at 1d24d5af,
+Siren's block pushed 04:07Z), lineage 299 (green at fe118f127: the frictions-register conflict
+of 03:26Z cured by the convergence merge keeping F-213 and F-214, pushed 04:01Z); both DUE
+12:00Z. Remote branches outside a PR: none in either estate. The host at the read: 768
+processes, load 17 to 27. The ready list: the 628e21c1 deletion for the owner's hand, nothing
+else.
+
+THE COUNT: 12 of 30 by the merges (303 is J6's N8, its fourth pull request); the register's line
+at 268's head reads 11, Myrtle's next row takes 303; remaining 18; the horizon holds.
+
+RULINGS THIS WINDOW, one line each: the host-load pattern has three instances tonight (the
+fork burst at 00:24Z, Siren's C refused twice on vitest's 5000 ms timeouts under three peer
+pre-pushes at 1.45 percent idle, Nova's J8 commit gate held at 0.8 percent idle) and one
+generator: the lineage has no gate slot, so its seats' pre-pushes run unbounded while JC.net's
+bounds two full gates per host; the cure is the generator: the gate slot's lineage port, the
+same bytes, is Siren's next lineage PR after C, ahead of the retire port, landing under J17's
+note 4 (the batch-six triage's "Gate slot ... BRING | J17"), which settles the triage's
+not-determined bullet on the slot's owner; until it lands, a seat's push waits for a quiet
+host (gate-slot status free, idle above the running gates). Nova's transient 403 on a sync push
+(one instance, retried green) is an observation. The N8 flow-back (the rider twin, the 266 and
+303 Landings rows) is reserved on the next JC.net slot, then J8 PR A (built, 301 cells,
+thirteen mutants killed, three departures returning to the second estate as findings). Cards to
+the owner: none.
+
+NEXT: 304's sync and door, 305's door, 268's door; the N8 flow-back and J8 PR A at their slots;
+check-in 81 about 05:15Z; the midday folds at 12:00Z with a pre-fold suite (51).
