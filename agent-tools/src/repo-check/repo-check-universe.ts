@@ -14,6 +14,10 @@
  * @packageDocumentation
  */
 
+import { err, ok, type Result } from '@engraph/result';
+
+import { failureAsError } from '../core/failure-as-error.js';
+
 import {
   parseNulSeparatedPaths,
   parseSymlinkPaths,
@@ -77,4 +81,15 @@ export function readTrackedTree(runtime: RepoCheckRuntime): TrackedTreeReading {
     ),
   );
   return { tracked, goneFromWorkingTree: new Set(gone), symlinks: indexSymlinkPaths(runtime) };
+}
+
+/** The tracked tree, or why git could not give it: {@link readTrackedTree}'s throw as a Result. */
+export function readTrackedTreeResult(
+  runtime: RepoCheckRuntime,
+): Result<TrackedTreeReading, string> {
+  try {
+    return ok(readTrackedTree(runtime));
+  } catch (error: unknown) {
+    return err(failureAsError(error, 'readTrackedTree').message);
+  }
 }
