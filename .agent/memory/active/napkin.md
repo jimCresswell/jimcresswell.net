@@ -5119,3 +5119,5 @@ drafts CI watch and the check-in wake likewise. The recipe above stands with tha
   the window: lineage 305, JC.net 272. Blockers: none; the owner's test bar adds rework to every
   port's tests, so the clock moves right and nothing is cut. Rulings on both streams: 09:2xZ,
   09:3xZ, 09:4xZ.
+
+- 2026-09-29 09:2xZ to 09:4xZ (Siren, 158275): the owner's words on tests (no real IO or child process, no carve-out), validators (minimum processes, never altering code or building) and WIP (no new PR while an old one waits; trend to zero) are verbatim in the exchange seat's thread record, 09:57Z block. Cause, mine: no test-expert review on 267, 270, 309 or 310; green gates and ported bytes taken as quality.

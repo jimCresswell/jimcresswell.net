@@ -3075,3 +3075,43 @@ then every process stopped).**
   (both estates, a JC.net-origin row); the lineage's spawn-topology integration test breaking its
   own immediate-fail 21 (an observation for JC.net, from #307). S4's exact texts are kept in
   `scratchpad/j3-port/s4-texts.md`; re-verify each against the files before use.
+
+**2026-09-29 09:1xZ to 09:57Z: resumed; the owner's corrections on tests, validators and WIP.**
+
+- The owner's words to this seat, verbatim, in order:
+  - 09:2xZ: "for fuck sake, how many times, tests are FORBIDDEN to create real IO and child
+    processes. I don't want excuses or carve outs, we have these rules for a reason. read the
+    principles, testing strategy and validation strategy. This is not optional, following the
+    requirements is not optional."
+  - 09:2xZ: "validation scripts can start real processes, but they are to be kept to a MINIMUM,
+    and they are FORBIDDEN from altering the code or triggering builds"
+  - 09:2xZ: "make sure that clarification lands in both estates"; then, asked about PDR-052 at
+    31.8% context, the owner chose "Override: edit now" for the directive edits in this session.
+  - 09:3xZ: "I want you to check that you are testing our functionality, not testing an external
+    surface, not testing config, not restricting implementation"
+  - 09:3xZ: "use the testing expert and code expert subagent reviewers, you have clearly been
+    decreasing the quality of the repo, breaking rules, creating rework and wasting time"
+  - 09:4xZ: "nothing about that test information was new, it is ALL written down in directives,
+    in rules, in the test expert, so WHY were bad, wasteful tests written?"
+  - 09:4xZ: "the entire team is supposed to have been instructed NOT to create new PRs while
+    waiting for old ones, that is how WIP is managed... if you move on while the older work is
+    still pending you create an ever growing tail, and you end up with 15 unmerged PRs despite a
+    WIP limit of 4"; then "tell the Director to reflect on that correction, and to make sure all
+    team members understand. We are aiming for trend to zero open PRs".
+- B1 opened as lineage PR 310 at 09:15Z. 309's sweep cure was withdrawn: the repair smoke is a
+  misfiled IO check, and the Director adopted its removal at 09:3xZ.
+- The test-expert and code-expert reviews found both PRs short of the bar. 309's rework is in its
+  worktree, awaiting the test expert's re-read. 310 is blocked on design: the code expert found a
+  HEAD race across the waits and a timing bet; the assumptions expert is reviewing it for the
+  owner's decision.
+- My answer to the owner's "why": no test-expert review on any of 267, 270, 309 or 310; the
+  directives not re-read at resume; green gates, killed mutants and byte parity taken as quality
+  evidence; ported and surrounding test patterns copied; self-supplied pace. From now on no test
+  change is committed without a test-expert verdict, recorded in the commit or PR body.
+- Correction to this morning's formation letter: its lessons ("search the repository for its
+  proven mechanism" and "waiting turned out to be the time the work needed") were learnt inside
+  the wrong frame. The first question is whether the surface may exist at all. Building ahead
+  while a PR waits is the tail the owner names.
+- Next, and nothing else before both merge: 309 committed after the re-read, pushed when the
+  Director's door order reaches it; 310 per the owner's decision on the assumptions review. After
+  both: the JC.net smoke removal with the same directive clause.

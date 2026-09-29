@@ -34,3 +34,11 @@ If you take one thing: when the fix you are about to write has a name like "kill
 "retry" or "lock", search for that word in the repository before you write a line.
 
 — Siren herds Rudder (158275), 2026-09-29
+
+**Correction, 2026-09-29 09:57Z.** Both lessons above were learnt inside the wrong frame. The
+smoke that needed a better sweep was a check the testing strategy forbids: it ran real tools as
+a feature test, and the cure was to remove it, not to strengthen it. So the first question
+before a lifecycle fix is whether the surface may exist at all. And building the next pull
+request while one waits is not time well used: it is the tail the owner names ("if you move on
+while the older work is still pending you create an ever growing tail"). A seat with a pending
+pull request finishes it, or helps close another's.
