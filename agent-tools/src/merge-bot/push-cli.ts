@@ -9,6 +9,7 @@ import { parsePushArgs, PUSH_USAGE, type PushArgs } from './push-args.js';
 import {
   FAILED_ATTEMPT,
   isAdvertisementRefusal,
+  keptForRefusal,
   pushWithRetry,
   type PushAttempt,
 } from './push-attempts.js';
@@ -195,7 +196,9 @@ async function transferAndReport(
 ): Promise<PushAttempt> {
   const { identity, git, branch } = prepared;
   const remote = `https://github.com/${identity.owner}/${identity.repoName}.git`;
-  let transcript = '';
+  // The refusal check keeps a bounded copy of the output; the output itself
+  // streams to stderr in full (R1).
+  let kept: string | null = '';
   const pushed = await pushHead(git, {
     remote,
     branch,
@@ -206,7 +209,7 @@ async function transferAndReport(
     // git's transfer output — and the gate chain's underneath — arrives in
     // full on completion: files, never a Node pipe or sized buffer (R1; F-112).
     onOutput: (chunk) => {
-      transcript += chunk;
+      kept = keptForRefusal(kept, chunk);
       input.stderr.write(chunk);
     },
   });
@@ -223,7 +226,7 @@ async function transferAndReport(
   input.stderr.write(`${result.stdout}${result.stderr}`);
   if (result.status !== 0) {
     input.stderr.write(`merge-bot push: git push ${describeGitChildEnd(result)}\n`);
-    const whole = `${transcript}${result.stdout}${result.stderr}`;
+    const whole = keptForRefusal(keptForRefusal(kept, result.stdout), result.stderr);
     return { exit: 1, refused: isAdvertisementRefusal(result.status, result.signal, whole) };
   }
   writePushed({ kind: 'pushed', branch, remote }, parsed.json, input);

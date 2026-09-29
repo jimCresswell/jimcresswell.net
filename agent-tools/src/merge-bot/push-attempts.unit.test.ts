@@ -3,8 +3,10 @@ import { describe, expect, it } from 'vitest';
 import {
   FAILED_ATTEMPT,
   isAdvertisementRefusal,
+  keptForRefusal,
   PUSH_ATTEMPTS,
   pushWithRetry,
+  REFUSAL_TRANSCRIPT_BOUND,
   type PushAttempt,
 } from './push-attempts.js';
 
@@ -54,6 +56,33 @@ describe('isAdvertisementRefusal', () => {
   it('does not hold with the two lines in the other order', () => {
     const [reason = '', failure = ''] = REFUSAL.split('\n');
     expect(isAdvertisementRefusal(128, null, `${failure}\n${reason}\n`)).toBe(false);
+  });
+
+  it('does not hold for a transcript the check stopped keeping', () => {
+    expect(isAdvertisementRefusal(128, null, null)).toBe(false);
+  });
+});
+
+describe('keptForRefusal', () => {
+  it('keeps the transcript while it could still be the refusal, however it arrives', () => {
+    const [reason = '', failure = ''] = REFUSAL.split('\n');
+    const kept = keptForRefusal(keptForRefusal('', `${reason}\n`), `${failure}\n`);
+
+    expect(kept).toBe(REFUSAL);
+    expect(isAdvertisementRefusal(128, null, kept)).toBe(true);
+  });
+
+  it('keeps a transcript exactly at the bound', () => {
+    expect(keptForRefusal('', 'x'.repeat(REFUSAL_TRANSCRIPT_BOUND))).toHaveLength(
+      REFUSAL_TRANSCRIPT_BOUND,
+    );
+  });
+
+  it('stops keeping once a chunk would take the transcript past the bound, and never resumes', () => {
+    const over = keptForRefusal('x', 'x'.repeat(REFUSAL_TRANSCRIPT_BOUND));
+
+    expect(over).toBeNull();
+    expect(keptForRefusal(over, REFUSAL)).toBeNull();
   });
 });
 

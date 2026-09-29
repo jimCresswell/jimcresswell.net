@@ -2,13 +2,24 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { runMergeBotCli, type MergeBotCliInput } from './cli.js';
+import { runMergeBotCli } from './cli.js';
 import { GIT_CREDENTIAL_RESOLUTION_CHAIN } from './git-credential-chain.js';
-import type { GitCommandResult, GitExecutor } from './git-executor.js';
-import type { GithubApiFetch } from './mint-installation-token.js';
-import { pushHead, type TokenFileStore } from './push-git.js';
-
-import { generateKeyPairSync } from 'node:crypto';
+import type { GitExecutor } from './git-executor.js';
+import { pushHead } from './push-git.js';
+import {
+  BASE_ENV,
+  BRANCH,
+  capture,
+  GIT_PATH,
+  gitFake,
+  mintFetch,
+  pushCall,
+  REMOTE,
+  runPush,
+  STORE_DIR,
+  TOKEN,
+  tokenStoreFake,
+} from './test-helpers/push-cli-double.js';
 
 /**
  * The `merge-bot push` front door over injected seams (fetch, key, config,
@@ -22,213 +33,6 @@ import { generateKeyPairSync } from 'node:crypto';
  * spawns inherit that environment, so an env dump there must never print a
  * live write token. The pure argv contract lives in push-args.unit.test.ts.
  */
-
-const { privateKey } = generateKeyPairSync('rsa', {
-  modulusLength: 2048,
-  publicKeyEncoding: { type: 'spki', format: 'pem' },
-  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
-});
-
-const TOKEN = 'sekrit-installation-token';
-const GIT_PATH = '/usr/bin/git';
-const BRANCH = 'jimcresswell/mcp-508-slice';
-const REMOTE = 'https://github.com/acme/widgets.git';
-const TRANSFER = `To ${REMOTE}\n   abc1234..def5678  HEAD -> ${BRANCH}\n`;
-
-function capture(): { text: () => string; sink: Pick<NodeJS.WriteStream, 'write'> } {
-  let buffer = '';
-  return {
-    text: () => buffer,
-    sink: {
-      write(chunk: string): boolean {
-        buffer += chunk;
-        return true;
-      },
-    },
-  };
-}
-
-interface GitCall {
-  readonly file: string;
-  readonly args: readonly string[];
-  readonly cwd: string;
-  readonly env: Readonly<Record<string, string | undefined>>;
-}
-
-/**
- * Value-returning git seam (the Result pattern): a non-zero exit is a RESULT,
- * never a throw. `pushes` answers successive pushes in order, the last answer
- * standing for any push after it. `viaSink` answers as the real file-backed
- * executor does when given an output sink: the output replayed to the sink,
- * none in the result.
- */
-function gitFake(
-  overrides: {
-    revParse?: GitCommandResult;
-    push?: GitCommandResult;
-    pushes?: readonly GitCommandResult[];
-    viaSink?: boolean;
-  } = {},
-): {
-  gitExecutor: GitExecutor;
-  calls: GitCall[];
-} {
-  const calls: GitCall[] = [];
-  const pushes = [...(overrides.pushes ?? [])];
-  const gitExecutor: GitExecutor = (file, args, options) => {
-    calls.push({ file, args, cwd: options.cwd, env: options.env });
-    if (args[0] === 'rev-parse') {
-      return overrides.revParse ?? { status: 0, signal: null, stdout: `${BRANCH}\n`, stderr: '' };
-    }
-    const next = pushes.length > 1 ? pushes.shift() : pushes[0];
-    const answer = next ??
-      overrides.push ?? { status: 0, signal: null, stdout: '', stderr: TRANSFER };
-    if (overrides.viaSink !== true || options.onOutput === undefined) {
-      return answer;
-    }
-    options.onOutput(`${answer.stdout}${answer.stderr}`);
-    return { ...answer, stdout: '', stderr: '' };
-  };
-  return { gitExecutor, calls };
-}
-
-/** GitHub's refusal at the ref advertisement, as git printed it on 2026-09-28, renamed to the fixture's repository. */
-const REFUSED_PUSH: GitCommandResult = {
-  status: 128,
-  signal: null,
-  stdout: '',
-  stderr:
-    'remote: Permission to acme/widgets.git denied to jimbot-oakington-iii[bot].\n' +
-    `fatal: unable to access '${REMOTE}/': The requested URL returned error: 403\n`,
-};
-
-const PUSHED: GitCommandResult = { status: 0, signal: null, stdout: '', stderr: TRANSFER };
-
-/**
- * Serves the mint endpoints and records every call URL and body. Successive
- * mints answer `tokens` in order, the last standing for any mint after it.
- */
-function mintFetch(...tokens: readonly string[]): {
-  fetchImpl: GithubApiFetch;
-  urls: string[];
-  bodies: { url: string; body: string }[];
-} {
-  const urls: string[] = [];
-  const bodies: { url: string; body: string }[] = [];
-  const answers = tokens.length === 0 ? [TOKEN] : [...tokens];
-  const fetchImpl: GithubApiFetch = (url, init) => {
-    urls.push(url);
-    if (init?.body !== undefined) {
-      bodies.push({ url, body: String(init.body) });
-    }
-    if (url.endsWith('/installation')) {
-      return Promise.resolve({ status: 200, json: () => Promise.resolve({ id: 55 }) });
-    }
-    const token = answers.length > 1 ? answers.shift() : answers[0];
-    return Promise.resolve({
-      status: 201,
-      json: () => Promise.resolve({ token, expires_at: '2026-08-06T10:00:00Z' }),
-    });
-  };
-  return { fetchImpl, urls, bodies };
-}
-
-const BASE_ENV = { PATH: '/usr/bin', HOME: '/test-home' } as const;
-
-const STORE_DIR = '/fake-secret-store/merge-bot-push-x1';
-
-interface TokenWrite {
-  readonly path: string;
-  readonly content: string;
-  readonly mode: number;
-}
-
-/** Records every prefix, write and removal; no filesystem is ever touched. */
-function tokenStoreFake(overrides: Partial<TokenFileStore> = {}): {
-  store: TokenFileStore;
-  prefixes: string[];
-  writes: TokenWrite[];
-  removed: string[];
-} {
-  const prefixes: string[] = [];
-  const writes: TokenWrite[] = [];
-  const removed: string[] = [];
-  return {
-    store: {
-      mkdtemp: (prefix) => {
-        prefixes.push(prefix);
-        return STORE_DIR;
-      },
-      writeFile: (path, content, mode) => {
-        writes.push({ path, content, mode });
-      },
-      remove: (dir) => {
-        removed.push(dir);
-      },
-      ...overrides,
-    },
-    prefixes,
-    writes,
-    removed,
-  };
-}
-
-function runPush(input: {
-  readonly args?: readonly string[];
-  readonly git?: ReturnType<typeof gitFake>;
-  readonly fetch?: ReturnType<typeof mintFetch>;
-  readonly store?: ReturnType<typeof tokenStoreFake>;
-  readonly overrides?: Partial<MergeBotCliInput>;
-}): {
-  exit: Promise<number>;
-  out: () => string;
-  errText: () => string;
-  calls: GitCall[];
-  urls: string[];
-  bodies: { url: string; body: string }[];
-  prefixes: string[];
-  writes: TokenWrite[];
-  removed: string[];
-} {
-  const out = capture();
-  const errSink = capture();
-  const { gitExecutor, calls } = input.git ?? gitFake();
-  const { fetchImpl, urls, bodies } = input.fetch ?? mintFetch();
-  const { store, prefixes, writes, removed } = input.store ?? tokenStoreFake();
-  const exit = runMergeBotCli({
-    args: ['push', ...(input.args ?? [])],
-    env: { HOME: '/test-home' },
-    stdout: out.sink,
-    stderr: errSink.sink,
-    fetchImpl,
-    readFileImpl: () => Promise.resolve(privateKey),
-    readConfigFileImpl: () =>
-      JSON.stringify({ appSlug: 'jimbot-oakington-iii', appId: '4352989', repo: 'acme/widgets' }),
-    repoRoot: '/repo',
-    runGitImpl: () => 'worktree /repo\n',
-    nowEpochSeconds: () => 1_800_000_000,
-    gitExecutor,
-    gitPath: GIT_PATH,
-    baseEnv: BASE_ENV,
-    tokenFiles: store,
-    ...input.overrides,
-  });
-  return {
-    exit,
-    out: out.text,
-    errText: errSink.text,
-    calls,
-    urls,
-    bodies,
-    prefixes,
-    writes,
-    removed,
-  };
-}
-
-function pushCall(calls: readonly GitCall[]): GitCall | undefined {
-  return calls.find((call) => call.args.includes('push'));
-}
 
 /**
  * A library-shaped fixture that THROWS: the boundary translations under test
@@ -562,72 +366,6 @@ describe('merge-bot push outcomes and refusals', () => {
     expect(run.errText()).toContain('non-fast-forward');
     expect(run.out()).not.toContain(TOKEN);
     expect(run.errText()).not.toContain(TOKEN);
-  });
-
-  it('tries a push GitHub refused before the hook ran again, and reports the push that went through', async () => {
-    const run = runPush({
-      args: ['--json'],
-      git: gitFake({ pushes: [REFUSED_PUSH, PUSHED], viaSink: true }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
-
-    expect(await run.exit).toBe(0);
-    expect(JSON.parse(run.out())).toEqual({ kind: 'pushed', branch: BRANCH, remote: REMOTE });
-    expect(run.errText()).toContain('denied to jimbot-oakington-iii[bot]');
-    expect(run.errText()).toContain('GitHub refused attempt 1 of 3 before the pre-push hook ran');
-    expect(run.errText()).toContain('abc1234..def5678');
-    expect(run.errText()).not.toContain(TOKEN);
-  });
-
-  it('mints a fresh token per attempt: GitHub refuses the first token, and the second lands', async () => {
-    const store = tokenStoreFake();
-    const refusedToken = 'installation-token-refused';
-    const gitExecutor: GitExecutor = (_file, args) =>
-      args[0] === 'rev-parse'
-        ? { status: 0, signal: null, stdout: `${BRANCH}\n`, stderr: '' }
-        : store.writes.at(-1)?.content === refusedToken
-          ? REFUSED_PUSH
-          : PUSHED;
-    const run = runPush({
-      git: { gitExecutor, calls: [] },
-      fetch: mintFetch(refusedToken, 'installation-token-fresh'),
-      store,
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
-
-    expect(await run.exit).toBe(0);
-    expect(run.errText()).toContain('GitHub refused attempt 1 of 3');
-    expect(run.errText()).not.toContain('installation-token');
-  });
-
-  it('surfaces the third refusal as an operational failure, each refusal shown', async () => {
-    const run = runPush({
-      args: ['--json'],
-      git: gitFake({ pushes: [REFUSED_PUSH] }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
-
-    expect(await run.exit).toBe(1);
-    expect(run.out()).toBe('');
-    expect(run.errText().match(/returned error: 403/gu)).toHaveLength(3);
-    expect(run.errText()).toContain(
-      'GitHub refused the push 3 times before the pre-push hook ran, each refusal shown above; nothing was pushed',
-    );
-  });
-
-  it('never tries again a push that failed after the hook ran', async () => {
-    const afterGate: GitCommandResult = {
-      ...REFUSED_PUSH,
-      stderr: `Running pre-push checks...\nPre-push checks completed!\n${REFUSED_PUSH.stderr}`,
-    };
-    const run = runPush({
-      git: gitFake({ pushes: [afterGate, PUSHED], viaSink: true }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
-
-    expect(await run.exit).toBe(1);
-    expect(run.errText().match(/Running pre-push checks/gu)).toHaveLength(1);
-    expect(run.errText()).not.toContain('trying again');
   });
 
   it('never lets an EMPTY token reach git — the run fails first', async () => {
