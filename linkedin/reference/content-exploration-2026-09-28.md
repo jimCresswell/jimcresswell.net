@@ -1,6 +1,6 @@
 # LinkedIn content exploration — first round
 
-28 September 2026 · Repository edition 1.0 · Historical first exploration
+28 September 2026 · Version 1.0 · Historical first exploration
 
 This exploration records three alternatives considered before the [complete profile draft](../profile-draft.md). It preserves the professional analysis and unadopted wording from that first round; its references to a next conversation describe that earlier stage. See the [current editing notes](../editing-notes.md), [contribution analysis](contribution-analysis.md) and [dated profile baseline](current-profile-2026-09-27.md) for the working account. These alternatives are not approved LinkedIn copy or evidence of reader effects.
 
@@ -10,7 +10,7 @@ The most useful change is to make more of your contribution understandable in th
 
 Adding a comprehensive inventory would leave much of that problem intact. Someone could learn that you have worked in engineering, cosmology and research without understanding anything consequential about your work. Equally, an elegant story about origination could make delivery, teaching and sustained organisational work look like preliminary stages of the “real” contribution. They deserve to be understood on their own terms.
 
-This first round therefore explores different selections and relationships. It does not choose a headline, promise an audience effect or supply an approved rewrite. Your answer about the conversations you would welcome remains open. No vacancy, exclusive audience or wish to solicit opportunities is assumed.
+This first round therefore explores different selections and relationships. It does not choose a headline, promise an audience effect or supply an approved rewrite.
 
 ## What value would the content provide?
 

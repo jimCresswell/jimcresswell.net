@@ -18,14 +18,14 @@ import { readRegistry } from '../src/commit-queue/registry';
 import type { CommitIntent, CommitQueueClaimsFile } from '../src/commit-queue/types';
 import { resolveTrustedGit } from '../src/core/trusted-git';
 
-export const CLAIM_ID = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+const CLAIM_ID = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
 export const INTENT_ID = '11111111-1111-4111-8111-111111111111';
 export const RENAME_SOURCE = 'notes/current.md';
 export const RENAME_DESTINATION = 'notes/active.md';
 export const COMMIT_SUBJECT = 'feat(f138): stage from the linked worktree';
 export const REGISTRY_REL = '.agent/state/collaboration/active-claims.json';
 
-export const agentId = {
+const agentId = {
   agent_name: 'Prismatic Waxing Constellation',
   platform: 'claude-code',
   model: 'test-model',
@@ -33,7 +33,7 @@ export const agentId = {
   id: uuidV5Schema.parse('e2e793c7-923e-5baa-97f0-2bedfb9b6b50'),
 };
 
-export const seedClaimsFile: CommitQueueClaimsFile = {
+const seedClaimsFile: CommitQueueClaimsFile = {
   schema_version: '1.4.0',
   claims: [
     {
@@ -50,9 +50,9 @@ export const seedClaimsFile: CommitQueueClaimsFile = {
 
 // Store-live timestamps: the per-intent store expires entries one hour
 // after updated_at, so the fixture anchors to the wall clock.
-export const SEED_QUEUED_AT = new Date(Date.now() - 60 * 1000).toISOString();
+const SEED_QUEUED_AT = new Date(Date.now() - 60 * 1000).toISOString();
 
-export const seedIntent: CommitIntent = {
+const seedIntent: CommitIntent = {
   intent_id: INTENT_ID,
   claim_id: CLAIM_ID,
   agent_id: agentId,
@@ -67,8 +67,8 @@ export const seedIntent: CommitIntent = {
 
 /**
  * The built CLI entry the smoke invokes, as production does: plain `node`, no
- * loader. `test:e2e` builds before the smoke runner, and the per-file
- * `smoke:commit-queue-worktree` script builds first.
+ * loader. `test:e2e` builds before the smoke runner runs it; run alone, it
+ * needs a build first.
  */
 export const BIN = join(
   fileURLToPath(new URL('..', import.meta.url)),

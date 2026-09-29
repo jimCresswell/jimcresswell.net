@@ -22,8 +22,8 @@ AI.
 - Psychological context that reveals inner states or personal vulnerabilities
 - Raw personal quotes
 - Career breadth details: specific roles, employers, and biographical items not already visible on
-  the published site
-- Third-party names without explicit consent
+  the published site, outside the LinkedIn workspace authorisation below
+- Third-party names without explicit consent, beyond the bibliographic attribution rule 2 allows
 - Biographical details that narrow physical location beyond what is publicly known
 
 ### Public (version-controlled)
@@ -32,8 +32,10 @@ AI.
 - Published content: positioning paragraphs, capabilities, front page narrative
 - Technical architecture, code, tests, configuration
 - Plan files (written as if they will be public — see [secops.md](secops.md))
-- Owner-authorised non-sensitive LinkedIn drafts, research and professional evidence in
-  [`linkedin/`](../../linkedin/README.md), under the dated scope below
+- Owner-authorised non-sensitive LinkedIn material in [`linkedin/`](../../linkedin/README.md), as
+  listed and limited in the dated [authorisation][linkedin-authorisation] below
+
+[linkedin-authorisation]: #linkedin-workspace-authorisation--28-september-2026
 
 ## Rules
 
@@ -42,6 +44,14 @@ AI.
 
 2. **Third-party individuals must not be named in version-controlled files without explicit
    consent.** Reference them indirectly or store the detail in the private editorial repository.
+   Bibliographic attribution, crediting another's published work used as a source by naming its
+   authors as the work records them with a link to it, is governed on every surface by
+   [documentation-hygiene](../rules/documentation-hygiene.md); this rule governs naming a person
+   beyond a citation. Jim's co-authors on his papers are named only in `linkedin/`, in full, under
+   the LinkedIn workspace authorisation (Jim's word of 28 September 2026 for one of his papers; the
+   other follows by the same concept). LinkedIn recommendations, endorsements and posts are
+   activity, not cited works: recommenders, colleagues named otherwise, and a role, relationship,
+   member identity, correspondence or activity beyond a citation need consent.
 
 3. **Biographical details that narrow physical location beyond "UK" require explicit approval.**
    Borough-level ("Hackney") is acceptable in published content. Year, ward, and party for political
@@ -58,20 +68,29 @@ AI.
    utilities may traverse ignored nested repositories. Exclude the private boundary explicitly
    whenever a tool's scope is broader than tracked files.
 
-## Private editorial material
-
-### LinkedIn workspace authorisation — 28 September 2026
+## LinkedIn workspace authorisation — 28 September 2026
 
 Jim authorised a local repository workspace for the first LinkedIn draft and all non-sensitive
 LinkedIn material. That material belongs in [`linkedin/`](../../linkedin/README.md): professional
 profile content, general research, public bibliographic attribution and editorial analysis of the
 work. This supersedes the earlier blanket private-only rule for those materials. It does not
 authorise disclosure of personal vulnerabilities, private correspondence, account details,
-third-party activity records or sensitive source material. Exact approval is still required
-before transferring proposed copy to LinkedIn; local preparation is not publication or push
-authority. Preserve historical source records and keep confidential material in its existing home.
+third-party activity records or sensitive source material. Exact approval is still required before
+transferring proposed copy to LinkedIn. On the repository and LinkedIn, Jim's word of the same day:
+"The repo content is repo content, normal rules, commit, push, merge. Writing the content to
+linkedin is a separate activity with separate authority. Putting it in the repo is fine, linkedin
+publishing requires my request". Preserve historical source records and keep confidential material
+in its existing home.
 
-### Confidential source boundary
+**Reach.** This file's reading of the authorisation: for `linkedin/` only, and only as far as each
+entry states, this authorisation qualifies two Private categories above: career breadth details, and
+third-party names through rule 2's `linkedin/` clause. It changes where the listed material lives,
+not the confidentiality of private editorial material: §Private editorial material below applies
+inside `linkedin/` unchanged, so private material is never quoted, summarised or identified there.
+Every other category and rule in this file applies inside `linkedin/` unchanged, and secops.md's
+public-visibility audit covers `linkedin/` too.
+
+## Private editorial material
 
 Private editorial material — source packs, evidence, drafts and their history — may exist on a
 machine as an ignored nested repository under `.agent/reference-local/`. It is optional and

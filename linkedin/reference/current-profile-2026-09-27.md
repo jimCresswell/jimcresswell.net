@@ -1,6 +1,6 @@
 # Recorded LinkedIn profile — 26–27 September 2026
 
-Repository edition prepared 28 September 2026. This is the dated professional-content baseline,
+Prepared 28 September 2026. This is the dated professional-content baseline,
 not the proposed revision or a fresh inspection. Quoted wording and field values preserve the
 recorded profile, including stale wording and errors. “Works”, “Gap” and “Disposition” are the
 assessment made at that checkpoint, not text on LinkedIn.
@@ -26,7 +26,7 @@ Older open questions below are historical where these corrections answer them.
 
 The portrait was legible in the inspected views. The education association truncated at one
 observed width. These are recorded visual observations, not external-reader or native-mobile
-testing. No standalone screenshots accompany this edition.
+testing. No standalone screenshots accompany this record.
 
 ## Experience — 14 recorded entries
 
@@ -142,7 +142,7 @@ Works: substantive inquiry, methods and collective data production. Gap: long ex
 
 ### E14 — Systems Engineer, Hewlett-Packard Laboratories
 
-April 2009–November 2010; 1 year 8 months; Greater Bristol Area. 6 skills. Organisation link resolves to Hewlett Packard Enterprise in skill insights, while role displays Hewlett-Packard Laboratories.
+April 2009–November 2010; 1 year 8 months. 6 skills. Organisation link resolves to Hewlett Packard Enterprise in skill insights, while role displays Hewlett-Packard Laboratories.
 
 > Manual test plan design and execution for HP storage product (D2D) software and hardware. That was boring so it quickly evolved into creating a set of test automation scripts which evolved into an (under the radar) team effort to create a Perl based test automation harness and associated tests, which evolved into a sanctioned test automation tool which is still used internally by multiple HP Labs sites.
 
@@ -162,15 +162,15 @@ Works: unusually clear progression from an observed problem through personal ini
 
 [Expanded source](https://www.linkedin.com/in/jimcresswell/details/certifications/). Seven entries, matching root count. Entries are not all current licences; the section combines learning and certification.
 
-| ID  | Entry                                                                                  | Date/status and evidence destination                                                                                                 | Disposition                                                               |
-| --- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
-| C01 | AgilePM Foundation — APMG International                                                | June 2023; [Credly](https://www.credly.com/badges/9c27b6da-b534-4ed3-8743-87fc0e99eec1/public_url); linked Project Management        | Retain                                                                    |
-| C02 | Citizen Science: From Soil to Sky — FutureLearn                                        | March 2018; [certificate](https://www.futurelearn.com/certificates/oazo2db)                                                          | Retain: meaningful continuity with research/public participation          |
-| C03 | Monitoring the Oceans from Space — EUMETSAT — FutureLearn                              | November 2016; [certificate](https://www.futurelearn.com/certificates/02x41uq)                                                       | Retain if representative; low editorial priority                          |
-| C04 | R Programming — Johns Hopkins University — Coursera Course Certificates                | September 2016; [certificate UPDMLQALC9KR](https://www.coursera.org/account/accomplishments/certificate/UPDMLQALC9KR); Data Analysis | Retain, do not equate course with current specialist expertise            |
-| C05 | The Data Scientist’s Toolbox — Johns Hopkins University — Coursera Course Certificates | August 2016; [certificate 5RH9PXVTKE3S](https://www.coursera.org/account/accomplishments/verify/5RH9PXVTKE3S); Data Analysis         | Retain or de-emphasise; no need to promote above work                     |
-| C06 | Fire Marshal Course — Fire Training International                                      | December 2013; no evidence link rendered                                                                                             | Review relevance/current status; removal optional                         |
-| C07 | First Aid at Work — H.S.E.                                                             | Issued May 2013; explicitly expired April 2016; no link                                                                              | Consider removal if it distracts; do not present as current qualification |
+| ID  | Entry                                                                                  | Date/status and evidence destination                               | Disposition                                                               |
+| --- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| C01 | AgilePM Foundation — APMG International                                                | June 2023; Credly evidence link present; linked Project Management | Retain                                                                    |
+| C02 | Citizen Science: From Soil to Sky — FutureLearn                                        | March 2018; certificate link present                               | Retain: meaningful continuity with research/public participation          |
+| C03 | Monitoring the Oceans from Space — EUMETSAT — FutureLearn                              | November 2016; certificate link present                            | Retain if representative; low editorial priority                          |
+| C04 | R Programming — Johns Hopkins University — Coursera Course Certificates                | September 2016; certificate link present; Data Analysis            | Retain, do not equate course with current specialist expertise            |
+| C05 | The Data Scientist’s Toolbox — Johns Hopkins University — Coursera Course Certificates | August 2016; certificate link present; Data Analysis               | Retain or de-emphasise; no need to promote above work                     |
+| C06 | Fire Marshal Course — Fire Training International                                      | December 2013; no evidence link rendered                           | Review relevance/current status; removal optional                         |
+| C07 | First Aid at Work — H.S.E.                                                             | Issued May 2013; explicitly expired April 2016; no link            | Consider removal if it distracts; do not present as current qualification |
 
 ## Skills — 63, ordered as displayed
 
@@ -272,7 +272,7 @@ The 13 remaining role lists and all three degree lists were opened through their
 **PR01 — FT Web App.** September 2011–July 2014; associated with FT Labs and Problem Solving.
 Recorded description: “The FT Web App is a ground breaking media experience providing on and
 offline access to Financial Times content.” Nine other contributors were associated with the
-project. Preserve collaborative credit when editing; this edition does not reproduce their
+project. Preserve collaborative credit when editing; this record does not reproduce their
 LinkedIn identities. [The destination](https://app.ft.com/) rendered on 27 September, but shows
 the current product rather than a preserved 2011–2014 version.
 
@@ -346,7 +346,7 @@ section is not evidence that it has been populated. An absent optional section i
 | About                         | Already populated; not offered in the live Core list      | Revise existing section                                                                                                                         |
 | Education / Position / Skills | Offered; populated                                        | Retain and improve existing entries                                                                                                             |
 | Services                      | Offered; no populated service module on inspected profile | Leave absent unless Jim actually wants to offer a defined service                                                                               |
-| Career break                  | Offered; none rendered among all 14 experience entries    | Leave absent unless needed to explain an actual interval Jim wishes to disclose                                                                 |
+| Career break                  | Offered; none rendered among all 14 experience entries    | Leave absent; no reader need identified                                                                                                         |
 | Featured                      | Offered; verified empty detail view                       | Add a small selection of substantive evidence                                                                                                   |
 | Connected app                 | Offered; verified empty owner prompt                      | Leave absent unless integration contributes relevant work evidence                                                                              |
 | Licenses & certifications     | Offered; seven entries                                    | Retain selectively; review outdated safety courses                                                                                              |

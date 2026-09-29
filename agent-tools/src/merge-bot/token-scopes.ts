@@ -1,4 +1,4 @@
-import { typeSafeHasOwn, typeSafeKeys } from '@engraph/type-helpers';
+import { typeSafeEntries, typeSafeHasOwn, typeSafeKeys } from '@engraph/type-helpers';
 
 /**
  * The bot token's permission policy: which GitHub App permissions each kind of
@@ -149,6 +149,63 @@ export const TOKEN_SCOPES = {
   'workflow-dispatch': {
     actions: 'write',
   },
+
+  /**
+   * Deleting one merged branch ref: what `merge-bot retire` mints, and only
+   * when its proof has planned a remote delete.
+   *
+   * `contents: write` is wider than the act (it also permits pushes to
+   * unprotected branches and tag writes), and GitHub offers nothing narrower
+   * for a ref delete. `workflows` and `pull_requests` are left out: a delete
+   * creates no workflow file and touches no pull request, and the
+   * `pull-request-work` note above is why an unused `workflows: write` must
+   * not sit in memory for an act that never needs it (security D3).
+   *
+   * ## Provenance, 2026-09-28
+   *
+   * A live probe in this repository, under a token minted with this row
+   * alone: the bot created a throwaway branch at main's tip (REST
+   * `POST git/refs`), then deleted it with GraphQL `updateRefs`. A stale
+   * `beforeOid` left the ref in place, answered by a generic GraphQL error
+   * ("Something went wrong while executing your query"), not a named
+   * mismatch; the right `beforeOid` deleted it, and both a REST read and
+   * `git ls-remote` then read it absent. So contents alone suffices, the
+   * compare-and-swap holds, and a failed update is classified by re-reading
+   * the ref, never by the error's text.
+   */
+  'branch-retire': {
+    contents: 'write',
+  },
+
+  /**
+   * Reading one repository's refs through GitHub: its id, its default
+   * branch's name and tip, and one branch ref, in one GraphQL query. It
+   * requests no write of any kind.
+   *
+   * ## Provenance, 2026-09-28
+   *
+   * A live probe in jimCresswell/jimcresswell.net, under a token minted with
+   * this row alone, through the production mint:
+   *
+   * - GitHub's mint response granted exactly `contents: read` and
+   *   `metadata: read`, for this one repository.
+   * - The GraphQL query `merge-bot retire` uses for its ref reads returned
+   *   the repository id, the default branch's name and tip, and the branch
+   *   ref, and `null` for a ref that does not exist.
+   * - GraphQL `updateRefs` itself, the mutation a remote delete sends, was
+   *   refused. The probe asked it to create a throwaway branch at main's tip
+   *   (a zero `beforeOid`). GitHub answered HTTP 200 with `updateRefs: null`
+   *   and a `FORBIDDEN` error, "Resource not accessible by integration", and
+   *   a read-back found no such ref.
+   *
+   * The refused write is the evidence for the grant. The repository is
+   * public, so the successful read alone would show nothing. A port to a
+   * private repository probes this row again there, where the read half
+   * becomes evidence too.
+   */
+  'branch-read': {
+    contents: 'read',
+  },
 } as const satisfies Readonly<Record<string, TokenPermissionSet>>;
 
 /** The closed set of scope names, derived so there is one source. */
@@ -174,7 +231,11 @@ export function isTokenScopeName(value: string): value is TokenScopeName {
   return typeSafeHasOwn(TOKEN_SCOPES, value);
 }
 
-/** The permission names a scope grants, for usage text. */
-export function permissionNamesFor(scope: TokenScopeName): readonly string[] {
-  return typeSafeKeys(TOKEN_SCOPES[scope]);
+/**
+ * The permissions a scope grants, each with its level (`contents: read`),
+ * for usage text: two scopes can share a permission name at different
+ * levels, so a name alone does not say which one writes.
+ */
+export function permissionLevelsFor(scope: TokenScopeName): readonly string[] {
+  return typeSafeEntries(TOKEN_SCOPES[scope]).map(([name, level]) => `${name}: ${level}`);
 }

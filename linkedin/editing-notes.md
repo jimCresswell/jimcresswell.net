@@ -51,6 +51,26 @@ remove repetition that no longer serves those separate jobs.
 
 These points do not prevent reviewing the whole draft. Its open decisions are local and concrete.
 
+### Exact cross-surface differences
+
+The [recorded LinkedIn profile](reference/current-profile-2026-09-27.md) and
+[website role data](../jcdotnet/content/entities.json) disagree in these specific ways. The draft
+follows the recorded LinkedIn dates for the three entries below, and the recorded titles for Code
+Science and FT Labs; its Obaith heading, “Independent Research”, is a proposed label in place of the
+recorded “Founder”. That is a provisional editing basis, not a finding that every LinkedIn field is
+correct.
+
+| Item         | Recorded LinkedIn                                                            | Website role data                                 | Local decision still needed                                                                  |
+| ------------ | ---------------------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Code Science | February 2015–February 2024                                                  | Starts February 2018; no end date                 | Establish the intended consultancy/company chronology without inferring current legal status |
+| Obaith       | January 2018–April 2020; part-time                                           | January 2018–December 2020                        | Settle the end date and any work phases needed by the entry                                  |
+| FT Labs      | Two Software Engineer entries, August 2011–July 2013 and July 2013–July 2014 | One Senior Developer entry, August 2011–July 2014 | Confirm the title history and whether two entries help explain the change in work            |
+
+These are observations of the stored surfaces, not fresh verification of the live website or
+LinkedIn. The website also retains the superseded Oak title and June 2022 Principal start;
+Jim’s January 2021 correction governs the draft. Reconcile the website separately when that
+editing is authorised. The credential differences below remain distinct checks.
+
 ## Evidence and qualifications
 
 The [dated profile baseline](reference/current-profile-2026-09-27.md) establishes the recorded
@@ -63,9 +83,8 @@ testimony.
 The two publication synopses were checked directly against their arXiv abstracts and metadata
 on 28 September: [galaxy bias](https://arxiv.org/abs/0808.1101) and
 [cosmic topology](https://arxiv.org/abs/astro-ph/0512017). They use “we” for collaborative research.
-Preserve the full author credit when maintaining the publication fields: James G. Cresswell
-and Will J. Percival for the first; James G. Cresswell, Andrew R. Liddle, Pia Mukherjee and
-Alain Riazuelo for the second. Do not invent LinkedIn member associations for those authors.
+Preserve the full author credit, as recorded on arXiv, when maintaining the publication fields.
+Do not invent LinkedIn member associations for the co-authors.
 
 AgilePM Foundation and the two individual Johns Hopkins courses are the verified profile
 labels. The website’s Practitioner/Specialization labels require a separate reconciliation.

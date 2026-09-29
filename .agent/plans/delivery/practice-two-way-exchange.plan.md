@@ -18,6 +18,8 @@ ratified_where: >-
   Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21, and by those of
   2026-09-23 in §Rulings of 2026-09-23, and by the owner's words of 2026-09-24, recorded
   verbatim in §Rulings of 2026-09-24.
+  The ratification of 2026-09-28 (the close bar for goal one) is recorded verbatim in §Rulings
+  of 2026-09-28.
 serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
@@ -26,7 +28,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-28
+last_updated: 2026-09-29
 ---
 
 # Practice exchange
@@ -197,6 +199,82 @@ a plan for exploring that Practice delta, and any other advancements that have h
 time we get to it. We have also developed our Practice beyond theirs. We will need a thoughtful
 two way exchange to bring both Practices up to the highest level that either of them define."
 
+## Rulings of 2026-09-28
+
+The owner's word on 2026-09-28, given through the question tool to the Director (Wick binds
+Temper, ed7b48), who relayed it to both exchange seats, ruling 40 at 16:2xZ and rulings 41 to 44
+by 18:1xZ; verbatim where quoted. The numbering continues from the rulings above. Terms: goal
+one is ruling 35's first purpose (this estate's J rows into the lineage); the batch-six triage is
+`.agent/reports/practice-transplant/batch-six-triage-2026-09-25.md` (state key BRING, COMPARE,
+LOCAL, PARITY, UNCLEAR); "settled" in the bar is the register's "landed" (§Disposition
+vocabulary: a §Landings row without `PARTIAL`); "Not taken" is the outcome the lineage's own
+node names in its §Acceptance criteria. The residue census is ruling 40's first act, in the
+lineage's tree at `.agent/reports/practice-exchange/goal-one-residue-census-2026-09-28.md`
+(todo 6); its three cards for the owner are answered as rulings 41 to 43.
+
+40. The close charter for goal one, ratified as drafted: the selected option verbatim, "Ratify
+    as drafted (Recommended)". The ratified bar: goal one is closed when (1) every owed J row
+    reads settled in the register, or declined by the lineage with the reason recorded (the
+    lineage node's "Not taken"); a PARTIAL whose remainder the batch-six triage classes LOCAL
+    or PARITY is settled by a §Landings row citing the triage, not by a PR; (2) todo 8 on both
+    estates: the doctrine twin and the gate's twin landed; (3) the lessons batch (ruling 36)
+    and the sub-agent comparison (ruling 37) delivered as register rows, landed or declined;
+    (4) todo 7's re-pin recorded, forty-character ids, the driver failing closed; (5) the
+    register's count reads N of N beside both heads and todo 6 records the close with the
+    owner's word. Then "then we review" opens: the inbound direction and the installable
+    entity, outside goal one's close bar (ruling 44: the inbound direction stays this node's
+    todo 4, after the review). The order: a residue census first (one line per owed row, the
+    triage's BRING items minus the landings; a records commit on the lineage's coordination
+    branch, no PR of its own), then todo 6, then the unlanded rows in the triage's order (the
+    code rows sliced to the optimum, the text rows one PR each), the partials' remainders as
+    the census names them, the doctrine twin and the gate's twin closing todo 8, the lessons
+    and the comparison as two rows, the re-pin last; the
+    charter reopens if the census names more than thirty PRs. The owner owns the bar and the
+    declines, the lineage's exchange seat the landings and the register, the Director the order
+    and the count.
+
+41. J11's exchange instrument, on the census's card: the selected option verbatim, "Decline with
+    the reason (Recommended)". The instrument (this register's validator, its smoke and its root
+    script) validates this estate's register, which the lineage does not hold; the lineage
+    records it as Not taken with that reason, and the loss-scan instrument stays J11's one
+    residue pull request.
+42. J17's note 1, the gate-running doctrine, on the census's card: first "Run it through the
+    decision matrix, we don't choose between options, we create the best from what we know",
+    then, on the Director's reading by the decision method, "Confirm the reading
+    (Recommended)". The reading: this estate's ratified node `commit-as-the-full-local-gate`
+    (the owner's card of 2026-09-24) converges both estates in both directions. The lineage's
+    words land here (that node's slices D, E and F, the hook change, the prose sweep and the
+    gates skills: "the commit is the gate; never run gates by hand" in the five homes its D
+    names, the same bytes) and this estate's mechanism lands in the lineage (the triage's note
+    4, the gate slot in the lineage's own code). Note 1 settles by a §Landings row citing the
+    node; notes 4 and 8 keep their pull requests. The census's card re-asked a question the
+    triage's own paragraph ("One question the triage raised, answered from the record") had
+    already read; that is recorded against the Director's seat, which carded it without
+    re-reading the triage, not against the census.
+43. The register's count, on the census's card: first "What does owed mean? That sounds liked
+    parked, which is forbidden for very good reason. Use the cognitive skills", then, on the
+    Director's synthesis by concept exploration, "Ratify the flow contract and Nova's lane
+    (Recommended)". The flow contract: "owed" leaves the register's rule text; a row is in one
+    of four states and no fifth, landed (the proof), in flight (the pull request number or the
+    seat's named lane), queued (its position in the census's order, the seat, and the horizon
+    from the observed pace, in the same breath) or declined (the reason; the owner's word where
+    the row is ratified); the count reads in residue pull requests (the census's 24), landed of
+    total, beside both heads; a count that does not fall between two folds (the count that
+    falls is the remainder, total less landed) is routed as a failure, never re-labelled, and a
+    row queued across two folds with no movement is routed. Nova's lane: Nova turns Penumbra
+    (8a94ba) joins the residue on J6 (the smoke runner, three pull requests) and J8
+    (corpus-analysis and workflow-build, two) after that seat's open pull request here. The
+    Director's order on the other seats, with the ratification: Siren herds Rudder (158275),
+    this estate's seat, on J3's shellcheck slice and on the register's settling rows (J15, J19
+    and J23 citing the triage; J11's decline); the lineage's exchange seat, Myrtle turns Canopy
+    (bf4957), on J1's N1, J2 and the other partials (J10, J17's notes 4 and 8, J18, J21); the
+    census's order otherwise stands.
+44. Ruling 40's scope, on the fourth card: the selected option verbatim, "Confirm: inbound
+    stays in the node (Recommended)". Ruling 40's line reads "outside goal one's close bar":
+    the inbound direction (this estate's landings from the lineage) remains this node's todo 4,
+    after the review; what opens after the bar is the review of both Practices and the
+    installable entity.
+
 ## Problem
 
 Two living Practice instances share an ancestor: the lineage commit this transplant was pinned
@@ -350,9 +428,41 @@ entries composed whole and appended in one write.
 2. The concept rows and the register (one pull request, prose-class, the intake contract
    declared at open), then the register validator (one pull request, code-class).
 3. The cards for conflicting rows, one batch.
-4. Inbound landings, one pull request per eight claims, in the register's order.
+4. Inbound landings, one pull request per eight claims, in the register's order, after goal
+   one's close and the review that follows it (ruling 44).
 5. The outbound note and material, delivered through the join ceremony.
-6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+6. The close, on the owner's ratified bar (ruling 40), one pull request, prose-class, when the
+   bar is met: every J row inside the register's count (§Disposition vocabulary: a lineage cell
+   not beginning `decline`, `graduated into`, `origin`, `none`, `local` or `records, not
+   portable`; ruling 40's "owed" rows) landed by the register's rule (a §Landings row without
+   `PARTIAL`) or declined by the lineage with its reason (a PARTIAL whose remainder the triage
+   classes LOCAL or PARITY landed by a §Landings row citing the triage); todo 8 on both estates
+   (its text cure and its validator); the lessons batch and the sub-agent comparison as
+   register rows; todo 7's re-pin recorded; the register reading N of N beside both heads, and
+   this todo recording the close with the owner's word. The residue census of 2026-09-28 (in
+   the lineage's tree, `.agent/reports/practice-exchange/goal-one-residue-census-2026-09-28.md`,
+   records commit SHA:a9c9d1bf8 on its coordination branch until the fold, then its main)
+   opened it: 21 rows for the lineage by the register's own rule (J5's lineage cell reads
+   `graduated into L9`, J12's `decline`), 4 landed, 11 partial, 6 with no landing, 20 residue
+   PRs (24 with this todo, the lessons, the comparison and the re-pin), three cards for the
+   owner, answered on 2026-09-28 as rulings 41 to 43. The count runs under ruling 43's flow
+   contract: every row landed, in flight, queued or declined, no fifth state; the count in
+   residue pull requests, landed of total (N of 26: the census's 20 residue pull requests, two
+   more from J3's design read of 2026-09-28 18:3xZ, which split its one slice into three on the
+   Director's word, and the four charter acts; the 4 rows landed before the census sit outside
+   it; the register's §The count carries N with the heads read, the Director's check-ins read
+   it); a remainder (total less landed) that does not fall between two folds routed as a
+   failure, never re-labelled. Seats (ruling 43): the lineage's exchange seat on J1's N1, J2
+   and the partials J10, J17 (notes 4 and 8), J18 and J21; Nova turns Penumbra on J6 and J8;
+   Siren herds Rudder on J3's three and the register's settling rows (J15, J19 and J23 citing
+   the triage; J11's decline); the census's order otherwise stands (J16 rides J1's N1; J20
+   carries J15's rider), and the rows the order names no seat for, J11's loss-scan and J20's
+   tsconfig flags with the warnings pull request shared with J17 and J21, are the lineage's
+   exchange seat's after its partials. The horizon, at the census's observed pace of nine
+   landings a day across the seats: about three days from the recount for the 25 remaining,
+   refreshed at each fold. §Close's provenance, audit and Box steps, and the doctrine
+   amendments as register candidates, stay the node's, after the bar. Next act after this
+   amendment lands: the census's order, J1's N1 (the rule-generator slice) first.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
@@ -365,7 +475,16 @@ entries composed whole and appended in one write.
    ADRs, none of which exist here (PDR-011 alone cites the lineage's ADR-150 seven times). The
    cure is the authoring estate's text; the class closes with a Core validator that refuses an
    ADR citation in a PDR, offered in the outbound note. Copilot's observation on pull request
-   145 (review 5268801620), verified and widened, routed here below the bar.
+   145 (review 5268801620), verified and widened, routed here below the bar. Done in this
+   estate on 2026-09-28. The text cure landed in three slices by concept family, merge
+   commits SHA:28333882 (PR 244), SHA:63f48914 (PR 245) and SHA:22e97b52 (PR 246). The Core holds
+   no ADR identifier, the census is deleted, and `validate-core-adr-citations` is strict-only.
+   The lineage takes the same bytes in its own pull requests. The validator's twin there is
+   the lineage's exchange seat's after its pull request 296, one pull request of the J1 kind
+   (the Director's ruling of 2026-09-29 01:2xZ, verified first-hand: no such validator in the
+   lineage's chain), recorded here under todo 8 and not as a J row; the lineage's count reads
+   30 with it. Its number is 301, opened 2026-09-29 02:33Z and merged as SHA:eb1ad3f80 at 2026-09-29T03:19:24Z:
+   the twin is landed on both estates and the condition holds.
 
 ## Plan-body first-principles check
 
@@ -418,3 +537,7 @@ the routing rationale. Read and dispositioned at pickup before implementation be
 | 2026-09-28 | The whole-path guard's class check | Nothing checks at run time that the profile root, its parent, `repos/`, `machines/` and each document are owned by the operator and not writable by group or others. A non-owner able to write the root can plant conforming documents, a larger route than any link. | Scheduled after the L1 flow-back, on the Director's word of 2026-09-28: a StrictModes-style ownership and mode check (POSIX only), which refuses the non-owner route at run time. |
 | 2026-09-28 | The whole-path guard's class check (one instance, not probed) | A check that runs while another seat pulls may read a document mid-write: git removes each changed file and recreates it at its final path, with no temporary file and rename, so a concurrent reader can see it absent, empty or partly written. A complete frontmatter over a cut body would pass. | An observation (`one-instance-is-an-observation`): recorded, not acted on. A second instance, or a probe that shows it, makes it a finding. The classes that remove it are a snapshot read or serialising the check against the sync. |
 | 2026-09-28 | The re-scope's security check (reproduced) | After a pull that conflicts, the tool prescribes `pnpm profile:sync push` as the cure, but the push leg's `commit --only` fails during a merge ("cannot do a partial commit during a merge"), so the prescribed cure cannot complete. Pre-existing. | Known broken: routed to the Director for a slot, as its own small change in both estates. Cured here 2026-09-28: during a merge the push first refuses a document that still holds a conflict marker, then concludes the merge with the whole index (`operator-profile-git-merge.ts`, proven by a real-git smoke). The lineage twin follows. |
+| 2026-09-28 | PR 242, Copilot on the settlement head (thread on `retire-execute-remote.ts:105`) | With no remote delete due nothing is minted, so the remote reading is git's. Under an operator's `insteadOf` rewrite of the identity repository's URL to a repository lacking the branch, "remote: absent" describes that repository, not the identity's. Verified against the code; `retire-cli.ts`'s header states the limit. | Rejected as a cure in PR 242: after round two, signed lines only. No ref is deleted unproven: the local names go on commit ancestry against the default git read. The cure reads the remote through GitHub on every run, so it mints a token when nothing remote is deleted, and a scope must be chosen (a read-only scope, or the retire scope). The thread's signed line put the scope question in the git-port follow-up; that follow-up stays a pure refactor, so the question moves to a small JC.net pull request after it, before the lineage port copies the command. |
+| 2026-09-28 | PR 242, Copilot on the settlement head (thread on `retire-git-read.ts:179`) | `for-each-ref` omits a dangling symbolic ref (`refs/heads/<b> -> <gone>`), as `git branch --list` does, so the command reports nothing to retire where `git branch -d` deletes it. Reproduced on git 2.50.1. | Rejected as a cure in PR 242: after round two, signed lines only. The ref names no commit, so no work is at stake. Routed to the same small pull request: a raw read of both exact names (`symbolic-ref --quiet`) that tells a dangling symbolic ref apart from an absent ref. The git-port design review (code-expert) found that any change to the symbolic refusal needs two things first: this read, and the in-use check reading each worktree's `HEAD` with `symbolic-ref --no-recurse`, since `git worktree list` names the branch an alias resolves to. |
+| 2026-09-28 | PR 242's settlement gateway review (code-expert, below the bar) | The config section's removal on the absent paths has a wider window than `git branch -d`'s. The window runs from the first listing through the network reads, so a same-name branch created mid-run loses its upstream section. No ref is deleted and no report is false. | Routed to the same small pull request: re-list `refs/heads/<b>` just before the removal, and skip it when the ref is there, which brings the window level with git's. |
+| 2026-09-28 | PR 257 and the transplant-residue PR, docs-adr-expert reads | The ui-design skill family is sibling-repository residue: `visual-comparison` SKILL :6, :26-35, :55 (absent showcase tools, DDR-009, a width guard); `visual-verification` SKILL :12, :40, :44 (an unported probe; one viewport, not configured viewports); `claude-design-conversion-playbook.md` :166-168, :182-231 and `claude-design-pipeline` SKILL :25, :102-110 (the absent fidelity package, a false depcruise note); `ui-visual-design` SKILL and `references/craft-fundamentals.md` (the sibling's design system: its classes, 44px floor, motion values, DDR-004 themes, an absent design-system-usage skill) | The owner's word (20:5xZ, in two parts): "Leave it until the review, the fundamental design skills need extracting from the context specific design skills. Ultimately the Practice serves any Practice repo"; then "perhaps some skills belong in the Practice, and some belong as Practice extension skills, plug in innovation building blocks with skills that cover certain domains, such as UI design, API design, etc". The concept: the review draws, per skill family, the line between the Practice's core skills and Practice extension skills (plug-in building blocks per domain, which an estate installs as it needs); the ui-design family is the first candidate extension pack. Routes to the review that follows goal one (ruling 44). |

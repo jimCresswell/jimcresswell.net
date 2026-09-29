@@ -1,9 +1,20 @@
 import { ok, type Result } from '@engraph/result';
 
+import { delay } from '../core/delay.js';
+
 import type { GitExecutor } from './git-executor.js';
 import { mintForConfig, type MintSeams } from './mint-for-config.js';
 import type { GithubApiFetch } from './mint-installation-token.js';
 import { parsePushArgs, PUSH_USAGE, type PushArgs } from './push-args.js';
+import {
+  FAILED_ATTEMPT,
+  isAdvertisementRefusal,
+  keptForRefusal,
+  pushWithRetry,
+  type PushAttempt,
+} from './push-attempts.js';
+import { writePushed, writeRefusal } from './push-report.js';
+import { refuseTargetBranch } from './push-target.js';
 import { RefFormatOracleUnavailableError } from './ref-format.js';
 import {
   currentBranch,
@@ -29,13 +40,11 @@ import {
  * `merge-cli.ts`'s header): the push IS the git binary — every byte of
  * transfer behaviour, hook execution and non-fast-forward detection is git's,
  * and this command re-implements none of it. What is built here is what no
- * binary provides: the bot identity, the credential injection, and the typed
- * refusals. Which is also why there is no force flag and no `--no-verify`
+ * binary provides: the bot identity, the credential injection, the typed
+ * refusals, and the bounded retry of GitHub's refusal before the hook runs
+ * (`push-attempts.ts`). Which is also why there is no force flag and no `--no-verify`
  * pass-through: a bypass would be built value, and this one is never built.
  */
-
-/** Branch names that never take a direct push; the never-commit-to-main rule as behaviour. */
-const DEFAULT_BRANCH_NAMES: ReadonlySet<string> = new Set(['main', 'master']);
 
 /** The action's composition surface; cli.ts forwards its own injection seams. */
 export interface PushActionInput {
@@ -47,6 +56,8 @@ export interface PushActionInput {
   readonly fetchImpl?: GithubApiFetch;
   readonly readFileImpl?: (path: string) => Promise<string>;
   readonly nowEpochSeconds?: () => number;
+  /** The wait before a refused push is tried again. */
+  readonly sleepImpl?: (ms: number) => Promise<void>;
   /** Git seams: the executor, and the binary path (defaults to the trusted absolute path). */
   readonly gitExecutor?: GitExecutor;
   readonly gitPath?: string;
@@ -61,11 +72,6 @@ export interface PushActionInput {
   /** The token file's lifecycle (mkdtemp/write/remove); tests inject a recording fake. */
   readonly tokenFiles?: TokenFileStore;
 }
-
-/** The outcome a machine reads under --json. */
-type PushOutcome =
-  | { readonly kind: 'pushed'; readonly branch: string; readonly remote: string }
-  | { readonly kind: 'refused'; readonly reason: string };
 
 /** Everything settled before a token is minted: identity, git, and the target branch. */
 type Prepared =
@@ -84,17 +90,6 @@ function mintSeamsFrom(input: PushActionInput): MintSeams {
     ...(input.readFileImpl === undefined ? {} : { readFileImpl: input.readFileImpl }),
     ...(input.nowEpochSeconds === undefined ? {} : { nowEpochSeconds: input.nowEpochSeconds }),
   };
-}
-
-/** The typed refusals, by target branch name — whether the name came from git or from --branch. */
-function refuseTargetBranch(branch: string): string | undefined {
-  if (branch === 'HEAD') {
-    return 'HEAD is detached — there is no branch to push; check a branch out, or name the target with --branch';
-  }
-  if (DEFAULT_BRANCH_NAMES.has(branch)) {
-    return `"${branch}" is a default branch — changes reach it through a pull request, never a direct push`;
-  }
-  return undefined;
 }
 
 /**
@@ -131,25 +126,6 @@ function targetBranch(
     : Promise.resolve(ok(parsed.branch));
 }
 
-function writeRefusal(reason: string, json: boolean, input: PushActionInput): void {
-  if (json) {
-    input.stdout.write(`${JSON.stringify({ kind: 'refused', reason } satisfies PushOutcome)}\n`);
-  }
-  input.stderr.write(`merge-bot push: refused: ${reason}\n`);
-}
-
-function writePushed(
-  outcome: Extract<PushOutcome, { kind: 'pushed' }>,
-  json: boolean,
-  input: PushActionInput,
-): void {
-  if (json) {
-    input.stdout.write(`${JSON.stringify(outcome)}\n`);
-    return;
-  }
-  input.stdout.write(`pushed: ${outcome.branch} to ${outcome.remote}\n`);
-}
-
 export async function runPushAction(
   rest: readonly string[],
   input: PushActionInput,
@@ -175,15 +151,18 @@ export async function runPushAction(
     writeRefusal(prepared.reason, parsed.value.json, input);
     return 3;
   }
-  return mintAndPush(prepared, parsed.value, input);
+  return pushWithRetry(() => mintAndPush(prepared, parsed.value, input), {
+    sleep: input.sleepImpl ?? delay,
+    stderr: input.stderr,
+  });
 }
 
-/** Mint, then hand the whole transfer to git. Split for the size gate. */
+/** Mint, then hand the whole transfer to git: one attempt. Split for the size gate. */
 async function mintAndPush(
   prepared: Extract<Prepared, { kind: 'ready' }>,
   parsed: PushArgs,
   input: PushActionInput,
-): Promise<number> {
+): Promise<PushAttempt> {
   // Scope is the whole landing span: a push can carry `.github/workflows`
   // changes, which GitHub refuses without `workflows: write` (the scope table
   // carries that observation's provenance).
@@ -193,7 +172,7 @@ async function mintAndPush(
   );
   if (!minted.ok) {
     input.stderr.write(`merge-bot push: ${minted.error.message}\n`);
-    return 1;
+    return FAILED_ATTEMPT;
   }
   // The point-of-use backstop. The mint's own response schema already rejects
   // an empty token, so this fires only if that contract ever changes — and
@@ -203,7 +182,7 @@ async function mintAndPush(
     input.stderr.write(
       'merge-bot push: minted token is empty — refusing before any git call: the credential helper would emit an empty password and git would fall back to prompting the signed-in human\n',
     );
-    return 1;
+    return FAILED_ATTEMPT;
   }
   return transferAndReport(prepared, parsed, input, minted.value.token);
 }
@@ -214,9 +193,12 @@ async function transferAndReport(
   parsed: PushArgs,
   input: PushActionInput,
   token: string,
-): Promise<number> {
+): Promise<PushAttempt> {
   const { identity, git, branch } = prepared;
   const remote = `https://github.com/${identity.owner}/${identity.repoName}.git`;
+  // The refusal check keeps a bounded copy of the output; the output itself
+  // streams to stderr in full (R1).
+  let kept: string | null = '';
   const pushed = await pushHead(git, {
     remote,
     branch,
@@ -227,6 +209,7 @@ async function transferAndReport(
     // git's transfer output — and the gate chain's underneath — arrives in
     // full on completion: files, never a Node pipe or sized buffer (R1; F-112).
     onOutput: (chunk) => {
+      kept = keptForRefusal(kept, chunk);
       input.stderr.write(chunk);
     },
   });
@@ -234,7 +217,7 @@ async function transferAndReport(
   // operational failure: no push was attempted.
   if (!pushed.ok) {
     input.stderr.write(`merge-bot push: ${pushed.error.message}\n`);
-    return 1;
+    return FAILED_ATTEMPT;
   }
   const result = pushed.value;
   // The file-backed executor replays everything through the sink, so this
@@ -243,8 +226,9 @@ async function transferAndReport(
   input.stderr.write(`${result.stdout}${result.stderr}`);
   if (result.status !== 0) {
     input.stderr.write(`merge-bot push: git push ${describeGitChildEnd(result)}\n`);
-    return 1;
+    const whole = keptForRefusal(keptForRefusal(kept, result.stdout), result.stderr);
+    return { exit: 1, refused: isAdvertisementRefusal(result.status, result.signal, whole) };
   }
   writePushed({ kind: 'pushed', branch, remote }, parsed.json, input);
-  return 0;
+  return { exit: 0, refused: false };
 }

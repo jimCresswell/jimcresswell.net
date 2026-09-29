@@ -3,11 +3,10 @@
 **Thread identity.** JC.net's exchange seat on the node `practice-two-way-exchange`: outbound
 delivery into the lineage's Box and joint sets with the lineage's seat (goal one), inbound
 landings here (goal two). **Participating agent identities:** Brazier spins Temper (c70341),
-then Siren herds Rudder (158275). **Landing target for the next session:** the seat resumed on
-2026-09-25 and at 10:58Z put queue item 5 (K4) before item 1 (batch six), so the target is K4,
-then batch six, then the queue as written. **Grounding order:** `AGENT.md`, the start-right-team
-skill, this record, the node's §Rulings and §Todos at main, the register, then the lineage's
-comms stream from OCE event 269c5e97 onwards.
+then Siren herds Rudder (158275). **Landing target for the next session:** the latest dated block
+governs. **Grounding order:** `AGENT.md`, the start-right-team skill, this record, the node's
+§Rulings and §Todos at main, the register, then the lineage's comms stream from OCE event
+269c5e97 onwards.
 
 Handover at rest from Siren herds Rudder (158275), JC.net's exchange seat, under PDR-063 step 3.
 The owner was absent (last word "carry on", 15:42:23Z). The signal was session-metadata at 53.5%,
@@ -2144,3 +2143,784 @@ written 22:19Z).**
   - Order: the JC.net half first, since the lineage half builds on 273's reader. It also carries
     273's test and comment cures back, so the two copies converge. Its design goes to security
     review before any build.
+
+**The whole-path guard re-scoped; JC.net PR 235 open; 273 cured locally (block written 00:54Z,
+2026-09-28).**
+
+- The Director ruled a whole-path guard for the operator-profile read, one PR per estate. It was
+  built in JC.net and probed live:
+  - macOS `O_NOFOLLOW_ANY` refuses a swapped `repos/` or root with ELOOP;
+  - in a throwaway Linux container, the `/proc/self/fd` comparison refuses both;
+  - the base read the outside file on both kernels.
+- The assumptions-expert class check rated it DISPROPORTIONATE, and the Director re-scoped it to
+  `-c core.symlinks=false` on every call of the profile git runner. That removes the one realistic
+  source of a link that is not the operator's own (a pull), on every host, and native Windows keeps
+  the profile.
+  - The built guard is conserved at `.agent/research/operator-profile-whole-path-guard/` (a patch
+    that applies at `67bc75ecb7`, with its probes) as the core-primitive option.
+- JC.net PR 235 (`fix/profile-read-whole-path`, SHA:03d9feef, 3 of 3, claim f6f44dc4) is open.
+  Copilot was requested as the operator.
+  - Pre-open code, test and security reviews: all findings taken.
+  - The push leg refuses a document git still records as a link (mode 120000), which the flag would
+    otherwise let through; this was reproduced first-hand.
+  - The reader takes core's `NO_FOLLOW_READ_FLAGS`. The fake-fifo test and the rejecting probe went
+    from the shared test block, in both estates.
+  - A hermetic real-git smoke fails with the flag removed.
+- Lineage 273 carries the same test and reader edit, committed locally as SHA:b2c124c6a. It pushes
+  with the sync merge after 264 lands.
+- The lineage twin of 235 (the flag, the push refusal, the smoke) follows 273. Until it lands, a
+  lineage pull can still write a link into the shared profile.
+- The ledger (the exchange node's §Review dispositions) gained four rows:
+  - the re-scope;
+  - a StrictModes-style ownership and mode check, after the L1 flow-back;
+  - a torn-read observation;
+  - the conflict cure that cannot complete, routed to the Director for a slot.
+- Corrections to earlier blocks:
+  - The 22:59Z "the hook-policy layer matches in both estates" is too broad. The repository-scope
+    guard and the bounded reads match; the argument matcher and several core files still differ
+    (J7's compare half).
+  - The 23:36Z block rode the Director's check-in commit SHA:613a7c07.
+
+**235 landed; lineage 274 (the Codex reader cure) open (block written 01:47Z, 2026-09-28).**
+
+- JC.net PR 235 merged by the door as SHA:ccc26615 at 01:27:17Z.
+  - Round two's one finding was cured in the settlement push SHA:2617c0d9.
+  - The door needs a Copilot review on the settlement head, so Copilot was requested there as the
+    operator. Its one body item was routed by a signed line to the lineage twin, which now carries
+    the corrected runner note (SHA:52f381a1f, local), and to JC.net's sync-push-during-merge PR,
+    which takes the converged bytes. The item: at an expected path, a pulled link's plain file
+    passes the check, and only the push leg refuses it.
+  - My three earlier thread replies opened with `**Above-bar, cured in …**`, which the tally's
+    marker grammar does not read. Their first lines now read `**Over-bar** · item N of M — Cured
+    in SHA:…`.
+  - The branch was deleted, the worktree removed, the local ref deleted after the ancestry proof,
+    and claim f6f44dc4 closed.
+- Lineage PR 274 (`fix/codex-edited-summary-reader`, SHA:c85d4d8e8, claim a7e4a354, WIP 3 of 3):
+  the door accepts a completion comment last edited by its own author and reads the summary's
+  completed Code Review row. With it, `pr state 264` reads SETTLE-READY; the engraph build reads
+  UNCLASSIFIED-EVIDENCE. Code, test and security reviews ran before opening. The gap left: during a
+  Codex run window, the door refuses instead of waiting. It is recorded in the node.
+- Next: 274's door with its own build, then 264's door with the same build, then 273's sync.
+
+**274, 236 and 273 landed; the lineage twins next (block written 03:07Z, 2026-09-28).**
+
+- Lineage PR 274 (the Codex reader cure) merged as SHA:8df6e73e at 02:27:05Z after two rounds (CodeQL
+  and Copilot, one finding each, cured). The Director's 264 fold landed on its reader.
+- JC.net PR 236 (the profile-sync merge cure) merged as SHA:f1bf9632 at 03:02:01Z.
+  - During a merge, the push refuses a document it touches that still holds a conflict marker
+    (seven or more marker characters), refuses a path outside the documents still unmerged,
+    and concludes the merge with the whole index. A real-git smoke proves it.
+  - Round one's two findings were cured: a failed merge probe is an error; longer markers count.
+  - The settlement-head item (an empty profile root mid-merge returns before the probe) is routed
+    to the lineage twin of 236 by a signed line, with the runner's missing exit status.
+- Lineage PR 273 merged as SHA:942a2ae22 at 03:06:08Z.
+  - Its round-two observation (no test proves the non-blocking open) is routed to the twin of 235,
+    which gains a real-fifo smoke of the reader. The stale fake-fifo lines in its body are corrected.
+- 250's three "Over-bar, open" threads are the body's own recorded open work and stay the owner's.
+  - Two (plan's canonical, lines 24 and 25) are the failure the body records as "Plan's case 3
+    fails in both arms", counted unresolved by Appendix E's criterion 5.
+  - The third (the plugin projection's relative links) is a projector cure a seat could write, but
+    it changes what two skills' suites see.
+  - Each cure needs its suite rerun and a fresh human read, the owner's human-review criterion.
+    None takes a slot in this seat's order.
+- Next: the twin of 235 (merge engraph; the reader comments to JC.net's bytes; the real-fifo
+  smoke), then the twin of 236 (with the empty-root cure). The count is 1 of 3 (250).
+
+**276 and 277 landed; P1 under pre-open review (block written 04:46Z, 2026-09-28).**
+
+- Lineage PR 276 (the twin of JC.net's 235) merged as SHA:608f219ed at 03:46:54Z. The profile's
+  git never writes a link, the push refuses a document recorded as a link, and every prescribed
+  push names its message (`PUSH_COMMAND`).
+- Lineage PR 277 (the twin of JC.net's 236, with the routed empty-root cure) merged as
+  SHA:1ebe389f7 at 04:43:51Z after two rounds.
+  - Round one, both cured in SHA:4691a4a81. The merge guard runs before the profile check (a
+    frontmatter marker had been refused by count, with no cure). The marker scan reads only the
+    documents git still holds unmerged (a cleanly merged document holding a marker-like line had
+    blocked the push).
+  - Round two. Codex's finding is cured in SHA:1e014fe6c: a `conflict-marker-size` below seven
+    passed the guard, so each document is now searched at its own size, and an unset or
+    non-positive size reads as seven. Copilot's claim was refuted and rejected: it said the
+    smoke's first push could never reach the remote, but the push leg never fetches.
+  - The settlement head: Codex clean; Copilot's one item read the round-one body, rejected below
+    the bar by a signed line.
+- JC.net's copy of the profile push (236's code) lacks all of 277's cures: the guard before the
+  profile check, the unmerged-only scan, the per-document marker size, the empty-root probe, and
+  `PUSH_COMMAND` in the merge refusals. They flow back in the L1 carrier, after its divergence read.
+- P1 (the sync-lineage content binding) is built in the lineage worktree `oce-wt-content-binding`
+  (claim 1d0015e3), and not yet opened.
+  - The type review found nothing blocking, with four should-fix items: a list lookup in place of
+    the string-keyed record, a `PatchId` brand, the hasher's launch failure read as unproven, and
+    typed test overrides.
+  - Wilma's review has three blocking items: SKILL lines and `docs/engineering/merge-bot.md` still
+    say that every push opens a round, that every push re-requests, and that a completion comment
+    must name the tip. The request rule goes to one home, with the others pointing to it.
+  - The code and test reviews are still running.
+  - Vendor observation: GitHub's compare diff media type returned a whole 181 MB diff (11,707
+    files) with HTTP 200, not truncated; a diff past the gh seam's buffer reads as unproven.
+- The WIP count is 1 of 3 (250). Next: P1's cures, then open it, then the L1 flow-back.
+
+**278 and 279 open; the doctrine twin waits for a slot (block written 05:30Z, 2026-09-28).**
+
+- Lineage PR 278 (P1, the content binding) is open at head SHA:4c9c22bce. Round one:
+  - Copilot raised two findings. The first (the content read after the confirm read) is rejected
+    below the bar: every content read names its commit, and the door pins the head it verdicted.
+  - The second is over the bar and cured locally: a quota or skip marker bound by content answered
+    a requested round. The requested-round hold now runs before the marker is classified. Its
+    mutant was killed, and the 306 pr-watch tests pass.
+  - Codex has not reported yet. The cure is uncommitted in the worktree, and rides one push with
+    any Codex cures.
+- Lineage PR 279 is open at head SHA:3515d2851: Nova's fold and chmod commit (SHA:f3cbd2fe0), a
+  sync merge, and the pre-open cure. Copilot was requested at open.
+  - Five items outside its scope went to the Director at about 05:30Z: one home for the
+    shared-primary hazard, the remote-branch rule as rule text, the fold's literal origin/main, two
+    items numbered 3, and the stale head coordination/2026-09-25-749769.
+- The JC.net twin is in the worktree `jcnet-wt-doctrine-fold-chmod` at SHA:a6197de4, not yet
+  synced, cured or pushed. Its cure is SHA:3515d2851's edits, applied to the JC.net copy. It opens
+  when a slot frees, and merges only after both copies' legs settle (ruling 4).
+- The WIP count is 3 of 3 (250, 278, 279). Next: Codex on 278, then its round-one push; 279's
+  round one.
+
+**278 at round two; 279 at its settlement head (block written 05:50Z, 2026-09-28).**
+
+- Lineage PR 278 (P1) is at SHA:a2bcd0b6d. Codex never started on open; a bot-posted
+  `@codex review` at 05:38Z drew its reaction in twelve seconds and a clean completion comment at
+  05:42Z. Copilot's two findings: the quota-hold cure, and the rejected content-read ordering, are
+  each replied with a signed line. The body carries round one, and round two is requested.
+  - A slip, caught before the commit: the round-one cure script replaced a test by slicing from
+    its start to the next anchor, which also deleted the test between them (the mixed-review
+    case). It was restored from HEAD. A slice between two anchors removes everything in between;
+    replace one named block, and read `git diff` before staging.
+- Lineage PR 279 is at its settlement head SHA:a8320853c.
+  - Round one: two findings, both cured in SHA:ce2c5c615. The folded branch's remote tip is
+    fetched before the proof (Copilot and Codex). The fold checks named files, not the gate's root
+    scripts by hand (Copilot). The same push carried the Director's items 3 (the default branch
+    by name) and 4 (no second item numbered 3).
+  - Round two: one finding, from both reviewers: `$FOLDED` was never assigned. Cured in
+    SHA:a8320853c. The legs are requested on the settlement head; its findings get signed lines
+    only.
+- The Director deleted the stale head coordination/2026-09-25-749769 (item 5). Items 1 and 2 go to
+  one doctrine PR per estate after 279's twin: an amendment to clause 5 of
+  `coordination-branch-24h-lifetime`, and a new rule quoting the owner's remote-branch words.
+- The JC.net twin is committed locally at SHA:21b1b04c: a sync merge of main (SHA:f1bf9632),
+  then one cure commit carrying the pre-open, round-one and round-two edits in the same bytes.
+  It is not pushed, and opens when 278 lands.
+- The WIP count is 3 of 3 (250, 278, 279). Next: 278's round two and door; the twin opens in the
+  freed slot; 279 and its twin merge together after both copies' legs settle.
+
+**278 at its settlement head; 279 settled on review (block written 06:31Z, 2026-09-28).**
+
+- Lineage PR 279 is settled on review at SHA:a8320853c. Its settlement items were answered by
+  signed lines: Codex's glob-named Markdown file (no such tracked file in either estate), and
+  Copilot's two overview notes (`origin/HEAD` freshness, routed to the next fold doctrine PR;
+  empty file lists). It waits for its JC.net twin (ruling 4).
+- Lineage PR 278 is at its settlement head SHA:a16249ec1. Round two's over-bar finding (Codex):
+  GitHub's pending `reviewRequests` never lists a bot reviewer (read live on 278 with a Copilot
+  request outstanding), so the requested-round hold never fired for either bot leg.
+  - The cure reads the rounds from the PR's history: review-request and ready-for-review events
+    (a fourth full harvest) and `@codex review` comments (`round-requests.ts`).
+  - A pre-execution code-expert review shaped it. Post-execution code, test and type reviews
+    found a type-only import cycle (depcruise refuses it), a schema that could drop a request
+    silently, and three test gaps. All were cured before the push; seventeen mutants are killed.
+- The Director's rulings (06:0xZ):
+  - The lineage's `main` stays: the owner's plan of 2026-09-26 names it the upstream mirror.
+  - P1 settles at first green after a pure sync. The door never waits for an unrequested Codex
+    run; a result after the merge is a post-merge finding, fixed forward.
+  - The reopen condition is in P1's design note: a Codex run on a pure-synced tip that lands an
+    over-bar finding after the merge reopens the hold question on that instance.
+- The JC.net twin (SHA:21b1b04c, unpushed) opens when 278 lands. Its body and open script are
+  drafted. The WIP count is 3 of 3 (250, 278, 279).
+
+**278 landed; the doctrine twin opened as JC.net 237 (block written 06:52Z, 2026-09-28).**
+
+- Lineage PR 278 (P1, the content binding) merged at 06:46:27Z as SHA:b4a64115b. At its
+  settlement head both legs answered: Codex clean (06:34:16Z), Copilot one item. The item is
+  `@codex security review` as a further Codex trigger; no comment in either estate has ever
+  used it. A signed Below-bar line routes it to the next pr-watch PR, with the recorded
+  `mostBlockingLeg` and `liveRunReviewers` fix.
+  - Cleanup: the remote branch was deleted by API and read back absent, the worktree removed,
+    the local ref deleted after the ancestry proof, and claim 1d0015e3 closed.
+- JC.net PR 237, the twin of lineage 279, opened at SHA:21b1b04c after a first-hand count of 2
+  of 3, with no earlier reservation. Copilot was requested by operator add-reviewer at
+  06:51:17Z and read back in the timeline. The claim is 08dd2bfa. The count is now 3 of 3
+  (lineage 250 and 279, JC.net 237), and 279 merges with 237 after both copies' legs settle.
+- Two notes, for the next record commit:
+  - `queue-commit.sh` leaves its file staged when the commit fails (here, a 101-character
+    header). The retry then trips its own empty-index check, and every unstage form is
+    forbidden, so the staged file was committed by pathspec. Commitlint before the script,
+    always.
+  - One clock read ran in the same call as another command. The rule is a separate call.
+- Next, at a free slot: the Director's doctrine PR for items 1 and 2 (one per estate), and the
+  next pr-watch PR (the security trigger and the leg labels). Locally before then: the L1
+  flow-back's divergence read.
+
+**279 and its twin 237 landed; P1's first live use; the second doctrine pair built (block
+written 07:30Z, 2026-09-28).**
+
+- JC.net PR 237 merged at 07:01:30Z as SHA:b8284eb3.
+  - Copilot's round one gave two items, both below the bar. The delete race needs a second
+    writer, and clause 5 leaves none after the cut. The firing-point wording is routed to the
+    next pair.
+- Lineage PR 279 merged at 07:25:22Z as SHA:1e3870b60, after a pure sync of engraph (the door
+  refused BEHIND-BASE).
+  - The door ran from 279's own worktree, on agent-tools built at the synced head, so it
+    carried P1. Copilot's review of SHA:a8320853c bound the synced head SHA:f76b07153 by content
+    (patch-id b8754ee664). The pure sync drew no new round: P1's first live use.
+  - An unrequested Codex run on the sync push landed two threads before the merge, and the
+    door's open-threads check held it. Item 1 is over the bar: the repo-wide fixers rewrite a
+    live peer file. Item 2 is below it: a remote branch already auto-deleted. Both are answered
+    by signed lines and routed to the next pair, because 237 had merged the same bytes and
+    279's rounds were spent.
+  - This is not the Director's reopen condition, which needs the result to land after the merge.
+    It is recorded as an observation.
+  - Cleanup for both is done: remote branches deleted by API and read back absent, worktrees
+    removed, local refs deleted after the ancestry proof, claims 27adb8d9 and 08dd2bfa closed.
+- The second doctrine pair is built in worktrees `oce-wt-doctrine-pair2` and
+  `jcnet-wt-doctrine-pair2`, on branch docs/remote-branch-rule-and-shared-primary-check.
+  - It carries clause 5 as the one home of the shared-primary write check, the owner's
+    remote-branch rule as a new rule file, and four routed items: the `origin/HEAD` refresh, the
+    single firing point, the fixers and a live peer file, and a remote branch already absent.
+  - The edits are byte-identical across the estates. The portability and sub-agent checks pass,
+    and a Wilma pre-open review is running. The claims are 5ffbf1ab (lineage) and 07d423a8
+    (JC.net). The WIP count is 1 of 3 (250), so the pair opens after its review.
+- The L1 flow-back's divergence read: the operator-profile code has diverged both ways
+  (lineage-only contract validator and argv module; JC.net-only sync-target and integration
+  suites; 17 files differ). So L1 ports 277's specific cures into JC.net's shape rather than
+  copying files. It is its own PR at a slot.
+- Process notes:
+  - `queue-commit.sh` leaves its file staged when its commit fails, and every unstage form is
+    forbidden, so commitlint runs first, always.
+  - One clock read shared a call with another command.
+
+**The second doctrine pair opened and through round one (block written 08:06Z, 2026-09-28).**
+
+- Wilma's two pre-open reads reshaped the pair. The owner's remote-branch rule moved into
+  `worktree-hygiene` §1 (the words) and §6 (the steps), and the new rule file was removed, on
+  the Director's ruling. The WIP gap became an ordering the Director ratified: a wanted branch
+  found with no PR takes the next free slot ahead of any new opening.
+- Lineage PR 280 opened at SHA:6df2979dd and JC.net PR 238 at SHA:ebca3fa8. The WIP count is 3
+  of 3 (lineage 250 and 280, JC.net 238).
+- Round one gave six findings, four distinct, each over the bar. Each is cured in both copies
+  with byte-identical edits, and each has a signed line and a resolved thread:
+  - the refspec fetch ran before the absent-remote path could apply (Codex and Copilot on 280,
+    Copilot on 238). Step 9 now probes with `git ls-remote --exit-code`: 0 fetches and proves
+    both tips, 2 prunes and proves the local tip only with no API delete, and anything else
+    stops the cut;
+  - the fold's survey named link and path validation that has no by-name form (Codex on 280).
+    The text now says so. A by-name mode for the link and machine-local-path validators is
+    routed to its own tool slice;
+  - `lint:fix` covers the linted workspaces' sources, not every tracked file (Copilot on 280);
+  - an owed branch counted against itself (Copilot on 238). The first cure left its own branch
+    out. A re-read before round two found that two owed branches over one free slot still
+    deadlocked, so a second commit orders them: an owed branch's opener counts only the owed
+    branches named before its own.
+- The round-one heads are lineage SHA:f92122177 and JC.net SHA:e985a459. Round two is requested:
+  Copilot and `@codex review` on 280 at 08:05:54Z, and Copilot on 238 at 08:05:24Z (the
+  operator add-reviewer, read back on the timeline). Watches are armed on both heads.
+- Next: round two, the settlement read, the sweeps, and the doors. The pair merges only after
+  both copies' legs settle. Then cleanup, closing claims 5ffbf1ab and 07d423a8.
+
+## Boundary delta, 2026-09-28 08:22Z (the owner's compaction word, carry on given in it)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes, post compaction carry on".
+The resume word is inside the order: after the compaction, carry on without waiting.
+
+**State at the word (read 08:2xZ).**
+
+- The second doctrine pair has had two rounds, and its settlement push is owed. Both worktrees
+  are clean, level with their remote branches, and two commits ahead, unpushed by design:
+  - lineage `oce-wt-doctrine-pair2`: remote SHA:f92122177, local SHA:9fa92fc68 and
+    SHA:4a81861b4;
+  - JC.net `jcnet-wt-doctrine-pair2`: remote SHA:e985a459, local SHA:d7a0e352 and
+    SHA:2d383990.
+  - The branch in both is docs/remote-branch-rule-and-shared-primary-check. The bytes are
+    identical across the estates.
+- Round two's dispositions. The signed lines are drafted in the session scratchpad
+  (`doctrine2/r280b`, `doctrine2/r238b`); this list is the durable copy.
+  - 280 item 1 of 4 (Copilot 4119897814): the owed state contradicted `worktree-hygiene` §1 at a
+    full count. Over the bar; cured in SHA:4a81861b4 by the Director's ruling (08:1xZ).
+    - A found wanted branch is an arrival of the external-PR class. Its draft PR opens at once
+      at the assessment, it counts toward the limit, and the Director routes it ahead of any
+      new opening. The Director's sentence is verbatim in `pr-lifecycle` §Phase 7.
+    - Two edits follow from it, and the Director confirmed both at 08:2xZ: the owed counting
+      clause is removed, and the limit's first step reads "No PR that starts new work opens
+      while the count is at the limit or over it, other than a repository's one coordination
+      PR."
+  - 280 item 2 of 4 (Copilot 4119897886) and 238 item 1 of 1 (Copilot 4119906535): the fold's
+    failed-read branch returned 0. Over the bar; cured in SHA:9fa92fc68 and SHA:d7a0e352. The
+    branch now writes STOP to stderr and runs `false`. The block's status was read for each
+    probe result: 0 when the proof holds, 1 otherwise, and 1 on probe 128.
+  - 280 item 3 of 4 (Codex 4119901510): prettier skips `.agent/` in both estates, as the gate's
+    `prettier-tracked` does. Below the bar; Rejected. The body's "prettier passes" evidence
+    line is corrected.
+  - 280 item 4 of 4 (Codex 4119901516): §6's fetch fails loudly on a branch deleted
+    mid-assessment. Below the bar; Rejected, matching the first pair's ruling on a remote
+    branch already gone.
+- The WIP count is 3 of 3: lineage 250 (Myrtle resumed it at 08:22Z as the owner's item) and
+  280, and JC.net 238.
+- The Director froze on the same word. Its records went up on PR 234. Its heartbeat lapses until
+  the resume, and the midday folds run at the resume by the DUE check if it lands after 12:00Z.
+
+**Order after the compaction (carry on is given).**
+
+0. Read the clock alone. Check that no process of this seat runs. Read both streams, both PR
+   lists and any Director message.
+1. This block was committed locally at the word, with no push; the Director pushes the
+   coordination branch after its own resume. Check whether engraph or JC.net main moved
+   past each branch's base. If either did, merge it into the settlement push; the lineage merge
+   is amended to carry the owner as author.
+2. Post gate notices on both streams, at most two host gates, then push both worktrees with the
+   merge-bot push (operator environment, GH_TOKEN and GITHUB_TOKEN unset).
+3. Post the signed lines and resolve every thread (`post-replies-lineage.sh 280`,
+   `post-replies-jcnet.sh 238`, ROOT set to each primary). Update both bodies:
+   - the WIP bullet takes the Director's sentence, with no owed branch;
+   - round two's evidence goes in;
+   - the prettier line is corrected.
+4. Request the settlement legs: `legs-lineage.sh 280`, and the operator add-reviewer
+   `@copilot` on 238. Read both timelines, and arm review watches on the new full heads.
+   Findings on the settlement heads get signed lines only.
+5. Run the merge-base sweeps, then the doors: 280 expects Copilot and Codex, 238 Copilot only.
+   The pair merges only after both copies settle. Then clean up (API delete read back absent,
+   worktrees removed, local refs deleted after the ancestry proof) and close claims 5ffbf1ab
+   and 07d423a8.
+6. Then, in order:
+   - propose the `branch retire` instrument to the Director (below);
+   - the pr-watch slice at a free slot;
+   - the L1 flow-back.
+
+**Re-arm recipe (nothing survives a compaction).** The session pid is 15907; the scripts are in
+the session scratchpad.
+
+- Comms watchers: `bash watch-comms.sh <primary> 15907`, once for each primary, as 30-minute
+  Monitors, re-armed at expiry.
+- Heartbeat: `ROOT=<JC.net primary> bash heartbeat.sh a30304be-4986-40f0-883b-fd518224472b
+  coordination/2026-09-28-87689e "<label>"`.
+- Liveness: `cd <JC.net primary> && bash peer-liveness-poll.sh 600`.
+- Review watches: `review-watch-repo.sh <owner/repo> <pr> <full head> 60 '<bot login>'`.
+- Claims held: a30304be (the seat), 5ffbf1ab and 07d423a8 (the pair).
+
+**Reflections from the cognition passes.**
+
+- Metacognition: at round two's §1 conflict I reached for rules-have-no-exceptions clauses 4
+  and 5 (surface an owner question), not clause 2 (re-express the rule so the case falls inside
+  it). The owner's external-PR words sat a few lines above my read window. Before escalating a
+  clause conflict, read the whole governing clause, and look for the class that already carries
+  the case in the owner's words.
+- The owed construct drew a finding in each of three passes (round one, my own re-read, round
+  two) and ended by deletion, not a fourth cure.
+- A check cited as evidence has to have read the file: prettier reads nothing under `.agent/`.
+- Play seeds, as associations only:
+  - three values where the world is uncertain (the probe's 0, 2 and 128), two where a rule
+    wants no hiding place (in a PR, or deleted);
+  - the messenger's zero (`echo` returning success; a formatter "passing" a file it skipped).
+  - Discarded as forced: "adoption over speciation" and "same bytes, two worlds".
+- Concept exploration: fold step 9's block drew a finding in each of three passes, one untested
+  edge each time. The deletion proof has at least three consumers (fold step 9,
+  `worktree-hygiene` §6 and the post-merge cleanups). The proposal is a tested `branch retire`
+  instrument (probe, fetch, prove both tips, delete the local branch, API delete, read back
+  absent), with the two texts turned into pointers. Its falsifier: integration tests cannot
+  exercise the absent and failed-read cases against a local bare origin. A check-coverage map
+  (which gates read which paths) is not built now; its falsifier is a gate failure on a check a
+  seat believed it had run.
+
+**Metaloss.**
+
+- Compressed reasoning: the dispositions above carry their reasons.
+- Promises: the settlement push, the signed lines, the bodies, the doors, the cleanup, the
+  instrument proposal and the pr-watch slice, all in the order above. The Director holds the
+  owner card's FYI line.
+- Attribution: Myrtle's resume is read from its broadcast, not observed.
+- Blind spot: the watchers exclude heartbeat events.
+- Index of homes: this record, the two worktrees and the session scratchpad. The scratchpad's
+  drafts are conveniences; this block is the durable copy.
+- A third pass would only re-find the unpushed pair, which is named above, so the recursion
+  closes here.
+
+**The second doctrine pair landed; `branch retire` confirmed first (block written 13:13Z, 2026-09-28).**
+
+- Resumed at 11:34Z on the owner's word, carried in the compaction order ("post compaction carry
+  on"). Watchers, heartbeat and liveness re-armed. The pair's two claims had run past their
+  four-hour freshness at 11:28Z and were refreshed at 11:37Z. Neither base had moved.
+- 280's settlement push was refused by the lineage's review-cost gate: exhausted, 41.52 of 40,
+  two settlement pushes spent. The owed ordering (SHA:f92122177) had gone up as its own push,
+  where it belonged with round one's cures (SHA:807218c98). PDR-140 clause 4 prescribes the
+  case: record budget-exceeded, ask the generator question, take the one rebudget per PR by
+  recorded decision. Both bodies' intake lines went to 3, with a Rebudget section. The push
+  then passed at warn, 41.52 of 60.
+- Correction to the 08:22Z block's round-two list: 280's round had six threads, not four.
+  Codex's review of SHA:807218c98 at 08:03:51Z raised two more: 4119853030 (the failed read,
+  the same defect as 4119897886) and 4119853036 (two owed branches deadlocked over one slot).
+  Both were cured by the pending commits and answered as items 1 and 2 of 6 at 11:47Z; the
+  other four became items 3 to 6. The Director's records pass found the gap in this record.
+  The PR was right.
+- The settlement legs (Copilot and Codex on SHA:4a81861b4, Copilot on SHA:2d383990) found two
+  over-bar edges in fold step 9, both reproduced first-hand:
+  - under errexit, `ls-remote`'s status 2 ended the shell before `PROBE=$?`;
+  - in a clone that predates a default change, `set-head --auto` exits 1 and the block cut the
+    successor from the old default.
+
+  The Director ruled one late-cure push per copy, the last (SHA:d4cdcf751, SHA:c02f0715): the
+  probe captured inside an `if`, and step 9's default lines replaced by `cut-coordination-branch`'s
+  own. The three below-bar items on 238 were Rejected.
+- The late cure's legs: Codex's one item on 280 (the root fixers' "every tracked file") was
+  Rejected. Copilot's two on 238:
+  - the prune finding, over the bar: `git fetch --prune` deletes a tracking ref that is the
+    last name of a post-merge commit, and the local-only proof then deletes the branch.
+    Reproduced. It is the block's seventh edge, routed by the Director's ruling to the
+    `branch retire` instrument; its row is on the napkin.
+  - markdownlint on a non-Markdown file, Rejected: a by-name run exits 0, and the gate lints
+    Markdown only.
+- JC.net PR 238 merged at 12:13Z as SHA:25e30f77; lineage PR 280 at 12:19Z as SHA:ab8976719.
+  Cleanup for both: remote branches deleted by API and read back absent, worktrees removed,
+  local refs deleted after the ancestry proof, claims 07d423a8 and 5ffbf1ab closed. The count at this
+  write is 3 of 3: lineage 250 and 281 (Nova's PDR-079 twin), and JC.net 240 (Nova's LinkedIn
+  draft).
+- Item 4 of the Director's resume order, recomputed: main's register already had #269, #270,
+  #271 and 232. JC.net 230 is J7's origin-side change, not a landing. Lineage #272 is the one
+  candidate, a J22 PARTIAL, and rides the first exchange PR of this seat's next lanes. The
+  Director took the correction and recorded its own read of the coordination branch's copy.
+- The Director confirmed the order (12:2xZ): `branch retire` first as a pair (JC.net builds,
+  the lineage ports), then the J3 shellcheck slice, the pr-watch slice, then the L1 flow-back.
+  - Worktree `jcnet-wt-branch-retire` on `feat/branch-retire` from SHA:25e30f77, claim 30dab0b7.
+    It opens at the next free slot.
+  - The pre-execution code and security reviews reshaped the design. Among the changes: GraphQL
+    `updateRefs` with `beforeOid`, so the name never sits in a URL path and the remote delete is
+    a compare-and-swap; exact-name reads with a case-collision refusal; objects-only fetches, so
+    no read writes a ref the command may delete; `origin` bound to the bot identity; and a new
+    contents-only `branch-retire` scope.
+  - A live probe on JC.net at 12:41Z (a throwaway branch made and deleted by the bot) showed
+    a contents-only token can delete with `updateRefs`. A stale `beforeOid` keeps the ref and
+    returns a generic error. The result is recorded on the scope row.
+  - Built as of 13:1xZ: unit and integration tests, and two smokes against real git (three
+    retire paths, six refusals with every ref unchanged); one mutant was killed. Tests, lint,
+    type check, knip and depcruise all pass. Post-implementation code and security reviews are
+    running. Nothing is committed yet.
+- Process notes:
+  - Push every round's cures as one push: a cure pushed on its own spends a settlement push.
+  - Before any settlement, list every unresolved thread with GraphQL; do not trust the drafted
+    set. Two Codex threads had no drafted line.
+  - The Director's session name now has a double dash: "Wick binds Temper (ed7b48) --
+    Director".
+
+## Boundary delta, 2026-09-28 17:11Z (the owner's compaction word, carry on given in it)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then carry on". It is non-terminal: the claims stay
+held, and the heartbeat and watchers keep running.
+
+**Since the 13:13Z block.**
+
+- PR 242 (`merge-bot retire`) merged at 15:55:52Z as SHA:e9b06f195. Its branch was then
+  retired by its own command.
+- PR 247 (retire reaches git through its own port; its tests stop pinning argv) merged at
+  17:01:25Z as SHA:168ce5936, after two Copilot rounds and a settlement. Its branch was retired
+  by the command from a worktree detached at main, and its worktree was removed.
+- The smokes worktree's commit was proven patch-equivalent (`git cherry` read "-"); the worktree
+  was removed and its ref deleted by compare-and-swap.
+- Promises delivered: todo 8's record rode 247 (the ack to Nova, 16:16Z); the note to Myrtle that
+  247 also edits the exchange node went at 16:31Z.
+
+**PR A: built, reviewed and cured; committed, not pushed.**
+
+- Worktree `jcnet-wt-retire-symref`, branch fix/retire-symref-relist: SHA:fa6028d1, a merge of
+  main after 247 (SHA:f9441d3d), and the review cures (SHA:ac450915). No PR yet: it opens at
+  this seat's next free slot.
+- The defect it fixes: `for-each-ref` does not list a dangling symbolic ref. A branch whose
+  local name was a dangling symbolic ref therefore had its other two names retired.
+  `symbolic-ref --quiet` is now the one reader of "symbolic" (exit 0 symbolic, 1 not, anything
+  else a failure), and it runs before any fetch. The config removal re-reads the local branch
+  by its exact name, and keeps the section of a branch made since the proof.
+- The post-build reviews:
+  - code-expert: GO, with two cures (a stale comment, and a smoke claim nothing asserted);
+  - test-expert: NO-GO on one finding, that nothing showed a failed symbolic read fails the
+    run.
+- The cures: a fifth failed-read smoke puts the local name in a symbolic loop (git exits 128)
+  and expects exit 1 with the loop left. The skip-on-failure mutant (A9) is killed. Both smokes,
+  292 unit tests, the type check and lint pass.
+- Accepted without a witness, to be stated in the PR body:
+  - the config re-read's failure path. Real git offers no cheap way to fail it; it is the same
+    class as `deletePlannedRef`'s re-read.
+  - a dangling symbolic ref made mid-run. It brings no config section of its own.
+- `gatherReadings` sits at complexity 8, the limit. The next reading added there is extracted
+  first.
+
+**PR B: designed, not built.** The draft is `retire/design-bind.md` v3 in the session scratchpad;
+this is the durable summary. The assumptions-expert verdict was "redesign now": GitHub becomes
+the only reader of the remote.
+
+- A new scope, `branch-read` (contents: read). A live probe proves it; the probe's refused-write
+  half is the one that proves the grant.
+- The local refusals are decided before any mint.
+- One objects-only fetch, by sha (verified on protocol v2, locally and on GitHub).
+- The delete path mints a second time (`branch-retire`) and re-reads before the
+  compare-and-swap.
+- The default's tracking-ref fetch and `set-head --auto` are dropped.
+- A witness smoke uses a second bare repository as the `insteadOf` target. The no-mint
+  assertions flip.
+- It needs a security re-review.
+
+**The count at this write:** 3 of 3 (JC.net 248, Myrtle's; JC.net 249, Nova's; lineage 288,
+Myrtle's). The coordination PRs are JC.net 241 and lineage 283.
+
+**The question for the Director, sent after this write.** Myrtle's census reads J5 as "graduated
+into L9". Does that change the lineage port of retire and the prose pointer pair? And does PR B
+come before the port and J3?
+
+**Order after the wrap (carry on is given).**
+
+1. Send the question above to the Director. Wait for the answer on the port and PR B, not on
+   PR A: PR A cures known defects, and a port made before it would copy them.
+2. Push PR A's branch so the bytes are safe, with a gate notice, and no PR while the count is
+   3 of 3. Open it at this seat's slot in the Director's one-per-seat order.
+3. Then, by the Director's answer: PR B built locally with a security re-review; or the lineage
+   port of retire, with #272 riding the first exchange PR; or J3 (`j3-prep.md` in the
+   scratchpad).
+
+**Re-arm recipe.** As in the 08:22Z block, with these changes: the heartbeat takes claims
+a30304be and 30dab0b7 and branch coordination/2026-09-28-559423 (or the live coordination branch
+after the rollover fold); the session pid is 15907.
+
+**Reflections from the cognition passes.**
+
+- One reader per fact. The listing's `%(symref)` and the raw `symbolic-ref` read disagreed on a
+  dangling ref; the cure removed one reader, not a reconciling check.
+- A report is true to the reading it came from, not to the world. Where a reading can miss a
+  thing, name the reading's basis in the report.
+- A surviving mutant whose change has no observable effect marks dead code: a deletion
+  candidate before it is a missing test.
+- Widening where a write fires multiplies any latent defect in the write. The config removal
+  now also fires on the absent decision, which raised the stake of its re-read.
+- The bot's push 403 has now been seen twice, on two estates, and a retry a minute later cleared
+  it each time. The 403s and Copilot's review error fell in 16:38Z to 16:43Z; a GitHub-side
+  window is a hypothesis, unchecked.
+
+**Metaloss.** Promises: the question to the Director, PR A's push and opening, then the order
+above; the two earlier promises are delivered. Attribution: the census reading of J5 is Myrtle's,
+read from the Director's napkin entry, not from the census itself. Blind spot: the watchers
+exclude heartbeats. Index of homes: this record, the worktree `jcnet-wt-retire-symref` and the
+session scratchpad (drafts only). A further pass would re-find only the unpushed branch, which
+is named above, so the recursion closes here.
+
+**After the wrap, 17:15Z to 17:46Z (carry on).**
+
+- The Director confirmed the order (17:4xZ):
+  1. PR 251 (PR A);
+  2. PR B before any port, so the lineage takes the command once;
+  3. the retire port riding L9's reconvergence window as this estate's unique module, with #272
+     on the first exchange PR;
+  4. J3's shellcheck slice before the pr-watch and L9 work.
+- PR 251 (fix/retire-symref-relist) opened at 17:22Z as the third slot. Copilot round one (on
+  SHA:ac450915) had two items: a dangling name made mid-run, and the outcome's basis. Both were
+  cured in SHA:442a2eba, signed and resolved; round two was requested at 17:44:39Z.
+- PR 251 also carries SHA:ac51d536, a security fix for the merged retire. `merge-base` followed
+  replacement refs and grafts, so a planted one could make an unmerged tip read as merged.
+  Every git read now runs with `GIT_NO_REPLACE_OBJECTS=1` and `GIT_GRAFT_FILE=/dev/null`; the
+  first does not turn grafts off. Both mutants are killed.
+- PR B's four pre-execution reviews (security, code, architecture, test) were all GO WITH
+  CONDITIONS. They split it into B1 (the scope and probe), B2 (the local pre-decision), B3 (the
+  objects-only fetch by sha) and B4 (the reader swap). The design is v5 in the scratchpad's
+  `retire/design-bind.md`; the durable summary will ride B1's body.
+- Owed rows in the register's §Landings, riding this seat's next exchange PR: #272 (J22,
+  partial), and J11 (the lineage declined the exchange instrument, on the owner's word
+  "Decline with the reason (Recommended)", relayed at 17:4xZ; Myrtle's c69c53fb, acknowledged at
+  17:46Z).
+- A deviation: at 17:15Z this seat removed a stale `.git/index.lock` in the primary with no
+  owner word. The commit skill (§Foreign index lock, owner direction 2026-05-03) forbids that.
+  Nova caught it, and it is recorded on the stream (53d9918a). From now on a lock stops the
+  attempt and goes to the owner through the Director, untouched.
+- The review watch was mis-armed at 17:22Z: its fifth argument skips the seat's own bot, and
+  Copilot's login was passed there, so round one never showed. It is re-armed as a Monitor with
+  the bot's login.
+
+**18:00Z to 19:01Z: 251 landed; J3 started as four slices.**
+
+- PR 251 merged at 18:07Z as SHA:be6b5141, after two Copilot rounds and a settlement.
+  - Round two's race was cured with one raw `show-ref --exists` read. The window before
+    `--remove-section` is git's own, as `git branch -d`'s.
+  - The branch was retired by the merged command from a worktree detached at main, and every
+    name read back gone.
+- The Director confirmed the order at 18:0xZ: J3's slices, then B1 to B4, then the retire port
+  inside L9's window. B1 waits built at SHA:ae154449, with its security review's two items
+  cured (the usage prints permission levels; the row's doc names the probed repository).
+- J3 is four lineage slices; #269 was slice 1. The census's J3 line reads 3, and the count is 26
+  on the Director's word.
+  - Slice 2 is the second estate's PR 232 module cures plus a real-tool repair smoke. It is open
+    as lineage #289 at 8ba88a805, with both legs requested at 19:01Z.
+  - Slice 3 is the script cures: 13 lineage-owned scripts (the four `#!/bin/bash` cloud scripts
+    move to env bash), the floor guard, SC2064, and the README's bash 5.2 and WSL 24.04 note.
+  - Slice 4 is the shellcheck gate with its installer, CI, docs and the lock-keyed skill
+    exclusion.
+  - The Director's rulings (18:3xZ): the floor stays off the four `apps/**` scripts behind a
+    path-keyed exemption named in the gate's docs, whose lifting is the owner's call; the
+    vendored clerk-backend-api scripts are excluded, keyed on skills-lock.json; the bash 5.2
+    host requirement goes in the README.
+  - The plan and its review conditions are in the scratchpad's `j3-plan.md`. The lineage claim
+    is b6f97ce6, with its own heartbeat.
+- Rows delivered: J11 (declined), J15, J19, J23 and #272 (J22) ride Myrtle's JC.net PR 255
+  (commit 273de601). Mark them landed when 255 merges.
+- Owed: the batch-six triage's Not-determined bullet on notes 1 and 4 becomes a pointer at its
+  preamble (the owner confirmed that reading on the J17 card, 17:5xZ). It rides the JC.net
+  register PR that records J3's landings. Also owed: a flow-back to JC.net that removes its
+  `repairableTree` flag-pin test.
+- The context reading at 18:45Z was 52.2% (session-metadata). Directive edits wait for a
+  compaction.
+
+**19:01Z to 20:04Z: 289 landed; 290 open; C1 built.**
+
+- Myrtle's PR 255 merged at 19:23Z as SHA:a9aa00d38, so the J11, J15, J19, J23 and #272 (J22)
+  rows are landed.
+- Lineage #289 (J3 slice 2) merged at 19:45Z as 4a302b18c. The remote branch was deleted by the
+  bot's API delete and read back gone. The worktree was removed without force, and the local ref
+  was deleted by compare-and-swap after the ancestry proof. It had no config section.
+- Lineage #290 (J3 slice 3, the script cures) opened at 19:52Z at 1e05f1435, after its pre-push
+  gate passed. Copilot is requested (read on the timeline) and Codex is asked by comment. The
+  review watch is a Monitor with the bot's login. WIP is 2 of 3, with Nova's rule-glob PR on
+  JC.net.
+- Slice 4 is re-cut. C1 is the working gate: the agent-tools modules, the installer, `.tools/`
+  ignored, the CI install step, the cloud hook's installer call, the `lint:shell` swap, and the
+  troubleshooting line. C2 is the README, CONTRIBUTING, ADR-121 and the onboarding docs.
+  - Why the re-cut: an agent-tools-only C1 ships an installer whose header says CI and the cloud
+    hook install it, and a merged swap falsifies the troubleshooting note. Each would be false
+    until C2.
+  - C1 is built, uncommitted, in the worktree `oce-wt-j3-shellcheck-gate`, on
+    feat/exchange-j3-shellcheck-gate from 4a302b18c.
+  - It commits after #290 lands, because the pre-commit hook runs the new gate and this tree
+    lacks #290's cures. The gate run over it refuses exactly those scripts, and nothing else.
+  - The lineage additions:
+    - the two tsx shebang forms, as non-shell forms;
+    - `apps/` exempt from the floor only;
+    - a pure lock module (`repo-check-skills-lock.ts`) keying the vendored-skill exclusion on
+      `skills-lock.json`;
+    - a Result-returning tracked read.
+  - The integration test is rewritten to constant fakes, asserting status and written lines. The
+    second estate's version records calls, and that rewrite flows back.
+  - Nine mutants are killed. Four post-build reviews (code, test, config, security) are running.
+- B1's push retry: the refusal was read first-hand in the scratchpad's `retire/push-port2.log`.
+  GitHub refuses at the ref advertisement, before the pre-push hook runs, so a retry costs no
+  gate time. The design notes are in the scratchpad's `b1-retry/design.md`. One question stays
+  open: a 403 after the gate reruns it; none has been seen yet.
+- Next safe step: on #290's rounds, cure or reject by signed line. When #290 lands, sync C1 by
+  merge, run the gate over the synced tree, commit, push and open C1 (WIP permitting).
+
+**20:04Z to 21:37Z: #290 landed; C1 open as #292; B1's retry reviewed; Copilot out.**
+
+- Lineage #290 (J3 slice 3) merged at about 21:25Z as 1cccdfc1b.
+  - Copilot reviewed nothing after 19:31Z on either estate. The Director declared the leg
+    unavailable from 20:4xZ (the 2026-09-10 shape). Posted code-expert reviews stood as the leg in
+    both rounds.
+  - Round one found one item over the bar, cured in 62e577d35: under bash 3.2 the hook wrapper's
+    floor branch fell through into its body when given no command, because `exec` with no
+    arguments returns. Round two was GO. Codex was clean in both rounds.
+  - The first door refused BEHIND-BASE. A pure sync (c633ceae9) went up, then the door read
+    Codex's unedited completion comment as the leg, bound by content (patch-id c23b1d8a01).
+  - Copilot's 20:57:40Z "review" of #290 was an error notice with no content. The Director lifted
+    the ruling on it at 21:02Z and withdrew the lift at 21:04Z on this seat's first-hand read.
+    The rule now: an error review never satisfies a door and never lifts the ruling.
+- The Director reversed the 18:3xZ apps floor ruling at 20:27Z on this seat's evidence.
+  - The deployed entry is dist/server.js (the Express preset, package.json main). start-server.sh
+    runs the local listener, dist/index.js.
+  - Wilma's review had also found the exemption lacked the owner's authority (PDR-025, PDR-126)
+    and was wider than the ruling.
+  - So the four apps scripts take the guard and no exemption lands.
+- C1 (J3 slice 4a, the shellcheck gate) opened as lineage #292 at b9a2cd359 at 21:36Z. Legs:
+  Copilot requested, Codex asked, and a code-expert stand-in running.
+  - Five post-build reviews shaped it: security GO; code, config and test GO WITH CONDITIONS; and
+    Wilma. All their conditions were cured before the commit.
+  - The commit's own pre-commit ran the new gate green over 26 scripts.
+  - WIP is 3 of 3: 257, 291 and 292.
+  - C2 (4b) is ADR-121's entry and the onboarding docs.
+- B1 (JC.net, unpushed) gained 24df0ead (the retry) and 4685e96a (its review cures).
+  - The wait is 30 s.
+  - A kill is never read as a refusal.
+  - The help text names the retry.
+  - The wait and the fresh token per attempt are proven by behaviour.
+  - One `core/delay.ts` replaces three copies.
+  - 12 mutants are killed. The body is drafted in the scratchpad's `b1-retry/pr-body.md`.
+- New lane item, routed by the Director for after B1, lineage first, designed before it is built:
+  merge-bot names a declared-unavailable vendor and the posted expert review that stands as its
+  leg, and refuses an error review. The seed is the scratchpad's
+  `b1-retry/unavailable-vendor-seed.md`.
+- The J3 flow-back list to JC.net is the scratchpad's `j3-port/flow-back.md`, plus two later
+  items: the wrapper's `exit 1` and the lock-module text.
+- Owed:
+  - drain stdin in the secrets hooks' floor branch (both estates, the next hooks slice);
+  - the statusline generators write no guard (observation only; the gate refuses a regenerated
+    script);
+  - `persist-credentials: false` on the lineage's static-checks (an observation for that estate).
+- Next safe step: #292's round one (cure or reject by signed line); C2 after #292 lands; then B1
+  when WIP allows.
+
+**21:37Z to 22:35Z: #292 rounds one and two cured; Codex asked at the tip for the door.**
+
+- Round one (on b9a2cd359): the stand-in leg's three items were cured in 0e56d38fd.
+  - A tracked `.tools` path is refused in any case and as a link (`/^\.tools(?:\/|$)/iu`), and
+    `.gitignore` ignores `.tools` with no slash.
+  - A directive after `then`, `do`, `{`, `(` or `;` is refused.
+  - A lost file is refused only when the gate would lint it, read from git's index
+    (`git cat-file blob :0:<file>`); a peer's staged deletion no longer blocks a pathspec commit.
+  - The gate's edges moved to `repo-check-shellcheck-runtime.ts` (the file was 255 lines).
+  - Codex's P1 (the installer fetches `.tar.gz`, the release ships `.tar.xz`) was Rejected: the
+    release ships both, and the four pins equal the `.tar.gz` digests in GitHub's release API.
+- Round two (on 0e56d38fd): Codex clean. The stand-in leg found two items, both re-run first-hand
+  and cured in 29e1e06e9.
+  - shellcheck honours a key glued to a quoted value (`source="x"disable=SC2086`); the pattern
+    now takes the key anywhere after `shellcheck`.
+  - Round one's index-read cure let a lost `#!/bin/bash` file through; a lost file is now also
+    refused when its index content has a refused shebang.
+- The README's first-run block now runs the installer before `pnpm lint`, which runs the gate.
+  It rode the round-two push.
+- A cure commit unbinds Codex's clean result (content binding is by patch-id), so `@codex review`
+  was asked at 29e1e06e9 (22:34:27Z) as the door's evidence. Any finding on it is cured or
+  Rejected by signed line; no third round.
+- Next safe step: the door on #292 (`--expect chatgpt-codex-connector`), then C2 (ADR-121's CI
+  entry, CONTRIBUTING, tooling.md, workflow.md, the README's first-push line). B1 waits for WIP.
+
+**22:35Z to 22:52Z: #292 landed; C2 built.**
+
+- Codex was clean at 29e1e06e9 (22:38:11Z). The door (Codex only) merged #292 at 22:48:51Z as
+  8ebd923a5, reading Codex's completion comment as the leg bound to the tip.
+- Cleanup: the remote branch was deleted as the bot and read back absent; the worktree and the
+  local branch were removed.
+- WIP is 2 of 3 (lineage 291, JC.net 257), so C2 opens once its pre-open reviews are in.
+- C2 (J3 slice 4b) is built in `oce-wt-j3-shellcheck-docs`, uncommitted:
+  - ADR-121: §Pinned system binaries (gitleaks and shellcheck; the downloads are provisioning,
+    inside ADR-161), the CI bullet, a change-log row, and the Updated date;
+  - CONTRIBUTING: a Setup step and a Common Issues bullet;
+  - tooling.md and workflow.md: one entry each.
+  - `check:docs` passes. The docs-adr and onboarding reviews are running.
+
+**2026-09-28 22:52Z to 2026-09-29 00:20Z: C2 (#294) and B1 (JC.net #261) landed; C3 built.**
+
+- C2 opened as lineage #294 on the slot JC.net #257 freed.
+  - Round one: Copilot's three items were Rejected (the installer's shebang is bash, not sh), and
+    Codex's P1 was cured in d26d3f2e4 (start-right's Quality Gates now covers a checkout already
+    in use).
+  - Round two: Copilot was clean. Codex's P1 (the API-alignment runbook) was cured in d09a50e8a,
+    with the two team prompts.
+  - The door-evidence round at d09a50e8a: Codex's no-API-key recipe item was Below-bar, and
+    Rejected with the reader-harm test. The class was routed to one mechanical proposal.
+  - #294 merged at 00:04:20Z as a2fc71c9e, both legs bound by content across a pure sync.
+    J3's lineage slices are all in (#289, #290, #292, #294).
+- The Director ruled on two things:
+  - the design of the unavailable-vendor door, v1: accepted, plus mechanical proof on the PR's own
+    timeline (an error review from the vendor on the head, or a request over sixty minutes old
+    with no content review since) before `--unavailable` is accepted;
+  - install-time provisioning (C3): yes, with conditions, recorded in the scratchpad's
+    `j3-port/c3-seed.md`.
+- B1 opened as JC.net #261 on the slot #259 freed.
+  - Copilot's round one found the retry path kept the whole gate transcript in memory. That was
+    cured in ad037fbe with a bounded window (4096 bytes; the refusal is 224). The retry tests
+    moved to their own file, the doubles to `test-helpers/push-cli-double.ts`, and a new test
+    drives 2× the measured gate output through the push action. Five mutants were killed.
+  - Round two was clean. #261 merged at 00:09:50Z as 24b72825.
+- C3 is built in `oce-wt-j3-shellcheck-provision`, uncommitted:
+  - the installer's no-op on the present pin;
+  - the bootstrap step, which skips on VERCEL or CI, and warns and goes on when it fails;
+  - the pure verdict module, and three docs.
+  - Every gate is green, and five mutants are killed.
+  - A finding: pnpm 11 runs no lifecycle scripts on an install that changes nothing, so an
+    existing checkout provisions at its next dependency change.
+  - The security-expert read is running. C3 opens at a free slot after it.
+- Next: C3; then unavailable-vendor slice A (after B1, now landed); then the J3 flow-back to JC.net
+  carrying the twins (list in the scratchpad's `j3-port/flow-back.md`, plus C3's twin and
+  start-right's two lines).

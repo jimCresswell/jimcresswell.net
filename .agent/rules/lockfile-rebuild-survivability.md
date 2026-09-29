@@ -6,7 +6,6 @@ globs:
   - "**/package.json"
   - pnpm-lock.yaml
   - pnpm-workspace.yaml
-  - .npmrc
 ---
 
 # Lockfile-Rebuild Survivability
@@ -110,21 +109,20 @@ those manifests move in the same change, with the lockfile regenerated.
 
 ## Worked instances
 
-- **MCP-151 (2026-07-25)**: the security slice (#530, six bounded floors) and
-  the estate-wide drift sweep (#531) were each tested by full delete-and-rebuild
-  and came back **byte-identical** — every floor, both major holds, and the
-  audit state read as declaration-derived rather than lockfile-retained. That
-  was the delete-and-rebuild recipe, which runs in the checkout, and beside
-  `node_modules` a byte-identical result does not prove the floors were
-  declared (see §Action).
-- **The corollary, same lane**: the sweep moved `@types/node` manifests to
-  `^24.13.3` while its override still read `^24.13.2`, and CI's frozen install
-  failed with `ERR_PNPM_OUTDATED_LOCKFILE`. That was the source lineage on its
-  pnpm of 2026-07-25; on pnpm 12.4.2 the same manifest move alone no longer
-  fails (the silent direction above), so this instance is history, not the
-  current behaviour. Cured by aligning the override — the same alignment
-  `21fdff136` made for the esbuild security floor, and the same class recorded
-  upstream for PR #296.
+- **A security slice and a drift sweep**: a slice setting bounded security
+  floors and an estate-wide drift sweep were each tested by full
+  delete-and-rebuild and came back **byte-identical**: every floor, the major
+  holds and the audit state read as declaration-derived rather than
+  lockfile-retained. That was the delete-and-rebuild recipe, which runs in the
+  checkout, and beside `node_modules` a byte-identical result does not prove
+  the floors were declared (see §Action).
+- **The corollary, same lane**: the sweep moved a type package's manifests one
+  patch ahead while its override still pinned the old patch, and CI's frozen
+  install failed with `ERR_PNPM_OUTDATED_LOCKFILE`. An older pnpm failed
+  loudly there; a newer one lets the same manifest move pass (the silent
+  direction above), so the loud failure is history, not current behaviour.
+  Cured by aligning the override with the manifests, the same alignment a
+  later security floor needed.
 
 ## Related Surfaces
 

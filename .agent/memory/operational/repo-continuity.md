@@ -21,6 +21,19 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-28T08:26Z, the Director's COMPACTION BOUNDARY 10** (Wick binds Temper, ed7b48), at the
+  owner's word "prepare for compaction … then stop all processes". Since the rollover: the lineage
+  landed 274, 264, 273, 276, 277, 278 (P1, the sync-lineage content binding) and 279, JC.net 227,
+  235, 236 and 237 (Nova's fold and chmod doctrine on both defaults); Nova retired at 04:48Z; Myrtle
+  resumed at 08:22Z on the owner's word with PR 250's owner item as her lane; Siren frozen with the
+  second doctrine pair's settlement pushes committed unpushed (280, 238). The count 3 of 3 (250,
+  280, 238); both coordination drafts (275, 234) DUE at 12:00Z. The napkin's 08:26Z block carried
+  the re-arm recipe and the owed-on-resume order; the seat resumed at 11:4xZ on the owner's
+  "carry on", and the live reading from then is the napkin's 10:22Z block (the owner's review) and
+  every Director block after it, read in order to the newest (the owner's words and answers, the
+  folds, the suite tallies), which supersede the 08:26Z block where they differ; the boundary
+  records went up with the midday fold.
+
 - **2026-09-28T00:1xZ, the rollover folds in progress** (Wick binds Temper, ed7b48). Both
   coordination drafts synced, pushed and ready-marked at 00:0xZ: the lineage's PR 264
   (coordination/2026-09-27-d6c9e5, synced to engraph 48f70d4ba at 24d9a06f1, one Copilot round cured
@@ -373,21 +386,20 @@ names a live branch):
 
 ## Active Threads
 
+- LinkedIn workspace (`linkedin/`): reopened on 2026-09-28 under privacy.md's dated workspace
+  authorisation; landed as PRs 240 (03cac8b3f, 14:48:24Z), 252 (f0f2f1fc2), 253 (b29ef39bd), 254
+  (1a164ae34, the authorisation as its own section) and 259 (efdcc2376, the paper's author list);
+  no editorial pass yet (the owner's word, 13:4xZ). Further batches from the owner's Codex agent
+  are repo content that a Practice seat commits and lands by the normal path (the owner's word,
+  2026-09-28); publishing to LinkedIn is a separate act on the owner's request.
 - JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
-  (158275) live on 2026-09-27 under the Director's Lane 4 routing (landings first), paused at
-  11:48Z on the owner's usage limit: J13 complete (lineage PRs 252, 253 and 256 merged
-  2026-09-26); J11 landed (258) and its JC.net runbook twin landed as PR 224 (10:17:01Z); PR 260
-  (the WIP-limit clause) landed 10:43:58Z; PR 263 (the lineage runbook copy converged, its
-  rollback cured, the WIP count) landed 11:34:36Z; PR 226 (the JC.net WIP twin with the runbook's
-  full rollback) open since 11:41Z at Copilot's round two; the record's latest dated block (the
-  10:1xZ resume stretch, appended at 11:3xZ with 260's landing) governs.
+  (158275), live on 2026-09-28. The lane's next step moves several times a day, so this bullet
+  names none: the record's latest dated block governs, and its landings list is the lane's proof.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
 ## Paused Threads
 
-- LinkedIn editorial pass (owner-led, private boundary; headline is the only
-  settled field).
 - Track B Source-of-Truth Design, Phase B2.1.
 - Dev-Tooling Hygiene (dependency updates handled locally).
 

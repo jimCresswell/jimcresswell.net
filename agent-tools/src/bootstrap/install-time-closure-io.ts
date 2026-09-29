@@ -1,74 +1,76 @@
 /**
  * Read the workspace for the install-time closure: the `packages` patterns
- * `pnpm-workspace.yaml` declares, each workspace directory's manifest, and
- * the name of the package running the bootstrap.
+ * `pnpm-workspace.yaml` declares, and every workspace package's manifest.
  *
- * Runs before any workspace package is built, so it uses `node:fs`, `yaml`
- * (an external dependency) and nothing from the workspace. The pure
- * derivation is `install-time-closure.ts`.
+ * Runs before any workspace package is built, so it uses `node:fs` and an
+ * external dependency (`tinyglobby`) and nothing from the workspace. It reads
+ * the filesystem, never git: an install can run where no repository exists (a
+ * deploy's tarball) and must see a workspace package that is not yet
+ * committed. The patterns are matched as pnpm matches them for `package.json`
+ * manifests. Parsing the text, and refusing text that does not parse, is pure
+ * in `install-time-manifest.ts`; this module reads, and names a file it cannot.
  *
  * @packageDocumentation
  */
 
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-import { parse as parseYaml } from 'yaml';
+import { globSync } from 'tinyglobby';
 
-import { type WorkspaceManifestInput } from './install-time-closure.js';
+import { byCodeUnit, type ClosureResult } from './install-time-closure-graph.js';
+import {
+  describeError,
+  parseManifestText,
+  parseWorkspacePatterns,
+  type WorkspaceManifestInput,
+} from './install-time-manifest.js';
 
-/** The `packages` patterns `pnpm-workspace.yaml` declares; empty when the field is absent. */
-export function workspacePatterns(repoRoot: string): readonly string[] {
-  const manifest: unknown = parseYaml(
-    readFileSync(path.join(repoRoot, 'pnpm-workspace.yaml'), 'utf8'),
-  );
-  if (typeof manifest !== 'object' || manifest === null || !('packages' in manifest)) {
-    return [];
-  }
-  const packages: unknown = manifest.packages;
-  return Array.isArray(packages)
-    ? packages.filter((entry): entry is string => typeof entry === 'string')
-    : [];
+/**
+ * The `packages` patterns `pnpm-workspace.yaml` declares.
+ *
+ * @param repoRoot - Absolute path of the repository root.
+ * @returns The patterns, or a refusal naming the file.
+ */
+export function readWorkspacePatterns(repoRoot: string): ClosureResult<readonly string[]> {
+  const workspaceFile = path.join(repoRoot, 'pnpm-workspace.yaml');
+  const text = readText(workspaceFile);
+  return text.ok ? parseWorkspacePatterns(workspaceFile, text.value) : text;
 }
 
-/** Every workspace directory with a manifest, paired with the parsed manifest. */
-export function workspaceManifestInputs(
+/**
+ * Every workspace package's directory, relative to the repository root with
+ * `/` separators, paired with its parsed manifest, in code-unit path order.
+ *
+ * @param repoRoot - Absolute path of the repository root.
+ * @param patterns - The `pnpm-workspace.yaml` patterns.
+ * @returns The manifests, or a refusal naming a manifest.
+ */
+export function readWorkspaceManifests(
   repoRoot: string,
   patterns: readonly string[],
-): readonly WorkspaceManifestInput[] {
+): ClosureResult<readonly WorkspaceManifestInput[]> {
+  const manifestPaths = globSync(
+    patterns.map((pattern) => `${pattern}/package.json`),
+    { cwd: repoRoot, ignore: ['**/node_modules/**'] },
+  ).sort(byCodeUnit);
   const inputs: WorkspaceManifestInput[] = [];
-  for (const dir of patterns.flatMap((pattern) => expandWorkspacePattern(repoRoot, pattern))) {
-    const manifestPath = path.join(repoRoot, dir, 'package.json');
-    if (existsSync(manifestPath)) {
-      const manifest: unknown = JSON.parse(readFileSync(manifestPath, 'utf8'));
-      inputs.push({ dir, manifest });
+  for (const manifestPath of manifestPaths) {
+    const text = readText(path.join(repoRoot, manifestPath));
+    const input = text.ok ? parseManifestText(manifestPath, text.value) : text;
+    if (!input.ok) {
+      return input;
     }
+    inputs.push(input.value);
   }
-  return inputs;
+  return { ok: true, value: inputs };
 }
 
-/** The `name` of the manifest at `packageDir`, or the empty string when it declares none. */
-export function packageName(packageDir: string): string {
-  const manifest: unknown = JSON.parse(readFileSync(path.join(packageDir, 'package.json'), 'utf8'));
-  return typeof manifest === 'object' &&
-    manifest !== null &&
-    'name' in manifest &&
-    typeof manifest.name === 'string'
-    ? manifest.name
-    : '';
-}
-
-/** Expand one `pnpm-workspace.yaml` pattern: a plain directory, or `<dir>/*` for its immediate children. */
-function expandWorkspacePattern(repoRoot: string, pattern: string): readonly string[] {
-  if (!pattern.endsWith('/*')) {
-    return [pattern];
+/** A file's text, or a refusal naming the file when it cannot be read. */
+function readText(filePath: string): ClosureResult<string> {
+  try {
+    return { ok: true, value: readFileSync(filePath, 'utf8') };
+  } catch (error) {
+    return { ok: false, error: `${filePath} cannot be read: ${describeError(error)}` };
   }
-  const parent = pattern.slice(0, -2);
-  const parentAbsolute = path.join(repoRoot, parent);
-  if (!existsSync(parentAbsolute)) {
-    return [];
-  }
-  return readdirSync(parentAbsolute, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => `${parent}/${entry.name}`);
 }

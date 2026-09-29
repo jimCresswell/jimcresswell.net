@@ -3,7 +3,7 @@ prompt_id: start-right-quick
 title: 'Start Right (Quick)'
 type: workflow
 status: active
-last_updated: 2026-09-24
+last_updated: 2026-09-29
 ---
 
 # Start Right (Quick)
@@ -330,12 +330,14 @@ pnpm install
 pnpm build
 ```
 
-`type-check` and `vitest` pass on install alone, so the gap stays silent until
-`lint` runs: ESLint's flat config imports the internal
-`@engraph/eslint-plugin-standards`, whose package `exports` resolve to
-`dist/`. Unbuilt, bare `eslint` exits 2 (`No exports main defined`). The primary
-checkout is usually already built, which masks this in the main tree only — so a
-worktree-based lane must run the build itself before trusting any gate.
+`type-check` and `vitest` pass on install alone, and the install's bootstrap
+builds every package agent-tools reaches that has built entry points, including the internal
+`@engraph/eslint-plugin-standards` whose package `exports` resolve to
+`dist/`, so ESLint's flat config loads on install alone too. What install
+does not write is the site's `.next/`. Until `pnpm build`, the site's
+`type-check` passes without the generated route types it includes, while CI
+checks them after its build step. So a worktree-based lane runs the build
+itself before trusting any gate.
 
 It also matters beyond gates: a worktree session shows **no statusline** unless the
 worktree was built **before the session started** (a known primary-checkout

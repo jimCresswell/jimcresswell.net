@@ -51,14 +51,55 @@ row's landing), `decline (reason)`, `records, not portable`, `graduated into <ro
 (an owner decision), `local` (host-specific by nature). A landing column carries the merged
 pull request once one exists.
 
-The exchange reports one number per direction, computed from these tables alone. A row is
-**owed** to an estate E when it sits in the other estate's delta table (J rows are owed to the
-lineage, L rows to `jcnet`) and its E-column cell does not begin with `decline`, `graduated
-into`, `origin`, `none`, `local` or `records, not portable`. An owed row has **landed** in E
-when §Landings holds a row with its id and Estate E whose Pull request cell lacks `PARTIAL`.
-Each direction reads as landed of owed, beside the `main` head the register was read at.
+The exchange reports one number per direction, computed from these tables, the residue census
+and the receiving estate's open pull requests, under the flow contract the owner ratified on
+2026-09-28 (the node's ruling 43). The residue census of 2026-09-28 sits in the lineage's tree
+at `.agent/reports/practice-exchange/goal-one-residue-census-2026-09-28.md` (the node's todo 6);
+the batch-six triage is `batch-six-triage-2026-09-25.md`, beside this file. A row sits in the
+other estate's delta table (J rows for the lineage, L rows for `jcnet`). Where its E-column
+cell begins with `decline`, `graduated into`, `origin`, `none`, `local` or `records, not
+portable`, it has no residue pull request in E and is outside E's count, declined where the
+cell says so. Otherwise it is in exactly one of four states, with no fifth: **landed** (the
+proof: a §Landings row with its id and Estate E whose Pull request cell lacks `PARTIAL` and
+does not begin `declined`), **in flight** (the open pull request's number on the receiving
+estate, or the seat's lane once started, its claim or gate notice on the stream; assigned work
+not yet started is queued), **queued** (its position in the census's order, the seat that takes
+it, and the horizon from the observed pace, all in the same breath) or **declined** (the reason;
+the owner's word where the row is ratified). A decline after the window, or a settlement by the
+triage's or a ruling's read with no pull request, is a dated §Landings row saying so; a decline's
+cell begins `declined`. The unit is the residue pull request as the
+census names it, recounted when a row's design read changes its slicing (26 for goal one: the
+census of 2026-09-28 read 24, and J3's design read the same day split its one slice into three
+on the Director's word of 18:3xZ; the inbound direction's count waits on its own census, todo 4
+after the review, ruling 44), and each direction reads as landed of total beside both estates'
+`main` heads the register was read at, in the count line below, so the count moves daily. The
+remainder, total less landed, falls between two coordination folds, or the count is routed to
+the Director (the node's ruling 21) as a failure, never re-labelled; a row queued across two
+folds with no movement is routed the same way. `PARTIAL` on a landing marks the row as not yet
+settled: the annotation names what that pull request landed, the census names the remaining
+units, and the row takes its remainder's state.
 
-## Rows from the lineage's delta (since `e477e62f7e`)
+### The count
+
+Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
+read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
+estate's J rows into the lineage), read on 2026-09-29 at jcnet `507f581185` and lineage
+`eb1ad3f807`: **11 of 30**. The 30 are the census's 20 residue pull requests, J3's four from its
+recounts (two at 18:3xZ on 2026-09-28; two more at 01:4xZ on 2026-09-29, when the recount's third
+slice, the shellcheck gate with its installer, CI step and docs, landed as three pull requests),
+J6's one from the recount of 21:4xZ (four lineage pull requests, not three), and the charter's five
+acts (todo 6's amendment, the lessons row, the comparison row, the re-pin, and todo 8's validator
+twin by the Director's ruling of 2026-09-29 01:2xZ). The 11 are todo 6's amendment (this estate's PR
+248, 2026-09-28T17:14:16Z) and ten lineage pull requests: J3's #289 (slice 2), #290 (slice 3), #292
+(slice 4a), #294 (slice 4b) and #297 (slice 4c, 2026-09-29T01:36:18Z); N1's first slice, #291
+(2026-09-28T23:43:15Z); J6's #293 (N6), #295 (the commit-queue worktree smoke) and #298 (N7,
+2026-09-29T02:52:41Z); and todo 8's validator twin, #301 (2026-09-29T03:19:24Z). Reconstructed for
+the fold test at the lineage's rollover fold 76974c3cc (2026-09-29T01:12:26Z), before this line was
+refreshed: 8 of 27 in the total as it then read (J3's second recount, two more, and todo 8's
+validator twin, one, make it 30 in today's units), #297 not yet merged. Since the census, ten
+lineage pull requests and one of this estate's have merged; the rows settled by this register's
+dated rows carry no pull request of their own and change no unit. The inbound direction's count
+opens with its own census (todo 4, ruling 44). ## Rows from the lineage's delta (since `e477e62f7e`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |
 | --- | --- | --- | --- | --- | --- |
@@ -203,6 +244,7 @@ Appended as each row lands: row, estate, pull request, head read.
 | J22 | lineage | #235 (merged `770ae4de19`, 2026-09-26T10:43:00Z; PARTIAL: the build-system document's caching rule, with J17) | jcnet `57592003a8` |
 | J22 | lineage | #243 (merged `efdfebdb2e`, 2026-09-26T10:43:27Z; PARTIAL: the agent-tools end-to-end task declares the nine root files its script reads, #235's follow-up) | jcnet `57592003a8` |
 | J1 | lineage | #226 (merged `10cf025f86`, 2026-09-26T10:44:38Z; PARTIAL: the lockfile rebuild resolves the declarations cold, in an empty directory) | jcnet `57592003a8` |
+| J1 | lineage | #291 (merged `7e4cf9b813`, 2026-09-28T23:43:15Z; PARTIAL: N1's first slice, the declarations on 132 rules and the generators for the rules index and the Cursor, Claude and `.agents` rule adapters, the four hand-kept validator legs gone; the sub-agent generator and the health-probe parity follow as the second and third slices; the reader's block-sequence and quote-strip cures, the comma-list split, POSIX joins, three Sonar cures, the code-unit sort, the sweep's read-back and the reshaped tests return here as the same bytes) | jcnet `efdcc23767` |
 | J21 | lineage | #231 (merged `a58471b0c7`, 2026-09-26T10:45:28Z; PARTIAL: the unregistered max-files-per-dir rule deleted with its test) | jcnet `57592003a8` |
 | J9 | lineage | #220 (merged `0e2952ccc8`, 2026-09-26T10:47:06Z; no-skipped-tests as the `.todo` gate, a todo test failing the strict config; with #194, #195, #197, #201, #215 and #240, and the three the receipt `c46a0e4b` declined, the row is settled) | jcnet `57592003a8` |
 | J21 | lineage | #232 (merged `4d50e3dfd0`, 2026-09-26T10:47:31Z; PARTIAL: the result package says what the type does and lists its whole API) | jcnet `57592003a8` |
@@ -224,3 +266,21 @@ Appended as each row lands: row, estate, pull request, head read.
 | J7 | lineage | #270 (merged `bd320b710a`, 2026-09-27T21:33:26Z; PARTIAL: root-anchored path scopes, and payload paths placed against their cwd) | jcnet `67bc75ecb7` |
 | J3 | jcnet | PR 232 (merged `45093dca95`, 2026-09-27T21:44:13Z; PARTIAL: the tracked gates take #269's review cures, with two of this estate's own, the leading `:` refusal and a repair-mode test, which the lineage takes with the shellcheck slice) | lineage `48f70d4bab` |
 | J7 | lineage | #271 (merged `bfd9e07f0d`, 2026-09-27T22:57:18Z; PARTIAL: a scoped block may exempt files in another git repository, with bounded reads, the same bytes as this estate's PRs 230, 231 and 233 in 22 of 24 files, the package scope aside; the argument matcher's compare half stays open) | jcnet `67bc75ecb7` |
+| J22 | lineage | #272 (merged `48f70d4bab`, 2026-09-27T23:34:56Z; PARTIAL: the agent-tools test task hashes the hook policy it reads, a build-system input declaration in the line of #243) | jcnet `67bc75ecb7` |
+| J17 | lineage | no pull request, 2026-09-28: the batch-six triage's note 1, the gate-running doctrine, is converged by this estate's ratified node `commit-as-the-full-local-gate` (the owner's card of 2026-09-24): the lineage's words land here in that node's slices D, E and F (the hook change with the five homes, the prose sweep, the gates skills), and this estate's mechanism, the gate slot, lands in the lineage as the triage's note 4; the Director's reading, confirmed by the owner on 2026-09-28 (the node's ruling 42); PARTIAL: notes 4 and 8 keep their pull requests | jcnet `be6b5141be` |
+| J22 | lineage | no pull request, 2026-09-28: note 1's build-system half is converged by the same node (ruling 42); with #235 and #243 (note 2), #217 (note 12, the no-IO doctrine texts), #237 and #282 (note 13, the recipes and the workflow) and #272, the row is settled; the residue census of 2026-09-28 names no other remainder | jcnet `be6b5141be` |
+| J11 | lineage | declined in part, no pull request, 2026-09-28: the exchange instrument (this register's validator, its smoke and its root script) is Not taken by the lineage, the reason being that it validates this estate's register, which the lineage does not hold; the owner's word verbatim as relayed, "Decline with the reason (Recommended)" (the node's ruling 41); PARTIAL: the loss-scan instrument stays J11's one residue pull request | jcnet `be6b5141be` |
+| J15 | lineage | no pull request, 2026-09-28: settled by the batch-six triage's read (§J15) as the residue census of 2026-09-28 names it: of the row's paths (118 at the triage's read; the validator's baseline counts 117), two riders landed in #227, the third (the champion role's tsconfig block) rides J20's tsconfig pull request, and the rest is LOCAL, PARITY or another row's; ruling 40's clause (1) | jcnet `be6b5141be` |
+| J19 | lineage | no pull request, 2026-09-28: settled by the batch-six triage's read (§J19) as the residue census of 2026-09-28 names it: the six patterns are this estate's imports from the lineage, PARITY, and the polarity header landed in #234; ruling 40's clause (1) | jcnet `be6b5141be` |
+| J23 | lineage | no pull request, 2026-09-28: settled by the batch-six triage's read (§J23) as the residue census of 2026-09-28 names it: the five architecture decision records are site decisions, none deciding a Practice concept, so nothing twins; ruling 40's clause (1) | jcnet `be6b5141be` |
+| J3 | lineage | #289 (merged `4a302b18c4`, 2026-09-28T19:45:24Z; PARTIAL: slice 2, the tracked gates' cures: a leading `:` read as glob-significant, only a resolved index entry read as a symlink, and a smoke that runs both repair modes over the real tools in place of the repair-mode test) | jcnet `cad7047579` |
+| J3 | lineage | #290 (merged `1cccdfc1b9`, 2026-09-28T21:26:15Z; PARTIAL: slice 3, every owned bash script opens with the bash 5.2 floor, and the hook wrapper's floor branch exits when it has no command to hand to) | jcnet `cad7047579` |
+| J3 | lineage | #292 (merged `8ebd923a5e`, 2026-09-28T22:48:51Z; PARTIAL: slice 4a, `lint:shell` runs this estate's shellcheck gate, pinned at 0.11.0, over the tracked tree, with the lineage's additions: the tsx shebang forms, the skills-lock exclusion, the `.tools` refusal, the wider silencing directive, the lost-file refusal read from git's index and `/usr/bin/env`) | jcnet `cad7047579` |
+| J6 | lineage | #293 (merged `9f374887d4`, 2026-09-28T23:21:43Z; PARTIAL: N6, the smoke suite discovered from `smoke-tests/`, not listed) | jcnet `6eccf829d8` |
+| J3 | lineage | #294 (merged `a2fc71c9e5`, 2026-09-29T00:04:20Z; PARTIAL: slice 4b, the gate recorded in ADR-121 and ADR-161, and the installer in every setup path) | jcnet `cad7047579` |
+| J6 | lineage | #295 (merged `cdd74a8943`, 2026-09-29T00:33:15Z; PARTIAL: the commit-queue worktree smoke runs the built CLI, hermetic, and the `smoke:*` index retires) | jcnet `ae90948638` |
+| J3 | lineage | #297 (merged `ef0ba83c15`, 2026-09-29T01:36:18Z; PARTIAL: slice 4c, `pnpm install` provisions the pinned shellcheck through its postinstall, the lineage's last J3 slice; the cures its slices made return to this estate in the J3 flow-back) | jcnet `cad7047579` |
+| J6 | lineage | #298 (merged `517c1a5e04`, 2026-09-29T02:52:41Z; PARTIAL: N7, the install-time closure derived from the workspace manifests and rooted at agent-tools; the rooted form flows back to this estate, and N8 follows) | jcnet `d2b91090e6` |
+| J6 | jcnet | PR 266 (merged `a06edf1db3`, 2026-09-29T03:06:35Z; PARTIAL: N7's flow-back, the install-time closure rooted at agent-tools and refusing what it cannot build, the same bytes as the lineage's #298 as it merged; the closure test's fixture-builder cure rides N8) | lineage `517c1a5e04` |
+| J3 | jcnet | PR 267 (merged `507f581185`, 2026-09-29T03:36:41Z; PARTIAL: #289's and #290's cures return: the real-tool repair smoke in place of the fake-driven repair test, with a process-group cure of this estate's own that the lineage takes back, the planUnlessLost comment and the hook wrapper's floor exit; and the five lineage rows above) | lineage `eb1ad3f807` |
+| J6 | lineage | #303 (merged `b026527512`, 2026-09-29T04:19:04Z; PARTIAL: N8, the registered hook command's negative control, the command with its quotes removed exiting 127 from the spaced project at the path cut at its first space, and the closure test's fixture builders building a literal as a rider; the rider returns to this estate in N8's flow-back) | jcnet `507f581185` |

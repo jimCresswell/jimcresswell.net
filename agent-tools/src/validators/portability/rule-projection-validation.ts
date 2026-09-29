@@ -59,6 +59,11 @@ const REFUSING = refusing(RULE_SUBJECT);
 export interface RuleProjectionValidation {
   readonly issues: readonly string[];
   readonly canonicalRuleCount: number;
+  /**
+   * The canonical declarations, when every rule was read; empty when the set is partial.
+   * The glob-resolution check reads them against the tracked tree.
+   */
+  readonly declarations: readonly RuleDeclaration[];
   /** Repo-relative paths written in fix mode. */
   readonly written: readonly string[];
   /** Repo-relative stale paths removed in fix mode. */
@@ -79,23 +84,35 @@ export async function validateRuleProjections(
   const canonical = await readDeclarations(projectionFs);
   const canonicalRuleCount = canonical.canonicalRuleCount;
   if (canonical.issues.length > 0) {
-    return { issues: canonical.issues, canonicalRuleCount, written: [], removed: [] };
+    return {
+      issues: canonical.issues,
+      canonicalRuleCount,
+      declarations: [],
+      written: [],
+      removed: [],
+    };
   }
+  const { declarations } = canonical;
   const surfaces = await readSurfaces(projectionFs);
   if (!surfaces.ok) {
-    return { issues: [surfaces.error], canonicalRuleCount, written: [], removed: [] };
+    return { issues: [surfaces.error], canonicalRuleCount, declarations, written: [], removed: [] };
   }
-  const expected = renderRuleProjections(canonical.declarations);
+  const expected = renderRuleProjections(declarations);
   const drift = diffProjections(expected, surfaces.value);
   if (!fixMode) {
     return {
       issues: driftIssues(drift, RULE_SUBJECT),
       canonicalRuleCount,
+      declarations,
       written: [],
       removed: [],
     };
   }
-  return { canonicalRuleCount, ...(await applyProjectionDrift(expected, drift, projectionFs)) };
+  return {
+    canonicalRuleCount,
+    declarations,
+    ...(await applyProjectionDrift(expected, drift, projectionFs)),
+  };
 }
 
 interface CanonicalRules {

@@ -4,7 +4,7 @@
  * pre-commit hook and the tracked tree for the root gates.
  *
  * @remarks
- * A tracked gate reads the tree through {@link readTrackedTree}, which fails
+ * A tracked gate reads the tree through {@link readTrackedTreeResult}, which fails
  * closed: a gate whose git read failed checked nothing, so it fails rather
  * than pass, and a check refuses a tracked file the working tree has lost
  * ({@link planUnlessLost}). Its files run in chunks within the host's
@@ -16,7 +16,6 @@
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { failureAsError } from '../core/failure-as-error.js';
 import { writeErrorLine, writeLine } from '../core/terminal-output.js';
 
 import {
@@ -34,7 +33,7 @@ import {
 } from './repo-check-files.js';
 import { defaultRuntime } from './repo-check-runtime.js';
 import type { RepoCheckRuntime } from './repo-check-types.js';
-import { readTrackedTree, stagedFiles } from './repo-check-universe.js';
+import { readTrackedTreeResult, stagedFiles } from './repo-check-universe.js';
 
 /** markdownlint over the staged Markdown files (the pre-commit hook). */
 export async function runMarkdownlintStaged(
@@ -58,15 +57,6 @@ export async function runPrettierStaged(
     return 0;
   }
   return runtime.runInherited('pnpm', prettierArgs('check', files));
-}
-
-/** The tracked tree, or why git could not give it. */
-function trackedTree(runtime: RepoCheckRuntime): Result<TrackedTreeReading, string> {
-  try {
-    return ok(readTrackedTree(runtime));
-  } catch (error: unknown) {
-    return err(failureAsError(error, 'readTrackedTree').message);
-  }
 }
 
 /**
@@ -110,10 +100,11 @@ export function lostFilesRefusal(lost: readonly string[]): string {
 
 /**
  * Plan a gate's runs, unless it is a check over a file it cannot read. A check
- * covers every file the index names, each read as the working tree holds it,
- * as every leg of the gate reads the working tree; a named file with nothing
- * to read is refused by name rather than passed without it. A repair proves
- * nothing, so it skips them.
+ * covers every regular file the index names, each read as the working tree
+ * holds it, as every leg of the gate reads the working tree; a named file with
+ * nothing to read is refused by name rather than passed without it. A symlink
+ * is neither checked nor refused: the tools read a link's target under its
+ * real path. A repair proves nothing, so it skips them.
  */
 function planUnlessLost(isCheck: boolean, lost: readonly string[], plan: () => GatePlan): GatePlan {
   return isCheck && lost.length > 0 ? err(lostFilesRefusal(lost)) : plan();
@@ -125,7 +116,7 @@ async function runTrackedGate(
   label: string,
   plan: (reading: TrackedTreeReading) => GatePlan,
 ): Promise<number> {
-  const reading = trackedTree(runtime);
+  const reading = readTrackedTreeResult(runtime);
   if (!reading.ok) {
     writeErrorLine(`repo-check ${label}: ${reading.error}; the gate checked nothing.`);
     return 1;

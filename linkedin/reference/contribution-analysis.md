@@ -1,6 +1,6 @@
 # Contribution account and editorial findings
 
-28 September 2026 · Repository edition for the LinkedIn workspace
+28 September 2026 · Prepared for the LinkedIn workspace
 
 This account carries the professional substance relevant to [the first draft](../profile-draft.md).
 It is an editorial synthesis of Jim’s account, the recorded profile, the current website and public

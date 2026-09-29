@@ -1,7 +1,6 @@
 import { err, ok, type Result } from '@engraph/result';
 
-import type { PathExists } from '../core/path-exists.js';
-import { isLegalBranchName, realRefFormatOracle, type RefFormatOracle } from './ref-format.js';
+import { readBranchArg, type BranchArgSeams } from './branch-arg.js';
 
 /**
  * The argv contract for `merge-bot push`. Split from `push-cli.ts` to keep
@@ -25,7 +24,10 @@ export const PUSH_USAGE = `merge-bot push [--branch <name>] [--json]
   Pushes HEAD to the repository's GitHub remote as the BOT, over a freshly
   minted installation token — the whole per-session credential-helper recipe
   as one command. The push itself IS the git binary; this command injects the
-  bot identity and refuses by type, and adds no transfer behaviour of its own.
+  bot identity and refuses by type, and adds no transfer behaviour of its own
+  but one bounded retry: when GitHub refuses the push at git's first request,
+  before the pre-push hook runs, it mints a fresh token and runs git again 30
+  seconds later, up to three attempts in all, naming each retry on stderr.
 
   The token reaches git ONLY through a 0600 file that lives exactly as long
   as the transfer, read by a static credential helper; the child environment
@@ -63,67 +65,14 @@ const REFUSED_FLAGS: Readonly<Record<string, string>> = {
     'hooks run on every bot push — the pre-push gates are the point of pushing through this command',
 };
 
-/**
- * A value that reads as a flag is a forgotten `--branch` argument, never a
- * branch anyone meant to push: refuse it rather than cutting a remote branch
- * literally called `--json`. This guard is ours and it is about argv INTENT —
- * git's ref grammar has no opinion here (the oracle passes the full ref name
- * `refs/heads/--json`), and legality is its question, asked separately below.
- */
-function readsAsFlag(value: string): boolean {
-  return value.startsWith('-');
-}
-
-function isBranchName(value: string, oracle: RefFormatOracle): boolean {
-  return !readsAsFlag(value) && isLegalBranchName(value, oracle);
-}
-
 interface CollectedPushFlags {
   branch?: string;
   json: boolean;
 }
 
-/** The seams this parser will construct for itself when not supplied one. */
-export interface PushArgsSeams {
-  readonly refFormatOracle?: RefFormatOracle;
-  /** Existence probe for locating the git binary the default oracle asks. */
-  readonly pathExists?: PathExists;
-}
-
-/**
- * The oracle enters HERE (the default-seam pattern the rest of this command
- * uses) rather than at the parser's head, so parsing an argv with no
- * `--branch` never reaches for a git binary at all. Constructing it can FAIL —
- * a machine with no trusted git has no oracle to ask — and that failure is
- * returned, never thrown: this function's whole contract is its Result.
- */
-function consumeBranch(
-  state: CollectedPushFlags,
-  value: string | undefined,
-  seams: PushArgsSeams,
-): Result<undefined, Error> {
-  // A repeated --branch is refused rather than last-wins: WHICH branch a push
-  // lands on must never be decided by argv order.
-  if (state.branch !== undefined) {
-    return err(new Error('--branch given more than once — pass it exactly once'));
-  }
-  const oracle =
-    seams.refFormatOracle === undefined
-      ? realRefFormatOracle(seams.pathExists)
-      : ok(seams.refFormatOracle);
-  if (!oracle.ok) {
-    return err(oracle.error);
-  }
-  if (value === undefined || !isBranchName(value, oracle.value)) {
-    return err(new Error(`--branch needs a git branch name, got "${value ?? ''}"\n${PUSH_USAGE}`));
-  }
-  state.branch = value;
-  return ok(undefined);
-}
-
 export function parsePushArgs(
   rest: readonly string[],
-  seams: PushArgsSeams = {},
+  seams: BranchArgSeams = {},
 ): Result<PushArgs, Error> {
   const state: CollectedPushFlags = { json: false };
   for (let index = 0; index < rest.length; index += 1) {
@@ -139,10 +88,11 @@ export function parsePushArgs(
     if (flag !== '--branch') {
       return err(new Error(`unknown argument "${flag}"\n${PUSH_USAGE}`));
     }
-    const consumed = consumeBranch(state, rest[index + 1], seams);
-    if (!consumed.ok) {
-      return consumed;
+    const branch = readBranchArg(state.branch, rest[index + 1], seams, PUSH_USAGE);
+    if (!branch.ok) {
+      return branch;
     }
+    state.branch = branch.value;
     index += 1;
   }
   return ok({ branch: state.branch, json: state.json });

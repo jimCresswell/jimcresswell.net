@@ -6,8 +6,9 @@
  * Enforces the transplant's closure invariant over every tracked live surface:
  * the names of the lineage the Practice was transplanted from (declared once
  * in the `lineage-name` scoped block of `.agent/hooks/policy.json`) appear only
- * in the records that tell the transplant's story and in the site's content
- * directory, never in a fixture, a manifest, a reference link or a comment.
+ * in the records that tell the transplant's story, in the site's content
+ * directory and in the LinkedIn workspace, never in a fixture, a manifest, a
+ * reference link or a comment.
  * The block's names and scope are the same ones the PreToolUse write-hook
  * applies, so the gate and the guard match the same names and exempt the same
  * files; the tracked-file listing and the binary/generated skip policy come
@@ -68,8 +69,9 @@ function report(
   writeErrorLine('');
   writeErrorLine(
     'The lineage the Practice was transplanted from is named only in the records that tell that ' +
-      'story (provenance, changelog, memory, reports, plans, the transplant exploration) and in ' +
-      "the site's content directory. On a live surface, name this estate instead. See the " +
+      'story (provenance, changelog, memory, reports, plans, the transplant exploration), in ' +
+      "the site's content directory and in the LinkedIn workspace. On a live surface, name this " +
+      'estate instead. See the ' +
       'lineage-name block in .agent/hooks/policy.json for the names and the scope, and the plan ' +
       'of record, closure item 5.',
   );
