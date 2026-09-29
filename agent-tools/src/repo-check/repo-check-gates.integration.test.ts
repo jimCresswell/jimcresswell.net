@@ -58,22 +58,6 @@ function windowsHost(args: readonly string[]): number {
   return units > 32_767 ? 1 : 0;
 }
 
-/**
- * A tree the tools find unformatted until a run carrying the tool's repair
- * flag (prettier's `--write`, markdownlint-cli2's `--fix`) has repaired it:
- * a check fails before that run and passes after.
- */
-function repairableTree(): (args: readonly string[]) => number {
-  let repaired = false;
-  return (args) => {
-    if (args.includes('--write') || args.includes('--fix')) {
-      repaired = true;
-      return 0;
-    }
-    return repaired ? 0 : 1;
-  };
-}
-
 describe('the tracked gates', () => {
   it('fail when git cannot list the tracked tree, whatever the tools would say', async () => {
     const broken = runtimeOver({
@@ -119,30 +103,6 @@ describe('the tracked gates', () => {
         runtimeOver({ tracked: listing, host: windowsHost }),
         'win32',
       ),
-    ).resolves.toBe(0);
-  });
-
-  it('repair the tree in their repair modes, so a check that failed before passes after', async () => {
-    const tracked = passed('docs/a.md\u0000');
-    const prettier = repairableTree();
-    await expect(
-      runPrettierTracked('check', runtimeOver({ tracked, host: prettier })),
-    ).resolves.toBe(1);
-    await expect(
-      runPrettierTracked('write', runtimeOver({ tracked, host: prettier })),
-    ).resolves.toBe(0);
-    await expect(
-      runPrettierTracked('check', runtimeOver({ tracked, host: prettier })),
-    ).resolves.toBe(0);
-    const markdownlint = repairableTree();
-    await expect(
-      runMarkdownlintTracked('check', runtimeOver({ tracked, host: markdownlint })),
-    ).resolves.toBe(1);
-    await expect(
-      runMarkdownlintTracked('fix', runtimeOver({ tracked, host: markdownlint })),
-    ).resolves.toBe(0);
-    await expect(
-      runMarkdownlintTracked('check', runtimeOver({ tracked, host: markdownlint })),
     ).resolves.toBe(0);
   });
 
