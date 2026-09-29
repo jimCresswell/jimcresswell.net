@@ -3006,3 +3006,21 @@ is named above, so the recursion closes here.
 - Next in the seat's queue: the lineage smoke twin (2c2f06810, committed); the B1 push-retry port
   (four advertisement 403s tonight; inventory running); J3's last JC.net slice; JC.net's twins of
   slices A, B and C; the retire port.
+
+**2026-09-29 05:34Z to 06:07Z: J3's shellcheck slice landed; two lineage PRs built.**
+
+- JC.net PR 270 merged 05:56Z as 1cdcce75 (branch deleted, worktree removed, claim closed).
+  Round one: item 1 cured in cec6bed6 (an untracked or linked `skills-lock.json` no longer
+  excludes anything: the lock counts only when `trackedCheckFiles` holds it); item 2 Rejected
+  (the directive pattern matches inside quotes; the error fails closed, and a partial tokenizer
+  would open a pass hole). Round two, no push: an unstaged lock edit Rejected (the gate reads one
+  snapshot, the working tree, for every tracked file); a lost non-script over the 50 MiB capture
+  buffer Rejected (largest tracked file 0.8 MiB here, 24.5 MiB in the lineage).
+- The lineage smoke twin's worktree also carries round one's tracked-lock cure as its twin (the
+  same +64 / -19 diff, the lineage's git-reader type in one annotation); one PR for both J3
+  round cures, next in the WIP queue after Nova's J8 B1.
+- The B1 push-retry port is built in `oce-wt-b1-push-retry` (lineage claim e8fd79d5), ten
+  files, committed 06:10Z as fd0bd9db1 (turbo 129 of 129, knip clean). A kept lineage refusal (219 bytes) classifies as the
+  refusal with the ported code. One sentence in `push-attempts.ts` is reworded to hold in both
+  estates ("for the repository this retry was built in"); the same bytes are owed back here.
+- Open for the Director: B1 has no exchange-register row; whether it takes one.
