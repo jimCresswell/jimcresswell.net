@@ -36,16 +36,20 @@ const SHELL_EXTENSIONS = ['.sh', '.bash'] as const;
 
 const HUSKY_HOOK_DIRECTORY = '.husky/';
 
+/** Shebang lines, each whole line mapped to whether it runs a shell. */
+export type ShebangForms = ReadonlyMap<string, 'shell' | 'not shell'>;
+
 /**
- * Every shebang line the gate recognises, each whole line mapped to whether
- * it runs a shell. These are the forms the tracked files use; a line outside
- * them fails the gate.
+ * Every shebang line the gate recognises: the forms the tracked files of each
+ * repository carrying this gate use. A line outside them fails the gate.
  */
-const SHEBANG_FORMS: ReadonlyMap<string, 'shell' | 'not shell'> = new Map([
+const SHEBANG_FORMS: ShebangForms = new Map([
   ['#!/usr/bin/env bash', 'shell'],
   ['#!/usr/bin/env sh', 'shell'],
   ['#!/usr/bin/env node', 'not shell'],
   ['#!/usr/bin/env python3', 'not shell'],
+  ['#!/usr/bin/env -S pnpm exec tsx', 'not shell'],
+  ['#!/usr/bin/env tsx', 'not shell'],
 ]);
 
 const BASH_SHEBANG = '#!/usr/bin/env bash';
@@ -54,8 +58,9 @@ const BASH_SHEBANG = '#!/usr/bin/env bash';
  * The bash floor, held here once: bash 5.2 (owner, 2026-09-19). Every bash
  * script's first command is this line, so an older bash, such as the 3.2 macOS
  * ships, stops with install advice instead of running on. What follows the
- * line is the script's own: the two secrets hooks answer with a block
- * decision, the rest write to stderr and exit non-zero. Husky hooks run under
+ * line is the script's own: the two secrets hooks answer deny or block, the
+ * hook wrapper hands straight to the hook it wraps, the cloud detector exits
+ * 2, and the rest write to stderr and exit non-zero. Husky hooks run under
  * `sh` and carry no floor.
  */
 export const BASH_FLOOR_GUARD =
@@ -65,9 +70,14 @@ export const BASH_FLOOR_GUARD =
  * A shellcheck directive comment (`# shellcheck key=value ...`, the space
  * after `#` optional) carrying a key that narrows what shellcheck reports:
  * `disable` drops checks, `shell` replaces the dialect the file declares, and
- * `extended-analysis` turns the dataflow analysis off.
+ * `extended-analysis` turns the dataflow analysis off. The `#` starts a word,
+ * as a shell comment does, anywhere on the line: shellcheck honours a
+ * directive after `then`, `do`, `{` or `(` as well as on a line of its own.
+ * The key counts anywhere after `shellcheck`, since shellcheck also honours a
+ * key glued to the quoted value before it (`source="lib.sh"disable=SC2086`).
  */
-const SILENCING_DIRECTIVE = /^\s*#\s*shellcheck\s(?:.*\s)?(disable|shell|extended-analysis)=/u;
+const SILENCING_DIRECTIVE =
+  /(?:^|[\s;&|(){}])#\s*shellcheck\s.*?(disable|shell|extended-analysis)=/u;
 
 /** A file's first line, less the carriage return that ends a CRLF line. */
 function firstLine(head: string): string {
@@ -89,10 +99,15 @@ function hasShellPath(file: string): boolean {
  *
  * @param file - Repo-relative path.
  * @param head - The file's opening bytes, enough to hold its first line.
+ * @param forms - The shebang lines the gate recognises.
  * @returns True for a `.sh` or `.bash` name, a husky hook, or a first line that is a shell form.
  */
-export function isShellScript(file: string, head: string): boolean {
-  return hasShellPath(file) || SHEBANG_FORMS.get(firstLine(head)) === 'shell';
+export function isShellScript(
+  file: string,
+  head: string,
+  forms: ShebangForms = SHEBANG_FORMS,
+): boolean {
+  return hasShellPath(file) || forms.get(firstLine(head)) === 'shell';
 }
 
 /**
@@ -123,16 +138,21 @@ function refusalRemedies(form: 'not shell' | undefined, shellPath: boolean): rea
  *
  * @param file - Repo-relative path, named in the failure.
  * @param head - The file's opening bytes, enough to hold its first line.
+ * @param forms - The shebang lines the gate recognises.
  * @returns One failure line naming the file, its shebang (each carriage return written `\r`) and each remedy that can clear it; empty when the gate accepts the file.
  */
-export function shebangFailures(file: string, head: string): readonly string[] {
+export function shebangFailures(
+  file: string,
+  head: string,
+  forms: ShebangForms = SHEBANG_FORMS,
+): readonly string[] {
   const line = firstLine(head);
-  const form = SHEBANG_FORMS.get(line);
+  const form = forms.get(line);
   const shellPath = hasShellPath(file);
   if (!line.startsWith('#!') || form === 'shell' || (form === 'not shell' && !shellPath)) {
     return [];
   }
-  const forms = [...SHEBANG_FORMS]
+  const usable = [...forms]
     .filter(([, kind]) => kind === 'shell' || !shellPath)
     .map(([shebang]) => `\`${shebang}\``);
   const refusal = shellPath
@@ -140,7 +160,7 @@ export function shebangFailures(file: string, head: string): readonly string[] {
     : 'not a recognised form';
   return [
     `${file}:1: the shebang \`${line.replaceAll('\r', String.raw`\r`)}\` is ${refusal}; ` +
-      `use one of ${forms.join(', ')}, ${refusalRemedies(form, shellPath).join(', ')}`,
+      `use one of ${usable.join(', ')}, ${refusalRemedies(form, shellPath).join(', ')}`,
   ];
 }
 
