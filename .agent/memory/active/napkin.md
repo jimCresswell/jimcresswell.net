@@ -4757,3 +4757,37 @@ Rejected on testing-strategy's own words; Nova signed both, resolved, and the do
 
 NEXT: 301's sync and door; 265's door; slice B and the flow-back at their slots; check-in 79
 about 03:45Z; the midday folds at 12:00Z with a pre-fold suite (51).
+
+## 2026-09-29T03:4xZ — Director check-in 79: the count 3; four landings; 11 of 30; the lineage draft's conflict cured
+
+THE FOUR NUMBERS (gh at 03:43Z): open non-coordination PRs 3 of 3 (lineage 302, Siren's
+unavailable-vendor slice B, a vendor declared unavailable stands in for its leg on the
+timeline's evidence, 29 files, at its legs; lineage 303, Nova's N8, the hook-command fixture
+compare with the 298 rider, 4 files, at its legs; JC.net 268, Myrtle's register count 11 of 30,
+opened 03:43:03Z, CI running); landings since check-in 78: lineage 301 (eb1ad3f, 03:19:24Z,
+todo 8's validator twin); JC.net 265 (cad7047, 02:58:50Z, the register at 9 of 30), 266
+(a06edf1, 03:06:35Z, Nova's N7 flow-back, byte-identical, its N8 rider named), 267 (507f581,
+03:36:41Z, Siren's J3 cures returned with J3's five lineage Landings rows); heads with CI in
+flight: 302, 303, 268. Coordination drafts: JC.net 264 (at 1d7a84c0); lineage 299 read DIRTY at
+03:26Z: Siren's C3 (297) and Myrtle's records commit 25fc3967e both appended to the frictions
+register at the same anchor; the Director made the convergence merge of engraph eb1ad3f80 on the
+primary at 03:4xZ keeping both lines, pushed next (check-in 80 confirms the sha); both drafts
+DUE 12:00Z. Remote branches outside a PR: none in either estate (slice B and the flow-back
+opened on their slots). The ready list: the 628e21c1 deletion for the owner's hand, nothing
+else.
+
+THE COUNT: 11 of 30 at engraph eb1ad3f80 (301 landed, todo 8's lineage leg closed); remaining
+19; the horizon holds (the midday fold of 2026-10-01).
+
+RULINGS THIS WINDOW, one line each: N1's second slice (the sub-agent declarations port, Myrtle,
+about 150 files in three green commits): the four plan verdicts stand, with two conditions:
+platforms as declaration data (cursor, claude, codex; nothing renders for Gemini; a Gemini surface
+is the surface matrix's decision), and the generator module the second estate's bytes, the
+persona instruction carried in each variant's declared note after the pointer (read first-hand:
+the module renders no line between the pre-pointer line and the pointer by design), no field,
+nothing flows back; subagent-architect read-only on every platform; the archived adapter moved,
+not deleted, with ADR-125's line re-homed; PDR-009's dated line with the docs-adr and onboarding
+reads. Cards to the owner: none.
+
+NEXT: 302's and 303's doors, 268's round; the lineage draft's sync push; N1 slice 2's build;
+check-in 80 about 04:30Z; the midday folds at 12:00Z with a pre-fold suite (51).
