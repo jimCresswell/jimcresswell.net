@@ -12,18 +12,19 @@ working to Jim’s direction; they are proposals and working analyses, not his p
 
 ## Working material
 
-| Document                                                                                | Purpose                                                                            |
-| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [Profile draft](profile-draft.md)                                                       | One complete proposed revision, including supporting sections and retain decisions |
-| [Rewrite handoff](rewrite-handoff.md)                                                   | Current direction, evidence boundaries and next editing action                     |
-| [Editing notes](editing-notes.md)                                                       | Reasons for consequential changes, factual checks and remaining decisions          |
-| [Recorded profile](reference/current-profile-2026-09-27.md)                             | Dated professional-content baseline for comparison                                 |
-| [Profile audit](reference/profile-audit-2026-09-27.md)                                  | Historical whole-profile assessment, with observation and inference distinguished  |
-| [Gap analysis](reference/profile-gaps-2026-09-27.md)                                    | Historical priorities, contrary evidence and inspection limits                     |
-| [Contribution analysis](reference/contribution-analysis.md)                             | Account of the work and the editorial findings that matter to this draft           |
-| [First exploration](reference/content-exploration-2026-09-28.md)                        | Earlier alternatives and their trade-offs; discussion material, not approved copy  |
-| [Research report](research/exceptional-cv-linkedin-research-report-2026-09-26.md)       | What strong CVs and LinkedIn profiles can usefully communicate                     |
-| [Research companion](research/exceptional-cv-linkedin-evidence-companion-2026-09-26.md) | Sources, claims, methods and limitations                                           |
+| Document                                                                                | Purpose                                                                                                     |
+| --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [Profile draft](profile-draft.md)                                                       | One complete proposed revision, including supporting sections and retain decisions                          |
+| [Rewrite handoff](rewrite-handoff.md)                                                   | Current direction, evidence boundaries and next editing action                                              |
+| [Editing notes](editing-notes.md)                                                       | Reasons for consequential changes, factual checks and remaining decisions                                   |
+| [Recorded profile](reference/current-profile-2026-09-27.md)                             | Dated professional-content baseline for comparison                                                          |
+| [Profile audit](reference/profile-audit-2026-09-27.md)                                  | Historical whole-profile assessment, with observation and inference distinguished                           |
+| [Gap analysis](reference/profile-gaps-2026-09-27.md)                                    | Historical priorities, contrary evidence and inspection limits                                              |
+| [Contribution analysis](reference/contribution-analysis.md)                             | Account of the work and the editorial findings that matter to this draft                                    |
+| [First exploration](reference/content-exploration-2026-09-28.md)                        | Earlier alternatives and their trade-offs; discussion material, not approved copy                           |
+| [Brief review](reference/brief-review-2026-09-26.md)                                    | Historical assessment of the application brief, preceding the profile audit; the current assessment governs |
+| [Research report](research/exceptional-cv-linkedin-research-report-2026-09-26.md)       | What strong CVs and LinkedIn profiles can usefully communicate                                              |
+| [Research companion](research/exceptional-cv-linkedin-evidence-companion-2026-09-26.md) | Sources, claims, methods and limitations                                                                    |
 
 ## Working agreement
 

@@ -38,7 +38,7 @@ OCE method application in this update: metacognition corrected the earlier burde
 
 ## Original assessment v1.0 — retained for context
 
-The original findings below predate the corrections and source grounding above. Read their questions and access limitations as historical; the current assessment governs the next work. This edition neither quotes nor summarises the brief: its wording, and the passages of this review that quote it, stay private.
+The original findings below predate the corrections and source grounding above. Read their questions and access limitations as historical; the current assessment governs the next work. This edition neither quotes the brief nor reproduces its wording: the passages of this review that quoted it stay private. It keeps the review's own assessments of the brief's framing, assumptions and acceptance criteria, which are editorial analysis of the work and identify no private source.
 
 **Original verdict: qualified.** The brief provides a strong boundary and coverage specification for a whole-profile inquiry. It leaves several consequential choices unresolved: whose understanding matters most, which misunderstanding is actually occurring, what professional possibilities Jim wants to make available, and how recommendations will earn their priority. These gaps do not prevent inventory and exploration. They do limit confidence in a proposed composition.
 
