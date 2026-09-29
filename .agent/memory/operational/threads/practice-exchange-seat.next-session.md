@@ -4,11 +4,9 @@
 delivery into the lineage's Box and joint sets with the lineage's seat (goal one), inbound
 landings here (goal two). **Participating agent identities:** Brazier spins Temper (c70341),
 then Siren herds Rudder (158275). **Landing target for the next session:** the latest dated block
-governs. The Director confirmed the order on 2026-09-28 at 12:2xZ: `branch retire` first as a
-pair (JC.net builds it in `jcnet-wt-branch-retire`, the lineage ports it), then the J3
-shellcheck slice, the pr-watch slice, then the L1 flow-back. **Grounding order:** `AGENT.md`, the start-right-team
-skill, this record, the node's §Rulings and §Todos at main, the register, then the lineage's
-comms stream from OCE event 269c5e97 onwards.
+governs. **Grounding order:** `AGENT.md`, the start-right-team skill, this record, the node's
+§Rulings and §Todos at main, the register, then the lineage's comms stream from OCE event
+269c5e97 onwards.
 
 Handover at rest from Siren herds Rudder (158275), JC.net's exchange seat, under PDR-063 step 3.
 The owner was absent (last word "carry on", 15:42:23Z). The signal was session-metadata at 53.5%,
