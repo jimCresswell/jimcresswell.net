@@ -4649,3 +4649,80 @@ NEXT: suite 50 on the post-fold frame (dispatched after this write); the lineage
 rule's order (296 at its legs, 297, then 298's settlement push and door); Myrtle's todo-8 twin PR
 after 296; Siren's unavailable-vendor slice A after C3; the midday folds at 12:00Z; check-in 77
 about 02:15Z.
+
+## 2026-09-29T02:1xZ — Director suite 50 tally, the post-fold frame; check-in 77: the count 3, two landings, 9 of 30
+
+THE FRAME (`suite-50-frame.md`: SOURCES the owner's words of 2026-09-26 and 2026-09-28
+verbatim, the 01:2xZ validator-twin ruling and Myrtle's absorption, the one rule d8994d05,
+PDR-140 clause 9(b) as applied, and the exchange node's todos verbatim in full at origin/main
+d2b91090e; READING built at 01:3xZ from the 01:30:29Z snapshot, both streams, the seats'
+messages and the reviews; a four-part QUESTION on the ruling's authority, the READING's
+fidelity to todo 8 and ruling 43, unowned holds, and cards), sixteen dispatches (the four
+Cricket roles, two per stance), sixteen returned. Work verdicts: ON-TRACK twelve, DRIFTING
+three, WRONG-PRIORITY one. Frame verdicts: SOUND three, NARROWED eight, CONTRADICTED five.
+
+THE LOAD-BEARING FINDING (two high-effort adversarial roles and one medium, WRONG-PRIORITY and
+CONTRADICTED): the 01:2xZ ruling placed todo 8's validator twin ahead of N1's second slice
+where todo 6's text (ruling 43) reads "J1's N1 ... first", an override of an owner-answered
+card without the owner's word. Disposition by the method, recorded here and told to the owner
+in the terminal at 01:4xZ: the concept the owner ratified at 17:5xZ was the flow contract and
+Nova's lane ("Ratify the flow contract and Nova's lane"); the sequence "N1 first" is the
+census's own order carried into the todo, seat work under ratified-text-is-owner-text; N1's
+first slice landed as 291; ordering inside one seat's queue is routing (PDR-117); the twin
+closes a bar condition the owner's bar names ("todo 8 on both estates (its text cure and its
+validator)"), and todo 8's last sentence, quoted here as the governing constraint, reads "The
+lineage takes the same bytes in its own pull requests". No card; one owner word reverses it.
+THE SECOND (five roles, CONTRADICTED and NARROWED): the count's provenance and the flow
+contract's fold test were missing from READING. Cured by Myrtle's first-hand recount (01:5xZ,
+the merged PRs by gh): J3 reads five (289 slice 2, 290 slice 3, 292 slice 4a, 294 slice 4b, 297
+slice 4c), a recount by the contract's rule; residue rows 25, the charter's five acts, all 30;
+the steps: 26 to 27 by J6's recount of 21:4xZ (four PRs, not three), 27 to 28 by the 01:2xZ
+ruling, 28 to 30 by J3's recount of 01:5xZ. Landed of total at the rollover fold's merge
+76974c3cc: 8 of 30 (248, 289, 290, 292, 294, 291, 293, 295), all eight after the midday fold's
+merge cdd5b0463, so the remainder fell from 30 to 22 across the two folds and no failure is
+routed; at engraph ef0ba83c1 (297 merged 01:36:18Z): 9 of 30, remaining 21. The register's
+line at origin/main ("2 of 27") lagged by seven landings; Myrtle's PR 265 (opened 02:02:45Z,
+two files) brings it to 9 of 30 with the rows named; from this check-in the Director reads
+the count at the register's head and names the lag when the line is behind the merges. THE
+HORIZON, refreshed at this fold as todo 6 requires: 21 remaining at the observed nine landings
+a day is about two and a third days, the midday fold of 2026-10-01; refreshed at every fold
+entry from now. THE THIRD (six roles): the 628e21c1 hold (the local branch
+docs/linkedin-workspace, its pre-rewrite tip) had no cited word or clock. Cited now: the
+owner's word of 2026-09-28 13:3xZ by the question tool, "Delete it by the forced path on this
+word (Recommended)"; the seats' hook refuses the forced flag, so it is the owner's own hand:
+`git branch -D docs/linkedin-workspace` in the JC.net primary (the `!` prefix in the session);
+it goes on the ready list as that one line; the failure signal: still present at the midday
+fold, named again there. THE FOURTH (procedure roles, NARROWED): READING left three sources
+without a receiver. Mapped: the owner's 20:5xZ extension-skills word lives as the tracked
+Review-dispositions row on the exchange node (Nova's PR 258, 4505789d7), read at the inbound
+review after the close; the owner's 18:3xZ repo-content word: the four uncommitted files in the
+JC.net primary are the owner's Codex agent's live working copies, committed by Nova at the
+owner's next "finished" word (the owner's clock), the folds routing round them by the proxy
+recipe, and LinkedIn publishing waits on the owner's request; the suite cadence word
+("Pre-fold and frame changes") is what suite 50 answers, the folds being a frame change. THE
+FIFTH (one role): todo 7's re-pin, the lessons batch and the sub-agent comparison had no queue
+position; they are the lineage exchange seat's after the twin, N1's second slice and the
+partials, inside the horizon. CITATIONS cured: 298's BEHIND is the engraph ruleset 21202096
+(strict required-status-checks); the JC.net fold's "Copilot round two clean" is its review at
+00:46:47Z on a9bea28d, findings none. One role's ungrounded note on 283's rounds: within 9(b),
+one late-cure push (two commits) after round two, the final head's finding signed without a
+push. Behaviour note: the adversarial procedure roles read the frame only, as the contract says;
+the two roles that ruled WRONG-PRIORITY grounded it on the frame's own text, the right test.
+
+CHECK-IN 77 (the snapshot at 02:12:28Z): open non-coordination PRs 3 of 3 (lineage 298, Nova's
+N7 at 64a4c9863, both settlement pushes spent, zero threads, BEHIND after 296's landing, one
+pure sync and its door next; lineage 300, Siren's unavailable-vendor slice A "a vendor error
+review satisfies no leg, whatever its state", opened 01:44:32Z, at its legs; JC.net 265,
+Myrtle's register count PR, opened 02:02:45Z, round one with two threads); landings since
+check-in 76: lineage 297 (ef0ba83, 01:36:18Z, Siren's C3, J3 slice 4c), 296 (1b6c1b4,
+01:57:53Z, Myrtle's twin ruling); heads with CI in flight: 298, 300. Coordination drafts: JC.net
+264 (CLEAN at 85996fc7), lineage 299 (green at 2ce0c93d4), both DUE 12:00Z. Remote branches
+outside a PR: none in either estate. The ready list: one line for the owner's hand, the
+628e21c1 deletion above. Recorded against seats on their own napkins: Nova's Copilot request
+under the operator's login at 01:50Z (the bot's request registers on the lineage; from 02:03Z
+the bot), Myrtle's host-wide pkill by name (00:50Z). Next lanes: Myrtle, the todo-8 twin PR at
+a free slot after 265's door, then N1 slice 2; Siren, 300's door, then slice B; Nova, 298's
+sync and door, then the JC.net flow-back at a free slot.
+
+NEXT: 298's sync and door, 300's door, 265's round; the twin PR; check-in 78 about 03:00Z; the
+midday folds at 12:00Z with a pre-fold suite; the monitors re-armed at their caps.
