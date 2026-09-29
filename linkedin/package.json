@@ -1,17 +1,8 @@
 {
   "name": "linkedin",
   "version": "0.0.1",
+  "private": true,
   "description": "LinkedIn drafts",
-  "scripts": {
-    "test": "echo \"no test specified\" && exit 0",
-    "lint": "eslint --max-warnings 0 .",
-    "lint:fix": "eslint --max-warnings 0 --fix ."
-  },
-  "devDependencies": {
-    "@engraph/eslint-plugin-standards": "workspace:*",
-    "eslint": "^9.39.5",
-    "globals": "^17.9.0"
-  },
   "license": "UNLICENSED",
   "type": "module"
 }

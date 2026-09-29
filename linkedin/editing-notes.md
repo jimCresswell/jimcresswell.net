@@ -41,7 +41,8 @@ remove repetition that no longer serves those separate jobs.
 
 1. **Code Science and Obaith dates.** Their displayed dates are carried forward and visibly marked
    for review. The company/project descriptions are settled; dates and Obaith’s work pattern are not.
-2. **Oak employment arrangement.** The draft combines Principal Engineer history from January 2021. If LinkedIn should distinguish consulting and employment, split that history without
+2. **Oak employment arrangement.** The draft combines Principal Engineer history from January 2021.
+   If LinkedIn should distinguish consulting and employment, split that history without
    reviving the superseded title. No transition date is invented here.
 3. **Headline and tone.** “Fractious”, the HP opening and the Obaith learning are intentional
    draft choices for Jim to assess in context, not new claims about how readers react.

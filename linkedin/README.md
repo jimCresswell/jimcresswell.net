@@ -61,4 +61,6 @@ The CV, front page and LinkedIn have different composition needs. Changes propos
 not silently rewrite the website. The August LinkedIn rewrite remains an unapproved historical
 draft; it is not the starting point for this work.
 
-This is a document workspace, not a software package or an additional published website.
+This is a document workspace, not an additional published website. It is a private pnpm
+workspace package so that it has a place in the monorepo, but it holds no code, build or
+scripts: the repository's root Markdown and formatting checks cover its documents.
