@@ -536,3 +536,43 @@ the routing rationale. Read and dispositioned at pickup before implementation be
 | 2026-09-28 | PR 242, Copilot on the settlement head (thread on `retire-git-read.ts:179`) | `for-each-ref` omits a dangling symbolic ref (`refs/heads/<b> -> <gone>`), as `git branch --list` does, so the command reports nothing to retire where `git branch -d` deletes it. Reproduced on git 2.50.1. | Rejected as a cure in PR 242: after round two, signed lines only. The ref names no commit, so no work is at stake. Routed to the same small pull request: a raw read of both exact names (`symbolic-ref --quiet`) that tells a dangling symbolic ref apart from an absent ref. The git-port design review (code-expert) found that any change to the symbolic refusal needs two things first: this read, and the in-use check reading each worktree's `HEAD` with `symbolic-ref --no-recurse`, since `git worktree list` names the branch an alias resolves to. |
 | 2026-09-28 | PR 242's settlement gateway review (code-expert, below the bar) | The config section's removal on the absent paths has a wider window than `git branch -d`'s. The window runs from the first listing through the network reads, so a same-name branch created mid-run loses its upstream section. No ref is deleted and no report is false. | Routed to the same small pull request: re-list `refs/heads/<b>` just before the removal, and skip it when the ref is there, which brings the window level with git's. |
 | 2026-09-28 | PR 257 and the transplant-residue PR, docs-adr-expert reads | The ui-design skill family is sibling-repository residue: `visual-comparison` SKILL :6, :26-35, :55 (absent showcase tools, DDR-009, a width guard); `visual-verification` SKILL :12, :40, :44 (an unported probe; one viewport, not configured viewports); `claude-design-conversion-playbook.md` :166-168, :182-231 and `claude-design-pipeline` SKILL :25, :102-110 (the absent fidelity package, a false depcruise note); `ui-visual-design` SKILL and `references/craft-fundamentals.md` (the sibling's design system: its classes, 44px floor, motion values, DDR-004 themes, an absent design-system-usage skill) | The owner's word (20:5xZ, in two parts): "Leave it until the review, the fundamental design skills need extracting from the context specific design skills. Ultimately the Practice serves any Practice repo"; then "perhaps some skills belong in the Practice, and some belong as Practice extension skills, plug in innovation building blocks with skills that cover certain domains, such as UI design, API design, etc". The concept: the review draws, per skill family, the line between the Practice's core skills and Practice extension skills (plug-in building blocks per domain, which an estate installs as it needs); the ui-design family is the first candidate extension pack. Routes to the review that follows goal one (ruling 44). |
+
+## Finish (2026-09-29, the Director's plan at the owner's word)
+
+The owner's words of 2026-09-29, verbatim: "17 'residual' PRs is a failure of throughput and PR
+management and a failure of not inventing categories to lend legitimacy to failures. There are
+WIP limits for very good reasons. I want the Practice exchange finished"; "The Practice exchange
+is a means to an end, not an endless horizon, there are next steps we have not discussed yet";
+"Once we start the implementation I expect the work to be finished in a few hours"; "We don't
+cut things to make the work go faster, we stop wasting time doing needless work". The plan was
+approved at 08:5xZ. Its full text is the Director's plan file; this section carries what a seat
+needs to act.
+
+**The unit and the finish.** The unit of work is the J row, one moderate pull request per story,
+never per slice. The exchange is finished when a computed path delta of `agent-tools/src`,
+`agent-tools/smoke-tests`, `.agent/skills`, `.agent/rules` and `.agent/directives` between the
+two default tips shows no JC.net-only file on any port line, every decline line has a register
+row with its reason, and the register reads 21 of 21 rows landed or declined beside both heads.
+The delta found three innovations the register never counted (the merge-bot retire command,
+arc-metrics, the pr-watch harvest family); they are brought, with register rows, not struck.
+
+**The rules for the window.** One open pull request per seat, three across both estates;
+nothing finished waits outside a pull request; a seat at its legs helps close another's pull
+request. Only the next pull request in the order syncs after a landing; the others stay BEHIND
+without a CI run. No review request after a sync (content binding holds the legs). No JC.net
+twin of a lineage landing until the review that follows the close. No register refresh as its
+own pull request: rows land on the coordination branch in the landing's own minute. The source
+is frozen: a Practice change conceived on JC.net during the window is made on the lineage. Ports
+read JC.net at its current main tip, never a pin. Codex and LinkedIn appear in no line of the
+window.
+
+**The order.** 305 (Myrtle, its door); 309 (Siren, one cure commit after 305 lands); B1 as pushed
+(Siren, the third slot); J8's B2 and B3 as one pull request (Nova, when 305 lands); J2 as one pull
+request with J7's describer and the compare cure (Myrtle); the retire command with B1's siblings
+and J18 note 5, stacked on B1 (Siren); arc-metrics with its two helpers (Nova); N4 (Siren); N5
+with the two portability validators (Myrtle); the Practice docs pull request (Nova: three skills,
+the channel rule, J10, J11, N3, the WIP clause); J16's Gemini surface with the comparison's
+template gains (Myrtle, after the docs pull request); the strictness units measured first (Nova);
+todo 7's re-pin on JC.net (Siren); at the finish the settling and decline rows, the lessons batch
+into the Box, the JC.net fold, the prose-class close pull request with the owner's word, the
+lineage fold, and the verification.
