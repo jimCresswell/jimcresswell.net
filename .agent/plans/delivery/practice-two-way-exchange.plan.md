@@ -479,7 +479,11 @@ entries composed whole and appended in one write.
    estate on 2026-09-28. The text cure landed in three slices by concept family, merge
    commits SHA:28333882 (PR 244), SHA:63f48914 (PR 245) and SHA:22e97b52 (PR 246). The Core holds
    no ADR identifier, the census is deleted, and `validate-core-adr-citations` is strict-only.
-   The lineage takes the same bytes in its own pull requests.
+   The lineage takes the same bytes in its own pull requests. The validator's twin there is
+   the lineage's exchange seat's after its pull request 296, one pull request of the J1 kind
+   (the Director's ruling of 2026-09-29 01:2xZ, verified first-hand: no such validator in the
+   lineage's chain), recorded here under todo 8 and not as a J row; the lineage's count reads
+   30 with it. Its number is 301, opened 2026-09-29 02:33Z.
 
 ## Plan-body first-principles check
 
