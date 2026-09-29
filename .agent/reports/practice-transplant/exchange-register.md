@@ -83,7 +83,7 @@ units, and the row takes its remainder's state.
 
 Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
 read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
-estate's J rows into the lineage), read on 2026-09-28 at jcnet `efdcc23767` and lineage
+estate's J rows into the lineage), read on 2026-09-28 at jcnet `dde8c547a6` and lineage
 `7e4cf9b813`: **2 of 27**. The 27 are the census's 20 residue pull requests, J3's two from the
 recount of 18:3xZ, J6's one from the recount of 21:4xZ (four lineage pull requests, not three),
 and the charter's four acts (todo 6's amendment, the lessons row, the comparison row, the re-pin);
