@@ -9,14 +9,16 @@ landing; re-derivable from `gh pr list --json number,mergeStateStatus` at any ti
 
 - None.
 
-## Open, not yet ready
+## Open, not yet ready (the door order)
 
-| PR | Estate | Files | State at the last read | Seat |
-| --- | --- | --- | --- | --- |
-| 305 | lineage | 141 | CLEAN, every check green, zero threads; its door is Myrtle's first act | Myrtle |
-| 309 | lineage | 3 | one unresolved thread; the cure commit follows 305's landing | Siren |
-| 272 | JC.net | 1 | opened 09:0xZ, CI running, Copilot requested | Director |
+| Order | PR | Estate | Files | State at the last read | Seat |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 311 | lineage | 12 | J8's B2 and B3; syncing to the tip after its tests are read against the owner's bar | Nova |
+| 2 | (ci.yml) | lineage | 1 | the Turbo remote cache by OIDC; opens on the slot 311 releases | Myrtle |
+| 3 | 310 | lineage | 10 | B1; held unsynced while its tests are reworked to the owner's bar | Siren |
+| 4 | 309 | lineage | 3 | J3's round cures; held while the repair smoke comes out and its tests are reworked | Siren |
 
 ## Landed in the window
 
-- None yet.
+- 305 (lineage, 09:21Z, Myrtle): N1 slice 2, the sub-agent adapters rendered from declarations.
+- 272 (JC.net, 09:24Z, the Director): the LinkedIn work, two files net; its branch retired.

@@ -5111,3 +5111,11 @@ drafts CI watch and the check-in wake likewise. The recipe above stands with tha
   rule that no-verify needs fresh authorisation; caught on the read-back, the commit amended under
   the hooks before any push (pre-commit and commitlint green). The reflex was the worktree's
   gate; the rule has no such exception.
+
+## 2026-09-29T09:4xZ — check-in 84, three lines (Wick binds Temper, ed7b48)
+
+- Rows whole: 8 of 21. Open: lineage 311 (Nova, syncing), 310 and 309 (Siren, tests reworked to
+  the owner's bar before any sync); the ci.yml cache PR opens on 311's slot (Myrtle). Landed in
+  the window: lineage 305, JC.net 272. Blockers: none; the owner's test bar adds rework to every
+  port's tests, so the clock moves right and nothing is cut. Rulings on both streams: 09:2xZ,
+  09:3xZ, 09:4xZ.

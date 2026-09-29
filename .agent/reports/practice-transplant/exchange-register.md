@@ -83,23 +83,41 @@ units, and the row takes its remainder's state.
 
 Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
 read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
-estate's J rows into the lineage), read on 2026-09-29 at jcnet `507f581185` and lineage
-`eb1ad3f807`: **11 of 30**. The 30 are the census's 20 residue pull requests, J3's four from its
-recounts (two at 18:3xZ on 2026-09-28; two more at 01:4xZ on 2026-09-29, when the recount's third
-slice, the shellcheck gate with its installer, CI step and docs, landed as three pull requests),
-J6's one from the recount of 21:4xZ (four lineage pull requests, not three), and the charter's five
-acts (todo 6's amendment, the lessons row, the comparison row, the re-pin, and todo 8's validator
-twin by the Director's ruling of 2026-09-29 01:2xZ). The 11 are todo 6's amendment (this estate's PR
-248, 2026-09-28T17:14:16Z) and ten lineage pull requests: J3's #289 (slice 2), #290 (slice 3), #292
+estate's J rows into the lineage), read on 2026-09-29 at jcnet `4404a57917` and lineage
+`e07d6b34ef`: **15 of 32**. The 32 are the census's 20 residue pull requests with the recounts of
+2026-09-29 05:5xZ and 06:1xZ (below: one fewer, three more), J3's four from its recounts (two at
+18:3xZ on 2026-09-28; two more at 01:4xZ on 2026-09-29, when the recount's third slice, the
+shellcheck gate with its installer, CI step and docs, landed as three pull requests), J6's one from
+the recount of 21:4xZ (four lineage pull requests, not three), and the charter's five acts (todo 6's
+amendment, the lessons row, the comparison row, the re-pin, and todo 8's validator twin by the
+Director's ruling of 2026-09-29 01:2xZ). The 15 are todo 6's amendment (this estate's PR 248,
+2026-09-28T17:14:16Z) and fourteen lineage pull requests: J3's #289 (slice 2), #290 (slice 3), #292
 (slice 4a), #294 (slice 4b) and #297 (slice 4c, 2026-09-29T01:36:18Z); N1's first slice, #291
-(2026-09-28T23:43:15Z); J6's #293 (N6), #295 (the commit-queue worktree smoke) and #298 (N7,
-2026-09-29T02:52:41Z); and todo 8's validator twin, #301 (2026-09-29T03:19:24Z). Reconstructed for
-the fold test at the lineage's rollover fold 76974c3cc (2026-09-29T01:12:26Z), before this line was
-refreshed: 8 of 27 in the total as it then read (J3's second recount, two more, and todo 8's
-validator twin, one, make it 30 in today's units), #297 not yet merged. Since the census, ten
-lineage pull requests and one of this estate's have merged; the rows settled by this register's
-dated rows carry no pull request of their own and change no unit. The inbound direction's count
-opens with its own census (todo 4, ruling 44). ## Rows from the lineage's delta (since `e477e62f7e`)
+(2026-09-28T23:43:15Z), and its second, #305 (the sub-agent adapters rendered from the templates'
+declarations, 2026-09-29T09:21:08Z); J6's #293 (N6), #295 (the commit-queue worktree smoke), #298
+(N7, 2026-09-29T02:52:41Z) and #303 (N8, 2026-09-29T04:19:04Z); J17's #307 (note 4, the gate slot,
+2026-09-29T05:25:23Z); J8's #306 (the post-run hardening, N11's first pull request,
+2026-09-29T05:49:58Z); and todo 8's validator twin, #301 (2026-09-29T03:19:24Z). The recount of
+2026-09-29 05:5xZ, from the exchange seat's design reads and the Director's rulings, in three parts:
+N1's third slice as the census's table names it (the health-probe parity that reads the
+declarations) landed inside #305, and J16's rider that was to ride it (the root entrypoints as
+pointers to the adapter model) is declined by the lineage's entrypoint contract, so J1 reads four
+(N1's two slices, N4, N5 with N3); J16 takes one unit by the Director's ruling, the Gemini sub-agent
+surface the lineage's ADR-125 amendment mandates once native support exists (its J16 row below); J2
+reads three by its design read and the Director's word (cited-paths with J7's describer and
+lineage-names, the latter as the same bytes with the lineage's needles as hook-policy data;
+cited-scripts; the compare cure). And by the Director's ruling of 06:1xZ (posted on the lineage
+stream at 06:22Z), a landing this estate made after the census takes a row and a unit at its lineage
+port, dated, with its source: L34, the merge-bot push retry (this estate's PR 261), one. The total
+32. Reconstructed for the fold test at the lineage's rollover fold 76974c3cc (2026-09-29T01:12:26Z),
+before this line was refreshed: 8 of 27 in the total as it then read (J3's second recount, two more,
+and todo 8's validator twin, one, made it 30 before the recount of 05:5xZ, 31 after, 32 with the
+ruling of 06:1xZ), #297 not yet merged. Since the census, fourteen lineage pull requests and one of
+this estate's have merged; the rows settled by this register's dated rows carry no pull request of
+their own and change no unit. The inbound direction's count opens with its own census (todo 4,
+ruling 44).
+
+## Rows from the lineage's delta (since `e477e62f7e`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |
 | --- | --- | --- | --- | --- | --- |
@@ -204,6 +222,7 @@ predates both pins.
 | Row | Concept | jcnet | lineage | castr | Source |
 | --- | --- | --- | --- | --- | --- |
 | L33 | The Result-based git path reads of `agent-tools/src/core/repository-paths.ts` (250 lines: `parseTrackedFiles`, `gitFailed`, `toGitRunOutput`, `GitReadFailure`, `describeGitReadFailure`), where this estate carries the older 103-line module (`collectTrackedPaths`, `collectIgnoredPaths`, with six consumers, and the shellcheck gate reading the throwing `readTrackedTree`) | bring, after the review unless the owner brings it forward. Until it lands, the repo-check universe keeps this estate's throwing shape, which the shellcheck gate reads, with the same reads as the lineage's (`--deduplicate`, and `diff-files` for porcelain `diff`). At its landing the universe and the gates reach the same bytes | origin | not assessed | the J3 flow-back to this estate (2026-09-27), whose universe could not reach the lineage's bytes without it |
+| L34 | The merge-bot push retry on the advertisement 403 (`push-attempts.ts`, its unit test, `push-report.ts`; the CLI, args and integration test taking hunks where the files diverge; `core/delay.ts` already with the lineage's #307) | PR 261 (merged `24b72825e3`, 2026-09-29T00:09:50Z, with the branch-read scope, which does not port) | the port on `feat/exchange-b1-push-retry`, commit fd0bd9db1 (ten files), opened as lineage PR 310 at 09:1xZ on 2026-09-29; one reworded sentence in `push-attempts.ts` returns here as the same bytes | none | the Director's ruling of 2026-09-29 06:1xZ, posted on the lineage stream at 06:22:24Z (goal one is every second-estate innovation, so a landing this estate made after the census takes a row at its lineage port, dated, with its source); one unit in the count |
 
 ## Landings
 
@@ -284,3 +303,11 @@ Appended as each row lands: row, estate, pull request, head read.
 | J6 | jcnet | PR 266 (merged `a06edf1db3`, 2026-09-29T03:06:35Z; PARTIAL: N7's flow-back, the install-time closure rooted at agent-tools and refusing what it cannot build, the same bytes as the lineage's #298 as it merged; the closure test's fixture-builder cure rides N8) | lineage `517c1a5e04` |
 | J3 | jcnet | PR 267 (merged `507f581185`, 2026-09-29T03:36:41Z; PARTIAL: #289's and #290's cures return: the real-tool repair smoke in place of the fake-driven repair test, with a process-group cure of this estate's own that the lineage takes back, the planUnlessLost comment and the hook wrapper's floor exit; and the five lineage rows above) | lineage `eb1ad3f807` |
 | J6 | lineage | #303 (merged `b026527512`, 2026-09-29T04:19:04Z; PARTIAL: N8, the registered hook command's negative control, the command with its quotes removed exiting 127 from the spaced project at the path cut at its first space, and the closure test's fixture builders building a literal as a rider; the rider returns to this estate in N8's flow-back) | jcnet `507f581185` |
+| J6 | jcnet | PR 269 (merged `9a18cff5e2`, 2026-09-29T04:44:04Z; PARTIAL: N8's flow-back, the closure test's fixture builders build a literal, byte-identical with the lineage's #303) | lineage `b026527512` |
+| J1 | lineage | #305 (merged `e07d6b34ef`, 2026-09-29T09:21:08Z; PARTIAL: N1's second slice, the sub-agent adapters rendered from the templates' declarations, this estate's `subagent-declarations` module and its portability leg as the same bytes; its settlement-one cure, six files, flows back as this estate's PR 271) | jcnet `4404a57917` |
+| J1 | jcnet | PR 271 (merged `0b71e76444`, 2026-09-29T06:37:01Z; PARTIAL: the twin of the lineage's #305 settlement-one cure, six files as the same bytes save the result import, with its own settlement one, the parity probe's short-circuit (39617e63f), which the lineage took as #305's late cure; two seam-test threads on the pure-sync tip Routed as the lineage's F-216, a joint design candidate) | lineage `e07d6b34ef` |
+| J17 | lineage | #307 (merged `e8524e83a2`, 2026-09-29T05:25:23Z; PARTIAL: note 4, the gate slot: each hook's full gate holds a host gate slot, counted with this estate's gates, two at most on the host) | jcnet `4404a57917` |
+| J8 | lineage | #306 (merged `72f9ba144d`, 2026-09-29T05:49:58Z; PARTIAL: N11's first pull request, the post-run close judges held quorums, claimed homes and the map; three departures from this estate's bytes, returned as the findings in the next row) | jcnet `4404a57917` |
+| J3 | jcnet | PR 270 (merged `1cdcce7590`, 2026-09-29T05:56:37Z; PARTIAL: the shellcheck gate's flow-back, converging on the lineage's modules (the runtime split, the `.tools` refusal, the skills-lock exclusion, the lost-file refusal read from the index, the wider silencing directive, the tsx shebang forms), differing only at the git reader; two Copilot rounds, round one's item 1 cured, the rest Rejected; written here for Siren herds Rudder, one writer for the table) | lineage `e07d6b34ef` |
+| J16 | lineage | PARTIAL by ruling, no pull request yet, 2026-09-29: the entrypoint half (this estate's `CLAUDE.md` and `GEMINI.md` adapter-model sections) is declined by the lineage's entrypoint contract (its session-handoff skill's step 6d, its homing rule's item 3, ADR-125's Layer 3: a heading and one pointer line, named extensions only on `AGENTS.md`, `skills.md` and the Copilot instructions), every fact homed in the lineage's AGENT.md §Rules, its artefact inventory and its extending.md; a draft in this estate's form was withdrawn before any commit on the onboarding read, and the reverse read (this estate's own sections under this estate's entrypoint contract) is an observation for this estate's seat. The Gemini half is ruled in by the Director as J16's one unit: the lineage's ADR-125 amendment of 2026-05-10 retires its `.gemini/commands/review-*.toml` adapters once native Gemini agent support exists, which its surface matrix records; the lane declares Gemini on the reviewer roles after a vendor-shape verification, renders `.gemini/agents/` as this estate does, retires the TOMLs and amends ADR-125, the matrix, the inventory's recipe and the roster; sequenced after J2's three. | lineage `e07d6b34ef` |
+| J8 | jcnet | no pull request, 2026-09-29: four findings received from the lineage's port of this estate's corpus workflow (its J8 pull requests A and B1, Nova turns Penumbra), each read there and routed here, unverified against this estate's code, a cure its own lane: (1) `workflows/*` claimed homes given as absolute paths are refused by a root match on the raw string, although the runbook says the driver resolves either form; (2) a root that is a symlink out of the repository lets an outside file count as a claimed home; (3) the directory cell of the claimed-home check claims `.agent/rules` itself, which the roots check excludes first, so a mutant counting any entry survives it; (4) `workflows/stage-io.ts` refuses a partition file with a leading slash, a drive letter, a backslash or a parent segment and admits `~/.ssh/id_rsa`, `$HOME/x`, `file:///etc/passwd`, a leading space and an embedded newline, which the map prompt renders as a second line of its file list (the lineage's B1 replaces the deny-list with an allow-list in core) | lineage `e07d6b34ef` |

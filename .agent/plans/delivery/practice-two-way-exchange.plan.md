@@ -463,6 +463,7 @@ entries composed whole and appended in one write.
    refreshed at each fold. §Close's provenance, audit and Box steps, and the doctrine
    amendments as register candidates, stay the node's, after the bar. Next act after this
    amendment lands: the census's order, J1's N1 (the rule-generator slice) first.
+   Dated 2026-09-29 (the lineage's exchange seat, after the register pull request's fourth review round): the total this paragraph carries (N of 26) is the close-bar ruling's as written on 2026-09-28; the live count and its units are the register's §The count, whose dated recounts explain 26 to 32.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
