@@ -3115,3 +3115,121 @@ then every process stopped).**
 - Next, and nothing else before both merge: 309 committed after the re-read, pushed when the
   Director's door order reaches it; 310 per the owner's decision on the assumptions review. After
   both: the JC.net smoke removal with the same directive clause.
+
+**2026-09-29 09:57Z to 10:39Z: both heads right; the Director's homes for six findings.**
+
+- 310 committed at SHA:2432ac462 (local; the full pre-commit gate passed on the second run, the
+  first refused on two unused exports in the test double). The rework: one token minted once,
+  GitHub's advised backoff, the settled commit pushed as `<sha>^{commit}`, and the mint as a
+  port of the push action. Test-expert verdict on this tree: commit as is. Code-expert: GO WITH
+  CHANGES, all taken. Five in-process mutants each fail exactly their target.
+- 309 stands at SHA:ef4c19a62 (local; test-expert re-read before its commit).
+- Stream posts at 10:36Z: both heads right. Neither is synced or pushed. 310 takes the slot 312
+  releases, 309 next; each takes its new title and body in its own turn.
+- The Director registered six adjacent findings at 10:3xZ as ledger rows on the exchange node's
+  review dispositions, none ahead of 310 and 309:
+  - e2e builds before its smokes, both estates: the first post-close PR on each estate, mine;
+  - repo-check-cli smoke asserts features, and the repair flag written twice: the lineage
+    repo-check post-close PR, mine;
+  - GIT_TRACE_REDACT in the push environment, and the merge-bot tests' RSA key and routed mint
+    fetch: a merge-bot test-composition PR after the retire command lands, mine;
+  - JC.net pushArgv's two missing flags: the flow-back row for 310 when it lands.
+- Host reading from the Director: the JC.net pre-commit on this machine fails on turbo's
+  remote-cache authentication warning (the Turbo login token expired at 10:11Z); surfaced to
+  the owner. The JC.net smoke-removal PR waits on it.
+- Next: 310 on the slot 312 releases (a Monitor watches 312), then 309, then the JC.net smoke
+  removal with the same directive clause.
+
+## Boundary delta, 2026-09-29 11:34Z (the owner's compaction word: wrap, then stop all processes)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes". The seat resumes on
+"carry on". The lineage claims e8fd79d5 (310) and 3ca10e17 (309) stay held; every process
+stopped at 11:3xZ.
+
+**Since the 10:39Z block.**
+
+- 11:1xZ: the Director ruled that the door runs uncached until TURBO_TEAM reaches the lineage
+  (an organisation variable the public repository cannot read). Order: 311, then 310, then 309,
+  one sync at a time; 312 merges whenever its run is green, ahead of whichever is next.
+- 11:2xZ, the owner, via the Director: WIP is three non-coordination items, one per non-Director
+  seat. This seat holds two (310, 309), one over; it opens nothing until both merge. No midday
+  fold; landing lines and blocks only on the stream.
+- 311 merged at 11:27:02Z (SHA:ecf59d763). 310's turn: slot taken at 11:27Z; synced by merge
+  of origin/engraph as SHA:44ab80289 (no overlap, no conflict, merge-bot files untouched);
+  pushed as the bot through the pre-push gate; remote read back 44ab80289.
+- Claim a30304be (JC.net: the register, the plan, eight Practice files) closed at 11:31Z to clear
+  Nova's block on J8's register row; told Nova on the JC.net stream.
+- Myrtle landed J8's register rows at 9f02e9ebe on this coordination branch (16 of 32), under
+  TURBO_CACHE=local:rw, the Director's workaround for the expired Turbo login. Any JC.net commit on
+  this host needs that workaround until the owner renews the login.
+
+**State at the boundary.**
+
+- 310: head SHA:44ab80289 on PR 310, with the OLD title and body (the fresh-token design).
+  No legs requested, round-one thread 4131728101 unanswered. This seat holds the lineage slot.
+- 309: SHA:ef4c19a62 and its sync SHA:46d8cb049 local only (remote 2cb3eb56d); behind engraph
+  by 7. Held by the door order.
+
+**Resume order on "carry on".**
+
+1. Read live state before acting: the lineage stream since 11:34Z; whether the Director routed
+   Nova to 310's post-push steps (its 11:29Z line allows Nova to help with 310's legs); 312's
+   state; 310's reviews list at 44ab80289, since a push can trigger Copilot's review by itself and
+   a duplicate request can cost a round.
+2. Re-arm (nothing survives a compaction; verify by the task list first):
+   - `watch-comms.sh <primary> 85919` for each primary, as Monitors;
+   - `heartbeat.sh 3ca10e17-...,e8fd79d5-... coordination/2026-09-29-76974c "<label>"` with
+     ROOT at the lineage primary;
+   - `peer-liveness-poll.sh 600` from the JC.net primary;
+   - no JC.net heartbeat until a JC.net claim is opened for JC.net work.
+3. 310, in its slot turn:
+   - `edit-pr.sh 310 "feat(merge-bot): push retries GitHub's pre-hook refusal with one token on
+     GitHub's backoff" <b1-retry>/pr-body-v2.md` (ROOT: the 310 worktree);
+   - `reply-resolve.sh 310 4131728101 <b1-retry>/reply-4131728101.md` (the Below-bar line);
+   - legs: `copilot-lineage.sh 310` only if no review exists at 44ab80289; `codex-request.sh 310`;
+   - a legs Monitor, round-two dispositions (two rounds bind; budget 2), the door
+     (`merge-bot merge --pr 310 --expect copilot-pull-request-reviewer --expect
+     chatgpt-codex-connector --json --interval 30 --max-polls 16`), the cleanup and the landing line.
+4. 309: sync (merge origin/engraph), push through `push-branch.sh` under a Monitor, apply
+   `j3-port/lineage-309-body-v2.md` with its new title, sign Copilot item 4130446446 as cured by
+   the smoke's removal, legs, door, cleanup, landing line.
+5. After both merge: the JC.net smoke removal with the directive clause
+   (`validators-clarification/draft.md`, same bytes as 309's), committed under TURBO_CACHE=local:rw
+   while the Turbo login is expired. Then 310's flow-back to JC.net (with `--no-follow-tags` and
+   `--recurse-submodules=no`), the retire command, N4, the re-pin, and the Director's homes of the
+   10:39Z block.
+
+The scratchpad paths above are session-local (`<b1-retry>` is the scratchpad's `b1-retry`
+directory). A lost draft costs a redraft only: each PR's substance is in its commit message
+(SHA:2432ac462 for 310; SHA:ef4c19a62 for 309).
+
+**Candidate, not work:** narrow `transferAndReport`'s input so an attempt cannot reach the mint
+(the attempt takes the token, never the port). That would make 310's "one token per invocation"
+hold by type. It rides 310's settlement push only if round two needs a push; otherwise it goes to
+the merge-bot test-composition ledger row.
+
+**Promises open at the boundary:** 310's and 309's new titles and bodies "in their own turn" (the
+10:36Z stream posts); the round-one thread on 310; item 4130446446 on 309; the validator clause in
+both estates (the owner's 09:2xZ word); the six findings' homes (the Director's 10:3xZ ruling).
+
+**Inferences, flagged:** that Copilot may review 44ab80289 without a request (not observed); that
+the Director's session wrote the owner's 11:2xZ word into the shared per-user WIP memory (read
+from its originSessionId, ed7b489a).
+
+## Closeout, 2026-09-29 11:39Z (the owner's word: session over; all responsibilities to the Director)
+
+The owner's word, verbatim: "this session is over, perform a full session close out and hand all
+responsibilities to the Director". This seat, Siren herds Rudder (158275), has retired. The
+exchange seat's lane now belongs to the Director, Wick binds Temper (ed7b48), until the Director
+routes it.
+
+- Handed over (PDR-063, directed event 9cd1845c on the lineage stream): lineage claims e8fd79d5
+  (PR 310) and 3ca10e17 (PR 309). Their handoff record, the drafts and the turn scripts are in
+  the lineage primary's `.agent/state/collaboration/handoffs/`, prefixed `158275-`. The 11:34Z
+  block above holds the state and the resume order, and they still hold.
+- Heartbeat-end 405a7cbf and closeout 365fa629 are on the lineage stream. This estate has no
+  claim of this seat's: a30304be closed at 11:31Z. Every process of this seat is stopped, and no
+  cron exists.
+- Uncommitted here, for the finish fold: this file's 10:39Z, 11:34Z and closeout blocks, the
+  napkin entry of 11:34Z, and today's letter under `.agent/experience/`.

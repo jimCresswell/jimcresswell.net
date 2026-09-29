@@ -9,16 +9,16 @@ landing; re-derivable from `gh pr list --json number,mergeStateStatus` at any ti
 
 - None.
 
-## Open, not yet ready (the door order)
+## Open, not yet ready (the door order at the Director's compaction 12, 11:3xZ)
 
-| Order | PR | Estate | Files | State at the last read | Seat |
+| Order | PR | Estate | Files | State at the last read | Holder |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 311 | lineage | 12 | J8's B2 and B3; syncing to the tip after its tests are read against the owner's bar | Nova |
-| 2 | (ci.yml) | lineage | 1 | the Turbo remote cache by OIDC; opens on the slot 311 releases | Myrtle |
-| 3 | 310 | lineage | 10 | B1; held unsynced while its tests are reworked to the owner's bar | Siren |
-| 4 | 309 | lineage | 3 | J3's round cures; held while the repair smoke comes out and its tests are reworked | Siren |
+| 1 | 312 | lineage | 1 | the Turbo cache by OIDC; clean on both legs; red on the OIDC step until the organisation variable's repository access reaches this public repository (the owner); then re-run the failed jobs, no push | Myrtle |
+| 2 | 310 | lineage | 10 | B1; synced and pushed at 44ab80289; needs its title, body, legs and the round-one thread's answer | the Director (Siren's handoff) |
+| 3 | 309 | lineage | 3 | J3's round cures; head ef4c19a62 local in oce-wt-repair-smoke-group, unpushed; after 310 | the Director (Siren's handoff) |
 
 ## Landed in the window
 
-- 305 (lineage, 09:21Z, Myrtle): N1 slice 2, the sub-agent adapters rendered from declarations.
-- 272 (JC.net, 09:24Z, the Director): the LinkedIn work, two files net; its branch retired.
+- 305 (lineage, 09:21Z, Myrtle): N1 slice 2.
+- 272 (JC.net, 09:24Z, the Director): the LinkedIn work; its branch retired.
+- 311 (lineage, 11:27Z, Nova): J8's B2 and B3; J8 complete; the register closes it at 16 of 32.

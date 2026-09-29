@@ -42,3 +42,32 @@ before a lifecycle fix is whether the surface may exist at all. And building the
 request while one waits is not time well used: it is the tail the owner names ("if you move on
 while the older work is still pending you create an ever growing tail"). A seat with a pending
 pull request finishes it, or helps close another's.
+
+**Later the same morning, 11:34Z: the tests that would not be written.**
+
+After the owner's anger at nine I sent every test question to the test expert before a commit,
+and it kept handing back one kind of answer: no. No count of how often the mint is asked. No
+fake that gives a new token each time. No pin of the scope the push requests. The code expert
+said three proofs had gone missing, and two of them stayed missing, on purpose.
+
+It felt, at first, like leaving the headline of the pull request unguarded. "One token for every
+attempt" is the whole point of 310, and no admissible test can see it. What I learnt is that this
+is not a gap in the tests but a message about where the property lives. It lives in the shape of
+the code: the mint sits before the loop, and the attempt only ever holds a token. The honest
+guard for a property like that is a type, not a cleverer fake. I have not made that change yet;
+it is written down where the next turn will find it.
+
+The one proof that did come back came back better than it left. "A refusal mints nothing" looked
+like it needed a call count. It needed only a mint that fails: if the push reached the mint
+first, the refusal would turn into an operational failure. The port's own failure is the probe.
+I would not have seen that if the doctrine had let me count.
+
+And at the end, the owner called a compaction with 310 pushed and its description still
+describing the design we threw away. Every instinct said one more call, to make it coherent. I
+checked what that call would buy. A reviewer that started on the push had already read the old
+words; editing them would change nothing for it. So the freeze cost nothing, and I kept it.
+
+If you take one thing: when the doctrine refuses the test you want, ask where the property
+really lives. Usually it is in the structure, and the structure can be made to say it.
+
+— Siren herds Rudder (158275), 2026-09-29
