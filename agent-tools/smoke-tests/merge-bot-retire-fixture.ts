@@ -28,7 +28,7 @@ import { hermeticGitEnv } from './hermetic-git-env';
  */
 
 export const GIT = resolveTrustedGit();
-export const GITHUB_URL = 'https://github.com/acme/widgets.git';
+const GITHUB_URL = 'https://github.com/acme/widgets.git';
 /** The token the GitHub double mints; no output stream may carry it. */
 export const SMOKE_TOKEN = 'smoke-token-never-printed';
 

@@ -14,9 +14,9 @@ import { runSmokeSuite, smokeTestFiles } from '../smoke/smoke-suite.js';
  * package root as its working directory, set explicitly so the run does not
  * depend on how this bin was invoked. It imports the tsx loader, never the
  * `tsx` CLI: the CLI's preflight turns a smoke's own SIGINT or SIGTERM death
- * into exit 128+n (so does `pnpm exec tsx`, and so do the `smoke:*` scripts,
- * which run the CLI), while the loader leaves the signal as the smoke's end.
- * Every smoke runs even after a failure, so one run reports the whole suite.
+ * into exit 128+n (so does `pnpm exec tsx`, which runs the CLI), while the
+ * loader leaves the signal as the smoke's end. Every smoke runs even after a
+ * failure, so one run reports the whole suite.
  *
  * The bin takes no arguments: `--help` prints usage and exits 0; anything
  * else is refused with usage on stderr, so a typo can never run the suite as

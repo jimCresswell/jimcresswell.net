@@ -59,7 +59,6 @@ pnpm agent-tools:build
 pnpm agent-tools:lint
 pnpm agent-tools:test
 pnpm agent-tools:test:e2e
-pnpm --filter @engraph/agent-tools smoke:collaboration-tui
 pnpm agent-tools agent-identity --seed example-session-id-001 --format display
 pnpm agent-tools collaboration-state identity preflight --platform codex --model GPT-5
 pnpm agent-tools context-cost --glob '.agent/rules/*.md'
@@ -239,7 +238,7 @@ leg and a CI step); to run it alone:
 
 ```bash
 pnpm agent-tools:build
-pnpm --filter @engraph/agent-tools smoke:collaboration-tui
+cd agent-tools && node --import tsx smoke-tests/collaboration-tui-start.smoke.ts
 ```
 
 ## `agent-identity` quick reference
@@ -553,4 +552,3 @@ pnpm agent-tools:codex-reviewer-resolve architecture-expert-fred --json
 - `pnpm agent-tools:lint`
 - `pnpm agent-tools:test`
 - `pnpm agent-tools:test:e2e`
-- `pnpm --filter @engraph/agent-tools smoke:collaboration-tui`

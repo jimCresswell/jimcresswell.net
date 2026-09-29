@@ -579,8 +579,7 @@ artefacts it actually resolved:
   `pnpm build` for the rest.
 - **`pnpm check` does not run every suite** (the site's `test:e2e` and `build`
   are outside it; the agent-tools smoke suite is inside it through
-  `agent-tools:test:e2e`, while the per-file `smoke:*` scripts stay manual
-  shortcuts) — verify the aggregate actually exercises
+  `agent-tools:test:e2e`) — verify the aggregate actually exercises
   the suites your change touches before citing it as proof. When reporting,
   distinguish **run-verified** (the gate exercised the change) from
   **construction-verified** (a behaviour-preserving no-op the gate never
