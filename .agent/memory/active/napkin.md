@@ -4600,3 +4600,52 @@ went up without a read of the working tree under the validated surfaces.
 NEXT: 241's door on Copilot's round-two content review; 283's door after Myrtle's late-cure push
 and one Copilot re-request; each successor cut from its post-fold tip and published as a draft,
 DUE 12:00Z; the rotation broadcasts; the drafts CI watch re-pointed; check-in 76 about 01:30Z.
+
+## 2026-09-29T01:3xZ — Director check-in 76: both rollover folds landed; the count 3, all lineage; todo 8's validator twin seated
+
+THE FOUR NUMBERS (gh at 01:30Z): open non-coordination PRs 3 of 3, all on the lineage (296,
+Myrtle's twin ruling, its late cure on the tip, legs re-requested, checks running; 297, Siren's
+C3, synced after the fold, checks running; 298, Nova's N7, green with zero threads but BEHIND
+under the strict ruleset, waiting for C3 by their agreed order on bootstrap.ts, then one
+settlement push carrying the merge and the depcruise anchor cure); landings since check-in 75
+(00:4xZ): JC.net 241 (d2b9109, 00:47:32Z, the rollover fold), lineage 283 (76974c3, 01:12:27Z,
+the rollover fold); heads with CI in flight: 296, 297, 299. Coordination drafts: JC.net 264
+(coordination/2026-09-29-d2b910, CLEAN at 8c42cd24), lineage 299 (coordination/2026-09-29-76974c,
+checks running at 2ce0c93d4); both DUE 12:00Z. Remote branches outside a PR: none in either
+estate; the two folded branches deleted locally and remotely, read back absent. Local:
+docs/linkedin-workspace (628e21c1) stays for the owner's hand. The ready list: empty (298 is
+BEHIND, so no hand can land it without an update; the seat door takes it after C3).
+
+THE FOLDS CLOSED, one line each: JC.net 241 merged on Copilot's round-two content review
+(00:46:47Z, no findings) after one late-cure push (8713c36e this seat, a9bea28d Siren); the
+successor cut 00:48:04Z by hand on the dirty primary, its first commit 8c42cd24 (the fold entry,
+check-in 75) pushed from the proxy after one refusal (Myrtle's host-wide pkill by name on her
+own stalled push, owned by her; the orphaned gate child stopped by pid, the slot read back free);
+draft PR 264 opened as the bot; rotation broadcast 00:56:59Z. Lineage 283 merged on Copilot's
+leg with Codex's no-findings reaction on the final head recorded by a signed line (the PR 267
+disposition); three rounds' findings all on Myrtle's records, cured on her lane (c47e562e0,
+08ae72a20, 3a1339f29, 24e49e37d) or Rejected with rationale (the letter's referent sentences; the
+appended correction governing the routing); the successor cut 01:12Z by the script, first commit
+2ce0c93d4, draft PR 299, rotation broadcast 01:19:11Z.
+
+RULINGS THIS WINDOW, one line each: goal one's close bar, condition 2: verified first-hand that
+lineage 285 and 286 named ADR citations by concept and the lineage has no twin of JC.net 239's
+core-adr-citations validator (b5d954209), so the gate's lineage twin is the one unlanded,
+unseated leg of todo 8; Myrtle takes it after 296's door, ahead of N1 slice 2, one PR of the
+same bytes (the module, its ratchet census, the script, the chain entry, the tests), recorded
+under todo 8 and not as a J row, the residue count 28 (absorbed 01:2xZ; the census's Recounts
+section and the register's count line take it with this ruling as source). The lineage slot
+after the fold: C3 (297) before N7 (298) by their agreed overlap on bootstrap.ts, N7 merging
+engraph keeping both sides. Nova's over-bar finding on her own N7 (the shared depcruise
+doNotFollow pattern holds a bare "dist", matching the new source module dist-witnesses.ts, so a
+workspace import there would escape the boundary rule; cure the anchor, not a rename) rides
+N7's settlement push; the JC.net flow-back (the same bytes, prepared in a worktree off main
+d2b91090) opens only after 298 merges. Cards to the owner: none.
+
+CORRECTIONS against this seat since check-in 75: none new; the burst's first reading and the
+unread working tree stand recorded at 75.
+
+NEXT: suite 50 on the post-fold frame (dispatched after this write); the lineage doors in the one
+rule's order (296 at its legs, 297, then 298's settlement push and door); Myrtle's todo-8 twin PR
+after 296; Siren's unavailable-vendor slice A after C3; the midday folds at 12:00Z; check-in 77
+about 02:15Z.
