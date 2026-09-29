@@ -4902,3 +4902,38 @@ mapper's Read, a harness settings change surfaced to the owner by Nova.
 
 NEXT: 305's door, 271's round; J2's first PR and Nova's B1 at their slots; check-in 83 about
 06:45Z; suite 51 about 11:15Z; the midday folds at 12:00Z.
+
+## 2026-09-29T06:4xZ — Director check-in 83: the count 2; two landings; 15 of 32; the B1 row ruling on the stream
+
+THE FOUR NUMBERS (gh at 06:43Z): open non-coordination PRs 2 of 3 (lineage 305, Myrtle's N1
+second slice at d9fb0edec after its settlement two and the pure sync, both legs re-requested
+06:20Z, its checks running, the land loop armed; lineage 309, Siren's repair-smoke twin carrying
+the second estate's J3 round cures and PR 270's tracked-lock cure, opened 06:43:13Z on the slot
+308 freed, CI starting); JC.net: zero. Landings since check-in 82: lineage 308 (7c75e6c,
+06:35:27Z, Nova's J8 B1, the input refusals as an allow-list shared with restatement-audit);
+JC.net 271 (0b71e76, 06:37:01Z, Myrtle's twin of 305's declared-adapters cure); heads with CI in
+flight: 305, 309. Coordination drafts: JC.net 264 (at 578fc049, Siren's block of 05:34Z to 06:07Z
+pushed 06:16Z), lineage 299 (green); both DUE 12:00Z. Remote branches outside a PR: none in
+either estate. The host at the read: 772 processes, load 20 to 29. The ready list: the 628e21c1
+deletion for the owner's hand, nothing else.
+
+THE COUNT: 15 of 32 by the merges (308 is J8's B1; the total 32 after the 06:1xZ ruling below),
+16 when 305 lands; the register's line reads 11 at 268 and takes the recounts on Myrtle's next
+records PR; remaining 17; the horizon holds.
+
+RULINGS THIS WINDOW, one line each: a second-estate landing made after the census of 2026-09-28
+takes a register row at its lineage port, as a dated line with its source, the register the
+exchange seat's to write with the count consequence: B1 (the merge-bot push retry, JC.net 261
+at 24b72825e, its lineage port fd0bd9db1 to open on a slot) is L34 outside the pinned windows,
+one unit, the total 32; the unavailable-vendor slices A, B and C (lineage-first: 300, 302, 304)
+take their rows at their second-estate port, not before; nothing stays unrowed. Against this
+seat: the ruling went to Siren by direct message alone at 06:1xZ and Myrtle, its writer, could
+not find it on either stream when the relay reached her; posted on the lineage stream at
+06:22Z with the same words, and the memory holds the rule (a ruling another seat must cite goes
+on the stream in the same breath). J8's B2 (one core parseFlags for the five drivers, converting
+only parseArgs' own refusals) is committed and queued behind Siren's two lineage PRs; B3 after
+it. Cards to the owner: none.
+
+NEXT: 305's door, 309's legs and door; Siren's B1 port and Nova's B2 at their slots; Myrtle's
+records PR with the recounts to 32; check-in 84 about 07:30Z; suite 51 about 11:15Z; the
+midday folds at 12:00Z.
