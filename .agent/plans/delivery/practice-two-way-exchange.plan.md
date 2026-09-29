@@ -28,7 +28,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-28
+last_updated: 2026-09-29
 ---
 
 # Practice exchange
