@@ -543,6 +543,19 @@ the routing rationale. Read and dispositioned at pickup before implementation be
 | 2026-09-28 | PR 242's settlement gateway review (code-expert, below the bar) | The config section's removal on the absent paths has a wider window than `git branch -d`'s. The window runs from the first listing through the network reads, so a same-name branch created mid-run loses its upstream section. No ref is deleted and no report is false. | Routed to the same small pull request: re-list `refs/heads/<b>` just before the removal, and skip it when the ref is there, which brings the window level with git's. |
 | 2026-09-28 | PR 257 and the transplant-residue PR, docs-adr-expert reads | The ui-design skill family is sibling-repository residue: `visual-comparison` SKILL :6, :26-35, :55 (absent showcase tools, DDR-009, a width guard); `visual-verification` SKILL :12, :40, :44 (an unported probe; one viewport, not configured viewports); `claude-design-conversion-playbook.md` :166-168, :182-231 and `claude-design-pipeline` SKILL :25, :102-110 (the absent fidelity package, a false depcruise note); `ui-visual-design` SKILL and `references/craft-fundamentals.md` (the sibling's design system: its classes, 44px floor, motion values, DDR-004 themes, an absent design-system-usage skill) | The owner's word (20:5xZ, in two parts): "Leave it until the review, the fundamental design skills need extracting from the context specific design skills. Ultimately the Practice serves any Practice repo"; then "perhaps some skills belong in the Practice, and some belong as Practice extension skills, plug in innovation building blocks with skills that cover certain domains, such as UI design, API design, etc". The concept: the review draws, per skill family, the line between the Practice's core skills and Practice extension skills (plug-in building blocks per domain, which an estate installs as it needs); the ui-design family is the first candidate extension pack. Routes to the review that follows goal one (ruling 44). |
 
+- 2026-09-29, from the reviews of lineage PRs 309 and 310 (Siren herds Rudder, registered by
+  the Director; none started while 309 and 310 wait, by the owner's WIP word): (1) both
+  estates' agent-tools `test:e2e` builds before its smokes, and a validator never triggers a
+  build: the first post-close pull request on each estate, Siren. (2) the lineage's
+  `repo-check-cli.smoke.ts` asserts features, misfiled under the validator clause, and (3) the
+  lineage repo-check command table writes the repair flag twice: the lineage's repo-check
+  post-close pull request, Siren. (4) `GIT_TRACE_REDACT` in the merge-bot push environment
+  predates 310, and (6) the lineage merge-bot `cli.unit.test.ts` and merge-cli integration
+  tests generate an RSA key at module load with a fetch fake on the mint endpoints, the same
+  mint-port cure as 310: a merge-bot test-composition pull request after the retire command
+  lands, Siren. (5) JC.net's `pushArgv` lacks `--no-follow-tags` and
+  `--recurse-submodules=no`: named on 310's flow-back row at the register when 310 lands.
+
 ## Finish (2026-09-29, the Director's plan at the owner's word)
 
 The owner's words of 2026-09-29, verbatim: "17 'residual' PRs is a failure of throughput and PR
