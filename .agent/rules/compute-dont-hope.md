@@ -43,8 +43,8 @@ declaration states an intent; a list restates a fact.
   the ESLint plugin every config file imports was not on it, a warm local `dist` masked the
   gap, and CI's cold checkout failed dependency-cruise. The lineage had hit the same class
   twice before (its own bootstrap comment names two pull requests). Cure: the closure is
-  derived from the workspace manifests — every package whose exports resolve only to built
-  output, in workspace-dependency order.
+  derived from the workspace manifests at run time;
+  `agent-tools/src/bootstrap/install-time-closure.ts` defines its membership.
 - 2026-09-13, the same afternoon: three validators each carried a copy of the same exclusion
   list, including entries that restated the ignore rules. Cure: the walker takes the tracked
   tree as its universe, so the ignore-class entries vanish; what remains is each validator's

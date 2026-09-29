@@ -7,18 +7,15 @@ import { resolveRepoRoot } from '../core/repo-root.js';
 import { writeLine, writeErrorLine } from '../core/terminal-output.js';
 
 import { productionWorkspaceDepFsIo } from './bootstrap-helpers-io.js';
-import { installTimeClosure } from './install-time-closure.js';
-import {
-  packageName,
-  workspaceManifestInputs,
-  workspacePatterns,
-} from './install-time-closure-io.js';
 import {
   binPathFromManifest,
   interpretSpawnOutcome,
   interpretTscOutcome,
   workspaceDepDistIsStale,
 } from './bootstrap-helpers.js';
+import { missingDistArtifacts } from './dist-witnesses.js';
+import { readWorkspaceManifests, readWorkspacePatterns } from './install-time-closure-io.js';
+import { type InstallTimeDep, installTimeClosure } from './install-time-closure.js';
 
 /**
  * Install-time bootstrap, run by the root `postinstall` via `tsx`.
@@ -33,21 +30,17 @@ import {
  * `pnpm build:workflows`, verifies the corpus-analysis workflow bundles in
  * memory and writes nothing, so the bootstrap does not run it.
  *
- * agent-tools imports workspace packages (`@engraph/result`, `@engraph/safe-path`,
- * `@engraph/type-helpers`), and every workspace's `eslint.config.ts` except
- * the site's, the plugin's own and `@engraph/workspace-config`'s imports
- * `@engraph/eslint-plugin-standards`; all resolve to built `dist` only — there
- * is no source-pointing export condition. Which packages those are is derived
- * from the workspace manifests at run time (`readInstallTimeClosure`). The
- * `tsup.config.ts` files of those packages import
- * `@engraph/workspace-config/tsup`, also dist-resolved, so the config-base
- * package is part of the same install-time closure. On a fresh checkout
- * (Vercel, CI, a new worktree) `postinstall` runs before any orchestrated
- * build, so this bootstrap first builds that closure — each
- * package's own `tsup` for JS, then agent-tools' compiler with
- * `--emitDeclarationOnly` over the package's `tsconfig.build.json` for types —
- * skipping any dep whose built `dist` is already current for its `src` and
- * build config.
+ * agent-tools reaches workspace packages whose entry points name built output
+ * under `dist` — there is no source-pointing export condition: the packages it
+ * imports, the ESLint plugin its lint config imports, and the config-base
+ * package whose `tsup` base their build configs import. Which packages those
+ * are is derived from the workspace manifests at run time
+ * (`install-time-closure.ts`), never listed here. On a fresh checkout (Vercel,
+ * CI, a new worktree) `postinstall` runs before any orchestrated build, so this
+ * bootstrap first builds that closure in dependency order — each package's own
+ * `tsup` for JS, then agent-tools' compiler with `--emitDeclarationOnly` over
+ * the package's `tsconfig.build.json` for types — skipping any dep whose built
+ * `dist` is already current for its `src` and build config.
  *
  * The compiler is TypeScript 7, a direct dependency of agent-tools under the
  * npm alias `@typescript/native`. The plain `typescript` name stays on the 6.0
@@ -67,36 +60,40 @@ import {
  */
 
 const repoRoot = resolveRepoRoot(import.meta.url);
-const agentToolsDir = path.join(repoRoot, 'agent-tools');
+/** Repo-relative directory of agent-tools: the package running this bootstrap, and the closure's root. */
+const AGENT_TOOLS_DIR = 'agent-tools';
+const agentToolsDir = path.join(repoRoot, AGENT_TOOLS_DIR);
 
-/** One install-time build target: its directory and the dist artifacts witnessing a completed build. */
-interface WorkspaceDep {
-  /** Repo-relative directory of the workspace package. */
-  readonly dir: string;
-  /** Witness artifact names under `dist/` — one bundler output, one declaration output. */
-  readonly distArtifacts: readonly string[];
-}
+/**
+ * The one build script every closure member must declare, because it is what
+ * {@link buildWorkspaceDep} runs (`tsup`, then `tsc --emitDeclarationOnly`
+ * over the member's `tsconfig.build.json`). The derivation refuses a member
+ * that declares anything else, rather than building it wrongly.
+ */
+const BUILD_RECIPE = 'tsup && tsc --emitDeclarationOnly --project tsconfig.build.json';
 
 /**
  * The workspace packages built before agent-tools, derived from the workspace
- * manifests: every package whose exports resolve only to built `dist`, in
- * workspace-dependency order (`install-time-closure.ts`). Computed, never
- * kept: a hand-kept list here missed the ESLint plugin every config file
- * imports, and a cold CI checkout failed while warm local builds masked it
- * (PR #53, 2026-09-13; the lineage met the same class in two earlier pull
- * requests). The package running this bootstrap is excluded — its own tsc
- * build follows the closure.
+ * manifests: every package agent-tools reaches whose entry points name built
+ * output under `dist`, in dependency order (`install-time-closure.ts`).
+ * Computed, never kept: a new agent-tools workspace dependency, or a new
+ * dependency of one of those, joins the closure without an edit here. The
+ * incidents the hand-kept list caused are recorded in that module's TSDoc.
+ * Exits loudly, naming the cause, when a read or the derivation refuses.
  */
-function readInstallTimeClosure(): readonly WorkspaceDep[] {
-  const inputs = workspaceManifestInputs(repoRoot, workspacePatterns(repoRoot));
-  const closure = installTimeClosure(inputs, { exclude: [packageName(agentToolsDir)] });
+function readInstallTimeClosure(): readonly InstallTimeDep[] {
+  const patterns = readWorkspacePatterns(repoRoot);
+  const manifests = patterns.ok ? readWorkspaceManifests(repoRoot, patterns.value) : patterns;
+  const closure = manifests.ok
+    ? installTimeClosure(manifests.value, { rootDir: AGENT_TOOLS_DIR, buildRecipe: BUILD_RECIPE })
+    : manifests;
   if (!closure.ok) {
     writeErrorLine(
       `[bootstrap-agent-tools] cannot derive the install-time closure: ${closure.error}`,
     );
     process.exit(1);
   }
-  return closure.deps.map((dep) => ({ dir: dep.dir, distArtifacts: dep.distArtifacts }));
+  return closure.value;
 }
 
 /** Set the executable bit on every compiled CLI entry, mirroring the build script. */
@@ -188,7 +185,7 @@ function runStep(label: string, binPath: string, args: readonly string[], cwd: s
  * against the stale `.d.ts` and bricks the fail-open guards (MCP-472). See
  * {@link workspaceDepDistIsStale}.
  */
-function buildWorkspaceDep(dep: WorkspaceDep, tscBin: string): void {
+function buildWorkspaceDep(dep: InstallTimeDep, tscBin: string): void {
   const depRelDir = dep.dir;
   const depDir = path.join(repoRoot, depRelDir);
   const depName = path.basename(depRelDir);
@@ -203,7 +200,20 @@ function buildWorkspaceDep(dep: WorkspaceDep, tscBin: string): void {
     ['--emitDeclarationOnly', '--project', path.join(depDir, 'tsconfig.build.json')],
     depDir,
   );
+  exitUnlessWitnessesWritten(dep, depDir);
   writeLine(`[bootstrap-agent-tools] built ${depRelDir}/dist`);
+}
+
+/** Exit loudly when the build left out a file the dependency's entry points name. */
+function exitUnlessWitnessesWritten(dep: InstallTimeDep, depDir: string): void {
+  const missing = missingDistArtifacts(depDir, dep.distArtifacts, productionWorkspaceDepFsIo);
+  if (missing.length > 0) {
+    writeErrorLine(
+      `[bootstrap-agent-tools] the build of ${dep.dir} did not write ${missing.join(', ')}, ` +
+        'which its package.json entry points name.',
+    );
+    process.exit(1);
+  }
 }
 
 function main(): void {

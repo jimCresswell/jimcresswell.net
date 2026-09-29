@@ -81,9 +81,13 @@ collapse the two entries into one.
 ### `postinstall` builds `agent-tools/dist`
 
 `pnpm install` runs `tsx agent-tools/src/bootstrap/bootstrap.ts` as the root
-`postinstall`. It builds the `@engraph/*` closure that agent-tools imports
-(`workspace-config` first, then the leaf packages), each with its own `tsup` and
-with agent-tools' TypeScript 7 compiler for its declarations, skipping any
+`postinstall`. It builds agent-tools' install-time closure: every workspace
+package agent-tools reaches whose entry points name built output under `dist`,
+derived at run time from the workspace manifests by
+`agent-tools/src/bootstrap/install-time-closure.ts`, in dependency order
+(`workspace-config` first, then the ESLint plugin, then the leaf packages). Each
+builds with its own `tsup` and with agent-tools' TypeScript 7 compiler for its
+declarations, skipping any
 package whose `dist` is already current for its `src` and build config, and
 then compiles `agent-tools/dist` with `tsc` directly. The
 build orchestrator and the package manager stay out of the install lifecycle
@@ -461,7 +465,15 @@ not built before the consumer ran. Confirm the generic `type-check` task in
 
 Editing a workspace `package.json` (e.g. adding a script) makes the next pnpm
 run re-verify dependencies, which triggers the postinstall bootstrap and a
-whole-package `tsc` over agent-tools. This catches real type errors BEFORE any
+whole-package `tsc` over agent-tools, after it rebuilds any stale member of its
+install-time closure (the ESLint plugin is among them). A type error in one of
+those, the plugin mid-edit included, fails the install. So does a reached
+package with built entry points whose build script is not the bootstrap's one
+recipe (`BUILD_RECIPE` in `agent-tools/src/bootstrap/bootstrap.ts`), and a build
+that does not write a `dist/` file its `package.json` entry points name: the
+install exits naming the package. A workspace dependency added to agent-tools,
+or to any package it reaches, enters the derivation at the next install and
+meets the same checks. This catches real type errors BEFORE any
 explicit type-check pass — read the error HEAD (the tail is pnpm plumbing).
 Used deliberately, it is a free whole-package pre-gate: run `pnpm install` in
 a worktree immediately after resolving a merge, before reaching for the gate
@@ -472,7 +484,10 @@ suite.
 An edit to `@engraph/eslint-plugin-standards` source (a rule config or
 allowlist) does not affect lint output until the plugin package rebuilds —
 ESLint resolves the built `dist/`. Rebuild the plugin after every
-config-source edit before trusting a lint readout.
+config-source edit before trusting a lint readout: `pnpm install` does it,
+since the plugin is in the postinstall bootstrap's install-time closure and
+rebuilds when its `dist/` is older than its `src` or build config, or build
+the package directly.
 
 ### Cache misses on every run
 
@@ -573,10 +588,11 @@ artefacts it actually resolved:
   while tests see different code. When a filtered result is load-bearing,
   rebuild the producer workspaces first (the full `pnpm check` orders `^build`
   ahead of `type-check` for exactly this reason).
-- **A fresh checkout or worktree cannot lint until producer workspaces are
-  built** — the flat config imports `@engraph/eslint-plugin-standards` from
-  `dist/`. The postinstall bootstrap covers the agent-tools closure; run
-  `pnpm build` for the rest.
+- **A fresh checkout or worktree needs `pnpm build` before the gates** — the
+  postinstall bootstrap builds agent-tools' install-time closure, so lint
+  loads on install alone, but the site's `.next/` waits for `pnpm build`.
+  Until then the site's `type-check` passes without the generated route
+  types its `tsconfig.json` includes; CI checks them after its build step.
 - **`pnpm check` does not run every suite** (the site's `test:e2e` and `build`
   are outside it; the agent-tools smoke suite is inside it through
   `agent-tools:test:e2e`) — verify the aggregate actually exercises
