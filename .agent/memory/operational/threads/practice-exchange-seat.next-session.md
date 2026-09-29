@@ -2983,3 +2983,26 @@ is named above, so the recursion closes here.
   (six integration cases, 5288ms to 6699ms), while CPU idle read 1.45% under three peer pre-pushes
   and my own commit gate: 132 of 134 tasks passed. The retry waits for the gate slot free and the
   load under the seats' running gates.
+
+**2026-09-29 04:00Z to 05:34Z: slice C and the gate slot's port landed; J3's shellcheck slice open.**
+
+- Slice C (#304) merged 05:00Z as f478e121d after a quiet-host retry. Round one's finding (the
+  list-flag table read inherited properties, so `toString` threw instead of exit 2) was cured
+  in 61a09c5b0 with a Map and three cases. Round two was clean. Three advertisement 403s met
+  that push before any hook; the third try passed. The unavailable-vendor slices A, B and C have
+  all landed in the lineage; the second estate's copy is owed.
+- The Director ruled at 04:0xZ that the gate slot's lineage port is the seat's next lineage PR
+  (row J17, the batch-six triage's note 4), ahead of the retire port. #307 merged 05:24Z as
+  e8524e83a: the second estate's gate slot as the same bytes (four scope literals aside), the
+  runtime's two options merged, both hooks' turbo steps under the slot, turbo's pass-through, the
+  build-system subsection, the commit skill's sentence. Its own commits and push ran through a
+  real slot. Copilot's item 1 (a SIGKILLed wrapper frees its slot while its group runs on) is the
+  ratified node's recorded limit; the Director ruled keep the tradeoff. Item 2 Rejected.
+- JC.net PR 270 opened 05:33Z: J3's shellcheck slice (the gate converges on the lineage's
+  modules; PR 267's Landings row). Claims: JC.net 85129e38 (this slice); lineage 3ca10e17 (the
+  smoke twin and the B1 retry port); the lineage heartbeat rides 3ca10e17.
+- Owed flow-backs to JC.net from #307: the commit skill's host-bound sentence (same bytes); its
+  spawn-topology integration test breaks its own immediate-fail 21 (an observation).
+- Next in the seat's queue: the lineage smoke twin (2c2f06810, committed); the B1 push-retry port
+  (four advertisement 403s tonight; inventory running); J3's last JC.net slice; JC.net's twins of
+  slices A, B and C; the retire port.
