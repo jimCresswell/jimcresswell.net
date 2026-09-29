@@ -21,6 +21,13 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-29T11:3xZ, the Director's COMPACTION BOUNDARY 12** (Wick binds Temper, ed7b48): the block
+  is on the lineage's estate-coordination thread record (committed at 8d232779f), with the finishing
+  plan's state, the door order, the owner's words of the day and the handoffs from Siren and Nova; the
+  finishing plan itself is the exchange node's §Finish on both estates and the lineage report
+  `.agent/reports/practice-exchange/finishing-plan-2026-09-29.md`; the ready list is
+  `.agent/memory/operational/ready-list.md`. Resume on "carry on".
+
 - **2026-09-28T08:26Z, the Director's COMPACTION BOUNDARY 10** (Wick binds Temper, ed7b48), at the
   owner's word "prepare for compaction … then stop all processes". Since the rollover: the lineage
   landed 274, 264, 273, 276, 277, 278 (P1, the sync-lineage content binding) and 279, JC.net 227,

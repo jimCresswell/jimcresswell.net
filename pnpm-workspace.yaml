@@ -1,6 +1,7 @@
 packages:
   - agent-tools
   - jcdotnet
+  - linkedin
   - tooling/*
 # Supply-chain hardening: exclude any package version younger than 24h
 # (1440 min) from resolution, so a freshly-published compromised release ages —
