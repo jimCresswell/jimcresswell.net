@@ -4535,3 +4535,68 @@ THE SIXTEENTH SEAT (the adversarial procedure seat, returned after the write): O
 the midday cadence (NEXT names the successors DUE at 12:00Z, so the cadence is carried by the
 successor bodies) and the push word (mapped above). Final tally: ON-TRACK sixteen; SOUND four,
 NARROWED six, CONTRADICTED six.
+
+## 2026-09-29T00:4xZ — THE ROLLOVER FOLD: PR 241 merged as d2b91090e at 00:47:32Z; the successor coordination/2026-09-29-d2b910 cut from post-fold main
+
+The JC.net rollover fold of 2026-09-29, run by the Director after the pre-fold suite (49) and the
+pre-ready-mark records pass. The convergence merge of main dde8c547 (PR 260's merge, 23:53:44Z) (PRs 240, 243, 244, 242, 245, 246, 247, 248, 249, 250, 252, 253, 251, 254, 255, 256, 257, 258, 259 and 260 in merge order; 261 and 263 landed after the merge and ride the successor's base, the ruleset not being strict) was made in the
+clean detached proxy worktree at the branch's tip and pushed from there at 32bbaf4be (00:03:01Z; the recipe left 36 merge-added files absent in the tree, created by hand and the script cured), the primary
+taking the merged sha by the take-merged recipe (a mixed reset, then only the unedited
+merge-changed paths refreshed from the index; the other agent's LinkedIn copies untouched); the
+records pass's cures: one over-bar finding (the continuity record's LinkedIn bullet, stale since PR 252 landed the batch it called uncommitted) cured as 8422067d and pushed from the proxy with Siren's ae909486 at 00:28Z, after one gate refusal on the host's fork limit (a 2,454-process chain of pnpm's own bin shim calling its uname under a bin-first PATH in a security read's probe, 00:24Z, gone by 00:25Z; Siren read the cause and C3 takes two guards); eight below-bar notes left as written; the body updated and marked ready as the bot at 00:28:42Z,
+Copilot requested by the operator at 00:28:44Z under the 20:4xZ ruling and its suite-49
+amendment (the JC.net door clause unimplemented until the bot mechanism lands; the ready list with
+a clock at check-in 75); the door: round one (Copilot 00:32:27Z on ae909486: the same moved order in two files) cured as 8713c36e (this seat's bullet) and a9bea28d (Siren's header), the one late-cure push at 00:38Z, two lines signed, threads resolved, Copilot re-requested once at 00:42:56Z; its round-two content review at 00:46:47Z, no findings (three previously-missed notes below the bar: the napkin's stream quotes without the SHA: prefix, the continuation target indirect); the merge-bot merge on that leg at 00:47Z; merged as d2b91090e at 00:47:32Z; the remote
+branch deleted, read back absent. The successor coordination/2026-09-29-d2b910 was cut at 00:48:04Z from post-fold
+origin/main d2b91090e by hand on the dirty primary (git switch carries the foreign edits, identical
+in both commits), the primary residing on it; this entry is its first commit, pushed from the
+proxy; its draft PR is opened at once as the bot and named in the rotation broadcast, DUE at the
+midday fold (12:00Z 2026-09-29). The count at the cut: 0 open non-coordination PRs on JC.net and 1 across both estates (lineage 296, Myrtle's twin ruling); JC.net remote branches outside a PR: none; the lineage fold 283 at its door on f830c1571.
+
+## 2026-09-29T00:4xZ — Director check-in 75: both folds at their doors after round one; eleven landings; the count 1
+
+THE FOUR NUMBERS (gh at 00:44Z): open non-coordination PRs 1 of 3 (lineage 296, Myrtle's twin
+ruling PR, the exchange node's close bar, opened 00:43:21Z on the slot 262 freed); landings since
+check-in 74 (23:1xZ): lineage 293 (9f37488, 23:21:43Z, Nova's N6), 291 (7e4cf9b, 23:43:15Z,
+Myrtle's N1 first slice), 294 (a2fc71c, 00:04:20Z, Siren's C2), 295 (cdd74a8, 00:33:15Z, Nova's
+J6-2); JC.net 257 (a3e566c, 23:14:56Z), 258 (4505789, 23:35:38Z), 259 (efdcc23, 23:45:32Z), 260
+(dde8c54, 23:53:44Z), 261 (24b7282, 00:09:50Z, Siren's B1), 263 (a4575dc, 00:13:42Z, Nova's
+smoke index retirement), 262 (33dcdaa5, 00:39:19Z, Myrtle's J1 row); heads with CI in flight:
+lineage 283 (f830c1571) and 296, JC.net 241 (a9bea28d, Copilot's round-two review requested
+00:42:56Z). Coordination drafts: both marked ready and at their doors (241 at 00:28:42Z, 283 at
+00:23:33Z). Remote branches outside a PR: none in either estate. Local: docs/linkedin-workspace
+(628e21c1) stays for the owner's hand. The ready list: empty (241 waits on its own round-two
+review, not on the owner).
+
+THE FOLDS, one line each: JC.net: the convergence merge of main dde8c547 made in the proxy and
+pushed at 00:03:01Z (32bbaf4be); the take-merged recipe left 36 merge-added files absent in the
+primary's tree, created by hand and the script cured; the records pass: one over-bar finding
+(the LinkedIn bullet, stale since 252) cured as 8422067d; round one (Copilot, two findings, the
+same moved order in two files) cured as 8713c36e (this seat) and a9bea28d (Siren, her header),
+the one late-cure push at 00:38Z, lines signed, threads resolved, Copilot re-requested once.
+Lineage: 295 held the slot by the one rule (at its legs 00:17:16Z; the fold 00:17:42Z), the fold
+yielded and re-synced at 00:42Z (f830c1571) after 295 landed; the records pass: one over-bar
+finding (the N1 entry's 2 of 26) routed to Myrtle, cured c47e562e0; round one (Codex one,
+Copilot four, all on Myrtle's records) cured 08ae72a20, five signed; Codex's round two (the
+census Totals table against its own Recounts) routed to Myrtle as the one late-cure push.
+
+RULINGS AND DISPOSITIONS, one line each: a records finding on a seat's file goes to the seat for
+its own cure, the Director cures only its own lines (applied four times this window); two gate
+refusals were host artefacts, not content: the lineage portability validator (new rule at
+4f49ff86e) refused the ignored statusline log directory under the rules surface, the log
+relocated to the Director's scratchpad with its bytes kept (the generator is the relative log
+path in the local statusline settings, the owner's file); the JC.net gate died on the host's
+fork limit under a 2,454-process chain of pnpm's own bin shim calling its uname in Siren's
+security probe (Siren's first-hand read; C3 takes two guards, no re-entry test); N7's rooted
+install-time closure lands on the lineage first and flows back to JC.net as one pure-seam PR;
+C3's provisioning shape (first install, next dependency change, the gate naming the installer)
+accepted as designed. Cards to the owner this window: none; every question settled by the
+method or the record.
+
+CORRECTIONS against this seat: the burst's first reading ("the installer re-entered itself")
+was a guess, replaced by Siren's read and recorded so in memory; the first lineage sync push
+went up without a read of the working tree under the validated surfaces.
+
+NEXT: 241's door on Copilot's round-two content review; 283's door after Myrtle's late-cure push
+and one Copilot re-request; each successor cut from its post-fold tip and published as a draft,
+DUE 12:00Z; the rotation broadcasts; the drafts CI watch re-pointed; check-in 76 about 01:30Z.
