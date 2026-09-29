@@ -483,7 +483,8 @@ entries composed whole and appended in one write.
    the lineage's exchange seat's after its pull request 296, one pull request of the J1 kind
    (the Director's ruling of 2026-09-29 01:2xZ, verified first-hand: no such validator in the
    lineage's chain), recorded here under todo 8 and not as a J row; the lineage's count reads
-   30 with it. Its number is 301, opened 2026-09-29 02:33Z.
+   30 with it. Its number is 301, opened 2026-09-29 02:33Z and merged as eb1ad3f80 at 2026-09-29T03:19:24Z:
+   the twin is landed on both estates and the condition holds.
 
 ## Plan-body first-principles check
 
