@@ -2890,3 +2890,39 @@ is named above, so the recursion closes here.
   - CONTRIBUTING: a Setup step and a Common Issues bullet;
   - tooling.md and workflow.md: one entry each.
   - `check:docs` passes. The docs-adr and onboarding reviews are running.
+
+**2026-09-28 22:52Z to 2026-09-29 00:20Z: C2 (#294) and B1 (JC.net #261) landed; C3 built.**
+
+- C2 opened as lineage #294 on the slot JC.net #257 freed.
+  - Round one: Copilot's three items were Rejected (the installer's shebang is bash, not sh), and
+    Codex's P1 was cured in d26d3f2e4 (start-right's Quality Gates now covers a checkout already
+    in use).
+  - Round two: Copilot was clean. Codex's P1 (the API-alignment runbook) was cured in d09a50e8a,
+    with the two team prompts.
+  - The door-evidence round at d09a50e8a: Codex's no-API-key recipe item was Below-bar, and
+    Rejected with the reader-harm test. The class was routed to one mechanical proposal.
+  - #294 merged at 00:04:20Z as a2fc71c9e, both legs bound by content across a pure sync.
+    J3's lineage slices are all in (#289, #290, #292, #294).
+- The Director ruled on two things:
+  - the design of the unavailable-vendor door, v1: accepted, plus mechanical proof on the PR's own
+    timeline (an error review from the vendor on the head, or a request over sixty minutes old
+    with no content review since) before `--unavailable` is accepted;
+  - install-time provisioning (C3): yes, with conditions, recorded in the scratchpad's
+    `j3-port/c3-seed.md`.
+- B1 opened as JC.net #261 on the slot #259 freed.
+  - Copilot's round one found the retry path kept the whole gate transcript in memory. That was
+    cured in ad037fbe with a bounded window (4096 bytes; the refusal is 224). The retry tests
+    moved to their own file, the doubles to `test-helpers/push-cli-double.ts`, and a new test
+    drives 2× the measured gate output through the push action. Five mutants were killed.
+  - Round two was clean. #261 merged at 00:09:50Z as 24b72825.
+- C3 is built in `oce-wt-j3-shellcheck-provision`, uncommitted:
+  - the installer's no-op on the present pin;
+  - the bootstrap step, which skips on VERCEL or CI, and warns and goes on when it fails;
+  - the pure verdict module, and three docs.
+  - Every gate is green, and five mutants are killed.
+  - A finding: pnpm 11 runs no lifecycle scripts on an install that changes nothing, so an
+    existing checkout provisions at its next dependency change.
+  - The security-expert read is running. C3 opens at a free slot after it.
+- Next: C3; then unavailable-vendor slice A (after B1, now landed); then the J3 flow-back to JC.net
+  carrying the twins (list in the scratchpad's `j3-port/flow-back.md`, plus C3's twin and
+  start-right's two lines).
