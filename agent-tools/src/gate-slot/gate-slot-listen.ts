@@ -63,10 +63,3 @@ export function close(server: net.Server): Promise<void> {
 export async function closeAll(servers: readonly (net.Server | undefined)[]): Promise<void> {
   await Promise.all(servers.flatMap((server) => (server === undefined ? [] : [close(server)])));
 }
-
-/** Wait `milliseconds`. */
-export function delay(milliseconds: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, milliseconds);
-  });
-}

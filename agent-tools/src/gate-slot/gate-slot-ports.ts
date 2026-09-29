@@ -1,12 +1,14 @@
 import net from 'node:net';
 
+import { delay } from '../core/delay.js';
+
 import {
   IDENTITY_LINE_MAX_CHARS,
   parseHolderIdentity,
   type HolderIdentityLine,
 } from './gate-slot-identity.js';
 import type { AdmissionDecision, OccupiedSlot, SlotObservation } from './gate-slot-policy.js';
-import { close, closeAll, delay, listen, refuse } from './gate-slot-listen.js';
+import { close, closeAll, listen, refuse } from './gate-slot-listen.js';
 import type { GateSlotIo, ObserveOutcome, TransactOutcome } from './gate-slot-types.js';
 
 /**

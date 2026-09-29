@@ -1,5 +1,6 @@
 import { ok, type Result } from '@engraph/result';
 
+import { delay } from '../core/delay.js';
 import type { ReadPrStateOptions } from '../pr-watch/state-gh.js';
 import type { PrStateReading } from '../pr-watch/state-types.js';
 import { MERGE_USAGE, parseMergeArgs, type MergeArgs } from './merge-args.js';
@@ -151,8 +152,7 @@ async function pollUntilActionable(context: {
   readonly input: MergeActionInput;
 }): Promise<number> {
   const { parsed, input } = context;
-  const sleep =
-    input.sleepImpl ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
+  const sleep = input.sleepImpl ?? delay;
   const nowIso = input.nowIsoImpl ?? ((): string => new Date().toISOString());
   const seams = executionSeams(input, context.run.token);
 

@@ -2,13 +2,24 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { runMergeBotCli, type MergeBotCliInput } from './cli.js';
+import { runMergeBotCli } from './cli.js';
 import { GIT_CREDENTIAL_RESOLUTION_CHAIN } from './git-credential-chain.js';
-import type { GitCommandResult, GitExecutor } from './git-executor.js';
-import type { GithubApiFetch } from './mint-installation-token.js';
-import { pushHead, type TokenFileStore } from './push-git.js';
-
-import { generateKeyPairSync } from 'node:crypto';
+import type { GitExecutor } from './git-executor.js';
+import { pushHead } from './push-git.js';
+import {
+  BASE_ENV,
+  BRANCH,
+  capture,
+  GIT_PATH,
+  gitFake,
+  mintFetch,
+  pushCall,
+  REMOTE,
+  runPush,
+  STORE_DIR,
+  TOKEN,
+  tokenStoreFake,
+} from './test-helpers/push-cli-double.js';
 
 /**
  * The `merge-bot push` front door over injected seams (fetch, key, config,
@@ -22,175 +33,6 @@ import { generateKeyPairSync } from 'node:crypto';
  * spawns inherit that environment, so an env dump there must never print a
  * live write token. The pure argv contract lives in push-args.unit.test.ts.
  */
-
-const { privateKey } = generateKeyPairSync('rsa', {
-  modulusLength: 2048,
-  publicKeyEncoding: { type: 'spki', format: 'pem' },
-  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
-});
-
-const TOKEN = 'sekrit-installation-token';
-const GIT_PATH = '/usr/bin/git';
-const BRANCH = 'jimcresswell/mcp-508-slice';
-const REMOTE = 'https://github.com/acme/widgets.git';
-const TRANSFER = `To ${REMOTE}\n   abc1234..def5678  HEAD -> ${BRANCH}\n`;
-
-function capture(): { text: () => string; sink: Pick<NodeJS.WriteStream, 'write'> } {
-  let buffer = '';
-  return {
-    text: () => buffer,
-    sink: {
-      write(chunk: string): boolean {
-        buffer += chunk;
-        return true;
-      },
-    },
-  };
-}
-
-interface GitCall {
-  readonly file: string;
-  readonly args: readonly string[];
-  readonly cwd: string;
-  readonly env: Readonly<Record<string, string | undefined>>;
-}
-
-/** Value-returning git seam (the Result pattern): a non-zero exit is a RESULT, never a throw. */
-function gitFake(overrides: { revParse?: GitCommandResult; push?: GitCommandResult } = {}): {
-  gitExecutor: GitExecutor;
-  calls: GitCall[];
-} {
-  const calls: GitCall[] = [];
-  const gitExecutor: GitExecutor = (file, args, options) => {
-    calls.push({ file, args, cwd: options.cwd, env: options.env });
-    if (args[0] === 'rev-parse') {
-      return overrides.revParse ?? { status: 0, signal: null, stdout: `${BRANCH}\n`, stderr: '' };
-    }
-    return overrides.push ?? { status: 0, signal: null, stdout: '', stderr: TRANSFER };
-  };
-  return { gitExecutor, calls };
-}
-
-/** Serves the mint endpoints and records every call URL and body. */
-function mintFetch(token = TOKEN): {
-  fetchImpl: GithubApiFetch;
-  urls: string[];
-  bodies: { url: string; body: string }[];
-} {
-  const urls: string[] = [];
-  const bodies: { url: string; body: string }[] = [];
-  const fetchImpl: GithubApiFetch = (url, init) => {
-    urls.push(url);
-    if (init?.body !== undefined) {
-      bodies.push({ url, body: String(init.body) });
-    }
-    if (url.endsWith('/installation')) {
-      return Promise.resolve({ status: 200, json: () => Promise.resolve({ id: 55 }) });
-    }
-    return Promise.resolve({
-      status: 201,
-      json: () => Promise.resolve({ token, expires_at: '2026-08-06T10:00:00Z' }),
-    });
-  };
-  return { fetchImpl, urls, bodies };
-}
-
-const BASE_ENV = { PATH: '/usr/bin', HOME: '/test-home' } as const;
-
-const STORE_DIR = '/fake-secret-store/merge-bot-push-x1';
-
-interface TokenWrite {
-  readonly path: string;
-  readonly content: string;
-  readonly mode: number;
-}
-
-/** Records every prefix, write and removal; no filesystem is ever touched. */
-function tokenStoreFake(overrides: Partial<TokenFileStore> = {}): {
-  store: TokenFileStore;
-  prefixes: string[];
-  writes: TokenWrite[];
-  removed: string[];
-} {
-  const prefixes: string[] = [];
-  const writes: TokenWrite[] = [];
-  const removed: string[] = [];
-  return {
-    store: {
-      mkdtemp: (prefix) => {
-        prefixes.push(prefix);
-        return STORE_DIR;
-      },
-      writeFile: (path, content, mode) => {
-        writes.push({ path, content, mode });
-      },
-      remove: (dir) => {
-        removed.push(dir);
-      },
-      ...overrides,
-    },
-    prefixes,
-    writes,
-    removed,
-  };
-}
-
-function runPush(input: {
-  readonly args?: readonly string[];
-  readonly git?: ReturnType<typeof gitFake>;
-  readonly fetch?: ReturnType<typeof mintFetch>;
-  readonly store?: ReturnType<typeof tokenStoreFake>;
-  readonly overrides?: Partial<MergeBotCliInput>;
-}): {
-  exit: Promise<number>;
-  out: () => string;
-  errText: () => string;
-  calls: GitCall[];
-  urls: string[];
-  bodies: { url: string; body: string }[];
-  prefixes: string[];
-  writes: TokenWrite[];
-  removed: string[];
-} {
-  const out = capture();
-  const errSink = capture();
-  const { gitExecutor, calls } = input.git ?? gitFake();
-  const { fetchImpl, urls, bodies } = input.fetch ?? mintFetch();
-  const { store, prefixes, writes, removed } = input.store ?? tokenStoreFake();
-  const exit = runMergeBotCli({
-    args: ['push', ...(input.args ?? [])],
-    env: { HOME: '/test-home' },
-    stdout: out.sink,
-    stderr: errSink.sink,
-    fetchImpl,
-    readFileImpl: () => Promise.resolve(privateKey),
-    readConfigFileImpl: () =>
-      JSON.stringify({ appSlug: 'jimbot-oakington-iii', appId: '4352989', repo: 'acme/widgets' }),
-    repoRoot: '/repo',
-    runGitImpl: () => 'worktree /repo\n',
-    nowEpochSeconds: () => 1_800_000_000,
-    gitExecutor,
-    gitPath: GIT_PATH,
-    baseEnv: BASE_ENV,
-    tokenFiles: store,
-    ...input.overrides,
-  });
-  return {
-    exit,
-    out: out.text,
-    errText: errSink.text,
-    calls,
-    urls,
-    bodies,
-    prefixes,
-    writes,
-    removed,
-  };
-}
-
-function pushCall(calls: readonly GitCall[]): GitCall | undefined {
-  return calls.find((call) => call.args.includes('push'));
-}
 
 /**
  * A library-shaped fixture that THROWS: the boundary translations under test

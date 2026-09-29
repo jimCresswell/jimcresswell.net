@@ -107,6 +107,7 @@ are defined in `agent-tools/src/merge-bot/token-scopes.ts`:
 | `code-scanning-alerts` | `security_events: read`                                       | reading code-scanning alerts                                                  |
 | `workflow-dispatch`    | `actions: write`                                              | dispatching a workflow; re-running a failed job                               |
 | `branch-retire`        | `contents: write`                                             | deleting a merged branch ref (what `merge-bot retire` mints itself)           |
+| `branch-read`          | `contents: read`                                              | reading a repository's default branch and a branch ref; no write of any kind  |
 
 That table is a **mirror**, kept inline because a reader choosing a scope
 needs the read/write levels in front of them. `token-scopes.ts` is
@@ -324,6 +325,22 @@ static credential helper reading that file — the child environment names
 only the file's path. Never argv, no force flags, no `--no-verify`, and
 pushes to the default branch refuse by name (see
 [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).
+
+GitHub has refused a freshly minted token's push at its first request,
+before git runs the pre-push hook. The transcript is these two lines and
+nothing else:
+
+```text
+remote: Permission to <repo> denied to <bot>.
+fatal: unable to access '<url>': The requested URL returned error: 403
+```
+
+A later push went through each time. The push therefore tries the push
+again with a fresh token, 30 seconds on, up to three attempts in all, and
+names each retry on stderr. It reports a third refusal as an operational
+failure, with every refusal shown. Any other failure is final at once,
+including a 403 after the hook ran: trying that again would run the whole
+gate again.
 
 ## Retiring a merged branch
 
