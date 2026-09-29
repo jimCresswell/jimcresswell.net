@@ -4726,3 +4726,34 @@ sync and door, then the JC.net flow-back at a free slot.
 
 NEXT: 298's sync and door, 300's door, 265's round; the twin PR; check-in 78 about 03:00Z; the
 midday folds at 12:00Z with a pre-fold suite; the monitors re-armed at their caps.
+
+## 2026-09-29T02:5xZ — Director check-in 78: the count 2; N7 and vendor slice A landed; 10 of 30 by the merges
+
+THE FOUR NUMBERS (gh at 02:58Z): open non-coordination PRs 2 of 3 (lineage 301, Myrtle's todo-8
+validator twin, opened 02:33:21Z, BEHIND after two landings, its sync and door next; JC.net 265,
+Myrtle's register count PR, at settlement one with one thread open); landings since check-in 77:
+lineage 300 (ec5db1d, 02:28:40Z, Siren's unavailable-vendor slice A: a vendor error review
+satisfies no leg, whatever its state), 298 (517c1a5, 02:52:41Z, Nova's N7, the rooted
+install-time closure); JC.net none; heads with CI in flight: 301. Coordination drafts: JC.net 264
+(CLEAN at 04d99754, two files), lineage 299 (green at 2ce0c93d4), both DUE 12:00Z. Remote branches
+outside a PR: two, both pushed ahead of their PR under the WIP limit and named with their owner
+and clock: lineage feat/merge-bot-declared-unavailable (Siren's slice B) and JC.net
+feat/exchange-j6-n7-rooted-closure-flowback (Nova's N7 flow-back, byte-identical to 298 as
+merged, its N8 rider named); one slot is free at this read, the reservation line decides which
+opens first and the other opens at the next landing. The ready list: the 628e21c1 deletion for
+the owner's hand (check-in 77), nothing else.
+
+THE COUNT: 10 of 30 by the merges (298 is J6's N7); the register's line reads 9 of 30 at 265's
+head, Myrtle's next row takes 298; remaining 20, inside the horizon named at 77 (the midday fold
+of 2026-10-01).
+
+RULINGS THIS WINDOW, one line each: 298's settlement budget was spent when Codex reviewed its
+pure-sync tip unprompted with two P1s; no third content push (two rounds bind, the rule has no
+exception): finding 1 (branching fixture helpers, test-immediate-fails item 14) accepted and its
+ready cure rides N8, the lane's next lineage PR, with the twin in N8's flow-back, so the estates
+hold the same bytes at every landing; finding 2 (an integration test "should be a unit test")
+Rejected on testing-strategy's own words; Nova signed both, resolved, and the door ran at green
+(517c1a5). Cards to the owner: none.
+
+NEXT: 301's sync and door; 265's door; slice B and the flow-back at their slots; check-in 79
+about 03:45Z; the midday folds at 12:00Z with a pre-fold suite (51).
