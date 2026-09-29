@@ -393,10 +393,8 @@ names a live branch):
   are repo content that a Practice seat commits and lands by the normal path (the owner's word,
   2026-09-28); publishing to LinkedIn is a separate act on the owner's request.
 - JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
-  (158275), live on 2026-09-28. The second doctrine pair landed (JC.net PR 238 at 12:13Z, lineage
-  PR 280 at 12:19Z). Next, in the Director's confirmed order (12:2xZ): `branch retire` as a pair,
-  then the J3 shellcheck slice, the pr-watch slice and the L1 flow-back. The record's latest
-  dated block governs.
+  (158275), live on 2026-09-28. The lane's next step moves several times a day, so this bullet
+  names none: the record's latest dated block governs, and its landings list is the lane's proof.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
