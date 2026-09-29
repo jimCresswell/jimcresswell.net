@@ -83,21 +83,23 @@ units, and the row takes its remainder's state.
 
 Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
 read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
-estate's J rows into the lineage), read on 2026-09-29 at jcnet `d2b91090e6` and lineage
-`ef0ba83c15`: **9 of 30**. The 30 are the census's 20 residue pull requests, J3's four from its
+estate's J rows into the lineage), read on 2026-09-29 at jcnet `507f581185` and lineage
+`eb1ad3f807`: **11 of 30**. The 30 are the census's 20 residue pull requests, J3's four from its
 recounts (two at 18:3xZ on 2026-09-28; two more at 01:4xZ on 2026-09-29, when the recount's third
 slice, the shellcheck gate with its installer, CI step and docs, landed as three pull requests),
 J6's one from the recount of 21:4xZ (four lineage pull requests, not three), and the charter's five
 acts (todo 6's amendment, the lessons row, the comparison row, the re-pin, and todo 8's validator
-twin by the Director's ruling of 2026-09-29 01:2xZ). The 9 are todo 6's amendment, this estate's PR
-248 (2026-09-28T17:14:16Z), and eight lineage pull requests: J3's #289 (slice 2), #290 (slice 3),
-#292 (slice 4a), #294 (slice 4b) and #297 (slice 4c, 2026-09-29T01:36:18Z); N1's first slice, #291
-(2026-09-28T23:43:15Z); and J6's #293 (N6) and #295 (the commit-queue worktree smoke). Reconstructed
-for the fold test at the lineage's rollover fold 76974c3cc (2026-09-29T01:12:26Z), before this line
-was refreshed: 8 of 30, #297 not yet merged. Eight residue pull requests have merged since the
-census; the rows settled by this register's dated rows carry no pull request of their own and change
-no unit. The inbound direction's count opens with its own census (todo 4, ruling 44).
-## Rows from the lineage's delta (since `e477e62f7e`)
+twin by the Director's ruling of 2026-09-29 01:2xZ). The 11 are todo 6's amendment (this estate's PR
+248, 2026-09-28T17:14:16Z) and ten lineage pull requests: J3's #289 (slice 2), #290 (slice 3), #292
+(slice 4a), #294 (slice 4b) and #297 (slice 4c, 2026-09-29T01:36:18Z); N1's first slice, #291
+(2026-09-28T23:43:15Z); J6's #293 (N6), #295 (the commit-queue worktree smoke) and #298 (N7,
+2026-09-29T02:52:41Z); and todo 8's validator twin, #301 (2026-09-29T03:19:24Z). Reconstructed for
+the fold test at the lineage's rollover fold 76974c3cc (2026-09-29T01:12:26Z), before this line was
+refreshed: 8 of 27 in the total as it then read (J3's second recount, two more, and todo 8's
+validator twin, one, make it 30 in today's units), #297 not yet merged. Since the census, ten
+lineage pull requests and one of this estate's have merged; the rows settled by this register's
+dated rows carry no pull request of their own and change no unit. The inbound direction's count
+opens with its own census (todo 4, ruling 44). ## Rows from the lineage's delta (since `e477e62f7e`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |
 | --- | --- | --- | --- | --- | --- |
