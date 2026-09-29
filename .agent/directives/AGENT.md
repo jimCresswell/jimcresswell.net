@@ -87,7 +87,7 @@ them in that order; the first that decisively resolves the question wins.
 
 ## Cardinal Rule
 
-The entity model in `content/entities.json` is the single source of truth for
+The entity model in `jcdotnet/content/entities.json` is the single source of truth for
 identity, shared atoms, and structured data. Every rendered surface — page
 metadata, JSON-LD, CV, PDF — DERIVES from it and never restates it. If the
 graph changes, `pnpm build` MUST be sufficient to realign every surface
