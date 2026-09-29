@@ -4860,3 +4860,45 @@ declared note after the pointer, no field, nothing flowing back. Cards to the ow
 NEXT: 307's door, then 305 and 306 re-synced in the one rule's order; Siren's J3 flow-back and
 Nova's J8 PR B at their slots; check-in 82 about 06:00Z; the midday folds at 12:00Z with a
 pre-fold suite (51) at about 11:15Z.
+
+## 2026-09-29T05:5xZ — Director check-in 82: the count 2; three landings; 14 of 31; two exchange rulings
+
+THE FOUR NUMBERS (gh at 05:58Z): open non-coordination PRs 2 of 3 (lineage 305, Myrtle's N1
+second slice, 141 files, its settlement two with the pure sync onto 72f9ba144 going up after
+Codex's round-three finding on subagents:check, one thread open at the read; JC.net 271,
+Myrtle's twin of that cure, the declared-adapters read refuses a linked template, 6 files,
+opened 05:54:31Z on the slot 306 released, CI running); landings since check-in 81: lineage 307
+(e8524e8, 05:25:23Z, Siren's gate-slot port, J17's note 4), 306 (72f9ba1, 05:49:58Z, Nova's J8
+PR A); JC.net 270 (1cdcce7, 05:56:37Z, Siren's J3 shellcheck flow-back); heads with CI in
+flight: 271, then 305. Coordination drafts: JC.net 264 (at 9916e76c, Siren's block of 04:00Z to
+05:34Z pushed 05:44Z), lineage 299 (green); both DUE 12:00Z. Remote branches outside a PR: none
+in either estate. The host at the read: 751 processes, load 24 to 37; the lineage gate slot
+bounds its gates from 307's landing on. The ready list: the 628e21c1 deletion for the owner's
+hand, nothing else.
+
+THE COUNT: by Myrtle's dated recount (records40, after the J2 design read and the J16 rider's
+decline by contract): J1 four (N1's third slice inside 305), J16 one (the Gemini surface), J2
+three (cited-paths with J7's describer and lineage-names; cited-scripts; the compare cure), the
+residue rows 26, the total 31 with the charter's five acts; landed by the merges 14 of 31 (306
+is J8's PR A, 307 J17's note 4), 15 when 305 lands; the register's line reads 11 at 268 and
+takes the recount on Myrtle's next records PR; remaining 17; the horizon holds.
+
+RULINGS THIS WINDOW, one line each: J2's lineage-names validator is not declined: the concept is
+the owner's (the Practice carries no other estate's names on its live surfaces, being extracted
+into an installable entity after the review), so the port is the same bytes with this estate's
+needles as hook-policy data (the second estate's repository and site names, owner handle and
+bot login, read first-hand; no token the lineage uses itself; the same records exclusions), the
+needle set listed in the PR body for the owner; it rides the cited-paths PR. ADR-125's Gemini
+obligation (the transitional TOMLs "must be removed or reclassified when native Gemini agent
+support exists", native support existing and 305 bringing the mechanism the second estate has
+run since 2026-09-14) is ruled in as J16's unit, one lane after J2's three, the vendor-shape
+verification first and a mechanism change a joint design before the lane. 307's SIGKILL
+tradeoff kept as the ratified node's recorded limit, the same bytes. The 05:34Z index lock in
+the JC.net primary read absent at 05:34:59Z with no holder: in flight, not stale; nothing to
+the owner. Nova's transient push 403 is at four instances across two seats: an observation for
+the frictions register, retried green each time. Two items of owner attention, not cards: the
+two exchange rulings above (one word reverses either); Nova's PreToolUse boundary on the corpus
+mapper's Read, a harness settings change surfaced to the owner by Nova.
+
+NEXT: 305's door, 271's round; J2's first PR and Nova's B1 at their slots; check-in 83 about
+06:45Z; suite 51 about 11:15Z; the midday folds at 12:00Z.
