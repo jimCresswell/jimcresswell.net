@@ -1,6 +1,8 @@
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+import type { Result } from '@engraph/result';
+
 import { SURFACE_OF } from '../subagent-declarations/adapter-spec.js';
 import {
   SUBAGENT_PLATFORMS,
@@ -47,6 +49,14 @@ export function evaluateParityChecks(repoRoot: string): readonly HealthCheckResu
   return [evaluateReviewerAdapterParity(repoRoot), evaluateReviewerRegistrationParity(repoRoot)];
 }
 
+/** No surface listed: the declaration read refused, so the comparison never runs. */
+const UNLISTED_SURFACES: ReviewerAdapterParityInputs['present'] = {
+  cursor: [],
+  claude: [],
+  codex: [],
+  gemini: [],
+};
+
 /** The adapter basenames present on one platform's surface. */
 function surfaceBasenames(repoRoot: string, platform: SubagentPlatform): readonly string[] {
   const surface = SURFACE_OF[platform];
@@ -60,6 +70,32 @@ function surfaceBasenames(repoRoot: string, platform: SubagentPlatform): readonl
  */
 function evaluateReviewerAdapterParity(repoRoot: string): HealthCheckResult {
   const declared = readDeclaredAdapters(repoRoot);
+  // A refusal fails the check before any surface is listed: listing is a read that can itself
+  // throw, and the refusal is the whole verdict.
+  if (!declared.ok) {
+    return reviewerAdapterParityOf(declared, UNLISTED_SURFACES);
+  }
+  return reviewerAdapterParityOf(declared, {
+    cursor: surfaceBasenames(repoRoot, 'cursor'),
+    claude: surfaceBasenames(repoRoot, 'claude'),
+    codex: surfaceBasenames(repoRoot, 'codex'),
+    gemini: surfaceBasenames(repoRoot, 'gemini'),
+  });
+}
+
+/**
+ * The adapter-parity check over the declarations as read and the surfaces as listed: a
+ * declaration read that refused fails the check outright, naming the refusal; otherwise the
+ * declared adapters are compared with the surfaces (`evaluateReviewerAdapterParityFromInputs`).
+ *
+ * @param declared - The declared adapters, or the read's refusal.
+ * @param present - The adapter basenames present on each platform surface.
+ * @returns The check result.
+ */
+export function reviewerAdapterParityOf(
+  declared: Result<readonly DeclaredAdapter[], string>,
+  present: ReviewerAdapterParityInputs['present'],
+): HealthCheckResult {
   if (!declared.ok) {
     return {
       key: 'reviewer-adapter-parity',
@@ -70,15 +106,7 @@ function evaluateReviewerAdapterParity(repoRoot: string): HealthCheckResult {
       details: [declared.error],
     };
   }
-  return evaluateReviewerAdapterParityFromInputs({
-    declared: declared.value,
-    present: {
-      cursor: surfaceBasenames(repoRoot, 'cursor'),
-      claude: surfaceBasenames(repoRoot, 'claude'),
-      codex: surfaceBasenames(repoRoot, 'codex'),
-      gemini: surfaceBasenames(repoRoot, 'gemini'),
-    },
-  });
+  return evaluateReviewerAdapterParityFromInputs({ declared: declared.value, present });
 }
 
 /**
