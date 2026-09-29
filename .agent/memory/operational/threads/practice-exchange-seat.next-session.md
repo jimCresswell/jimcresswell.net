@@ -2951,3 +2951,35 @@ is named above, so the recursion closes here.
   the J3 flow-back and touches the same `bootstrap.ts`: order the two with Nova at port time.
 - Next: #300's rounds and door; slice B (the declared stand-in: `roundRequests` already carries
   the timed review-request events the sixty-minute proof needs); slice C; the J3 flow-back.
+
+**2026-09-29 01:45Z to 04:00Z: slices A and B landed; C built; J3's first flow-back landed.**
+
+- Slice A (#300) merged 02:29Z as ec5db1d5d. Slice B (#302) merged 03:47Z as 1bdddf31b: a vendor
+  declared unavailable by the bot's own comment stands in for its leg, only on the timeline's
+  proof. Round one: three items Rejected below the bar (edit provenance, the poster's root, the
+  body set not keyed by vendor). CI's windows-basic caught my own test asserting a POSIX path the
+  message joins with the host's separator: cured in d4d90b462. Round two: two items Rejected (an
+  un-timestamped error review; the operator's own url echoed).
+- JC.net PR 267 merged 03:36Z as 507f5811: J3's first flow-back (the real-tool repair smoke, the
+  planUnlessLost comment, the floor exit, J3's five lineage Landings rows). Round one's finding
+  (the smoke's timeout left pnpm and the formatter running) was over the bar by the core rule
+  no-unbounded-host-load: cured with a process-group run. The lineage owes that cure back.
+- Slice C (the door's `--unavailable`) is synced on engraph 1bdddf31b at 8e0caf3d8, six mutants
+  killed; its pre-push gate failed at 03:55Z on load timeouts in unrelated tests while three peer
+  gates ran. Its WIP slot (freed by #302) stays reserved; it retries on a quiet host.
+- J3's shellcheck slice is committed in jcnet-wt-j3-shellcheck (feat/exchange-j3-shellcheck-gate-flowback,
+  not pushed): the gate converges on the lineage's modules, differing only at the git reader (L33
+  not landed here), with PR 267's Landings row. Body drafted. It opens on a free WIP slot.
+- The lineage's smoke twin is staged in oce-wt-repair-smoke-group (fix/repo-check-repair-smoke-process-group);
+  its commit gate failed on the same load timeouts. A fresh lineage worktree's `pnpm build`
+  truncated the generated graph-corpus data.json (393 lines); I wrote the committed bytes back.
+- Lessons: a background result's exit code is its trailing echo's; read the in-band exit line
+  before the next step. A lineage commit is a full gate: post its notice and count it.
+- Next: C's push, rounds and door; the smoke twin; J3's shellcheck slice; J3's last slice (the
+  provisioning and docs, F-213's twin).
+- C's refused push, the cause line (the third host-load instance): at 03:5xZ the pre-push turbo
+  quality gate's two test tasks failed on vitest's 5000ms test timeout, `@oaknational/agent-tools#test`
+  (comms-heartbeat-lifecycle's schema case, 6778ms) and `@oaknational/oak-curriculum-mcp-streamable-http#test`
+  (six integration cases, 5288ms to 6699ms), while CPU idle read 1.45% under three peer pre-pushes
+  and my own commit gate: 132 of 134 tasks passed. The retry waits for the gate slot free and the
+  load under the seats' running gates.
