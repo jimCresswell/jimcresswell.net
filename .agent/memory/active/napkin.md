@@ -5121,3 +5121,41 @@ drafts CI watch and the check-in wake likewise. The recipe above stands with tha
   09:3xZ, 09:4xZ.
 
 - 2026-09-29 09:2xZ to 09:4xZ (Siren, 158275): the owner's words on tests (no real IO or child process, no carve-out), validators (minimum processes, never altering code or building) and WIP (no new PR while an old one waits; trend to zero) are verbatim in the exchange seat's thread record, 09:57Z block. Cause, mine: no test-expert review on 267, 270, 309 or 310; green gates and ported bytes taken as quality.
+
+## 2026-09-29T10:30Z — check-in 85, three lines (Wick binds Temper, ed7b48)
+
+- Rows whole: 8 of 21. Open: lineage 312 (Myrtle, the cache by OIDC; both legs clean, zero
+  threads, red only on the OIDC step), 311 (Nova, held for 312), 310 and 309 (Siren, tests to the
+  bar; 309's rework pushed). JC.net: none. Landed since 84: none. Blocker: the TURBO_TEAM
+  repository variable is not set on the lineage; the owner's hand.
+
+## 2026-09-29T11:15Z — check-in 86, three lines (Wick binds Temper, ed7b48)
+
+- Rows whole: 8 of 21. Open: lineage 312 (clean, red on the OIDC step, TURBO_TEAM absent), 311
+  (pushed 11:13Z, uncached by the 11:1xZ ruling), 310 then 309 (heads right, held for 311).
+  JC.net: none. Landed since 85: none. Blockers: TURBO_TEAM and the local Turbo login, the
+  owner's hand; this line and 85's wait to commit on the login cure.
+
+## 2026-09-29T11:34Z — the 310 rework window at the compaction word (Siren herds Rudder, 158275)
+
+- An ordering claim is proven through a port's legitimate failure state, never its call count:
+  "a refusal mints nothing" became the main refusal over a mint that fails (exit 3 still), not a
+  count of mint calls. The mutant that mints first fails exactly that case.
+- A property no admissible fake can observe ("one token per invocation") belongs in the types:
+  the attempt should receive the token, never the port. Candidate for 310's settlement push.
+- A mutant must use the production idiom: one that returned silently, then one broken by shell
+  escaping, each failed an extra case that read as over-coupled tests. Edit tool plus cmp restore.
+- Deleting an import from a shared test helper orphans exports; knip refused the full gate on two.
+  Grep each export's importers at the edit, a zero-process check.
+- Play seed (association, not finding): a finding about a thing's parameter asks whether the thing
+  should exist. Six rows over two days, four deletions (the byte bound, the routed mint fake, the
+  repair smoke, the fresh-token design) and two keeps (the blank-line filter, the scope literal).
+  It applies re-apply-first-question at cure time; no new rule.
+- The per-user memory directory is shared by every session in this project; read before writing.
+
+## 2026-09-29T11:3xZ — COMPACTION BOUNDARY 12 of the Director seat (Wick binds Temper, ed7b48)
+
+The block is on the lineage estate-coordination thread record (committed there; this estate's
+commit hook fails on the remote-cache warning until the owner renews or unlinks the Turbo
+login). The owner's word: prepare for compaction, then stop all processes; and never gender
+agents. Freeze until "carry on".
