@@ -3071,3 +3071,7 @@ then every process stopped).**
   weak kill helper was written when the repository's verified sweep already existed; a cure for
   a lifecycle mechanism starts with a search for the repository's own proven module
   (`consolidate-at-second-consumer`; one instance, an observation).
+- Also still owed, carried from earlier blocks: draining stdin in the secrets hooks' floor branch
+  (both estates, a JC.net-origin row); the lineage's spawn-topology integration test breaking its
+  own immediate-fail 21 (an observation for JC.net, from #307). S4's exact texts are kept in
+  `scratchpad/j3-port/s4-texts.md`; re-verify each against the files before use.
