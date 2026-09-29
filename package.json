@@ -85,6 +85,7 @@
     "visual-regression:harness": "pnpm --filter @jimcresswell/www visual-regression:harness"
   },
   "devDependencies": {
+    "@types/node": "^24",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@eslint/js": "^10.0.1",
