@@ -4827,3 +4827,36 @@ the owner: none.
 
 NEXT: 304's sync and door, 305's door, 268's door; the N8 flow-back and J8 PR A at their slots;
 check-in 81 about 05:15Z; the midday folds at 12:00Z with a pre-fold suite (51).
+
+## 2026-09-29T05:1xZ — Director check-in 81: the count 3, all lineage; three landings; 12 of 30; the gate-slot port open
+
+THE FOUR NUMBERS (gh at 05:13Z): open non-coordination PRs 3 of 3, all on the lineage (305,
+Myrtle's N1 second slice, 141 files, BEHIND after 304, its unit tests running; 306, Nova's J8
+PR A, the corpus post-run close, 16 files, BEHIND; 307, Siren's gate-slot port, each hook's full
+gate holds a host gate slot, 38 files, opened 05:09:45Z on the slot 304 freed, synced and at
+its legs, so it holds the lineage slot by the one rule and 305 and 306 re-sync after it);
+JC.net: zero. Landings since check-in 80: lineage 304 (f478e12, 05:00:55Z, Siren's slice C, the
+door takes --unavailable and merges on a declared stand-in); JC.net 268 (b7b4ecb, 04:31:35Z,
+the register at 11 of 30 after four Copilot rounds within clause 4), 269 (9a18cff, 04:44:04Z,
+Nova's N8 flow-back with the 266 and 303 Landings rows); heads with CI in flight: 305, 306, 307.
+Coordination drafts: JC.net 264 (at e53a3179), lineage 299 (green, six files); both DUE 12:00Z.
+Remote branches outside a PR: none in either estate. The host at the read: 710 processes, load
+26 to 30 under three lineage gates. The ready list: the 628e21c1 deletion for the owner's hand,
+nothing else.
+
+THE COUNT: 12 of 30 by the merges (304 is the Copilot-outage mechanism, not a residue row); the
+register's line at 268 reads 11, Myrtle's next row takes 303; remaining 18; the horizon holds.
+
+RULINGS AND CORRECTIONS THIS WINDOW, one line each: PDR-140 clause 4 read first-hand at
+origin/main: two settlement pushes by default, then one late-cure push for an OVER-bar finding
+found after the last of them, its leg's findings dispositions only; past round two a below-bar
+finding rides the next carrier; against this seat, the 298 reason of 02:4xZ ("a third push
+would be the exception") was wrong as a reading, the outcome held because the finding sat
+below the bar on both prongs; Nova has the correction and the memory holds the clause. The
+gate-slot port opened as 307 under J17's note 4 within an hour of the routing, the host-load
+generator's cure. N1's second slice (305) carries the four verdicts with the persona in the
+declared note after the pointer, no field, nothing flowing back. Cards to the owner: none.
+
+NEXT: 307's door, then 305 and 306 re-synced in the one rule's order; Siren's J3 flow-back and
+Nova's J8 PR B at their slots; check-in 82 about 06:00Z; the midday folds at 12:00Z with a
+pre-fold suite (51) at about 11:15Z.
