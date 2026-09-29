@@ -3024,3 +3024,50 @@ is named above, so the recursion closes here.
   refusal with the ported code. One sentence in `push-attempts.ts` is reworded to hold in both
   estates ("for the repository this retry was built in"); the same bytes are owed back here.
 - Open for the Director: B1 has no exchange-register row; whether it takes one.
+
+**2026-09-29 06:07Z to 06:55Z: the compaction boundary (the owner's word at 06:5xZ: compaction,
+then every process stopped).**
+
+- Lineage PR 309 opened 06:43Z (the J3 round cures' twin: the repair smoke's process groups and
+  the shellcheck gate's tracked lock; head 2cb3eb56d, synced on engraph 7c75e6ce9; claim
+  3ca10e17). Codex clean on that head. Copilot round one (review 5348709190), one inline item,
+  4130446446, UNSIGNED: the smoke's `killGroup` sends one SIGKILL and takes any error as the
+  group gone, while `spawn/process-group.ts` records macOS's EPERM window. Verified; inside the
+  bar. The cure: the smoke calls `signalProcessGroup` with `sweepProcessGroup` (the gate slot's
+  sweep, 50 SIGKILLs 20 ms apart, `core/delay.ts` as the sleep), and a group still answering
+  after the sweep becomes a named failure. Same bytes owed to JC.net, where PR 267 put the weak
+  helper on main: it rides S4a.
+- B1's port (register row L34) took the WIP slot JC.net PR 271 released and is PUSHED at
+  fdcd12b3a (synced on engraph 7c75e6ce9; claim e8fd79d5), but NOT OPENED: the freeze came
+  first. Open it with `scratchpad/b1-retry/open-b1.sh` (body `b1-retry/pr-body.md`, which names
+  L34); if the scratchpad is gone, the title is "feat(merge-bot): push tries GitHub's pre-hook
+  refusal again, three attempts in all". Then send Myrtle the number for L34's lineage cell.
+- S4 (J3's last JC.net slice) is inventoried: S4a, ten code and doc files (the installer, the
+  provisioning module and its test, a new `shellcheck-provision-io.ts`, since `bootstrap.ts` is
+  at 250 lines, and five docs), then S4b (start-right, the worktree-lane skill, the F-213 twin,
+  the commit skill's sentence, S4a's own Landings row). Plan: `scratchpad/j3-port/s4-plan.md`.
+  The Director ruled at 06:5xZ: the twin keeps F-213, later JC.net-origin entries take ids
+  above the lineage's highest, and that numbering rule is written as the register's first line.
+- Myrtle's register refresh (JC.net `docs/exchange-register-n1-slice2-landed`) carries the
+  Landings rows for PR 270 and #307 and row L34; S4 carries only its own row.
+- Next safe steps, in order, after the owner's "carry on" and one catch-up message to the
+  Director: open B1 (sync first if engraph moved); cure PR 309's item and push, then its round
+  two (the last); reserve a WIP slot for S4a and build it (first measure whether pnpm 12 runs
+  `postinstall` on an install that changes nothing); S4b; JC.net's twins of the
+  unavailable-vendor slices A to C (lineage #300, #302, #304), each taking its row at its port;
+  the retire port.
+- Re-arm, as if nothing survived: two Monitors running
+  `bash <scratchpad>/watch-comms.sh <primary> <session pid>`, one per primary; one Monitor running
+  `bash <scratchpad>/peer-liveness-poll.sh 600` from the JC.net primary; two heartbeat Monitors
+  (the script is silent unless a heartbeat fails): `ROOT=<JC.net primary> bash
+  <scratchpad>/heartbeat.sh a30304be-4986-40f0-883b-fd518224472b <coordination branch> "<label>"`
+  and `ROOT=<lineage primary> bash <scratchpad>/heartbeat.sh
+  3ca10e17-95a1-4e28-bcef-0c9e5957ed1a,e8fd79d5-dc6a-4c0c-9007-b7b6daad9cb0 <coordination
+  branch> "<label>"`. Verify by the process table first; re-arm only what is absent. The owner
+  asked at 06:5xZ that no background shell run: every long-running process is a Monitor.
+- Worktrees held: lineage `oce-wt-repair-smoke-group` (PR 309) and `oce-wt-b1-push-retry`
+  (B1), both clean and level with their remote branches.
+- Play seed, for the napkin once it is free of a peer's uncommitted edit: the repair smoke's
+  weak kill helper was written when the repository's verified sweep already existed; a cure for
+  a lifecycle mechanism starts with a search for the repository's own proven module
+  (`consolidate-at-second-consumer`; one instance, an observation).
