@@ -71,7 +71,8 @@ AI.
 7. **A privacy review of a plan or record headed for the public repository reads the whole
    document as prose, never only for secrets.** Editorial backstory, rejected methods, participant
    diagnosis and custody narrative are private context under rule 5 as much as a credential is
-   (the plan-family publication, 2026-08-12).
+   (the plan-family publication, 2026-08-12; the four categories are a seat's list from that
+   day's napkin, which waits on the owner's privacy review under `unconsolidated/`).
 
 ## LinkedIn workspace authorisation — 28 September 2026
 

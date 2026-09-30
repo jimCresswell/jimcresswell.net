@@ -45,7 +45,7 @@ prove the test bites) is in
   a configuration value and never asserts an implementation shape.
   Configuration is guaranteed by construction or by a validator.
 - **Tests are forbidden real IO and child processes; validators start the
-  minimum and alter nothing** (owner, 2026-09-29, verbatim: "tests are
+  minimum and alter nothing** (owner, 2026-09-29, as two seats relayed it: "tests are
   FORBIDDEN to create real IO and child processes. I don't want excuses or
   carve outs, we have these rules for a reason", and "validation scripts can
   start real processes, but they are to be kept to a MINIMUM, and they are
@@ -320,7 +320,9 @@ mutation check happens before the commit that lands test and code together).
 The same disease in existing suites: DECORATIVE assertions — asserted
 values that never enter the exercised run — read as coverage while proving
 nothing (a privacy-surface review found six under a README claiming the
-behaviour was tested); the mutation check exposes them identically.
+behaviour was tested); the mutation check exposes them identically. A mutant that leaves a syntax error is killed by the parser, not by
+the claim: replace a removed statement with a no-op (`:` in shell, `void 0` in
+TypeScript) so the mutant fails on the claim itself (2026-09-25).
 
 Two guard shapes that read as biting and do not. **A poll on an absence
 passes before the event lands**: `expect.poll` returns on its first pass,

@@ -42,7 +42,7 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
 
 ## 2026-09-30T17:06Z — the close (Hawthorn binds Bracken, b3f117)
 
-- **Surprise:** a records edit to the lineage's Sif annex failed its pre-commit on a lockstep unit
+- **Surprise:** a records edit to OCE's Sif annex failed its pre-commit on a lockstep unit
   test: the annex may reference the Codex version pin, never restate a version literal beside
   `codex mcp-server` or the CLI name. The insert was reworded without the literal in both estates;
   the test passes. A lesson written into a surface with a lockstep pin is checked against the pin's
@@ -54,3 +54,28 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   decider gap (a seat's ruling would have entered decision records in the owner's voice), the
   assumptions leg the archive-directory gap (events after 2026-09-20 live in `comms/`); both cured in
   the frames before the three legs launched.
+
+## 2026-09-30T20:46Z — the retrospective (Hawthorn binds Bracken, b3f117)
+
+- **Surprise:** the apply step's "text absent from the home" check compared the unwrapped insert with
+  the home's wrapped text, so two paragraphs JC.net's pull-request lifecycle skill already carried were
+  appended a second time to OCE's copy; the divergence measure found them and a sentence-level
+  duplicate scan over every file changed today found no other. Collapse whitespace before a presence
+  check. Homed in the retrospective report (problem 13).
+- **Surprise:** the estates' divergence was never measured until the owner named alignment as the test
+  of every two-estate activity; the total fell over the day (7,444 to 7,204 differing lines over 388
+  shared paths) while eight shared files grew more divergent, five by the seat's own text landing in
+  one estate or wrapped differently. Homed as the rule `cross-estate-work-must-reduce-divergence`
+  (both estates) and in the report.
+- **Observation:** the seat told five review legs a cost figure from memory (2.7 million) against a
+  recomputed 1.82 million; a number said to a reviewer is computed first. Homed in the report.
+- **Observation:** the OWNER-CARD verdict stopped at decision records and let single-event rulings
+  into rules and skills as normative sentences (404 net rule lines in JC.net in one day); the rule
+  tier has a graduation step and no compaction step. Homed in the report as the owner's first
+  decision.
+- **Surprise:** the archiving script's rewrap step joined OCE's Director handoff YAML frontmatter into
+  one line and its "section end" put two README paragraphs inside a code fence in both estates; a
+  rewrap knows frontmatter and fences or does not run. Homed in the report (problem 15).
+- **Surprise:** the OWED verdict (51 rows) is the parked shape the owner forbade on 2026-09-28 in OCE's
+  continuity record, unread by the seat; a deferral verdict is not a decision. Homed in the report
+  (problem 14) and at §H's head.

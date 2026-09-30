@@ -191,7 +191,7 @@ false-green, so exclusions are expressed positively only.
 
 The root Markdown gate lints tracked files only (`repo-check markdownlint-tracked`), so a gitignored
 transient under `.agent/state/` can never block a push; lint scope follows the tracked surface,
-never the filesystem glob (a lineage friction, settled 2026-09-27).
+never the filesystem glob (OCE friction F-103, settled 2026-09-27).
 
 ## Scope and exceptions
 

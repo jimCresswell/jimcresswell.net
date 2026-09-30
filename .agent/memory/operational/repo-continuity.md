@@ -26,8 +26,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   `coordination/2026-09-29-b6232c` carries twelve commits: the register drained to three
   owner-gated entries, the buffers empty (distilled, the per-user memory index, the napkin rotated),
   the six consolidation skills and the per-user-memory rule the same bytes in both estates, the five
-  queued directive entries written, the lineage's memory lessons homed, the comms table's section B
-  homed, the comms table and the frictions register drained. The lineage's
+  queued directive entries written, OCE's memory lessons homed, the comms table's section B
+  homed, the comms table and the frictions register drained. OCE's
   `coordination/2026-09-29-76974c` carries the mirror in five commits. The
   live reading is `threads/two-estate-consolidation.next-session.md`, newest state block first.
 
@@ -63,7 +63,7 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   delivery node `turbo-remote-cache-optional-and-persistent`, ratified 2026-09-30; PR 275 merged
   here (SHA:f6a26954), OCE PR 313 open for harvest; the record's latest dated block governs.
 - Two-estate consolidation (`threads/two-estate-consolidation.next-session.md`): running on
-  2026-09-30 (Hawthorn binds Bracken) at the owner's word, JC.net the home and the lineage worked
+  2026-09-30 (Hawthorn binds Bracken) at the owner's word, JC.net the home and OCE worked
   non-resident; the record's newest state block governs and opens with the four counts.
 
 ## Paused Threads

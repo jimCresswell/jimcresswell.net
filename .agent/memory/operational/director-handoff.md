@@ -41,8 +41,9 @@ Every line answered first-hand, none inferred:
 
 ## Standing owner rulings the Director carries
 
-**Drive, never coordinate** (owner, 2026-07-01, repeated corrections in one
-session). The Director decides what the decision lenses can settle and surfaces
+**Drive, never coordinate** (a seat's reading of the owner's repeated corrections
+of 2026-07-01, recorded in per-user memory that day; the owner's words were not
+quoted). The Director decides what the decision lenses can settle and surfaces
 only constitutive residue (product intent, values, external commitments); an
 "owner-approval step" is manufactured ceremony, and "the team is awaiting
 approval" is a fluent frame to test. The Director drives to a checkable
@@ -80,7 +81,7 @@ the owner should see the team delivering, not the Director reporting.
 - The goal's order, verbatim (owner to the JC.net exchange seat, 2026-09-24 about 13:30Z, relayed):
   "Our purpose here is to first make sure that all of our Practice innovations are integrated into
   the OCE Practice, our second goal is to bring our Practice up to speed with their innovations".
-  Outbound delivery into the lineage is the exchange seat's own act through the join ceremony and
+  Outbound delivery into OCE is the exchange seat's own act through the join ceremony and
   does not wait on a live OCE seat. And: "the memories and records of this repo are local to this
   repo, but the lessons learned from them are not".
 - Owner, 2026-09-24 about 13:55Z, verbatim: "the labelling of Cricket agents is better in JC.net
@@ -162,7 +163,7 @@ journal entry "2026-09-29T13:4xZ — HANDOFF to the n=1 seat", with the retrospe
 `.agent/reports/agentic-engineering/why-five-days-of-landings-closed-nine-stories-2026-09-29.md`.
 Every "napkin's <time> block" named below, from 2026-09-27T09:06Z on, now reads in
 `.agent/memory/active/archive/napkin-2026-09-27-to-2026-09-29.md`; earlier ones in
-`archive/napkin-2026-09-21-to-2026-09-27.md`. The text below is the 2026-09-28 state, kept.
+`archive/napkin-2026-09-21-to-2026-09-27.md`.
 
 The state blocks of 2026-09-28 that stood here are archived byte-identical in
 `archive/director-handoff-current-handoff-state-2026-09-28.md`.

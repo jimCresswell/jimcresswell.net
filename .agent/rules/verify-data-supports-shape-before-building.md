@@ -69,10 +69,12 @@ committing to a shape on an unverified data premise. The check is cheap; the
 rebuild is not. A third instance justified a design surface by an invented host
 class the governing plan had already assigned elsewhere; the correction was to
 delete the surface, not to add optional fields or bridges around the fabricated
-premise. A fourth (2026-09-13): a curator-passes README was imported because a
-report listed the directory as a register the curation loop writes to; the
-writer's own doctrine (PDR-081 and the curator-pass skill) says the loop writes
-no such register, and the directory was history the lineage kept. Before
-creating a surface because a document says something writes to it, read the
-writer: a report's inventory is a projection, and only the writer's contract
-is the source.
+premise.
+
+A fourth instance (JC.net, 2026-09-13): a curator-passes README was imported
+because a report listed the directory as a register the curation loop writes to;
+the writer's own doctrine (PDR-081 and the curator-pass skill) says the loop
+writes no such register, and the directory was history OCE kept. Before creating
+a surface because a document says something writes to it, read the writer: a
+report's inventory is a projection, and only the writer's contract is the
+source.
