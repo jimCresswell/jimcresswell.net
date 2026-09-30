@@ -9,6 +9,7 @@
 # --fail-if-no-match on every filter: pnpm exits 0 without running anything
 # when a filter matches no project.
 export TURBO_UI=0
+. .husky/turbo-remote-cache-notice.sh
 
 echo "🚀 Running pre-push checks..."
 if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE \
