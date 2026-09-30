@@ -410,8 +410,13 @@ names a live branch):
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 - Turbo remote cache, optional everywhere (`threads/turbo-remote-cache.next-session.md`): the
-  delivery node `turbo-remote-cache-optional-and-persistent`, ratified 2026-09-30; PR 1 on this
-  repository, then PR 2 on OCE; the record's latest dated block governs.
+  delivery node `turbo-remote-cache-optional-and-persistent`, ratified 2026-09-30; PR 275 merged
+  here (SHA:f6a26954), OCE PR 313 open for harvest; the record's latest dated block governs.
+- Two-estate consolidation (`threads/two-estate-consolidation.next-session.md`): the NEXT
+  session, by the owner's word of 2026-09-30, is a dedicated consolidation across both estates
+  from `.agent/prompts/dedicated-consolidation-session.md`, launched in OCE with OCE's skill text
+  governing where the estates differ; the record carries how a two-estate consolidation works
+  and its six todos. Higher priority than the daily fold.
 
 ## Paused Threads
 
@@ -419,6 +424,12 @@ names a live branch):
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-09-30T14:3xZ (Galaxy binds Gravity, session close): the next safe step for the
+estate is step 1 of `threads/two-estate-consolidation.next-session.md` (the two-estate
+inventory, counts first). Every worktree lane now lives at `.claude/worktrees/<lane>`
+(`worktree-hygiene` clause 0). The list below is the earlier state, kept for its unfinished
+items.
 
 STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in this order:
 
