@@ -298,7 +298,9 @@ this is the method:
 
 1. Pick one mutant per failure mode the change claims to close — negate the claim
    itself (invert the predicate, drop the branch, skip the write), never an
-   incidental line.
+   incidental line. A mutant that leaves a syntax error is killed by the parser,
+   not by the claim: replace a removed statement with a no-op (`:` in shell,
+   `void 0` in TypeScript) so the mutant fails on the claim itself (2026-09-25).
 2. Apply it as a temporary forward file edit from a driver script that holds the
    original text (string-replace with a matched-needle assertion; restore by
    writing the original back — never via `git checkout` / `git restore`).

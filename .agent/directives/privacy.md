@@ -68,6 +68,11 @@ AI.
    utilities may traverse ignored nested repositories. Exclude the private boundary explicitly
    whenever a tool's scope is broader than tracked files.
 
+7. **A privacy review of a plan or record headed for the public repository reads the whole
+   document as prose, never only for secrets.** Editorial backstory, rejected methods, participant
+   diagnosis and custody narrative are private context under rule 5 as much as a credential is
+   (the plan-family publication, 2026-08-12).
+
 ## LinkedIn workspace authorisation — 28 September 2026
 
 Jim authorised a local repository workspace for the first LinkedIn draft and all non-sensitive
