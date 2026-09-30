@@ -200,7 +200,7 @@ drift. After adding or changing a pattern file, regenerate with
 
 ### Testing (1)
 
-- **Prove the Checker With a Negative Control** -- Use this when: A new validator, guard, lint rule, harness comparison or schema check is about to be declared working because it passes on the current tree — before that, make it fail on the failure it exists to catch. → [prove-the-checker-with-a-negative-control.md](prove-the-checker-with-a-negative-control.md)
+- **Prove the Checker With a Negative Control** -- Use this when: A checker is about to be trusted on the strength of a green result — a new validator, guard, lint rule, harness comparison or schema check passing on the current tree, or a targeted run (a lint over specific paths, an advisory commit-message check, a one-off validator invocation) that came back green — and it has never been shown to fail on the failure it exists to catch. → [prove-the-checker-with-a-negative-control.md](prove-the-checker-with-a-negative-control.md)
 
 ### Agent (6)
 

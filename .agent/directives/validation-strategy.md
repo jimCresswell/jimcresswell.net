@@ -293,7 +293,8 @@ verified killed in the same commit. The binding statement is
 [testing-strategy.md §Prove the guard bites](testing-strategy.md); the
 checker-level form (a negative control in an isolated fixture, for a checker
 whose failure cannot be planted in the live tree) is the pattern
-[`prove-the-checker-with-a-negative-control`](../memory/active/patterns/prove-the-checker-with-a-negative-control.md);
+`prove-the-checker-with-a-negative-control` in the patterns tier (a directive names
+a pattern, never links it: doctrine cites doctrine, PDR-105);
 this is the method:
 
 1. Pick one mutant per failure mode the change claims to close — negate the claim
