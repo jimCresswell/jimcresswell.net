@@ -6,7 +6,7 @@ overview: >-
   Both estates reach the Vercel Remote Cache with no interactive login (OIDC in
   CI, a keychain-backed token on a host), the cache stays optional with one
   information line wherever it is not in use, and a commit never depends on it.
-status: sketch
+status: ratified
 ratified_by: Jim Cresswell
 ratified_date: 2026-09-30
 ratified_where: >-

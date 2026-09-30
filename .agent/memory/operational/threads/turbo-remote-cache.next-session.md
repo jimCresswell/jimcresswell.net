@@ -60,6 +60,19 @@ delivery node, then `docs/engineering/build-system.md` §Caching.
   tag equals the pinned SHA and is the latest release; OCE's `release.yml` triggers on CI
   completing for its `main`; OCE's hooks judge turbo by exit code only.
 
+## Lane state, 2026-09-30T12:54Z
+
+- PR 1 is PR 275 (`b8610df6`, opened by the bot 12:43Z; Copilot requested as the operator
+  12:43:47Z). CI run 36716649076 green: `build-and-test` step 4 (the OIDC exchange) skipped
+  because no `TURBO_TEAM` variable exists yet, step 5 posted the `::notice` annotation with the
+  full line, Build through the smoke suite green. That is acceptance criterion 2 observed on our
+  own run; criterion 1 waits on the owner's two acts and the first run after them.
+- Copilot review 12:52Z, four findings, all cured in the next push: plan status `ratified`
+  (the stamp was complete; `sketch` governs no work); the hook line and the docs no longer
+  claim local-only operation without `TURBO_TOKEN`, since turbo also reads a `turbo login`
+  credential from its own config (the credential that expired and started this arc); this
+  record indexed in `repo-continuity.md` §Active Threads.
+
 ## Promotion watchlist
 
 - The `local:rw`/`TURBO_FORCE` interaction: a candidate line for the shell-and-tooling gotchas
