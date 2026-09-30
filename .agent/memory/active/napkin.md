@@ -108,3 +108,38 @@ this lane". The block stands as written; this addendum carries the close.
 - Records commit on the coordination branch by pathspec from its worktree, pushed as the bot
   under the pre-push gate. Claims: none were open. Heartbeat: none was armed (consumer-absent);
   the heartbeat-end and closeout broadcasts follow on the stream.
+
+## 2026-09-30T13:5xZ — COMPACTION BOUNDARY 2 and close of the same seat (Galaxy binds Gravity, 46de68)
+
+The session did not end at the close above: the owner asked for research on the remote-cache
+login failure, then a plan, then approved it; the seat carried it across both estates. The
+owner's word at this close: "you were never supposed to keep going, you were supposed to fix
+one small issue" — after a session-over word, a new ask is a bounded fix, and a plan's
+execution belongs to a fresh seat unless the owner says otherwise; this seat did not re-ask at
+that boundary.
+
+- Landed: jimcresswell.net PR 275 (SHA:f6a26954; the Turbo remote cache by OIDC in CI, optional
+  everywhere, the lint-changed dry run local-only, the hook notice, the docs, the delivery node
+  `turbo-remote-cache-optional-and-persistent` ratified). OCE PR 313 open at SHA:7f7b2eb1a,
+  the same bytes, Copilot requested; its harvest is the next seat's, from
+  `threads/turbo-remote-cache.next-session.md`.
+- The worktree convention moved, owner's word verbatim: "the estate doesn't reject anything, I
+  am the one with authority. Just switch to use local .claude/worktrees in both estates, and
+  make sure that path is ignored by git and all test/check tools in the root checkout." Landed
+  on both coordination branches (this one at SHA:d07edd9b, OCE's at SHA:f65426fa5): the
+  `.gitignore` contents pattern with a tracked placeholder, the markdown-links validator's
+  exclusion, `worktree-residency` and `worktree-hygiene` (clause 0) and the lane-cut skill on
+  the nested path; proof by a detached, installed probe under `.claude/worktrees` while
+  docs-validators, knip and depcruise ran with unchanged counts and while each push's full gate
+  ran. The seat had first answered the owner's question by citing the rule's
+  "considered-and-rejected" paragraph as if it settled the matter; the record is reasoning,
+  the owner decides.
+- Cross-repo residency: `EnterWorktree` enters worktrees of the session's own repository alone
+  (refused first-hand on the OCE worktree); a sibling repository's lane stays non-resident
+  (`git -C`, absolute paths) or gets its own session. Recorded in the rule and the skill.
+- OCE's commitlint (strict) reads a body line beginning `word:` as a footer and fails on
+  `footer-leading-blank`; keep body lines from starting with a token and a colon.
+- The primary is on the coordination branch again (the fold worktree removed, main merged in
+  at this close so the lane's records fold cleanly). No claim was open; no heartbeat armed
+  (consumer-absent); no Monitor survives this boundary (every push and watch ended at its
+  terminal line). Nothing to re-arm on resume: the next seat starts from the thread record.
