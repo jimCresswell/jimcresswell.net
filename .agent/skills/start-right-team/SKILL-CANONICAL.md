@@ -575,6 +575,13 @@ in this list. A bare label accretes no operational substance and its
 discipline erodes into tacit practice; the commit-warden monitoring duty did
 exactly this before it was defined below.
 
+A multi-seat arc opens at two seats and widens only on measured throughput
+(PDR-082 §Operating default): the route names the seat-hours per merge the
+current shape achieves, and a third seat is added when that figure, not a
+task count, says the work is seat-bound (2026-09-15: four seats ran at 3.8
+seat-hours per merge against 0.95 at two, and two lanes handed most of their
+items back).
+
 When adding a top-level responsibility or keeping an existing one alive, name
 the seat cost as part of the route. Expensive top-level model seats should be
 reserved for work that needs their judgement or continuity; review passes,
@@ -766,6 +773,14 @@ not watch claims, the commit queue, conversations, or escalations. Keep those
 surfaces on the manual/polled cadence unless a separate event-driven monitor
 has been proved for them. Keep the canonical watcher running alongside any
 ArcAngel tail. The two watchers are paired, always (First Moves move 1).
+
+A push slot is a turn, never a notice. A message naming a sequencing point
+("tell me before you push", a shared port, a gate the host can run once) is a
+request for the turn: the seat asks, waits for the one-word confirmation,
+pushes, and the holder releases the slot by word; the forcing fact (the port,
+the host load, the gate) is named each time the slot changes hands (2026-09-13:
+two seats read "tell me before you push" as notify-and-go; the hazard was a
+shared end-to-end port, and it stays as host load after the port cure).
 
 Each participating agent must also report progress at least once every 120
 seconds. A progress report can be a brief owner-facing update, a shared-comms

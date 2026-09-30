@@ -126,6 +126,10 @@ helps. Security findings stop the merge until proven safe.
      deserialisation
    - Content and entity data that reach rendered pages or the generated PDF are escaped by the
      rendering path, never by hand
+   - A CLI or hook that writes a file under a caller-supplied name validates the name at the
+     boundary, writes atomically (temporary sibling, rename) and refuses symbolic links
+     (`.agent/memory/active/patterns/cli-writer-boundary-discipline.md`), in its first pull
+     request
 4. **Third-party scripts, analytics and external resources**
    - Every added script or resource is named in the CSP, loaded from a pinned origin, and
      justified against the privacy directive; analytics stays under the ratified privacy

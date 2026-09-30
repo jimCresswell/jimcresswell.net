@@ -295,6 +295,29 @@ reviewRequests` and the REST endpoint omit Bot requests), which is why
 outstanding request reads `WAITING-REVIEW-RUN-LIVE` until the review lands
 or the checks-green timeout arm ends the leg.
 
+**One review request per settlement push.** A review round is spent by a
+request, and on a repository without an on-push review ruleset every
+request is the seat's own act under the operator's credential: PR #62 took
+twenty-one explicit Copilot requests in four hours, one every ten to twelve
+minutes, while PDR-140 sat in the estate unapplied (2026-09-15). Request
+the review once per push that settles a round (a cure, a shape change); a
+pure sync push (main merged in, a rebase with no content change) requests
+nothing, and the declared intake on the pull request body bounds the loop.
+
+## Verifying the bot's signatures locally
+
+GitHub verifies the bot's SSH-signed commits against the key registered on
+the bot account, so a local `git log --show-signature` reports
+`No signature` or an unknown key whenever the checkout has no
+`gpg.ssh.allowedSignersFile` configured; that readout is about the local
+configuration, not the commit. Before classing a bot commit unsigned, either
+verify it through GitHub (`gh api repos/<owner>/<repo>/commits/<sha>
+--jq .commit.verification`) or configure an allowed-signers file, one line
+per identity (`<committer-email> <key-type> <public-key>`) at a path named by
+`git config gpg.ssh.allowedSignersFile`, and read the log again
+(2026-08-12: commits GitHub verified read as unsigned locally for exactly
+this reason).
+
 ## Key handling
 
 The `.pem` grants the bot's full capability: keep it out of every repo,

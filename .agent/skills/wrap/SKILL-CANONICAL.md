@@ -93,7 +93,13 @@ the seat chooses the instrument, never when the owner names wrap.
    (founding instance: a closeout claimed "all pushed" over a stranded
    local commit, caught only by first-hand verification; this estate's
    `exit-codes-in-band-never-piped` rule is the same discipline at command
-   grain).
+   grain). The wrap's records go to the primary checkout's day-stamped
+   coordination branch, by pathspec, and ride its fold: no seat mints a
+   private records branch or proposes a records-only pull request (owner,
+   2026-09-15, verbatim: "the whole point of coordination branches is to
+   have a common home for things like wraps"; to a lane, "write to the
+   coordination branch, a later seat will handle the commit and push"). The
+   work-safety evidence names that branch as the wrap's home.
 3. **Run [`session-handoff`](../session-handoff/SKILL-CANONICAL.md)** —
    its session-shape check, steps, and deep loss scan (the class-by-class
    context scan, in lock-step with knowledge-safety-sweep's discipline).

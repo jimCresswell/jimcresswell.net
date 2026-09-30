@@ -290,8 +290,11 @@ the admitted and refused merge shapes by hand.
 When a change's value IS an assertion (a test instrument, a validator, a guard),
 each claim the change makes lands with a mutant that negates exactly that claim,
 verified killed in the same commit. The binding statement is
-[testing-strategy.md §Prove the guard bites](testing-strategy.md); this is the
-method:
+[testing-strategy.md §Prove the guard bites](testing-strategy.md); the
+checker-level form (a negative control in an isolated fixture, for a checker
+whose failure cannot be planted in the live tree) is the pattern
+[`prove-the-checker-with-a-negative-control`](../memory/active/patterns/prove-the-checker-with-a-negative-control.md);
+this is the method:
 
 1. Pick one mutant per failure mode the change claims to close — negate the claim
    itself (invert the predicate, drop the branch, skip the write), never an

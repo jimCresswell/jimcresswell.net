@@ -76,7 +76,11 @@ This does **not** make the proof optional. It means the workflow separates:
 
 For multi-slice work, visual proof should run on meaningful intermediate slices.
 Do not defer the first visual comparison until the end of a long refactor or
-migration.
+migration. The proof binds to the build it captured: a page-output change that
+lands after a run invalidates that run, so the last slice that touches rendered
+output runs the proof again, and the first failing run's artefact directory is
+recorded before any re-run overwrites it (the harness README §Operating
+lessons).
 
 ### 4. Artefacts must be durable enough for review
 

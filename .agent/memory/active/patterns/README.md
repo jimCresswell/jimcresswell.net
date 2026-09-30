@@ -186,6 +186,10 @@ drift. After adding or changing a pattern file, regenerate with
 
 ## Pattern Index
 
+### Code (1)
+
+- **CLI Writer Boundary Discipline** -- Use this when: A command-line tool or hook is about to write a file whose path, name or content comes from a caller, a flag, an environment variable or another process — apply the three cells before the first pull request, not after review finds them. → [cli-writer-boundary-discipline.md](cli-writer-boundary-discipline.md)
+
 ### Process (5)
 
 - **A Legitimate Principle Invoked as Cover for Not Doing the Work** *(anti-pattern)* -- Use this when: You are about to NOT do something — not investigate, not graduate, not act — and the justification is a real principle (conservation, owner-authority, restraint, proportionality). → [legitimate-principle-as-avoidance-cover.md](legitimate-principle-as-avoidance-cover.md)
@@ -193,6 +197,10 @@ drift. After adding or changing a pattern file, regenerate with
 - **Fluency Is a Failure Vector** *(anti-pattern)* -- Use this when: A move, justification, or framing arrives smoothly — a local convention obvious to match, an owner statement that seems to license a shortcut, an 'of course X' framing, or a claim that simply feels true. → [fluency-is-a-failure-vector.md](fluency-is-a-failure-vector.md)
 - **Inherited Framing Without First-Principles Check** *(anti-pattern)* -- Use this when: About to execute a plan body, rewrite an existing artefact, or translate an "old X to new X" — before writing code, tests, or doctrine, check whether the inherited shape is the right shape for the behaviour being proven. → [inherited-framing-without-first-principles-check.md](inherited-framing-without-first-principles-check.md)
 - **Referent Narrowing** *(anti-pattern)* -- Use this when: Constructing ANY filter, gate, predicate, monitor, or verdict that keys on an instrument's signal (an exit code, an API status, a state field, a green check); and at any decision moment resting on a SINGLE source — before acting, name what the signal actually reports on and add one independent witness. → [referent-narrowing.md](referent-narrowing.md)
+
+### Testing (1)
+
+- **Prove the Checker With a Negative Control** -- Use this when: A new validator, guard, lint rule, harness comparison or schema check is about to be declared working because it passes on the current tree — before that, make it fail on the failure it exists to catch. → [prove-the-checker-with-a-negative-control.md](prove-the-checker-with-a-negative-control.md)
 
 ### Agent (6)
 

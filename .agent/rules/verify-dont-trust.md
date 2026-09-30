@@ -85,6 +85,23 @@ adds intended cure text elsewhere but leaves the contradicting source text in
 place has not fixed the defect. Re-read the original offending line or section,
 not only the new-content area, before declaring the tranche complete.
 
+A claimed violation of a policed rule is checked against the validator that
+polices it before it is repeated to anyone. Every validator the estate owns is
+the first read for a claim in its domain, and its verdict outranks any
+reader's: a claim that contradicts a green validator is wrong until the
+validator is shown to be (2026-09-12: an explorer's six "portability
+violations" reached a peer estate before the reference-direction validator's
+own count, zero, was read; retracted).
+
+A failure hypothesis names the mechanism's existence at the time in question
+as its first premise. Before asking why a hook, a watcher or a write failed at
+time T, establish that it existed and was wired at T: one
+`git log --diff-filter=A -- <path>` answers it (2026-09-12: a "missed
+startup write" was diagnosed and a timeout changed for a hook installed five
+hours after the session started). Surfaces that arrive mid-session, as they do
+in a transplant, make "it did not fire at start" usually mean "it did not
+exist at start".
+
 ## Apply This Before
 
 - closing or transferring a claim;
@@ -673,6 +690,9 @@ in sync and one fetch would have shown it).
 - Treating a handoff record as live state without checking current claims,
   comms, and git.
 - Trusting a sub-agent's cited source without opening the source.
+- Repeating a claimed violation of a policed rule before reading the policing
+  validator's own output.
+- Curing a failure at time T by changing a mechanism that did not exist at T.
 - Verifying a compound claim's headline while its elements go unchecked — a
   homes-authored note once claimed "pattern file + testing-strategy cross-ref"
   where the pattern was real and the cross-ref absent; a reviewer-praised

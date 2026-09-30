@@ -230,7 +230,16 @@ no retrospective memos; those are close-out work, this skill's §Steps.
    because the owner has asked for a clean tree before compaction lands
    as its own `chore(continuity)` commit; the owner's compaction word is
    the instrument, and the no-handover-PR half of the 2026-07-15 ruling
-   stands unchanged.
+   stands unchanged. The home of every wrap and continuity record is the
+   primary checkout's day-stamped coordination branch, by pathspec, riding
+   its fold; no seat mints a private records branch (owner, 2026-09-15,
+   verbatim: "the whole point of coordination branches is to have a common
+   home for things like wraps"). Cadence, reconciled with the ruling above:
+   commit records at each state change, but push once per landed merge or
+   shape change, never per event, and where a live-state block and the
+   routing log's last entry disagree the block says which line is current
+   (2026-09-13: a records pull request pushed per event drew five review
+   rounds, each finding the next stale line).
    Active plans remain authoritative for scope, sequencing, acceptance criteria,
    and validation.
 

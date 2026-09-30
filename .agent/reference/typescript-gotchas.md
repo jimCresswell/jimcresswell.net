@@ -63,6 +63,10 @@ type safety.
   rejects a local plugin typed through `@typescript-eslint/utils`,
   split the config at the type boundary rather than weakening the
   plugin type.
+- A flat config that only spreads shared presets encodes no local
+  policy: each rule this repository relies on is declared explicitly
+  and proved by a fixture that fails it (`.agent/reference/tooling.md`
+  §Upgrade and lint-configuration traps).
 
 ## ESLint Pattern Matching
 

@@ -158,7 +158,11 @@ request PDR-140 governs that lacks it has no bounded loop until it exists (a cod
 pull request is bounded by the review-round transitions and declares no intake): the
 2026-09-11 coordination fold (PR #135) opened with a narrative body and no scope or intake,
 and ran five rounds and thirty-eight findings on records before the declaration was posted
-late.
+late. A records changeset is also pushed at waypoints, never per event: records commit at
+each state change, the push follows a landed merge or a shape change, and the review is
+requested once per settlement push (a pure sync push requests nothing; the merge-bot
+reference carries the rationing); on 2026-09-13 a records pull request pushed per event
+drew five rounds, each finding the next stale line.
 For a code-class changeset the writer's docblock states the CLOSED contract
 before the first push (a worktree lane's draft PR is created by that push, so the
 description cannot precede it) and the description copies it at PR-open — what a
@@ -1436,7 +1440,12 @@ posted, then fired within the minute — fully auditable). Then:
   the remote merge has already succeeded, leaving the local tree stranded
   mid-cleanup in a confusing half-switched state (edits preserved but
   displaced onto the base branch). Commit or relocate local work first, or
-  merge without the flag and delete the branch separately.
+  merge without the flag and delete the branch separately. The separate
+  delete is `merge-bot retire` (a proven-ancestor compare-and-swap through
+  the API as the bot, with read-back), never `git push --delete`: a
+  push-based delete runs the full pre-push gate on the shared host inside
+  whoever holds the push slot (2026-09-15: a Director's branch delete ran
+  the whole gate inside a lane's slot; the lane's API delete ran no hook).
 - **A deferred or denied merge does not end shepherding.** "Truly green" has
   a shelf life: bots re-review every push asynchronously, so comment-clean
   verified at one instant expires at the next event. When the merge is handed

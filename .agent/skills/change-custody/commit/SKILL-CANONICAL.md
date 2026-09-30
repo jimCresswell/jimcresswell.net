@@ -734,6 +734,13 @@ EOF
 `git commit -m "$(cat <<EOF)"` HEREDOC pattern, with one fewer subshell
 layer.)
 
+When the message goes through a file, write the file in its own command and
+check it (`pnpm agent-tools:check-commit-message -F <file>`) before the
+`git add`; never write it after a guarded command in the same `&&` chain,
+because a refused `git add` aborts the chain and the later `git commit -F`
+runs on a missing file (`stage-by-explicit-pathspec` §What to Do Instead,
+2026-09-12).
+
 ## Stream truncation at the depcruise → turbo handover — workaround
 
 **Scope**: Cursor Shell tool sessions only, since 2026-07-03. The

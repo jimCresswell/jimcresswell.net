@@ -216,6 +216,10 @@ documentation, not the referenced artefact itself.
 - [ ] No moving targets introduced; no tombstones left
 - [ ] Archive discipline respected; reference direction correct (plans cite records, Core
       cites Core)
+- [ ] Current-state architecture truth lives in a permanent doc, not only in a plan, audit or
+      report; a superseded ADR carries a clarification note rather than a rewrite; a landing
+      that moves a source-of-truth boundary names the grep it ran over accepted ADRs and live
+      plans for the superseded names (`documentation-hygiene` §6)
 - [ ] SSOT and DRY respected; no god-document; indexes point rather than carry
 - [ ] Documentation scope is proportional (DRY, YAGNI)
 
