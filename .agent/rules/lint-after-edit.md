@@ -17,6 +17,12 @@ After each edit pass, run the gates the touched surface requires (`pnpm check`; 
 risk). Never disable checks or hand-wave failures; if a fix mutates files, restart the gate
 sequence from the top.
 
+A records-only change still runs the whole estate check at the push. Four validators refuse
+records and nothing else catches them earlier (a retired path named in a record, a directive
+linking into the patterns tier, a cited path the host does not own, a pattern index out of
+sync): run `pnpm check:docs` before a records push. Three pushes in one hour were refused, one
+validator each (2026-09-30).
+
 Lint the fragment before it joins the whole, and lint every write at once. A commit
 header is checkable with `wc -c` and a block about to be appended with markdownlint on
 the block file, before either joins the record; a check that runs only on the whole runs

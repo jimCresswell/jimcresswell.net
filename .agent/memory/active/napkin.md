@@ -36,3 +36,6 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   retired `comms-events/` directory where the live one is `comms/`; the check runs only at push,
   so the slip cost a full gate run. A path in a record is read from the live directory listing
   before it is written, never from memory of the estate (2026-09-30).
+- **Surprise:** three pushes refused in one hour, one validator each (reference direction, cited
+  path, patterns index), after the retired-path refusal. Homed in `lint-after-edit` (both estates):
+  `pnpm check:docs` before a records push.

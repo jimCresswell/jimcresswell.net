@@ -41,7 +41,9 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   this job (the prompt's own words).
 - Next safe step: step 1 of the plan below (the two-estate inventory, counts first).
 
-### 2026-09-30T16:4xZ — the session's state (Hawthorn binds Bracken, b3f117, claude-code, claude-fable-5-1)
+### 2026-09-30T15:4xZ — the session's state (Hawthorn binds Bracken, b3f117, claude-code, claude-fable-5-1)
+
+(The times in this block were first written in local time and corrected to UTC at 16:17Z.)
 
 - Counts at this block: JC.net pending graduations 5 (2 testing-strategy entries plus 3 queued
   for a directive-budget context), OCE 1. Buffers: JC.net napkin 4 blocks, distilled 27
@@ -61,11 +63,38 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   files (OCE has none of that name), `validation-strategy` (directive), the patterns index.
   The fold-late note is not yet on OCE PR 299.
 - Directive edits (testing-strategy ×2, user-collaboration, privacy, editorial-guidance) wait
-  for a context reading below 30 %; this context read 23.8 % at 16:0xZ after the registry
+  for a context reading below 30 %; this context read 23.8 % at 15:0xZ after the registry
   correction and has grown since.
 - Not yet started: distilled pruning, the napkin's four blocks, the per-user memory markers and
   index retirement, the thread retirements (closure lanes b and c to `retired/`), the practice
   box, OCE's staircase, the six skills' convergence (todo 5), the wrap.
+
+### 2026-09-30T16:17Z — the session's state after the directive step (Hawthorn binds Bracken, b3f117)
+
+- Counts at this block: JC.net pending graduations 3 (all gated on the owner's card answers for
+  the session-2 batch; the slow lane's rows carry review dates), JC.net buffers 0 (distilled
+  empty, per-user memory index 0 live lines, napkin rotated and every block homed); OCE pending
+  graduations 1 (the comms decision table's 196 unread rows), OCE buffers 0 by decision
+  (distilled empty; per-user memory 5 live files, four owner-private and one operator
+  environment fact; napkin at rest).
+- Landed and pushed: JC.net eight commits on `coordination/2026-09-29-b6232c` (the register
+  drained, the six skills converged, the lineage's memory lessons homed, the five directive
+  entries written at readings of 15.1 % and 18.4 %, the push-gate cures); OCE three commits on
+  `coordination/2026-09-29-76974c` (the lineage half of the same, its distilled and memory
+  buffers drained, its directive step).
+- In flight: a pilot analyst on the comms table's section B (42 rows) and one on the frictions
+  register's first half (49 entries); each returns a fixed seven-field row per item, and the
+  seat verifies every move at the event file or in the tree before an edit. The fan-out to
+  sections C and D waits on the pilot's measured cost (the fleet-review rule).
+- Uncommitted in OCE: the Director handoff's 2026-09-19 state archived byte-identical with a
+  pointer, the substrate contract's live comms path, the wrap skill's host-neutral ledger line.
+- Remaining after the table: the frictions register's settled entries (graduate, then archive),
+  the oversized continuity records in both estates (repo-continuity, the lineage's
+  codex-dialogues and estate-coordination threads), the wrap with the closeout report.
+- Owner decisions to surface at closeout: clearing the practice box
+  (`.agent/practice-core/incoming/2026-09-14-oak-line-delta-since-e477e62f7.md`); the privacy
+  review of the three unconsolidated napkins in `archive/`; whether the JC.net comms stream is
+  in a pass; the session-2 cards (three register entries and the slow lane wait on them).
 
 ## How a two-estate consolidation works (the reflection the owner asked for)
 
