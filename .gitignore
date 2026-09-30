@@ -27,7 +27,6 @@ dist
 .claude/settings.local.json
 .cursor/settings.local.json
 .gemini/settings.local.json
-.claude/worktrees/
 .claude/logs/
 .claude/scheduled_tasks.lock
 
@@ -45,6 +44,14 @@ dist
 ._*
 [Dd]esktop.ini
 Thumbs.db
+
+# Agent worktrees nested in the checkout (owner ruling 2026-09-30): every
+# lane lives under .claude/worktrees/<lane>, ignored here and by every root
+# check tool; only the placeholder .gitignore inside it is tracked (the
+# contents pattern, not the directory: git cannot re-include a file under an
+# ignored directory).
+.claude/worktrees/**/*
+!.claude/worktrees/.gitignore
 
 # Local reference files, not for source control
 .agent/reference-local/**/*
