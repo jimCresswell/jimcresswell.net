@@ -31,6 +31,21 @@ import type { RepoCheckCommandResult, RepoCheckRuntime } from './repo-check-type
  * output, because a pipe over a running gate chain is the F-112 failure
  * (`repo-check-runner.ts` and `core/file-backed-child.ts` carry the account).
  *
+ * Why the dry run reads the local cache only (`--cache=local:rw`): a dry run
+ * consults the caches only to mark each planned task hit or miss, a field this
+ * step never reads, and it executes and writes nothing. Reaching the remote
+ * cache made the plan depend on the network and on the host's token: turbo
+ * 2.11.2 exits 0 and writes a WARNING line, "Remote caching unavailable
+ * (Authentication failed — check TURBO_TOKEN or run turbo login)", when the
+ * token has lapsed, which this step reads as the diagnostic it is and fails
+ * the commit (2026-09-29, an expired `turbo login`). A source `--cache` omits
+ * is neither read nor written, and the flag outranks `TURBO_CACHE`, so no host
+ * setting reopens the remote leg. `local:rw`, not `local:r`: a host's
+ * `TURBO_FORCE=true` meets `local:r` with "WARNING no caches are enabled" and
+ * meets `local:rw` silently, and a dry run writes nothing either way. The lint
+ * run keeps turbo's default caches, so its results are cached and a lapsed
+ * token still shows there, where a cache matters.
+ *
  * @packageDocumentation
  */
 
@@ -43,6 +58,7 @@ const DRY_RUN_ARGS: readonly string[] = [
   'lint',
   CHANGED_SINCE_HEAD,
   '--dry-run=json',
+  '--cache=local:rw',
 ];
 
 const LINT_ARGS: readonly string[] = [

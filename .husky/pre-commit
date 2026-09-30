@@ -9,6 +9,7 @@ GUARD_HINT="Move to a branch first: git switch -c <branch> (staged changes trave
 . .husky/refuse-commit-on-main.sh
 
 export TURBO_UI=0
+. .husky/turbo-remote-cache-notice.sh
 
 echo "📝 Checking formatting on staged files..."
 if ! pnpm --fail-if-no-match --filter @engraph/agent-tools repo-check prettier-staged; then

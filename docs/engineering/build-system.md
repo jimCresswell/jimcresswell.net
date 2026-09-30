@@ -237,10 +237,10 @@ in the development lifecycle:
 
 | Surface        | Runs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD` (`repo-check lint-changed`, which skips the run when turbo plans no task, as for a commit that changes no workspace). Light by design (owner ruling 2026-09-12: light commit, full push).                                                                                                                                                          |
+| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD` (`repo-check lint-changed`, which skips the run when turbo plans no task, as for a commit that changes no workspace; its planning dry run reads the local cache only, so a commit needs neither the network nor a cache token). Light by design (owner ruling 2026-09-12: light commit, full push).                                                |
 | **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **pre-push**   | `pnpm check`, then the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`), each holding a host gate slot for its run (`pnpm agent-tools:gate-slot run pnpm ...`): at most two full gates on the host at once and one in a working tree, so a push may wait, naming the gates it waits for (`pnpm agent-tools:gate-slot status` lists them); a step past thirty minutes is stopped and fails. The slot needs POSIX process groups, so a push from a Windows host is refused; push from WSL. |
-| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`.                                                                                                                                                                     |
+| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite; the Turbo remote cache reached by OIDC, see §Caching), `e2e`.                                                                                                               |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.
@@ -384,8 +384,40 @@ defect is a missing dependency edge — declare it (in the workspace
 
 ## Caching
 
-Remote caching is enabled in `turbo.json`; the hooks export `TURBO_UI=0` so the
-TUI does not swallow output.
+Remote caching is enabled in `turbo.json`, which also names the Vercel team that
+holds the cache (`remoteCache.teamSlug`, the lowest-priority team source:
+`TURBO_TEAM` in the environment, a `turbo link` config and a Vercel build's own
+credentials all outrank it); the hooks export `TURBO_UI=0` so the TUI does not
+swallow output.
+
+The remote cache is optional. This repository enables it; a fork, a clone or a
+shell without a credential runs every gate the same on turbo's local cache, and
+each place says so in one information line rather than failing. The cache is
+reached by a token in `TURBO_TOKEN`, never by `turbo login` (a user token that
+expires):
+
+- A developer's host: a team-scoped token exported as `TURBO_TOKEN` from the
+  shell profile (read from a keychain, never a file in the tree). The hooks
+  source `.husky/turbo-remote-cache-notice.sh`, which prints one line when the
+  shell carries no token. A token the cache refuses is turbo's own warning in
+  the gate output; the gates judge turbo by its exit code, so it does not fail
+  them.
+- CI: `build-and-test`, the one job that runs turbo, holds `id-token: write`
+  and runs `vercel/setup-turborepo-remote-cache-action` before its first turbo
+  step. The action exchanges the job's GitHub OIDC token for a short-lived
+  Vercel token against the team's OIDC policy for this repository, sets
+  `TURBO_TOKEN` and `TURBO_TEAM` (the `TURBO_TEAM` repository variable) for the
+  following steps and revokes the token when the job ends. The step runs only
+  where a token can exist and a team is named (not on a fork's or Dependabot's
+  pull request, not without the variable) and never fails the job; a step that
+  did not succeed leaves a `::notice` annotation naming what to configure. The
+  policy and the variable are the owner's to set.
+
+The pre-commit's planning dry run (`repo-check lint-changed`) reads the local
+cache only (`--cache=local:rw`), so a lapsed token, a missing one or no network
+cannot fail a commit: a dry run that reaches the remote cache and cannot
+authenticate writes a `WARNING` the step reads as the diagnostic it is. The lint
+run itself and every full gate use both caches, and the warning still shows there.
 
 | Task                            | Cached | Notes                                                            |
 | ------------------------------- | ------ | ---------------------------------------------------------------- |
