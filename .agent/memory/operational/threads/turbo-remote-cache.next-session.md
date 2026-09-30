@@ -9,8 +9,8 @@ delivery node, then `docs/engineering/build-system.md` §Caching.
 
 ## Current Continuation
 
-- Branch: `feat/turbo-remote-cache-optional` (PR 1), cut from `origin/main` at b6232c77, in a
-  lane worktree beside the primary.
+- Branch: `feat/turbo-remote-cache-optional` (PR 1), cut from `origin/main` at SHA:b6232c77,
+  in a lane worktree beside the primary.
 - Invocation pointer: `$jc-start-right-quick continue turbo-remote-cache from this record`.
 - Controlling plan: `.agent/plans/delivery/turbo-remote-cache-optional-and-persistent.plan.md`.
 - Next safe step: PR 1 to a truly green merge; then PR 2 on OCE by the inter-Practice join
@@ -62,7 +62,7 @@ delivery node, then `docs/engineering/build-system.md` §Caching.
 
 ## Lane state, 2026-09-30T12:54Z
 
-- PR 1 is PR 275 (`b8610df6`, opened by the bot 12:43Z; Copilot requested as the operator
+- PR 1 is PR 275 (SHA:b8610df6, opened by the bot 12:43Z; Copilot requested as the operator
   12:43:47Z). CI run 36716649076 green: `build-and-test` step 4 (the OIDC exchange) skipped
   because no `TURBO_TEAM` variable exists yet, step 5 posted the `::notice` annotation with the
   full line, Build through the smoke suite green. That is acceptance criterion 2 observed on our
@@ -72,6 +72,11 @@ delivery node, then `docs/engineering/build-system.md` §Caching.
   claim local-only operation without `TURBO_TOKEN`, since turbo also reads a `turbo login`
   credential from its own config (the credential that expired and started this arc); this
   record indexed in `repo-continuity.md` §Active Threads.
+- Copilot round two (13:04Z on SHA:3cada054), three items, all cured: `SHA:` prefixes on this
+  record's commit citations; the skip proof in the lint-changed integration test uses the
+  unreachable sentinel, so any lint invocation rejects (mutant: a skip branch that calls the lint
+  and discards its result, caught with "the lint ran"). Rounds are spent; a further finding is
+  cured or Rejected in this push's slot turn.
 
 ## Promotion watchlist
 

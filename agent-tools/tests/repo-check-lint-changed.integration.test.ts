@@ -54,10 +54,10 @@ describe('repo-check lint-changed', () => {
         stdout: JSON.stringify({ packages: ['//'], tasks: [] }),
         stderr: '• turbo 2.10.13\n',
       },
-      lint: 1,
+      lint: UNREACHABLE_LINT,
     });
 
-    // The step returns 0 while a lint run would have returned 1: the lint did not run.
+    // Any lint invocation rejects, so a 0 here means the lint did not run at all.
     await expect(runLintChanged(harness.runtime, harness.terminal)).resolves.toBe(0);
 
     expect(harness.lines).toStrictEqual([
