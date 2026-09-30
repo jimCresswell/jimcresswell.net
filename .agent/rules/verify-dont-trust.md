@@ -704,6 +704,9 @@ in sync and one fetch would have shown it).
 - Repeating a claimed violation of a policed rule before reading the policing
   validator's own output.
 - Curing a failure at time T by changing a mechanism that did not exist at T.
+- Answering "does content X exist in source Y" through a coordinator's subagent
+  workflow: route it to the seat that owns the source for gated first-hand
+  proof; a subagent workflow once fabricated the answer (2026-06).
 - Verifying a compound claim's headline while its elements go unchecked — a
   homes-authored note once claimed "pattern file + testing-strategy cross-ref"
   where the pattern was real and the cross-ref absent; a reviewer-praised

@@ -119,6 +119,15 @@ otherwise tax every watcher's stream. Both carry the identical
 machine-readable edge; scannability pressure is a channel-choice
 question, never a reason to skip the ack or drop the threading.
 
+**The ack posts before the work starts.** Peers read the stream, never a
+seat's working state or the claims registry, so routed work begun without the
+acceptance line reads as silence for as many cadences as the work takes (twice
+in one hour, 2026-07-02, each costing the Director a delivery check). Post the
+one-line acceptance first, then open the claim and start; at every lane
+transition (routing accepted, slice ready, hold, release) re-arm the heartbeat
+with its honest label in the same move as the transition; and never let a
+relayed claim ride inside a sentence labelled verified.
+
 ## Reading for absorption at routing and stall-diagnosis moments
 
 The observer half, for any seat reading another's liveness — the

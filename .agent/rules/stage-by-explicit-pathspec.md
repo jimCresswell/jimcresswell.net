@@ -164,6 +164,10 @@ route the live file to its owner (`coordination-fold` precondition 2), since
 a fixer's rewrite races the peer's next write. Protect peers at the staging
 step.
 
+Records under `.agent/memory/` and `.agent/state/` are shared substrate: any seat may
+stage and commit them whatever seat or hook last wrote them (owner norm, 2026-06-30).
+The pathspec still names them; the sweep caution above never applies to them.
+
 ## Pre-Stage Re-Ground for Long Sessions
 
 If a session has been running for roughly an hour, or if the all-channel

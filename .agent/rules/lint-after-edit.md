@@ -8,7 +8,9 @@ trigger: surface:source-authoring
 
 Operationalises [`principles.md` §Code Quality](../directives/principles.md#code-quality).
 
-After editing TypeScript files, check lint for file/function length violations. Run lint on the changed files or run `pnpm lint:fix`. Catch violations early — don't accumulate them.
+After editing TypeScript files, check lint for file/function length violations. Run lint on the changed files or run `pnpm lint:fix`. Catch violations early — don't accumulate them. A file you edit is yours to leave clean:
+fix its lint findings whatever their provenance, never only the lines you changed
+(owner norm, 2026-06).
 
 After each edit pass, run the gates the touched surface requires (`pnpm check`; for the site,
 `pnpm --filter @jimcresswell/www test:e2e` or the visual-regression harness when rendering is at

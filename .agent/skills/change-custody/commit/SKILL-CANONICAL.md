@@ -741,7 +741,10 @@ check it (`pnpm agent-tools:check-commit-message -F <file>`) before the
 `git add`; never write it after a guarded command in the same `&&` chain,
 because a refused `git add` aborts the chain and the later `git commit -F`
 runs on a missing file (`stage-by-explicit-pathspec` §What to Do Instead,
-2026-09-12).
+2026-09-12). The commit-msg hook runs after the whole pre-commit gate, so a
+refused subject or a body line that opens `word:` (read as a footer under strict
+commitlint) costs a full gate run (five refusals across two seats, 2026-09-23 to
+2026-09-25); check the message file before the gate, never after.
 
 ## Stream truncation at the depcruise → turbo handover — workaround
 
