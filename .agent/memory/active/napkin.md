@@ -39,3 +39,18 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
 - **Surprise:** three pushes refused in one hour, one validator each (reference direction, cited
   path, patterns index), after the retired-path refusal. Homed in `lint-after-edit` (both estates):
   `pnpm check:docs` before a records push.
+
+## 2026-09-30T17:06Z — the close (Hawthorn binds Bracken, b3f117)
+
+- **Surprise:** a records edit to the lineage's Sif annex failed its pre-commit on a lockstep unit
+  test: the annex may reference the Codex version pin, never restate a version literal beside
+  `codex mcp-server` or the CLI name. The insert was reworded without the literal in both estates;
+  the test passes. A lesson written into a surface with a lockstep pin is checked against the pin's
+  test before the commit, which the docs pre-flight does not run.
+- **Observation:** an unquoted `$F` holding a file list passed to prettier as one argument under zsh
+  and the lint printed "0 files" as if clean; the gotchas already carry the word-splitting rule, and
+  the cure was `xargs`. Read a linter's file count, never only its verdict line.
+- **Observation:** the fleet review earned its cost twice in one hour: the frame-challenger named the
+  decider gap (a seat's ruling would have entered decision records in the owner's voice), the
+  assumptions leg the archive-directory gap (events after 2026-09-20 live in `comms/`); both cured in
+  the frames before the three legs launched.

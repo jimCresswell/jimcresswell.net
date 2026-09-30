@@ -21,13 +21,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- **2026-09-30T16:33Z: the dedicated two-estate consolidation, in progress** (Hawthorn binds Bracken,
+- **2026-09-30T17:06Z: the dedicated two-estate consolidation, at its close** (Hawthorn binds Bracken,
   b3f117, at the owner's word of 2026-09-30). `main` is at b6232c77; the coordination branch
-  `coordination/2026-09-29-b6232c` carries ten pushed commits: the register drained to three
+  `coordination/2026-09-29-b6232c` carries twelve commits: the register drained to three
   owner-gated entries, the buffers empty (distilled, the per-user memory index, the napkin rotated),
   the six consolidation skills and the per-user-memory rule the same bytes in both estates, the five
   queued directive entries written, the lineage's memory lessons homed, the comms table's section B
-  homed. The lineage's `coordination/2026-09-29-76974c` carries the mirror, four commits pushed. The
+  homed, the comms table and the frictions register drained. The lineage's
+  `coordination/2026-09-29-76974c` carries the mirror in five commits. The
   live reading is `threads/two-estate-consolidation.next-session.md`, newest state block first.
 
 - **2026-09-29T13:4xZ: the Director lane closed; one seat (n=1) takes the work on both estates**
@@ -72,7 +73,7 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 
 ## Next Safe Steps
 
-STATE, 2026-09-30T16:33Z (Hawthorn binds Bracken, the two-estate consolidation, in progress): the live
+STATE, 2026-09-30T17:06Z (Hawthorn binds Bracken, the two-estate consolidation, closed): the live
 next steps are the newest state block of `threads/two-estate-consolidation.next-session.md`. The items
 below are still open from the 2026-09-16 snapshot, each verified in the tree on 2026-09-30; the snapshot
 itself, with its later state notes, is archived byte-identical in

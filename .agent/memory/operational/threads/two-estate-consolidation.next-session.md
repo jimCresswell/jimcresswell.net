@@ -69,6 +69,54 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   index retirement, the thread retirements (closure lanes b and c to `retired/`), the practice
   box, OCE's staircase, the six skills' convergence (todo 5), the wrap.
 
+### 2026-09-30T17:06Z — the session's close (Hawthorn binds Bracken, b3f117)
+
+- Counts at close: JC.net pending graduations 3 (every one gated on the owner's card answers for the
+  session-2 batch; the parser reads 2 live blocks beside the slow lane), JC.net buffers 0 (distilled
+  empty, per-user memory index 0 live lines apart from one new feedback memory, the napkin rotated and
+  every block homed); OCE pending graduations 1 (the seven owner cards from the comms decision table,
+  gated on the owner's answers), OCE buffers 0 by decision (distilled empty, per-user memory 5 live
+  files that stay outside version control by their nature, the napkin at rest).
+- Landed and pushed: JC.net eleven commits on `coordination/2026-09-29-b6232c` with a twelfth (this
+  record) in its chain; OCE four commits pushed on `coordination/2026-09-29-76974c` with a fifth in
+  its chain. The comms decision table's 196 rows are dispositioned in its §H (HOMED 62, MOVE 38 written
+  into both estates where shared, SESSION-SCOPED 34, SUPERSEDED 8, OWNER-CARD 7, OWED 47). The
+  lineage's frictions register went from 99 entries to 44: 55 settled entries archived byte-identical
+  with index rows, nine lessons written into permanent homes, three entries live against their own
+  claim carrying dated review lines.
+- The fleet: nine analyst legs (four comms sections, two frictions halves, one of each as a pilot) and
+  two review legs (assumptions-expert, frame-challenger) under `fleet-design-review-before-expensive-fleets`;
+  the review added the decider field and the OWED and OWNER-CARD verdicts, and the seat verified every
+  MOVE quote against the event body, every HOMED phrase against the home, and every settled friction's
+  cited path in the tree before an edit.
+- Metaloss recursion. Compressed reasoning: the analysts' evidence fields survive in the four report
+  files and in §H; the seat's overrides are in §H's rows and in the owner-cards list. Promises: the
+  four pilot-B rulings and three later ones are owner cards on the lineage's register; the 47 owed
+  follow-ups are in §H and pointed at from the lineage's continuity pickup block; nothing else was
+  promised. Attribution inferences: every inserted paragraph names its decider from the event body;
+  the "Drive, never coordinate" paragraph and the memory graduations are the seat's readings of
+  recorded owner words, marked as such. Blind-spot bounds: the analysts' HOMED verdicts rest on phrase
+  matches the seat re-checked mechanically, not on a second read of each home; the comms stream of
+  JC.net (4,304 events) was not in this pass; the oversized lineage thread records were not read.
+  Index of homes: this record, the lineage's §H, `archive/` files named in each pointer, the scratchpad
+  frames and reports (session-scoped, gone with the session). External bound: outside eyes caught
+  the decider gap and the archive-directory gap; the seat's own slips this session were commit headers
+  over the limit (six), a records path written from memory, a directive linking into the patterns
+  tier, and a version literal in a lockstep-pinned annex, each caught by a gate, none by the seat's
+  scan. A further pass would only re-find these; the recursion closes here.
+- Fence sweep: the session's tracked writes carry no fenced wording (the owner-private strands, the
+  fork on upstream surfaces, the biographical detail, the top-card location); grep over both estates'
+  session diffs found only pre-existing lines moved byte-identical into archives.
+- Owner decisions, batched: the seven comms-table cards (the lineage's register entry names each
+  clause and record); the session-2 cards (three JC.net register entries and the slow lane); clearing
+  the practice box `.agent/practice-core/incoming/2026-09-14-oak-line-delta-since-e477e62f7.md`; the
+  privacy review of the three napkins under `archive/`; whether the JC.net comms stream is in a pass.
+- Owed to later seats, not this pass: the 47 follow-ups in the lineage's §H; the lineage's 44 live
+  frictions (five settle with one documentation insert each, named in the part-2 analyst's notes as
+  F-60, F-62, F-66, F-111 and F-182); the lineage's oversized thread records (nine critical, twenty-two
+  hard) and its 1,773-line exchange pickup block in repo-continuity; JC.net's
+  collaboration-state-conventions and artefact-inventory at hard.
+
 ### 2026-09-30T16:17Z — the session's state after the directive step (Hawthorn binds Bracken, b3f117)
 
 - Counts at this block: JC.net pending graduations 3 (all gated on the owner's card answers for
