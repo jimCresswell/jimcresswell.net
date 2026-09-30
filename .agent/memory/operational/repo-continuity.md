@@ -414,9 +414,9 @@ names a live branch):
   here (SHA:f6a26954), OCE PR 313 open for harvest; the record's latest dated block governs.
 - Two-estate consolidation (`threads/two-estate-consolidation.next-session.md`): the NEXT
   session, by the owner's word of 2026-09-30, is a dedicated consolidation across both estates
-  from `.agent/prompts/dedicated-consolidation-session.md`, launched in OCE with OCE's skill text
-  governing where the estates differ; the record carries how a two-estate consolidation works
-  and its six todos. Higher priority than the daily fold.
+  with JC.net as the home; the skills that differ between the estates are read from OCE's copies
+  and their divergence is fixed as part of the work; the record carries how a two-estate
+  consolidation works and its six todos. Higher priority than the daily fold.
 
 ## Paused Threads
 
