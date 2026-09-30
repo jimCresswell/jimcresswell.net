@@ -395,12 +395,15 @@ names a live branch):
 
 ## Active Threads
 
-- LinkedIn workspace (`linkedin/`): reopened on 2026-09-28 under privacy.md's dated workspace
-  authorisation; landed as PRs 240 (03cac8b3f, 14:48:24Z), 252 (f0f2f1fc2), 253 (b29ef39bd), 254
-  (1a164ae34, the authorisation as its own section) and 259 (efdcc2376, the paper's author list);
-  no editorial pass yet (the owner's word, 13:4xZ). Further batches from the owner's Codex agent
-  are repo content that a Practice seat commits and lands by the normal path (the owner's word,
-  2026-09-28); publishing to LinkedIn is a separate act on the owner's request.
+- LinkedIn workspace (`linkedin/`, `threads/linkedin-workspace.next-session.md`): reopened on
+  2026-09-28 under privacy.md's dated workspace authorisation; landed as PRs 240 (03cac8b3f,
+  14:48:24Z), 252 (f0f2f1fc2), 253 (b29ef39bd), 254 (1a164ae34, the authorisation as its own
+  section) and 259 (efdcc2376, the paper's author list); no editorial pass yet (the owner's word,
+  13:4xZ). Further batches from the owner's Codex agent are repo content that a Practice seat
+  commits and lands by the normal path (the owner's word, 2026-09-28); publishing to LinkedIn is
+  a separate act on the owner's request. 2026-09-29: PR 273 (b6232c77) made the workspace
+  documents only and cured `main`'s knip gate; the lane is at rest, its seat (Galaxy binds
+  Gravity, 46de68) closed 2026-09-30, and the record's latest block governs.
 - JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
   (158275), live on 2026-09-28. The lane's next step moves several times a day, so this bullet
   names none: the record's latest dated block governs, and its landings list is the lane's proof.
