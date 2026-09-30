@@ -409,6 +409,9 @@ names a live branch):
   names none: the record's latest dated block governs, and its landings list is the lane's proof.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
+- Turbo remote cache, optional everywhere (`threads/turbo-remote-cache.next-session.md`): the
+  delivery node `turbo-remote-cache-optional-and-persistent`, ratified 2026-09-30; PR 1 on this
+  repository, then PR 2 on OCE; the record's latest dated block governs.
 
 ## Paused Threads
 
