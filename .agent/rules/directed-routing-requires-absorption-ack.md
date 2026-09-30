@@ -39,6 +39,14 @@ live corpus at plan-author time, silence-based delivery-dark signatures
 fire ~70 times per true instance, because quiet heads-down work
 dominates.
 
+Before a routing, a ruling or a withdrawal on a CONTESTED item, read the
+stream since your last post in one command, and make the post one line.
+Three Director posts in five minutes on one item, each written from a
+monitor's last events rather than a fresh read, crossed a pickup the seats
+had already settled, then their settlement, then a seat's absorption of the
+ruling, so the item changed hands four times with no source edit
+(2026-09-26). Nothing more is posted on that item until a seat answers.
+
 ## Action — receiver side
 
 On absorbing an `ACK-REQUESTED` event, reply with a content-bearing ack

@@ -97,6 +97,14 @@ again.**
    sequential. The general move: when a coordination mechanism
    serialises the wrong resource, ask which resource is actually scarce
    and bound that.
+7. **A gate refusal that names a path not in the diff, or a fork or
+   `EAGAIN` line, is a host reading, not a content defect** (2026-09-29):
+   stray ignored entries under a validated surface (a statusline's `.logs`
+   directories under `.agent/rules/`) fail a portability check, and a
+   process burst fails a spawn. Relocate the stray entries to the session
+   scratchpad, never delete them, and read the process family
+   (`ps -o pid,ppid,comm`) before any kill; a kill by name can take a
+   peer's gate.
 
 ## Worked Instance (founding)
 

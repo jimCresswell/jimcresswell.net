@@ -115,6 +115,11 @@ Three lessons from the harness's first months (2026-03), each learned once:
   harness proves the build it captured; any change to rendered output after
   the capture means the proof is of a build that no longer exists, so the
   harness runs again on the final slice (ADR-022 §3).
+- **Review evidence is precise, not merely present.** A normalisation note in
+  the diff artefacts appears only when that exact normalisation ran; a note
+  written from habit makes the artefacts untrustworthy as audit records, and a
+  DOM-only difference with no pixel diff is a real review question, never a
+  near-pass.
 
 ## Output
 

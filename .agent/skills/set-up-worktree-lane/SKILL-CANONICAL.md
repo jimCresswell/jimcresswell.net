@@ -131,6 +131,12 @@ pnpm --dir <path> build
 pnpm --dir <path> --filter <app> exec playwright install chromium-headless-shell
 ```
 
+After the install, confirm the hooks exist: `ls <path>/.husky/_` (this repository's
+`core.hooksPath` is `.husky/_`, created only by husky's `prepare` script, per worktree). A
+worktree whose install failed part-way has no hooks and commits and pushes ungated in silence;
+run `pnpm --dir <path> prepare` before the first commit if the directory is missing
+(2026-09-27).
+
 All three scoped to the worktree with `--dir`, because this step runs before entry, from the
 principal: an unscoped `pnpm install` there rebuilds the principal and leaves the new
 worktree without its dependencies or `dist/`. All three, before any gate, work or entry:

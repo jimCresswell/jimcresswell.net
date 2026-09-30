@@ -71,7 +71,11 @@ the merge until each finding is cured or rejected by a signed disposition
 line from the repository owner or the pull request's author, or a later
 review on a later tip carries none; the fourth
 measured-state clause, `SUPPRESSED-FINDINGS-OPEN`, owner card item 78,
-2026-09-14), per-reviewer legs, outstanding requests, live runs — inside the same invocation, because a
+2026-09-14; the hold lifts on ONE signed comment posted after the latest
+tip-bound review, carrying one line per finding in the ratified format, the
+marker, the finding's reference, "item N of M" and the verb, followed by a
+bot poll and no push, since a push would move the tip and start a new
+round), per-reviewer legs, outstanding requests, live runs — inside the same invocation, because a
 bot review can land in the seconds between (caught twice in forty
 minutes, #570/#574).
 
@@ -285,9 +289,14 @@ their own hands uses their own credential — that contrast is the point.
 **Requesting the Copilot reviewer is the one write the bot cannot make
 here.** A `requested_reviewers` POST for `copilot-pull-request-reviewer`
 under the bot token registers nothing on the pull request; the owner's own
-CLI credential registers it on the timeline within a minute, unless the
+CLI credential registers it on the timeline within a minute
+(`gh pr edit <n> --add-reviewer @copilot` as the operator), unless the
 previous request's review is still in flight, when it registers nothing
-either (both verified live, 2026-09-13). The request, once registered, is
+either (both verified live, 2026-09-13; the operator form re-verified
+2026-09-27). Where an API call names the reviewer, its login is
+`copilot-pull-request-reviewer[bot]`; omitting the `[bot]` suffix returns
+422 (2026-08-12). Read the timeline after any request: silence from the
+request call is not a registered request. The request, once registered, is
 what the settlement reads as the round in flight: it is visible only on
 the GraphQL `reviewRequests` connection (gh's `pr view --json
 reviewRequests` and the REST endpoint omit Bot requests), which is why

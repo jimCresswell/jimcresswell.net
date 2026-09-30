@@ -1,3 +1,8 @@
+> **RETIRED — thread completed 2026-09-13.**
+> Lane C stood down at the owner's word at 16:57Z on 2026-09-13; item 4 landed as bounded. Retained
+> as continuity history; not a live lane. Not listed in `repo-continuity.md` Active or Paused
+> threads.
+
 # Thread: closure-lane-c — completeness by function against the pin
 
 **Thread identity.** Lane C of the transplant closure (node

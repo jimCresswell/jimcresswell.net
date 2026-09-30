@@ -48,6 +48,10 @@ Every line answered first-hand, none inferred:
   acceptance (PR 250's Appendix E, 20:25Z), never by precedent: the Director widened the 224
   answer to 250 and the owner reversed the mark within five minutes (20:24Z).
 - Compute, don't hope: no hand-kept list; every list is derived or gated by a validator.
+- Never ask the owner to paste or run the cloud setup script, or for the cloud bash
+  measurement, again (owner, 2026-09-19: "I am not interested in fine details"); the bash
+  5.2 floor slice has no path, and a slice is done for what it changes, never because it is
+  listed.
 - The private editorial material is optional, confidential, never a dependency, mentioned
   minimally, never quoted.
 - Records are technical, not emotional. A move is a stepping stone, never an end state; an

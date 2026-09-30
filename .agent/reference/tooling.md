@@ -54,7 +54,9 @@ These tools are not managed by pnpm but are required by specific workflows:
   CI); the smokes prove each hook with jq and without it, and fail with
   installation guidance when it is missing
 - [Playwright browsers](https://playwright.dev/docs/browsers) — `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
-  once per checkout, before `pnpm test:e2e`
+  once per checkout, before `pnpm test:e2e`, run from the PRIMARY checkout:
+  Playwright's cleanup pruned a browser whose install link pointed at a
+  retired worktree (2026-09-25)
 
 Scripts that require these tools should emit explicit installation guidance when
 the command is missing.

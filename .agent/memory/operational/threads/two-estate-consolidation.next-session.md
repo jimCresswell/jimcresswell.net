@@ -41,6 +41,32 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   this job (the prompt's own words).
 - Next safe step: step 1 of the plan below (the two-estate inventory, counts first).
 
+### 2026-09-30T16:4xZ — the session's state (Hawthorn binds Bracken, b3f117, claude-code, claude-fable-5-1)
+
+- Counts at this block: JC.net pending graduations 5 (2 testing-strategy entries plus 3 queued
+  for a directive-budget context), OCE 1. Buffers: JC.net napkin 4 blocks, distilled 27
+  entries, unconsolidated napkins 3 files (analysed; 32 of their 59 unhomed lessons judged, the
+  rest duplicates or obsolete), per-user memory 76 files (analysed, undrained), practice box 1;
+  OCE napkin 2, distilled 7, per-user memory 28 files (8 + 20 in the sibling checkout's
+  directory), the comms table's 196 rows unread.
+- Landed: JC.net SHA:c48d9104 on `coordination/2026-09-29-b6232c` (32 register entries
+  graduated into their homes; the malformed slow-lane block a table row; the context-window
+  registry corrected). The fold-late note is on PR 274. Batch 2 (the March and August napkins'
+  lessons, the owner's 2026-09-29 verbatim in `verify-dont-trust`, the three directive-gated
+  register entries) is in the working tree, uncommitted.
+- OCE: 19 Core hunks of SHA:c48d9104 applied to its working tree at
+  `coordination/2026-09-29-76974c`, uncommitted; refused hunks to port by hand: PDR-082,
+  `source-is-typescript-esm-only`, `verify-data-supports-shape-before-building`,
+  `session-handoff`, `start-right-team`, the docs-adr and security templates, the two pattern
+  files (OCE has none of that name), `validation-strategy` (directive), the patterns index.
+  The fold-late note is not yet on OCE PR 299.
+- Directive edits (testing-strategy ×2, user-collaboration, privacy, editorial-guidance) wait
+  for a context reading below 30 %; this context read 23.8 % at 16:0xZ after the registry
+  correction and has grown since.
+- Not yet started: distilled pruning, the napkin's four blocks, the per-user memory markers and
+  index retirement, the thread retirements (closure lanes b and c to `retired/`), the practice
+  box, OCE's staircase, the six skills' convergence (todo 5), the wrap.
+
 ## How a two-estate consolidation works (the reflection the owner asked for)
 
 The knowledge flow is per estate: sources → napkin → distilled → pending graduations →

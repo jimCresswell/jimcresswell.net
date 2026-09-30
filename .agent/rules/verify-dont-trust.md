@@ -64,7 +64,14 @@ corroboration. And "first-hand" means the main agent's own read: run
 a fan-out for breadth or second opinion, but read the load-bearing sources
 yourself and form your own verdicts first — sub-agent reports corroborate or
 challenge your reading, never substitute for it, and the first-hand pass is
-never deferred to "after the agents finish".
+never deferred to "after the agents finish". The owner's word (2026-09-29,
+verbatim): "The work and claims of all subagents MUST be verified by you,
+yourself". A return is a lead: every figure, `file:line` and state it
+reports is re-read at the primary surface before it enters a record or a
+message, and the rest is marked unverified (the same day's re-read
+corrected four of nine gatherers' claims). Gatherers that write files get
+one scratch directory each: one deleted its own files by name in a shared
+directory and could have removed another's.
 
 A ruling names the primary surface it read. Any routing, acceptance,
 recommendation or ruling that rests on a count, a register row, a ruleset,
@@ -617,6 +624,10 @@ plan-state refusal read green through `| head`, `check-commit | tail`,
   `; echo "EXIT: $?" >> log`).
 - A success echo chained after a pipe (`… | tail && echo OK`) is unproven —
   the echo keys off the tail's exit, never the gate's.
+- `set -e` does not stop a Bash-tool chain: on 2026-09-26 a failed `git add`
+  ran on into a push and a gate, and four later instances followed. Join the
+  steps with `&&`, read each exit code in-band, and test a header's length
+  before any step with a side effect.
 - The **trailing-echo variant**: `cmd; echo "exit=$?"` makes the harness task
   notification read exit 0 (the echo's) while `cmd` failed — when a status
   echo trails the command, read the PRINTED value, never the notification's
@@ -763,6 +774,10 @@ load-bearing fact; an unlabelled or mis-zoned one is a verification failure.
   58-minute coordinator-less gap came from reading `07:52Z` against an `~08:50` local
   clock on a `+0100` (BST) host, where `07:52Z` *is* `08:52` local.
 - **Label every timestamp's zone.** An unlabelled timestamp is a bug.
+- **Read the clock before writing a time.** Every time in a record or a message comes
+  from a `date -u` read in a call that COMPLETED before the writing call, never inside
+  it and never in a parallel sibling; eight pre-read times were written in one session
+  (2026-09-25). Grep the text for times before it is sent.
 - **Never infer a timeline from a truncated log view** (`tail` / `head` / capped grep) —
   query the full window first (a `tail`-truncated `pmset` read once reported `00:51Z`
   when the full log gave `00:06Z`).

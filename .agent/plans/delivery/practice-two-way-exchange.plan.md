@@ -274,6 +274,11 @@ lineage's tree at `.agent/reports/practice-exchange/goal-one-residue-census-2026
     the inbound direction (this estate's landings from the lineage) remains this node's todo 4,
     after the review; what opens after the bar is the review of both Practices and the
     installable entity.
+45. The owner's word of 2026-09-28 about 20:5xZ on the design skills, recorded from the seat's
+    per-user memory at the 2026-09-30 consolidation: leave this estate's lineage-specific
+    `ui-design` skill family as it is until the inbound review; at that review split the
+    portable fundamentals from the context-specific layers, because the Practice serves any
+    repository.
 
 ## Problem
 

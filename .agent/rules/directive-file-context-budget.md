@@ -82,7 +82,13 @@ step with no edit made; the edits landed in a later context opened at 11 %.
 session transcript, so the rule gates on a reading, not an estimate. The first
 reading after a compaction can be the compaction call's own usage line (69 %
 read, then 11 % one turn later, 2026-09-19); read it again after one more turn
-before acting on it.
+before acting on it. A seat cannot compact itself: `/compact` is the user's
+command, no hook triggers a compaction or changes a running session's
+settings, and `PreCompact` cannot block. The auto-compact threshold is a
+token window (`autoCompactWindow`), not a percentage, so the reading above
+is the estate's own instrument and the only one; a context that reads over
+the line keeps working in bounded pieces with its records current and makes
+the directive edits in the context after the compaction (2026-09-16).
 
 ## The 30% Threshold Is Load-Bearing
 

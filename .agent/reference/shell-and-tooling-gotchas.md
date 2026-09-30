@@ -18,6 +18,23 @@ tool retires them.
 - **`GID` is a READONLY integer parameter in zsh** (2026-07-20).
   Assigning a uuid to it fails as "bad math expression"; never use it
   as a variable name (same family: `UID`, `EUID`, `EGID`).
+- **Brackets in a path are a glob** (2026-03-09): an unquoted
+  `app/cv/[variant]/page.tsx` is expanded as a character class and the
+  read fails or hits another file. Quote every route path that carries
+  `[`, `]`, `(` or `)` (Next.js dynamic segments and route groups).
+- **Monitor commands run under zsh too** (2026-09-2x): an unquoted `$var`
+  does not word-split, and `"$n:a…"` reads `:a` as a path modifier, so write
+  `${n}:`; run watch loops as `bash` scripts, prove a loop on a landed event
+  before trusting its silence, and never pipe a Monitor through `grep` (the
+  filter goes inside the script, or the exit code is the pipe's).
+- **Perl in-place replacements interpolate template literals** (2026-09-13):
+  `perl -pi -e 's/…/…${name}…/'` reads `${name}` in the replacement as a
+  Perl variable and writes nothing there; two TypeScript template literals
+  were silently emptied and caught only by reading the diff. Escape as
+  `\$\{name\}`, or edit source with the native per-file tool.
+- **Unicode quotes block exact-match replacement in Markdown**: curly
+  quotes and dashes in prose defeat a literal `old_string`; read the exact
+  bytes of the line before an edit and paste them, never retype them.
 
 ## Repo tooling
 
@@ -82,6 +99,10 @@ tool retires them.
 
 ## GitHub Actions
 
+- **A hand-folded YAML `run: >-` block joins its lines** (2026-09-25): two
+  commands became one, and a call hid behind an echo. Parse a workflow with
+  a YAML library and read only `steps[].run` before reasoning about what
+  runs; never read the folded text as lines.
 - **A workflow existing only on a non-default branch is not dispatchable**
   (2026-07-23, single instance, mechanism inferred): no registration
   appeared after ~15 min. Working cure: `on: push` scoped to its own

@@ -124,6 +124,19 @@ Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-fi
 | Google Rich Results Test | Post-deployment | Google eligibility and visual preview              |
 | Google Search Console    | Ongoing         | Real indexing errors and performance               |
 
+External validators, worked once (2026-03-09): state the local-versus-live
+split before the first fetch (the decision stays anchored to the live public
+path; local proof surfaces answer the shape questions first); start with the
+emitted inline JSON-LD snippet in the validator's code mode before spending
+time on URL mode; drive the validator UIs sparingly, because repeated
+automated attempts trip their anti-abuse behaviour and make every later run
+less useful than the first; record the exact tool message, because the proof
+is the difference between semantic feedback and validator-side infrastructure
+failure; and when the live fetch is blocked by anti-abuse (Cloudflare on the
+page, the validator's own homepage redirecting), read that as a
+validator-side boundary, update the live proof note, and never treat the
+missing external proof as closed.
+
 ## Common pitfalls
 
 | Pitfall               | Wrong                               | Right                                                                                           |

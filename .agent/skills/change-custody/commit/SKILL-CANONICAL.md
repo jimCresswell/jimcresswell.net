@@ -276,7 +276,9 @@ no window claim (F-132, F-139 and F-169 are superseded by scope). Two mechanics 
 the pathspec commit, measured 2026-09-07: the queue guard accepts only the bare
 `index/head` label (a scoped `index/head@<worktree>` is refused), and a pathspec
 commit records a deletion only for a path it names — after a `git mv`, list the
-old path as well as the new one or the move never lands. The separate host bound
+old path as well as the new one or the move never lands, and chain the `git add`
+to the `git commit` with `&&`, never `;`, because a rename staged by `git mv`
+matches no old-path pathspec and the add fails silently (2026-09-26). The separate host bound
 — two, at most three, simultaneous full local gates — is engineered as a
 semaphore, not declared (`no-unbounded-host-load` item 6); until it lands, seats
 run full gates side by side only in different worktrees, at most two at once, and

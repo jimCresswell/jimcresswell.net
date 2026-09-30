@@ -352,7 +352,9 @@ Archival is a multi-surface move: the markdown-links validator treats
 `**/archive/**` as non-live, so every inbound link to the old path breaks
 and a re-point to the archive path is refused too — sweep inbound links to
 plain text naming the archived node BEFORE the archiving commit (#959,
-2026-09-03).
+2026-09-03), and re-true any count an index or roadmap carries about the
+live set in the same edit (2026-03-08: the inventory drifted the moment a
+plan moved).
 
 ## First Question
 

@@ -580,7 +580,11 @@ A multi-seat arc opens at two seats and widens only on measured throughput
 current shape achieves, and a third seat is added when that figure, not a
 task count, says the work is seat-bound (2026-09-15: four seats ran at 3.8
 seat-hours per merge against 0.95 at two, and two lanes handed most of their
-items back).
+items back). Concurrent fix lanes are capped by the narrowest serial stage,
+the push slot, the review turnaround and the session budget (about three
+lanes; open fix pull requests at most four), never by host CPU; a lane
+finishes before the next starts, and when the same finding repeats across
+lanes the cure is the generator, not another lane (2026-09-26).
 
 When adding a top-level responsibility or keeping an existing one alive, name
 the seat cost as part of the route. Expensive top-level model seats should be

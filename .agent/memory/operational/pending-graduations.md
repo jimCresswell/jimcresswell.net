@@ -192,6 +192,58 @@ Director's draft (`threads/session-2-synthesis.next-session.md`), each home read
 on `main` at SHA: ea3142b before filing; candidates found already written are recorded there
 as duplicates with the home, never here.
 
+### Queued for a directive-budget context (captured 2026-09-30, the two-estate consolidation)
+
+Each targets a `.agent/directives/` file, so it waits for the first context whose reading
+(`agent-tools session-metadata`) is below 30 % (`directive-file-context-budget`); the
+lesson is settled and its home named, and only the authoring remains.
+
+- **The owner decides; a rule's reasoning is not a refusal, and a session-over word bounds what follows**
+  `[captured: 2026-09-30 | source: the napkin's 2026-09-30 boundary blocks (the owner, verbatim:
+  "the estate doesn't reject anything, I am the one with authority"; "you were never supposed
+  to keep going, you were supposed to fix one small issue"), and napkin 2026-03-09 (do not
+  re-question a direction the owner has set) | target: user-collaboration.md §Scope Discipline
+  (a rule's considered-and-rejected paragraph is reasoning the owner may overrule, never the
+  estate's verdict; after a session-over word a new ask is a bounded fix and a plan's execution
+  waits for a fresh seat unless the owner says otherwise; a set direction is executed, not
+  re-argued) | trigger: the first context below 30 % | size: S | status: pending]`
+
+- **A public-plan privacy review covers backstory, rejected methods, participants and custody**
+  `[captured: 2026-09-30 | source: napkin 2026-08-12 (the plan-family publication), a privacy
+  review of a plan headed for the public repository must read editorial backstory, rejected
+  methods, participant diagnosis and custody narrative as well as conventional secrets |
+  target: privacy.md §Rules (one clause) | trigger: the first context below 30 % | size: S |
+  status: pending]`
+
+- **Editorial lessons of the 2026-02-20 session: domains, credit, positioning language, voice**
+  `[captured: 2026-09-30 | source: napkin 2026-03-08 (the 2026-02-20 editorial session): model
+  fitting and strategic uncertainty are unrelated domains and are never conflated; the
+  collaborative-credit form for industry stories is "helping build", never sole credit;
+  positioning language ("second and third-order effects") is not a description of the research
+  and is not written as one; the roguish quality shows in voice, never in biography, and the
+  biographical detail behind it stays out of version control | target: editorial-guidance.md
+  (§Collaborative credit, §Physics as silent ballast, §Voice and register) | trigger: the first
+  context below 30 % | size: S | status: pending]`
+
+- **A mutant that dies on a syntax error proves nothing**
+  `[captured: 2026-09-30 | source: distilled.md (Siren's lessons block, 2026-09-25), a mutant
+  that removes a statement and leaves a syntax error is killed by the parser, not by the
+  claim; replace the removed statement with a no-op (`:` in shell, `;` or `void 0`in
+  TypeScript) so the mutant fails on the claim itself | target: validation-strategy.md §Prove
+  the guard bites (the method list) | trigger: the first context below 30 % | size: S |
+  status: pending]`
+
+- **Tests prove behaviour with no IO and no child processes; validators start the minimum**
+  `[captured: 2026-09-30 | source: the owner's words of 2026-09-29 (09:2xZ and 12:2xZ) held in
+  the per-user memory: tests are forbidden real IO and child processes with no carve-outs and
+  no call inspection, pinned literals or counts; validation scripts start the minimum
+  processes, never alter code or trigger builds, and every CI task runs through Turbo; too
+  many slow validation scripts have dodged the test rules, and behaviour goes into tests with
+  dependency injection; the 2026-09-24 half is already ratified in the
+  `no-io-test-boundary-and-di-recovery`node | target: testing-strategy.md (the boundary
+  section that carries the 2026-09-24 ruling gains the 2026-09-29 words verbatim) | trigger:
+  the first context below 30 % | size: S | status: pending]`
+
 ### Session 2 candidates (captured 2026-09-13; the owner's card answers are the dispositions)
 
 The disposition of this batch by owner cards is the ratified node's item 8 verbatim
