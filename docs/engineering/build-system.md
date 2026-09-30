@@ -260,6 +260,11 @@ commit or push will pass: the gates are independent, so enumerate the
 actual gate set the boundary will run and run that set, never the
 convenient subset.
 
+Hook-time validators run from the lockfile through `pnpm exec`, never through `pnpm dlx`: dlx
+resolves the newest registry version at commit time, and once fetched an unpublished transitive
+package so a message that passed locally failed in the commit-msg hook (a lineage friction, settled
+2026-05-12).
+
 ## Quality Gate Commands
 
 The canonical one-leg-per-line sequence, and the gates that live outside the

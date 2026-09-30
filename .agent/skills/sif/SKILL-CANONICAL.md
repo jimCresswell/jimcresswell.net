@@ -183,6 +183,11 @@ here until a probe record lands beside one. The binding's facts:
   source under the plank-5 data contract, never committed or
   transmitted.
 
+On codex-cli 0.156.1 the binding this annex records no longer exists: "`codex mcp-server` IS GONE in
+0.156.1", so the stdio MCP binding cannot launch; the probe below records the binding as it stood on
+2026-08-02, and the owner's word binds the reading to the latest CLI, "we will not pin versions, we
+use latest" (an owner-directed finding of 2026-09-23, event e45cb5c1).
+
 ## Annex B — candidate reverse binding: `claude mcp serve` (stdio)
 
 **Observation-grade CANDIDATE, not probe-verified.** Observed
