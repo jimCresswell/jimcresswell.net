@@ -27,6 +27,10 @@ tool retires them.
   `${n}:`; run watch loops as `bash` scripts, prove a loop on a landed event
   before trusting its silence, and never pipe a Monitor through `grep` (the
   filter goes inside the script, or the exit code is the pipe's).
+- **zsh reserves `path` and `status`** (2026-09-26): a loop variable named `path`
+  replaced `PATH`, every later command was "not found", and two thread replies
+  never posted. Never name a shell variable `path`, `status`, `argv`, `options`
+  or `cdpath`; read state back after a scripted write.
 - **Perl in-place replacements interpolate template literals** (2026-09-13):
   `perl -pi -e 's/…/…${name}…/'` reads `${name}` in the replacement as a
   Perl variable and writes nothing there; two TypeScript template literals

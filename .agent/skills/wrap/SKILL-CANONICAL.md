@@ -58,16 +58,21 @@ analysis, never spend: answering is always in order, STARTING anything — a
 fleet, a monitor, a subagent — is gated until the compaction lands (owner
 correction 2026-08-17, verbatim: "nope, you have to compact first"). Never
 launch a long fleet into a context about to compact; its harvest lands in
-the thin post-compaction window. A compaction, manual or automatic, ends
-every session-scoped process — monitors, background loops, crons — so
-"processes run on across the boundary" is never true (a Director seat wrote
-it and resumed to an empty process table, 2026-09-09; a second seat the
-same day compacted with a watcher, four monitors and a cron armed and found
-none alive). The boundary block therefore carries the re-arm recipe as if
+the thin post-compaction window. A compaction, manual or automatic, may end
+every session-scoped process — monitors, background loops, crons — and may
+not: a Director seat resumed to an empty process table and a second seat the
+same day found none of a watcher, four monitors and a cron alive
+(2026-09-09), a schedule survived one (2026-09-23), and a watcher and a
+heartbeat loop survived an automatic one (2026-09-25); neither "everything
+dies" nor "processes run on across the boundary" is ever assumed. The
+boundary block therefore carries the re-arm recipe as if
 nothing survives: the exact watcher command, the loop commands, the cron
 expressions and prompts, any one-shot wake's date; the resume verifies by
 id first (the task list, the cron list, the process table) and re-arms
 only what that verification finds absent, so a survivor is never doubled.
+The durable records are written at the lane boundary, while there is room to
+think; the wrap is the reading-and-verifying pass over records that already
+exist, so a compaction that outruns the wrap loses nothing (2026-09-25).
 
 Wrap invoked non-terminally at the owner's word ("begin your wrap, this is
 not the end of your session", 2026-09-03) runs the programme's
@@ -89,7 +94,10 @@ the seat chooses the instrument, never when the owner names wrap.
    warrant.
 2. **Verify work safety with evidence.** WORK IS SAFE only when committed
    AND pushed AND on a PR: state `git status --branch` ahead/behind for
-   every touched branch, verbatim — never the bare words "all pushed"
+   every touched branch, verbatim, the branches enumerated from `git worktree
+   list` and each worktree's status, never from memory (a wrap named three
+   branches where the list held five, two with unpushed or unpruned work,
+   2026-09-25) — never the bare words "all pushed"
    (founding instance: a closeout claimed "all pushed" over a stranded
    local commit, caught only by first-hand verification; this estate's
    `exit-codes-in-band-never-piped` rule is the same discipline at command
@@ -112,7 +120,20 @@ the seat chooses the instrument, never when the owner names wrap.
    [`retrospective`](../cognition/retrospective/SKILL-CANONICAL.md) — routed, not
    auto-run. If the session graduated anything, confirm each graduation
    carries its PDR-130 prediction line.
-6. **Run the metaloss recursion (owned here).** The loss scan is itself an
+6. **Price the session's review loops.** Where the host carries the review-cost
+   gate (`agent-tools review-cost survey --since <session start>`), run the survey
+   and append one row per pull request the session touched to the host's
+   review-cost ledger (`.agent/memory/operational/review-cost-ledger.md`): the
+   survey's numbers, the seat's reading of the round the loop should have stopped
+   at, and whether the gate agreed, fired early, or fired late. Post-merge reviews
+   and comments are in the count, so a merged pull request is surveyed again at the
+   next wrap that touches it. A reading is the seat's; the owner's correction on the
+   row is the calibration label. The gate's weights change only against this ledger,
+   and every change is a row in its changes table (owner, 2026-09-13: "there is no
+   constant right answer, it's a try and see situation — keep notes, give it a go,
+   and make sure that we regularly review"). A host without the gate records the
+   seat's reading of each loop's stopping round in the wrap report instead.
+7. **Run the metaloss recursion (owned here).** The loss scan is itself an
    artefact that can lose information. Scan the scan, and repeat until the
    fixed point (the bounded discipline is this estate's
    `bounded-metaloss-recursion` pattern; these are its named passes):
@@ -137,7 +158,12 @@ the seat chooses the instrument, never when the owner names wrap.
      your own briefing is that self-model with fewer resources, not an
      external observer. State the bound and conserve the error signature
      (where outside eyes caught what the scan missed) so a successor
-     knows where to point external scrutiny.
+     knows where to point external scrutiny. Five seats' signatures name the
+     targets: the negatives a seat reports, the counts it states, the
+     verdicts that favour it and the frames two seats both like; each
+     write's credential, each relayed number and each wait's sensor; verdict
+     and validator code; descriptor lifetimes and file races (2026-09-21 to
+     2026-09-25).
    - **Fence sweep**: every owner word held off the repository at his word —
      grep every tracked line this seat and its peers wrote for the fenced
      wording before the wrap PR lands. The 2026-09-03 wrap found the morning's
@@ -149,10 +175,13 @@ the seat chooses the instrument, never when the owner names wrap.
      explicitly ("a third pass would only re-find X; the recursion closes
      here"). Closing without naming the fixed point is an unfinished wrap;
      looping past it is the meta-rabbit-hole.
-7. **Report.** The final owner-facing message: landed outcome against the
+8. **Report.** The final owner-facing message: landed outcome against the
    session's landing target (PDR-026), safety evidence, what is conserved
    where, what is deliberately context-only with reasons, and the claims/
-   monitors/comms disposition — with the closeout broadcasts
+   monitors/comms disposition, the background-agent list read first-hand
+   (a usage-limit pause ends in-flight subagents with no signal, and a
+   returned in-process agent stays alive until stopped though no process
+   listing shows it, 2026-09-27: relaunch the dead, stop the returned) — with the closeout broadcasts
    session-handoff and `start-right-team` §Closeout Contract require
    already emitted (final heartbeat-end included).
 

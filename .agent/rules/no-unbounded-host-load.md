@@ -104,7 +104,9 @@ again.**
    process burst fails a spawn. Relocate the stray entries to the session
    scratchpad, never delete them, and read the process family
    (`ps -o pid,ppid,comm`) before any kill; a kill by name can take a
-   peer's gate.
+   peer's gate. List by pid and command name, never the full command
+   line: `pgrep -fl` printed another tool's credentials (2026-09-28);
+   read the arguments of the seat's own processes only.
 
 ## Worked Instance (founding)
 
