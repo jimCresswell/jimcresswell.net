@@ -30,4 +30,5 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   in `fleet-design-review-before-expensive-fleets` §The practice.
 - **Observation (platform):** the Edit tool accepts a file read through a Bash `cat` or `sed`
   for files in the session's own repository, but a file in the sibling repository must be
-  read through the Read tool first, or the edit is refused as unread.
+  read through the Read tool first, or the edit is refused as unread. Homed in
+  `.agent/reference/shell-and-tooling-gotchas.md` (both estates).

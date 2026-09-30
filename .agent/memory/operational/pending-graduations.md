@@ -209,7 +209,8 @@ under ratified text, frames a question to the owner, adds process, and consolida
   the contract assertion stayed in Vitest and the emitted-channel assertion in Playwright, with
   content/entities.json imported with a JSON import attribute on the E2E side | target:
   testing-strategy §Site Workspace Conventions (one bullet; the
-  docs/engineering/testing-patterns.md half landed 2026-09-30) | trigger: the owner's card answer (session 2 batch) |
+  docs/engineering/testing-patterns.md half landed 2026-09-30) | trigger: the owner's card answer
+  (session 2 batch) |
   size: S | status: pending]`
   The never-import-an-app-module cell is already written: testing-strategy lines 452 to 453
   and testing-patterns lines 147 to 151. Prediction: no site E2E spec imports an app module in
