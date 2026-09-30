@@ -32,3 +32,7 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   for files in the session's own repository, but a file in the sibling repository must be
   read through the Read tool first, or the edit is refused as unread. Homed in
   `.agent/reference/shell-and-tooling-gotchas.md` (both estates).
+- **Surprise:** the push gate's `practice-substrate check` refused a records edit for naming the
+  retired `comms-events/` directory where the live one is `comms/`; the check runs only at push,
+  so the slip cost a full gate run. A path in a record is read from the live directory listing
+  before it is written, never from memory of the estate (2026-09-30).
