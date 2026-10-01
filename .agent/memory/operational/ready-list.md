@@ -10,12 +10,13 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 19:02Z).
+- None (read 2026-10-01 19:58Z).
 
 ## Open, not yet ready
 
-- None (read 2026-10-01 19:02Z). Neither estate has an open pull request apart from its
-  coordination draft.
+- OCE 322 (opened 2026-10-01 19:52Z, 27 files): the push product code from this estate, with its
+  tests re-derived against the testing directive; its first review round is running. The
+  implementer seat's one open lane.
 
 The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
 `coordination-fold` skill and are not listed here.

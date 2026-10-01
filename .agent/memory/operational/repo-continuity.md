@@ -203,13 +203,45 @@ lines below go one pull request at a time.
      278 had brought back on a pre-open review's word is removed. **A lesson for the next port's
      tests:** a mutant that survives is a finding only when it changes behaviour at a boundary; a
      mutant that changes a decision value is the directive working.
-   - Step two, in OCE, as two pull requests. First it takes this estate's push files as the same
-     bytes (the bound, the proofs, the guards, `token-deadline.ts`, `branch-arg.ts`); its lane is
-     cut there (`.claude/worktrees/push-converge`, claim 48c023b5). Then the `retire` action with
-     what it needs (`github-fetch.ts`, the `branch-retire` row of the scope table, the wiring in
-     `cli.ts`, its smokes). Until `retire` lands there every landed branch is deleted by hand
-     after the same ancestry proofs. Not the whole directory: this seat wrote that here earlier
-     and it was wrong.
+   - **The same lesson a second time, from the test review of step two (2026-10-01):** the other
+     proofs 278 put back pin decision values too (the token file's mode, the directory prefix,
+     the prompt setting, the two one-ref flags, the cleared arms computed from the product's own
+     table), and the guard cases 278 and 279 added answer the push's queries in sequence
+     (`inOrder`, a count of HEAD reads), which `test-immediate-fails.md` item 12 forbids. Those
+     tests are on this estate's `main` now. OCE's rework had dropped the pins on purpose; this
+     seat read that as a loss and restored them on one reviewer's word, without reading the
+     directive's §Rules against them.
+   - Step two, in OCE, as two pull requests. First the push product code: its pull request 322
+     (opened 19:52Z, lane `.claude/worktrees/push-converge`, claim 48c023b5). Three sub-agent
+     reviews ran before it opened and changed it from a copy of this estate's bytes: plain http
+     is refused in the push's own origin check and never in the shared parser, which has two
+     more callers there; and the tests are re-derived against the directive, each new behaviour
+     at its own seam over constant fakes. Then the `retire` action with what it needs
+     (`github-fetch.ts`, the `branch-retire` row of the scope table, the wiring in `cli.ts`, its
+     smokes). Until `retire` lands there every landed branch is deleted by hand after the same
+     ancestry proofs. Not the whole directory: this seat wrote that here earlier and it was wrong.
+   - Owed here from OCE's 322, one twin pull request once it lands: its push tests as the same
+     bytes, which removes the pins and the sequence fakes above; the http refusal moved from
+     `core/git-remote-url.ts` to `trustedOriginRepository` in `push-target-branch.ts`;
+     `printable` on the unknown-argument echo in `push-args.ts`; the help's sentence on what the
+     HEAD guard delivers; the measurement in `push-attempts.ts` worded to be true in both
+     estates. One phrase of `.agent/reference/merge-bot.md` ("streams to stderr in full" becomes
+     "reaches": the command's stderr is buffered until the run ends) sits in the consolidation
+     seat's area.
+   - Routed from 322's security review, one lane for both estates, each confirmed by probe on
+     OCE's lane, whose `push-git.ts` is this estate's bytes. Over the bar: the `insteadOf` rewrite in the last bullet of this
+     line is now tested and real (with `pushInsteadOf` as well, the push goes over ssh as the
+     signed-in human; the cure is a fifth token-free read before the mint); an ambient
+     `GIT_TRACE_REDACT=0` with `GIT_TRACE_CURL=1` prints the credential on stderr (the cure
+     unsets `GIT_TRACE_REDACT` in `pushEnv`). Under the bar: a git-legal `--branch` value holding
+     C1 or format characters is echoed raw; `REFUSED_FLAGS[flag]` is a plain-object lookup in
+     both `push-args.ts` and `retire-args.ts`; `Date.parse` reads lenient forms of the expiry;
+     `AttemptGuards` holds the whole token where the deadline alone is used. OCE's record
+     (§Next Safe Steps line 4 there) holds the full list.
+   - Routed from 322's test review, one lane for both estates: `push-args.unit.test.ts` asks the
+     real git binary in five cases; the token file's mode, its location, the submodule flag and
+     the prompt setting have no proof against a real filesystem or git, and the push smoke's
+     live leg can give one.
    - The merge action is its own convergence, read 2026-10-01 by comparing the trees with the
      scope made the same. It has diverged in both directions. OCE has `--unavailable`
      declarations (`pr-watch/declared-unavailable.ts`), the `SETTLING-QUIET-WINDOW` verdict and
