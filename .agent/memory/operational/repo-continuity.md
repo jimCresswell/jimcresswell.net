@@ -21,10 +21,18 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T18:37Z: pull request 278 landed as SHA:18ec6145; the push is one token and one
+  settled commit** (Crucible binds Slag, 7b999c). `merge-bot push` here takes OCE's design and
+  keeps this estate's bounded output copy: it mints once and retries GitHub's pre-hook refusal on
+  3 s, 10 s and 30 s with the same token; it pushes the commit HEAD named when it began and stops
+  if HEAD or the branch moves; it refuses the default branch as origin names it, and trusts no
+  origin read over plain http; it starts no attempt within five minutes of the token's expiry. A
+  seat whose push says the default branch cannot be read runs `git remote set-head origin --auto`
+  once. The convergence's remaining steps are §Next Safe Steps line 4.
+
 - **2026-10-01T17:37Z: arc-metrics is the same bytes in both estates** (Crucible binds Slag,
   7b999c). OCE took 277's two settlement pushes as its pull request 321 (SHA:9dae121c7). The
-  topic's files differ between the estates only in three citation lines. This seat's open lane is
-  pull request 278 here (§Next Safe Steps line 4).
+  topic's files differ between the estates only in three citation lines.
 
 - **2026-10-01T17:19Z: pull request 277 landed as SHA:ce3e0296; arc-metrics counts every entry**
   (Crucible binds Slag, 7b999c). OCE's port of the tool landed there as its pull request 320
@@ -167,8 +175,7 @@ lines below go one pull request at a time.
    pull requests 239 and 310 left it (one token on GitHub's backoff of 3 s, 10 s and 30 s, one
    settled commit, the default branch read from origin); this estate `retire`, the `--branch` check
    the two commands share, and a bounded copy of the push's output for the refusal check.
-   - Step one, here, in hand: pull request 278 (opened 17:57Z, lane
-     `.claude/worktrees/push-one-token`, branch `fix/merge-bot-push-one-token`, claim da371c6f).
+   - Step one, here, landed: pull request 278 (`SHA:18ec6145`, 18:37Z).
      This estate's push takes OCE's design and keeps the bound and the shared check. A code review
      before it opened found that OCE's rework had dropped proofs this estate's tests held (the token
      file's mode, the terminal prompt, the cleared credential arms, the wait between attempts, the
@@ -180,7 +187,8 @@ lines below go one pull request at a time.
      and the commit are one snapshot of HEAD; an origin read over plain http is not trusted; the
      bound's unit is stated; a case holds the two flags that keep the push to one ref. Its budget
      is spent and its state is in the pull request.
-   - Step one's remainder, here, before step two: one small lane for the five items Copilot's
+   - Step one's remainder, here, before step two, in hand (lane `.claude/worktrees/push-remainder`,
+     branch `fix/merge-bot-push-remainder`, claim 9002c2f0): one small lane for the five items Copilot's
      review of 278's last tip named, each verified and below the bar (review 5383812791, the signed
      disposition on the pull request). In `push-attempt-guards.ts`, read HEAD first and sample the
      clock last, so no read stands between the deadline check and the attempt. In `push-args.ts`,
@@ -203,10 +211,12 @@ lines below go one pull request at a time.
      `push.recurseSubmodules=on-demand` (a case holds the flag on the command line; the smoke needs
      a second repository in its fixture, and belongs with the lane that turns the agent-tools
      smokes into tests).
-5. Two files inside the consolidation seat's claimed areas change in pull request 278, each bound
-   to the code it describes: `.agent/reference/merge-bot.md` (the front-door push section) and one
-   line of the `cross-fork-integration` skill (the push's git argv). The seat was told on the stream
-   before 278 opened; no answer by this writing.
+5. Two files inside the consolidation seat's claimed areas changed on `main` with pull request
+   278, each bound to the code it describes: `.agent/reference/merge-bot.md` (the front-door push
+   section) and one line of the `cross-fork-integration` skill (the push's git argv). The seat was
+   told on the stream before 278 opened and at its landing; no answer by this writing. Its
+   question from this seat also stands unanswered: whether its lane touches
+   `.agent/directives/validation-strategy.md`, which gates line 3's directive hunks.
 6. Owner acts owed, for the turbo node's first criterion: the Vercel OIDC policy covering this
    repository, and the `TURBO_TEAM` repository variable (`threads/turbo-remote-cache.next-session.md`
    carries the policy's terms and the command). Read 2026-10-01: the variable is absent, and the
