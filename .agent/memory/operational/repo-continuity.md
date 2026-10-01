@@ -154,6 +154,25 @@ The items below are still open from the 2026-09-16 snapshot, each verified in th
   "only when both numbers are below the baseline", which cannot be met from a baseline of zero and
   refuses a close where one number falls and the other holds level. Both numbers are far from zero
   today (147 files, 7,142 lines); the wording is decided with the measure, in both estates.
+  The review's third round (on SHA:4965e6e6, after the settlement budget was spent) adds five,
+  each verified first-hand and each in text shared with OCE:
+  - The same rule's baseline (clause 1) names every shared path under `.agent/` and the shared
+    engineering docs, while the measuring script defaults to six `.agent` subtrees and two docs
+    and reads Markdown only, so the quoted numbers measure less than the rule declares.
+  - `stage-by-explicit-pathspec`'s computed staging list reads `git diff --name-only`, which
+    omits new files; the row says nothing of them.
+  - `.agent/reference/tooling.md` installs the Playwright browser from the primary checkout,
+    while the `set-up-worktree-lane` skill runs the same install scoped to the lane.
+  - The pattern `cli-writer-boundary-discipline` says the three protections "live in one writer
+    module the CLIs share"; `collaboration-state/atomic-file.ts` carries no `lstat` or no-follow
+    seam (the no-follow reads are in `core/no-follow-read.ts` and `core/flag-path-resolve.ts`),
+    so the sentence names a shape the shared writer does not yet have.
+  - The pattern `prove-the-checker-with-a-negative-control` says the visual-regression harness
+    README records the negative-control recipe; the README describes the harness's own use of
+    `git archive` and no such recipe.
+  OCE's second round adds one: `pr-lifecycle` §Phase 7's landing-slot bullet says every push
+  opens a fresh review round, where OCE's state machine says a pure sync opens none and this
+  estate's copy lacks that text.
 - From the same review's second round, one small tooling lane for both estates: `comms direct` and
   `comms reply` require `--active` and `--comms-dir` where `comms send` derives them from the
   coordination home (`commsSendDefaults`); wire the same defaults into the directed commands. The
