@@ -101,7 +101,7 @@ an implicit engine behaviour.
 
 ## Operating lessons
 
-Three lessons from the harness's first months (2026-03), each learned once:
+Four lessons from the harness's first months (2026-03), each learned once:
 
 - **Capture regions use structural selectors.** Anchor a region on the
   document's own structure (a landmark, a heading, a contract-derived

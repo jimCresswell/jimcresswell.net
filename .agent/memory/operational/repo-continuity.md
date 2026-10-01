@@ -29,10 +29,11 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   the folded default branch, nothing on a coordination branch. Crucible binds Slag (7b999c,
   implementer, claim 8e37e0d3) holds the folds, this record, the thread records other than
   `two-estate-consolidation`, the upstream sync into OCE's default branch `engraph`, and the open
-  pull requests. `main` is at f6a26954. The coordination branch `coordination/2026-09-29-b6232c`
-  (draft pull request 274) was 24 commits ahead of `main` and none behind at 13:1xZ, two days past
-  its cut: its fold is overdue, and it carries the first consolidation's doctrine and two code
-  hunks that the fold declares in its scope. The first consolidation closed on 2026-10-01 at
+  pull requests. Pull request 274 is the fold of the coordination branch cut on 2026-09-29; beside
+  its records it carries the first consolidation's doctrine and two code hunks committed to that
+  branch without review, each class declared in its description with the reviews it had. A
+  consolidation's doctrine and any code go on their own lanes from here on (the `coordination-fold`
+  skill's preconditions). The first consolidation closed on 2026-10-01 at
   11:5xZ (Hawthorn binds Bracken, b3f117); its counts and handoff are the newest blocks of
   `threads/two-estate-consolidation.next-session.md`. The order of work is §Next Safe Steps.
 
@@ -74,7 +75,7 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   lane's proof. Two of its pull requests are still open in OCE, read 2026-10-01T13:18Z: 310 (the
   merge-bot push retry, three unresolved threads) and 309 (the repair smoke's process groups, one
   unresolved thread, and commits in its lane worktree that the remote does not have). Their claims
-  in OCE's registry still name the closed seat; Crucible binds Slag adopts them at pickup.
+  in OCE's registry named the closed seat; Crucible binds Slag adopted them on 2026-10-01.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
@@ -100,24 +101,25 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 STATE, 2026-10-01T13:2xZ (Crucible binds Slag, 7b999c): the consolidation's own next steps are the
 newest state block of `threads/two-estate-consolidation.next-session.md` and belong to its seat. The
 order below is this seat's, from the owner's word in §Current State; each of the first four lines
-is one ceremony or one pull request per lane, in landing order.
+is one ceremony or one pull request per lane, in landing order. This estate's own fold is not a
+line here: a fold's records state what landed, and its branch's state lives in its pull request.
 
-1. Fold pull request 274 into `main` by the `coordination-fold` skill and cut the day's successor.
-   Its scope is declared, never trimmed: records; the first consolidation's doctrine across rules,
-   skills, decision records and directives; and two code hunks committed to the branch without
-   review (the context-window registry row for `claude-fable-5-1`, SHA:c48d9104, and the
-   `.claude/worktrees/**` ignore in the markdown-links validator with the `.gitignore` pair,
-   SHA:d07edd9b), which get a first-hand code review before the merge.
-2. Fold OCE's coordination pull request 299 into `engraph` the same way (27 commits behind
-   `engraph` at 13:1xZ), and cut its successor.
-3. Land OCE's three open lanes, one sync push each at its turn: 313 first (green, no threads), then
+1. Fold OCE's coordination pull request 299 into `engraph` by the `coordination-fold` skill (27
+   commits behind `engraph` at 13:1xZ), and cut its successor. It carries the same two code hunks
+   as pull request 274, under the same review.
+2. Land OCE's three open lanes, one sync push each at its turn: 313 first (green, no threads), then
    309 and 310 (each with unresolved threads to harvest; 309 with lane commits the remote lacks).
-4. The upstream sync: `engraph` is six commits behind upstream `main` at SHA:050bf314c. OCE's
+3. The upstream sync: `engraph` is six commits behind upstream `main` at SHA:050bf314c. OCE's
    carrier workflow opens the draft carrier at its next run; the seat takes it by the
    `cross-fork-integration` skill. Under the owner's limit on open pull requests
    (`director-handoff.md`, 2026-09-26: one coordination pull request per repository, and as many
    others as there are implementer seats, counted across both estates) the carrier's turn comes
    after the three lanes, unless the owner puts it first.
+4. OCE's two lane worktrees that hold work outside any pull request, each to its own pull request:
+   arc-metrics (one commit with no remote branch, three uncommitted files) and the J2
+   docs-validators port (uncommitted). Their claims named closed seats; Crucible binds Slag adopted
+   all five of OCE's stale claims on 2026-10-01, and the premise of these two is still to recompute
+   first-hand before any edit.
 5. Owner acts owed, for the turbo node's first criterion: the Vercel OIDC policy covering this
    repository, and the `TURBO_TEAM` repository variable (`threads/turbo-remote-cache.next-session.md`
    carries the policy's terms and the command).
@@ -136,14 +138,27 @@ The items below are still open from the 2026-09-16 snapshot, each verified in th
     enters dot-directories, so a lane's `.env.local` under `.claude/worktrees/` joins the root
     global hash (the reviewer's reading of the dry run; the lane-path match itself is unobserved
     until a lane carrying the file exists). Anchor the glob by depth, prove it with the dry run,
-    and re-true the coverage sentence in `worktree-residency` and the quotation in
+    and re-true the coverage sentence in `worktree-residency`, the same claim in `worktree-hygiene`
+    §0 and in the `set-up-worktree-lane` skill ("every root check tool ignores it", which the
+    pull request's Copilot review also raised), and the quotation in
     `docs/engineering/build-system.md`; the sentence also omits knip and the depcruise tsconfig.
+    OCE's `turbo.json` carries the same glob, so the lane is twinned.
   - The context-window registry's comment for `claude-fable-5-1` cites 252,933 tokens, which
     supports "more than 252,933" only; this model's turns reach 966,550 uncompacted (session
     c39ad7fe, 2026-09-13T23:43Z, read first-hand), which carries the one-million row. Replace the
     evidence in the comment.
   - `session-metadata` prints a reading above 100 % as `degraded` with exit 0, which is how a
     too-small registry row presents without being named; the reading names a refuted row instead.
+- From the Copilot review of pull request 274, routed to the second consolidation, whose seat holds
+  the divergence measure: clause 3 of `cross-estate-work-must-reduce-divergence` closes an activity
+  "only when both numbers are below the baseline", which cannot be met from a baseline of zero and
+  refuses a close where one number falls and the other holds level. Both numbers are far from zero
+  today (147 files, 7,142 lines); the wording is decided with the measure, in both estates.
+- JC.net's commit hook does not run the whole-tree gate that OCE's does (OCE writes
+  `.turbo/last-gate.log`; here the gate runs at the push). The `session-handoff` skill now says so
+  for each estate. Bringing the commit-time gate here is the ratified delivery node
+  `commit-as-the-full-local-gate` (2026-09-24), which no seat holds; it sits with the parity lanes
+  in line 6.
 - The `minimumReleaseAgeExclude` block in `pnpm-workspace.yaml` has been dead config since 2026-09-17
   and is still present: delete it.
 - The three hand-authored hook shims under `.claude/hooks/` (`practice-session-identity.mjs`,
