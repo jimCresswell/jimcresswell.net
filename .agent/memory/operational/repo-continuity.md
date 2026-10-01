@@ -21,6 +21,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T14:37Z: pull request 274 folded into `main` as SHA:cb285512** (Crucible binds Slag,
+  7b999c; the bot's merge through the merge door, four Copilot rounds, every finding dispositioned
+  on the pull request). The folded branch is retired, local and remote. moved for the sites:
+  nothing in this fold (pull request 275, the optional Turbo remote cache, landed on its own lane
+  inside the window) / moved for the Practice: the first two-estate consolidation's doctrine and
+  records, the nested-worktree convention's ignore rules, the continuity records trued for two
+  seats, eight review cures (four over the bar).
+
 - **2026-10-01T13:2xZ: two seats (n=2), no Director, at the owner's word** (verbatim, to Crucible
   binds Slag: "Hazel tracks Trunk (7d8b9d) is working on the dedicated conslidation, you pick up
   the other threads, fix the fold and continuation records fist. Main also needs merging into
@@ -173,6 +181,14 @@ The items below are still open from the 2026-09-16 snapshot, each verified in th
   OCE's second round adds one: `pr-lifecycle` §Phase 7's landing-slot bullet says every push
   opens a fresh review round, where OCE's state machine says a pure sync opens none and this
   estate's copy lacks that text.
+  The fourth round (on SHA:2a83df18) adds three, routed in signed lines on the pull request:
+  - `use-monitor-for-event-driven-wake` binds every wait to a Monitor under the owner's word of
+    2026-09-29, while its own exclusions keep a one-shot wait on a background command; the
+    owner's word governs and the rule's wording is settled around it.
+  - `worktree-hygiene` §6 says every remote branch is in a pull request or deleted, while its
+    earlier paragraph exempts the default branch and an upstream mirror.
+  - `start-right-team` caps concurrent fix lanes at about three and then says a lane finishes
+    before the next starts, without saying the second clause is per seat.
 - From the same review's second round, one small tooling lane for both estates: `comms direct` and
   `comms reply` require `--active` and `--comms-dir` where `comms send` derives them from the
   coordination home (`commsSendDefaults`); wire the same defaults into the directed commands. The

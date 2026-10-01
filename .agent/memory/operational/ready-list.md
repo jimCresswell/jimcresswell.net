@@ -1,7 +1,7 @@
 # Ready list
 
-Every open pull request on both estates that is green with zero unresolved threads, smallest
-changed-file count first: the order the owner lands in when the owner chooses to land by hand
+Every open pull request on both estates that is not a draft and is green with zero unresolved
+threads, smallest changed-file count first: the order the owner lands in when the owner chooses to land by hand
 (the owner's word, 2026-09-26: "don't block small green PRs on manual, but do maintain a list so
 that when I ask you can give me links"). Re-derivable at any time from the forge:
 `gh pr list --json number,isDraft,mergeStateStatus,changedFiles` gives state and size, and the
