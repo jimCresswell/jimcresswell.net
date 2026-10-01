@@ -38,7 +38,7 @@ export interface PushToken {
  *
  * @param identity - The bot identity the push acts as.
  * @param mint - The mint the token comes from.
- * @returns The token with its deadline, or the failure to report before any git call.
+ * @returns The token with its deadline, or the failure to report before the transfer that would carry it.
  */
 export async function mintPushToken(
   identity: BotIdentity,
@@ -58,7 +58,7 @@ export async function mintPushToken(
   if (minted.value.token === '') {
     return err(
       new Error(
-        'minted token is empty — refusing before any git call: the credential helper would emit an empty password and git would fall back to prompting the signed-in human',
+        'minted token is empty — refusing before the transfer that would carry it: the credential helper would emit an empty password and git would fall back to prompting the signed-in human',
       ),
     );
   }

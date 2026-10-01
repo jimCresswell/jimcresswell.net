@@ -24,8 +24,10 @@ export const PUSH_USAGE = `merge-bot push [--branch <name>] [--json]
   Pushes the commit HEAD names to the repository's GitHub remote as the BOT,
   over one freshly minted installation token — the whole per-session
   credential-helper recipe as one command. The push itself IS the git binary;
-  this command injects the bot identity and refuses by type, and adds no
-  transfer behaviour of its own but one bounded retry: when GitHub refuses the
+  this command injects the bot identity and refuses by type. It pins what git
+  is asked to write: that one commit, to refs/heads/<branch> alone, with tag
+  following and submodule recursion turned off whatever the checkout
+  configures. Its one addition is a bounded retry: when GitHub refuses the
   push at git's first request, before the pre-push hook runs, because the
   fresh token has not yet reached every edge, it runs git again with the same
   token after each wait on GitHub's advised backoff, naming each retry on
@@ -39,7 +41,7 @@ export const PUSH_USAGE = `merge-bot push [--branch <name>] [--json]
   carries the file's path, never the token — the pre-push hook chain inherits
   that environment, and an env dump there must never print a live credential.
   Never in argv, never in a remote URL, never on either output stream. An
-  empty minted token fails before any git call — an empty credential would
+  empty minted token fails before the transfer — an empty credential would
   make the helper emit an empty password and git would fall back to
   prompting, which is the signed-in human.
 

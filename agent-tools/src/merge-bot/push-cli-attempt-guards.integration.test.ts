@@ -113,6 +113,27 @@ describe('merge-bot push: the token expiry bounds every attempt', () => {
     expect(run.errText()).toContain(EXPIRES_AT);
   });
 
+  it('reads the clock after it has read HEAD, so a slow read cannot carry an attempt past the deadline', async () => {
+    let headReads = 0;
+    const reads: PushGitReads = {
+      ...gitReads(),
+      headCommit: () => {
+        headReads += 1;
+        return Promise.resolve(AT_COMMIT);
+      },
+    };
+    // The deadline passes while the attempt's own read of HEAD runs: the
+    // second read, after the one that settled the commit.
+    const run = runPush({
+      reads,
+      overrides: { nowIsoImpl: () => (headReads >= 2 ? '2026-08-06T09:56:00.000Z' : NOW) },
+    });
+
+    expect(await run.exit).toBe(1);
+    expect(run.calls).toEqual([]);
+    expect(run.errText()).toContain(EXPIRES_AT);
+  });
+
   it('pushes nothing on an expiry it cannot read as a time', async () => {
     const run = runPush({ mint: mintAnswering(TOKEN, 'in an hour') });
 
