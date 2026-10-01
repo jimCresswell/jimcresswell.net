@@ -122,10 +122,20 @@ on open pull requests (`director-handoff.md`, 2026-09-26: one coordination pull 
 repository, and as many others as there are implementer seats, counted across both estates) the
 lines below go one pull request at a time.
 
-1. OCE's arc-metrics lane to its pull request. Premise recomputed first-hand on 2026-10-01: the tool
-   is on this estate's `main` and absent from `engraph`, and this estate has not changed it since
-   the port. The lane worktree holds two local commits and no remote branch (the port, and the three
-   files the exchange seat left uncommitted, read and run before their commit).
+1. OCE's arc-metrics lane, its pull request 320. Premise recomputed first-hand on 2026-10-01: the
+   tool is on this estate's `main` and absent from `engraph`, and this estate has not changed it
+   since the port. A code review made before its ready-mark found three defects that this estate's
+   `main` also carries, each verified first-hand and cured there test first; they are owed here as
+   the same bytes on one pull request, after 320 lands:
+   - `arc-metrics/file-system-node.ts` reads lines through `node:readline`, which also splits on
+     the Unicode line and paragraph separators that JSON leaves unescaped, so every entry holding
+     either is dropped (15 entries in this estate's own project directory, as 52 fragments). OCE's
+     `split-lines.ts` splits on the newline alone.
+   - A named `--project-dir` that does not exist reports no sessions and exit 0.
+   - Nothing says that sub-agent transcripts, which the vendor nests under each session, are not
+     measured; in this estate's directory they hold about two fifths of all model calls. Naming
+     the exclusion is the cure owed; counting them is a design of its own, for both estates.
+   `codex-exec/cli.ts` reads its event lines through `node:readline` too, in both estates.
 2. OCE's J2 docs-validators port to its pull request: about 2,650 uncommitted lines in its lane
    worktree (`cited-paths`, `cited-scripts`, `lineage-names`, all on this estate's `main` and absent
    from `engraph`), unread by this seat; read and run before any commit.
