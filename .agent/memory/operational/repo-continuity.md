@@ -21,6 +21,12 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T19:00Z: pull request 279 landed as SHA:c6394b98; the push's remainder** (Crucible
+  binds Slag, 7b999c). Before each attempt `merge-bot push` reads HEAD first and the clock last;
+  its help says what it pins; its mint test pins no scope. This estate's push files are settled,
+  and OCE takes them next as the same bytes (§Next Safe Steps line 4). This seat holds no open
+  lane pull request here.
+
 - **2026-10-01T18:37Z: pull request 278 landed as SHA:18ec6145; the push is one token and one
   settled commit** (Crucible binds Slag, 7b999c). `merge-bot push` here takes OCE's design and
   keeps this estate's bounded output copy: it mints once and retries GitHub's pre-hook refusal on
@@ -187,22 +193,21 @@ lines below go one pull request at a time.
      and the commit are one snapshot of HEAD; an origin read over plain http is not trusted; the
      bound's unit is stated; a case holds the two flags that keep the push to one ref. Its budget
      is spent and its state is in the pull request.
-   - Step one's remainder, here, before step two: pull request 279 (opened 18:45Z, lane
-     `.claude/worktrees/push-remainder`, branch `fix/merge-bot-push-remainder`, claim 9002c2f0),
-     the five items Copilot's review of 278's last tip named, each verified and below the bar
-     (review 5383812791). HEAD is read first and the clock last, so no read stands between the
-     deadline check and the attempt; the help says what the push pins; a header's read count and
-     the empty-token message are corrected. The mint test asserts nothing about the request:
+   - Step one's remainder, here, landed: pull request 279 (`SHA:c6394b98`, 19:00Z), the five
+     items Copilot's review of 278's last tip named, each verified and below the bar (review
+     5383812791). HEAD is read first and the clock last, so no read stands between the deadline
+     check and the attempt; the help says what the push pins; a header's read count and the
+     empty-token message are corrected. The mint test asserts nothing about the request:
      Copilot's review of 279 held, against `testing-strategy.md`, that which scope the push asks
      for is a decision, guaranteed by construction and never pinned by a test, so the assertion
-     278 had brought back on a pre-open review's word is removed (`SHA:1c4a151a`). **A lesson for
-     the next port's tests:** a mutant that survives is a finding only when it changes behaviour
-     at a boundary; a mutant that changes a decision value is the directive working. Its state is
-     in the pull request.
-   - Step two, in OCE, after 279 lands: it takes this estate's push files as the same bytes (the
-     bound, the proofs, the guards, `token-deadline.ts`) and the `retire` action with what it
-     needs (`branch-arg.ts`, `github-fetch.ts`, the `branch-retire` row of the scope table, the
-     wiring in `cli.ts`, its smokes). Until then every landed branch there is deleted by hand
+     278 had brought back on a pre-open review's word is removed. **A lesson for the next port's
+     tests:** a mutant that survives is a finding only when it changes behaviour at a boundary; a
+     mutant that changes a decision value is the directive working.
+   - Step two, in OCE, as two pull requests. First it takes this estate's push files as the same
+     bytes (the bound, the proofs, the guards, `token-deadline.ts`, `branch-arg.ts`); its lane is
+     cut there (`.claude/worktrees/push-converge`, claim 48c023b5). Then the `retire` action with
+     what it needs (`github-fetch.ts`, the `branch-retire` row of the scope table, the wiring in
+     `cli.ts`, its smokes). Until `retire` lands there every landed branch is deleted by hand
      after the same ancestry proofs. Not the whole directory: this seat wrote that here earlier
      and it was wrong.
    - The merge action is its own convergence, read 2026-10-01 by comparing the trees with the
