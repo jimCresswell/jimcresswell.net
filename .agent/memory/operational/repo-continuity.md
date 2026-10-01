@@ -176,16 +176,33 @@ lines below go one pull request at a time.
      of the design itself, cured in settlement push one (`SHA:e0dc449d`): each attempt, the first
      included, starts only while HEAD still names the settled commit, since the pre-push hook
      validates the checkout and never the commit git is handed; and only inside the token's own
-     life (R5). Its state is in the pull request.
-   - Step two, in OCE, after 278 lands: it takes this estate's `merge-bot` directory as the same
-     bytes, which brings it `retire`, the bound, the proofs and the two guards. Until then every
+     life (R5). Settlement push two (`SHA:2c010985`) cured four more: with no `--branch`, the branch
+     and the commit are one snapshot of HEAD; an origin read over plain http is not trusted; the
+     bound's unit is stated; a case holds the two flags that keep the push to one ref. Its budget
+     is spent and its state is in the pull request.
+   - Step one's remainder, here, before step two: one small lane for the five items Copilot's
+     review of 278's last tip named, each verified and below the bar (review 5383812791, the signed
+     disposition on the pull request). In `push-attempt-guards.ts`, read HEAD first and sample the
+     clock last, so no read stands between the deadline check and the attempt. In `push-args.ts`,
+     the help says the push adds no transfer behaviour but the retry: say what it pins (the
+     commit, the full branch ref, no tag following, no submodule recursion). In
+     `push-cli-mint.integration.test.ts`, compare the request's permissions with what
+     `token-scopes.ts` gives for `pull-request-work`, never the three values. In `push-git.ts`,
+     the header says three reads and there are four. In `push-mint.ts`, the empty-token message
+     says "before any git call" and the target's reads have run: say "before the transfer that
+     carries the credential".
+   - Step two, in OCE, after that lane lands: it takes this estate's `merge-bot` directory as the
+     same bytes, which brings it `retire`, the bound, the proofs and the guards. Until then every
      landed branch there is deleted by hand after the same ancestry proofs.
    - Routed from the reviews, each its own lane: the operator profile's keys and `retire`'s origin
      check move to `core/git-remote-url.ts` (`retire` binds the raw URL and the push the rewritten
      one, so the move changes what `retire` binds); a `url.<base>.insteadOf` that rewrites
      `https://github.com/` to ssh would, by the reviewer's reading (not tested), carry the push as
      the signed-in human; OCE scopes its push secret scan by the destination's URL and this estate
-     does not.
+     does not; a smoke against real git that proves no submodule ref is pushed under
+     `push.recurseSubmodules=on-demand` (a case holds the flag on the command line; the smoke needs
+     a second repository in its fixture, and belongs with the lane that turns the agent-tools
+     smokes into tests).
 5. Two files inside the consolidation seat's claimed areas change in pull request 278, each bound
    to the code it describes: `.agent/reference/merge-bot.md` (the front-door push section) and one
    line of the `cross-fork-integration` skill (the push's git argv). The seat was told on the stream
