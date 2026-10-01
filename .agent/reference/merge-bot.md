@@ -355,7 +355,17 @@ statement in `agent-tools/src/merge-bot/push-token-file.ts` — 0600 applies
 on POSIX), and hands the transfer to the git binary with a
 static credential helper reading that file — the child environment names
 only the file's path. Never argv, no force flags, no `--no-verify`, and
-pushes to the default branch refuse by name (see
+the push writes exactly one ref, the full `refs/heads/<branch>`: no tag
+or submodule ref follows it. Pushes to the default branch refuse, in any
+case: `main` and `master` by name, then whatever branch
+`refs/remotes/origin/HEAD` names, read only when `origin` has one URL and
+it is the repository the push goes to. That read is a snapshot a fetch
+does not move, so after the repository's default branch changes, run
+`git remote set-head origin --auto`. Where the configured repository's
+ruleset on the default branch binds the bot, as this repository's does,
+GitHub refuses a direct push either way. An unreadable default branch,
+or an `origin` that is not that one repository, fails the push (exit 1)
+rather than guessing (see
 [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).
 
 GitHub has refused a freshly minted token's push at its first request,
@@ -367,12 +377,19 @@ remote: Permission to <repo> denied to <bot>.
 fatal: unable to access '<url>': The requested URL returned error: 403
 ```
 
-A later push went through each time. The push therefore tries the push
-again with a fresh token, 30 seconds on, up to three attempts in all, and
-names each retry on stderr. It reports a third refusal as an operational
-failure, with every refusal shown. Any other failure is final at once,
-including a 403 after the hook ran: trying that again would run the whole
-gate again.
+GitHub refuses a fresh installation token until it has replicated to every
+one of its edge caches, and advises retrying at increasing intervals
+(GitHub Support, as quoted in aws-amplify/amplify-hosting#4080). The push
+therefore mints one token and tries the transfer again with that same token
+after each wait in `PUSH_RETRY_WAITS_MS` (`agent-tools/src/merge-bot/push-attempts.ts`),
+naming each retry on stderr. A fresher token would only start the wait
+again. Every attempt pushes the same commit, settled from HEAD before the
+mint, so a commit made during the waits is never pushed in its place. When
+the waits run out, it reports an operational failure with every refusal
+shown. Any other failure is final at once, including a 403 after the hook
+ran: trying that again would run the whole gate again. The refusal check
+keeps a bounded copy of the push's output (`REFUSAL_TRANSCRIPT_BOUND`, same
+file); the output itself streams to stderr in full.
 
 ## Retiring a merged branch
 
