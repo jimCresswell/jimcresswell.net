@@ -10,7 +10,7 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation
+## Current Continuation (2026-09-30T09:4xZ, the latest block governs)
 
 - Branch: none. The lane is at rest; its last PR (JC.net 273) merged at b6232c77. The primary
   checkout sits on `main` at b6232c77 with a clean tree (the owner's arrangement for this lane).

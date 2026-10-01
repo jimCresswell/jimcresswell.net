@@ -154,14 +154,21 @@ the owner should see the team delivering, not the Director reporting.
   words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
   2026-09-27T09:39Z and 09:52Z blocks.
 
-## Current handoff state (2026-09-28, pointer-biased by design)
+## Current handoff state (2026-10-01, pointer-biased by design)
+
+**§POINTER, 2026-10-01 13:2xZ (Crucible binds Slag, `7b999c`).** No Director seat exists. The seat
+that took the n=1 work on 2026-09-30 (Hawthorn binds Bracken, `b3f117`) closed on 2026-10-01; the
+owner then seated two: a curator on the second dedicated consolidation and an implementer on the
+folds, the continuity records, the upstream sync and the open pull requests. The live reading is
+`repo-continuity.md` §Current State and §Next Safe Steps; the standing rulings above bind both
+seats, and the next Director rehydrates from this file as before.
 
 **§POINTER, 2026-09-29 13:4xZ (Wick binds Temper, `ed7b48`, the Director seat, at the owner's
 word).** The Director lane closed on 2026-09-29; the owner handed the work to one seat (n=1) across
-both estates. That seat's handoff is on the lineage: its `estate-coordination` thread record's
-journal entry "2026-09-29T13:4xZ — HANDOFF to the n=1 seat", with the retrospective
+both estates. That seat's handoff is in OCE: its `estate-coordination` thread record's
+journal entry "2026-09-29T13:4xZ — HANDOFF to the n=1 seat", with the retrospective, OCE's
 `.agent/reports/agentic-engineering/why-five-days-of-landings-closed-nine-stories-2026-09-29.md`.
-Every "napkin's <time> block" named below, from 2026-09-27T09:06Z on, now reads in
+Every "napkin's <time> block" named above, from 2026-09-27T09:06Z on, now reads in
 `.agent/memory/active/archive/napkin-2026-09-27-to-2026-09-29.md`; earlier ones in
 `archive/napkin-2026-09-21-to-2026-09-27.md`.
 

@@ -8,21 +8,26 @@ that when I ask you can give me links"). Re-derivable at any time from
 
 ## Ready now
 
-- None (read 2026-09-29 13:4xZ).
+- None (read 2026-10-01 13:18Z): every open pull request that is not a draft is behind its base.
 
-## Open, not yet ready (2026-09-29 13:4xZ, at the Director's close; the n=1 seat's order)
+## Open, not yet ready (2026-10-01 13:18Z; Crucible binds Slag's order)
 
 | Order | PR | Estate | State at the last read |
 | --- | --- | --- | --- |
-| 1 | 310 | lineage | B1, the merge-bot push retry; BEHIND at 44ab80289; three unresolved threads, Codex P1 first |
-| 2 | 309 | lineage | J3's round cures; remote 2cb3eb56d, two local commits in `oce-wt-repair-smoke-group`; one thread |
+| 1 | 313 | OCE | The Turbo remote cache, optional everywhere; 7 files; green at 7f7b2eb1a, no review threads; BEHIND |
+| 2 | 309 | OCE | J3's round cures; 3 files; green at 2cb3eb56d, one unresolved thread; BEHIND; its lane worktree `oce-wt-repair-smoke-group` holds commits the remote lacks |
+| 3 | 310 | OCE | B1, the merge-bot push retry; 16 files; green at 44ab80289, three unresolved threads, Codex P1 first; BEHIND |
 
-The coordination drafts (lineage 299 and this estate's) fold at the half-day boundary and are not
-listed.
+The coordination drafts (OCE 299 and this estate's 274) are both past their fold boundary and are
+the first two items of `repo-continuity.md` §Next Safe Steps; they are not listed here.
 
-## Landed on 2026-09-29
+## Landed on 2026-09-30
 
-- Lineage 305 (09:21Z), 311 (11:27Z, J8 whole), 312 (12:12Z, the Turbo remote cache in CI, by the
+- JC.net 275 (the Turbo remote cache, optional everywhere, at SHA:f6a26954).
+
+## Landed on 2026-09-29 from 09:21Z
+
+- OCE 305 (09:21Z), 311 (11:27Z, J8 whole), 312 (12:12Z, the Turbo remote cache in CI, by the
   owner's hand).
 - JC.net 272 (09:24Z), 264 (12:39Z, the coordination fold, by the owner's hand), 273 (13:25Z, the
   LinkedIn agent's workspace fix).

@@ -95,7 +95,7 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   so; this is the instance.
 - **Surprise:** the OCE push gate refused on skill-adapter drift after a canonical skill's text
   changed (`oak-cross-fork-integration`): a rename across canonical skills regenerates adapters in
-  both estates before the push (`pnpm skills:generate` in OCE, `pnpm portability:fix` in JC.net).
+  both estates before the push (`pnpm skills:generate` in both estates).
   Homed: lint-after-edit's pre-flight list gains nothing new; the gates skill already names the
   command.
 - **Observation:** two regex classes failed in one pass (a phrase wrapped across lines; a non-UTF-8

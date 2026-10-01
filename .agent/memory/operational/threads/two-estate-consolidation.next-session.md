@@ -23,7 +23,7 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   comms decision table §H with `consolidation-2026-09-25/dispositions-2026-09-30/`; the rule
   `cross-estate-work-must-reduce-divergence`. The owner's brief for the next dedicated consolidation
   is `.agent/prompts/dedicated-consolidation-session.md`; the owner was rewriting it on 2026-10-01
-  and the draft was uncommitted in the JC.net primary at this close (last bullet).
+  and settled the draft that day before the push (last bullet).
 - **The owner's standing words, verbatim.** 2026-09-30: "The goal is knowledge curation, never
   fitness numbers. Done means empty pending graduations and empty buffers: say those counts first in
   every report." "Where a consolidation skill differs between the estates … read OCE's copy; the
@@ -110,8 +110,8 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 - The owner asked for a full handoff for a fresh session with no access to this context, then the
   session's end. §Current Continuation above is that handoff, rewritten whole: the reading order,
   the owner's words verbatim, the state and counts, the next session's shape and first steps, the
-  mechanics of working both estates from one session, the standing constraints, and the one item
-  blocked on the owner. Two lessons of the morning are homed: a relayed constraint is a claim
+  mechanics of working both estates from one session, the standing constraints, and that nothing
+  waits on the owner. Two lessons of the morning are homed: a relayed constraint is a claim
   (verify-dont-trust §Briefing Facts, both estates) and two regex classes (the shell gotchas, both
   estates). The OCE push of the settled moves was refused once on skill-adapter drift after the
   rename; the adapters are regenerated in the handoff commit.
@@ -120,15 +120,15 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 
 - - The owner asked for the eight decisions to run through the decision lenses and for the survivors
   and unknowns to be asked at once. Three survived (the session-2 batch, by the owner's item-8 word;
-  two tooling rows of the practice box; the owner-act rows of the 51); the owner answered: all six
-  session-2 candidates graduate; the tooling is not a question ("we are bringing both estates to the
+  two tooling rows of the practice box; the owner-act rows of the 51); the owner answered: all seven
+  session-2 items graduate (two entries and five slow-lane concepts); the tooling is not a question ("we are bringing both estates to the
   same level of capability, anything useful that one has must make it to the other"); only
   owner-ratified text changes on the owner's word; proof replaces the word for a bulk archive; the
   settled moves run now; the next session is capability parity, both ways. The report's §Decided
   2026-10-01 carries the table.
 - - Moves made, both estates unless noted: snapshot removed and consolidate-docs 6b re-trued; six
   rulings recorded in PDR-117, PDR-064, PDR-125, PDR-027 and PDR-140 with the decider named, OCE's
-  owner-decision item 11 withdrawn; six session-2 candidates homed (testing-strategy,
+  owner-decision item 11 withdrawn; seven session-2 items homed (testing-strategy,
   precedence-is-not-approval, user-collaboration, consolidate-docs) and this estate's register
   drained to the one slow-lane row with a 2026-12-15 review; "the lineage" written as OCE across
   live doctrine where OCE is meant (archives and the git-lineage senses untouched); the practice box
@@ -219,7 +219,7 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 - The report: `.agent/reports/agentic-engineering/2026-09-30-two-estate-consolidation-retrospective.md`,
   identical in both estates, with the legs' findings and each one's disposition (accepted, cured,
   refuted with evidence, or left to the owner), the divergence measure and its script, and eight
-  decisions for the owner and five notifications (§Decisions for the owner, re-sorted under the
+  decisions for the owner and five notifications (§Decided 2026-10-01, re-sorted under the
   owner's frame of 2026-10-01). The analysts' reports are conserved whole
   under OCE's `consolidation-2026-09-25/dispositions-2026-09-30/`.
 - What the next session decides first: whether another dedicated consolidation is needed. The legs
@@ -304,7 +304,7 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   codex-dialogues and estate-coordination threads), the wrap with the closeout report.
 - Owner decisions to surface at closeout: clearing the practice box
   (`.agent/practice-core/incoming/2026-09-14-oak-line-delta-since-e477e62f7.md`); the privacy
-  review of the three unconsolidated napkins in `archive/`; whether the JC.net comms stream is
+  review of the three napkins under `unconsolidated/`; whether the JC.net comms stream is
   in a pass; the session-2 cards (three register entries and the slow lane wait on them).
 
 ### 2026-09-30T15:4xZ — the session's state (Hawthorn binds Bracken, b3f117, claude-code, claude-fable-5-1)
