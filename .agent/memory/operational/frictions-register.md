@@ -74,10 +74,7 @@ below is a cross-reference index, not a second source of truth.
   read as "still waiting" until a blocking wait timed out and a one-shot
   `pr-watch 149` showed 19 passed, 1 pending, 0 failed. Replaced by a
   background `gh pr checks 149 --watch --interval 60`, which ends with the
-  checks and returns their exit code. The pr-lifecycle SKILL prescribed the
-  `--watch` form as the supervised watch until the 2026-09-16 consolidation
-  (`63b544464`) replaced it with a compound GraphQL watch loop that ends only
-  on MERGED or CLOSED; the tool still wants correcting.
+  checks and returns their exit code. OCE's pr-lifecycle SKILL prescribed the `--watch` form as the supervised watch until its 2026-09-16 consolidation (`63b544464`, an OCE commit) replaced it with a compound GraphQL watch loop that ends only on MERGED or CLOSED; JC.net's copy of the skill still prescribes the `--watch` form (read 2026-10-01), and the tool still wants correcting.
 - **Expected**: one line per head change and per check-state transition; a
   heartbeat line at a fixed cadence so a dead watcher is visible; ALL-GREEN
   requires mergeable plus no standing change-request, or a
@@ -86,8 +83,7 @@ below is a cross-reference index, not a second source of truth.
 - **Cause, read at the fifth instance, 2026-09-29** (Nova turns Penumbra): a Monitor on PR 311's
   `--watch` read zero lines in 30 minutes; `runPrWatchTopic` hands `runPrWatchCli` an
   `OutputBuffer` and returns its text at exit (`agent-tools-cli-topics.ts`, both estates).
-- **Read 2026-10-01**: The cure passes `process.stdout` and `process.stderr` when `--watch` is
-  set; the seat's workaround calls `runPrWatchCli` from dist with the real streams.
+- **Read 2026-10-01**: The candidate cure, unbuilt in both estates (the topic still hands the command an `OutputBuffer`), is to pass `process.stdout` and `process.stderr` when `--watch` is set; the seat's workaround calls `runPrWatchCli` from dist with the real streams.
 
 ### F-136 — practice-core CONTENT has no portability scanner (`portability:check` covers adapters only)
 
@@ -268,15 +264,13 @@ below is a cross-reference index, not a second source of truth.
 ### F-219 — a peer's comms event during the pre-push gate fails the push: the generated log is stale (2026-10-01)
 
 - **Source**: Crucible binds Slag, first-hand, the push of the coordination fold on 2026-10-01.
-- **Surface**: the pre-push `practice-substrate check`; `collaboration-state -- comms append`.
-- **Observed**: the check refuses a push when the generated `shared-comms-log.md` is older than
-  the newest event file. `comms append` writes an event without rendering the log, and any
+- **Surface**: JC.net's pre-push `practice-substrate check`, reached through `pnpm check` (in OCE the script `practice:substrate:check` exists and no hook calls it); `collaboration-state -- comms append`.
+- **Observed**: the check renders the comms log from the event files and refuses when the rendered text differs from `shared-comms-log.md` on disk (`live-shared-comms-log.ts`); it makes no age test. `comms append` writes an event without rendering the log, and any
   seat's event written during the ten-minute gate makes the log stale. Cost: one full gate run.
   Cure used: `comms render`, then push again, with the peer asked to hold comms writes.
 - **Expected**: a push does not depend on an untracked, generated file that another seat's
   write can invalidate mid-gate.
-- **Candidate cure**: the check renders the log itself before comparing (the repair is
-  deterministic), or reads the event files and not the rendered log; `comms append` renders.
+- **Candidate cure**: the check writes the rendered log back before comparing (the repair is deterministic), or the file on disk stops being an input; `comms append` renders.
 - **Target surface**: agent-tools CLI (`practice-substrate`, `collaboration-state`).
 - **Status**: open
 - **Owner direction status**: standing
@@ -359,7 +353,7 @@ below is a cross-reference index, not a second source of truth.
   process table for "sleep 240" and signalled a sleep in the Director's pulse loop (one early
   tick). The 2026-09-29 kill was read from both sides; its napkin entry was owed to the successor.
 
-### F-224 — the branch-guard smoke's PATH is narrower than the trusted-git allowlist (2026-09-26)
+### F-224 — OCE's branch-guard smoke's PATH is narrower than the trusted-git allowlist (2026-09-26)
 
 - **Source**: a seat's first-hand confirmation on OCE PR 246, round 4 (Swallow holds Drift),
   2026-09-26; accepted as a follow-up when the settlement budget was spent.
@@ -467,8 +461,7 @@ below is a cross-reference index, not a second source of truth.
   `merge-bot retire` (`agent-tools/src/merge-bot/retire-*.ts`); the harness classifier and the
   seat's Bash guard.
 - **Observed**: §6 deletes a branch that "landed by squash or is content-superseded" once its
-  content proof is recorded, but `git branch -d` refuses such a branch as not fully merged, and
-  the harness classifier and the seat's hook refuse `git branch -D` and `git update-ref -d`. In
+  content proof is recorded, but `git branch -d` refuses such a branch as not fully merged, and the harness's permission layer refuses `git branch -D` and `git update-ref -d` (OCE's `.claude/settings.json` deny list names both; neither estate's hook policy has such an entry). In
   five instances proven branches were held for the owner's word; one was cleared on 2026-09-28
   at the owner's word ("Delete it by the forced path on this word (Recommended)") by removing
   the loose ref file. JC's `merge-bot retire` deletes only a tip that is an ancestor of the
@@ -520,7 +513,7 @@ below is a cross-reference index, not a second source of truth.
 - **Surface**: `.husky/commit-msg` (commitlint), which git runs after `.husky/pre-commit`; the
   commit-queue workflow (`agent-tools/src/commit-queue/commit-workflow.ts`); the seats' records
   ceremony; `pnpm agent-tools:check-commit-message`.
-- **Observed**: the commit-queue workflow has no message stage before `git commit`, so a header
+- **Observed**: the commit-queue workflow runs the message check before `git commit` only as an advisory (`commit-workflow.ts` calls the advisory orchestrator, whose result does not block), so a header
   over length, a subject in the wrong case, or a body line opening with a word and a colon or a
   hash-prefixed PR number (read as a footer) is refused after the full gate. A push then carried
   only another seat's commit (2026-09-26), and a records ceremony ended exit 2 at an unchanged
@@ -674,7 +667,7 @@ below is a cross-reference index, not a second source of truth.
 ### F-241 — a machine-local path written into a channel file blocks another seat's commit (2026-09-25)
 
 - **Source**: seats' comms events of 2026-09-25 (OCE, 11:23Z and 15:24Z) and 2026-09-26.
-- **Surface**: tracked ARC channel files; `validate-no-machine-local-paths` in the commit hook;
+- **Surface**: tracked ARC channel files; `validate-no-machine-local-paths` (OCE's pre-commit hook; in JC.net it runs at pre-push through `pnpm check`);
   the comms concept gate's path-scoped `machine-local-path` concept (`comms-concept-gate.ts`,
   both estates).
 - **Observed**: temporary-directory prefixes written into a pairing channel by two seats sat in
@@ -874,17 +867,17 @@ below is a cross-reference index, not a second source of truth.
   0f5b343d, condition 7), deferred to a credential-narrowing follow-up; read against both estates
   on 2026-10-01.
 - **Surface**: `agent-tools/src/merge-bot/git-credential-chain.ts` (both estates);
-  `agent-tools/src/core/git-remote-url.ts` (OCE only).
+  `agent-tools/src/core/git-remote-url.ts` (both estates since JC.net pull request 279, 2026-10-01).
 - **Observed**: the push clears `credential.helper` and sets its own with no `github.com` scope,
   so a `pushInsteadOf` can redirect the token; `http.*` config and `GIT_CONFIG_*` reach the push;
-  and in OCE remote URLs with default ports are refused, failing closed (its unit test expects
+  and remote URLs with default ports are refused, failing closed (its unit test expects
   `ssh://git@github.com:22/acme/widgets.git` to read no repository).
 - **Expected**: the token reaches only github.com, and no ambient config steers the push.
 - **Candidate cure**: scope the helper to github.com; pin proxy, TLS verification and extra
   headers on the push argv, since `http.*` and `url.*.pushInsteadOf` also live in config files;
   drop `GIT_CONFIG_*`, `GIT_SSL_NO_VERIFY` and the proxy variables from the push environment;
   compare the host of `git remote get-url --push` with github.com before the token file is
-  staged; accept default ports in OCE. One change in both estates under a security-expert review.
+  staged; accept default ports. One change in both estates under a security-expert review.
 - **Target surface**: agent-tools CLI (`merge-bot`, `core`).
 - **Status**: open; a review finding, no incident. It needs write access to git config or the
   push environment on the host.
@@ -1142,7 +1135,7 @@ below is a cross-reference index, not a second source of truth.
 - **Observed**: the overview prints "Findings: None" and lists items under "Previously missed"
   or in its summary sentence, with no review thread. A wait that counts unresolved threads
   reports a clean round. The door prints "tally body findings (SKILL item 2) before reading
-  this round as zero-finding" and does not read the body itself.
+  this round as zero-finding" and OCE's door does not read the body itself; JC.net's reads the tip-bound body for its headline verdict and suppressed count and holds on those (`suppressed-hold.ts`), and reads no "Previously missed" item.
 - **Expected**: a round's body items are counted with its threads.
 - **Candidate cure**: `pr-watch` reads the tip-bound review body for "Previously missed" and
   file-and-line items and reports their count beside the thread count; the door refuses a
@@ -1198,8 +1191,7 @@ below is a cross-reference index, not a second source of truth.
   "nothing about that test information was new, it is ALL written down in directives, in rules,
   in the test expert, so WHY were bad, wasteful tests written?"; and, of a test that pinned a
   setting, "And we never test for configuration."
-- **Surface**: `invoke-code-experts`, `invoke-test-expert`, `testing-strategy` and
-  `test-immediate-fails` (both estates); the ready-for-review step of `pr-lifecycle`; the commit
+- **Surface**: `invoke-code-experts`, `testing-strategy` and `test-immediate-fails` (both estates) and JC.net's `invoke-test-expert` (OCE has no such rule); the ready-for-review step of `pr-lifecycle`; the commit
   path.
 - **Observed**: every rule the tests broke was loaded. Tests of configuration and of call
   sequences were written and committed with no reviewer run, three times in two days in one
