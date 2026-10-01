@@ -154,6 +154,10 @@ The items below are still open from the 2026-09-16 snapshot, each verified in th
   "only when both numbers are below the baseline", which cannot be met from a baseline of zero and
   refuses a close where one number falls and the other holds level. Both numbers are far from zero
   today (147 files, 7,142 lines); the wording is decided with the measure, in both estates.
+- From the same review's second round, one small tooling lane for both estates: `comms direct` and
+  `comms reply` require `--active` and `--comms-dir` where `comms send` derives them from the
+  coordination home (`commsSendDefaults`); wire the same defaults into the directed commands. The
+  agent-tools README now says which commands derive them.
 - JC.net's commit hook does not run the whole-tree gate that OCE's does (OCE writes
   `.turbo/last-gate.log`; here the gate runs at the push). The `session-handoff` skill now says so
   for each estate. Bringing the commit-time gate here is the ratified delivery node
