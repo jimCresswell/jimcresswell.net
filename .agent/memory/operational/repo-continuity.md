@@ -21,6 +21,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T20:45Z: compaction boundary of the implementer seat** (Crucible binds Slag,
+  7b999c; the owner's word, "prepare compaction"; the seat stays live). One lane pull request is
+  open across both estates: 280 here, the twin of OCE's 322, at head `SHA:5527d3c5` with its
+  second Copilot round requested and unread. OCE's 322 landed at 20:21Z (`SHA:30f5b4338`): its
+  push has the attempt guards and tests held to the testing directive. Everything this seat
+  holds is in §Next Safe Steps lines 1 to 5 and 7 and the tool-friction list under them; the
+  re-arm recipes for its two comms watchers and the index of its scratch tools are in the
+  handoff record `.agent/state/collaboration/handoffs/7b999c-crucible-binds-slag-2026-10-01.md`
+  (untracked by design). No background process of this seat needs to survive the boundary.
+
 - **2026-10-01T19:00Z: pull request 279 landed as SHA:c6394b98; the push's remainder** (Crucible
   binds Slag, 7b999c). Before each attempt `merge-bot push` reads HEAD first and the clock last;
   its help says what it pins; its mint test pins no scope. This estate's push files are settled,
@@ -211,8 +221,8 @@ lines below go one pull request at a time.
      tests are on this estate's `main` now. OCE's rework had dropped the pins on purpose; this
      seat read that as a loss and restored them on one reviewer's word, without reading the
      directive's §Rules against them.
-   - Step two, in OCE, as two pull requests. First the push product code: its pull request 322
-     (opened 19:52Z, lane `.claude/worktrees/push-converge`, claim 48c023b5). Three sub-agent
+   - Step two, in OCE, as two pull requests. First the push product code, landed: its pull
+     request 322 (`SHA:30f5b4338`, 20:21Z, one settlement push). Three sub-agent
      reviews ran before it opened and changed it from a copy of this estate's bytes: plain http
      is refused in the push's own origin check and never in the shared parser, which has two
      more callers there; and the tests are re-derived against the directive, each new behaviour
@@ -220,14 +230,31 @@ lines below go one pull request at a time.
      (`github-fetch.ts`, the `branch-retire` row of the scope table, the wiring in `cli.ts`, its
      smokes). Until `retire` lands there every landed branch is deleted by hand after the same
      ancestry proofs. Not the whole directory: this seat wrote that here earlier and it was wrong.
-   - Owed here from OCE's 322, one twin pull request once it lands: its push tests as the same
-     bytes, which removes the pins and the sequence fakes above; the http refusal moved from
-     `core/git-remote-url.ts` to `trustedOriginRepository` in `push-target-branch.ts`;
-     `printable` on the unknown-argument echo in `push-args.ts`; the help's sentence on what the
-     HEAD guard delivers; the measurement in `push-attempts.ts` worded to be true in both
-     estates. One phrase of `.agent/reference/merge-bot.md` ("streams to stderr in full" becomes
-     "reaches": the command's stderr is buffered until the run ends) sits in the consolidation
-     seat's area.
+   - The twin of OCE's 322 here is pull request 280, **open** (opened 20:29Z; lane
+     `.claude/worktrees/push-twin`, branch `fix/merge-bot-push-twin`, claim 77ae69bd, opened
+     20:24Z on thread `practice-exchange-seat`). It takes
+     322's push tests as the same bytes, which removes the pins and the sequence fakes above;
+     moves the http refusal from `core/git-remote-url.ts` to `trustedOriginRepository` in
+     `push-target-branch.ts` (the parser reads plain http again, with a row for it); passes an
+     unknown argument and a branch name a refusal quotes through `printable`; and corrects the
+     help's sentence on the HEAD guard, one measurement's wording, and one phrase of
+     `.agent/reference/merge-bot.md` ("reaches stderr in full"; the consolidation seat was told
+     at 20:30Z, event fa169707, and may take that phrase into its own lane by saying so before
+     280 lands).
+     State at 20:40Z: head `SHA:5527d3c5` (two commits on `main` at `SHA:c6394b98`; the second is
+     settlement push one, on Copilot's one thread, PRRT_kwDORH1Wfc6oIHAM, answered and
+     resolved); Copilot's second review requested at 20:40Z and not yet read; one settlement
+     push left. Next, in order: read the review on `5527d3c5` (threads AND the review body: both
+     of 322's Copilot reviews carried their one item in the body under "Findings: None");
+     disposition; post the landing premises as the bot; run the merge door with
+     `--expect copilot-pull-request-reviewer`; then `git worktree remove`, `merge-bot retire
+     --branch fix/merge-bot-push-twin`, close the claim, the landing line, these records.
+   - Owed to OCE from 280, small, to travel with the `retire` port there: the two corrected
+     comments (`push-attempts.ts`, `push-cli.ts`) and the parser's scheme comment with its
+     plain-http row.
+   - After 280: the `retire` port in OCE (its lane is not cut; OCE's record line 4 lists the
+     dependency closure), then line 3 below (the 309 twin, whose directive hunks are now this
+     seat's to make: line 5).
    - Routed from 322's security review, one lane for both estates, each confirmed by probe on
      OCE's lane, whose `push-git.ts` is this estate's bytes. Over the bar: the `insteadOf` rewrite in the last bullet of this
      line is now tested and real (with `pushInsteadOf` as well, the push goes over ssh as the
@@ -261,9 +288,18 @@ lines below go one pull request at a time.
 5. Two files inside the consolidation seat's claimed areas changed on `main` with pull request
    278, each bound to the code it describes: `.agent/reference/merge-bot.md` (the front-door push
    section) and one line of the `cross-fork-integration` skill (the push's git argv). The seat was
-   told on the stream before 278 opened and at its landing; no answer by this writing. Its
-   question from this seat also stands unanswered: whether its lane touches
-   `.agent/directives/validation-strategy.md`, which gates line 3's directive hunks.
+   told on the stream before 278 opened and at its landing. It answered at about 20:35Z on
+   2026-10-01, by a session-to-session message (not on the stream): everything routed to it
+   since 13:5xZ is received; `.agent/directives/validation-strategy.md` is this seat's until
+   the 309 twin lands, after which it converges the whole file (this seat says on the stream
+   when the twin has landed); it will announce its first full gate before running it. It
+   named the bases of its two lanes as `SHA:cb285512` here and OCE's `SHA:beceea25e`, both
+   behind the default branches; this seat told it the current tips and what changed in its
+   areas. No worktree of its was on disk in either estate at 20:37Z (`git worktree list`).
+   **Relayed, not confirmed to this seat by the owner:** it reported the owner's answer to it,
+   that the capability-parity code lanes of line 7 and OCE's lockstep-test cure go to this
+   seat "after its list". A peer's relay is not the owner's word; this seat starts none of it
+   until the owner says so here.
 6. Owner acts owed, for the turbo node's first criterion: the Vercel OIDC policy covering this
    repository, and the `TURBO_TEAM` repository variable (`threads/turbo-remote-cache.next-session.md`
    carries the policy's terms and the command). Read 2026-10-01: the variable is absent, and the
@@ -299,6 +335,21 @@ Tool frictions met on 2026-10-01, each first-hand, for the lane that takes them:
   `gh` with it. That wrapper belongs in agent-tools as a `merge-bot gh` action, for both estates.
 - The same guard refuses any compound command that names git; a resident seat stages, commits
   and reads the log as three plain commands.
+- A `\uXXXX` escape written in an Edit or Write tool parameter can reach the file as the raw
+  character: the four-hex-digit escape for U+202E, typed between two letters, landed as a
+  literal right-to-left override (bytes `e2 80 ae`) in a test file, while the escape for U+001B
+  in the same edit stayed an escape. It happened a second time while this bullet was being
+  written. The security review caught the first; the encoding gate at the push refuses it. Write
+  the brace form (`\u{202e}`, `\u{1b}`), which no layer decodes, and grep the file for the raw
+  bytes after writing.
+- Copilot's review can carry its one finding in the review body under "Findings: None", with
+  no thread (both reviews of OCE 322). A wait that reads threads and the unresolved count alone
+  reports a clean round. This seat's scratch wait script prints the body's head only; the
+  whole body is read with `gh api …/pulls/<n>/reviews/<id> --jq .body`.
+- This estate's `pnpm` refuses `-s` (`pnpm -s build` exits 2, "unexpected argument"); OCE's
+  accepts it. `--silent` works in both.
+- `review-cost` exists in OCE's agent-tools and not here, so this estate's wraps price their
+  review loops by hand; a parity item.
 
 The items below are still open from the 2026-09-16 snapshot, each verified in the tree on
 2026-09-30; the snapshot itself, with its later state notes, is archived byte-identical in

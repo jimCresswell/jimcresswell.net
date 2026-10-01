@@ -100,3 +100,53 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   command.
 - **Observation:** two regex classes failed in one pass (a phrase wrapped across lines; a non-UTF-8
   file under `.agent`). Homed in the shell gotchas (both estates).
+
+## 2026-10-01T20:5xZ — the merge-bot convergence and a compaction boundary (Crucible binds Slag, 7b999c)
+
+- **Correction (twice in one day, so more than an observation):** a pre-open review of pull
+  request 278 said the other estate's rework had "dropped proofs", and this seat restored them
+  with a mutant each: the token file's mode, the directory prefix, the prompt setting, two git
+  flags, the mint's scope. Copilot removed the scope one on 279 against `testing-strategy.md`.
+  The test review of OCE 322 then held the rest against §Rules ("assert relations to injected
+  inputs, never literals of our own configuration") and `test-immediate-fails.md` item 12, and
+  they were pins. The other estate had dropped them on purpose. Before restoring an assertion a
+  sibling estate removed, or adding one because a mutant survives, hold it against the directive:
+  a surviving mutant is a finding only when it changes behaviour at a boundary. And a difference
+  between the estates is read as a decision first and a loss second: ask why the other side has
+  less before giving it more. Not yet homed in a rule. `candidate:` an amendment to
+  `testing-strategy.md` §Rules (a surviving mutant on a decision value is the directive
+  working) and a clause for `cross-estate-work-must-reduce-divergence` (a difference between
+  estates is read as a decision before it is read as a loss); trigger: the next register
+  refresh; the consolidation seat's lane holds both files.
+- **Correction:** the same pull requests' guard tests used a fake that answers in sequence
+  (`inOrder`) and a clock keyed to a count of the product's reads. Item 12 forbids both, and
+  two Copilot rounds on each pull request did not catch it; a test-quality sub-agent did. The
+  admissible forms: move the proof to the seam where the state is a constant (`guardedAttempt`,
+  `settleCommitFor`); at the front door, change the world on what the product writes (the
+  injected sleep sets what the clock or HEAD answers afterwards), never on what it asks.
+- **Surprise:** a design that is right in one estate is wrong in the other for a reason only the
+  second estate's call graph shows. Refusing plain http inside the shared URL parser was sound
+  here (one caller) and would have widened the push secret scan's exclusion in OCE (three
+  callers). "The same bytes" is a goal for the outcome, checked against each estate's callers
+  before the bytes move; `grep` the importers of every shared module a port changes.
+- **Surprise:** Copilot can put its one finding in the review body under "Findings: None" with no
+  thread. Both rounds of OCE 322 did. A wait that counts threads reports a clean round. Read the
+  whole review body every round (`gh api …/pulls/<n>/reviews/<id> --jq .body`). The merge door's
+  evidence line already says "tally body findings"; the wait script is the weak link.
+- **Observation (platform):** a four-hex-digit Unicode escape typed in an Edit or Write
+  parameter can land as the raw character (U+202E did, twice, once in a test file and once in
+  the record of the first time). The brace form is not decoded. After writing any escape for a
+  format or control character, grep the file for the raw bytes. Homed so far only in
+  `repo-continuity.md`'s tool-friction list; belongs in `shell-and-tooling-gotchas.md` (both
+  estates), in the consolidation seat's area.
+- **Observation:** three specialist sub-agents, each given the changeset and questions and no
+  conclusions, found different classes that the author and Copilot had missed: false statements
+  for the target estate (code review), two real exposures on the base branch and a raw character
+  (security), and the directive breaches (test). Briefs that withheld which cases were new got
+  every case the same reading. The cost was about 700k sub-agent tokens for one pull request;
+  the yield was the difference between a port and a correct port.
+- **Observation (loss-scan, this boundary):** OCE's J2 lane (`oce-wt-j2-docs-validators`) holds
+  five uncommitted paths and is 108 commits behind its base; it is recorded NOT READY in line 2
+  of §Next Safe Steps, and it is the one piece of this seat's inherited work that is on disk
+  only. A relayed owner answer (the parity lanes to this seat) is recorded as relayed in line 5
+  and not acted on.

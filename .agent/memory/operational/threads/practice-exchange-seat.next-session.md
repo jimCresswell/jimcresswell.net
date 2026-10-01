@@ -3,7 +3,8 @@
 **Thread identity.** JC.net's exchange seat on the node `practice-two-way-exchange`: outbound
 delivery into the lineage's Box and joint sets with the lineage's seat (goal one), inbound
 landings here (goal two). **Participating agent identities:** Brazier spins Temper (c70341),
-then Siren herds Rudder (158275). **Landing target for the next session:** the latest dated block
+then Siren herds Rudder (158275), then Crucible binds Slag (7b999c, claude-code,
+claude-fable-5-1, implementer, last session 2026-10-01). **Landing target for the next session:** the latest dated block
 governs. **Grounding order:** `AGENT.md`, the start-right-team skill, this record, the node's
 §Rulings and §Todos at main, the register, then the lineage's comms stream from OCE event
 269c5e97 onwards.
@@ -3233,3 +3234,28 @@ routes it.
   cron exists.
 - Uncommitted here, for the finish fold: this file's 10:39Z, 11:34Z and closeout blocks, the
   napkin entry of 11:34Z, and today's letter under `.agent/experience/`.
+
+## Boundary delta, 2026-10-01 20:5xZ (Crucible binds Slag, 7b999c; the owner's compaction word, the seat stays live)
+
+The owner's word of 2026-10-01 to this seat: the consolidation seat works the dedicated
+consolidation, "you pick up the other threads", the fold and continuation records first, and
+the upstream merge into OCE's default branch. This seat adopted the two claims the closeout
+above handed over and has worked the exchange's code lanes since.
+
+- **Landing target, this session, and what landed.** The folds, the trued records, OCE's open
+  lanes and the upstream merge: landed (OCE 299, 313, 309, 310, 319; JC.net 274). Then the
+  threads the closeout left: arc-metrics, the same bytes in both estates (OCE 320 and 321,
+  JC.net 277); the merge-bot push converged (JC.net 278 and 279, OCE 322 at `SHA:30f5b4338`).
+  Each landing's evidence is its row in `ready-list.md` and its `repo-continuity.md` §Current
+  State entry.
+- **Unlanded at this boundary.** JC.net pull request 280, the twin of OCE 322, is open at head
+  `SHA:5527d3c5` with its second review round requested and unread. What prevented: the owner's
+  compaction word arrived while that round was running (the request is timestamped 20:40Z on
+  the pull request). The next session re-attempts it from `repo-continuity.md` §Next Safe Steps
+  line 4, the bullet that begins "The twin of OCE's 322 here", which carries the steps in order.
+- **Lane state.** Owning record: `repo-continuity.md` §Next Safe Steps lines 1 to 4 (this
+  estate) and OCE's line 4. Current objective: 280, then the `retire` port in OCE, then the 309
+  twin here. Blockers: none on 280. Low-confidence: the J2 port (line 2), NOT READY and
+  uncommitted on disk in OCE. Promotion watchlist: the lesson in the napkin's 2026-10-01T20:5xZ
+  block on restoring assertions another estate removed (a second instance in one day).
+- **Index of homes and re-arm recipe.** `.agent/state/collaboration/handoffs/7b999c-crucible-binds-slag-2026-10-01.md`.
