@@ -187,21 +187,31 @@ lines below go one pull request at a time.
      and the commit are one snapshot of HEAD; an origin read over plain http is not trusted; the
      bound's unit is stated; a case holds the two flags that keep the push to one ref. Its budget
      is spent and its state is in the pull request.
-   - Step one's remainder, here, before step two, in hand (lane `.claude/worktrees/push-remainder`,
-     branch `fix/merge-bot-push-remainder`, claim 9002c2f0): one small lane for the five items Copilot's
-     review of 278's last tip named, each verified and below the bar (review 5383812791, the signed
-     disposition on the pull request). In `push-attempt-guards.ts`, read HEAD first and sample the
-     clock last, so no read stands between the deadline check and the attempt. In `push-args.ts`,
-     the help says the push adds no transfer behaviour but the retry: say what it pins (the
-     commit, the full branch ref, no tag following, no submodule recursion). In
-     `push-cli-mint.integration.test.ts`, compare the request's permissions with what
-     `token-scopes.ts` gives for `pull-request-work`, never the three values. In `push-git.ts`,
-     the header says three reads and there are four. In `push-mint.ts`, the empty-token message
-     says "before any git call" and the target's reads have run: say "before the transfer that
-     carries the credential".
-   - Step two, in OCE, after that lane lands: it takes this estate's `merge-bot` directory as the
-     same bytes, which brings it `retire`, the bound, the proofs and the guards. Until then every
-     landed branch there is deleted by hand after the same ancestry proofs.
+   - Step one's remainder, here, before step two: pull request 279 (opened 18:45Z, lane
+     `.claude/worktrees/push-remainder`, branch `fix/merge-bot-push-remainder`, claim 9002c2f0),
+     the five items Copilot's review of 278's last tip named, each verified and below the bar
+     (review 5383812791). HEAD is read first and the clock last, so no read stands between the
+     deadline check and the attempt; the help says what the push pins; a header's read count and
+     the empty-token message are corrected. The mint test asserts nothing about the request:
+     Copilot's review of 279 held, against `testing-strategy.md`, that which scope the push asks
+     for is a decision, guaranteed by construction and never pinned by a test, so the assertion
+     278 had brought back on a pre-open review's word is removed (`SHA:1c4a151a`). **A lesson for
+     the next port's tests:** a mutant that survives is a finding only when it changes behaviour
+     at a boundary; a mutant that changes a decision value is the directive working. Its state is
+     in the pull request.
+   - Step two, in OCE, after 279 lands: it takes this estate's push files as the same bytes (the
+     bound, the proofs, the guards, `token-deadline.ts`) and the `retire` action with what it
+     needs (`branch-arg.ts`, `github-fetch.ts`, the `branch-retire` row of the scope table, the
+     wiring in `cli.ts`, its smokes). Until then every landed branch there is deleted by hand
+     after the same ancestry proofs. Not the whole directory: this seat wrote that here earlier
+     and it was wrong.
+   - The merge action is its own convergence, read 2026-10-01 by comparing the trees with the
+     scope made the same. It has diverged in both directions. OCE has `--unavailable`
+     declarations (`pr-watch/declared-unavailable.ts`), the `SETTLING-QUIET-WINDOW` verdict and
+     two tests this estate lacks (`merge-cli-unavailable`, `resolve-app-slug`); this estate has
+     one `realFetch` and one header builder (`github-fetch.ts`) where OCE has a copy in each of
+     two modules, and prints a verdict's grounds through `printable`. The scope table differs by
+     design: the upstream-mirror row is OCE's, and `branch-retire` reaches it with step two.
    - Routed from the reviews, each its own lane: the operator profile's keys and `retire`'s origin
      check move to `core/git-remote-url.ts` (`retire` binds the raw URL and the push the rewritten
      one, so the move changes what `retire` binds); a `url.<base>.insteadOf` that rewrites

@@ -14,8 +14,9 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Open, not yet ready
 
-- None (read 2026-10-01 18:45Z). The implementer seat's next lane is cut and not yet a pull
-  request: `fix/merge-bot-push-remainder`, the five items routed from 278's last review.
+- JC.net 279 (opened 2026-10-01 18:45Z, six files): the five items routed from 278's last review;
+  one settlement push made, its second review round running. The implementer seat's one open
+  lane.
 
 The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
 `coordination-fold` skill and are not listed here.
