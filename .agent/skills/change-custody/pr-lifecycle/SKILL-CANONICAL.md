@@ -640,7 +640,7 @@ reviews say 0 new and carry fifteen and eight). The
 cure-worthy count reads the marker and nothing else (a below-bar finding
 and a build-changing one can both be routed to a home); signed replies and
 comments are excluded from the raised count (item 2). The recorded corpus
-that fixed this format is the OCE's harvest of its pull request #135 (a fixture with a README in that
+that fixed this format is OCE's harvest of its pull request #135 (a fixture with a README in that
 estate, not carried here: it is that repository's review data); this
 repository's own corpus is recorded at its first tallied pull request.
 

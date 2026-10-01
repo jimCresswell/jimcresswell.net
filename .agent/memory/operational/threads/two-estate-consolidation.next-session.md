@@ -40,12 +40,12 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   both ways; the prompt draft adds "if you need to ask questions then ask them".
 - **State at this close.** JC.net `coordination/2026-09-29-b6232c` (draft pull request 274):
   dc0de0d7 the retrospective, 15e29421 the owner's frame, d6ee1ae0 the owner's cards and the settled
-  moves, then the handoff commit; d6ee1ae0 and the handoff commit were unpushed when this was
-  written, held by the owner's draft (last bullet); `git status --branch` first. OCE
-  `coordination/2026-09-29-76974c` (draft pull request 299): cedad5e54 the retrospective, 5d00e2930
-  the owner's frame, a54898b39 the settled moves, then the handoff commit; a54898b39's push was
-  refused once on skill-adapter drift and relaunched with the handoff commit at the close; `git
-  status --branch` tells whether it landed. A new day cuts a new coordination branch in each estate.
+  moves, then the handoff commit; d6ee1ae0, fd9a4f1a and the adapters commit were pushed at the
+  close; `git status --branch` first. OCE `coordination/2026-09-29-76974c` (draft pull request 299):
+  cedad5e54 the retrospective, 5d00e2930 the owner's frame, a54898b39 the settled moves, then the
+  handoff commit; a54898b39's push was refused once on skill-adapter drift and relaunched with the
+  handoff commit at the close; `git status --branch` tells whether it landed. A new day cuts a new
+  coordination branch in each estate.
 - **Counts.** JC.net pending graduations 0 live entries (the register keeps one slow-lane row with a
   2026-12-15 review, not decision-debt); OCE pending graduations 0; distilled empty in both; OCE's
   frictions register 44 live under §Friction Entries and 86 unread under §Routing Notes (F-119 to
@@ -61,13 +61,17 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   exchange-register:check`, `--write-counts` on an intended change); OCE's commit queue; JC.net's
   `pnpm check:docs` pre-flight; the divergence measure as an `agent-tools` command unit-tested on
   injected file maps; the visual-regression harness where it applies; (2) one lane per capability,
-  small pull requests, twinned per PDR-125 and PDR-142, measured by the rule at open and close; (3)
-  as they are met: decide each of the 51 deferred rows of OCE's §H (do, drop, or the owner's call;
-  "owed" is the parked shape the owner forbade on 2026-09-28), read the 86 unread frictions for
-  lessons without homes, sample JC.net's comms stream (4,304 events, about 840 substantive) before
-  any pass is sized, re-true the three shared files, cure the OCE lockstep test that reads `.agent/`
-  files (testing-strategy §Rules), and re-true the event-cited paragraphs in place (what happened,
-  who decided, when, one instance).
+  small pull requests, twinned per PDR-125 and PDR-142, measured by the rule at open and close; (2a)
+  the agent-tools smoke suites (53 smokes in JC.net, 40 in OCE, each spawning processes, worktrees
+  and servers on every pre-push) become real tests with no IO and with dependency injection, in both
+  estates (owner, 2026-10-01, on the suite's output: "is not acceptable, make a note that we need to
+  move those into real tests with no IO and with DI"; the standing word of 2026-09-29 in
+  testing-strategy §Rules is the contract); (3) as they are met: decide each of the 51 deferred rows
+  of OCE's §H (do, drop, or the owner's call; "owed" is the parked shape the owner forbade on
+  2026-09-28), read the 86 unread frictions for lessons without homes, sample JC.net's comms stream
+  (4,304 events, about 840 substantive) before any pass is sized, re-true the three shared files,
+  cure the OCE lockstep test that reads `.agent/` files (testing-strategy §Rules), and re-true the
+  event-cited paragraphs in place (what happened, who decided, when, one instance).
 - **Working both estates from one session.** OCE is worked non-resident: absolute paths, `cd <oce>
   && <command>` or `git -C <oce> …` per command (a bare `cd` resets each call; `EnterWorktree`
   enters only the session's own repository). OCE commits carry `--author "Jim Cresswell
@@ -79,8 +83,9 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   `pnpm check:docs` after staging new files (its link validator refuses a tracked file linking an
   untracked one). OCE's pre-commit runs the full turbo gate under a host slot; its pre-push runs
   markdownlint, the secret scan, the review-cost gate and `pnpm skills:check` (a changed canonical
-  skill needs `pnpm skills:generate` first; JC.net's equivalent is `pnpm portability:fix`). Both
-  pre-push gates read the working tree, so an unrelated dirty tracked file (a machine-local path, a
+  skill needs `pnpm skills:generate` first in BOTH estates, `pnpm portability:fix` regenerates only
+  the rule and sub-agent adapters, and `pnpm skills:check` is in both pre-push gates). Both pre-push
+  gates read the working tree, so an unrelated dirty tracked file (a machine-local path, a
   repository slug) fails a push whoever made the edit. The JC.net hook policy blocks writing the OCE
   repository slug into any file, scratchpad included, and blocks `git restore`, `git reset` and
   force pushes; pass a repository root as an argument and move forward with filesystem edits. zsh:
@@ -93,13 +98,12 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   `.git/index.lock` is never touched; a buffer file is never deleted without the owner's word; the
   three napkins under `unconsolidated/` archive after full processing, no privacy review (the
   owner's card of 2026-09-14); the owner's stop and freeze words bind as freezes.
-- **Blocked at this close, the owner's call.** The draft of
-  `.agent/prompts/dedicated-consolidation-session.md` in the JC.net primary carries two
-  machine-local paths (the `validate-no-machine-local-paths` leg refuses the tree; the `~/code/…`
-  form passes it) and names the OCE repository by its slug on a JC.net surface, which the
-  lineage-names gate refuses on tracked files; no push from that primary passes while the draft sits
-  there. The seat left the file as the owner wrote it and committed around it. Nothing else waits on
-  the owner; the owner-act rows among the 51 are brought as they are met.
+- **Nothing waits on the owner at this close.** The owner's draft of
+  `.agent/prompts/dedicated-consolidation-session.md`, which had held the JC.net push for an hour
+  (two machine-local paths; the OCE repository slug on a JC.net surface, which the lineage-names
+  gate refuses outside the records), was settled by the owner on 2026-10-01 before the push; the
+  primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
+  met.
 
 ### 2026-10-01T10:4xZ — the handoff for a fresh session (Hawthorn binds Bracken, b3f117)
 
