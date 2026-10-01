@@ -21,6 +21,18 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T17:19Z: pull request 277 landed as SHA:ce3e0296; arc-metrics counts every entry**
+  (Crucible binds Slag, 7b999c). OCE's port of the tool landed there as its pull request 320
+  (SHA:d6349ccb4, 16:47Z); a code review before its ready-mark found three defects that this
+  estate's `main` carried too, and 277 brought the cures here as the same bytes: the line reader
+  dropped every entry holding a Unicode line or paragraph separator, a named directory that does
+  not exist reported no sessions, and nothing said that sub-agent transcripts are not measured.
+  Copilot's review of 277 named three more, cured in its two settlement pushes (the splitter
+  rescanned an unfinished line with every chunk; a missing directory was refused only after the
+  directories before it were read; the threshold was checked in minutes and not seconds); OCE
+  takes those on one small pull request. An arc measured here before this landing lost the
+  entries that held those two characters.
+
 - **2026-10-01T15:58Z: OCE's open work landed, and upstream is in `engraph`** (Crucible binds Slag,
   7b999c, non-resident there). In order: the coordination fold, pull request 299 (SHA:972020417);
   the three lanes, one sync each, 313 (SHA:e453ff81a), 309 (SHA:2691a8143) and 310
@@ -122,23 +134,27 @@ on open pull requests (`director-handoff.md`, 2026-09-26: one coordination pull 
 repository, and as many others as there are implementer seats, counted across both estates) the
 lines below go one pull request at a time.
 
-1. OCE's arc-metrics lane, its pull request 320. Premise recomputed first-hand on 2026-10-01: the
-   tool is on this estate's `main` and absent from `engraph`, and this estate has not changed it
-   since the port. A code review made before its ready-mark found three defects that this estate's
-   `main` also carries, each verified first-hand and cured there test first; they are owed here as
-   the same bytes on one pull request, after 320 lands:
-   - `arc-metrics/file-system-node.ts` reads lines through `node:readline`, which also splits on
-     the Unicode line and paragraph separators that JSON leaves unescaped, so every entry holding
-     either is dropped (15 entries in this estate's own project directory, as 52 fragments). OCE's
-     `split-lines.ts` splits on the newline alone.
-   - A named `--project-dir` that does not exist reports no sessions and exit 0.
-   - Nothing says that sub-agent transcripts, which the vendor nests under each session, are not
-     measured; in this estate's directory they hold about two fifths of all model calls. Naming
-     the exclusion is the cure owed; counting them is a design of its own, for both estates.
-   `codex-exec/cli.ts` reads its event lines through `node:readline` too, in both estates.
-2. OCE's J2 docs-validators port to its pull request: about 2,650 uncommitted lines in its lane
-   worktree (`cited-paths`, `cited-scripts`, `lineage-names`, all on this estate's `main` and absent
-   from `engraph`), unread by this seat; read and run before any commit.
+1. arc-metrics is landed in both estates (§Current State). Open from it:
+   - OCE takes 277's two settlement pushes as the same bytes: its pull request 321, opened at
+     17:23Z from its lane `.claude/worktrees/arc-metrics-settlement` (branch
+     `fix/arc-metrics-settlement`, claim 7fd42acc). Its state is in the pull request.
+   - Counting the sub-agent transcripts, which the vendor nests under each session: in this
+     estate's directory they hold about two fifths of all model calls. A design of its own, for
+     both estates.
+   - A failed call's synthetic entry counts as a model call with zero usage; a zero-byte transcript
+     counts as a session; unparseable lines are skipped without a count.
+   - `codex-exec/cli.ts` reads its event lines through `node:readline` too, in both estates: the
+     same splitting on a second reader, which is when `split-lines.ts` moves to `core/`.
+2. OCE's J2 docs-validators port. A code review of its uncommitted lane work on 2026-10-01 returned
+   NOT READY: it is this estate's bytes with the scope renamed, and it does not run there (the
+   entry files import names OCE's core does not export, its hook policy has no lineage block, the
+   scan scope is this estate's, the wiring is absent). OCE's record, §Next Safe Steps line 2,
+   holds the list. The same review reproduced logic defects that this estate's source carries, a
+   twinned lane after the ports: quoted and negated `--filter` values give a false
+   `unknown-workspace`; a second `--filter` and a `...` suffix hide a missing workspace; a heredoc
+   body is read as a command; `/bin/bash -c`, `env … bash -c` and `eval` are not read; a `~~~`
+   line inside a backtick fence turns later prose into citations; a cited path keeps its `:12-20`
+   line suffix. These are the reviewer's runs through the helpers, not repeated by this seat.
 3. Owed here from OCE's pull request 309: the repair smoke
    (`agent-tools/smoke-tests/repo-check-repair.smoke.ts`) comes out, and `validation-strategy.md`
    takes OCE's §Validators with the owner's words of 2026-09-29, the same bytes. The consolidation
@@ -178,6 +194,13 @@ Tool frictions met on 2026-10-01, each first-hand, for the lane that takes them:
   connector found nothing cannot settle that leg through the door: read the pull request's
   reactions before calling the connector absent, and the door's reading of the reaction is a
   tooling lane for both estates.
+- A seat resident in a lane worktree cannot run the skills' bot-write recipe as written: the
+  isolation guard refuses `GH_TOKEN="$(… mint-token …)" gh …` and the two-step `token=$(…)` form
+  as runtime values it cannot verify. On pull request 277 every bot write went through a scratch
+  wrapper that takes the scope first and the `gh` arguments after it, mints the token and runs
+  `gh` with it. That wrapper belongs in agent-tools as a `merge-bot gh` action, for both estates.
+- The same guard refuses any compound command that names git; a resident seat stages, commits
+  and reads the log as three plain commands.
 
 The items below are still open from the 2026-09-16 snapshot, each verified in the tree on
 2026-09-30; the snapshot itself, with its later state notes, is archived byte-identical in
