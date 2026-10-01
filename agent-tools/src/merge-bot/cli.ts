@@ -5,14 +5,15 @@ import type { PrStateReading } from '../pr-watch/state-types.js';
 import { MERGE_USAGE } from './merge-args.js';
 import { runMergeAction, type MergeActionInput } from './merge-cli.js';
 import type { GithubApiFetch } from './mint-installation-token.js';
-import { mintForConfig, type MintedToken } from './mint-for-config.js';
+import { mintForConfig, type MintedToken, type MintSeams } from './mint-for-config.js';
 import { PUSH_USAGE } from './push-args.js';
 import { runPushAction, type PushActionInput } from './push-cli.js';
 import { RETIRE_USAGE } from './retire-args.js';
 import { runRetireAction, type RetireActionInput } from './retire-cli.js';
 import type { BranchArgSeams } from './branch-arg.js';
 import type { GitExecutor } from './git-executor.js';
-import type { TokenFileStore } from './push-git.js';
+import type { PushGitReads, TokenFileStore } from './push-git.js';
+import type { PushMint } from './push-mint.js';
 import type { RetireGitPort } from './retire-git-port.js';
 import type { GitRunner } from '../collaboration-state/coordination-home.js';
 import { resolveMintTokenConfig } from './resolve-config.js';
@@ -83,8 +84,13 @@ export interface MergeBotCliInput {
   readonly gitPath?: string;
   readonly baseEnv?: Readonly<Record<string, string | undefined>>;
   readonly tokenFiles?: TokenFileStore;
-  /** Retire-action seams: git as the command asks of it, and the `--branch` check's oracle. */
+  /** Push seam: git's answers about HEAD and origin. */
+  readonly gitReads?: PushGitReads;
+  /** Push seam: the push's token mint. Unset, the push mints with `mintForConfig` over `fetchImpl`, `readFileImpl` and `nowEpochSeconds`; set, those three never reach the push. */
+  readonly mintImpl?: PushMint;
+  /** Retire-action seam: git as the command asks of it. */
   readonly retireGitPort?: RetireGitPort;
+  /** Push and retire seam: the `--branch` check's oracle. */
   readonly branchArgSeams?: BranchArgSeams;
 }
 
@@ -110,6 +116,15 @@ ${MERGE_USAGE}
 ${PUSH_USAGE}
 ${RETIRE_USAGE}`;
 
+/** The mint's injection seams, the same for every action that mints. */
+function mintSeamsFrom(input: MergeBotCliInput): MintSeams {
+  return {
+    fetchImpl: input.fetchImpl,
+    readFileImpl: input.readFileImpl,
+    nowEpochSeconds: input.nowEpochSeconds,
+  };
+}
+
 /** Forward the CLI's injection seams to the merge action. */
 function mergeActionInputFrom(input: MergeBotCliInput): MergeActionInput {
   return {
@@ -121,17 +136,15 @@ function mergeActionInputFrom(input: MergeBotCliInput): MergeActionInput {
     },
     stdout: input.stdout,
     stderr: input.stderr,
-    fetchImpl: input.fetchImpl,
-    readFileImpl: input.readFileImpl,
-    nowEpochSeconds: input.nowEpochSeconds,
+    ...mintSeamsFrom(input),
     readReadingImpl: input.readReadingImpl,
     sleepImpl: input.sleepImpl,
     nowIsoImpl: input.nowIsoImpl,
   };
 }
 
-/** The injection seams the push and retire actions share. */
-type GitActionInput = Omit<PushActionInput, 'tokenFiles' | 'sleepImpl'>;
+/** The injection seams the push and retire actions share: everything retire takes but its mint and its git port. */
+type GitActionInput = Omit<RetireActionInput, keyof MintSeams | 'gitPort'>;
 
 function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
   return {
@@ -144,26 +157,31 @@ function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
     repoRoot: input.repoRoot ?? process.cwd(),
     stdout: input.stdout,
     stderr: input.stderr,
-    fetchImpl: input.fetchImpl,
-    readFileImpl: input.readFileImpl,
-    nowEpochSeconds: input.nowEpochSeconds,
     gitExecutor: input.gitExecutor,
     gitPath: input.gitPath,
     baseEnv: input.baseEnv,
+    branchArgSeams: input.branchArgSeams,
   };
 }
 
-/** Forward the CLI's injection seams to the push action. */
+/** Forward the CLI's injection seams to the push action, composing its mint. */
 function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
-  return { ...gitActionInputFrom(input), tokenFiles: input.tokenFiles, sleepImpl: input.sleepImpl };
+  return {
+    ...gitActionInputFrom(input),
+    mint: input.mintImpl ?? ((config) => mintForConfig(config, mintSeamsFrom(input))),
+    sleepImpl: input.sleepImpl,
+    nowIsoImpl: input.nowIsoImpl,
+    tokenFiles: input.tokenFiles,
+    gitReads: input.gitReads,
+  };
 }
 
 /** Forward the CLI's injection seams to the retire action. */
 function retireActionInputFrom(input: MergeBotCliInput): RetireActionInput {
   return {
     ...gitActionInputFrom(input),
+    ...mintSeamsFrom(input),
     gitPort: input.retireGitPort,
-    branchArgSeams: input.branchArgSeams,
   };
 }
 
@@ -217,11 +235,7 @@ async function runMintTokenAction(
     return 2;
   }
 
-  const outcome = await mintForConfig(config.value, {
-    fetchImpl: input.fetchImpl,
-    readFileImpl: input.readFileImpl,
-    nowEpochSeconds: input.nowEpochSeconds,
-  });
+  const outcome = await mintForConfig(config.value, mintSeamsFrom(input));
   if (!outcome.ok) {
     input.stderr.write(`merge-bot mint-token: ${outcome.error.message}\n`);
     return 1;

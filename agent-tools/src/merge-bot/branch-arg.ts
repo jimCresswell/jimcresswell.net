@@ -11,9 +11,9 @@ import { isLegalBranchName, realRefFormatOracle, type RefFormatOracle } from './
  */
 
 /**
- * The default branch names no merge-bot command pushes to or retires. `push`
- * compares them exactly; `retire` in any case, because a case-insensitive
- * filesystem resolves `Main` to `main`.
+ * The default branch names no merge-bot command pushes to or retires: the
+ * never-commit-to-main rule as behaviour. Both commands compare them in any
+ * case, because a case-insensitive filesystem resolves `Main` to `main`.
  */
 export const DEFAULT_BRANCH_NAMES: ReadonlySet<string> = new Set(['main', 'master']);
 

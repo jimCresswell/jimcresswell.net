@@ -1,23 +1,15 @@
 import { describe, expect, it } from 'vitest';
 
 import type { GitCommandResult, GitExecutor } from './git-executor.js';
-import {
-  BRANCH,
-  gitFake,
-  mintFetch,
-  PUSHED,
-  REFUSED_PUSH,
-  REMOTE,
-  runPush,
-  TOKEN,
-  tokenStoreFake,
-} from './test-helpers/push-cli-double.js';
+import { REFUSAL_TRANSCRIPT_BOUND } from './push-attempts.js';
+import { gitFake, REFUSED_PUSH, runPush, tokenStoreFake } from './test-helpers/push-cli-double.js';
 
 /**
- * `merge-bot push`'s bounded retry at the front door: a push GitHub refused
- * before the pre-push hook ran is tried again with a fresh token, up to three
- * attempts, and anything else is final at once. Which transcript is the
- * refusal, and the retry's clock, are `push-attempts.unit.test.ts`'s.
+ * `merge-bot push`'s bounded retry at the front door: a push GitHub refuses
+ * before the pre-push hook runs is tried again on the retry's schedule, and
+ * the run ends as an operational failure once the schedule is spent. Which
+ * transcript is the refusal is `push-attempts.unit.test.ts`'s; the retry over
+ * a run of attempts is `push-attempts.integration.test.ts`'s.
  */
 
 /**
@@ -29,81 +21,54 @@ import {
 const DRIVE_BYTES = 1_852_962 * 2;
 
 describe('merge-bot push retry', () => {
-  it('tries a push GitHub refused before the hook ran again, and reports the push that went through', async () => {
-    const run = runPush({
-      args: ['--json'],
-      git: gitFake({ pushes: [REFUSED_PUSH, PUSHED], viaSink: true }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
-
-    expect(await run.exit).toBe(0);
-    expect(JSON.parse(run.out())).toEqual({ kind: 'pushed', branch: BRANCH, remote: REMOTE });
-    expect(run.errText()).toContain('denied to jimbot-oakington-iii[bot]');
-    expect(run.errText()).toContain('GitHub refused attempt 1 of 3 before the pre-push hook ran');
-    expect(run.errText()).toContain('abc1234..def5678');
-    expect(run.errText()).not.toContain(TOKEN);
-  });
-
-  it('mints a fresh token per attempt: GitHub refuses the first token, and the second lands', async () => {
-    const store = tokenStoreFake();
-    const refusedToken = 'installation-token-refused';
-    const gitExecutor: GitExecutor = (_file, args) =>
-      args[0] === 'rev-parse'
-        ? { status: 0, signal: null, stdout: `${BRANCH}\n`, stderr: '' }
-        : store.writes.at(-1)?.content === refusedToken
-          ? REFUSED_PUSH
-          : PUSHED;
-    const run = runPush({
-      git: { gitExecutor, calls: [] },
-      fetch: mintFetch(refusedToken, 'installation-token-fresh'),
-      store,
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
-
-    expect(await run.exit).toBe(0);
-    expect(run.errText()).toContain('GitHub refused attempt 1 of 3');
-    expect(run.errText()).not.toContain('installation-token');
-  });
-
-  it('surfaces the third refusal as an operational failure, each refusal shown', async () => {
-    const run = runPush({
-      args: ['--json'],
-      git: gitFake({ pushes: [REFUSED_PUSH] }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
+  it('reports a push GitHub refused on every attempt as an operational failure, nothing on stdout, the refusal shown', async () => {
+    const run = runPush({ args: ['--json'], git: gitFake(REFUSED_PUSH) });
 
     expect(await run.exit).toBe(1);
     expect(run.out()).toBe('');
-    expect(run.errText().match(/returned error: 403/gu)).toHaveLength(3);
-    expect(run.errText()).toContain(
-      'GitHub refused the push 3 times before the pre-push hook ran, each refusal shown above; nothing was pushed',
-    );
+    expect(run.errText()).toContain('denied to jimbot-oakington-iii[bot]');
+    expect(run.errText()).toContain('nothing was pushed');
   });
 
-  it('never tries again a push that failed after the hook ran', async () => {
-    const afterGate: GitCommandResult = {
-      ...REFUSED_PUSH,
-      stderr: `Running pre-push checks...\nPre-push checks completed!\n${REFUSED_PUSH.stderr}`,
-    };
-    const run = runPush({
-      git: gitFake({ pushes: [afterGate, PUSHED], viaSink: true }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
+  it('tries again a refusal the executor captured instead of streaming', async () => {
+    const gitExecutor: GitExecutor = () => REFUSED_PUSH;
+    const run = runPush({ git: { gitExecutor, calls: [] } });
 
     expect(await run.exit).toBe(1);
-    expect(run.errText().match(/Running pre-push checks/gu)).toHaveLength(1);
+    expect(run.errText()).toContain('trying again with the same token');
+    expect(run.errText()).toContain('nothing was pushed');
+  });
+
+  it('never tries again a refusal whose token directory could not be removed: the warning is not the refusal', async () => {
+    const store = tokenStoreFake({
+      remove: () => {
+        throw new Error('the directory is busy');
+      },
+    });
+    const run = runPush({ git: gitFake(REFUSED_PUSH), store });
+
+    expect(await run.exit).toBe(1);
+    expect(run.errText()).toContain('the directory is busy');
     expect(run.errText()).not.toContain('trying again');
   });
 
   it('streams a failed push that printed twice the measured gate output in full, and never takes it for the refusal (R1)', async () => {
     const loud: GitCommandResult = { ...REFUSED_PUSH, stdout: 'x'.repeat(DRIVE_BYTES) };
-    const run = runPush({
-      git: gitFake({ pushes: [loud, PUSHED], viaSink: true }),
-      overrides: { sleepImpl: () => Promise.resolve() },
-    });
+    const run = runPush({ git: gitFake(loud) });
 
     expect(await run.exit).toBe(1);
     expect(run.errText().length).toBeGreaterThan(DRIVE_BYTES);
+    expect(run.errText()).not.toContain('trying again');
+  });
+
+  it('never tries again a push whose refusal lines follow more output than the refusal check keeps', async () => {
+    const padded: GitCommandResult = {
+      ...REFUSED_PUSH,
+      stdout: '\n'.repeat(REFUSAL_TRANSCRIPT_BOUND + 1),
+    };
+    const run = runPush({ git: gitFake(padded) });
+
+    expect(await run.exit).toBe(1);
     expect(run.errText()).not.toContain('trying again');
   });
 });
