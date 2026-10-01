@@ -21,6 +21,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T15:58Z: OCE's open work landed, and upstream is in `engraph`** (Crucible binds Slag,
+  7b999c, non-resident there). In order: the coordination fold, pull request 299 (SHA:972020417);
+  the three lanes, one sync each, 313 (SHA:e453ff81a), 309 (SHA:2691a8143) and 310
+  (SHA:2e8892fed); and the upstream carrier, 319 (SHA:beceea25e), which brings the Oak line's
+  release 1.185.6 so that `engraph` holds every upstream commit. Neither estate has an open pull
+  request apart from its coordination draft (276 here, 318 there). OCE's own record carries the
+  detail in its §Current State and its 2026-10-01 pickup block. Two of those landings leave work
+  owed here, in §Next Safe Steps lines 3 and 4.
+
 - **2026-10-01T14:37Z: pull request 274 folded into `main` as SHA:cb285512** (Crucible binds Slag,
   7b999c; the bot's merge through the merge door, four Copilot rounds, every finding dispositioned
   on the pull request). The folded branch is retired, local and remote. moved for the sites:
@@ -80,20 +89,19 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   Gravity, 46de68) closed 2026-09-30, and the record's latest block governs.
 - JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): its seat closed with the
   Director lane on 2026-09-29; the record's latest dated block governs, and its landings list is the
-  lane's proof. Two of its pull requests are still open in OCE, read 2026-10-01T13:18Z: 310 (the
-  merge-bot push retry, three unresolved threads) and 309 (the repair smoke's process groups, one
-  unresolved thread, and commits in its lane worktree that the remote does not have). Their claims
-  in OCE's registry named the closed seat; Crucible binds Slag adopted them on 2026-10-01.
+  lane's proof. Its two pull requests that were still open in OCE landed on 2026-10-01 under
+  Crucible binds Slag, who had adopted their claims: 309 (SHA:2691a8143) and 310 (SHA:2e8892fed).
+  Its two OCE lane worktrees that hold work outside any pull request (arc-metrics, the J2
+  docs-validators port) are lines 1 and 2 of §Next Safe Steps.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
   review 2026-12-15). The
   record stays here until the second consolidation has read it for lessons without homes.
 - Turbo remote cache, optional everywhere (`threads/turbo-remote-cache.next-session.md`): the
-  delivery node `turbo-remote-cache-optional-and-persistent`, ratified 2026-09-30; PR 275 merged
-  here (SHA:f6a26954); OCE PR 313 open, green on its head, no review threads, behind `engraph`
-  (2026-10-01T13:18Z); the owner's two acts for criterion 1 are still owed. The record's latest
-  dated block governs.
+  delivery node `turbo-remote-cache-optional-and-persistent`, ratified 2026-09-30; both pull
+  requests have landed, PR 275 here (SHA:f6a26954) and OCE PR 313 (SHA:e453ff81a, 2026-10-01);
+  the owner's two acts for criterion 1 are still owed. The record's latest dated block governs.
 - Two-estate consolidation (`threads/two-estate-consolidation.next-session.md`): the first pass
   closed on 2026-10-01 (Hawthorn binds Bracken); the second runs from 2026-10-01T13:1xZ (Hazel
   tracks Trunk) at the owner's word, JC.net the home and OCE worked non-resident; the record's
@@ -106,35 +114,60 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 
 ## Next Safe Steps
 
-STATE, 2026-10-01T13:2xZ (Crucible binds Slag, 7b999c): the consolidation's own next steps are the
+STATE, 2026-10-01T16:0xZ (Crucible binds Slag, 7b999c): the consolidation's own next steps are the
 newest state block of `threads/two-estate-consolidation.next-session.md` and belong to its seat. The
-order below is this seat's, from the owner's word in §Current State; each of the first four lines
-is one ceremony or one pull request per lane, in landing order. This estate's own fold is not a
-line here: a fold's records state what landed, and its branch's state lives in its pull request.
+order below is this seat's, from the owner's word in §Current State. The folds, OCE's three lanes
+and the upstream sync that stood first in it have landed (§Current State). Under the owner's limit
+on open pull requests (`director-handoff.md`, 2026-09-26: one coordination pull request per
+repository, and as many others as there are implementer seats, counted across both estates) the
+lines below go one pull request at a time.
 
-1. Fold OCE's coordination pull request 299 into `engraph` by the `coordination-fold` skill (27
-   commits behind `engraph` at 13:1xZ), and cut its successor. It carries the same two code hunks
-   as pull request 274, under the same review.
-2. Land OCE's three open lanes, one sync push each at its turn: 313 first (green, no threads), then
-   309 and 310 (each with unresolved threads to harvest; 309 with lane commits the remote lacks).
-3. The upstream sync: `engraph` is six commits behind upstream `main` at SHA:050bf314c. OCE's
-   carrier workflow opens the draft carrier at its next run; the seat takes it by the
-   `cross-fork-integration` skill. Under the owner's limit on open pull requests
-   (`director-handoff.md`, 2026-09-26: one coordination pull request per repository, and as many
-   others as there are implementer seats, counted across both estates) the carrier's turn comes
-   after the three lanes, unless the owner puts it first.
-4. OCE's two lane worktrees that hold work outside any pull request, each to its own pull request:
-   arc-metrics (one commit with no remote branch, three uncommitted files) and the J2
-   docs-validators port (uncommitted). Their claims named closed seats; Crucible binds Slag adopted
-   all five of OCE's stale claims on 2026-10-01, and the premise of these two is still to recompute
-   first-hand before any edit.
-5. Owner acts owed, for the turbo node's first criterion: the Vercel OIDC policy covering this
+1. OCE's arc-metrics lane to its pull request. Premise recomputed first-hand on 2026-10-01: the tool
+   is on this estate's `main` and absent from `engraph`, and this estate has not changed it since
+   the port. The lane worktree holds two local commits and no remote branch (the port, and the three
+   files the exchange seat left uncommitted, read and run before their commit).
+2. OCE's J2 docs-validators port to its pull request: about 2,650 uncommitted lines in its lane
+   worktree (`cited-paths`, `cited-scripts`, `lineage-names`, all on this estate's `main` and absent
+   from `engraph`), unread by this seat; read and run before any commit.
+3. Owed here from OCE's pull request 309: the repair smoke
+   (`agent-tools/smoke-tests/repo-check-repair.smoke.ts`) comes out, and `validation-strategy.md`
+   takes OCE's §Validators with the owner's words of 2026-09-29, the same bytes. The consolidation
+   seat is asked whether its lane touches that directive, so that one seat edits it.
+4. Owed here from OCE's pull request 310: the merge-bot's push retry as reworked there (one token
+   minted once, GitHub's advised backoff of 3 s, 10 s and 30 s, one settled commit). This estate's
+   `main` still mints a fresh token for each attempt, which restarts GitHub's replication wait, and
+   reads HEAD again at each attempt; the exchange seat's record adds two flags missing from
+   `pushArgv` here (`--no-follow-tags`, `--recurse-submodules=no`).
+5. OCE lacks the merge-bot's `retire` action that this estate has; on 2026-10-01 every landed
+   branch there was deleted by hand after the same ancestry proofs.
+6. Owner acts owed, for the turbo node's first criterion: the Vercel OIDC policy covering this
    repository, and the `TURBO_TEAM` repository variable (`threads/turbo-remote-cache.next-session.md`
-   carries the policy's terms and the command).
-6. Not assigned to a seat: the capability-parity code lanes (the exchange register's rows L7 and L8,
+   carries the policy's terms and the command). Read 2026-10-01: the variable is absent, and the
+   run on `main` at SHA:cb285512 skipped the cache step and posted the notice.
+7. Not assigned to a seat: the capability-parity code lanes (the exchange register's rows L7 and L8,
    OCE's commit queue here, the agent-tools smoke suites as tests with no IO, the divergence measure
    as a command). The consolidation seat keeps the inventory and the homing of knowledge; the code
    lanes wait on the owner's routing.
+
+Tool frictions met on 2026-10-01, each first-hand, for the lane that takes them:
+
+- `claims close` requires `--now`, where the agent-tools README says `--now` defaults to the wall
+  clock (verified in OCE's build); the same class as `comms direct` and `comms reply` below.
+- The Bash hook policy refused a compound command as a force push when it held `gh api graphql -f`,
+  the word "push" in a pull request title and "git" in prose: the matcher reads across the whole
+  command string. Text in files and `-F query=@file` avoid it; the matcher is the thing to cure.
+- The `coordination-fold` skill's step-9 block writes `"+refs/heads/$FOLDED:refs/..."`; under zsh
+  `$FOLDED:r` is a history modifier and the refspec is mangled. `${FOLDED}` cures it, in both
+  estates' copies.
+- The Codex connector signals a review with no finding by a thumbs-up reaction on the pull request,
+  not by a review or a comment (its own text: "otherwise it will react with 👍"). On 2026-10-01 it
+  reacted within about three minutes of each head this seat pushed to OCE 299, 313, 309 and 310,
+  and posted a review only on 319, where it had a finding. This seat read the silence as absence
+  and wrote "unavailable" on three landing premises, each corrected on its pull request. The merge
+  door's leg computation reads reviews and does not read the reaction, so a head on which the
+  connector found nothing cannot settle that leg through the door: read the pull request's
+  reactions before calling the connector absent, and the door's reading of the reaction is a
+  tooling lane for both estates.
 
 The items below are still open from the 2026-09-16 snapshot, each verified in the tree on
 2026-09-30; the snapshot itself, with its later state notes, is archived byte-identical in

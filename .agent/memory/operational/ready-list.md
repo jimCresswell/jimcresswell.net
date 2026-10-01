@@ -10,18 +10,24 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 13:18Z): every open pull request that is not a draft is behind its base.
+- None (read 2026-10-01 16:00Z): neither estate has an open pull request apart from its
+  coordination draft.
 
-## Open, not yet ready (2026-10-01 13:18Z; Crucible binds Slag's order)
+## Open, not yet ready
 
-| Order | PR | Estate | State at the last read |
-| --- | --- | --- | --- |
-| 1 | 313 | OCE | The Turbo remote cache, optional everywhere; 7 files; green at 7f7b2eb1a, no review threads; BEHIND |
-| 2 | 309 | OCE | J3's round cures; 3 files; green at 2cb3eb56d, one unresolved thread; BEHIND; its lane worktree `oce-wt-repair-smoke-group` holds commits the remote lacks |
-| 3 | 310 | OCE | B1, the merge-bot push retry; 16 files; green at 44ab80289, three unresolved threads, Codex P1 first; BEHIND |
+- None (read 2026-10-01 16:00Z).
 
-The coordination pull requests of both estates land by the `coordination-fold` skill and are not
-listed here.
+The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
+`coordination-fold` skill and are not listed here.
+
+## Landed on 2026-10-01
+
+- OCE 313 (14:57Z, the Turbo remote cache optional everywhere, SHA:e453ff81a), 309 (15:16Z, the
+  repair smoke removed and the shellcheck gate's tracked lock, SHA:2691a8143), 310 (15:36Z, the
+  merge-bot's retry with one token on GitHub's backoff, SHA:2e8892fed), 319 (15:58Z, the upstream
+  carrier for release 1.185.6, SHA:beceea25e).
+- The two coordination folds: JC.net 274 (14:36Z, SHA:cb285512) and OCE 299 (14:40Z,
+  SHA:972020417).
 
 ## Landed on 2026-09-30
 
