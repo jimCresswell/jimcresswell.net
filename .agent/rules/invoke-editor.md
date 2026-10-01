@@ -15,7 +15,10 @@ globs:
 
 Invoke `editor` when changes alter public-facing copy, CV or front-page content, drafts in the
 LinkedIn workspace (`linkedin/`), structured-data descriptions, or editorial docs. Use it whenever
-Jim's public voice or narrative framing changes.
+Jim's public voice or narrative framing changes. Editor review informs a draft and is not a
+landing gate: the owner, 2026-09-29, "I told you to commit and push and merge the linkedin work
+just like any other work, it's not special, only putting it on Linkedin is special, and that
+happens manually".
 
 Give the editor a short brief naming what to review (a section, a draft, a narrative against a
 source). The editor reads the sources its template lists, then the content itself, and returns
