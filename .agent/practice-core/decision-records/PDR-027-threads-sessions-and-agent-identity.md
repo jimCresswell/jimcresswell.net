@@ -60,7 +60,7 @@ discipline binds to this PDR's tuple format).
   assumption stays available by design through `--seed`, `--agent-name` and a
   hand-set Practice variable. The general form, that the seeds a seat reads
   are its platform's own, waits on a second nesting instance. A joint cure
-  with the lineage (this estate's answer of 2026-09-25), the same design in
+  with OCE (this estate's answer of 2026-09-25), the same design in
   both.
 
 - **2026-08-24 — cloud seats seed from the platform session id; hooks never
@@ -851,3 +851,16 @@ harness-observed identifier is the fact the others are claims about,
 the declared value is checked against it at preflight, and the
 configured and reported values are inputs that never override an
 observation.
+
+### Decided 2026-10-01 — the harness-observed model is the fact
+
+Decided by the two-estate consolidation's retrospective seat (Hawthorn binds Bracken, b3f117) under
+the decision lenses, not by the owner: strictness and generated-over-authored state. The identity
+row carries the model the harness runs, observed at run time; the declared value is checked against
+it at preflight and a declaration that differs is a stale declaration to correct, never the row's
+truth; configured and reported values are inputs that never override an observation. This is the
+candidate the open question above named, now the clause (the question was raised by seats on
+2026-09-09 and again on 2026-09-28, OCE comms events f4dd1e59 and 8525f1ad, where gpt-6-sol/xhigh
+ran against a declared GPT-5). The consumers the question names (the naming registry, the Cricket
+tally, the identity preflight) are read by the lane that implements the check; the owner overrules
+at will.

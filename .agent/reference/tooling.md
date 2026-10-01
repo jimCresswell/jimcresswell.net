@@ -104,7 +104,7 @@ TSDoc compliance is enforced at two layers:
    per-workspace) declare `@generated` as a custom modifier tag,
    allowing it to pass the TSDoc parser without triggering warnings.
 
-The lineage's third layer — stripping non-standard tags from generated
+OCE's third layer — stripping non-standard tags from generated
 code at generation time — has no subject here, since no code is generated
 from an external schema.
 

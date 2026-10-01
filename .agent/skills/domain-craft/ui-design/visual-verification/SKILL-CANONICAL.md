@@ -43,7 +43,7 @@ directory holding the renders and diffs. Options (`--repo-root`,
 `jcdotnet/visual-regression-harness/cli.ts`; the routes and viewports
 come from the harness configuration, never from ad-hoc flags.
 
-The lineage's per-route probe (an `--origin`/`--route`/`--tabs`
+OCE's per-route probe (an `--origin`/`--route`/`--tabs`
 instrument that captures a focus-state render and echoes
 `document.activeElement` in-band) is not ported here. When a proof needs
 a focus-state or single-route render the harness does not produce, the

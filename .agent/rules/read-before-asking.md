@@ -106,7 +106,7 @@ This rule is the operational expression of
 the doctrinal frame under which the rule's substance lives. PDR-057
 supersedes the quarantined `apply-don't-ask` candidate; the original
 doctrine was
-quarantined on 2026-05-01 (upstream lineage)
+quarantined on 2026-05-01 (OCE)
 because it lacked a destructive-operation guard and contributed to
 the action landscape that produced a destructive
 `git checkout --` incident.

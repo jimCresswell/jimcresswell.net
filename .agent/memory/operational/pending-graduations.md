@@ -165,11 +165,6 @@ review — promote/kill applies only to not-yet-minted concepts.**
 
 | Concept | Prediction (by review) | Falsifier | Review |
 | ------- | ---------------------- | --------- | ------ |
-| Ratified text is the owner's: a verdict quotes the governing text before it rules and never rules against it; a change to ratified text is a card after the item lands (source: napkin 2026-09-13, Wrap 7, lane A, lane C wrap: a verdict overturned a ratified todo and the owner asked what else was being overturned; home: a new rule `ratified-text-changes-only-by-card` or a clause in `precedence-is-not-approval`, whose lines 42 to 45 at SHA: ea3142b route a precedent challenge to a card and bind no verdict to quote the text it rules under) | No Director or seat verdict contradicts a ratified line; every method change to ratified work arrives as a card | A verdict contradicts a ratified line with the clause loaded, or a method change to ratified work lands without a card | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
-| A method question to the owner is asked as the sensible shape under the estate's rules, never as one authority against another (source: owner, 2026-09-13 evening, on the Gemini card: "this is not a matter of competing authorities, what does sensible look like?"; home: principles §Decision Lenses, one sentence after the either/or clause, whose lines 41 to 47 bind questions and options, not cards) | The next card that pairs ratified text against an estate rule is refused by its author before it is sent | A card framed as two texts in competition is sent to the owner | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
-| Process is the last resort: before adding a step, a card, a precondition, a node or a pass, ask whether a computation, an existing rule or the owner's recorded words already answer it (source: napkin 2026-09-13, Wraps 6 and 7, four owner corrections of one shape in one afternoon; home: `compute-dont-hope`, whose lines 14 to 17 cover hand-kept lists only; the card half is already carried by `present-verdicts-not-menus` lines 97 to 99 and 189 to 192) | Cards per session fall to owner-only decisions; the owner names no invented optionality in the next five card rounds | The owner names invented optionality (a step, card, precondition, node or pass that doctrine or a computation already answered) in a card round | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
-| Consolidation runs one truth-maintenance pass over every surface that advertises plan state: frontmatter status, narrative status, next-step sections, current-state notes, roadmap and parent tables, READMEs (source: napkin 2026-03-09 and 2026-04-03, promoted there; the transplanted consolidate-docs skill did not keep it: its sweep at line 348 is scoped to a renamed surface and line 362 asks only for plans and prompts up to date) | The next consolidation's record lists the status surfaces it swept and no frontmatter-versus-narrative status divergence survives it | A consolidation closes leaving a status divergence between two of the named surfaces | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
-| Consolidation checks each domain skill the period's findings touch, diffing its pitfalls table against those findings (source: napkin 2026-03-07; home: the consolidate-docs skill, where the word pitfall does not occur and skills appear only as a graduation destination, line 595) | The next consolidation names at least one skill pitfalls table it checked | A consolidation closes with a stale pitfalls table in a skill its findings touched | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
 | Owned doctrine is placed where the situation arises, not only where the instrument's ceremony lives (the arc's retrospective and its second protected pass, 2026-09-16; owner's card filing it to this lane): an estate that imports or accumulates doctrine faster than it places it leaves rules that read correctly and fire nowhere; four situations the arc met were answered by doctrine already in the tree (PDR-140's response pricing, the 2026-07-15 handover ruling, the coordination branch's home clause, pr-lifecycle's silent-CI clause), each surfacing through the owner or a peer, while doctrine firing was otherwise the norm (seventeen decision records and twenty-eight rules cited); the placement question is whether a general mechanism is needed (triggers keyed to the seat's situation) or whether per-instrument gates suffice | With the per-instrument gates adopted (PDR-140's declaration at open, the push-time budget gate, records riding their pull request), owner corrections that already-owned doctrine answered fall to at most one per arc | Two or more such corrections in any arc after the gates land: the gates are too narrow and a general placement mechanism is needed | 2026-12-15 (first consolidation on/after) |
 
 <!-- Drained at the 2026-09-06 dedicated consolidation: ten entries decided, every one already
@@ -194,6 +189,13 @@ as duplicates with the home, never here.
 
 ### Session 2 candidates (captured 2026-09-13; the owner's card answers are the dispositions)
 
+<!-- Drained 2026-10-01 at the owner's card (the session-2 batch answered whole): the two entries
+graduated to testing-strategy (§Site Workspace Conventions; the KISS bullets, both estates); the five
+card-gated slow-lane concepts decided: ratified text to precedence-is-not-approval, the method-question
+and process-last concepts to user-collaboration, the two consolidation concepts to consolidate-docs §Approach,
+each in both estates. The sixth slow-lane row keeps its 2026-12-15 review. The commits and the homes
+are the record. -->
+
 The disposition of this batch by owner cards is the ratified node's item 8 verbatim
 (`.agent/plans/delivery/practice-completion.plan.md` §Transplant closure, item 8: "the
 candidates go to the owner as one batch of cards; the answers are the dispositions; nothing
@@ -203,28 +205,4 @@ candidates of the batch (A, B, C, 1a and 1b under PDR-130's class test: how the 
 under ratified text, frames a question to the owner, adds process, and consolidates) sit in
 §Slow lane above with review dates and are not decision-debt; the operational lessons file here.
 
-- **Split proofs by layer; graph-backed E2E expectations from JSON fixtures by import attribute**
-  `[captured: 2026-09-13 | source: napkin 2026-03-09 (Track A A3 slices, three instances),
-  importing a product module into a Playwright spec failed on bundler-resolved JSON imports;
-  the contract assertion stayed in Vitest and the emitted-channel assertion in Playwright, with
-  content/entities.json imported with a JSON import attribute on the E2E side | target:
-  testing-strategy §Site Workspace Conventions (one bullet; the
-  docs/engineering/testing-patterns.md half landed 2026-09-30) | trigger: the owner's card answer
-  (session 2 batch) |
-  size: S | status: pending]`
-  The never-import-an-app-module cell is already written: testing-strategy lines 452 to 453
-  and testing-patterns lines 147 to 151. Prediction: no site E2E spec imports an app module in
-  the next ten sessions. Home read: the contract-versus-channel split and the JSON import
-  attribute appear in neither home (testing-strategy lines 463 to 464 name the proof layer
-  only; testing-patterns lines 133 to 136 point at real sources over fixtures).
-
 ### Session 2, verified before filing (the Director's list; each home read, the lesson unwritten)
-
-- **A large fixture, an allowlist or a helper definition inside a test is a design smell**
-  `[captured: 2026-09-13 | source: napkin 2026-03-08 (owner preference), logic that a test
-  carries as a fixture, an allowlist or a helper belongs in product code as the source of
-  truth | target: testing-strategy §KISS (the three smell classes and the relocation cure) |
-  trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
-  Prediction: the next test PR carrying one of the three classes is asked for the product-code
-  home at review. Home read: lines 62 and 162 to 164 forbid complex logic and say simplify the
-  code and the test; line 55 sizes fixtures; the three classes and the cure are unnamed.

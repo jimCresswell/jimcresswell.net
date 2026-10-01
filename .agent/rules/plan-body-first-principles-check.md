@@ -13,7 +13,7 @@ you are about to author). If any clause fails, surface the mismatch to the owner
 before writing code or doctrine.
 
 The stakes, from a worked failure (2026-07-26, owner-named as a discipline
-signal, upstream lineage): an ADR recorded no-hydration as a decided state although it
+signal, OCE): an ADR recorded no-hydration as a decided state although it
 contradicted the owner's standing Full-React requirement, survived four
 reviewer passes AND ratification, and was then cited back to the owner as
 authority for the contradiction. A decided-state that contradicts standing

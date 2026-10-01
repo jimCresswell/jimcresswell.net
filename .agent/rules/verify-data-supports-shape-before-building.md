@@ -61,7 +61,7 @@ not silently reshaped.
 
 ## Failure mode this prevents
 
-In the upstream lineage (2026-06), a tool family keyed on an axis its corpus did
+In OCE (2026-06), a tool family keyed on an axis its corpus did
 not carry; months of data-shape engineering went into a join the data never
 supported. A separate migration plan rested on a premise a cheap corpus
 fingerprint refuted before any code landed. Both are the same failure:

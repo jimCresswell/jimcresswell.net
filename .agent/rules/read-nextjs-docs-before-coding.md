@@ -32,7 +32,7 @@ Layout: `01-app/` is the App Router (this repo's default), `02-pages/` the
 legacy Pages Router, `03-architecture/` the internals; start from `index.md`
 when unsure.
 
-Worked instance (upstream lineage): Next 16 renamed `middleware.ts` to
+Worked instance (OCE): Next 16 renamed `middleware.ts` to
 `proxy.ts`; earlier in-tree research predated the rename, so a plan built on
 training-data recall would have wired the wrong file — caught only because the
 live docs were checked. This site's content-negotiation proxy (ADR-009) is

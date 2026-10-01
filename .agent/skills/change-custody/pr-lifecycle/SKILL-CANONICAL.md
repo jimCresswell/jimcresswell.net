@@ -640,8 +640,7 @@ reviews say 0 new and carry fifteen and eight). The
 cure-worthy count reads the marker and nothing else (a below-bar finding
 and a build-changing one can both be routed to a home); signed replies and
 comments are excluded from the raised count (item 2). The recorded corpus
-that fixed this format is the source
-lineage's harvest of its pull request #135 (a fixture with a README in that
+that fixed this format is the OCE's harvest of its pull request #135 (a fixture with a README in that
 estate, not carried here: it is that repository's review data); this
 repository's own corpus is recorded at its first tallied pull request.
 
@@ -1055,7 +1054,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    that class a timeout-settled round IS merge-eligible. Grounds: the
    Claude review posts no review on a clean tip, so the leg never
    satisfies. The Copilot leg is obtained by a review request on the tip:
-   in the source lineage the bot's own `POST
+   in OCE the bot's own `POST
    repos/{owner}/{repo}/pulls/{n}/requested_reviewers` with
    `reviewers[]=copilot-pull-request-reviewer[bot]` under the
    pull-request-work token returned 201 and the timeline showed

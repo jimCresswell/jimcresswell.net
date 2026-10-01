@@ -2,7 +2,7 @@
 name: cross-fork-integration
 classification: active
 description: >-
-  Integrate an upstream lineage's default branch into this fork's as a semantic
+  Integrate an OCE's default branch into this fork's as a semantic
   event, never a text merge: verify the mirror and carrier, merge-tree against
   the live tip, one two-parent merge with an ordinary message, regenerate the
   generated surfaces, reconcile memory files by concept, sweep the fork's
@@ -448,5 +448,5 @@ declared" (Finch binds Sundog's panel-refuted frame of 2026-09-06, events 4382df
   here — the reference direction runs plan → doctrine).
 - `.agent/skills/set-up-worktree-lane/SKILL-CANONICAL.md` — the identity
   check and the build; step 3 above says why its branch cut does not apply.
-- The lineage's ADR "organisational identity below the tree" (at the lineage pin, not carried here)
+- OCE's ADR "organisational identity below the tree" (at the OCE pin, not carried here)
   — why the fork diff is enumerated and identity-free.

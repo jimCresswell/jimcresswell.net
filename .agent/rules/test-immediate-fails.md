@@ -60,7 +60,7 @@ seam, extract a pure function, inject a dependency).
    (owner, 2026-09-14 and 2026-09-15). A filesystem read is IO
    whatever the provenance of the bytes: committed fixtures enter a
    test as imported modules or as literal values. A fixture-reading
-   `test-helpers/` module (the lineage's two worked instances were a
+   `test-helpers/` module (OCE's two worked instances were a
    conformance-suite fixture loader and a codegen schema-cache reader)
    is a defect under this item; existing code is evidence of the
    estate and carries no approval

@@ -122,7 +122,7 @@ sibling project's tests into the app project, which may lack the
 required `lib` (no DOM lib → type errors that look environmental).
 Scope test globs to `src/`. A pre-existing `**/*.test.ts` can mask this
 for years if the sibling's tests all use a different extension
-(2026-07-25, in the lineage: the sibling's tests were all `.tsx`).
+(2026-07-25, in OCE: the sibling's tests were all `.tsx`).
 
 ## Package Export Contracts
 

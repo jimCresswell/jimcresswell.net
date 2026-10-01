@@ -19,8 +19,8 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 
 - State at the close of the retrospective, 2026-09-30 (the dated blocks below carry the detail, newest
   first): the six consolidation skills and the per-user-memory rule read the same bytes in both
-  estates; both registers hold owner-gated entries only (JC.net three, gated on the session-2 cards;
-  OCE none, its seven comms-table cards being owner-decision items in its continuity record);
+  estates; both registers hold no live entries (JC.net keeps one slow-lane row with a 2026-12-15 review; OCE's
+  seven comms-table rulings are recorded in their decision records);
   distilled is empty in both; the per-user memory directories
   hold 78 files (JC.net) and 30 (OCE), every file marked graduated or kept by its nature; the napkins
   hold the day's homed blocks. The estates' shared paths differ by 147 files and 7,139
@@ -37,12 +37,36 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 - Both primaries stand on their coordination branches (JC.net `coordination/2026-09-29-b6232c`,
   OCE `coordination/2026-09-29-76974c`), each in sync with origin and riding its draft pull request
   (274, 299). A new day cuts a new coordination branch in each estate.
-- Next safe step: the owner's eight decisions in the retrospective's §Decisions for the owner (knowledge
-  preserved, discoverable and accessible is the test; counts are noticers; ceremony only where it
-  serves a purpose, the owner's frame of 2026-10-01), then
-  the bounded repairs that need none (five friction lessons, the divergence-measure command, the
-  three shared files named in the report); the next session decides whether another dedicated
-  consolidation is needed, and the retrospective's legs disagree on that question.
+- Next safe step: the capability-parity session the owner set on 2026-10-01, both ways: inventory
+  what each estate holds that the other lacks (the exchange register's L7 and L8 rows first), then
+  transplant lane by lane in small pull requests, deciding the 51 deferred rows and reading the 86
+  frictions as they are met. The retrospective's §Decided 2026-10-01 is the record of what was
+  settled and by what.
+
+### 2026-10-01T10:3xZ — the decision matrix, the owner's cards, the settled moves (Hawthorn binds Bracken, b3f117)
+
+- - The owner asked for the eight decisions to run through the decision lenses and for the survivors
+  and unknowns to be asked at once. Three survived (the session-2 batch, by the owner's item-8 word;
+  two tooling rows of the practice box; the owner-act rows of the 51); the owner answered: all six
+  session-2 candidates graduate; the tooling is not a question ("we are bringing both estates to the
+  same level of capability, anything useful that one has must make it to the other"); only
+  owner-ratified text changes on the owner's word; proof replaces the word for a bulk archive; the
+  settled moves run now; the next session is capability parity, both ways. The report's §Decided
+  2026-10-01 carries the table.
+- - Moves made, both estates unless noted: snapshot removed and consolidate-docs 6b re-trued; six
+  rulings recorded in PDR-117, PDR-064, PDR-125, PDR-027 and PDR-140 with the decider named, OCE's
+  owner-decision item 11 withdrawn; six session-2 candidates homed (testing-strategy,
+  precedence-is-not-approval, user-collaboration, consolidate-docs) and this estate's register
+  drained to the one slow-lane row with a 2026-12-15 review; "the lineage" written as OCE across
+  live doctrine where OCE is meant (archives and the git-lineage senses untouched); the practice box
+  archived byte-identical under
+  `archive/practice-incoming-2026-09-14-oak-line-delta-since-e477e62f7.md` (its two tooling items
+  were already the exchange register's L7 and L8 "bring" rows); the napkin gate corrected (the
+  owner's 2026-09-14 card: no privacy review, archive after full processing).
+- - Counts at this close: JC.net pending graduations 0 live entries (the register holds one
+  slow-lane row, review 2026-12-15, not decision-debt); OCE pending graduations 0; distilled empty
+  in both; OCE's frictions register 44 live under §Friction Entries and 86 unread under §Routing
+  Notes.
 
 ### 2026-10-01T07:08Z — the owner's frame after the handoff (Hawthorn binds Bracken, b3f117)
 

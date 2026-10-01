@@ -96,7 +96,7 @@ If answers 1 and 3 differ, name by answer 1 and document answer 3 as packaging.
 
 ## Related Doctrine
 
-- The audience-led capability taxonomy was ratified in the source lineage; this
+- The audience-led capability taxonomy was ratified in OCE; this
   repository carries it by adoption.
 - [PDR-051](../../practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md)
   owns platform skill standardisation and adapter mechanics.

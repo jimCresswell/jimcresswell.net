@@ -9,7 +9,7 @@ description: Author a plan node in the ratified plan-node estate.
 Create a plan node aligned with the foundation documents, the planning
 discipline in
 [PDR-018](../../../practice-core/decision-records/PDR-018-planning-discipline.md),
-and the plan-node estate this repository adopted from the lineage.
+and the plan-node estate this repository adopted from OCE.
 The machine-enforced contract is the
 [plan-node schema](../../../plans/plan-node-schema.md); the estate validator
 runs in CI and at pre-commit.

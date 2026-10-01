@@ -280,7 +280,7 @@ exercised once at cure time by hand and the run is recorded on the pull
 request and in the records: the commands, the inputs, what was seen. An
 observation is dated, first-hand and reproducible from its record; it is
 never narrated as a suite's proof, and a suite is never built to replace it
-with IO. Worked instance, in the lineage's estate (2026-09-14): its review-cost
+with IO. Worked instance, in OCE's estate (2026-09-14): its review-cost
 gate's sync predicate, proven by unit tests over injected git output plus one
 recorded run of the real git on its PR #146, a scratch repository exercising
 the admitted and refused merge shapes by hand.

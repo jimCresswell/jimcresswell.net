@@ -16,7 +16,7 @@ Where does a new capability land? This procedure answers at authoring
 time the question the estate used to answer by tacit knowledge — the
 consumer that runs at every landing is the landing decision itself.
 It is R2 of
-the WS0 skills-estate recommendation (an upstream-lineage report, 2026-08-02),
+the WS0 skills-estate recommendation (an OCE report, 2026-08-02),
 adopted at the owner's full ruling 2026-08-02; it succeeds the
 interim landing guidance, whose sunset fired at that ruling.
 
@@ -79,7 +79,7 @@ while the procedure's substance homes in the skill.
    serve? `.agent/skills` is the Practice skills corpus — about
    creating the repo, its contents and mechanisms, and enabling
    future mechanisms, not about the sites' content (owner
-   partition, 2026-08-02, inherited with the lineage). Site- and
+   partition, 2026-08-02, inherited with OCE). Site- and
    reader-facing capability is a separate domain, audience, and delivery
    mechanism. A capability that
    fits no existing audience set does not stretch one — a new set

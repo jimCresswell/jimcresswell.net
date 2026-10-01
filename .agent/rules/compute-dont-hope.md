@@ -47,7 +47,7 @@ declaration states an intent; a list restates a fact.
 
 - 2026-09-13, PR #53: the postinstall bootstrap built a hand-kept list of workspace packages;
   the ESLint plugin every config file imports was not on it, a warm local `dist` masked the
-  gap, and CI's cold checkout failed dependency-cruise. The lineage had hit the same class
+  gap, and CI's cold checkout failed dependency-cruise. OCE had hit the same class
   twice before (its own bootstrap comment names two pull requests). Cure: the closure is
   derived from the workspace manifests at run time;
   `agent-tools/src/bootstrap/install-time-closure.ts` defines its membership.

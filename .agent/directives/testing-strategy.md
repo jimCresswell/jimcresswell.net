@@ -122,7 +122,7 @@ prove the test bites) is in
   state, the DI seam that makes this holdable is the view-binder
   split — views take state as props, a two-line binder owns the
   hook, tests render the view with literal states, zero mocks
-  (recorded in the lineage as the `view-binder-di-seam` pattern).
+  (recorded in OCE as the `view-binder-di-seam` pattern).
 
 ## Rules
 
@@ -187,7 +187,7 @@ prove the test bites) is in
   behaviour"): a test asserting an exclusion counter, a stat field or the
   argument of a query the product made asserts what the configuration
   echoes back, not whether the restricted content flowed. The cure is a sentinel-content assertion
-  through the public result (in the lineage: the hidden lesson's keyword
+  through the public result (in OCE: the hidden lesson's keyword
   appears only when the switch admits it). The generator to watch is testing at the
   seam where the wiring is visible instead of the surface where the
   behaviour is observable.
@@ -222,6 +222,11 @@ prove the test bites) is in
   no complex logic in mocks, or we risk testing the mocks rather
   than the code. Complex mocks are a signal that we need to step
   back and simplify the code or our approach.
+- **KISS: a large fixture, an allowlist or a helper definition inside a
+  test is a design smell** - logic a test carries as a fixture, an
+  allowlist or a helper belongs in product code as the source of truth;
+  relocate it there and let the test read it (owner preference,
+  2026-03-08; graduated 2026-10-01 at the owner's card).
 - **No skipped tests** - Fix it or delete it. Skipping mechanisms
   (`it.skip`, `describe.skip`, `test.todo`, `it.todo`, `xit`,
   `xdescribe`) are forbidden outright. A check that needs an external
@@ -291,7 +296,7 @@ prove the test bites) is in
   IO; where no injection seam below it can carry the proof (a fake would
   model libuv engine semantics, the "double models the engine" trap), the
   proof is an observation made once at cure time and recorded, or a
-  validator's self-proof outside the in-process test run (the lineage's
+  validator's self-proof outside the in-process test run (OCE's
   `file-backed-stdio-for-spawned-gate-children` pattern describes the
   shape being proven). An existing suite that spawns is a defect under
   this rule, cured the same way.
@@ -490,6 +495,11 @@ The site workspace applies the taxonomy above with these fixed conventions:
   (cross-cutting: a11y, SEO, content); Playwright browser automation.
 - **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
   against the running site — the black-box boundary, never an imported app.
+- **Proof layers split by what they prove**: the contract assertion stays in Vitest beside the
+  module and the emitted-channel assertion in Playwright against the served site; an E2E spec never
+  imports a product module (bundler-resolved JSON imports fail there) and reads
+  `content/entities.json` with a JSON import attribute when it needs graph-backed expectations
+  (three instances, 2026-03-09; graduated 2026-10-01 at the owner's card).
 - **Runner**: `pnpm --filter @jimcresswell/www test:e2e` starts the site's `e2e:server` script
   from Playwright's global setup (ADR-019; §Harnesses Adapt to Shared Hosts): one process that
   binds a free port and keeps the socket for its whole life, builds the site with that port and
@@ -541,7 +551,7 @@ loader-assisted harness (vitest, tsx) while production executes built
 artefacts under plain `node` — and nothing at any scope level REQUIRES
 surface fidelity. An E2E check MAY boot the built artefact (the site's
 Playwright suite runs against the production build its `e2e:server` script
-builds and serves on the port the config held, and the lineage's CLI contract E2E
+builds and serves on the port the config held, and OCE's CLI contract E2E
 booted its built binary), but that coverage is
 incidental to its scope classification.
 Smoke checks own the surface axis and make artefact fidelity MANDATORY:

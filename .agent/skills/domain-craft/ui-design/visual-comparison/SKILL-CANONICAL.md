@@ -12,7 +12,7 @@ description: >-
 
 # Visual comparison
 
-The method (the source lineage's design decision DDR-010, not carried here):
+The method (OCE's design decision DDR-010, not carried here):
 comparison is VISUAL FIRST — rendered images, looked at — with windowed
 statistics directing the looking and computed styles corroborating causes.
 Never conclude "matches" from markup, styling, or computed styles alone.

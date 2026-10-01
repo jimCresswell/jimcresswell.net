@@ -31,7 +31,7 @@ Compare a converted app against its canonical Claude Design export and leave
 **every divergence with a recorded judgment**. The diff is triage; the
 judgment is the deliverable. This is the agent-judged reconcile step of the
 Claude-Design ingestion pipeline
-(the lineage's productionisation plan WS2
+(OCE's productionisation plan WS2
 — "there is likely no deterministic route"): tools surface differences, an
 agent or human decides what each one means.
 
@@ -58,9 +58,9 @@ agent or human decides what each one means.
    placeholders, no representative subset (owner, 2026-07-01, standing for every
    Claude Design project).
 
-## Worked instance — the lineage's first conversion
+## Worked instance — OCE's first conversion
 
-The fidelity tool below is the lineage's instrument and is not ported to
+The fidelity tool below is OCE's instrument and is not ported to
 this repository; the shape is recorded so a port has a reference. In the
 lineage the converted workspace owned a `tool:fidelity` script:
 
