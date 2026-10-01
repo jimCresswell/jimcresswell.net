@@ -3,7 +3,7 @@ name: "A Baseline Transmits Its Stance, Not Only Its Facts"
 polarity: anti-pattern
 category: agent
 use_this_when: "Composing a brief, a judge prompt, or a fleet dispatch that hands the legs a prior document — a matrix, a ratified node, a previous round's result — as their starting point, especially inside a space the owner has reopened."
-proven_in: "Round-1 census judges handed a prior matrix as baseline carried its editorial stance unratified into their target states; the round that centred the question produced a dramatically different result (2026-08-14). Fleet briefs seeded with 'ratified structure must be respected' converted surface-with-verdict into defend-the-ruling across every panel — the owner's diagnosis was 'self-congratulatory theater' — and only the anchor-free legs survived the day, independently agreeing with the owner (2026-08-17; cure record .agent/research/workspace-basis-regrounding-2026-08-17.md). Anti-deference briefs then held at a five-leg panel two days later (2026-08-17 evening). Conserved in the lineage's archived napkin of 2026-09-02 (at the pin, not imported)."
+proven_in: "Round-1 census judges handed a prior matrix as baseline carried its editorial stance unratified into their target states; the round that centred the question produced a dramatically different result (2026-08-14). Fleet briefs seeded with 'ratified structure must be respected' converted surface-with-verdict into defend-the-ruling across every panel — the owner's diagnosis was 'self-congratulatory theater' — and only the anchor-free legs survived the day, independently agreeing with the owner (2026-08-17; cure record .agent/research/workspace-basis-regrounding-2026-08-17.md). Anti-deference briefs then held at a five-leg panel two days later (2026-08-17 evening). Conserved in OCE's archived napkin of 2026-09-02 (not imported)."
 proven_date: 2026-08-17
 related_pattern: inherited-framing-without-first-principles-check
 barrier:
@@ -19,7 +19,7 @@ barrier:
 > See [`patterns/README.md` § Polarity](README.md#polarity-required-every-pattern)
 > for the polarity discipline.
 
-Imported from the lineage at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
+Imported from OCE at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are OCE's; local divergence is recorded where it exists.
 
 ## The failure shape
 
@@ -46,6 +46,15 @@ Deference contamination is anchor propagation one level up.
 - **Centre the question, never the predecessor.** The brief states the
   question and the evidence bar; a prior document enters as ONE candidate
   among others, never as the frame.
+- **A consultation transmits the asker's frame the same way.** A second
+  opinion asked as "may weaker evidence settle a merge gate?" returns a
+  well-reasoned answer to that question, and two agents in one frame reinforce
+  each other while it feels like diligence (2026-09-16; the owner's reframe,
+  "No findings means no problems, that IS a result", came from outside the
+  frame). State the frame as
+  a question beside the question ("am I asking about evidence strength, or
+  about what a result is?"), because a peer cannot supply a position the
+  asking has already excluded.
 - **When the owner reopens a space, forbid deference inside it.** "The
   original target architecture was WRONG" strips authority from every
   prior ruling in the reopened space; briefs say so explicitly, admit only
