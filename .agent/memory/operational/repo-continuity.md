@@ -133,8 +133,9 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   Director lane on 2026-09-29; the record's latest dated block governs, and its landings list is the
   lane's proof. Its two pull requests that were still open in OCE landed on 2026-10-01 under
   Crucible binds Slag, who had adopted their claims: 309 (SHA:2691a8143) and 310 (SHA:2e8892fed).
-  Its two OCE lane worktrees that hold work outside any pull request (arc-metrics, the J2
-  docs-validators port) are lines 1 and 2 of §Next Safe Steps.
+  Of its two OCE lane worktrees, arc-metrics landed as OCE 320 and 321 and is gone; the J2
+  docs-validators port still holds work outside any pull request and is line 2 of §Next Safe
+  Steps.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,

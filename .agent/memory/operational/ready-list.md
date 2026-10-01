@@ -10,7 +10,7 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 20:53Z).
+- None (read 2026-10-01 23:24Z).
 
 ## Open, not yet ready
 
@@ -18,6 +18,8 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
   (`SHA:5527d3c5`), checks green. Its second review round (20:43Z) left one open thread and three
   items in the review body, read and not yet dispositioned: the lane is frozen at the owner's
   compaction word. The implementer seat's one open lane.
+- JC.net 284 (opened 2026-10-01 23:19Z, 15 files): fifteen rules from the second two-estate
+  consolidation; checks running at this reading. The consolidation seat's one open lane.
 
 The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
 `coordination-fold` skill and are not listed here.
@@ -36,6 +38,11 @@ The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
   remainder: the clock read after HEAD, SHA:c6394b98).
 - The two coordination folds: JC.net 274 (14:36Z, SHA:cb285512) and OCE 299 (14:40Z,
   SHA:972020417).
+- The second two-estate consolidation's docs-only pull requests: JC.net 281 (21:42Z, two
+  decision records at their slow-lane reviews, SHA:eb0387f8), 282 (22:15Z, eight rules,
+  SHA:33575217) and 283 (22:22Z, eight rules, SHA:92282aeb); OCE 323 (22:10Z, the decision
+  records' twin, SHA:5a417ee52), 324 (22:48Z, the twin of 282, SHA:d30ffead0) and 325 (23:16Z,
+  the twin of 283, SHA:044a8f8a9).
 
 ## Landed on 2026-09-30
 

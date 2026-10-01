@@ -3249,13 +3249,13 @@ above handed over and has worked the exchange's code lanes since.
   Each landing's evidence is its row in `ready-list.md` and its `repo-continuity.md` §Current
   State entry.
 - **Unlanded at this boundary.** JC.net pull request 280, the twin of OCE 322, is open at head
-  `SHA:5527d3c5` with its second review round requested and unread. What prevented: the owner's
-  compaction word arrived while that round was running (the request is timestamped 20:40Z on
-  the pull request). The next session re-attempts it from `repo-continuity.md` §Next Safe Steps
+  `SHA:5527d3c5` with its second review round read and not yet dispositioned (requested
+  20:38:59Z, submitted 20:43:32Z; `repo-continuity.md` lists its four items). What prevented:
+  the owner's compaction word arrived as that round came in. The next session re-attempts it from `repo-continuity.md` §Next Safe Steps
   line 4, the bullet that begins "The twin of OCE's 322 here", which carries the steps in order.
 - **Lane state.** Owning record: `repo-continuity.md` §Next Safe Steps lines 1 to 4 (this
-  estate) and OCE's line 4. Current objective: 280, then the `retire` port in OCE, then the 309
-  twin here. Blockers: none on 280. Low-confidence: the J2 port (line 2), NOT READY and
+  estate) and OCE's line 4. Current objective: 280, then the order `repo-continuity.md` gives after it (the
+  309 twin here, the security lane, the `retire` port in OCE, the push-tests lane). Blockers: none on 280. Low-confidence: the J2 port (line 2), NOT READY and
   uncommitted on disk in OCE. Promotion watchlist: the lesson in the napkin's 2026-10-01T20:5xZ
   block on restoring assertions another estate removed (a second instance in one day).
 - **Index of homes and re-arm recipe.** `.agent/state/collaboration/handoffs/7b999c-crucible-binds-slag-2026-10-01.md`.
