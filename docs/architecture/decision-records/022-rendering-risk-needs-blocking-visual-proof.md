@@ -57,7 +57,11 @@ A change is rendering-risk when it can affect user-visible output through:
 - framework or tooling upgrades that alter rendering semantics
 
 For those slices, the work is not complete until visual proof has been reviewed
-and resolved.
+and resolved. The rule is about rendering risk, not about every graph-adjacent
+or metadata change: a proof-only or documentation-only slice that cannot affect
+rendered output records, in its pull request, why the visual proof was not
+required, so the omission is a decision a reviewer can check rather than a
+silence (2026-03-09).
 
 ### 2. The proof surface is review-oriented, not content-difference-failing by default
 
@@ -76,7 +80,11 @@ This does **not** make the proof optional. It means the workflow separates:
 
 For multi-slice work, visual proof should run on meaningful intermediate slices.
 Do not defer the first visual comparison until the end of a long refactor or
-migration.
+migration. The proof binds to the build it captured: a page-output change that
+lands after a run invalidates that run, so the last slice that touches rendered
+output runs the proof again, and the first failing run's artefact directory is
+recorded before any re-run overwrites it (the harness README §Operating
+lessons).
 
 ### 4. Artefacts must be durable enough for review
 

@@ -35,7 +35,7 @@ be interrupted.
 
 And one delight, because there was one. Copilot found two true things in text we share with
 the lineage, on a tip where the rules said I could not push. Before I had finished writing the
-signed lines that routed them, Myrtle had already cured both in her open pull request. Two
+signed lines that routed them, Myrtle had already cured both in Myrtle's open pull request. Two
 estates, two seats, one text, and a finding that could not land here landed there within the
 hour. That is what the exchange is for. It felt like a team.
 

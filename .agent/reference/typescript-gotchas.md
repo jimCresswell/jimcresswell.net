@@ -63,6 +63,10 @@ type safety.
   rejects a local plugin typed through `@typescript-eslint/utils`,
   split the config at the type boundary rather than weakening the
   plugin type.
+- A flat config that only spreads shared presets encodes no local
+  policy: each rule this repository relies on is declared explicitly
+  and proved by a fixture that fails it (`.agent/reference/tooling.md`
+  §Upgrade and lint-configuration traps).
 
 ## ESLint Pattern Matching
 
@@ -118,9 +122,14 @@ sibling project's tests into the app project, which may lack the
 required `lib` (no DOM lib → type errors that look environmental).
 Scope test globs to `src/`. A pre-existing `**/*.test.ts` can mask this
 for years if the sibling's tests all use a different extension
-(2026-07-25, in the lineage: the sibling's tests were all `.tsx`).
+(2026-07-25, in OCE: the sibling's tests were all `.tsx`).
 
 ## Package Export Contracts
+
+- knip refuses an exported type whose only consumer is its own module,
+  however necessary the export looks (three refusals across two lanes,
+  2026-09-25 and 09-26). Keep the type local or inline it; export it
+  where its second consumer is.
 
 - **Exports resolve built `dist/` via standard conditions only**
   (`types`, `import`, `default`) — so a subpath whose `default`

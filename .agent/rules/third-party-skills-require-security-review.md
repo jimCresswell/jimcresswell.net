@@ -71,7 +71,7 @@ script set, and the four plugin manifests, producing a per-executable
 account and the verdict — not safe to install as a Claude Code plugin
 at the reviewed SHA; file-level vendoring of individual SKILL.md files
 safe; the tier-3 eval runner unsafe outside a container. The estate's
-prior vendored adoptions in the upstream lineage were markdown-and-scripts
+prior vendored adoptions in OCE were markdown-and-scripts
 payloads that predated the rule; this repository starts with none.
 
 ## Enforcement

@@ -167,7 +167,7 @@ and inherits the session's tools, so treat it as the message-capable shape.
 For the message-capable shape, a long-silent consult (~12 minutes) is a
 DEFECTIVE dispatch — kill it and re-dispatch; a seat idling on a dead
 consult is the failure, not patience. Known mechanism, recorded in the
-Practice lineage under its ticket MCP-386: the Agent tool's
+OCE under its ticket MCP-386: the Agent tool's
 `name` parameter correlates with dark dispatches — named dispatches went
 dark 10/10 while unnamed ones reported; prefer unnamed reviewer dispatches.
 
@@ -288,8 +288,8 @@ Brief-construction disciplines (per PDR-015 reviewer authority):
   read.** At sites with house doctrine (type predicates →
   `validation-strategy.md`; Result vs throw → `use-result-pattern`; and so
   on), a dispatch that omits the governing doctrine invites an approval of the
-  common idiom over the repo's own decision — a lineage code-expert approved a
-  "fix" that broke the lineage's type-guard decision exactly because the
+  common idiom over the repo's own decision — an OCE code-expert approved a
+  "fix" that broke OCE's type-guard decision exactly because the
   dispatch never named it (2026-07-06). Grep the ADRs, PDRs, rules and
   directives for the flagged construct while composing the brief, name what
   governs, and require the reviewer's verdict to cite the doctrine it read.

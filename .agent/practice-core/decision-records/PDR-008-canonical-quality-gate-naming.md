@@ -369,11 +369,10 @@ to add further aliases.
 
 ## Amendment Log
 
-### 2026-09-12 — jimcresswell.net: the lineage's live convention supersedes the `check`-mutates model
+### 2026-09-12 — jimcresswell.net: OCE's live convention supersedes the `check`-mutates model
 
-Owner direction (2026-09-12): adopt the source lineage's `package.json`
-script naming as practised, not as this record's tables describe it. The
-lineage's live root scripts, which every skill and rule in the transplanted
+Owner direction (2026-09-12): adopt OCE's `package.json`
+script naming as practised, not as this record's tables describe it. OCE's live root scripts, which every skill and rule in the transplanted
 Practice already assume, are:
 
 - `check` is the **read-only** aggregate; `fix` is the mutating aggregate
@@ -399,7 +398,7 @@ Practice already assume, are:
 
 The tables and rules above describe the earlier model and are read through
 this amendment; `practice-verification.md` item 9 lists the amended set. The
-source lineage's own copy of this record has not been amended and its
+OCE's own copy of this record has not been amended and its
 `package.json` contradicts it — a cohesion finding for that estate, not this
 one.
 
@@ -407,7 +406,7 @@ one.
 
 Owner card (2026-09-14, the morning cards; the closure record's item 78, "PDR-008
 and PDR-132: both amended by card"), raised at the closure record's item 66 when
-the lineage-name leak gate joined `docs-validators:check` and the gates skill's
+OCE-name leak gate joined `docs-validators:check` and the gates skill's
 enumeration no longer matched the 2026-09-12 entry above ("PDR-008 is ratified
 text and stays untouched, the mismatch a card").
 

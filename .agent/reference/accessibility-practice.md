@@ -85,7 +85,7 @@ Two structural requirements keep the scoping honest:
    upstream artefact disappears, so the measurement-bug half of the
    rationale cannot silently outlive its cause.
 
-The worked form came from the lineage's embeddable-widget suite. Any
+The worked form came from OCE's embeddable-widget suite. Any
 forced-colours project added to this estate meets the identical facts and
 uses this same pattern.
 

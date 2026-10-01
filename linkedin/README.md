@@ -9,6 +9,10 @@ direction, settled corrections, remaining choices and limits for the next editor
 
 The profile draft, editing notes, reference and research documents were prepared by AI agents
 working to Jim’s direction; they are proposals and working analyses, not his published views.
+Further batches from Jim’s Codex agent into this workspace are repository content: a Practice
+seat commits and lands them by the normal path and never treats them as stray material to
+sweep (the owner’s word, 2026-09-28). Publishing anything to LinkedIn is a separate act, on
+Jim’s request only.
 
 ## Working material
 

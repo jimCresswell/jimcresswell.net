@@ -4,7 +4,7 @@ How to convert a Claude Design project into a first-class Next.js workspace in
 this repository. Distilled from the first conversion (the Oak Curriculum Hub,
 `demos/oak-curriculum-hub/`, 2026-06-30 → 2026-07-02), including every mistake
 made so the next conversion does not repeat them. The reusable-pipeline
-programme that owned the forward automation of this playbook in the lineage
+programme that owned the forward automation of this playbook in OCE
 (its "productionisation and reuse" plan, WS2) was not transplanted; the
 playbook stands alone here as the recipe.
 
@@ -57,7 +57,7 @@ this pipeline's work; this section is its application here):
    thing is the specification, and no amount of reading its source
    substitutes for seeing it.
 2. Capture the reference set with Playwright — full-page and fold, per
-   identity — at the harness viewport (the lineage's design decision
+   identity — at the harness viewport (OCE's design decision
    "measurement happens at canonical widths"; here that is the single fixed
    viewport the visual-regression harness owns, `HARNESS_VIEWPORT` in
    `jcdotnet/visual-regression-harness/shared.ts`). Nothing mechanical pins a

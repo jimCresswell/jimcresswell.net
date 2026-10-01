@@ -8,12 +8,31 @@ trigger: surface:source-authoring
 
 Operationalises [`principles.md` §Code Quality](../directives/principles.md#code-quality).
 
-After editing TypeScript files, check lint for file/function length violations. Run lint on the changed files or run `pnpm lint:fix`. Catch violations early — don't accumulate them.
+After editing TypeScript files, check lint for file/function length violations. Run lint on the changed files or run `pnpm lint:fix`. Catch violations early — don't accumulate them. A file you edit is yours to leave clean:
+fix its lint findings whatever their provenance, never only the lines you changed
+(owner norm, 2026-06).
 
 After each edit pass, run the gates the touched surface requires (`pnpm check`; for the site,
 `pnpm --filter @jimcresswell/www test:e2e` or the visual-regression harness when rendering is at
 risk). Never disable checks or hand-wave failures; if a fix mutates files, restart the gate
 sequence from the top.
+
+A records-only change still runs the whole estate check at the push. Four validators refuse
+records and nothing else catches them earlier (a retired path named in a record, a directive
+linking into the patterns tier, a cited path the host does not own, a pattern index out of
+sync): run `pnpm check:docs` before a records push. Three pushes in one hour were refused, one
+validator each (2026-09-30).
+
+Lint the fragment before it joins the whole, and lint every write at once. A commit
+header is checkable with `wc -c` and a block about to be appended with markdownlint on
+the block file, before either joins the record; a check that runs only on the whole runs
+late, and each late refusal cost a commit or a gate run (six in one window, 2026-09-26).
+On this repository the pre-push gate reads the WORKING TREE, not the commit: an
+uncommitted edit to a tracked file, a stale comms-log projection or an unconsolidated
+link fails the next push whoever made the edit, so each write to the shared primary is
+linted at once with the gate's own command (`pnpm exec prettier --check --ignore-unknown
+-- <files>`, `pnpm exec markdownlint-cli2 --no-globs -- <files>`) and the render is
+refreshed before a push.
 
 Key ESLint thresholds that bite during refactoring:
 

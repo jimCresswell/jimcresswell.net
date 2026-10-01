@@ -2,7 +2,7 @@
 name: cross-fork-integration
 classification: active
 description: >-
-  Integrate an upstream lineage's default branch into this fork's as a semantic
+  Integrate the upstream's default branch into this fork's as a semantic
   event, never a text merge: verify the mirror and carrier, merge-tree against
   the live tip, one two-parent merge with an ordinary message, regenerate the
   generated surfaces, reconcile memory files by concept, sweep the fork's
@@ -426,6 +426,13 @@ seat's worktree, branch or claim (2026-09-09, the #88 follow-up).
 - A receipt's count or "nothing newer" read as the fact the fetch or the run
   would have given.
 
+A fork-only file family is not a home for a new tier: "a landing exclusion step deletes the family
+back out of the fork at the next sync (reproduced in a throwaway repository)"; and for a nested
+checkout, "a per-checkout exclude hides a nested repository from git but not from the tools that
+read the tracked ignore file; one tracked line covers all three; git-native coordination-home
+resolution from inside a nested repository names the nested repository, so the home must be
+declared" (Finch binds Sundog's panel-refuted frame of 2026-09-06, events 4382dfa5 and 4cfe14c0).
+
 ## Related surfaces
 
 - `.agent/rules/pre-merge-divergence-analysis.md` and
@@ -441,5 +448,5 @@ seat's worktree, branch or claim (2026-09-09, the #88 follow-up).
   here — the reference direction runs plan → doctrine).
 - `.agent/skills/set-up-worktree-lane/SKILL-CANONICAL.md` — the identity
   check and the build; step 3 above says why its branch cut does not apply.
-- The lineage's ADR "organisational identity below the tree" (at the lineage pin, not carried here)
+- OCE's ADR "organisational identity below the tree" (at the OCE pin, not carried here)
   — why the fork diff is enumerated and identity-free.

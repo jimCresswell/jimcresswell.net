@@ -27,7 +27,7 @@ by that gate regardless of this aggregate.
 ## Source and provenance
 
 - Primary source: the WS2 corpus survey
-  (the lineage's 2026-06-12 report, not carried here),
+  (OCE's 2026-06-12 report, not carried here),
   §"Liveness substrate statistics", §"Convention-emergence timeline", and the
   cross-section figures (first-hand verified during WS2).
 - Volume figures refreshed first-hand 2026-06-14 by `jq` over the live corpus

@@ -4,7 +4,7 @@ fitness_line_limit: 525
 fitness_char_limit: 26000
 fitness_line_length: 100
 fitness_rationale: >-
-  Limits inherited from the source lineage; measured past them at transplant
+  Limits inherited from OCE; measured past them at transplant
   (2026-09-12). Substance is never trimmed to fit; a curation lane graduates
   elaborated guidance to governance docs later.
 split_strategy: "This file is the source of truth for all principles. Extract only elaborated guidance to governance docs, never the principles themselves. The principles are operationalised through several mechanisms, including rules, sub-agents, and tooling."
@@ -142,7 +142,7 @@ defences:
 - **The three structural cues at output time** — vocabulary
   trip-list, conditional-discipline check before proposing
   structure, and first-principles framing question. The portable form
-  is PDR-043; the lineage's host adoption record is not transplanted. The hedging-vocabulary trip-list itself lives in the
+  is PDR-043; OCE's host adoption record is not transplanted. The hedging-vocabulary trip-list itself lives in the
   innate-immunity hook (`.agent/hooks/policy.json`); cataloguing
   it in this file would duplicate it. Cue 2 is intent-based: a
   proposed structure that means "the rule does not apply here"
@@ -268,7 +268,7 @@ dependency. Both directions stay falsifiable by measured cost. Which
 canonical form is adopted is a different question from where an owned
 implementation originates, and for algorithm and data-structure
 foundations the owner decided the second for the whole class
-(owner-directed 2026-09-08, recorded in the lineage's own-built-foundations
+(owner-directed 2026-09-08, recorded in OCE's own-built-foundations
 decision; scope confirmed 2026-09-09 as that class, not the estate): "select the
 best, permissively licenced libraries, and use their code as inspiration
 to create Reliable Atoms and composition layers tailored to our needs and
@@ -351,7 +351,7 @@ this way produces cleaner boundaries and simpler classification.
   latch, a declarative guard, a per-seat directory) instead of scheduled;
   in review, a correctness argument that contains "the window is small",
   "usually", or an ordering assumption names a defect. The worked shapes
-  are recorded in the lineage as the anti-pattern
+  are recorded in OCE as the anti-pattern
   `timing-derived-state-is-the-defect` and its read-side dual, the
   pattern `timing-artefact-read-as-state`.
 - **At most one holder, and for continuously owned authority exactly

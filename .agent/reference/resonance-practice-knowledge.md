@@ -16,10 +16,10 @@ read directly while the resonance checkout was present: the plan-estate re-found
 **teaching bundle** delivered into oak's `.agent/practice-core/incoming/`. This
 document is oak's re-expression, not a verbatim transcript; it supersedes the
 "re-sourced from the sibling estate's HEAD at port time" deferral recorded in the
-WS6 adoption assessment (a lineage report not carried here)
+WS6 adoption assessment (an OCE report not carried here)
 and graduates the teaching bundle's substance out of the transient incoming box
 into a permanent home. The "why it all converged" companion is the
-shared-model synthesis (a lineage report not carried here);
+shared-model synthesis (an OCE report not carried here);
 that document is the **why**, this one is the **how**.
 
 **Why oak wants it.** Oak's planning-estate rewrite (ADR-200, the living idea-graph)

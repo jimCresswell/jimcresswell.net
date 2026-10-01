@@ -15,12 +15,12 @@ description: >-
 
 **Governance**: This skill operationalises the bounded-retrieval graph contract built in
 `packages/core/graph-core` (the `GraphView` query layer) and `packages/sdks/graph-corpus-sdk`
-(the per-view constructions over the source lineage's corpora), under
-the lineage's deterministic-data-surface decision
+(the per-view constructions over OCE's corpora), under
+OCE's deterministic-data-surface decision
 (deterministic data surface; the consuming agent is the only reasoner) and
 its graph-tool category decision
 (graph-tool category doctrine). The value redesign that produced the contract is
-the lineage's graph-tools value redesign; none of those records travelled, and the doctrine below stands on its own.
+OCE's graph-tools value redesign; none of those records travelled, and the doctrine below stands on its own.
 
 ## Use When
 

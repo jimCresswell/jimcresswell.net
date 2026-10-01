@@ -1911,7 +1911,7 @@ SHA:f570edc64 on SHA:b9c8ef3b2. The four root gates read git's index, chunked, a
 
 The Director's order (19:0xZ): S1, then 250, then the guard's lineage twin slice. 250's
 rebudget path passed to this seat at the 19:05Z default (the owner may overturn it). Work from
-250's remote head 560016310; Nova's worktree `oce-wt-user-value` stays hers. The four steps under
+250's remote head 560016310; Nova's worktree `oce-wt-user-value` stays Nova's. The four steps under
 PDR-140 clause 4:
 
 1. Record budget-exceeded and the generator question in the body's working notes.

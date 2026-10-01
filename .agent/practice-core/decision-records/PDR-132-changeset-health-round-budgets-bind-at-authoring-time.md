@@ -146,7 +146,7 @@ What changes. §Prediction and falsifier and §Consequences name the
 pr-throughput register as the standing instrument once it gains
 commits-per-PR and changeset-class dimensions. That register was retired from
 this estate on 2026-09-14 (transplant closure item 5b, pull request #68) with
-three other lineage instruments, re-importable from the lineage pin; this
+three other lineage instruments, re-importable from the OCE pin; this
 record no longer promises it here. The falsifier's measurement stands as the
 corpus-methodology re-run, recomputable from the repository host on demand
 (per pull request: opened and merged times, changed files, and each vendor

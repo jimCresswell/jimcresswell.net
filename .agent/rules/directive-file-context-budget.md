@@ -73,7 +73,13 @@ a long raw-source read) reads the figure again after that work's last step and
 before its first directive edit; at or above the line, the edits belong to the
 next context. Worked instance (2026-09-17 to 2026-09-19): one seat read 13 % at
 open, declared "fold here, directives here", and stood at 51 % at the directive
-step with no edit made; the edits landed in a later context opened at 11 %.
+step with no edit made; the edits landed in a later context opened at 11 %. For a successor whose owed
+work opens with directive edits, the grounding and the directive session are one
+budget: read the pickup block, not the whole continuity file, before the first
+edit (a full team grounding stood at 37 % before any edit, 2026-09-24). Before a
+budget-gated edit, read every pending input that touches the same passage: one
+paragraph edited at 25 % was rewritten by a pull request read at 37 %
+(2026-09-24).
 
 ## Reading the Figure
 
@@ -82,7 +88,17 @@ step with no edit made; the edits landed in a later context opened at 11 %.
 session transcript, so the rule gates on a reading, not an estimate. The first
 reading after a compaction can be the compaction call's own usage line (69 %
 read, then 11 % one turn later, 2026-09-19); read it again after one more turn
-before acting on it.
+before acting on it, and write the reading with its comparison ("10.1 % < 30 %:
+pass"): slips cluster at the start of the next act as well as at the finish, and
+one reading of 61 % was written as allowing directive edits (2026-09-28). Before
+an act that takes a slot, cites a number or a sha, or edits a directive, re-read
+the last stated rule and each source. A seat cannot compact itself: `/compact` is the user's
+command, no hook triggers a compaction or changes a running session's
+settings, and `PreCompact` cannot block. The auto-compact threshold is a
+token window (`autoCompactWindow`), not a percentage, so the reading above
+is the estate's own instrument and the only one; a context that reads over
+the line keeps working in bounded pieces with its records current and makes
+the directive edits in the context after the compaction (2026-09-16).
 
 ## The 30% Threshold Is Load-Bearing
 

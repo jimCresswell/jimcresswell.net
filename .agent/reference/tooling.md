@@ -54,10 +54,37 @@ These tools are not managed by pnpm but are required by specific workflows:
   CI); the smokes prove each hook with jq and without it, and fail with
   installation guidance when it is missing
 - [Playwright browsers](https://playwright.dev/docs/browsers) — `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
-  once per checkout, before `pnpm test:e2e`
+  once per checkout, before `pnpm test:e2e`, run from the PRIMARY checkout:
+  Playwright's cleanup pruned a browser whose install link pointed at a
+  retired worktree (2026-09-25)
 
 Scripts that require these tools should emit explicit installation guidance when
 the command is missing.
+
+## Upgrade and lint-configuration traps
+
+Each of these bit once in this repository and is stated here so that it
+does not bite again:
+
+- `pnpm up --latest` moves every dependency to its newest release
+  regardless of peers: it once moved ESLint past the range Next's own
+  lint integration supported. Upgrade the framework-coupled tools
+  (Next, ESLint and its Next plugin, Playwright) against the framework's
+  declared range, not against the registry's newest.
+- An `@playwright/test` update changes the browser build it expects;
+  reinstall the browsers (the command above) after the update, before
+  reading a "browser not found" failure as a flake.
+- A flat ESLint config encodes no local policy on its own: a config that
+  only spreads the shared presets enforces nothing this repository
+  decided. Every local rule is declared explicitly in the config, and a
+  rule the repository relies on is proved by a fixture that fails it.
+- `markdownlint-cli2` lints the globs it is given and nothing else; a
+  root config with no globs lints nothing silently. Declare the globs
+  (and the ignores) explicitly in `.markdownlint-cli2.jsonc`.
+- knip flags a plugin that is loaded only by a CLI option (a reporter,
+  a preset passed on the command line) as unused. Record it under
+  `ignoreDependencies` with a comment naming the command that loads it,
+  never by removing the dependency.
 
 ## Publishing
 
@@ -77,7 +104,7 @@ TSDoc compliance is enforced at two layers:
    per-workspace) declare `@generated` as a custom modifier tag,
    allowing it to pass the TSDoc parser without triggering warnings.
 
-The lineage's third layer — stripping non-standard tags from generated
+OCE's third layer — stripping non-standard tags from generated
 code at generation time — has no subject here, since no code is generated
 from an external schema.
 

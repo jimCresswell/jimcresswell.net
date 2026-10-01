@@ -27,7 +27,8 @@ The LinkedIn profile draft and the other non-sensitive LinkedIn material listed 
 
 **Confident, a touch joyful and mischievous, with underlying seriousness.** Content should sound
 like Jim at his most himself: someone who knows exactly who they are, not someone carefully
-calibrating a message.
+calibrating a message. The roguish quality shows in voice, never in biography: the biographical
+detail behind it stays out of version control (2026-02-20).
 
 The front page and CV share the same voice but serve different purposes. A reader who encounters
 both should recognise the same person.
@@ -81,7 +82,8 @@ Don't claim solo credit for collaborative work. "I designed the team structure" 
 of a group." Jim holds people to standards within guardrails, intervenes minimally, and delegates to
 lead engineers across engineering groups. Describe creating conditions, not dictating. Jim's
 self-conception is as the vision-setter and creator, not the standards administrator — frame
-leadership through vision, direction, and coaching, not through process and governance.
+leadership through vision, direction, and coaching, not through process and governance. For
+industry stories the collaborative form is "helping build", never sole credit (2026-02-20).
 
 ## Commercial sensibility
 
@@ -100,7 +102,10 @@ structure) provides proven intellectual prowess and rigour without having to cla
 education section retroactively grounds the playful headline. The MSc (Sussex) was observational
 cosmology — CMB topology; the PhD (Portsmouth) was fitting parametric and non-parametric models to
 large galaxy surveys, combining traditional survey statistics with Galaxy Zoo citizen science data.
-These are distinct research lines — never conflate them.
+These are distinct research lines — never conflate them. Model fitting and strategic uncertainty
+are unrelated domains and are never conflated either; positioning language ("second and
+third-order effects") is not a description of the research and is never written as one
+(2026-02-20).
 
 The research domain appears naturally in paragraph 1's list of problem spaces ("the structure of the
 early Universe") — this reads as breadth, not as an academic identity claim. Paragraph 2 uses the

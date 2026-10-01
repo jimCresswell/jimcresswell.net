@@ -143,8 +143,7 @@ Status by platform:
   canonical command/content guard on Codex `PreToolUse`.
 
 The Codex product claims and event list above inherit their version pin,
-source-authority boundary, and evidence grades from the
-lineage's Codex CLI capability catalogue (not carried here).
+source-authority boundary, and evidence grades from OCE's Codex CLI capability catalogue (not carried here).
 
 ## Platform Liveness Declaration (PDR-133 §8)
 
@@ -170,7 +169,7 @@ declaration set yet. Dated observations already on record:
 - **Slack Watcher organ (Slack channel + cloud-harness reminder
   substrate) — full 14-class declaration, 2026-08-24**: recorded
   skill-locally for operational reading in
-  `slack-watcher` §6 (a lineage skill not carried here)
+  `slack-watcher` §6 (an OCE skill not carried here)
   (this ledger points, never restates). Headline rows: `NOTIFY`
   cannot-certify (no dated externally observed wake on record; a
   self-bind reminder records no run history), proxy = the tenure
@@ -319,7 +318,7 @@ Failure semantics:
 - Unsupported states are written down explicitly rather than inferred
   from missing files.
 - Windsurf is unsupported here (owner ruling 2026-09-13): its projection stayed
-  at the lineage pin and no `.windsurf/` surface is generated or maintained.
+  at the OCE pin and no `.windsurf/` surface is generated or maintained.
   Gemini is carried under the same ruling.
 - Linear coding sessions run through Claude Code or Codex and inherit
   those entry-point chains; the root `skills.md` is supplementary

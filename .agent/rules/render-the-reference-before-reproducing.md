@@ -80,4 +80,4 @@ narrow: the visual-regression harness takes its ref-to-ref captures at a
 single fixed viewport (`HARNESS_VIEWPORT` in
 `jcdotnet/visual-regression-harness/shared.ts`). Nothing mechanical pins a
 reference-versus-rebuild capture to that viewport or checks declared pairs;
-the lineage's fidelity tool that did is not ported.
+OCE's fidelity tool that did is not ported.

@@ -74,7 +74,7 @@ the binding and nothing else.
 A missing profile is the expected condition, not a defect: readers proceed on
 tracked defaults and say nothing. The tier lives in the home directory,
 `~/.practice/profile/`, shared by every Practice repository on the machine
-(PDR-141, taken from the lineage 2026-09-21); the full contract, including what
+(PDR-141, taken from OCE 2026-09-21); the full contract, including what
 must never be stored there, is
 [PDR-141](../practice-core/decision-records/PDR-141-operator-profile-in-the-home-directory.md)
 and the Core schema it names.

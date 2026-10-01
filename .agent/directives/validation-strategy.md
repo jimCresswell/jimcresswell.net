@@ -280,7 +280,7 @@ exercised once at cure time by hand and the run is recorded on the pull
 request and in the records: the commands, the inputs, what was seen. An
 observation is dated, first-hand and reproducible from its record; it is
 never narrated as a suite's proof, and a suite is never built to replace it
-with IO. Worked instance, in the lineage's estate (2026-09-14): its review-cost
+with IO. Worked instance, in OCE's estate (2026-09-14): its review-cost
 gate's sync predicate, proven by unit tests over injected git output plus one
 recorded run of the real git on its PR #146, a scratch repository exercising
 the admitted and refused merge shapes by hand.
@@ -290,12 +290,18 @@ the admitted and refused merge shapes by hand.
 When a change's value IS an assertion (a test instrument, a validator, a guard),
 each claim the change makes lands with a mutant that negates exactly that claim,
 verified killed in the same commit. The binding statement is
-[testing-strategy.md §Prove the guard bites](testing-strategy.md); this is the
-method:
+[testing-strategy.md §Prove the guard bites](testing-strategy.md); the
+checker-level form (a negative control in an isolated fixture, for a checker
+whose failure cannot be planted in the live tree) is the pattern
+`prove-the-checker-with-a-negative-control` in the patterns tier (a directive names
+a pattern, never links it: doctrine cites doctrine, PDR-105);
+this is the method:
 
 1. Pick one mutant per failure mode the change claims to close — negate the claim
    itself (invert the predicate, drop the branch, skip the write), never an
-   incidental line.
+   incidental line. A mutant that leaves a syntax error is killed by the parser,
+   not by the claim: replace a removed statement with a no-op (`:` in shell,
+   `void 0` in TypeScript) so the mutant fails on the claim itself (2026-09-25).
 2. Apply it as a temporary forward file edit from a driver script that holds the
    original text (string-replace with a matched-needle assertion; restore by
    writing the original back — never via `git checkout` / `git restore`).

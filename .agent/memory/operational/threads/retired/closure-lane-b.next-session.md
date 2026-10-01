@@ -1,3 +1,8 @@
+> **RETIRED — thread completed 2026-09-13.**
+> Lane B stood down at the owner's word at 17:14Z on 2026-09-13; its item (the frontmatter
+> sweep, PR #55 at `6b1b4c3`) is on `main`. Retained as continuity history; not a live lane. Not
+> listed in `repo-continuity.md` Active or Paused threads.
+
 # Thread: closure-lane-b — the last hand-kept copies derived from rule frontmatter
 
 **Thread identity.** Lane B of the transplant closure (node

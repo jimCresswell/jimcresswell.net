@@ -44,6 +44,28 @@ prove the test bites) is in
   product made of a collaborator, how often or in what order, never pins
   a configuration value and never asserts an implementation shape.
   Configuration is guaranteed by construction or by a validator.
+- **Tests are forbidden real IO and child processes; validators start the
+  minimum and alter nothing** (owner, 2026-09-29, as two seats relayed it: "tests are
+  FORBIDDEN to create real IO and child processes. I don't want excuses or
+  carve outs, we have these rules for a reason", and "validation scripts can
+  start real processes, but they are to be kept to a MINIMUM, and they are
+  FORBIDDEN from altering the code or triggering builds"; the same day: "There
+  are consistent, strict test rules in all Practice repos. There are
+  validation scripts for checks that do not belong in tests. The validation
+  scripts have been abused in order to avoid the strictures of the tests, this
+  is unacceptable. We have far too many "validation scripts" in both estates,
+  they take TOO LONG to run, dragging on every commit and push, and they are
+  testing things that should be in tests and tested at a lower level with no
+  IO and with DI. So stop that, and make the rules clearer, and at least for
+  local CI runs start profiling the total run times and the run times of the
+  individual tasks. ALL CI tasks should be run through Turbo."). A check that
+  asserts behaviour is a test: in-process, no IO, dependencies injected, never
+  an inspection of which calls were made, a pinned literal or a count of work
+  done. A validation script exists only for a check that cannot be a test; it
+  runs the built artefact, alters no code (no repair mode, formatter write,
+  install or build) and is counted; a smoke that alters code is misfiled and
+  comes out. Every CI task runs through Turbo with declared inputs, and each
+  gate run records its total and per-task time before a cure is chosen.
 - Prefer pure functions and unit tests
 - Always use TDD at ALL levels (unit and integration tests; an E2E check is
   written first in the same way)
@@ -100,7 +122,7 @@ prove the test bites) is in
   state, the DI seam that makes this holdable is the view-binder
   split — views take state as props, a two-line binder owns the
   hook, tests render the view with literal states, zero mocks
-  (recorded in the lineage as the `view-binder-di-seam` pattern).
+  (recorded in OCE as the `view-binder-di-seam` pattern).
 
 ## Rules
 
@@ -165,7 +187,7 @@ prove the test bites) is in
   behaviour"): a test asserting an exclusion counter, a stat field or the
   argument of a query the product made asserts what the configuration
   echoes back, not whether the restricted content flowed. The cure is a sentinel-content assertion
-  through the public result (in the lineage: the hidden lesson's keyword
+  through the public result (in OCE: the hidden lesson's keyword
   appears only when the switch admits it). The generator to watch is testing at the
   seam where the wiring is visible instead of the surface where the
   behaviour is observable.
@@ -200,6 +222,11 @@ prove the test bites) is in
   no complex logic in mocks, or we risk testing the mocks rather
   than the code. Complex mocks are a signal that we need to step
   back and simplify the code or our approach.
+- **KISS: a large fixture, an allowlist or a helper definition inside a
+  test is a design smell** - logic a test carries as a fixture, an
+  allowlist or a helper belongs in product code as the source of truth;
+  relocate it there and let the test read it (owner preference,
+  2026-03-08; graduated 2026-10-01 at the owner's card).
 - **No skipped tests** - Fix it or delete it. Skipping mechanisms
   (`it.skip`, `describe.skip`, `test.todo`, `it.todo`, `xit`,
   `xdescribe`) are forbidden outright. A check that needs an external
@@ -269,7 +296,7 @@ prove the test bites) is in
   IO; where no injection seam below it can carry the proof (a fake would
   model libuv engine semantics, the "double models the engine" trap), the
   proof is an observation made once at cure time and recorded, or a
-  validator's self-proof outside the in-process test run (the lineage's
+  validator's self-proof outside the in-process test run (OCE's
   `file-backed-stdio-for-spawned-gate-children` pattern describes the
   shape being proven). An existing suite that spawns is a defect under
   this rule, cured the same way.
@@ -298,7 +325,9 @@ mutation check happens before the commit that lands test and code together).
 The same disease in existing suites: DECORATIVE assertions — asserted
 values that never enter the exercised run — read as coverage while proving
 nothing (a privacy-surface review found six under a README claiming the
-behaviour was tested); the mutation check exposes them identically.
+behaviour was tested); the mutation check exposes them identically. A mutant that leaves a syntax error is killed by the parser, not by
+the claim: replace a removed statement with a no-op (`:` in shell, `void 0` in
+TypeScript) so the mutant fails on the claim itself (2026-09-25).
 
 Two guard shapes that read as biting and do not. **A poll on an absence
 passes before the event lands**: `expect.poll` returns on its first pass,
@@ -466,6 +495,11 @@ The site workspace applies the taxonomy above with these fixed conventions:
   (cross-cutting: a11y, SEO, content); Playwright browser automation.
 - **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
   against the running site — the black-box boundary, never an imported app.
+- **Proof layers split by what they prove**: the contract assertion stays in Vitest beside the
+  module and the emitted-channel assertion in Playwright against the served site; an E2E spec never
+  imports a product module (bundler-resolved JSON imports fail there) and reads
+  `content/entities.json` with a JSON import attribute when it needs graph-backed expectations
+  (three instances, 2026-03-09; graduated 2026-10-01 at the owner's card).
 - **Runner**: `pnpm --filter @jimcresswell/www test:e2e` starts the site's `e2e:server` script
   from Playwright's global setup (ADR-019; §Harnesses Adapt to Shared Hosts): one process that
   binds a free port and keeps the socket for its whole life, builds the site with that port and
@@ -517,7 +551,7 @@ loader-assisted harness (vitest, tsx) while production executes built
 artefacts under plain `node` — and nothing at any scope level REQUIRES
 surface fidelity. An E2E check MAY boot the built artefact (the site's
 Playwright suite runs against the production build its `e2e:server` script
-builds and serves on the port the config held, and the lineage's CLI contract E2E
+builds and serves on the port the config held, and OCE's CLI contract E2E
 booted its built binary), but that coverage is
 incidental to its scope classification.
 Smoke checks own the surface axis and make artefact fidelity MANDATORY:

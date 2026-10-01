@@ -99,6 +99,28 @@ an implicit engine behaviour.
 - There is no `--force` flag yet, because there is currently nothing to bypass.
 - Re-running the same label pair writes into the same output directory unless `--output-dir` is set explicitly.
 
+## Operating lessons
+
+Four lessons from the harness's first months (2026-03), each learned once:
+
+- **Capture regions use structural selectors.** Anchor a region on the
+  document's own structure (a landmark, a heading, a contract-derived
+  section) and never on an `id` a refactor introduced for the harness's
+  benefit; an anchor added for the tool is a change the tool then reports.
+- **Record the first failing run's artefact directory before any re-run.**
+  A re-run of the same label pair writes into the same directory (above), so
+  the evidence of the first failure is overwritten unless its path, or a
+  copy, is kept first; the pull request names that directory.
+- **A page-output fix landing after a run invalidates the run.** The
+  harness proves the build it captured; any change to rendered output after
+  the capture means the proof is of a build that no longer exists, so the
+  harness runs again on the final slice (ADR-022 §3).
+- **Review evidence is precise, not merely present.** A normalisation note in
+  the diff artefacts appears only when that exact normalisation ran; a note
+  written from habit makes the artefacts untrustworthy as audit records, and a
+  DOM-only difference with no pixel diff is a real review question, never a
+  near-pass.
+
 ## Output
 
 Artifacts are written under:

@@ -71,7 +71,11 @@ the merge until each finding is cured or rejected by a signed disposition
 line from the repository owner or the pull request's author, or a later
 review on a later tip carries none; the fourth
 measured-state clause, `SUPPRESSED-FINDINGS-OPEN`, owner card item 78,
-2026-09-14), per-reviewer legs, outstanding requests, live runs — inside the same invocation, because a
+2026-09-14; the hold lifts on ONE signed comment posted after the latest
+tip-bound review, carrying one line per finding in the ratified format, the
+marker, the finding's reference, "item N of M" and the verb, followed by a
+bot poll and no push, since a push would move the tip and start a new
+round), per-reviewer legs, outstanding requests, live runs — inside the same invocation, because a
 bot review can land in the seconds between (caught twice in forty
 minutes, #570/#574).
 
@@ -285,15 +289,43 @@ their own hands uses their own credential — that contrast is the point.
 **Requesting the Copilot reviewer is the one write the bot cannot make
 here.** A `requested_reviewers` POST for `copilot-pull-request-reviewer`
 under the bot token registers nothing on the pull request; the owner's own
-CLI credential registers it on the timeline within a minute, unless the
+CLI credential registers it on the timeline within a minute
+(`gh pr edit <n> --add-reviewer @copilot` as the operator), unless the
 previous request's review is still in flight, when it registers nothing
-either (both verified live, 2026-09-13). The request, once registered, is
+either (both verified live, 2026-09-13; the operator form re-verified
+2026-09-27). Where an API call names the reviewer, its login is
+`copilot-pull-request-reviewer[bot]`; omitting the `[bot]` suffix returns
+422 (2026-08-12). Read the timeline after any request: silence from the
+request call is not a registered request. The request, once registered, is
 what the settlement reads as the round in flight: it is visible only on
 the GraphQL `reviewRequests` connection (gh's `pr view --json
 reviewRequests` and the REST endpoint omit Bot requests), which is why
 `pr state` reads requests there and why an expected reviewer with an
 outstanding request reads `WAITING-REVIEW-RUN-LIVE` until the review lands
 or the checks-green timeout arm ends the leg.
+
+**One review request per settlement push.** A review round is spent by a
+request, and on a repository without an on-push review ruleset every
+request is the seat's own act under the operator's credential: PR #62 took
+twenty-one explicit Copilot requests in four hours, one every ten to twelve
+minutes, while PDR-140 sat in the estate unapplied (2026-09-15). Request
+the review once per push that settles a round (a cure, a shape change); a
+pure sync push (main merged in, a rebase with no content change) requests
+nothing, and the declared intake on the pull request body bounds the loop.
+
+## Verifying the bot's signatures locally
+
+GitHub verifies the bot's SSH-signed commits against the key registered on
+the bot account, so a local `git log --show-signature` reports
+`No signature` or an unknown key whenever the checkout has no
+`gpg.ssh.allowedSignersFile` configured; that readout is about the local
+configuration, not the commit. Before classing a bot commit unsigned, either
+verify it through GitHub (`gh api repos/<owner>/<repo>/commits/<sha>
+--jq .commit.verification`) or configure an allowed-signers file, one line
+per identity (`<committer-email> <key-type> <public-key>`) at a path named by
+`git config gpg.ssh.allowedSignersFile`, and read the log again
+(2026-08-12: commits GitHub verified read as unsigned locally for exactly
+this reason).
 
 ## Key handling
 

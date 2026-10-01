@@ -61,7 +61,7 @@ not silently reshaped.
 
 ## Failure mode this prevents
 
-In the upstream lineage (2026-06), a tool family keyed on an axis its corpus did
+In OCE (2026-06), a tool family keyed on an axis its corpus did
 not carry; months of data-shape engineering went into a join the data never
 supported. A separate migration plan rested on a premise a cheap corpus
 fingerprint refuted before any code landed. Both are the same failure:
@@ -70,3 +70,11 @@ rebuild is not. A third instance justified a design surface by an invented host
 class the governing plan had already assigned elsewhere; the correction was to
 delete the surface, not to add optional fields or bridges around the fabricated
 premise.
+
+A fourth instance (JC.net, 2026-09-13): a curator-passes README was imported
+because a report listed the directory as a register the curation loop writes to;
+the writer's own doctrine (PDR-081 and the curator-pass skill) says the loop
+writes no such register, and the directory was history OCE kept. Before creating
+a surface because a document says something writes to it, read the writer: a
+report's inventory is a projection, and only the writer's contract is the
+source.

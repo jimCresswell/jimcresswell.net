@@ -7,15 +7,24 @@ agent identities:** Galaxy binds Gravity (46de68, claude-code, claude-fable-5-1,
 **Grounding order:** `AGENT.md`, the start-right skill for the session shape, this record, the
 delivery node, then `docs/engineering/build-system.md` §Caching.
 
-## Current Continuation
+## Current Continuation (2026-09-30T13:5xZ, the latest block governs)
 
-- Branch: `feat/turbo-remote-cache-optional` (PR 1), cut from `origin/main` at SHA:b6232c77,
-  in a lane worktree beside the primary.
+- PR 1 landed: jimcresswell.net PR 275 merged at SHA:f6a26954 (three Copilot rounds, every
+  finding cured, branch retired, worktree removed).
+- PR 2 open: OCE PR 313, `feat/turbo-remote-cache-optional` at SHA:7f7b2eb1a off `engraph`
+  3c4e6e219, bot-authored, Copilot requested at open (13:45:16Z); its lane worktree is
+  `oce-wt-turbo-cache-optional` beside the OCE checkout (cut before the convention moved).
 - Invocation pointer: `$jc-start-right-quick continue turbo-remote-cache from this record`.
-- Controlling plan: `.agent/plans/delivery/turbo-remote-cache-optional-and-persistent.plan.md`.
-- Next safe step: PR 1 to a truly green merge; then PR 2 on OCE by the inter-Practice join
-  ceremony's lighter path (a fresh worktree beside the OCE checkout off `origin/engraph`, OCE's
-  identity contract and hooks, one open pull request per seat).
+- Controlling plan: `.agent/plans/delivery/turbo-remote-cache-optional-and-persistent.plan.md`
+  (status `ratified`).
+- Next safe step: harvest PR 313 (checks, Copilot review, threads; budget 2 rounds), cure or
+  Reject, merge by OCE's merge-bot with `--expect copilot-pull-request-reviewer`, retire the
+  branch, remove the worktree; then read the first CI run after the owner's two acts on this
+  repository for criterion 1, and OCE's next release run on `main` for criterion 5's
+  runtime half; record both here.
+- Owner acts still owed (criterion 1): the Vercel OIDC policy for `jimCresswell/jimcresswell.net`
+  on team `engraph`; `gh variable set TURBO_TEAM --body engraph -R jimCresswell/jimcresswell.net`
+  (none present at 13:5xZ; every run so far skipped the step and posted the notice).
 - Completed prerequisites: the owner's keychain-backed `TURBO_TOKEN` and `TURBO_TEAM=engraph`
   in the shell profile (an agent shell reads "Remote caching enabled"); `turbo logout`; an
   org-wide Vercel OIDC policy for the `EngraphCode` GitHub org; OCE's `ci.yml` on OIDC (PR 312).

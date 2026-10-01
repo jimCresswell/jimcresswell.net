@@ -131,7 +131,7 @@ capability. Applications and services concentrate on composition, policy,
 operations, and experience. Vendor-specific adapters remain at the edge, and
 generated repetition is cured at its authority or generator.
 
-The detailed projection and core-admission test lived in the lineage's
+The detailed projection and core-admission test lived in OCE's
 "Foundations first" architecture page, which was not transplanted; the
 projection here is the Cardinal Rule (`principles.md`), with the entity
 graph as the one authority every rendered surface derives from.
@@ -237,5 +237,5 @@ to real people.
   — portable identity, decision, and falsifiers.
 - [Principles §Cardinal Rule](../directives/principles.md#cardinal-rule-of-this-repository)
   — this repository's projection: one authority, every surface derived.
-- The lineage's "Foundations first" page and its TypeScript estate review
+- OCE's "Foundations first" page and its TypeScript estate review
   applied the pattern there; neither was transplanted.

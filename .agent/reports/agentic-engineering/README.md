@@ -5,13 +5,13 @@ analyses whose subject is how agents and the estate work, not the product.
 The `retrospective` skill lands its records here; each file is named for the
 question it answers and dated.
 
-Records imported from the lineage carry a provenance line under their title
+Records imported from OCE carry a provenance line under their title
 naming the pin they were read at; their worked instances and measurements are
-the lineage's.
+OCE's.
 
 | Record                                                                                       | Subject                                                                           |
 | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [slack-watcher-estate-review-2026-08-24.md](slack-watcher-estate-review-2026-08-24.md)       | The lineage's review of its Slack Watcher estate; cited by the comms-channels skill |
+| [slack-watcher-estate-review-2026-08-24.md](slack-watcher-estate-review-2026-08-24.md)       | OCE's review of its Slack Watcher estate; cited by the comms-channels skill |
 | [cricket-quartet-tally-2026-09-13-director-closure.md](cricket-quartet-tally-2026-09-13-director-closure.md) | The first canonical Cricket panel here: eight legs, both stances, the Director seat at the transplant closure |
 | [cricket-suite-tally-2026-09-21-exchange-seat-post-compaction.md](cricket-suite-tally-2026-09-21-exchange-seat-post-compaction.md) | An owner-shaped four-leg Cricket suite, two normal and two adversarial, on the exchange seat's post-compaction queue |
 | [cricket-suite-tally-2026-09-23-exchange-seat-after-model-change.md](cricket-suite-tally-2026-09-23-exchange-seat-after-model-change.md) | The full ten-leg Cricket suite after the owner's model change, and the value evidence for the lowest-power low-effort seat |
@@ -21,6 +21,7 @@ the lineage's.
 | [2026-09-24-why-the-exchange-seat-worked-one-direction-of-a-two-way-goal.md](2026-09-24-why-the-exchange-seat-worked-one-direction-of-a-two-way-goal.md) | The exchange seat's retrospective: why four passing Cricket suites let it work one direction of a two-way goal, the frame written by the seat it judged, and six proposals routed to the exchange seat and the Director |
 | [why-the-transplant-arc-cost-what-it-cost-2026-09-15.md](why-the-transplant-arc-cost-what-it-cost-2026-09-15.md) | The retrospective on the transplant arc: its measured cost, causal stack, counterfactuals and proposals |
 | [2026-09-26-the-estates-programme-plan.md](2026-09-26-the-estates-programme-plan.md) | The Director's programme for both estates at the owner's word of 2026-09-26 (zero open PRs, the door, the exchange, Codex citizenship): the approved plan verbatim under a provenance header, with the owner's four card answers and the door's shape. |
+| [2026-09-30-two-estate-consolidation-retrospective.md](2026-09-30-two-estate-consolidation-retrospective.md) | The two-estate consolidation of 2026-09-30 read back by six adversarial legs; the divergence measure between the estates; the owner's decisions |
 
 The transplant's own process records live in
 [`../practice-transplant/`](../practice-transplant/README.md).
