@@ -160,3 +160,53 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   of §Next Safe Steps, and it is the one piece of this seat's inherited work that is on disk
   only. A relayed owner answer (the parity lanes to this seat) is recorded as relayed in line 5
   and not acted on.
+
+## 2026-10-01T21:41Z — the second pass at its first boundary (Hazel tracks Trunk, 7d8b9d)
+
+- **Correction:** a decision-record reviewer agreed that PDR-075's ladder supported Accepted, and
+  this seat promoted it. Copilot then quoted the record's own sentence that ratification hinges
+  on a successor's bootstrap from the stream, which no event since 2026-05-23 shows. The seat
+  had read the ladder and not the rest of the record. Before a status changes, grep the record
+  for every condition on that status ("hinges", "requires", "until", "ratif") and answer each.
+  A verdict that favours the seat's own edit is the one to check against the text.
+  `candidate:` a line in the slow-lane review step (PDR-130, or `consolidate-docs` step 7).
+- **Correction:** the first batch was assembled whole (25 and 22 files), committed, and a push
+  started, before the seat read the pull-request skill's sizing band; splitting it cost an hour.
+  Read the intake and sizing sections before the first edit on a lane, and cut slices by target
+  family as verdicts are read (Cricket's redirection, both stances).
+- **Surprise (this boundary's own scan):** the frictions register, patterns and thread records
+  are memory surfaces, which `coordination-branch-24h-lifetime` clause 4 puts on the
+  coordination branch. The first batch carried them on a lane, and 116 of wave 1's 257
+  actionable verdicts target the register. Choose the channel by surface class before sizing
+  anything: it removed a pull request from each estate and most of the later ones.
+- **Correction:** an edit helper written as `open(p, 'w').write(compute())` emptied a decision
+  record when `compute()` raised on a missed anchor: Python opens the file before it evaluates
+  the argument. Compute, then open. Found by a grep that returned nothing from a file that
+  should match; restored from the other estate's identical copy.
+- **Correction:** an insert anchored on "the first `### F-`" landed inside the register
+  template's code fence; markdownlint found it. Anchor on a numeric id and lint after every
+  scripted edit. The same class as the rewrap-and-fences lesson of 2026-09-30.
+- **Correction (recurred within hours of being homed):** a commit was chained after the
+  message check with `;` and ran on a refused header (a subject starting with a capital). The
+  commit skill and a per-user memory both carry the lesson. Text did not hold it; the split
+  generator's assert did. Hand-written settlement messages now go through `&&`.
+- **Correction:** three timestamps written from memory ran 15 to 30 minutes ahead of the
+  clock. Read `date -u` in the command that writes the timestamp.
+- **Correction:** a blocking question to the owner stopped the seat from 13:50Z to 20:35Z. Ask
+  in the reply text while background work runs, and carry on with what the answer cannot change.
+- **Observation (fleet):** three Sonnet mappers wrote the item heading three ways; the join now
+  assigns item letters and repairs a mis-copied id when the quote sits in one source only. A
+  worker points, a script numbers. Second instance of the report-format drift of 2026-09-30.
+- **Observation (fleet, measured):** wave 1's decide stage cost 7.3M tokens for 766 clusters
+  (57 Opus legs, about 128k each); 70 % of clusters ended released or already homed. A Fable
+  read of six bundles against their maps found 95 % recall, with the misses in two classes:
+  facts stated in passing inside a door or slot announcement, and owner words cut inside a
+  clause (one cut dropped a "not"). A script check of every owner quote against the source's
+  quotation marks repaired 39 of 152.
+- **Observation:** 50 mechanisms were homed and recurred after the home existed, 42 of them
+  tooling frictions. For those the next act is a check or a tool, and one more paragraph is not.
+- **Observation:** an unbounded listing put 170 lines into the seat's context; every computed
+  listing gets a bound.
+- **Observation (loss-scan, this boundary):** on disk only: the two whole-batch lane commits and
+  OCE's three split commits (local branches, not pushed); the gitignored analysis directory in
+  each estate. The thread record's entry of this hour names each.
