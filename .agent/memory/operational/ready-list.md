@@ -10,12 +10,13 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 17:24Z).
+- None (read 2026-10-01 18:17Z).
 
 ## Open, not yet ready
 
-- OCE 321 (opened 2026-10-01 17:23Z, five files): the arc-metrics settlement cures from JC.net 277,
-  the same bytes; in review, its checks running. The implementer seat's one open lane.
+- JC.net 278 (opened 2026-10-01 17:57Z, 27 files): the merge-bot push converged on OCE's
+  design, with this estate's bounded output copy kept; one settlement push made, its second review
+  round running. The implementer seat's one open lane.
 
 The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
 `coordination-fold` skill and are not listed here.
@@ -26,7 +27,8 @@ The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
   repair smoke removed and the shellcheck gate's tracked lock, SHA:2691a8143), 310 (15:36Z, the
   merge-bot's retry with one token on GitHub's backoff, SHA:2e8892fed), 319 (15:58Z, the upstream
   carrier for release 1.185.6, SHA:beceea25e), 320 (16:47Z, the arc-metrics port with its review's
-  cures, SHA:d6349ccb4).
+  cures, SHA:d6349ccb4), 321 (17:37Z, the arc-metrics settlement cures from JC.net 277,
+  SHA:9dae121c7).
 - JC.net 277 (17:19Z, the arc-metrics cures as the same bytes, SHA:ce3e0296).
 - The two coordination folds: JC.net 274 (14:36Z, SHA:cb285512) and OCE 299 (14:40Z,
   SHA:972020417).

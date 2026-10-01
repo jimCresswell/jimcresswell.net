@@ -21,6 +21,11 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-01T17:37Z: arc-metrics is the same bytes in both estates** (Crucible binds Slag,
+  7b999c). OCE took 277's two settlement pushes as its pull request 321 (SHA:9dae121c7). The
+  topic's files differ between the estates only in three citation lines. This seat's open lane is
+  pull request 278 here (§Next Safe Steps line 4).
+
 - **2026-10-01T17:19Z: pull request 277 landed as SHA:ce3e0296; arc-metrics counts every entry**
   (Crucible binds Slag, 7b999c). OCE's port of the tool landed there as its pull request 320
   (SHA:d6349ccb4, 16:47Z); a code review before its ready-mark found three defects that this
@@ -134,10 +139,8 @@ on open pull requests (`director-handoff.md`, 2026-09-26: one coordination pull 
 repository, and as many others as there are implementer seats, counted across both estates) the
 lines below go one pull request at a time.
 
-1. arc-metrics is landed in both estates (§Current State). Open from it:
-   - OCE takes 277's two settlement pushes as the same bytes: its pull request 321, opened at
-     17:23Z from its lane `.claude/worktrees/arc-metrics-settlement` (branch
-     `fix/arc-metrics-settlement`, claim 7fd42acc). Its state is in the pull request.
+1. arc-metrics is landed in both estates and nothing of it is owed in either direction (§Current
+   State). Open from it, each a lane of its own:
    - Counting the sub-agent transcripts, which the vendor nests under each session: in this
      estate's directory they hold about two fifths of all model calls. A design of its own, for
      both estates.
@@ -159,13 +162,34 @@ lines below go one pull request at a time.
    (`agent-tools/smoke-tests/repo-check-repair.smoke.ts`) comes out, and `validation-strategy.md`
    takes OCE's §Validators with the owner's words of 2026-09-29, the same bytes. The consolidation
    seat is asked whether its lane touches that directive, so that one seat edits it.
-4. Owed here from OCE's pull request 310: the merge-bot's push retry as reworked there (one token
-   minted once, GitHub's advised backoff of 3 s, 10 s and 30 s, one settled commit). This estate's
-   `main` still mints a fresh token for each attempt, which restarts GitHub's replication wait, and
-   reads HEAD again at each attempt; the exchange seat's record adds two flags missing from
-   `pushArgv` here (`--no-follow-tags`, `--recurse-submodules=no`).
-5. OCE lacks the merge-bot's `retire` action that this estate has; on 2026-10-01 every landed
-   branch there was deleted by hand after the same ancestry proofs.
+4. The merge-bot converges in two steps, read first-hand on 2026-10-01 by comparing the two
+   `agent-tools/src/merge-bot` trees. Each estate held what the other lacked: OCE the push as its
+   pull requests 239 and 310 left it (one token on GitHub's backoff of 3 s, 10 s and 30 s, one
+   settled commit, the default branch read from origin); this estate `retire`, the `--branch` check
+   the two commands share, and a bounded copy of the push's output for the refusal check.
+   - Step one, here, in hand: pull request 278 (opened 17:57Z, lane
+     `.claude/worktrees/push-one-token`, branch `fix/merge-bot-push-one-token`, claim da371c6f).
+     This estate's push takes OCE's design and keeps the bound and the shared check. A code review
+     before it opened found that OCE's rework had dropped proofs this estate's tests held (the token
+     file's mode, the terminal prompt, the cleared credential arms, the wait between attempts, the
+     production mint's scope); each is back with its mutant. Copilot's review then named two defects
+     of the design itself, cured in settlement push one (`SHA:e0dc449d`): each attempt, the first
+     included, starts only while HEAD still names the settled commit, since the pre-push hook
+     validates the checkout and never the commit git is handed; and only inside the token's own
+     life (R5). Its state is in the pull request.
+   - Step two, in OCE, after 278 lands: it takes this estate's `merge-bot` directory as the same
+     bytes, which brings it `retire`, the bound, the proofs and the two guards. Until then every
+     landed branch there is deleted by hand after the same ancestry proofs.
+   - Routed from the reviews, each its own lane: the operator profile's keys and `retire`'s origin
+     check move to `core/git-remote-url.ts` (`retire` binds the raw URL and the push the rewritten
+     one, so the move changes what `retire` binds); a `url.<base>.insteadOf` that rewrites
+     `https://github.com/` to ssh would, by the reviewer's reading (not tested), carry the push as
+     the signed-in human; OCE scopes its push secret scan by the destination's URL and this estate
+     does not.
+5. Two files inside the consolidation seat's claimed areas change in pull request 278, each bound
+   to the code it describes: `.agent/reference/merge-bot.md` (the front-door push section) and one
+   line of the `cross-fork-integration` skill (the push's git argv). The seat was told on the stream
+   before 278 opened; no answer by this writing.
 6. Owner acts owed, for the turbo node's first criterion: the Vercel OIDC policy covering this
    repository, and the `TURBO_TEAM` repository variable (`threads/turbo-remote-cache.next-session.md`
    carries the policy's terms and the command). Read 2026-10-01: the variable is absent, and the
