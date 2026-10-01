@@ -37,9 +37,10 @@ const GIT_FATAL = 128;
  * The most of a push's transcript the refusal check keeps, counted as the
  * string's length (UTF-16 code units), so the copy holds at most three times
  * that many bytes of UTF-8. The refusal's two lines, newlines included, were
- * 224 characters, all ASCII, as GitHub printed them for this repository on
- * 2026-09-28; the bound holds over eighteen times that, for a longer
- * repository or bot name, and a longer transcript cannot be the refusal. The
+ * 224 characters, all ASCII, as GitHub printed them on 2026-09-28 for the
+ * repository this bound was set in; the bound holds over eighteen times that,
+ * for a longer repository or bot name, and a longer transcript cannot be the
+ * refusal. The
  * push's output still streams to stderr in full as it arrives, so the check
  * keeps a bounded copy and loses nothing (R1).
  */
