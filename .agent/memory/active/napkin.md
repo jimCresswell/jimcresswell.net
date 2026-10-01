@@ -210,3 +210,37 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
 - **Observation (loss-scan, this boundary):** on disk only: the two whole-batch lane commits and
   OCE's three split commits (local branches, not pushed); the gitignored analysis directory in
   each estate. The thread record's entry of this hour names each.
+
+## 2026-10-01T22:37Z — the second pass, applying wave 1 (Hazel tracks Trunk, 7d8b9d)
+
+- **Correction:** a stage was built on an unmeasured premise ("the records mostly retell the
+  comms"): brief, catalogue, thirteen batches and a routing script, before one pilot leg and a
+  ten-line script showed it false (18 of 250 items matched with nothing added; 4 to 8 % of record
+  quotes appear in any comms event). The design reviewer had named that premise as the likeliest
+  false one. Measure the premise with the cheapest script that can refute it before building
+  the stage that rests on it.
+- **Surprise:** 207 owner words in handoff and thread records are in no comms event: words said
+  in the owner's own chat that only a record caught. A walk of the comms alone would have missed
+  them all. The seat read all 200 unique spans itself before any leg did.
+- **Correction:** the seat built ahead under the WIP limit (two branches cut and pushed, a third
+  cut, while its own pull request was open), with the skill's sentence loaded and the owner's
+  2026-09-29 word in the very digest it was applying. It is on the WIP friction entry as an
+  instance. Scripts dry-run against scratch copies of the files are the form preparation takes
+  while the slot is held.
+- **Surprise:** OCE reviews every pull request automatically with two vendors, so a docs-only
+  pull request there draws findings JC.net's twin never met (five on the rules slice, two of
+  them real contradictions). The second estate's review is a second reading of the first
+  estate's merged bytes; plan the first estate's follow-up before opening the twin.
+- **Surprise:** the pre-push link check reads gitignored files: two scratch copies of a register
+  in an ignored analysis directory failed a coordination push. An instance on F-222.
+- **Correction:** `set -- $gate` did not split in zsh, so a merge guard compared the whole line
+  with one word and failed closed. Read each field with its own `jq` call.
+- **Observation:** a security reviewer, asked whether drafted register entries were safe to
+  publish, found one that would have been the first tracked pointer to private material, and
+  five whose claims the code did not bear out. A register entry that states what code does is a
+  claim like any other: check it against the code before it is written, and ask the disclosure
+  question of anything that names an incident.
+- **Observation:** `distilled.md`'s header carries the owner's direction of 2026-06-27 ("Promote
+  on the first instance"); two Cricket legs proposed holding one-instance observations on a
+  memory surface. The owner's direction wins; the proportion cure is at triage (an instance
+  that only exemplifies its clause becomes a count) and in fuller pull requests.

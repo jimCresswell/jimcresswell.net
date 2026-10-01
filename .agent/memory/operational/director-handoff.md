@@ -108,12 +108,22 @@ the owner should see the team delivering, not the Director reporting.
   "Finish the inflight work, but switch strategic focus to making Codex a first class peer in the
   Practice". Goal two runs beside goal one; the arc's "then we review" sequences goal one's two
   directions (outbound first, inbound after the review), not the goals.
+- Owner, 2026-09-28 about 11:2xZ, to the Director, relayed by the Director (Wick binds Temper),
+  verbatim: "I am deprioritising Codex support for now, we have made progress, we will come back
+  to it later. Give 250 to Myrtle, let's get it landed quickly and well." The Director read it as
+  suspending the goal-two focus above until the owner returns to it; a seat read it the same day
+  as not starting goal one's Codex-support code rows without the owner's word (one instance).
 - The owner's compaction word is a freeze until "carry on"; the drill runs at that word (owner,
   2026-09-24 18:3xZ, 2026-09-25 13:00Z; verbatim in the archive's second-trim section).
 - Standing lesson for every Director: an owner card holds the turn until answered; the cadence loop,
   the monitor and the heartbeat all stop with it. Raise a card only when no seat's deadline waits on
   the Director, after telling the seats the Director goes dark, and put the questions in the report
   text as well.
+- The Director's own records volume, a Director's ruling and not the owner's (Wick binds Temper,
+  2026-09-27, suite 40; one instance): "cut it". Check-in blocks carry the four numbers, the
+  landings, the card and NEXT; suite tallies carry the counts and the ruling; an addendum is
+  written only for an over-bar cure or a tail the body promised; ledger rows stay rows; records
+  text comes from forge reads only.
 - No seat stops on a context reading; it prepares for compaction at the owner's word and resumes
   on "carry on" (owner, 2026-09-25 13:00Z; PDR-063 amended by PR 219; verbatim in the archive).
 - The owner lands small green PRs by hand and never waits for a seat (owner, 2026-09-26 11:00Z,
