@@ -59,7 +59,9 @@ seam, extract a pure function, inject a dependency).
    the absolute invariant of `testing-strategy.md` §Philosophy
    (owner, 2026-09-14 and 2026-09-15). A filesystem read is IO
    whatever the provenance of the bytes: committed fixtures enter a
-   test as imported modules or as literal values. A fixture-reading
+   test as imported modules or as literal values (a seat's reading from
+   the 2026-09-19 directive pass, ratified by the owner's card of
+   2026-09-20: "Yes, no disk reads"). A fixture-reading
    `test-helpers/` module (OCE's two worked instances were a
    conformance-suite fixture loader and a codegen schema-cache reader)
    is a defect under this item; existing code is evidence of the
@@ -133,7 +135,8 @@ seam, extract a pure function, inject a dependency).
     port), how often or in what order, couples the test to
     implementation and breaks on refactor. Assert on return values,
     public behaviour, or an output port's record read as a value
-    (`testing-strategy.md` §Stubs vs Fakes).
+    (`testing-strategy.md` §Stubs vs Fakes). The owner, 2026-09-24: "never
+    test config or implementation (no call inspection, no config pins)".
 19. **Test proves something about the test scaffolding, not the
     product code.** E.g. asserts that a mock returned the value it
     was configured to return; asserts on types only; tautologies
@@ -156,12 +159,19 @@ seam, extract a pure function, inject a dependency).
 22. **Test depends on test-execution order to pass.** Shared mutable
     state between tests is a correctness hazard. Each test must be
     self-contained.
+23. **Test asserts one host's spelling.** A POSIX path literal where the
+    code joins or resolves by host, or a POSIX-only capability (symlink
+    privilege, `O_NOFOLLOW`): assert host-neutrally (absolute, ending in
+    the expected segments) or name the forced host. Five instances,
+    2026-09-27 to 2026-09-29, all green on POSIX: four failed the Windows
+    job and one was a review finding. If one recurs with this item
+    loaded, it is not working.
 
 ## When to Apply
 
 - As the **first pass** on any test-expert invocation.
 - Before any deeper analysis of test value or TDD compliance.
-- Findings here block approval; all 22 items must be clean before
+- Findings here block approval; every item must be clean before
   the test suite is considered compliant.
 
 ## Fix Direction
