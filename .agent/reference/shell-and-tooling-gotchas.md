@@ -572,8 +572,6 @@ Director's landing record of 2026-09-06, event f05a54da).
   answered (one record, 2026-09-28).
 - **markdownlint MD049 reads a bare glob in a table cell as emphasis**: write globs in code
   spans (one record, 2026-09-13).
-- **knip refuses an exported type that has a single consumer, or is used only inside its own
-  file**: un-export it or give it its second consumer (recurring, 2026-09-26).
 - **Build a grep work list from line-anchored markers**: a bare-word grep false-matches prose
   and under-counts. `^---` matches horizontal rules as well as frontmatter fences, so it is no
   test for frontmatter; a count taken that way reversed a ruling once it was measured
