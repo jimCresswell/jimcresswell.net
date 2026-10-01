@@ -1,5 +1,8 @@
+import { posix } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
+import { ARC_METRICS_HELP_TEXT } from './cli-options.js';
 import { runArcMetricsCli, type ArcMetricsCliInput } from './cli.js';
 import type { ArcMetricsFileSystem } from './file-system.js';
 
@@ -28,20 +31,28 @@ function transcript(sessionSuffix: string): string {
   ].join('\n');
 }
 
+const TRANSCRIPTS: Readonly<Record<string, readonly string[]>> = {
+  '/p/one.jsonl': transcript('1').split('\n'),
+  '/p/two.jsonl': transcript('2').split('\n'),
+};
+
+/** A file system holding the named directories only; any other directory does not exist. */
 function fakeFs(files: Readonly<Record<string, readonly string[]>>): ArcMetricsFileSystem {
   return {
-    listTranscripts: async (directory) => files[directory] ?? [],
+    listTranscripts: async (directory) => files[directory],
     readLines: async function* (absolutePath) {
-      yield* transcript(absolutePath.includes('two') ? '2' : '1').split('\n');
+      yield* TRANSCRIPTS[absolutePath] ?? [];
     },
   };
 }
 
+/** POSIX path rules on every host, so the paths below mean the same wherever the suite runs. */
 const baseInput = (argv: readonly string[], fs: ArcMetricsFileSystem): ArcMetricsCliInput => ({
   argv,
   cwd: '/ws/code/site',
   env: { HOME: '/h' },
   fs,
+  resolvePath: posix.resolve,
 });
 
 describe('runArcMetricsCli', () => {
@@ -55,7 +66,7 @@ describe('runArcMetricsCli', () => {
     expect(result.stdout).toContain('owner 1');
   });
 
-  it('measures several named project directories, as a session that moved needs', async () => {
+  it('measures several named project directories, as an arc across working directories needs', async () => {
     const fs = fakeFs({
       '/h/.claude/projects/-a': ['/p/one.jsonl'],
       '/h/.claude/projects/-b': ['/p/two.jsonl'],
@@ -105,6 +116,39 @@ describe('runArcMetricsCli', () => {
     expect(result.stdout).toContain('sessions 1');
   });
 
+  it('refuses a named project directory that does not exist, naming it', async () => {
+    const fs = fakeFs({ '/h/.claude/projects/-a': ['/p/one.jsonl'] });
+
+    const result = await runArcMetricsCli(
+      baseInput(
+        [
+          '--vendor',
+          'claude',
+          '--project-dir',
+          '/h/.claude/projects/-a',
+          '--project-dir',
+          '/h/.claude/projects/-typo',
+        ],
+        fs,
+      ),
+    );
+
+    expect(result).toEqual({
+      exitCode: 2,
+      stdout: '',
+      stderr: 'no such project directory: /h/.claude/projects/-typo\n',
+    });
+  });
+
+  it('reports no sessions when the launch directory has never held one', async () => {
+    const fs = fakeFs({});
+
+    const result = await runArcMetricsCli(baseInput(['--vendor', 'claude'], fs));
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toContain('sessions 0');
+  });
+
   it("reports each session's cache reads in its own text row", async () => {
     const fs = fakeFs({ '/h/.claude/projects/-ws-code-site': ['/p/one.jsonl'] });
 
@@ -129,25 +173,45 @@ describe('runArcMetricsCli', () => {
     });
   });
 
-  it('refuses an unsupported vendor with exit code 2', async () => {
+  it('refuses an unsupported vendor, naming the flag, the value and the supported set, with the help', async () => {
     const fs = fakeFs({});
 
     const result = await runArcMetricsCli(baseInput(['--vendor', 'cursor'], fs));
 
-    expect(result.exitCode).toBe(2);
-    expect(result.stderr).toContain('unsupported vendor: cursor');
+    expect(result).toEqual({
+      exitCode: 2,
+      stdout: '',
+      stderr: `--vendor does not support cursor (supported: claude)\n\n${ARC_METRICS_HELP_TEXT}\n`,
+    });
   });
 
-  it('refuses a non-numeric active-time threshold', async () => {
+  it('refuses a non-numeric active-time threshold, naming the value, with the help', async () => {
     const fs = fakeFs({});
 
     const result = await runArcMetricsCli(
       baseInput(['--vendor', 'claude', '--gap-minutes', 'soon'], fs),
     );
 
-    expect(result.exitCode).toBe(2);
-    expect(result.stderr).toContain('--gap-minutes');
+    expect(result).toEqual({
+      exitCode: 2,
+      stdout: '',
+      stderr: `--gap-minutes expects a positive whole number of minutes (got soon)\n\n${ARC_METRICS_HELP_TEXT}\n`,
+    });
   });
+
+  it.each(['0x10', '1e1', '5.0', '0', '-5', '99999999999999999999'])(
+    'refuses the active-time threshold %s, which is not a positive whole number it can hold exactly',
+    async (threshold) => {
+      const fs = fakeFs({});
+
+      const result = await runArcMetricsCli(
+        baseInput(['--vendor', 'claude', '--gap-minutes', threshold], fs),
+      );
+
+      expect(result.exitCode).toBe(2);
+      expect(result.stderr).toContain(`got ${threshold}`);
+    },
+  );
 
   it('refuses an empty HOME as an input error rather than reporting from the filesystem root', async () => {
     const fs = fakeFs({ '/.claude/projects/-ws-code-site': ['/p/one.jsonl'] });
@@ -175,16 +239,53 @@ describe('runArcMetricsCli', () => {
 
     const result = await runArcMetricsCli(baseInput(['--vendor', 'claude'], fs));
 
-    expect(result.exitCode).toBe(1);
-    expect(result.stderr).toContain('permission denied');
+    expect(result).toEqual({
+      exitCode: 1,
+      stdout: '',
+      stderr: 'failed to list /h/.claude/projects/-ws-code-site: permission denied\n',
+    });
+  });
+
+  it('reports a transcript that cannot be read as exit code 1 with the file named', async () => {
+    const fs: ArcMetricsFileSystem = {
+      listTranscripts: async () => ['/p/one.jsonl'],
+      readLines: async function* () {
+        yield* [];
+        throw new Error('input/output error');
+      },
+    };
+
+    const result = await runArcMetricsCli(baseInput(['--vendor', 'claude'], fs));
+
+    expect(result).toEqual({
+      exitCode: 1,
+      stdout: '',
+      stderr: 'failed to read /p/one.jsonl: input/output error\n',
+    });
+  });
+
+  it('refuses to run without a vendor', async () => {
+    const fs = fakeFs({});
+
+    const result = await runArcMetricsCli(baseInput([], fs));
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain('--vendor is required');
   });
 
   it('prints help without reading anything', async () => {
-    const fs = fakeFs({});
+    const unreadable: ArcMetricsFileSystem = {
+      listTranscripts: async () => {
+        throw new Error('help read the filesystem');
+      },
+      readLines: async function* () {
+        yield* [];
+        throw new Error('help read a transcript');
+      },
+    };
 
-    const result = await runArcMetricsCli(baseInput(['--help'], fs));
+    const result = await runArcMetricsCli(baseInput(['--help'], unreadable));
 
-    expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('arc-metrics --vendor');
+    expect(result).toEqual({ exitCode: 0, stdout: `${ARC_METRICS_HELP_TEXT}\n`, stderr: '' });
   });
 });
