@@ -1,7 +1,7 @@
 # Ready list
 
-Every open pull request on both estates that is green with zero unresolved threads, smallest
-changed-file count first: the order the owner lands in when the owner chooses to land by hand
+Every open pull request on both estates that is not a draft and is green with zero unresolved
+threads, smallest changed-file count first: the order the owner lands in when the owner chooses to land by hand
 (the owner's word, 2026-09-26: "don't block small green PRs on manual, but do maintain a list so
 that when I ask you can give me links"). Re-derivable at any time from the forge:
 `gh pr list --json number,isDraft,mergeStateStatus,changedFiles` gives state and size, and the
@@ -10,18 +10,39 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 13:18Z): every open pull request that is not a draft is behind its base.
+- None (read 2026-10-01 23:24Z).
 
-## Open, not yet ready (2026-10-01 13:18Z; Crucible binds Slag's order)
+## Open, not yet ready
 
-| Order | PR | Estate | State at the last read |
-| --- | --- | --- | --- |
-| 1 | 313 | OCE | The Turbo remote cache, optional everywhere; 7 files; green at 7f7b2eb1a, no review threads; BEHIND |
-| 2 | 309 | OCE | J3's round cures; 3 files; green at 2cb3eb56d, one unresolved thread; BEHIND; its lane worktree `oce-wt-repair-smoke-group` holds commits the remote lacks |
-| 3 | 310 | OCE | B1, the merge-bot push retry; 16 files; green at 44ab80289, three unresolved threads, Codex P1 first; BEHIND |
+- JC.net 280 (opened 2026-10-01 20:29Z, 16 files): the twin of OCE 322. One settlement push made
+  (`SHA:5527d3c5`), checks green. Its second review round (20:43Z) left one open thread and three
+  items in the review body, read and not yet dispositioned: the lane is frozen at the owner's
+  compaction word. The implementer seat's one open lane.
+- JC.net 284 (opened 2026-10-01 23:19Z, 15 files): fifteen rules from the second two-estate
+  consolidation; checks running at this reading. The consolidation seat's one open lane.
 
-The coordination pull requests of both estates land by the `coordination-fold` skill and are not
-listed here.
+The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
+`coordination-fold` skill and are not listed here.
+
+## Landed on 2026-10-01
+
+- OCE 313 (14:57Z, the Turbo remote cache optional everywhere, SHA:e453ff81a), 309 (15:16Z, the
+  repair smoke removed and the shellcheck gate's tracked lock, SHA:2691a8143), 310 (15:36Z, the
+  merge-bot's retry with one token on GitHub's backoff, SHA:2e8892fed), 319 (15:58Z, the upstream
+  carrier for release 1.185.6, SHA:beceea25e), 320 (16:47Z, the arc-metrics port with its review's
+  cures, SHA:d6349ccb4), 321 (17:37Z, the arc-metrics settlement cures from JC.net 277,
+  SHA:9dae121c7), 322 (20:21Z, the push's attempt guards with tests held to the testing
+  directive, SHA:30f5b4338).
+- JC.net 277 (17:19Z, the arc-metrics cures as the same bytes, SHA:ce3e0296), 278 (18:37Z, the
+  merge-bot push on one token and one settled commit, SHA:18ec6145), 279 (19:00Z, the push's
+  remainder: the clock read after HEAD, SHA:c6394b98).
+- The two coordination folds: JC.net 274 (14:36Z, SHA:cb285512) and OCE 299 (14:40Z,
+  SHA:972020417).
+- The second two-estate consolidation's docs-only pull requests: JC.net 281 (21:42Z, two
+  decision records at their slow-lane reviews, SHA:eb0387f8), 282 (22:15Z, eight rules,
+  SHA:33575217) and 283 (22:22Z, eight rules, SHA:92282aeb); OCE 323 (22:10Z, the decision
+  records' twin, SHA:5a417ee52), 324 (22:48Z, the twin of 282, SHA:d30ffead0) and 325 (23:16Z,
+  the twin of 283, SHA:044a8f8a9).
 
 ## Landed on 2026-09-30
 

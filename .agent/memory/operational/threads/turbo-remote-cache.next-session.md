@@ -3,28 +3,30 @@
 **Thread identity.** The lane that lands the delivery node
 `turbo-remote-cache-optional-and-persistent` in this repository and in OCE. **Participating
 agent identities:** Galaxy binds Gravity (46de68, claude-code, claude-fable-5-1, implementer,
-2026-09-30). **Landing target for the next session:** the latest dated block governs.
+2026-09-30); Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, implementer, 2026-10-01).
+**Landing target for the next session:** the latest dated block governs.
 **Grounding order:** `AGENT.md`, the start-right skill for the session shape, this record, the
 delivery node, then `docs/engineering/build-system.md` §Caching.
 
-## Current Continuation (2026-09-30T13:5xZ, the latest block governs)
+## Current Continuation (2026-10-01T16:0xZ, the latest block governs)
 
-- PR 1 landed: jimcresswell.net PR 275 merged at SHA:f6a26954 (three Copilot rounds, every
-  finding cured, branch retired, worktree removed).
-- PR 2 open: OCE PR 313, `feat/turbo-remote-cache-optional` at SHA:7f7b2eb1a off `engraph`
-  3c4e6e219, bot-authored, Copilot requested at open (13:45:16Z); its lane worktree is
-  `oce-wt-turbo-cache-optional` beside the OCE checkout (cut before the convention moved).
+- Both pull requests have landed. PR 1: jimcresswell.net PR 275 at SHA:f6a26954 (2026-09-30).
+  PR 2: OCE PR 313 at SHA:e453ff81a (2026-10-01T14:57:09Z, Crucible binds Slag): one pure sync
+  with `engraph`, no review thread, merged by OCE's merge-bot, branch deleted, worktree removed.
+- Observed on OCE's side before the landing: on PR 313's reviewed head (CI run 36723959829) the
+  cache-by-OIDC step succeeded in every job that runs turbo, so OCE's team variable and OIDC
+  policy are in place.
+- Observed here on 2026-10-01: no `TURBO_TEAM` repository variable exists, and the run on `main`
+  at SHA:cb285512 (36877727338) skipped the OIDC step and posted the notice. Criterion 2 again;
+  criterion 1 still waits on the owner's two acts.
 - Invocation pointer: `$jc-start-right-quick continue turbo-remote-cache from this record`.
 - Controlling plan: `.agent/plans/delivery/turbo-remote-cache-optional-and-persistent.plan.md`
   (status `ratified`).
-- Next safe step: harvest PR 313 (checks, Copilot review, threads; budget 2 rounds), cure or
-  Reject, merge by OCE's merge-bot with `--expect copilot-pull-request-reviewer`, retire the
-  branch, remove the worktree; then read the first CI run after the owner's two acts on this
-  repository for criterion 1, and OCE's next release run on `main` for criterion 5's
-  runtime half; record both here.
+- Next safe step: read the first CI run after the owner's two acts on this repository for
+  criterion 1, and OCE's next release run on its `main` for criterion 5's runtime half; record
+  both here, then close the node against its five criteria.
 - Owner acts still owed (criterion 1): the Vercel OIDC policy for `jimCresswell/jimcresswell.net`
-  on team `engraph`; `gh variable set TURBO_TEAM --body engraph -R jimCresswell/jimcresswell.net`
-  (none present at 13:5xZ; every run so far skipped the step and posted the notice).
+  on team `engraph`; `gh variable set TURBO_TEAM --body engraph -R jimCresswell/jimcresswell.net`.
 - Completed prerequisites: the owner's keychain-backed `TURBO_TOKEN` and `TURBO_TEAM=engraph`
   in the shell profile (an agent shell reads "Remote caching enabled"); `turbo logout`; an
   org-wide Vercel OIDC policy for the `EngraphCode` GitHub org; OCE's `ci.yml` on OIDC (PR 312).

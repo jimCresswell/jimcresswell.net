@@ -52,8 +52,10 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   F-217); the per-user memory directories are audit trails and carry no count (the owner's frame).
   Alignment over 389 shared paths: 156 files and 7,444 lines differed at 2026-09-30's open, 147
   files and 7,142 lines now; three shared files remain more divergent by nature
-  (`build-system.md`, the commit skill's host ceremony, the data-shape rule's worked instances),
-  named in the report with reasons; the measure is the script in the report.
+  (`build-system.md`, the commit skill's host ceremony, `validation-strategy`'s negative-control
+  section), named in the report with reasons, and two smaller ones the measure found on
+  2026-10-01 (`testing-strategy`, the cross-platform surface matrix); the measure is the script
+  in the report.
 - **Next session: capability parity, both ways** (the owner's word, 2026-10-01), inside the wider
   programme the prompt names. First steps: (1) inventory what each estate holds that the other
   lacks: the exchange register's rows L7 (review-cost push gate) and L8 (pr-tally) are already
@@ -104,6 +106,140 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   gate refuses outside the records), was settled by the owner on 2026-10-01 before the push; the
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
+
+### 2026-10-01T21:41Z — wave 1 decided, the first pull request in review, a context boundary (Hazel tracks Trunk, 7d8b9d)
+
+- **Counts.** Pending graduations: 0 live in each estate. Buffers not yet drained: OCE's napkin,
+  OCE's frictions register (130 entries), platform memory, JC.net's napkin rotation. Divergence:
+  147 files and 7,142 lines at the open; 146 and 7,148 with the first batch.
+- **Wave 1, both comms streams.** 2,247 events gave 2,200 items (2,197 quotes verified by
+  script; a Fable read of six bundles whole found 279 of 295 pieces of durable substance in the
+  maps). 766 mechanisms, the 51 rows of the older decision table and 29 supplementary clusters
+  are decided, 846 in all: released 349, homed 240, routed 105, to write 69, homed and recurred
+  50, do-now 21, owner 12. Of the 257 that need an act, 116 target the frictions register. At
+  this boundary one Fable leg is reading 122 released and homed verdicts back to source and one
+  Opus leg is merging the 118 frictions verdicts into register edits. No wave 1 verdict is
+  applied yet.
+- **Spend.** About 16.8M sub-agent tokens of the 30M ceiling the owner set on 2026-10-01
+  ("30M ceiling, all waves"); wave 1 took 13.9M against an 11M estimate. Waves 2 to 4 as first
+  estimated need about 16.5M, so the ceiling is with the owner as three options (match new items
+  to wave 1's mechanisms; raise to 36M; match and drop the pass over events the mappers left as
+  state). Wave 2's fleet is not launched before the answer.
+- **The first batch is landing as four small pull requests per estate** (decision records,
+  rules, skills, records), one open at a time. JC.net pull request 281 (decision records) is
+  open with two settlement pushes (`SHA:1a1f8f3f`, `SHA:fc519bab`). Copilot found that PDR-075's
+  own text makes ratification hinge on a successor's bootstrap from the stream; a search of both
+  estates' comms stores found none since 2026-05-23, so PDR-075 is **Proposed, not Accepted**.
+  OCE's twin is three local commits on `docs/consolidation-2a-decision-records` in the lane
+  worktree `consolidation-2`, not pushed. The whole-batch commits on
+  `docs/consolidation-2-routed-cures` (JC.net `SHA:767c05a9`, OCE `SHA:f9f0a2ca6`) are local
+  only and are the source the splits are cut from; they stay until every split has merged.
+- **Channel by surface class, from this boundary.** The first batch's memory surfaces (two
+  patterns, the frictions register, this record, JC.net's pending-graduations heading) are moved
+  from the lane to each primary's coordination branch, where `coordination-branch-24h-lifetime`
+  clause 4 puts them. Later register and record edits go the same way and need no pull request
+  of their own; doctrine stays on lanes.
+- **Questions open with the owner (asked in the session, unanswered at this boundary).** What
+  "ratify it" before a plan's text exists ratifies; re-ratifying OCE's visitor checkout runbook
+  with its three edits of 2026-09-06; the private-origin exports in OCE's public research
+  package; whether the context loop's three skills run at every firing; when a compaction's
+  boundary records are committed (PDR-063's drill against the relayed "commit and push
+  post-compaction"); re-ratifying both transplant runbook copies; ADR-180's amendment of
+  2026-09-26; PDR-142's three held concept sentences; the user-value skill's eval; OCE's
+  rulesets and CODEOWNERS; the rewritten CONTENT-2; the author address on OCE's bot-committed
+  commits; PDR-075 to Accepted by ratification; the ceiling.
+- **From the partner seat's napkin block of 2026-10-01T20:5xZ, for this seat's lanes.** A
+  clause for `cross-estate-work-must-reduce-divergence` (a difference between the estates is
+  read as a decision before it is read as a loss; before porting, `git log -S` in the
+  destination for each thing it lacks); an amendment to `testing-strategy.md` §Rules (a
+  surviving mutant on a decision value is the directive working; a directive edit, so it waits
+  for a context under 30 % and the twin of OCE pull request 309); the raw-character landing of
+  a Unicode escape, for `shell-and-tooling-gotchas.md` in both estates; Copilot's findings in a
+  review body under "Findings: None" (seen again on 281's second round).
+- **Working files, on disk only.** Each estate's gitignored
+  `.agent/state/collaboration/comms-analysis-2026-10-01/`: `plan.md` (JC.net) is the running
+  plan and holds every command; `session-7d8b9d/` is the scratch copy (briefs, bundles, maps,
+  joins, clusters, verdict worklists, apply scripts, split tooling).
+- **Re-arm recipe, as if nothing survives.** The comms watcher in each estate, from its root:
+  `pnpm --silent agent-tools:collaboration-state -- comms watch --platform claude --model
+  claude-fable-5-1 --supervisor-pid "$PPID" --step-timeout-ms 120000 --max-events-per-drain
+  100`. Two session crons: `7,37 * * * *` "run a reduced Cricket suite, one Fable normal and one
+  Fable adversarial. The loop ends once the dedicated consolidation is complete"; `22,52 * * * *`
+  "check the context percentage, if it is above 55% make the current context safe, then carry
+  on" with the three skills named. A watch on pull request 281's checks and Copilot's review.
+- **Next, in order.** Merge 281 at the door; push and open OCE's twin; then rules, skills and
+  records the same way. Read the Fable leg's disagreements and re-decide what it names. Apply
+  the frictions edits to both coordination branches. Apply the written, routed and do-now
+  verdicts in slices by target family, each sized before its first commit. Re-plan waves 2 to 4
+  on the owner's answer.
+
+### 2026-10-01T21:0xZ — the second pass opens: method, first batch, wave 1 in flight (Hazel tracks Trunk, 7d8b9d)
+
+- **The owner's brief for this pass (2026-10-01, typed at the session's open), verbatim:** "This is
+  a dedicated consolidation session. The goal is knowledge curation, never fitness numbers. Drain
+  all sources first, e.g. comms events, then drain the drainable buffers, then drain all pending
+  graduations and similar concepts... and I do mean drain, not do some and decide that the rest
+  are "for the owner to decide", I expect it done, completely, if you need to ask questions then
+  ask them." "It is also part of a wider programme to bring the Practice in both repos up to the
+  same level of capability." "Use fleets of Sonnet 5.5 for broad audits, Opus 5.5 for reduction,
+  and one or two Fable for syntheses and spot checks, the spot checks back to the source material
+  matter, they help spot where the lower power agents missed something." "Take it slow, be
+  thorough, plan before you start, and re-plan periodically."
+- **The owner's two answers (question tool, 2026-10-01, the selected options verbatim).** Fleet
+  price: "30M ceiling, all waves (Recommended)"; the option's description, written by this seat
+  and selected with it, read "All four waves under a 30M subagent-token ceiling. I report
+  measured spend and yield at each wave boundary and stop for you if any wave runs 50% over its
+  estimate." The parity code lanes (exchange rows
+  L7 and L8, the commit queue, the smoke suites to real tests, the divergence command) and OCE's
+  lockstep-test cure: "Crucible, after its list (Recommended)".
+- **Seats.** n=2: this seat curates (the buffers, the queues, the comms streams as sources, the
+  doctrine homes, on one lane per estate landing by pull request); Crucible binds Slag (7b999c)
+  holds the continuity records, every other thread and all code. This seat is registered on both
+  streams and holds a curator claim in each.
+- **Method, cured by a three-leg design review before the price was asked** (a frame challenge,
+  a run of the scripts, an assumptions read; each returned "revise"). Sources are cut into
+  bundles by script; one Sonnet leg maps each bundle into items, each with an exact quote; a
+  script checks every quote at its source, checks that every event is accounted for, marks
+  word-for-word copies across the two streams and probes both estates for a home; Opus legs
+  group the items by mechanism, in batches, and a merge leg joins the same mechanism across
+  batches, so a thing that recurs is decided once with its computed count; Opus legs decide each
+  cluster (release, homed, homed but recurred, write, do now, route, owner), reading the home
+  before saying "homed"; Fable legs read back to the source (a cold read of sampled bundles for
+  recall, a second vote on every released cluster that holds a lesson, a defect or an owner
+  word); the seat reads every proposed write and applies it first-hand, the same bytes in both
+  estates. A mechanism that recurred after its home existed is cured by a tool or a trigger and
+  goes to the frictions register, never to another paragraph. Scripts and briefs are in the
+  session's scratch directory and are copied to each estate's gitignored
+  `.agent/state/collaboration/comms-analysis-2026-10-01/` at the close; their tracked home is
+  owed at the last wave (the retrospective's proposal 2).
+- **Wave 1 (comms, both estates), measured.** 2,247 events in 39 bundles gave 2,200 items; 2,197
+  quotes verified at source; every event accounted for; 240 items came from word-for-word copies;
+  171 items only sequence one day's work and are read by a Fable leg, not decided; 2,029 items
+  formed 933 clusters before the cross-batch merge. Spend so far about 7.6M subagent tokens of the
+  30M ceiling (reviews and pilots 2.0M, map 3.95M, clusters 1.16M, the first-batch verifier 0.17M,
+  Cricket 0.13M). The decide stage has not run.
+- **First batch, on lane `docs/consolidation-2-routed-cures` in each estate.** The two slow-lane
+  rows due 2026-10-01 are decided (PDR-130 retained; PDR-075 promoted to Proposed on two
+  worked instances in distinct sessions; see the entry above for why not Accepted). The doctrine contradictions the fold reviews found are
+  cured (the writer pattern's security claim first; `coordination-fold` the same bytes;
+  `consolidate-docs` step 6b and `continuity-practice` without the whole-file snapshot; the
+  staging row, the Monitor rule's one-shot wait, `worktree-hygiene`'s work branches, the lane cap's
+  scopes, the divergence rule's clauses 1 and 3, `pr-lifecycle` Phase 7). Thirteen frictions are
+  registered under one id space across both estates (F-218 to F-230). The JC.net napkin's lessons
+  without a permanent home are homed.
+- **Divergence** (the report's script; 389 shared paths): 147 files and 7,142 lines at this
+  session's open; 146 and 7,148 with the first batch on the folded tips. The batch lowered three
+  files by 43 lines (`continuity-practice` 26, `coordination-fold` 10, the commit skill 7) and
+  raised two by 9 (the Core changelog 2, one entry under each estate's own header; `pr-lifecycle`
+  7, OCE's pure-sync wording, which JC.net cannot carry until content binding is ported). The
+  day's other lanes raised four files by 44 and lowered two by 4 (`validation-strategy` 23 and
+  `testing-strategy` 14, pending the twin of OCE pull request 309; `build-system.md` 6; the
+  skills README 1). Lines stand 6 above the open until that twin lands.
+- **Next:** the decide stage of wave 1 with the 51 undecided table rows; the Fable read-back;
+  apply; report spend and yield to the owner;
+  re-plan; then the record-class sources (handoffs, continuity and thread records, experience),
+  the buffers (frictions register, napkins, platform memory, plans), and the queues, audits and
+  rotation.
 
 ### 2026-10-01T10:4xZ — the handoff for a fresh session (Hawthorn binds Bracken, b3f117)
 

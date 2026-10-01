@@ -100,3 +100,147 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   command.
 - **Observation:** two regex classes failed in one pass (a phrase wrapped across lines; a non-UTF-8
   file under `.agent`). Homed in the shell gotchas (both estates).
+
+## 2026-10-01T20:5xZ — the merge-bot convergence and a compaction boundary (Crucible binds Slag, 7b999c)
+
+- **Correction (twice in one day, so more than an observation):** a pre-open review of pull
+  request 278 said the other estate's rework had "dropped proofs", and this seat restored them
+  with a mutant each: the token file's mode, the directory prefix, the prompt setting, two git
+  flags, the mint's scope. Copilot removed the scope one on 279 against `testing-strategy.md`.
+  The test review of OCE 322 then held the rest against §Rules ("assert relations to injected
+  inputs, never literals of our own configuration") and `test-immediate-fails.md` item 12, and
+  they were pins. The other estate had dropped them on purpose. Before restoring an assertion a
+  sibling estate removed, or adding one because a mutant survives, hold it against the directive:
+  a surviving mutant is a finding only when it changes behaviour at a boundary. And a difference
+  between the estates is read as a decision first and a loss second: ask why the other side has
+  less before giving it more. Not yet homed in a rule. `candidate:` an amendment to
+  `testing-strategy.md` §Rules (a surviving mutant on a decision value is the directive
+  working) and a clause for `cross-estate-work-must-reduce-divergence` (a difference between
+  estates is read as a decision before it is read as a loss); trigger: the next register
+  refresh; the consolidation seat's lane holds both files.
+- **Surprise (the wrap's own probe, 20:5xZ):** the claim "the other estate removed them on
+  purpose" in the entry above was an inference from one test comment until this seat ran
+  `git log -S` in OCE and read commit `SHA:2432ac462`. Its message lists every deletion and its
+  reason, and names two more things this seat then carried back into OCE with pull request 322:
+  the transcript bound and the endpoint-routing mint test. A diff shows that the estates differ;
+  only history shows who decided. The step, before porting in either direction: for each thing
+  the destination lacks, `git log -S'<distinctive string>' -- <file>` there, and read the
+  commit that removed it. `candidate:` a clause for the cross-estate port procedure
+  (`cross-estate-work-must-reduce-divergence`, or the join ceremony's step 1 beside the
+  same-name check). Falsifier, already run once: the command found the reason in one call.
+- **Correction:** the same pull requests' guard tests used a fake that answers in sequence
+  (`inOrder`) and a clock keyed to a count of the product's reads. Item 12 forbids both, and
+  two Copilot rounds on each pull request did not catch it; a test-quality sub-agent did. The
+  admissible forms: move the proof to the seam where the state is a constant (`guardedAttempt`,
+  `settleCommitFor`); at the front door, change the world on what the product writes (the
+  injected sleep sets what the clock or HEAD answers afterwards), never on what it asks.
+- **Surprise:** a design that is right in one estate is wrong in the other for a reason only the
+  second estate's call graph shows. Refusing plain http inside the shared URL parser was sound
+  here (one caller) and would have widened the push secret scan's exclusion in OCE (three
+  callers). "The same bytes" is a goal for the outcome, checked against each estate's callers
+  before the bytes move; `grep` the importers of every shared module a port changes.
+- **Surprise:** Copilot can put its one finding in the review body under "Findings: None" with no
+  thread. Both rounds of OCE 322 did. A wait that counts threads reports a clean round. Read the
+  whole review body every round (`gh api …/pulls/<n>/reviews/<id> --jq .body`). The merge door's
+  evidence line already says "tally body findings"; the wait script is the weak link.
+- **Observation (platform):** a four-hex-digit Unicode escape typed in an Edit or Write
+  parameter can land as the raw character (U+202E did, twice, once in a test file and once in
+  the record of the first time). The brace form is not decoded. After writing any escape for a
+  format or control character, grep the file for the raw bytes. Homed so far only in
+  `repo-continuity.md`'s tool-friction list; belongs in `shell-and-tooling-gotchas.md` (both
+  estates), in the consolidation seat's area.
+- **Observation:** three specialist sub-agents, each given the changeset and questions and no
+  conclusions, found different classes that the author and Copilot had missed: false statements
+  for the target estate (code review), two real exposures on the base branch and a raw character
+  (security), and the directive breaches (test). Briefs that withheld which cases were new got
+  every case the same reading. The cost was about 700k sub-agent tokens for one pull request;
+  the yield was the difference between a port and a correct port.
+- **Observation (loss-scan, this boundary):** OCE's J2 lane (`oce-wt-j2-docs-validators`) holds
+  five uncommitted paths and is 108 commits behind its base; it is recorded NOT READY in line 2
+  of §Next Safe Steps, and it is the one piece of this seat's inherited work that is on disk
+  only. A relayed owner answer (the parity lanes to this seat) is recorded as relayed in line 5
+  and not acted on.
+
+## 2026-10-01T21:41Z — the second pass at its first boundary (Hazel tracks Trunk, 7d8b9d)
+
+- **Correction:** a decision-record reviewer agreed that PDR-075's ladder supported Accepted, and
+  this seat promoted it. Copilot then quoted the record's own sentence that ratification hinges
+  on a successor's bootstrap from the stream, which no event since 2026-05-23 shows. The seat
+  had read the ladder and not the rest of the record. Before a status changes, grep the record
+  for every condition on that status ("hinges", "requires", "until", "ratif") and answer each.
+  A verdict that favours the seat's own edit is the one to check against the text.
+  `candidate:` a line in the slow-lane review step (PDR-130, or `consolidate-docs` step 7).
+- **Correction:** the first batch was assembled whole (25 and 22 files), committed, and a push
+  started, before the seat read the pull-request skill's sizing band; splitting it cost an hour.
+  Read the intake and sizing sections before the first edit on a lane, and cut slices by target
+  family as verdicts are read (Cricket's redirection, both stances).
+- **Surprise (this boundary's own scan):** the frictions register, patterns and thread records
+  are memory surfaces, which `coordination-branch-24h-lifetime` clause 4 puts on the
+  coordination branch. The first batch carried them on a lane, and 116 of wave 1's 257
+  actionable verdicts target the register. Choose the channel by surface class before sizing
+  anything: it removed a pull request from each estate and most of the later ones.
+- **Correction:** an edit helper written as `open(p, 'w').write(compute())` emptied a decision
+  record when `compute()` raised on a missed anchor: Python opens the file before it evaluates
+  the argument. Compute, then open. Found by a grep that returned nothing from a file that
+  should match; restored from the other estate's identical copy.
+- **Correction:** an insert anchored on "the first `### F-`" landed inside the register
+  template's code fence; markdownlint found it. Anchor on a numeric id and lint after every
+  scripted edit. The same class as the rewrap-and-fences lesson of 2026-09-30.
+- **Correction (recurred within hours of being homed):** a commit was chained after the
+  message check with `;` and ran on a refused header (a subject starting with a capital). The
+  commit skill and a per-user memory both carry the lesson. Text did not hold it; the split
+  generator's assert did. Hand-written settlement messages now go through `&&`.
+- **Correction:** three timestamps written from memory ran 15 to 30 minutes ahead of the
+  clock. Read `date -u` in the command that writes the timestamp.
+- **Correction:** a blocking question to the owner stopped the seat from 13:50Z to 20:35Z. Ask
+  in the reply text while background work runs, and carry on with what the answer cannot change.
+- **Observation (fleet):** three Sonnet mappers wrote the item heading three ways; the join now
+  assigns item letters and repairs a mis-copied id when the quote sits in one source only. A
+  worker points, a script numbers. Second instance of the report-format drift of 2026-09-30.
+- **Observation (fleet, measured):** wave 1's decide stage cost 7.3M tokens for 766 clusters
+  (57 Opus legs, about 128k each); 70 % of clusters ended released or already homed. A Fable
+  read of six bundles against their maps found 95 % recall, with the misses in two classes:
+  facts stated in passing inside a door or slot announcement, and owner words cut inside a
+  clause (one cut dropped a "not"). A script check of every owner quote against the source's
+  quotation marks repaired 39 of 152.
+- **Observation:** 50 mechanisms were homed and recurred after the home existed, 42 of them
+  tooling frictions. For those the next act is a check or a tool, and one more paragraph is not.
+- **Observation:** an unbounded listing put 170 lines into the seat's context; every computed
+  listing gets a bound.
+- **Observation (loss-scan, this boundary):** on disk only: the two whole-batch lane commits and
+  OCE's three split commits (local branches, not pushed); the gitignored analysis directory in
+  each estate. The thread record's entry of this hour names each.
+
+## 2026-10-01T22:37Z — the second pass, applying wave 1 (Hazel tracks Trunk, 7d8b9d)
+
+- **Correction:** a stage was built on an unmeasured premise ("the records mostly retell the
+  comms"): brief, catalogue, thirteen batches and a routing script, before one pilot leg and a
+  ten-line script showed it false (18 of 250 items matched with nothing added; 4 to 8 % of record
+  quotes appear in any comms event). The design reviewer had named that premise as the likeliest
+  false one. Measure the premise with the cheapest script that can refute it before building
+  the stage that rests on it.
+- **Surprise:** 207 owner words in handoff and thread records are in no comms event: words said
+  in the owner's own chat that only a record caught. A walk of the comms alone would have missed
+  them all. The seat read all 200 unique spans itself before any leg did.
+- **Correction:** the seat built ahead under the WIP limit (two branches cut and pushed, a third
+  cut, while its own pull request was open), with the skill's sentence loaded and the owner's
+  2026-09-29 word in the very digest it was applying. It is on the WIP friction entry as an
+  instance. Scripts dry-run against scratch copies of the files are the form preparation takes
+  while the slot is held.
+- **Surprise:** OCE reviews every pull request automatically with two vendors, so a docs-only
+  pull request there draws findings JC.net's twin never met (five on the rules slice, two of
+  them real contradictions). The second estate's review is a second reading of the first
+  estate's merged bytes; plan the first estate's follow-up before opening the twin.
+- **Surprise:** the pre-push link check reads gitignored files: two scratch copies of a register
+  in an ignored analysis directory failed a coordination push. An instance on F-222.
+- **Correction:** `set -- $gate` did not split in zsh, so a merge guard compared the whole line
+  with one word and failed closed. Read each field with its own `jq` call.
+- **Observation:** a security reviewer, asked whether drafted register entries were safe to
+  publish, found one that would have been the first tracked pointer to private material, and
+  five whose claims the code did not bear out. A register entry that states what code does is a
+  claim like any other: check it against the code before it is written, and ask the disclosure
+  question of anything that names an incident.
+- **Observation:** `distilled.md`'s header carries the owner's direction of 2026-06-27 ("Promote
+  on the first instance"); two Cricket legs proposed holding one-instance observations on a
+  memory surface. The owner's direction wins; the proportion cure is at triage (an instance
+  that only exemplifies its clause becomes a count) and in fuller pull requests.

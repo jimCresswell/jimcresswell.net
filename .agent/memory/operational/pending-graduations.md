@@ -204,5 +204,3 @@ abolishes; PDR-101's quorum stands for every other graduation. The constitutiona
 candidates of the batch (A, B, C, 1a and 1b under PDR-130's class test: how the estate decides
 under ratified text, frames a question to the owner, adds process, and consolidates) sit in
 §Slow lane above with review dates and are not decision-debt; the operational lessons file here.
-
-### Session 2, verified before filing (the Director's list; each home read, the lesson unwritten)
