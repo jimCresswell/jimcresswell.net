@@ -37,10 +37,32 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 - Both primaries stand on their coordination branches (JC.net `coordination/2026-09-29-b6232c`,
   OCE `coordination/2026-09-29-76974c`), each in sync with origin and riding its draft pull request
   (274, 299). A new day cuts a new coordination branch in each estate.
-- Next safe step: the owner's twelve decisions in the retrospective's §Decisions for the owner, then
+- Next safe step: the owner's eight decisions in the retrospective's §Decisions for the owner (knowledge
+  preserved, discoverable and accessible is the test; counts are noticers; ceremony only where it
+  serves a purpose, the owner's frame of 2026-10-01), then
   the bounded repairs that need none (five friction lessons, the divergence-measure command, the
   three shared files named in the report); the next session decides whether another dedicated
   consolidation is needed, and the retrospective's legs disagree on that question.
+
+### 2026-10-01T07:08Z — the owner's frame after the handoff (Hawthorn binds Bracken, b3f117)
+
+- The owner, on the handoff's first decision ("compact or revert the accreted paragraphs", beside
+  a line count; "just an illustrative example"), verbatim: "we are not here to tidy things away or
+  hit numerical goals, we are here to make sure that knowledge is preserved, discoverable and
+  accessible. Where there is ceremony it is only permitted to exist where it serves practical
+  purpose, the ceremony is there as a sometime required enabler, it has no value in its own right,
+  but it does have cost."
+- The report's findings re-sorted under that frame (its §The owner's frame): eight decisions
+  remain and five became notifications (the bulk archives stand; the whole-file snapshot is
+  recommended for removal with consolidate-docs 6b re-trued to name the pre-move commit; the
+  divergence rule stands; the analysts' reports stay whole; the per-user file counts leave the
+  reports). The compaction proposal is withdrawn; every single-event paragraph stays where a seat
+  reads and is re-trued to its evidence in place; the no-claim finding is weighed (no peer was
+  live); the divergence measure's numbers are evidence, never the goal, now in the rule's
+  enforcement paragraph.
+- Homed: the owner's words in `consolidate-until-done` §Purpose and §Forbidden Anti-patterns and
+  in `user-collaboration` §Scope Discipline, identical in both estates; the per-user feedback memory
+  is the audit trail. A bounded fix under the session-over word; nothing else resumed.
 
 ### 2026-09-30T20:46Z — the retrospective and the handoff (Hawthorn binds Bracken, b3f117)
 
@@ -99,8 +121,9 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   path corrected and its fitness grades removed; the seat's own lines name OCE.
 - The report: `.agent/reports/agentic-engineering/2026-09-30-two-estate-consolidation-retrospective.md`,
   identical in both estates, with the legs' findings and each one's disposition (accepted, cured,
-  refuted with evidence, or left to the owner), the divergence measure and its script, and twelve
-  decisions for the owner (§Decisions for the owner). The analysts' reports are conserved whole
+  refuted with evidence, or left to the owner), the divergence measure and its script, and eight
+  decisions for the owner and five notifications (§Decisions for the owner, re-sorted under the
+  owner's frame of 2026-10-01). The analysts' reports are conserved whole
   under OCE's `consolidation-2026-09-25/dispositions-2026-09-30/`.
 - What the next session decides first: whether another dedicated consolidation is needed. The legs
   split: three said a bounded repair under the owner's word, two said yes (JC.net's unread comms
@@ -108,7 +131,7 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   seat without a fleet), and the OCE-side leg's answer is in the report. The bounded repairs that
   need no decision: the five friction lessons (F-60, F-62, F-66, F-111, F-182), the `agent-tools`
   command for the divergence measure, the three shared files still more divergent than at the open.
-  Everything else waits on the owner's twelve decisions.
+  Everything else waits on the owner's eight decisions.
 
 ### 2026-09-30T17:06Z — the session's close (Hawthorn binds Bracken, b3f117)
 
