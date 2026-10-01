@@ -391,6 +391,18 @@ ran: trying that again would run the whole gate again. The refusal check
 keeps a bounded copy of the push's output (`REFUSAL_TRANSCRIPT_BOUND`, same
 file); the output itself streams to stderr in full.
 
+Two things are checked before each attempt, the first included
+(`agent-tools/src/merge-bot/push-attempt-guards.ts`); either stops the push
+as an operational failure:
+
+- The token's own stated expiry leaves five minutes to start in. One token
+  serves every attempt, so the waits count against it. A gate that runs
+  longer than the token has left still meets the expiry: GitHub's refusal
+  then comes after the hook ran, and is final.
+- HEAD still names the settled commit. The pre-push hook validates the
+  checkout, never the commit git is handed, so an attempt made after HEAD
+  moved would land a commit the gate did not run on.
+
 ## Retiring a merged branch
 
 `merge-bot retire` deletes every name a merged branch has: the local

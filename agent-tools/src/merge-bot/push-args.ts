@@ -29,7 +29,10 @@ export const PUSH_USAGE = `merge-bot push [--branch <name>] [--json]
   push at git's first request, before the pre-push hook runs, because the
   fresh token has not yet reached every edge, it runs git again with the same
   token after each wait on GitHub's advised backoff, naming each retry on
-  stderr.
+  stderr. Before each attempt, the first included, it stops (exit 1) when the
+  token is within five minutes of its expiry, or when HEAD no longer names
+  the commit the push began with: the pre-push hook validates the checkout,
+  so a commit the gate did not run on is never pushed.
 
   The token reaches git ONLY through a 0600 file that lives exactly as long
   as the transfer, read by a static credential helper; the child environment

@@ -8,8 +8,10 @@ import type { GithubApiFetch } from './mint-installation-token.js';
 import {
   BASE_ENV,
   GIT_PATH,
+  EXPIRES_AT,
   gitFake,
   gitReads,
+  NOW,
   REFUSED_PUSH,
   tokenStoreFake,
 } from './test-helpers/push-cli-double.js';
@@ -43,7 +45,7 @@ function mintEndpoints(): { fetchImpl: GithubApiFetch; tokenRequests: string[] }
     tokenRequests.push(String(init?.body ?? ''));
     return Promise.resolve({
       status: 201,
-      json: () => Promise.resolve({ token: MINTED, expires_at: '2026-08-06T10:00:00Z' }),
+      json: () => Promise.resolve({ token: MINTED, expires_at: EXPIRES_AT }),
     });
   };
   return { fetchImpl, tokenRequests };
@@ -72,6 +74,7 @@ function pushMinting(gitExecutor: GitExecutor): {
     repoRoot: '/repo',
     runGitImpl: () => 'worktree /repo\n',
     sleepImpl: () => Promise.resolve(),
+    nowIsoImpl: () => NOW,
     gitExecutor,
     gitPath: GIT_PATH,
     gitReads: gitReads(),

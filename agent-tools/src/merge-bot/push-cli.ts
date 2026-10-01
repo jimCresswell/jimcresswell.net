@@ -3,6 +3,7 @@ import { delay } from '../core/delay.js';
 import type { BranchArgSeams } from './branch-arg.js';
 import type { GitExecutor } from './git-executor.js';
 import { parsePushArgs, PUSH_USAGE, type PushArgs } from './push-args.js';
+import { guardedAttempt, type AttemptGuards } from './push-attempt-guards.js';
 import {
   isAdvertisementRefusal,
   keptForRefusal,
@@ -57,6 +58,8 @@ export interface PushActionInput {
   readonly mint: PushMint;
   /** The wait before a refused push is tried again. */
   readonly sleepImpl?: (ms: number) => Promise<void>;
+  /** The wall clock each attempt is checked against (`push-attempt-guards.ts`). */
+  readonly nowIsoImpl?: () => string;
   /** Git seams: the executor, and the binary path (defaults to the trusted absolute path). */
   readonly gitExecutor?: GitExecutor;
   readonly gitPath?: string;
@@ -85,6 +88,7 @@ type Prepared =
       readonly branch: string;
       readonly commit: string;
       readonly env: Readonly<Record<string, string | undefined>>;
+      readonly reads: PushGitReads;
     }
   | { readonly kind: 'failed'; readonly exit: number; readonly message: string }
   | { readonly kind: 'refused'; readonly reason: string };
@@ -130,6 +134,7 @@ async function prepare(parsed: PushArgs, input: PushActionInput): Promise<Prepar
         branch: target.value.branch,
         commit: commit.value,
         env,
+        reads,
       }
     : { kind: 'failed', exit: 1, message: commit.error.message };
 }
@@ -162,21 +167,30 @@ export async function runPushAction(
   return mintAndPush(prepared, parsed.value, input);
 }
 
-/** Mint the push's one token (`push-mint.ts`), then run the transfer with it on the retry's schedule. */
+/**
+ * Mint the push's one token (`push-mint.ts`), then run the transfer with it on
+ * the retry's schedule, each attempt only once its guards hold
+ * (`push-attempt-guards.ts`).
+ */
 async function mintAndPush(
   prepared: Ready,
   parsed: PushArgs,
   input: PushActionInput,
 ): Promise<number> {
-  const token = await mintPushToken(prepared.identity, input.mint);
-  if (!token.ok) {
-    input.stderr.write(`merge-bot push: ${token.error.message}\n`);
+  const minted = await mintPushToken(prepared.identity, input.mint);
+  if (!minted.ok) {
+    input.stderr.write(`merge-bot push: ${minted.error.message}\n`);
     return 1;
   }
-  return pushWithRetry(
-    () => transferAndReport(prepared, parsed, input, token.value),
-    retryFrom(input),
-  );
+  const guards: AttemptGuards = {
+    token: minted.value,
+    commit: prepared.commit,
+    reads: prepared.reads,
+    nowIso: input.nowIsoImpl ?? ((): string => new Date().toISOString()),
+  };
+  const transfer = (): Promise<PushAttempt> =>
+    transferAndReport(prepared, parsed, input, minted.value.token);
+  return pushWithRetry(guardedAttempt(guards, input.stderr, transfer), retryFrom(input));
 }
 
 /**

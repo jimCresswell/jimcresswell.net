@@ -170,6 +170,7 @@ function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
     ...gitActionInputFrom(input),
     mint: input.mintImpl ?? ((config) => mintForConfig(config, mintSeamsFrom(input))),
     sleepImpl: input.sleepImpl,
+    nowIsoImpl: input.nowIsoImpl,
     tokenFiles: input.tokenFiles,
     gitReads: input.gitReads,
   };
