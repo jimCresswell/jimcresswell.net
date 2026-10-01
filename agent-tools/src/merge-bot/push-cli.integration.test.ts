@@ -140,6 +140,18 @@ describe('merge-bot push credential discipline', () => {
     },
   );
 
+  it('asks git to write the one ref alone: no tag follows it, no submodule is pushed, nothing is forced', async () => {
+    const run = runPush({});
+
+    expect(await run.exit).toBe(0);
+    // Whatever the checkout configures (`push.followTags`,
+    // `push.recurseSubmodules`), the push says so on its own command line. The
+    // smoke proves the tag half against real git; this holds both.
+    const args = pushCall(run.calls)?.args ?? [];
+    expect(args).toEqual(expect.arrayContaining(['--no-follow-tags', '--recurse-submodules=no']));
+    expect(args.filter((arg) => /^(?:-f|--force.*|--no-verify)$/u.test(arg))).toEqual([]);
+  });
+
   it('a token-staging failure is an operational failure: exit 1, no push, the half-staged directory removed', async () => {
     // The write fails AFTER the directory exists — the richer state: the
     // failure is translated (exit 1, an operational message, never the

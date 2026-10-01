@@ -52,6 +52,40 @@ function readsWithHead(
 const AT_COMMIT = answered(`${COMMIT}\n`);
 const AT_MOVED = answered(`${MOVED}\n`);
 
+/** git's reads, with the checked-out branch's answers given in order. */
+function readsWithBranch(first: string, ...rest: readonly string[]): PushGitReads {
+  const next = inOrder(answered(`${first}\n`), ...rest.map((branch) => answered(`${branch}\n`)));
+  return { ...gitReads(), currentBranch: () => Promise.resolve(next()) };
+}
+
+describe('merge-bot push: the branch and the commit are one snapshot of HEAD', () => {
+  it('mints nothing and pushes nothing when HEAD changed branch while the target was settled', async () => {
+    const run = runPush({ reads: readsWithBranch('feat/first', 'feat/second') });
+
+    expect(await run.exit).toBe(1);
+    expect(run.writes).toEqual([]);
+    expect(run.calls).toEqual([]);
+    expect(run.errText()).toContain('feat/first');
+    expect(run.errText()).toContain('feat/second');
+  });
+
+  it('pushes a named branch without asking which branch HEAD is on, before or after the commit is settled', async () => {
+    const asked: string[] = [];
+    const reads: PushGitReads = {
+      ...gitReads(),
+      currentBranch: () => {
+        asked.push('currentBranch');
+        return Promise.resolve(answered('feat/elsewhere\n'));
+      },
+    };
+    const run = runPush({ args: ['--branch', 'other-lane', '--json'], reads });
+
+    expect(await run.exit).toBe(0);
+    expect(JSON.parse(run.out())).toMatchObject({ kind: 'pushed', branch: 'other-lane' });
+    expect(asked).toEqual([]);
+  });
+});
+
 describe('merge-bot push: the token expiry bounds every attempt', () => {
   it('starts no attempt when the token is already inside its margin, naming the expiry', async () => {
     const run = runPush({ overrides: { nowIsoImpl: () => '2026-08-06T09:56:00.000Z' } });

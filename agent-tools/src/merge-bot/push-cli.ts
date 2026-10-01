@@ -23,7 +23,7 @@ import {
 } from './push-git.js';
 import { mintPushToken, type PushMint } from './push-mint.js';
 import { writePushed, writeRefusal } from './push-report.js';
-import { settleCommit, settleTargetBranch } from './push-target-branch.js';
+import { settleCommitFor, settleTargetBranch } from './push-target-branch.js';
 import { RefFormatOracleUnavailableError } from './ref-format.js';
 import {
   resolveBotIdentity,
@@ -125,13 +125,14 @@ async function prepare(parsed: PushArgs, input: PushActionInput): Promise<Prepar
   if (target.value.kind === 'refused') {
     return { kind: 'refused', reason: target.value.reason };
   }
-  const commit = settleCommit(await reads.headCommit());
+  const { branch } = target.value;
+  const commit = await settleCommitFor(branch, parsed.branch === undefined, reads);
   return commit.ok
     ? {
         kind: 'ready',
         identity: identity.value,
         git: git.value,
-        branch: target.value.branch,
+        branch,
         commit: commit.value,
         env,
         reads,

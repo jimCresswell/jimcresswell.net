@@ -159,6 +159,41 @@ export function settleCommit(read: GitCommandResult): Result<string, Error> {
 }
 
 /**
+ * Settle the commit for a settled branch, as one snapshot of HEAD. The branch
+ * is read first and the commit last, with origin's reads between; a checkout
+ * that changed branch in that interval would pair the first branch with the
+ * second branch's commit. So when the branch came from HEAD it is read again
+ * after the commit, and a different answer fails the push before the mint. A
+ * named branch takes HEAD's commit wherever HEAD is, and is not asked.
+ *
+ * @param branch - The settled target branch.
+ * @param fromHead - Whether the branch was read from HEAD, never named.
+ * @param reads - git's answers naming HEAD's commit and its branch.
+ * @returns The commit's full object name, or the failure naming the cure.
+ */
+export async function settleCommitFor(
+  branch: string,
+  fromHead: boolean,
+  reads: Pick<PushGitReads, 'headCommit' | 'currentBranch'>,
+): Promise<Result<string, Error>> {
+  const commit = settleCommit(await reads.headCommit());
+  if (!commit.ok || !fromHead) {
+    return commit;
+  }
+  const now = currentBranchFrom(await reads.currentBranch());
+  if (!now.ok) {
+    return now;
+  }
+  return now.value === branch
+    ? commit
+    : err(
+        new Error(
+          `HEAD moved from branch "${branch}" to ${now.value === undefined ? 'no branch' : `"${now.value}"`} while the push settled its target; nothing was minted or pushed; run the push again`,
+        ),
+      );
+}
+
+/**
  * Settle the branch a push writes: the one named, or the one HEAD is on;
  * refused by name first, then against the default branch origin names.
  *

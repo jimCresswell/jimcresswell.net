@@ -202,6 +202,10 @@ describe('settleTargetBranch: failures, each naming its cure', () => {
       name: 'origin is a look-alike host',
       originUrls: answered('https://github.com.evil.example/acme/widgets.git\n'),
     },
+    {
+      name: 'origin is read over plain http',
+      originUrls: answered('http://github.com/acme/widgets.git\n'),
+    },
     { name: 'origin is a host alias', originUrls: answered('git@github-work:acme/widgets.git\n') },
     { name: 'origin is a local path', originUrls: answered('github.com/acme/widgets\n') },
     {

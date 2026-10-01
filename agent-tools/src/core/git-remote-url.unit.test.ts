@@ -26,6 +26,7 @@ describe('parseGitRemoteUrl', () => {
     { url: 'https://x-access-token:secret@github.com/acme/widgets.git' },
     { url: 'ssh://git@github.com:22/acme/widgets.git' },
     { url: 'file:///srv/acme/widgets.git' },
+    { url: 'http://github.com/acme/widgets.git' },
     { url: 'https://github.com//widgets.git' },
     { url: '' },
   ])('reads no repository from $url', ({ url }) => {

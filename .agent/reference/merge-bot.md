@@ -359,13 +359,16 @@ the push writes exactly one ref, the full `refs/heads/<branch>`: no tag
 or submodule ref follows it. Pushes to the default branch refuse, in any
 case: `main` and `master` by name, then whatever branch
 `refs/remotes/origin/HEAD` names, read only when `origin` has one URL and
-it is the repository the push goes to. That read is a snapshot a fetch
+it is the repository the push goes to, over `https` or ssh (an origin read
+over plain `http` is not trusted). That read is a snapshot a fetch
 does not move, so after the repository's default branch changes, run
 `git remote set-head origin --auto`. Where the configured repository's
 ruleset on the default branch binds the bot, as this repository's does,
 GitHub refuses a direct push either way. An unreadable default branch,
 or an `origin` that is not that one repository, fails the push (exit 1)
-rather than guessing (see
+rather than guessing. So does a checkout that changes branch while the
+target is settled: with no `--branch`, the branch and the commit are one
+snapshot of HEAD (see
 [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).
 
 GitHub has refused a freshly minted token's push at its first request,

@@ -34,12 +34,14 @@ const REFUSAL_LINES: readonly RegExp[] = [
 const GIT_FATAL = 128;
 
 /**
- * The most of a push's transcript the refusal check keeps. The refusal's two
- * lines, newlines included, were 224 bytes as GitHub printed them for this
- * repository on 2026-09-28; the bound holds over eighteen times that, for a
- * longer repository or bot name, and a longer transcript cannot be the
- * refusal. The push's output still streams to stderr in full as it arrives,
- * so the check keeps a bounded copy and loses nothing (R1).
+ * The most of a push's transcript the refusal check keeps, counted as the
+ * string's length (UTF-16 code units), so the copy holds at most three times
+ * that many bytes of UTF-8. The refusal's two lines, newlines included, were
+ * 224 characters, all ASCII, as GitHub printed them for this repository on
+ * 2026-09-28; the bound holds over eighteen times that, for a longer
+ * repository or bot name, and a longer transcript cannot be the refusal. The
+ * push's output still streams to stderr in full as it arrives, so the check
+ * keeps a bounded copy and loses nothing (R1).
  */
 export const REFUSAL_TRANSCRIPT_BOUND = 4096;
 
