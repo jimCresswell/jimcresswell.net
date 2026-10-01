@@ -38,18 +38,19 @@ export interface AttemptGuards {
  * @returns The reason to report, naming the cure, or undefined.
  */
 async function attemptRefusal(guards: AttemptGuards): Promise<string | undefined> {
-  const now = guards.nowIso();
-  const { deadline } = guards.token;
-  if (deadlinePassed(now, deadline)) {
-    return `the push's token expires ${deadline.tokenExpiresAt}, so an attempt must start by ${deadline.atIso}, and it is ${now}: stopping rather than starting a transfer that could meet the expiry; run the push again`;
-  }
   const head = settleCommit(await guards.reads.headCommit());
   if (!head.ok) {
     return head.error.message;
   }
-  return head.value === guards.commit
-    ? undefined
-    : `HEAD moved from ${guards.commit} to ${head.value} after this push settled its commit; the pre-push hook validates the checkout, so pushing ${guards.commit} now would land a commit the gate did not run on: stopping; run the push again`;
+  if (head.value !== guards.commit) {
+    return `HEAD moved from ${guards.commit} to ${head.value} after this push settled its commit; the pre-push hook validates the checkout, so pushing ${guards.commit} now would land a commit the gate did not run on: stopping; run the push again`;
+  }
+  // The clock is read last: no read stands between this check and the attempt.
+  const now = guards.nowIso();
+  const { deadline } = guards.token;
+  return deadlinePassed(now, deadline)
+    ? `the push's token expires ${deadline.tokenExpiresAt}, so an attempt must start by ${deadline.atIso}, and it is ${now}: stopping rather than starting a transfer that could meet the expiry; run the push again`
+    : undefined;
 }
 
 /**
