@@ -79,3 +79,24 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
 - **Surprise:** the OWED verdict (51 rows) is the parked shape the owner forbade on 2026-09-28 in OCE's
   continuity record, unread by the seat; a deferral verdict is not a decision. Homed in the report
   (problem 14) and at §H's head.
+
+## 2026-10-01T10:4xZ — the decision matrix and the handoff (Hawthorn binds Bracken, b3f117)
+
+- **Observation:** eight "decisions for the owner" ran through the decision lenses and three
+  survived; the rest were either/ors the lenses dissolve, work the owner's earlier words already
+  decide, or a question the record had answered (the napkin privacy review, 2026-09-14). The lens
+  pass belongs before any card list is written. Homed: principles §Decision Lenses already
+  prescribes it; the report §Decided 2026-10-01 is the instance; verify-dont-trust §Briefing Facts
+  carries the relayed-constraint lesson (both estates).
+- **Surprise:** a chain that stages every dirty file staged the owner's uncommitted edit to the
+  consolidation prompt, and the docs pre-flight then refused the tree for the owner's machine-local
+  paths; `git commit -F <msg> -- <paths>` committed the seat's files alone and left the owner's file
+  as it was. Stage by explicit pathspec is the rule for this reason. Homed: the rule already says
+  so; this is the instance.
+- **Surprise:** the OCE push gate refused on skill-adapter drift after a canonical skill's text
+  changed (`oak-cross-fork-integration`): a rename across canonical skills regenerates adapters in
+  both estates before the push (`pnpm skills:generate` in OCE, `pnpm portability:fix` in JC.net).
+  Homed: lint-after-edit's pre-flight list gains nothing new; the gates skill already names the
+  command.
+- **Observation:** two regex classes failed in one pass (a phrase wrapped across lines; a non-UTF-8
+  file under `.agent`). Homed in the shell gotchas (both estates).

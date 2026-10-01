@@ -17,31 +17,100 @@ the two estates' copies differ (the owner's instruction for the opening statemen
 
 ## Current Continuation
 
-- State at the close of the retrospective, 2026-09-30 (the dated blocks below carry the detail, newest
-  first): the six consolidation skills and the per-user-memory rule read the same bytes in both
-  estates; both registers hold no live entries (JC.net keeps one slow-lane row with a 2026-12-15 review; OCE's
-  seven comms-table rulings are recorded in their decision records);
-  distilled is empty in both; the per-user memory directories
-  hold 78 files (JC.net) and 30 (OCE), every file marked graduated or kept by its nature; the napkins
-  hold the day's homed blocks. The estates' shared paths differ by 147 files and 7,139
-  lines (7,444 at the day's open); the rule `cross-estate-work-must-reduce-divergence` now governs
-  every two-estate activity. The retrospective is
-  `.agent/reports/agentic-engineering/2026-09-30-two-estate-consolidation-retrospective.md` (identical in
-  both estates); read it before any further consolidation.
-- Home: JC.net; OCE is worked non-resident. `EnterWorktree` enters worktrees of the session's own
-  repository alone (refused first-hand 2026-09-30), and a bare `cd` into the other checkout resets
-  each call, so every OCE edit is an absolute-path edit, every OCE command one plain
-  `cd <oce> && <command>` or `git -C <oce> ...`; OCE commits carry the bot committer from the clone
-  config and the owner as `--author`, strict commitlint refuses a body line opening `word:`, its
-  pre-commit runs the full turbo gate under a slot, and its pushes go by `merge-bot push`.
-- Both primaries stand on their coordination branches (JC.net `coordination/2026-09-29-b6232c`,
-  OCE `coordination/2026-09-29-76974c`), each in sync with origin and riding its draft pull request
-  (274, 299). A new day cuts a new coordination branch in each estate.
-- Next safe step: the capability-parity session the owner set on 2026-10-01, both ways: inventory
-  what each estate holds that the other lacks (the exchange register's L7 and L8 rows first), then
-  transplant lane by lane in small pull requests, deciding the 51 deferred rows and reading the 86
-  frictions as they are met. The retrospective's §Decided 2026-10-01 is the record of what was
-  settled and by what.
+- **Read first, in this order:** this section; the report
+  `.agent/reports/agentic-engineering/2026-09-30-two-estate-consolidation-retrospective.md`
+  (§Decided 2026-10-01 and §What the next session inherits; identical bytes in both estates); OCE's
+  comms decision table §H with `consolidation-2026-09-25/dispositions-2026-09-30/`; the rule
+  `cross-estate-work-must-reduce-divergence`. The owner's brief for the next dedicated consolidation
+  is `.agent/prompts/dedicated-consolidation-session.md`; the owner was rewriting it on 2026-10-01
+  and the draft was uncommitted in the JC.net primary at this close (last bullet).
+- **The owner's standing words, verbatim.** 2026-09-30: "The goal is knowledge curation, never
+  fitness numbers. Done means empty pending graduations and empty buffers: say those counts first in
+  every report." "Where a consolidation skill differs between the estates … read OCE's copy; the
+  divergence itself is a defect to fix in both estates." "it's not 'the lineage', it's OCE." "All
+  activities involving both estates MUST leave them more aligned and less divergent than they were
+  before those activities." 2026-10-01: "we are not here to tidy things away or hit numerical goals,
+  we are here to make sure that knowledge is preserved, discoverable and accessible. Where there is
+  ceremony it is only permitted to exist where it serves practical purpose, the ceremony is there as
+  a sometime required enabler, it has no value in its own right, but it does have cost." "This
+  shouldn't be a question, we are bringing both estates to the same level of capability, anything
+  useful that one has must make it to the other." The owner's cards of 2026-10-01: only
+  owner-ratified text changes on the owner's word; for a bulk archive, proof (byte-identical,
+  pointer-linked, lessons at their homes) replaces the word; the next session is capability parity,
+  both ways; the prompt draft adds "if you need to ask questions then ask them".
+- **State at this close.** JC.net `coordination/2026-09-29-b6232c` (draft pull request 274):
+  dc0de0d7 the retrospective, 15e29421 the owner's frame, d6ee1ae0 the owner's cards and the settled
+  moves, then the handoff commit; d6ee1ae0 and the handoff commit were unpushed when this was
+  written, held by the owner's draft (last bullet); `git status --branch` first. OCE
+  `coordination/2026-09-29-76974c` (draft pull request 299): cedad5e54 the retrospective, 5d00e2930
+  the owner's frame, a54898b39 the settled moves, then the handoff commit; a54898b39's push was
+  refused once on skill-adapter drift and relaunched with the handoff commit at the close; `git
+  status --branch` tells whether it landed. A new day cuts a new coordination branch in each estate.
+- **Counts.** JC.net pending graduations 0 live entries (the register keeps one slow-lane row with a
+  2026-12-15 review, not decision-debt); OCE pending graduations 0; distilled empty in both; OCE's
+  frictions register 44 live under §Friction Entries and 86 unread under §Routing Notes (F-119 to
+  F-217); the per-user memory directories are audit trails and carry no count (the owner's frame).
+  Alignment over 389 shared paths: 156 files and 7,444 lines differed at 2026-09-30's open, 147
+  files and 7,142 lines now; three shared files remain more divergent by nature
+  (`build-system.md`, the commit skill's host ceremony, the data-shape rule's worked instances),
+  named in the report with reasons; the measure is the script in the report.
+- **Next session: capability parity, both ways** (the owner's word, 2026-10-01), inside the wider
+  programme the prompt names. First steps: (1) inventory what each estate holds that the other
+  lacks: the exchange register's rows L7 (review-cost push gate) and L8 (pr-tally) are already
+  "bring" into JC.net (`.agent/reports/practice-transplant/exchange-register.md`, validator `pnpm
+  exchange-register:check`, `--write-counts` on an intended change); OCE's commit queue; JC.net's
+  `pnpm check:docs` pre-flight; the divergence measure as an `agent-tools` command unit-tested on
+  injected file maps; the visual-regression harness where it applies; (2) one lane per capability,
+  small pull requests, twinned per PDR-125 and PDR-142, measured by the rule at open and close; (3)
+  as they are met: decide each of the 51 deferred rows of OCE's §H (do, drop, or the owner's call;
+  "owed" is the parked shape the owner forbade on 2026-09-28), read the 86 unread frictions for
+  lessons without homes, sample JC.net's comms stream (4,304 events, about 840 substantive) before
+  any pass is sized, re-true the three shared files, cure the OCE lockstep test that reads `.agent/`
+  files (testing-strategy §Rules), and re-true the event-cited paragraphs in place (what happened,
+  who decided, when, one instance).
+- **Working both estates from one session.** OCE is worked non-resident: absolute paths, `cd <oce>
+  && <command>` or `git -C <oce> …` per command (a bare `cd` resets each call; `EnterWorktree`
+  enters only the session's own repository). OCE commits carry `--author "Jim Cresswell
+  <git@jimcresswell.net>"` with the bot as committer; strict commitlint in OCE refuses a header over
+  100 characters, a body line over 100, a body line opening `word:` (read as a footer) and a
+  sentence-case subject; JC.net checks with `pnpm agent-tools:check-commit-message -F <file>`, OCE
+  with the same script name. Stage by explicit pathspec and commit with `git commit -F <msg> --
+  <paths>` (a chain that staged every dirty file staged the owner's open edit, 2026-10-01). Run
+  `pnpm check:docs` after staging new files (its link validator refuses a tracked file linking an
+  untracked one). OCE's pre-commit runs the full turbo gate under a host slot; its pre-push runs
+  markdownlint, the secret scan, the review-cost gate and `pnpm skills:check` (a changed canonical
+  skill needs `pnpm skills:generate` first; JC.net's equivalent is `pnpm portability:fix`). Both
+  pre-push gates read the working tree, so an unrelated dirty tracked file (a machine-local path, a
+  repository slug) fails a push whoever made the edit. The JC.net hook policy blocks writing the OCE
+  repository slug into any file, scratchpad included, and blocks `git restore`, `git reset` and
+  force pushes; pass a repository root as an argument and move forward with filesystem edits. zsh:
+  quote globs (`--include='*.md'`), avoid words starting `=`, split file lists with `xargs` (BSD
+  xargs has no `-a`). The fitness reader is `pnpm practice:fitness:informational` (a noticer, never
+  a goal). Push with `pnpm agent-tools merge-bot push` from the estate root.
+- **Standing constraints.** The owner's fork is never named on OCE surfaces; owner-private strands
+  stay in per-user memory; the LinkedIn top-card location observation and the biographical detail
+  never enter version control; every GitHub write runs as the bot with the seat's signature;
+  `.git/index.lock` is never touched; a buffer file is never deleted without the owner's word; the
+  three napkins under `unconsolidated/` archive after full processing, no privacy review (the
+  owner's card of 2026-09-14); the owner's stop and freeze words bind as freezes.
+- **Blocked at this close, the owner's call.** The draft of
+  `.agent/prompts/dedicated-consolidation-session.md` in the JC.net primary carries two
+  machine-local paths (the `validate-no-machine-local-paths` leg refuses the tree; the `~/code/…`
+  form passes it) and names the OCE repository by its slug on a JC.net surface, which the
+  lineage-names gate refuses on tracked files; no push from that primary passes while the draft sits
+  there. The seat left the file as the owner wrote it and committed around it. Nothing else waits on
+  the owner; the owner-act rows among the 51 are brought as they are met.
+
+### 2026-10-01T10:4xZ — the handoff for a fresh session (Hawthorn binds Bracken, b3f117)
+
+- The owner asked for a full handoff for a fresh session with no access to this context, then the
+  session's end. §Current Continuation above is that handoff, rewritten whole: the reading order,
+  the owner's words verbatim, the state and counts, the next session's shape and first steps, the
+  mechanics of working both estates from one session, the standing constraints, and the one item
+  blocked on the owner. Two lessons of the morning are homed: a relayed constraint is a claim
+  (verify-dont-trust §Briefing Facts, both estates) and two regex classes (the shell gotchas, both
+  estates). The OCE push of the settled moves was refused once on skill-adapter drift after the
+  rename; the adapters are regenerated in the handoff commit.
 
 ### 2026-10-01T10:3xZ — the decision matrix, the owner's cards, the settled moves (Hawthorn binds Bracken, b3f117)
 
