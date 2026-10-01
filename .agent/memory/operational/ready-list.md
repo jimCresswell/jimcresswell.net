@@ -10,13 +10,14 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 20:45Z).
+- None (read 2026-10-01 20:53Z).
 
 ## Open, not yet ready
 
 - JC.net 280 (opened 2026-10-01 20:29Z, 16 files): the twin of OCE 322. One settlement push made
-  (`SHA:5527d3c5`), its one thread resolved, its second review round requested at 20:40Z and
-  unread. The implementer seat's one open lane.
+  (`SHA:5527d3c5`), checks green. Its second review round (20:43Z) left one open thread and three
+  items in the review body, read and not yet dispositioned: the lane is frozen at the owner's
+  compaction word. The implementer seat's one open lane.
 
 The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
 `coordination-fold` skill and are not listed here.

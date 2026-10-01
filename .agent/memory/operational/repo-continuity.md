@@ -24,7 +24,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 - **2026-10-01T20:45Z: compaction boundary of the implementer seat** (Crucible binds Slag,
   7b999c; the owner's word, "prepare compaction"; the seat stays live). One lane pull request is
   open across both estates: 280 here, the twin of OCE's 322, at head `SHA:5527d3c5` with its
-  second Copilot round requested and unread. OCE's 322 landed at 20:21Z (`SHA:30f5b4338`): its
+  second Copilot round read and four items to disposition (one description edit, one last
+  settlement push; §Next Safe Steps line 4 has each). OCE's 322 landed at 20:21Z (`SHA:30f5b4338`): its
   push has the attempt guards and tests held to the testing directive. Everything this seat
   holds is in §Next Safe Steps lines 1 to 5 and 7 and the tool-friction list under them; the
   re-arm recipes for its two comms watchers and the index of its scratch tools are in the
@@ -241,20 +242,48 @@ lines below go one pull request at a time.
      `.agent/reference/merge-bot.md` ("reaches stderr in full"; the consolidation seat was told
      at 20:30Z, event fa169707, and may take that phrase into its own lane by saying so before
      280 lands).
-     State at 20:40Z: head `SHA:5527d3c5` (two commits on `main` at `SHA:c6394b98`; the second is
-     settlement push one, on Copilot's one thread, PRRT_kwDORH1Wfc6oIHAM, answered and
-     resolved); Copilot's second review requested at 20:40Z and not yet read; one settlement
-     push left. Next, in order: read the review on `5527d3c5` (threads AND the review body: both
-     of 322's Copilot reviews carried their one item in the body under "Findings: None");
-     disposition; post the landing premises as the bot; run the merge door with
-     `--expect copilot-pull-request-reviewer`; then `git worktree remove`, `merge-bot retire
-     --branch fix/merge-bot-push-twin`, close the claim, the landing line, these records.
+     State at 20:53Z: head `SHA:5527d3c5` (two commits on `main` at `SHA:c6394b98`; the second is
+     settlement push one, on Copilot's first thread, PRRT_kwDORH1Wfc6oIHAM, answered and
+     resolved); checks green; one settlement push left. Copilot's second review (5385285205, on
+     `5527d3c5`, 20:43Z, "Changes recommended") is read and not yet dispositioned, because the
+     owner's compaction word froze the lane. It holds four items:
+     (1) one open thread, PRRT_kwDORH1Wfc6oIXVg at `push-cli.ts:200`: the description's Scope
+     says twelve merge-bot files and names only the comment in `push-attempts.ts`; `push-cli.ts`
+     is a thirteenth. Right; the cure is an edit to the description (no push), then a signed
+     reply and resolve.
+     (2) in the review body, "previously missed": the new case in
+     `push-attempts.integration.test.ts` uses `refusedThrough`, whose ternary answers by attempt
+     number, against the parametric-fake rule's branch-free condition
+     (`testing-strategy.md`, the five conditions). Right, and curable inside the scope: that
+     case can use a constant fake (every attempt refused: the waits asked for are still the
+     injected two, the exit is 1, and the last line is "nothing was pushed"). The helper's two
+     older uses need an answer that changes between attempts and belong to the push-tests lane.
+     That cure is settlement push two, the last, and OCE then owes the same lines.
+     (3) and (4) in the body: two test titles read "git own account" and "git own words" where
+     the possessive is meant. Below the bar; cure them in the same push (the second title is
+     older, and OCE holds both).
+     Next, in order: disposition those four (one description edit, one push, signed replies);
+     re-request Copilot; read the next review, threads AND body; post the landing premises as
+     the bot; run the merge door with `--expect copilot-pull-request-reviewer`; then
+     `git worktree remove`, `merge-bot retire --branch fix/merge-bot-push-twin`, close the claim,
+     the landing line, these records. With the budget spent after push two, a further item on
+     unchanged code is an observation, routed with a signed comment.
    - Owed to OCE from 280, small, to travel with the `retire` port there: the two corrected
      comments (`push-attempts.ts`, `push-cli.ts`) and the parser's scheme comment with its
      plain-http row.
-   - After 280: the `retire` port in OCE (its lane is not cut; OCE's record line 4 lists the
-     dependency closure), then line 3 below (the 309 twin, whose directive hunks are now this
-     seat's to make: line 5).
+   - After 280, this seat's verdict on the order, with its reasons (the owner or the Director
+     may rule another): first line 3, the 309 twin, because it is small and the consolidation
+     seat's convergence of `validation-strategy.md` waits on it; then the security lane,
+     because its two findings are over the bar on both default branches (read 20:45Z: no
+     `url.*.insteadOf` key at any git config level in either primary checkout and no
+     `GIT_TRACE` variable in this seat's shell, so neither is live on this machine today);
+     then the `retire` port in OCE (its lane is not cut; OCE's record line 4 lists the
+     dependency closure); then the push-tests lane. For each lane that both estates take:
+     source it in one estate, run the code, security and test sub-agent reviews BEFORE it
+     opens, read the destination's history for what it removed, and port once. Pull requests
+     278, 279, 322 and 280 are four where two would have done, because 278 opened on one
+     review. The landing lines of 279 and 322 said the `retire` port comes next; this order
+     supersedes them.
    - Routed from 322's security review, one lane for both estates, each confirmed by probe on
      OCE's lane, whose `push-git.ts` is this estate's bytes. Over the bar: the `insteadOf` rewrite in the last bullet of this
      line is now tested and real (with `pushInsteadOf` as well, the push goes over ssh as the
@@ -315,6 +344,19 @@ lines below go one pull request at a time.
    named the bases of its two lanes as `SHA:cb285512` here and OCE's `SHA:beceea25e`, both
    behind the default branches; this seat told it the current tips and what changed in its
    areas. No worktree of its was on disk in either estate at 20:37Z (`git worktree list`).
+   A second message, about 20:50Z: it has no objection to 280's phrase in the reference
+   document; its lanes are `.claude/worktrees/consolidation-2` in each estate (branch
+   `docs/consolidation-2-routed-cures`, cut at `SHA:c6394b98` and OCE's `SHA:30f5b4338`,
+   documents and records only, first commits about an hour off, a line on the stream before
+   OCE's install and before each push; this seat holds a push for a gate it announces). It
+   registered this seat's tool frictions as F-218 to F-227 in both estates' registers on its
+   lane, and one is new to this seat and belongs to the security lane of line 4: F-218, the
+   shared atomic writer (`collaboration-state/atomic-file.ts`) has no link check, and the
+   collaboration-state commands do not call `core/flag-path-resolve.ts`, so `--active`,
+   `--closed` and `--comms-dir` reach the writer unchecked in both estates. It named three
+   parity gaps for the exchange plan's inbound side (OCE's `window-registry.ts` lacks three
+   model rows this estate has; this estate has no `docs/operations/README.md` runbook index
+   and no `skill-evals` runner); this seat asked it to add them on its lane.
    **Relayed, not confirmed to this seat by the owner:** it reported the owner's answer to it,
    that the capability-parity code lanes of line 7 and OCE's lockstep-test cure go to this
    seat "after its list". A peer's relay is not the owner's word; this seat starts none of it
@@ -365,6 +407,12 @@ Tool frictions met on 2026-10-01, each first-hand, for the lane that takes them:
   no thread (both reviews of OCE 322). A wait that reads threads and the unresolved count alone
   reports a clean round. This seat's scratch wait script prints the body's head only; the
   whole body is read with `gh api …/pulls/<n>/reviews/<id> --jq .body`.
+- After a `merge-bot push`, `git status --branch` still reads "ahead N" and
+  `git rev-list --count @{u}..HEAD` is non-zero: the push goes to the repository's URL, never
+  to the remote's name, so the tracking ref does not move until a fetch. The remote's own
+  answer is `git ls-remote origin refs/heads/<branch>`. The handoff skill's first-hand check
+  names `@{u}`; under this push it reads a pushed branch as unpushed (seen at this wrap in
+  OCE: "ahead 1" with the remote already at the local tip).
 - This estate's `pnpm` refuses `-s` (`pnpm -s build` exits 2, "unexpected argument"); OCE's
   accepts it. `--silent` works in both.
 - `review-cost` exists in OCE's agent-tools and not here, so this estate's wraps price their
