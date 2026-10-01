@@ -265,6 +265,25 @@ lines below go one pull request at a time.
      both `push-args.ts` and `retire-args.ts`; `Date.parse` reads lenient forms of the expiry;
      `AttemptGuards` holds the whole token where the deadline alone is used. OCE's record
      (§Next Safe Steps line 4 there) holds the full list.
+   - **Found at the 20:5xZ boundary, by reading OCE's history and not its diff.** OCE's commit
+     `SHA:2432ac462` (2026-09-29, its pull request 310's rework, reviewed by four sub-agents)
+     says in its message what it deleted and why: "The pins of configuration (the interval, the
+     bound, the scope table, 0600, the prompt setting, the temp prefix, git's config grammar)
+     and the input-port records are deleted", "The 4096-byte transcript bound is gone: the
+     transcript is classified whole, once", and "a constant mint in place of a fake that routed
+     GitHub's two mint endpoints; the RSA key it generated at load is gone". One command would
+     have shown it before pull request 278 was written:
+     `git log -S'<a distinctive string>' -- <file>` in the estate that has less. This seat read
+     the diff, took a reviewer's word that the proofs were "dropped", and restored them. Of the
+     three deletions, 322 kept the pins out but brought two back into OCE: the bound
+     (`REFUSAL_TRANSCRIPT_BOUND`, `keptForRefusal`) and `push-cli-mint.integration.test.ts` (a
+     fetch fake that routes the two mint endpoints, and a key pair generated at load). Both are
+     on both default branches now. This seat's verdict, for the push-tests lane below: take
+     OCE's decision in both estates (the bound changes memory and never behaviour, so no test
+     can hold it; the mint is a port, and its production composition is a smoke's to prove,
+     which no smoke does today).
+     The owner may rule otherwise; nothing is changed on this verdict before that lane runs.
+     Pull request 280 does not touch either.
    - Routed from 322's test review, one lane for both estates: `push-args.unit.test.ts` asks the
      real git binary in five cases; the token file's mode, its location, the submodule flag and
      the prompt setting have no proof against a real filesystem or git, and the push smoke's

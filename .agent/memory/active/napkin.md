@@ -118,6 +118,16 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   working) and a clause for `cross-estate-work-must-reduce-divergence` (a difference between
   estates is read as a decision before it is read as a loss); trigger: the next register
   refresh; the consolidation seat's lane holds both files.
+- **Surprise (the wrap's own probe, 20:5xZ):** the claim "the other estate removed them on
+  purpose" in the entry above was an inference from one test comment until this seat ran
+  `git log -S` in OCE and read commit `SHA:2432ac462`. Its message lists every deletion and its
+  reason, and names two more things this seat then carried back into OCE with pull request 322:
+  the transcript bound and the endpoint-routing mint test. A diff shows that the estates differ;
+  only history shows who decided. The step, before porting in either direction: for each thing
+  the destination lacks, `git log -S'<distinctive string>' -- <file>` there, and read the
+  commit that removed it. `candidate:` a clause for the cross-estate port procedure
+  (`cross-estate-work-must-reduce-divergence`, or the join ceremony's step 1 beside the
+  same-name check). Falsifier, already run once: the command found the reason in one call.
 - **Correction:** the same pull requests' guard tests used a fake that answers in sequence
   (`inOrder`) and a clock keyed to a count of the product's reads. Item 12 forbids both, and
   two Copilot rounds on each pull request did not catch it; a test-quality sub-agent did. The
