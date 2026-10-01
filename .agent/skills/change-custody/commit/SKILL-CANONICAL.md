@@ -223,7 +223,11 @@ Run these steps **before** formulating the commit message.
    seat amended one unpushed commit four times folding new substance in, and
    every amend invalidated shas already published to a ticket, the comms
    stream and a rapid channel, manufacturing its own correction churn.
-   Commits only append; the PR body maps the trail once at open. A "one
+   Commits only append; the PR body maps the trail once at open (owner,
+   2026-09-10, verbatim: "we must NOT rewrite the shared history, all
+   commits happened, we are adding more or we are not" — a one-parent
+   commit made by mistake stays, and gains its ancestry from a further
+   merge commit on top). A "one
    clean commit" aesthetic is a squash instinct in a never-squash estate.
 
    **The `commit-msg` hook is the real gate — do not test the checker.** The

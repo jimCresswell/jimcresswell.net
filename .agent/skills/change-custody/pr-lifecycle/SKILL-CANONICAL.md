@@ -487,8 +487,13 @@ select(.conclusion=="failure")'`), never from the `--log-failed` tail — an
   `MERGEABLE`/mergeable-state alongside the checks, and confirm runs exist
   for the CURRENT head via `gh run list` filtered per-head — a checks-green
   read against a head with zero runs is reading the PREVIOUS head's truth.
-- Run the repo's budgeted watcher in the background:
-  `pnpm agent-tools:pr-watch <n> --watch --interval 60` — one line per state
+- The repo's budgeted watcher, `pnpm agent-tools:pr-watch <n> --watch --interval 60`,
+  is not a settle watch while it runs through the unified entrypoint: that path
+  buffers every line until exit, so a Monitor on it reads silence (frictions
+  F-164, five instances; OCE's copy of this skill withdrew the form on
+  2026-09-16). Arm a poll of the pull request's own fields as the Monitor, or
+  call `runPrWatchCli` from dist with the process streams. Where the watcher
+  does print, it gives one line per state
   change, including new comments by author and the unresolved review-thread
   count moving in EITHER direction. KNOWN SUBSET: pr-watch currently reads
   PR-view fields, REST review comments, and thread counts — not review
