@@ -558,3 +558,33 @@ Director's landing record of 2026-09-06, event f05a54da).
   `open().read()` on one aborts the pass; restrict with `--include='*.md'` or guard the decode. A
   substring exclusion list over-excludes: `practice.md` matched `accessibility-practice.md`; match
   on the basename, never a substring (2026-10-01).
+
+## 2026-10-01 consolidation batch (from the handoff and thread records; each searched for in both estates' permanent surfaces first)
+
+- **`pnpm --silent` does not silence a nested `--filter` script's banner**: the root
+  script's echo is suppressed, but the nested script's `$ ...` lines still reach stdout. A
+  pipeline into `jq` first drops lines that start with a dollar sign, and a watcher started
+  that way still prints one start-up line (two records, 2026-09-25 and 2026-09-28).
+- **`gh api --field` reads a leading `@` as a file path**: to post `@codex review` as the
+  bot, pass the body with `--raw-field` (one record, 2026-09-28).
+- **A wait that filters on a reviewer's login must match the `[bot]` suffix**: the REST login
+  of the Codex connector carries it, and a filter without it reports silence while Codex has
+  answered (one record, 2026-09-28).
+- **markdownlint MD049 reads a bare glob in a table cell as emphasis**: write globs in code
+  spans (one record, 2026-09-13).
+- **Build a grep work list from line-anchored markers**: a bare-word grep false-matches prose
+  and under-counts. `^---` matches horizontal rules as well as frontmatter fences, so it is no
+  test for frontmatter; a count taken that way reversed a ruling once it was measured
+  properly (2026-09-13).
+- **Under bash 3.2, `exec` with no arguments returns**: a hook wrapper whose floor branch
+  ended in a bare `exec` fell through into its body. End the branch with an explicit exit
+  (one record, 2026-09-28).
+- **With git 2.50.1, pushing `<sha>^{commit}:refs/heads/<branch>` gives the pre-push hook a
+  local-ref field of `<sha>^{commit}`**: a hook parser that reads fields 2 to 4 is unaffected;
+  one that reads field 1 as a ref name is not (one record, 2026-09-29).
+- **A scripted edit replaces one named block; it never slices between two anchors**: a slice
+  deleted a test that sat between them. Read `git diff` before staging (one record,
+  2026-09-28).
+- **With `noUncheckedIndexedAccess` off, a guard on `arr[i]` is not a TS2367 error**: the
+  comparison with `undefined` always compiles, so the compiler will not show which guards the
+  flag would make necessary (one record, 2026-09-26).

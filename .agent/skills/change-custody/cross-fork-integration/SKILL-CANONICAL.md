@@ -11,7 +11,8 @@ description: >-
   Use when a sync carrier exists or is due, when GitHub calls a sync dirty that
   git merges cleanly, or when fork docs read stale after an upstream change.
   Not for two branches of one lineage (complex-merge), memory files alone
-  (semantic-merge), or curing upstream code here.
+  (semantic-merge), or a finding on carried code that does not block the merge
+  (its own lane, after the sync lands).
   Right: one carrier, two merge commits (the carrier's, then the landing's),
   docs re-trued in the same landing, the tree diff against upstream equal to
   the enumerated fork diff. Wrong: squash or
@@ -47,9 +48,20 @@ no conception of meaning."
 
 ## Authority frame
 
-- **Upstream's mechanism is authoritative for shared mechanism.** A reviewer
-  finding about upstream code is never cured on the fork; it is routed as an
-  upstream report or a fork lane, and the thread is resolved on that route.
+- **Two peer forks, never an upstream** (owner, 2026-09-16, verbatim: "there
+  is no 'upstream' there are two forks of OCE. Eventually this fork will be
+  merged back to the Oak fork. All of those issues should be fixed locally,
+  they go to Oak when the fork syncs back, not before."). In this skill,
+  "upstream" names the Oak fork as the source of a sync, never an authority.
+  A reviewer finding on code that arrived with a sync is cure-worthy on this
+  fork: cure it in its own lane (on the carrier only where it blocks the
+  merge; step 8's carrier rule), and the merge-back delivers it. Nothing is
+  ever sent to the other fork's maintainers. Ask, of any finding: whose code is
+  this, and where does a fix travel?
+- **History is never rewritten across the forks** (owner, 2026-09-10,
+  verbatim: "never, ever rewrite history from the upstream fork, when we merge
+  back it must be purely fast forward"). A sync is a merge; no squash, rebase or
+  amend touches commits that came from the other fork.
 - **The fork holds its own product authority.** An upstream product decision
   arriving through a sync is a fact about upstream, not a constraint here,
   unless the owner adopts it.
@@ -298,16 +310,23 @@ without tracking shows none — either way the closeout's `git branch
 A fresh worktree needs its workspaces built before the pre-push gates pass
 (the standards ESLint plugin's `dist/` for lint; the agent-tools `dist/` for
 the CLI itself). Undraft; declare the review tally at open (pr-lifecycle
-§review-round state machine); harvest every thread. Findings about the sync
-itself are cured here; findings about upstream code are routed and resolved on
-the route — and the report to upstream is the OWNER's act, because the fork
-writes to no upstream surface without the owner's per-instance word: it reaches
-the owner as one ask through the Director, and the thread's disposition names
-that route. On a carrier every review round is findings on someone else's
-code, so that route is the whole disposition vocabulary the lane needs and the
-cure-worthy count stays zero unless a finding is about the sync itself
-(2026-09-09, the 1.179.0 carrier: two rounds, three threads, all routed to one
-owner-held upstream report, cure-worthy 0). Settle at green by name
+§review-round state machine); harvest every thread. What a carrier fixes is
+the owner's rule (2026-09-19, verbatim): "If the merge to the engraph branch is
+blocked by errors, fix them, if it is not blocked but we can see issues then
+merge and we fix in a separate PR." So an error that blocks the merge (a
+conflict, a failing required check, a broken gate), whether the sync or the
+carried code causes it, is fixed on the carrier. An issue that does not block
+the merge is recorded, with its file and line, on a local work list and fixed in
+a separate pull request; its thread's disposition names that list, and it
+neither holds the carrier's landing nor counts against its review rounds. A row
+on that list records terminal facts (a landed SHA, a pull request number) and
+its routing, never a pull request's transient state (2026-09-20). Three
+carriers routed every carried-code finding away under the
+withdrawn upstream model and counted none of them cure-worthy — #99 (1.179.0), #127
+(1.181.1, whose round one cured five findings on the sync itself) and #147
+(1.181.3); the 1.181.3 set is OCE's local work list (its upstream-sync report
+draft for that sync, dated 2026-09-15), and the 1.179.0 and 1.181.1 sets have
+not been re-read under the peer-fork model. Settle at green by name
 (`run-quality-gates`, `CodeQL`) and clean (zero unresolved, `CLEAN`, the quiet
 window) — the front door's own wait-class polling is the settle instrument: a
 background settle watch is a process the host may kill (several times across
@@ -410,7 +429,9 @@ seat's worktree, branch or claim (2026-09-09, the #88 follow-up).
   and the pull request reads pending forever.
 - Trusting GitHub's dirty verdict over a clean local merge-tree, or the reverse
   without saying which was read.
-- Curing an upstream finding on the fork, diverging the tree at the next sync.
+- Routing a finding on carried code to the other fork instead of curing it
+  here in its own lane, or curing inside the carrier's rounds a finding that
+  does not block the merge.
 - Regenerating one page by hand because "only the excerpt changed".
 - Merging a memory file on the conflict count.
 - Plans and reports left asserting the state before the sync — the class this
