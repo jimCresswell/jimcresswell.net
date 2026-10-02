@@ -21,6 +21,32 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-02T20:08Z: pull request 299 folded into `main` as SHA:f19bed6d5** (Hazel tracks Trunk,
+  7d8b9d; the second fold of `coordination/2026-10-02-9f4d89`, which pull request 286 had folded
+  at 19:20Z as SHA:ba5ad39a; the Director's records push of 19:32Z recreated the branch beyond
+  the fold merge, so this fold carries only those records: the delivery node
+  `practice-parity-for-extraction` with its size table trued to the owner's two-hour bound, the
+  finish node `practice-work-finish` superseded into the plan archive, the write-list node's two
+  citations re-pointed, the Director's compaction block and the measure scripts, the notebook's
+  blocks of the hour; the bot's merge at the pinned head with every check the branch rules
+  require green; Copilot's one thread, on the parity node's copy-based carries against
+  `best-of-each-practice` line 74, routed by the Director to the parity records pull request
+  (the node's step 5: a dated amendment in the parent node recording the owner's word of
+  2026-10-02, cited by mechanism 2) and resolved with their text, no change on the fold; the
+  merge of `main` in was content-free by merge-tree and not made). The folded branch is deleted,
+  local and remote, both tips proved in `main`; the successor is `coordination/2026-10-02-f19bed`,
+  cut in the primary from `main` at SHA:f19bed6d5. Housekeeping for the owner's hand: the lane's
+  `records/2026-10-02-7d8b9d` at SHA:3802b36a has its content on `main` but for a superseded
+  citation, and its deletion is a forced branch delete the hook denies to seats. moved for the sites: nothing in this fold /
+  moved for the Practice: the finish is governed by one ratifiable node whose first value step
+  is the four small capability carries, the measure serving them. The cures for OCE 332's
+  fourteen review threads (298's twin findings) were authored and then withdrawn from landing at
+  the owner's word of 19:5xZ (budgets mean fewer pull requests, not relocated cures); the bytes
+  stay in OCE's synced session directory under `cures-332/` and in this estate's lane worktree as
+  the local commit SHA:92644157 on `docs/consolidation-2j-inventory-cures`, the measure's input
+  by the Director's word of 20:0xZ (branched from that tip, landed by merge under the measure
+  pull request, the branch retired by proof afterwards), never pushed as its own pull request.
+
 - **2026-10-02T10:48Z: pull request 280 landed as SHA:e5c9c1e4; the merge-bot's push is the same
   bytes in both estates** (Crucible binds Slag, 7b999c). Settlement push two (`SHA:4efc2f86`)
   cured round two's four items (the description's scope, a constant refusal in the retry's wait

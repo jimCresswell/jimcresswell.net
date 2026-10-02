@@ -13,7 +13,10 @@ ratified_where: >-
   The owner's card answer of 2026-09-21 in the session of Brazier spins Temper
   (c70341), "Ratify both texts", ratifying this plan and the definition it
   serves (PDR-142) together; the nine card answers that shaped both are recorded
-  verbatim in the delivery node practice-two-way-exchange, §Rulings, items 9 to 17.
+  verbatim in the delivery node practice-two-way-exchange (superseded 2026-10-02,
+  archived under the plans delivery archive), §Rulings of 2026-09-21, items 9 to
+  17; the three of them that still govern (9, 11 and 12) are carried by PDR-142's
+  Amendment Log entries of 2026-10-02.
 serves: PRACTICE-1
 impact_areas:
   - practice-and-estate
@@ -21,7 +24,7 @@ gate_expiry_default: P21D
 depends_on: []
 owner_gates: []
 tickets: []
-last_updated: 2026-09-26
+last_updated: 2026-10-02
 ---
 
 # The best of each Practice
@@ -71,7 +74,8 @@ once the text under them is stable. Removal runs alongside adoption: what a merg
 bad is proposed at once, in every estate that carries it, and what rests on the owner's word
 waits only for that word.
 
-Deliberately not done: copying code between estates; a register row for every changed path; a
+Deliberately not done: copying code between estates (one dated exception under §Delivery,
+2026-10-02); a register row for every changed path; a
 node for a lane that ends within a session; any new ritual. Drift is read at the daily
 coordination fold the estates already run: a dry run of the merge, three numbers in the fold's
 state line (files a clean merge would change, conflict hunks, files waiting). A seat opens a
@@ -109,3 +113,12 @@ Director:
 - The exchange's intake has no bound (card answer: "No bound").
 - A pull request's cost has a fixed term, so slices are sized to the optimum, not the minimum
   (PDR-132 §Decision item 7).
+
+The owner's words of 2026-10-02, heard first-hand by the Director seat Crucible binds Slag
+(7b999c) and carried here as the programme's decision of that day: "The OCE product work is not part of this, that is something I handle later. What we are currently working towards is both estates having equally capable Practices which we can then extract into a separate entity which has yet to be designed." Under those
+words the delivery node `practice-parity-for-extraction` carries each capability one estate
+holds and the other lacks into the estate that lacks it as the tested module with its tests, its
+integrating commit naming the debt to the package the owner chose (PDR-142 §How each kind
+travels; PDR-143 §Context). That is the one exception to §The bet's "copying code between
+estates", and it ends when the entity exists; the two largest gaps are decided at that node's
+ledger, where the owner reads them.
