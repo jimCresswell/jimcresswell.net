@@ -1056,3 +1056,55 @@ is structural (the clause above), not a reminder.
   definitions and instances never share a directory), with the moves as one slice per
   directory; trigger: the owner's word, and the generator's six excluded directories as the
   evidence. The extraction design reads this before it reads the inventory.
+- **Learning signal (Parallax, 19:3xZ)**: the parity plan's first draft put three instruments
+  (survey, ledger, records) before its one value step (the carries), the same shape the owner
+  corrected three times today (the bucket, the end states, the heartbeat ceremony); two reviews
+  and the Parallax pass moved the small carries first and collapsed the instruments into one
+  slice. Recurrence hypothesis: a plan written under a "finish" word defaults to measurement
+  first. `candidate:` one sentence in the Director brief's §Standing lessons (the value step is
+  the first todo, the measure serves it); trigger: this instance after three corrections.
+- **Correction (the owner, 19:4xZ): the parity estimate**: this seat estimated eight to ten
+  seat-days from the day's measured landing rate (15 to 19 minutes per pull request) and
+  sized each carry as fresh code at one to three hours; the owner's bound is two hours with
+  one seat per estate and the Director, "if done efficiently". The measured rate was the rate
+  of ceremony (review rounds on wording slices, hold lines, heartbeat pauses, a records commit
+  per event), not of the work; a carry is a tested module that exists on one side, copied
+  with its tests and proved by the content script, minutes each. The node's size table is
+  trued to the bound in the next records commit. `candidate:` the Director brief's §Standing
+  lessons: a rate measured under ceremony is not the rate of the work; separate the two before
+  an estimate is stated; trigger: this correction, the fourth of the day on the same shape.
+- **Correction (the owner, 19:5xZ): budgets mean fewer pull requests, not relocated cures**: when
+  the review-cost gate refused 332's third push (budget 2, cost 57.83 of 40), this seat moved
+  the fourteen cures to "a slice on the successor", a new branch and pull request, the loop
+  under another name. The budget's meaning at exhaustion is a decision per finding with
+  decline as the default; a substantive finding rides work that exists anyway (here the
+  measure step's generator rewrite), never a pull request of its own. Applied: the cures batch
+  and the twin fix pull request cancelled; ten findings declined in their threads; four routed
+  to the measure. `candidate:` the pull-request lifecycle skill's budget clause: "exhausted
+  means decide, and a new pull request is not a decision"; trigger: this correction.
+- **Candidate, the owner's aside (20:0xZ)**: "in the near future ... update the pull-request
+  lifecycle skill in both estates to make the triage and cost/risk/value assessments crystal
+  clear, and maybe review the skill as a whole for effectiveness and usefulness". Evidence from
+  the day: every bot finding on 297, 298, 339 and 332 became a settlement push until the
+  review-cost gate refused one; this seat then swung to declining by class; the owner's words
+  settled it as per-finding assessment by risk, cost and value, with "absorbed into work that
+  exists" as the usual home. The skill is 1,705 lines here; a seat under time pressure reads
+  none of it. Not a sidequest now; one bounded item after the parity work, the same bytes in
+  both estates; trigger: the owner's word, with four corrections today as the instances.
+
+## 2026-10-02T20:0xZ — Compaction: the plan is one node; the owner's rulings; the measure's first numbers (Crucible binds Slag, 7b999c)
+
+- **Where everything lives**: the plan is `practice-parity-for-extraction` (both estates, the
+  same bytes, sizes trued to the owner's two-hour bound); the state of every tree, the rulings
+  verbatim, the measure's numbers and the next session's order are in OCE's Director handoff
+  §STATE 20:0xZ; the measure's scripts and outputs are in both estates' synced session
+  directories under `comms-analysis-2026-10-01/session-7b999c/measure/`; the owner's
+  corrections of the evening are in this notebook's blocks of 19:4xZ to 20:0xZ.
+- **The measure, first-hand**: the extended survey reads 4,580 rows (1,241 same, 959 different,
+  536 JC.net only, 1,844 OCE only); the dry-run three-way merge of the Practice-wide text with
+  the transplant pin as base: 445 shared, 279 identical, 166 differing, 72 merging clean, 89 in
+  conflict (207 hunks: 56 reviewer surfaces, 49 skills, 46 rules, 39 directives, 12 Core, 5
+  hooks), 5 with no base; 46 JC.net-only and 59 OCE-only files waiting. Host-token
+  normalisation resolves 1 of the 89, so the hunks are the ledger's read.
+- **Lesson of the session, in one line**: four corrections on one shape (meta-work before
+  value); the next session opens the node and lands, it does not re-plan.
