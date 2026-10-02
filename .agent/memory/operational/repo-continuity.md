@@ -21,6 +21,23 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-02T23:12Z: pull request 300 folded into `main` as SHA:24fc052e9** (Hazel tracks Trunk,
+  7d8b9d; the day's second fold of this estate's coordination branch under the owner's
+  twice-a-day word; `coordination/2026-10-02-f19bed` carried the Director's records of the
+  evening: the parent node's dated entry on the carries and the parity node ratified with its
+  size current, PDR-019's amendment (records carry decisions, plans carry planning), the PDR-143
+  trim with its passages held in the parity node, the exchange node archived with five PDR-142
+  entries, two Core portability cures from OCE's fold review; and this seat's records: the
+  compaction freeze's three files, the fold entry of 299, the live notebook rotated and archived
+  by byte proof with the three old notebooks moved after full processing, the frictions
+  register's F-295, the thread record's entries to the sixteenth; the bot's merge at the pinned
+  head with every status context the branch rules require green; a fold is not reviewed: the
+  threads that arrived were triaged per finding). The folded branch is deleted, local and
+  remote, both tips proved in `main`; the successor is `coordination/2026-10-02-24fc05`, cut in the primary from `main`
+  at SHA:24fc052e9. moved for the sites: nothing in this fold / moved for the Practice: the parity
+  node's step 1 on this side is complete (the write list's residue landed by 301 to 304, the
+  notebooks archived), and the records definition the owner directed is on `main`.
+
 - **2026-10-02T20:08Z: pull request 299 folded into `main` as SHA:f19bed6d5** (Hazel tracks Trunk,
   7d8b9d; the second fold of `coordination/2026-10-02-9f4d89`, which pull request 286 had folded
   at 19:20Z as SHA:ba5ad39a; the Director's records push of 19:32Z recreated the branch beyond
