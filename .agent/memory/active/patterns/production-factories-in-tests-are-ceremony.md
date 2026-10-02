@@ -82,7 +82,7 @@ relaxations.
 
 ## Enforcement
 
-`@oaknational/eslint-plugin-standards` `testRules` enforces this
+OCE's `eslint-plugin-standards` package's `testRules` enforces this
 structurally:
 
 - `no-restricted-imports` (error) on known production-factory paths
