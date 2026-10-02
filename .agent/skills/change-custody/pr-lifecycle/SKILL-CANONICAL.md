@@ -1698,7 +1698,12 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
     the work is git-durable, and opens no pull request until a slot is free
     (the reading that forbade local commits left 66 applied lessons
     uncommitted in two working trees for seven hours, 2026-10-02); its
-    landing turns and any cure that frees the count come first. The owner's word of 2026-09-29,
+    landing turns and any cure that frees the count come first. This reading
+    supersedes, as of 2026-10-02 and with the same dated clause in each, the
+    absolute of `worktree-hygiene` §1 (a committed worktree with no pull
+    request) and the first-push timing of `no-parallel-long-lived-branches`:
+    the first PUSH still opens the draft at once, and the push waits for the
+    slot. The owner's word of 2026-09-29,
     relayed verbatim by the Director: "the entire team is supposed to have
     been instructed NOT to create new PRs while waiting for old ones, that is
     how WIP is managed... if you move on while the older work is still pending
@@ -1706,10 +1711,12 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
     PRs". So an ordered "then" means after the earlier pull request lands, a
     seat with an open PR opens its next pull request after that PR merges, and
     a seat holding two opens nothing until both land (the Director's readings
-    that day). It recurred with this bullet loaded: a seat built its next
+    that day). It recurred with this bullet loaded: a seat PUSHED its next
     branch while its PR waited (2026-09-29), and the consolidation seat cut
-    and pushed two branches while its PR was open (2026-10-01). The cure is a
-    check at the first push, in the frictions register, and not this sentence.
+    and pushed two branches while its PR was open (2026-10-01); the recurrence
+    is the push and the second pull request, never the local commit. The cure
+    is a check at the first push, in the frictions register, and not this
+    sentence.
   - **The owner lands small green pull requests by hand, in changed-file
     order** (owner, 2026-09-26: "I can make judgements that allow me to merge
     small PRs many, many times faster than Practice agents"). Never hold a

@@ -641,10 +641,14 @@ the index-reset family is banned. The cure is structural, not a further
 naming discipline: per-seat worktrees for coordination writes (PDR-117),
 or the commit-warden singleton owning `git:index/head`.
 
-While a foreign lock stands on the primary, records still land: cut a linked
-worktree at the coordination branch's remote tip, copy the dirty paths in,
-commit by pathspec and push as the bot to that ref; the primary is never
-written (the route of 2026-10-02, three records commits under one lock).
+The worktree route is the standing answer to step 3's wait-or-handoff
+question for RECORDS, so that question reaches the owner only for the
+primary itself: once the lock is surfaced (step 3), the seat cuts a linked
+worktree at the coordination branch's remote tip, copies the dirty paths
+in, commits by pathspec and pushes as the bot to that ref, touching neither
+the lock nor the primary's index (the route of 2026-10-02, three records
+commits under one lock; the owner's word of 2026-09-25: every seat pushes
+without the owner).
 
 ## Process
 
