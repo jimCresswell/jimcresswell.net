@@ -1108,3 +1108,80 @@ is structural (the clause above), not a reminder.
   normalisation resolves 1 of the 89, so the hunks are the ledger's read.
 - **Lesson of the session, in one line**: four corrections on one shape (meta-work before
   value); the next session opens the node and lands, it does not re-plan.
+
+## 2026-10-02T19:59Z — the second freeze's reflections: a narrowed frame, a peer's relay, a folded name that came back (Hazel tracks Trunk, 7d8b9d)
+
+- **Metacognition, the frame**: the owner's word was "finish the fold then go into cold pause"; this
+  seat read it as "settle the review threads on my scripts in OCE's fold", authored fourteen cures
+  in fifteen minutes, and the owner cancelled them. The fold is a ceremony with named legs; a
+  review thread on a records-class fold at a spent budget is a decision, not a cure. The frame
+  narrowed at seating and a peer's first message confirmed it, which is not evidence: a peer's
+  routing can narrow the owner's direct word to this seat, never widen it. `candidate:` the
+  start-right-team skill's move 3: the boundary stated in the team-start line is derived from
+  the owner's word alone, before any peer message is read. Trigger: this instance.
+- **Metacognition, the relay**: three routings in twenty minutes from the Director (take the
+  cures; write them into OCE's primary; stop), each absorbed and acted on. The cost was the
+  authoring, not the absorbing. The owner's own word to this seat never changed. Re-grounding
+  at the moment of use (the directive's clause of today) applied once well: the "index lock
+  still holds" belief was re-read by ls and was false, which put the successor cut back in the
+  primary where the rule wants it.
+- **Lesson (a folded name that came back)**: a records push to a branch name whose fold has
+  merged recreates the branch; it then reads folded on the pull request and live on the remote,
+  and the cure is a second fold pull request for one commit. `candidate:` the fold skill's step
+  10: after the merge, no push to the folded name; the successor is cut first and records go
+  there. A tooling form: the merge-bot push refuses a target branch whose fold pull request is
+  merged. Trigger: this instance, 19:32Z.
+- **Free play, kept**: a review-cost gate exists in OCE and not here, so the same fourteen
+  findings ended at "budget exhausted, decide" there and would have run as a cure pull request
+  here; the owner's word filled the gap by hand. The gate is a capability one estate holds and
+  the other lacks, a row for the parity ledger. Discarded: "the name is not the thing" as a
+  bridge between the Codex finding (classify by contents) and the design finding (directories
+  that mix definitions with instances), already the parity node's mechanism 3; the judges
+  image, decoration.
+- **Concept, the well-formed reading**: a fold is finished when the successor exists on the
+  remote and the folded records are on the default branch; review on a records-class fold is one
+  vendor round at the ready-mark, decided at exhaustion, with the records pass before the
+  ready-mark as the cure's place. Falsifier: a vendor round on a fold finding a true records
+  slip that must be cured before the merge; then the records pass missed it and is the thing to
+  fix.
+- **Reason, the stop**: the remaining legs are mechanical and scripted (`fold-merge.sh`,
+  `successor-cut.sh`, `retire-folded.sh`, the templates); the value of further analysis is
+  zero; the recipe is in the thread record's fourteenth entry. Stopped at the owner's word.
+- Processes at this block: none; the owner stopped the five monitors at 19:5xZ and the process
+  table reads empty. The three files of this freeze (this notebook, the thread record, the
+  formation letter) are uncommitted in the primary and named in the handoff.
+
+## 2026-10-02T20:12Z — the second fold of the day's coordination branch; the cures withdrawn at the owner's word (Hazel tracks Trunk, 7d8b9d)
+
+- **Lesson (a fold merged, then recreated)**: 286 merged at 19:20Z and its remote branch was
+  deleted at the merge; the Director's records push at 19:32Z recreated the branch name one
+  commit beyond the fold merge, so the branch read "folded" on the pull request and "live" on
+  the remote at once. The cure was a second fold pull request (299) carrying the one commit; the
+  cheaper shape is a push to the successor, which cannot exist until the cut. `candidate:` the
+  fold skill's step 10: the successor cut precedes any records push after the merge; a push to
+  the folded name recreates it. Trigger: this instance.
+- **Correction (the owner, 19:5xZ, relayed by the Director)**: the fourteen review threads on
+  OCE 332 (298's twin) were cured as a batch and queued as a fix pull request here and a slice
+  there; the owner's word ended both ("the point of the PR response budgets is to reduce time
+  spent on PR ceremony; cutting a new branch and a separate PR does not serve that goal"). The
+  bytes stay named once (OCE's synced session directory `cures-332/`; the local commit
+  SHA:92644157 in this estate's lane) and are the measure's input by the Director's word of
+  20:0xZ. Applied: nothing of them pushed.
+- **Correction (the door's check names)**: the fold's merge door carried four required-check
+  names by hand, two of them another estate's (a Sonar analysis and a gates workflow this estate
+  does not run), and refused a green pull request; the cure reads the required contexts from the
+  default branch's rules at run time and asserts each SUCCESS (six here: install, static-checks,
+  build-and-test, e2e, secret-scan, CodeQL) plus the deployment check. A door is computed from
+  the estate's rules, never from a list carried across estates. Trigger: this instance, 20:07Z.
+- **Fact (the merge of main into a recreated branch)**: `git merge-tree --write-tree origin/main
+  <tip>` returning the tip's own tree is the proof that the convergence merge is content-free;
+  the fold skipped it and said so in the pull request body.
+- **Fact (the primary's index lock)**: the lock of 11:56Z was gone at 19:4xZ (ls); a peer's
+  belief about a lock is re-read before it decides a route.
+- **Routing (the Director, 20:0xZ, at the owner's word "ask the Director for direction")**:
+  299's one Copilot finding triaged correct, medium risk, minutes of cost, routed to the parity
+  records pull request (step 5) and not cured on the fold; the fold merged as it stood, its
+  thread resolved with the Director's text; this seat to cold pause after the successor's
+  records push.
+- Processes at this block: both watchers, the two registry heartbeats; every one stops at the
+  cold pause after the successor's first records push.
