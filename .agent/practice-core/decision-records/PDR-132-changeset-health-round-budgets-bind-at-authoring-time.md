@@ -134,26 +134,7 @@ amendment.
 
 ## Amendment Log
 
-### 2026-09-14 — jimcresswell.net: the pr-throughput register is retired from this estate
-
-Owner card (2026-09-14, the morning cards; the closure record's item 78, "PDR-008
-and PDR-132: both amended by card"), raised at the closure record's item 47 on
-the retirement pull request: "PDR-132 names the retired pr-throughput register
-as a future instrument; ratified text untouched, the retirement recorded
-against it for the owner's card."
-
-What changes. §Prediction and falsifier and §Consequences name the
-pr-throughput register as the standing instrument once it gains
-commits-per-PR and changeset-class dimensions. That register was retired from
-this estate on 2026-09-14 (transplant closure item 5b, pull request #68) with
-three other OCE instruments, re-importable from the OCE pin; this
-record no longer promises it here. The falsifier's measurement stands as the
-corpus-methodology re-run, recomputable from the repository host on demand
-(per pull request: opened and merged times, changed files, and each vendor
-review body's generated, suppressed and previously-missed counts); no standing
-register is promised in this estate.
-
-### 2026-09-14 — jimcresswell.net: the number of review rounds per pull request does not go up
+### 2026-09-14 — the number of review rounds per pull request does not go up
 
 Owner word (2026-09-14, 15:15Z, spoken to the Director in chat; the closure
 record's item 100 records it as "the number of review rounds per pull request

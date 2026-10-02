@@ -70,12 +70,17 @@ Site architecture decisions are ADRs under
 | [ADR-020](../docs/architecture/decision-records/020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model as source of truth for shared atoms  |
 | [ADR-021](../docs/architecture/decision-records/021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                        |
 | [ADR-022](../docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md)    | Rendering-risk changes need blocking visual proof |
+| [ADR-023](../docs/architecture/decision-records/023-host-side-adoption-of-practice-core-decisions.md) | Host-side adoption of Practice Core decisions     |
 
 ## Practice Decision Records
 
 The portable Practice governance decisions are PDRs under
 [`practice-core/decision-records/`](practice-core/decision-records/) — 140
-records, PDR-001 through PDR-140, from the OCE lineage. Those most load-bearing
+records, PDR-001 through PDR-140, from the OCE lineage. A PDR names no host; this
+repo's applications of PDR-008 (its quality-gate script names and validator
+groups) and PDR-132 (the retired pull-request throughput register) are recorded
+in ADR-023, the host-side adoption record, and this paragraph is the pairing
+(the decision-records README §Portability Constraint). Those most load-bearing
 for this repo's day-to-day:
 
 | PDR                                                                                              | Subject                                                  |

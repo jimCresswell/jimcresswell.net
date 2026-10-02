@@ -377,14 +377,14 @@ described under Adoption.
 
 ## Amendment Log
 
-### 2026-09-30 — jimcresswell.net: open at two seats, widen on measured throughput
+### 2026-09-30 — open at two seats, widen on measured throughput
 
 Owner card (2026-09-16, adopting proposal 6 of the transplant arc's
 retrospective). §Decision gains the operating default: an arc opens at
 n=2 and widens only on measured seat-hours per merge. `start-right-team`
 §Choose Temporary Responsibilities carries the operational form.
 
-### 2026-09-14 — jimcresswell.net: the 120-second state line is the n=2 liveness convention
+### 2026-09-14 — the 120-second state line is the n=2 liveness convention
 
 Owner card (2026-09-14, the morning cards; proposal E of the session 2
 synthesis, presented with the register pull request #63 and recorded in the
