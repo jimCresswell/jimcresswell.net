@@ -252,10 +252,12 @@ integration:
 3. confirm the skill appears in `.agent/practice-index.md`
 4. confirm the skill appears in `.agent/directives/AGENT.md`
 5. confirm any file references you added actually resolve
-6. if you changed a skill's description or body, run `pnpm skills:generate`
-   then `pnpm skills:check`; `portability:check` covers rule and sub-agent
-   adapters only (a description change that skipped the render failed the
-   push, 2026-10-02)
+6. if you changed a skill's description, run `pnpm skills:generate` then
+   `pnpm skills:check`: the rendered adapters carry the description and the
+   path, so a body-only edit needs no render; `pnpm portability:check`
+   validates each canonical's frontmatter and the skill permissions along
+   with the rule and sub-agent adapters, not the rendered skill adapters (a
+   description change that skipped the render failed the push, 2026-10-02)
 
 Useful checks:
 

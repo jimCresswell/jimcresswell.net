@@ -55,9 +55,10 @@ failure-shape and pitfall passages against those findings and re-truing what the
 record names at least one skill it checked (napkin 2026-03-07; graduated 2026-10-01 at the owner's
 card).
 
-Owner words said in the owner's own chat reach only the handoff and thread records, never the
-comms stream; a consolidation reads those records for owner quotes before it sizes any
-comms-only pass (207 owner words sat only there, 2026-10-01).
+Owner words said in the owner's own chat reach the handoff and thread records, and the comms
+stream only where a seat mirrors them (`comms-channels` §The behaviours); a consolidation reads
+those records for owner quotes before it sizes any comms-only pass (207 owner words sat only in
+the records, 2026-10-01).
 
 ## Trigger Checklist
 
