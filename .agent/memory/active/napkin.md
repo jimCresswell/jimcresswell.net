@@ -350,3 +350,43 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
 - **Observation (Cricket suite 14):** a closed, grouped write list of 104 items with none landed
   is itself the buffer. Group by home surface early, and land the memory-surface group first: it
   needs no pull request.
+
+## 2026-10-02T03:49Z — the first window after the hold (Hazel tracks Trunk, 7d8b9d)
+
+- **Correction:** a port's form was decided from the source estate's text alone. The verdict
+  "port OCE's ratified strategic node here as a sketch" was written into the plan note, then
+  reversed on reading this estate's own strategy stream: the owner's rulings 19 and 27 give the
+  Practice stream one strategic node, and PRACTICE-2 already names the choice. Read the
+  destination's structure and its rulings before deciding what form a port takes. Homed: the
+  parity item is routed in `practice-two-way-exchange` with the owner's question (lane tree,
+  lands with the plans slice). `candidate:` a clause for
+  `cross-estate-work-must-reduce-divergence` beside "search each estate for every importer";
+  trigger: the next rules slice.
+- **Correction:** two Practice Core edits were written twice. An apply script from an earlier
+  context already held them (PDR-052's clause, PDR-081's re-truing), and this context wrote
+  both again before finding it. Before writing an item, search the scratchpad's apply
+  directory for the target file's name. No doctrine home: a seat's own working habit, kept
+  here.
+- **Correction:** a slice's definition put a rule sentence that cites a decision record's
+  clause one slice ahead of the clause. Caught by reading the slice against the rule the
+  previous slice adds ("no slice ships text that is false until a later slice lands"); the
+  rule moved to the slice that carries the record. The rule worked on its author within the
+  hour; nothing more to home.
+- **Observation (tool fact, homed in the shell gotchas by OCE pull request 331's settlement):**
+  macOS's `patch` (2.0-12u11-Apple) defaults "Assume -R? [y]" to yes with no terminal, and GNU
+  `patch` defaults to no. A reviewer that knows one platform will call the other's fact false:
+  a tool fact names its platform and the version it was observed on, and a probe on plain
+  files settles it in one run.
+- **Observation:** a vendor review's claim in the body with no thread, a third time (OCE 322,
+  329, 330). Each was true. Homed in the shell gotchas (slice n). At three instances the
+  reading of every review body in full is the estate's practice, and `pr-lifecycle` phase 3
+  already says every surface.
+- **Observation:** unbounded reads again, four in this window (a tracked-file listing with a
+  broad glob, two greps of script files with no match limit, a register of long rows). The
+  entry F-283 stands; the habit that works is a count or `-m` on every first read.
+- **Surprise:** the compaction that released the directive hold came at about 63 % and the
+  meter's first read after it was 0 %, the second 8.4 %. Two directive pull requests then
+  settled and merged inside the next 21 points of context, and the floor was reached again
+  at 29.4 % with one directive edit made at that reading. A seat that has directive work
+  queued does it first after a compaction, before any wide read. `candidate:` a line for
+  `directive-file-context-budget`; trigger: the Core slice that carries the rule.

@@ -107,6 +107,51 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-02T03:51Z — the hold ended; two directive pull requests landed and the slices are opening (Hazel tracks Trunk, 7d8b9d)
+
+Counts first. Write list: 111 numbered; 19 closed on reading their homes (five more this
+window: the adapter clause, held by PDR-009 in both estates; two directive-bound follow-ups
+the registers show already graduated; the content boundary for a private lane, held by the
+privacy directive's rules 5 and 7; the Sonar policy port, a host difference); 7 landed on
+memory surfaces; 85 open. Of the open, 74 are scripted and applied in the estates' lane
+working trees, the twins' added lines compared file by file and equal; 11 are not yet
+scripted (product documents in OCE, two documents in this estate, two product ideas for OCE's
+backlog, two whole-file ports, the convergence of the pull-request skill, the capability
+inventory). Pending graduations: no inline entry in either register; the
+slow-lane rows (this estate 1, OCE 6) are gated on their review dates and none is due (PDR-130,
+decision 3). Buffers named at the open: none unread, three read by scan only.
+
+The hold. The harness compacted and the meter read 0 %, then 8.4 %. The directive cure for
+This estate's pull request 288 was re-read in full at that figure and three of its five texts were
+rewritten there. 288 merged with one settlement push. OCE's pull request 330 carried the
+same cure; its review made one claim in the body and no thread (the archive proof relied on
+HEAD and never checked the surface was clean), which held, and 330 merged with one settlement
+push. This estate still holds the first form of that step: the back-port is in its lane working
+tree and rides its next slice. The meter reached 29.4 % with one more directive edit made at
+that reading (OCE's stale orientation row); directive edits wait again from there.
+
+Open now: OCE's pull request 331, the first lessons slice (ten files). Two vendor reviews
+raised six findings, five distinct, all holding in part or whole; the cures are committed as
+settlement push one and are in this estate's lane working tree too.
+
+Prepared and waiting, one pull request at a time, OCE first and its twin after each:
+rules two (nine files); rules three with three reviewer templates (eleven); skills (ten);
+Practice Core (seven decision records, the decision-record README, the changelog, the
+context-budget rule, and in OCE two one-line convergence ports and the orientation row);
+plans (fifteen files in OCE, two in this estate). Each slice's branch, paths, message and
+description are files in the session's scratchpad state directory, with the order of the
+apply scripts in the plan note beside them.
+
+Decided this window: the lessons of the agent-tools architecture exploration stay homed in
+OCE's ratified strategic node; in this estate they are routed into the exchange plan with the
+question that is the owner's, because the owner's rulings give its Practice stream one
+strategic node. The Sonar disposition policy is not ported to this estate, which runs no Sonar
+analysis: a host difference, recorded for the capability inventory.
+
+Resume. Read the open pull request's reviews in full (bodies as well as threads); cure by
+script in both lane trees; one settlement push; replies after the push is read back; merge by
+the scripted door; then the twin. Directive and decision-record edits only under 30 %.
+
 ### 2026-10-02T03:08Z — the hold stands; what was prepared and landed while it does (Hazel tracks Trunk, 7d8b9d)
 
 **Counts.** Write list: 111 numbered; 14 closed on a second reading; 7 landed on memory
