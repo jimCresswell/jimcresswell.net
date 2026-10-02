@@ -1063,3 +1063,31 @@ is structural (the clause above), not a reminder.
   slice. Recurrence hypothesis: a plan written under a "finish" word defaults to measurement
   first. `candidate:` one sentence in the Director brief's §Standing lessons (the value step is
   the first todo, the measure serves it); trigger: this instance after three corrections.
+- **Correction (the owner, 19:4xZ): the parity estimate**: this seat estimated eight to ten
+  seat-days from the day's measured landing rate (15 to 19 minutes per pull request) and
+  sized each carry as fresh code at one to three hours; the owner's bound is two hours with
+  one seat per estate and the Director, "if done efficiently". The measured rate was the rate
+  of ceremony (review rounds on wording slices, hold lines, heartbeat pauses, a records commit
+  per event), not of the work; a carry is a tested module that exists on one side, copied
+  with its tests and proved by the content script, minutes each. The node's size table is
+  trued to the bound in the next records commit. `candidate:` the Director brief's §Standing
+  lessons: a rate measured under ceremony is not the rate of the work; separate the two before
+  an estimate is stated; trigger: this correction, the fourth of the day on the same shape.
+- **Correction (the owner, 19:5xZ): budgets mean fewer pull requests, not relocated cures**: when
+  the review-cost gate refused 332's third push (budget 2, cost 57.83 of 40), this seat moved
+  the fourteen cures to "a slice on the successor", a new branch and pull request, the loop
+  under another name. The budget's meaning at exhaustion is a decision per finding with
+  decline as the default; a substantive finding rides work that exists anyway (here the
+  measure step's generator rewrite), never a pull request of its own. Applied: the cures batch
+  and the twin fix pull request cancelled; ten findings declined in their threads; four routed
+  to the measure. `candidate:` the pull-request lifecycle skill's budget clause: "exhausted
+  means decide, and a new pull request is not a decision"; trigger: this correction.
+- **Candidate, the owner's aside (20:0xZ)**: "in the near future ... update the pull-request
+  lifecycle skill in both estates to make the triage and cost/risk/value assessments crystal
+  clear, and maybe review the skill as a whole for effectiveness and usefulness". Evidence from
+  the day: every bot finding on 297, 298, 339 and 332 became a settlement push until the
+  review-cost gate refused one; this seat then swung to declining by class; the owner's words
+  settled it as per-finding assessment by risk, cost and value, with "absorbed into work that
+  exists" as the usual home. The skill is 1,705 lines here; a seat under time pressure reads
+  none of it. Not a sidequest now; one bounded item after the parity work, the same bytes in
+  both estates; trigger: the owner's word, with four corrections today as the instances.
