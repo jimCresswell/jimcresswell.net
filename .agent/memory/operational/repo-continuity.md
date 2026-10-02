@@ -35,7 +35,9 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   2026-10-02, cited by mechanism 2) and resolved with their text, no change on the fold; the
   merge of `main` in was content-free by merge-tree and not made). The folded branch is deleted,
   local and remote, both tips proved in `main`; the successor is `coordination/2026-10-02-f19bed`,
-  cut in the primary from `main` at SHA:f19bed6d5. moved for the sites: nothing in this fold /
+  cut in the primary from `main` at SHA:f19bed6d5. Housekeeping for the owner's hand: the lane's
+  `records/2026-10-02-7d8b9d` at SHA:3802b36a has its content on `main` but for a superseded
+  citation, and its deletion is a forced branch delete the hook denies to seats. moved for the sites: nothing in this fold /
   moved for the Practice: the finish is governed by one ratifiable node whose first value step
   is the four small capability carries, the measure serving them. The cures for OCE 332's
   fourteen review threads (298's twin findings) were authored and then withdrawn from landing at

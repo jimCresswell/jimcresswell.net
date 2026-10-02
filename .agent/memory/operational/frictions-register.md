@@ -42,7 +42,9 @@ dedicated plan that this entry points to.
 An entry that states what code does is a claim: read the code first, and say in the entry what
 was read. An entry that names an incident is asked the disclosure question before it is written:
 would this be the first tracked pointer to private material? (2026-10-01: a security review of
-drafted entries found one such pointer and five claims the code did not bear out.)
+drafted entries found one such pointer and five claims the code did not bear out.) A claim that
+code does or lacks something names both the source read and the configuration that wires it
+(2026-10-02: a claim read the source and missed the wiring).
 
 From F-218 the two estates (JC.net and OCE) share one id space: a new entry takes
 the next number after the highest in either register, so an entry both estates
@@ -3401,6 +3403,9 @@ Observed twice on 2026-09-29 by the Director: `.agent/rules/.logs` refused by th
 - **Target surface**: agent-tools hook policy; the commit skill's foreign-lock premise.
 - **Status**: open; three instances, two removals without the owner's word.
 - **Owner direction status**: standing; the skill cites the owner's direction of 2026-05-03
+- **Further instance (2026-10-02)**: a zero-byte lock of 10:56Z with no live holder held the JC.net
+  primary into the afternoon; the rule held (no deletion, no wait loop) and records landed by the
+  worktree route the commit skill now names; the shared-index class is F-295.
 
 ### F-236 — a commit on the shared primary carries a peer's staged or uncommitted hunks (2026-09-25)
 
@@ -4319,3 +4324,23 @@ Observed twice on 2026-09-29 by the Director: `.agent/rules/.logs` refused by th
 - **Target surface**: the rule (docs).
 - **Status**: open; a doctrine lane.
 - **Owner direction status**: unsolicited
+
+### F-295 — a zero-byte lock or a concurrent index write on the shared primary idles every seat's commit path (2026-10-02)
+
+- **Source**: the live notebook's rotation of 2026-10-02 (the blocks of 11:2xZ, 14:17Z and
+  14:4xZ), grouped with the 2026-08-19 instance the commit skill records; the second instance
+  class of F-235's locks.
+- **Surface**: the primary checkout's shared index; the commit skill's Foreign index lock
+  section.
+- **Observed**: a zero-byte lock of 10:56Z with no live holder held the primary until the
+  afternoon; two seats and a due fold waited on one index (2026-10-02), as a peer's merge had
+  once written into the index under another seat's running hook (2026-08-19). The rule held
+  (no deletion, no wait loop); the cost was idle seats, not risk.
+- **Expected**: coordination writes never contend for one index.
+- **Candidate cure**: per-seat worktrees for coordination writes (PDR-117), which the commit skill
+  names in prose and the records route of 2026-10-02 used; a tooling lane that cuts them by
+  default.
+- **Target surface**: agent-tools CLI (worktree setup) / the commit skill.
+- **Status**: open; mitigated by the records route under a foreign lock (the commit skill,
+  2026-10-02).
+- **Owner direction status**: standing (the lock rule); the cure unsolicited

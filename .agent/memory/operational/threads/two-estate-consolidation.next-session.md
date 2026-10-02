@@ -107,6 +107,41 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-02T22:42Z — the resume after the usage limit: 302 and 303 landed, the rotation archived, the three old notebooks moved (Hazel tracks Trunk, 7d8b9d)
+
+The seat stopped at its usage limit at 20:49Z (stop line 04255eb9) and resumed at 22:1xZ at the
+Director's word (resume at 302's door; then 2y, 2z, the notebooks' move and the rotation's records
+commit; then the fold of 300 as the day's second fold here). Done since, each read back: 302
+merged as SHA:27de48fd6 at 22:22Z after one settlement push curing Copilot's five findings (the
+merge-tree proof is the tree equality; the fold's door is exactly the rules' contexts; the lock
+route conditional on the surfacing step; the owner's word on the work-in-progress limit
+superseding `worktree-hygiene` §1 and `no-parallel-long-lived-branches`' first-push timing with
+the same dated clause in each; the no-push rationale conditional); 303 (slice 2y, seven files,
+the knowledge and planning lessons with Efreet lifts Scorch's two twin clauses from OCE 341)
+opened at SHA:41567611; slice 2z (eight files, the seats and tooling lessons, the owner's words on
+heartbeats and monitors verbatim) committed locally on `docs/consolidation-2z-seats-tooling`,
+opening after 303 merges under the limit; the rotation's archive by byte proof and the three
+old notebooks' moves in this records commit (the notebook's rotation note names the blob and the
+archive; the 2026-03-08 copy omits one line, named in the commit, never quoted).
+
+The write list's last rows, re-trued: the twelfth entry's table marked W112 to W116 NOT-AN-ITEM
+because the record's lists end at W111, yet their texts stand in the three old notebooks
+themselves (2026-08-12 lines 44 to 48 and 520 to 522; 2026-03-09 lines 257 to 259), read at the
+session's analyses. W112 (upgrade before working around) is in `dependency-currency` §Ground
+rules; W113 (the exact local invariant) in `inter-practice-collaboration`; W116 (the
+current-state audit before a rewrite) in the plan skill §Before Writing; W115 (a dated FAIL on a
+boundary test is a disposition) landed in the plan skill §Completion by 303; W114 is a read in
+OCE (whether its commits are signed), the one row left to that estate. Counts: pending
+graduations 0 in both registers; the write list 97 items with its residue landed by 301, 302, 303
+and the 2z slice; the live notebook rotated to its note.
+
+Still to do in this estate after 2z: the fold of 300 (the day's second fold here, the owner's
+twice-a-day word), the successor cut, the rotation broadcast; then the step 2 carry (the
+host-tagged amendment entries of PDR-008, PDR-082 and PDR-132 to a host record with the Core
+validator), then OCE's twins of the three slices as one pull request. For the owner's hand:
+`records/2026-10-02-7d8b9d` at SHA:3802b36a (content on main but for a superseded citation;
+the forced delete is denied to seats).
+
 ### 2026-10-02T20:12Z — the fold of 299 finished at the Director's word; the successor cut; cold pause (Hazel tracks Trunk, 7d8b9d)
 
 The owner's word at 20:0xZ, verbatim: "the pause is lifted, ask the Director for direction. Go
@@ -129,8 +164,9 @@ sized in `write-list-residue-and-notebook-close`.
 
 Left for the Director's measure step: the lane's `docs/consolidation-2j-inventory-cures` at
 SHA:92644157 (theirs to branch from); the old `records/2026-10-02-7d8b9d` at SHA:3802b36a
-(content on main; delete on the content proof's zero, `run/branch_content_proof.py`). This seat
-is in cold pause with every process stopped and both claims held.
+(content on main; delete on the content proof's zero, `run/branch_content_proof.py`). The cold
+pause this entry planned did not happen: the Director's direction of 20:1xZ, at the owner's word
+"ask the Director for direction", kept the seat on the node's step 1 (the next entry).
 
 ### 2026-10-02T19:59Z — the second compaction freeze: the fold of 299 half-run, the cures withdrawn at the owner's word, how the resume finishes it (Hazel tracks Trunk, 7d8b9d)
 
