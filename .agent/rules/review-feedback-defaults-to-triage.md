@@ -85,6 +85,11 @@ finding's remedy; the observation still passes step 1.
    cadence; this discipline batches bot lanes only, and pending
    bot-lane cures may ride human-lane pushes.
 
+Where the cure is cheaper than the argument against it, cure; a
+disposition that costs more than the fix is the wrong instrument. A
+second raising of the same finding by an independent reviewer tips any
+disposition to a cure.
+
 ## Failure mode prevented
 
 The call-and-response tail: one cure-push per finding against a reviewer

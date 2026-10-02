@@ -94,7 +94,7 @@ write list's source, and the branches hold a directive clause no default branch 
 
 | Step | Files | Size | Position |
 | --- | --- | --- | --- |
-| JC.net slice 2w, five W items and the count clause | 5 | one pull request, about 30 lines, two review rounds at most | first, JC.net's slot after 298 merges |
+| JC.net slice 2w, four W sentences, the count clause and this node trued | 5 | one pull request, about 30 lines, two review rounds at most | first, JC.net's slot after 298 merges |
 | OCE slice 2w, the Practice twins | 5 | one pull request, about 25 lines | OCE's slot after Efreet lifts Scorch's y |
 | OCE slice 2x, the product-docs items | 4 | one pull request, about 12 lines | after OCE 2w |
 | the notebook rotation | the notebook, its archive, `distilled.md` | about two hours: four read-only Sonnet readers over the day's blocks against their homes, every presence claim verified first-hand, one records commit | after JC.net 2w merges |
@@ -106,8 +106,9 @@ About five seat-hours in all; finished within one day of the resume.
 
 ## Todos
 
-1. **JC.net slice 2w** (`docs/consolidation-2w-write-list-residue`), from `origin/main`, five
-   files, each sentence added where the file treats the subject, in British spelling:
+1. **JC.net slice 2w** (`docs/consolidation-2w-write-list-residue`), from `origin/main`, four
+   doctrine files and this node, each sentence added where the file treats the subject, in
+   British spelling (re-read at the tip SHA:f19bed6d5 when the slice was cut, 2026-10-02 20:2xZ):
    - `.agent/skills/change-custody/pr-lifecycle/SKILL-CANONICAL.md`, the review-leg section
      (W13, a port of OCE's text at its lines 1137 to 1142): "A reviewer's reported result has two
      transports, and the leg reads both: the review object, and a completion comment on the
@@ -117,19 +118,13 @@ About five seat-hours in all; finished within one day of the resume.
      415 to 422): "Read the reviews surface unfiltered, every time (owner, 2026-08-12: "never ever
      filter reviews, ever"): no login, state or tip filter on any review read; a narrow read is
      lawful only after an unfiltered read in the same breath has enumerated the full set." The
-     Copilot policy paragraph (W84, absent in both): "Requesting a Copilot review is an ordinary
-     call any seat may make on a tip that needs one; it needs no owner request and is verified on
-     the pull request's timeline, never on the call's response."
-   - `.agent/memory/executive/cross-platform-agent-surface-matrix.md`, the Codex section (W26, a
-     port of OCE's lines 329 to 333, verbatim): "The bounded-poll challenge (a convention seats
-     used with a Codex peer; from the comms record). To show that a Codex seat hears the stream, a
-     peer posts an event carrying a nonce. The Codex seat must find it by its own declared
-     foreground polling, with no relay. Its reply records the nonce, the timestamps, the command,
-     the cadence, the state of its turn and what it did after its final message." The adapter
-     families section (W39, OCE's lines 355 to 357, verbatim): "A rule adapter's `@` import path
-     is written as the vendor documents it, relative to the importing file. Whether the platform
-     expands it at launch stays a prediction until a fresh session has been seen to do so; record
-     that observation with its date."
+     Copilot request paragraph of W84 is carried in fuller words by the skill's Copilot review
+     policy and its merge-boundary item (the bare REST request as the bot, verified on the
+     timeline, never on the response), so the slice adds nothing for it: closed on reading.
+   - `.agent/memory/executive/cross-platform-agent-surface-matrix.md` needs nothing: the Codex
+     bounded-poll challenge (W26) and the adapter import-path sentence (W39) landed verbatim on
+     2026-10-02 as SHA:e4f71e7d, before this slice was cut; the audit of 18:3xZ read an earlier
+     tip. Landed in both.
    - `.agent/skills/author-skills/SKILL-CANONICAL.md`, the revision section (W35): "When a cure to
      a skill that carries an evaluation suite (`evals/evals.json`) goes over the review bar, re-run
      the suite and take a fresh human read of its outputs before the change merges: the owner's

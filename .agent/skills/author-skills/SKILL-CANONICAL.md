@@ -296,6 +296,11 @@ Typical iteration triggers:
 - reusable scripts or references are stranded in one
   platform adapter
 
+When a cure to a skill that carries an evaluation suite
+(`evals/evals.json`) goes over the review bar, re-run the suite and take
+a fresh human read of its outputs before the change merges: the owner's
+human-review criterion; a green suite alone does not satisfy it.
+
 ## Done Criteria
 
 A skill change is complete when:
