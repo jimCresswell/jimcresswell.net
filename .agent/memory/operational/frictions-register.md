@@ -56,6 +56,9 @@ Status lines are the disposition source of truth. Entries remain in this
 section until a consolidation pass moves them; the addressed/mitigated section
 below is a cross-reference index, not a second source of truth.
 
+An entry with no Status line is open: no cure is recorded for it. Where an entry's own text
+records a cure, its Status line says so.
+
 ### F-07 — No `comms list/show` CLIs (no `comms watch` either)
 
 - **Source**: napkin 2026-05-05 (Twilit/Ashen, `7cf730`) Surprise 7 (a)
@@ -270,6 +273,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: `--body-file` exists here; the inline `--body` hazard stands.
+- **Same friction**: also filed as F-48, F-149, F-152 (an inline comms body meets the shell before the tool does); read them together, and
+  count them once.
 
 ### F-37 — Shipped skills generator diverges from PDR-051 §Required
 
@@ -400,6 +405,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: `--body-file` exists here; no wider affordance was found.
+- **Same friction**: also filed as F-32, F-149, F-152 (an inline comms body meets the shell before the tool does); read them together, and
+  count them once.
 
 ### F-53 — `getSkillPermissionIssues` live skill-dir test path uncovered
 
@@ -518,6 +525,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: no detector for the negation-contrast form was found here (the same want as F-154).
+- **Same friction**: also filed as F-154 (the negation-contrast tombstone has no structural detector); read them together, and
+  count them once.
 
 ### F-66 — BSD `sed -i ''` transient siblings race directory watchers
 
@@ -598,6 +607,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: no help string names `--title` beside heartbeat mode.
+- **Same friction**: also filed as F-92 (the heartbeat mode requires a title its help does not name); read them together, and
+  count them once.
 
 ### F-78 — `check-commit-message` is not an `agent-tools` subcommand; only reachable via the pnpm script
 
@@ -653,6 +664,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: no help string names `--title` beside heartbeat mode (the same defect as F-76).
+- **Same friction**: also filed as F-76 (the heartbeat mode requires a title its help does not name); read them together, and
+  count them once.
 
 ### F-93 — `comms send --body` 1500-char limit has no clean home for a long directed coordination steer
 
@@ -1529,6 +1542,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: `--body-file` exists here; the inline `--body` hazard stands (as F-32).
+- **Same friction**: also filed as F-32, F-48, F-152 (an inline comms body meets the shell before the tool does); read them together, and
+  count them once.
 
 ### F-151 — the major-version guard blocks prose, and its own fix-instruction is unfollowable
 
@@ -1583,6 +1598,8 @@ below is a cross-reference index, not a second source of truth.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: `--body-file` exists here; the inline `--body` hazard stands (as F-32).
+- **Same friction**: also filed as F-32, F-48, F-149 (an inline comms body meets the shell before the tool does); read them together, and
+  count them once.
 
 ### F-153 — first new-shape comms event poisons all stale-dist readers (strict parsers + poison-pill drain)
 
@@ -1648,6 +1665,8 @@ below is a cross-reference index, not a second source of truth.
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
   2026-10-02: no detector for the negation-contrast form was found in the tools or the policy
   here.
+- **Same friction**: also filed as F-63 (the negation-contrast tombstone has no structural detector); read them together, and
+  count them once.
 
 ### F-155 — the prose-width hard limit fires on markdown headings, which are structurally unwrappable
 
@@ -4064,3 +4083,40 @@ Observed twice on 2026-09-29 by the Director: `.agent/rules/.logs` refused by th
   example: the second tranche of the handoff-record decision (OCE's ADR-182), which was to land
   them, never landed, so PDR-063's four sections are the only statement of the record's shape and no
   check reads a record against it.
+
+### F-282 — the context meter's first read after a compaction describes the compaction call (2026-10-02)
+
+- **Source**: this session's own readings on 2026-10-02 (63.9 % then 28.9 %; 0 % then 17 %), and
+  `agent-tools/src/session-metadata/usage.ts`, read the same day in both estates.
+- **Surface**: `agent-tools session-metadata`.
+- **Observed**: `parseLatestUsage` returns the input and cache tokens of the latest transcript
+  line that carries a usage object. A read made inside a turn therefore reports the previous
+  assistant message, and the first read after a compaction reports the compaction call itself
+  (the whole pre-compaction context) or a line with zero input. A thread-record entry carried
+  63.9 % as the seat's context when the true figure was under 30 %, and a directive edit was
+  nearly priced on it.
+- **Expected**: a read that cannot describe the present context says so.
+- **Candidate cure**: ignore usage lines at or before the transcript's latest compaction
+  boundary and zero-sum usage lines, and print "no reading since the compaction" with a
+  distinct exit until an assistant turn has been recorded after it. Until then the seat reads
+  the meter twice, a few calls apart (PDR-052 directive floor).
+- **Target surface**: agent-tools session-metadata (both estates).
+- **Status**: open.
+- **Owner direction status**: unsolicited
+
+### F-283 — nothing sizes a file before a seat reads it whole (2026-10-02)
+
+- **Source**: this session on 2026-10-02: a ledger of long rows, a plan block and two
+  directory and grep listings were read unbounded within two hours of the seat writing "every
+  listing gets a bound" into its napkin.
+- **Surface**: the harness's file read and shell tools; the seat's habit.
+- **Observed**: the read tool stopped the ledger read at its cap of 25,000 tokens, which is
+  itself 2.5 % of the seat's context for one call; a directory listing and a grep for file
+  names have no cap. The written lesson did not change the next read.
+- **Expected**: a seat learns a file's size before it spends context on it.
+- **Candidate cure**: a PreToolUse advisory that prints a file's byte size when a whole-file
+  read is asked of a file over a threshold, and a shell habit the tool-facts reference now
+  states (a line count or a heading list first).
+- **Target surface**: hook policy (advisory), tool-facts reference.
+- **Status**: open.
+- **Owner direction status**: unsolicited
