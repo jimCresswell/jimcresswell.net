@@ -936,3 +936,32 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
 - The Cricket suite's one frame finding (three of four variants): this seat read the node's "retire the ten items with the OCE seat's records commit" as the Director's act, where the Director's later message said "your next OCE records commit". A later, more specific message from the same author settles an earlier ambiguous line; the ack asked and the Director confirmed within minutes. The suite is worth its two minutes at a re-planning boundary; it is not worth a restatement of lanes the plan node already states (the Director agreed, and will not ask for restatements again).
 - The pattern-naming cure (a133) was carried forward as open through three entries after its substance had landed: its dry run on the primary found zero lines left to cure. An item carried in a list is re-run, not re-stated, at every entry that names it; the dry run costs one command.
 - The records commit's route around the primary's index lock (the Director, 17:1xZ): a fresh branch from the coordination branch's remote tip in this seat's built lane worktree, the dirty paths copied in, committed by pathspec, pushed as the bot to the coordination branch's ref (`merge-bot push --branch`), the primary never written. The primary's working tree then reads dirty against its own HEAD until the lock clears and the branch is re-read; that is the one cost of the route and it falls on nobody until the lock clears.
+
+## 2026-10-02T18:0xZ — The finish node's size row in both estates; three tool facts from the chains (Crucible binds Slag, 7b999c)
+
+- The size row for the first-batch skills residue is trued to Hazel tracks Trunk's 17:56Z
+  finding (two files in JC.net, six in OCE; four of JC.net's already carry their lessons on main
+  in later words) and committed in both estates as the same bytes: OCE on the coordination
+  branch by the primary, JC.net by the worktree route (a detached worktree at SHA:41f0d0c37,
+  pushed as the bot to the coordination branch's ref). Both landings read back as a new commit
+  on the remote beyond the head read before the commit.
+- **Tool fact (commit-msg)**: OCE's hook runs commitlint in strict mode, so a warning refuses the
+  commit; a body line wrapped so that it opens `carry:` was parsed as a footer token and refused
+  as "footer must have leading blank line". The constraint is already known (no body line opens
+  `word:`); this instance came from the wrap, not the wording. `candidate:` the chain scripts
+  run strict commitlint on the message file before the hold line is posted, so a refusal is read
+  before any window opens; trigger: this instance, the third header-or-body refusal of the day.
+- **Tool fact (zsh)**: the Bash tool's shell is zsh; `${PIPESTATUS[0]}` is empty there and the
+  status of a piped command is `${pipestatus[1]}` (lowercase, one-based). Every `exit=` line
+  printed from an interactive pipeline today read empty for this reason; the chain scripts run
+  under bash and were unaffected. The habit is to read the status, never the echo.
+- **Correction (mine), an open window**: the first OCE chain exited on the hook's refusal without
+  a window-closed line, so the hold line of 18:0xZ stood with nothing pushing until the second
+  run's push-done. Both chain scripts now close the window on the no-commit path.
+- **Tool fact (bash reads a running script by offset)**: the two chain scripts were patched on
+  disk while their first runs were still in the pre-push gate; bash reads a script file
+  incrementally, so after the push each running instance read the edited bytes at its old offset
+  and died on a syntax error before its read-back and push-done line. The pushes had landed; the
+  push-done lines were posted by hand from the fetch. The habit is to copy a chain script to a
+  per-run path before launching it and edit only the source. `candidate:` the commit skill's
+  chain section states it; trigger: this instance in two estates at once.
