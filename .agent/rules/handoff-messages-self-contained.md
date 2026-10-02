@@ -39,6 +39,15 @@ A handoff message MUST name:
 
 A receiver should be able to act WITHOUT a clarifying question back to the sender. If they need to ask, the message was incomplete.
 
+A handoff's content is of two kinds, and the receiver treats them differently. Owner rulings,
+deliberate oddities and recorded mistakes are inherited as written: nothing in the tree can
+recompute them. Lane state, branch state and pull-request state are recomputed from the live
+surfaces before any act rests on them; the handoff says where to look, never what will be found.
+
+A recorded decision names who will do it. Where nobody will, the record says "nobody": that
+word is what gets the work staffed (2026-09-25, an owner decision recorded as routed through a
+role no seat then held).
+
 ## Forbidden patterns
 
 - *"See our earlier discussion"* — the receiver has no earlier discussion.

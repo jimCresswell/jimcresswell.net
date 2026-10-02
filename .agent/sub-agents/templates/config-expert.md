@@ -96,6 +96,11 @@ Configuration consistency enables predictable behaviour across the workspaces. T
 provides the conventions; a workspace extends them minimally, and every override is
 justified in the diff or the docs.
 
+**Additions never silently subtract.** Diff a configuration proposal against what the running
+system already does before presenting it: every standing capability (an integration, a sink, a
+check) either survives the change or is named as removed, with the reason. An omission bears
+the burden of proof (owner, 2026-07-29, setting a production capability baseline).
+
 ## When Invoked
 
 ### Step 1: Identify Changed Configuration Files and Their Scope

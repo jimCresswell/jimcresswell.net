@@ -128,6 +128,11 @@ Fluency failures **cluster at the finish line**. Under completion drive — the 
 in a burst (five in one closing stretch, each caught by a guard or a peer, none self-caught;
 worked instance 2026-07-06). The felt urge to wrap up is itself the tripwire: slow the last
 moves down, and keep the guards absolute exactly when the drive says skip them.
+A second instance (2026-09-21): four corrections in one afternoon, none self-caught, each on a
+landing stretch run under the drive to land. The counter-observation (2026-09-24, a second
+seat): its slips clustered under parallel threads, not at a finish line, and structure caught
+them, so the drive to finish is the generator wherever it fires and the cure stays structural,
+with every relayed number, timestamp and credential re-grounded at the moment of use.
 
 A beloved principle is itself a bias: a principle that names a failure class primes its
 reader to SEE that class. A CI reflow red pattern-matched elegantly to animation-phase
@@ -136,6 +141,14 @@ and the sway was still; a two-minute probe found the true root (2026-08-18). Mea
 mechanism, and hardest when the mechanism arrives fluently. The same tell inside a verdict
 is a prediction in a proof's clothing ("Cursor should still complete", 2026-09-01, wrong):
 name a prediction as one and gate it, so being wrong costs nothing.
+
+A check's name is a claim about its target, never proof of its coverage: a grep that matches the
+message it sent, a wait that matches an earlier lane's line, a grader that counts the call and
+not the outcome, a process kill wider than its name, a review-cost gate that prices what its
+name does not mention (thirteen in three days, 2026-09-26 to 28, one seat, none caught before
+the instrument ran). The fluent move reads the name as the coverage: run the check against its
+pass case and its fail case before acting on its verdict
+([`verify-dont-trust`](../rules/verify-dont-trust.md): a gate never observed failing is not verified).
 
 A standing goal-hook is the same pressure made ambient (owner-ratified 2026-08-07): under any
 goal-hook, boundary rituals — the grounding sentence, the falsifier-check — bind HARDER, not

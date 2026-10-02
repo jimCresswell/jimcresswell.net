@@ -84,6 +84,17 @@ A detected ChatGPT Work seat is never one of the two participants: it holds no
 canonical visibility (§Environment Classification), so it cannot supply the
 retain-set above, and the n=2 mode is not available to it.
 
+When the owner pairs two seats, the first message between them carries
+state, and assignments come from the routing or after asking: a seat that
+opens by proposing the split has decided what the other seat was paired to
+help decide. Two seats writing to one pull request divide it over their
+dialogue channel (n=2 mode, step 1), the division mirrored to the stream
+at occurrence, one driving the door, the cut and the rotation, the other
+disposing threads on its own files (two instances). Routing
+broadcasts that cross are settled by ratifying the version already in flight
+and closing the chain in one event, never by a third version (a lesson from a
+handoff record).
+
 ## Goal
 
 Run the same shared repository foundation as `start-right-quick`, then add the team protocols needed for a coordinated multi-agent session.
@@ -944,7 +955,11 @@ SKILL names the protocol shape and points at it):
    `.agent/state/collaboration/handoffs/` naming the four required
    sections — _current edit state_, _in-flight reasoning_, _decisions
    made_, _decisions deferred_. The record is a first-class artefact,
-   content-addressed by `claim_id`, retained until the claim closes.
+   content-addressed by `claim_id`, retained until the claim closes. The
+   directory is gitignored in both estates, so the file stays on the machine
+   that wrote it: a Director absorbing a closeout homes the record's text on
+   the thread record beside its boundary entry (done for three seats'
+   handoffs, 2026-09-29; one instance).
 3. **Extend the active claim** by setting the optional
    `handoff_record_path` field on the active-claims entry pointing at
    the new handoff record. No other schema field changes; existing

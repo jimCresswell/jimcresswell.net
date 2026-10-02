@@ -89,7 +89,10 @@ into the permanent record):
   clause of the 2026-09-06 words is superseded by the work-in-progress
   limit, owner 2026-09-26: no PR other than a repository's coordination PR
   opens while the count is at the limit, by Phase 7's work-in-progress
-  bullet). A non-draft
+  bullet; restated 2026-09-25, relayed verbatim by the Director: "shoot for
+  zero open PRs for both repos via the proper quality and merge processes,
+  use all appropriate skills", which the Director read as a direction and
+  not a deadline, every door keeping its full process). A non-draft
   PR is its seat's landing priority over starting the next unit; drafts are
   inventory a seat may hold; the count is reported at every wrap and acted
   on at every boundary — merged when green and clean, closed with its
@@ -142,6 +145,22 @@ into the permanent record):
    #87, four rounds on #88, seven on #89, 2026-09-08); the review tail is the
    estate's own authoring-time check arriving late. The pre-push test: "does
    this paragraph enumerate what could be stated as a property?"
+7. **Expert passes before opening remove findings from round one; they do not
+   make round one empty.** Three instances (2026-09-27 to 2026-09-28): a
+   pre-push pass found three edges and the pull request's later rounds found
+   nothing; two expert findings were cured before another opened; a pre-open
+   review of a doctrine commit found contradictions with two rules. One
+   counter-instance (2026-10-01): three expert reviews passed a decision
+   record's promotion and round one found the record's own unmet condition.
+   The passes are worth their cost on code and rule text; a status change is
+   also checked against every condition the record itself states.
+
+**No draft waits for a ratification.** Work whose premise awaits the owner's word waits on
+its ticket with no commit on a worktree branch; the branch, its first commit and its draft
+open together at the moment of ratification (`worktree-hygiene` §1 fires at the first
+commit, so a plan with no commit holds no draft and the two rules govern different moments).
+A draft that cannot move holds a slot and ages its base (the owner retired a waiting draft;
+from a handoff record).
 
 ## Phase 2 — Open with a reviewer-facing description
 
@@ -176,6 +195,11 @@ review lands as review comments and a signed premises comment on that PR); a
 separate record PR only at the owner's word (owner, 2026-09-07,
 verbatim: "I never wanted the review in a separate PR, that is of very little
 use, you should have added your work to 66 in the first place").
+
+**The docs-only class is decided per path, never per directory.** `.agent/`
+holds executables beside its prose (hooks, scripts, skill scripts), and a change
+to one of those is a code change whatever directory it sits in (a finding on a fold
+merged on 2026-09-21).
 
 **Copilot review policy (owner grants, 2026-07-26→29, standing).** Request a
 Copilot review AT PR-OPEN for every source-touching PR; docs-only PRs stay
@@ -262,6 +286,17 @@ undersells its own diff is a finding to raise, not a formatting nit — it is ho
 an unreviewed major reaches `main` on everyone's assumption that someone else
 had already looked.
 
+**The scope a change causes is in scope, whatever the description declares.** A change that
+makes a sibling site wrong has caused that defect, and curing it belongs to the pull request
+even where the declared scope stops short of the site (2026-09-16: a reviewer called a
+regression the change introduced "outside the declared scope"; three independent checks agreed
+it was the pull request's to cure). Before review, take each "counted", "never" and "only" in
+the description and find the assertion that holds it in the diff: a promise no test holds is
+the next round's finding.
+
+**A pull request authored in a cloud environment is marked ready by the owner**, or by a seat
+only after the owner's stated acceptance (a Director's ruling, from a thread record).
+
 ## Phase 3 — Harvest EVERY feedback surface (the step most often botched)
 
 Immediately after opening — and again after every push — pull all four
@@ -315,6 +350,10 @@ surfaces. Partial reads produce false "no problems" verdicts:
   reader, the act they would take, the harm, the class and the verb. A finding
   labelled below the bar and then cured by a push has been dispositioned twice
   and priced once (eight roles, 2026-09-27).
+- **A below-bar call on the deciding seat's own record gets one confirming line
+  from a live seat before it is signed** (the Director's ruling on its own
+  records pull requests, 2026-09-27, two instances; on one of them a below-bar
+  label proved wrong and the cure stood).
 - **A third edge case in one procedure paragraph ends the clause-adding.** When
   review keeps finding edge cases in the same prose procedure (a rollback step,
   an "owed branch" rule; 2026-09-27), stop adding clauses: point the paragraph
@@ -453,6 +492,14 @@ select(.conclusion=="failure")'`), never from the `--log-failed` tail — an
   failure (observed 2026-06-24: the tail blamed a drift check; the failure
   was format-check).
 
+**State the invariant, not an enumeration.** A recipe that lists cases invites a sampling
+reviewer to list the rest, one a round: state the invariant and its check, and name the writes
+once. A patch to one region is read against the untouched text and the sibling files before it
+opens: five of one records pull request's eight rounds were contradictions with text the
+patch had not touched. And where a cure is cheaper than the argument against it, cure; a
+second raising by an independent reviewer tips any disposition to a cure (three lessons from
+one handoff record).
+
 ## Phase 5 — Wait without burning budget: the SUPERVISED terminal-condition watch
 
 - **A pull request with a merge conflict runs no `pull_request` workflows.**
@@ -487,8 +534,13 @@ select(.conclusion=="failure")'`), never from the `--log-failed` tail — an
   `MERGEABLE`/mergeable-state alongside the checks, and confirm runs exist
   for the CURRENT head via `gh run list` filtered per-head — a checks-green
   read against a head with zero runs is reading the PREVIOUS head's truth.
-- Run the repo's budgeted watcher in the background:
-  `pnpm agent-tools:pr-watch <n> --watch --interval 60` — one line per state
+- The repo's budgeted watcher, `pnpm agent-tools:pr-watch <n> --watch --interval 60`,
+  is not a settle watch while it runs through the unified entrypoint: that path
+  buffers every line until exit, so a Monitor on it reads silence (frictions
+  F-164, five instances; OCE's copy of this skill withdrew the form on
+  2026-09-16). Arm a poll of the pull request's own fields as the Monitor, or
+  call `runPrWatchCli` from dist with the process streams. Where the watcher
+  does print, it gives one line per state
   change, including new comments by author and the unresolved review-thread
   count moving in EITHER direction. KNOWN SUBSET: pr-watch currently reads
   PR-view fields, REST review comments, and thread counts — not review
@@ -807,7 +859,12 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    2026-09-08 when the two met on one tail). Everything below the bar is dispositioned without a diff (the
    lead's ratchet ruling on #961's round four and the owner's word on its
    wrap PR — "ignore bot comments … less than a P1 or equivalent" —
-   2026-09-03). A code-class finding is outside this pricing altogether: a
+   2026-09-03). For broken code the owner's word holds whatever the budget
+   (recorded in the Director's formation letter of 2026-09-17 as said the day
+   before): "If you know there is broken code, fix it". On 2026-09-27 it
+   carried one named fix push for a verified code defect past a spent round
+   budget; it never means a pull request per true finding, a reading that fed
+   twelve rounds on one pull request. A code-class finding is outside this pricing altogether: a
    verified defect follows the code-review state machine's own transitions
    (PDR-132's round budget and the step-back arms above), never a
    settlement-push cap. The tip of the LAST budgeted settlement push — the
@@ -947,7 +1004,11 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    review posted on the pull request stands as a leg** (owner ruling
    2026-09-10). Concretely: `--expect` once per available configured
    reviewer — never the set that happened to bind the tip, never a
-   reviewer declared unavailable; a subagent review of any kind,
+   reviewer declared unavailable, and a running door carries the set declared
+   when it was armed (when the ruling an `--expect` set rests on changes
+   mid-poll, stop the poll before any merge call, read the pull request
+   first-hand and re-arm with the new set; one instance, 2026-09-28); a
+   subagent review of any kind,
    adversarial included, posted on the pull request with every finding
    dispositioned and reported back to the seat is a review leg, BOUND TO
    THE SHA IT REVIEWED exactly as the vendor leg is bound per tip: the
@@ -1502,8 +1563,9 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   2026-09-08).
   When the default branch's ruleset requires branches to be up to date, every
   merge knocks every other open PR to BEHIND; each knocked PR must sync and
-  push again, and every push opens a fresh review round (ADR-204 makes the
-  re-sync one push). PDR-131 retires serial slots as DEFAULT mechanics —
+  push again, and every push except a pure sync opens a fresh review round (a
+  pure sync opens none, state machine items 3–4; ADR-204 makes the re-sync one
+  push). PDR-131 retires serial slots as DEFAULT mechanics —
   merge concurrency between settled-READY PRs is free where the ruleset does
   not require currency — and names the strict-currency ruleset policy as an
   owner-owned cost driver (its decision 5); this clause is that policy's cost
@@ -1520,11 +1582,17 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   and prepares everything that does not depend on the tip — dispositions,
   sweeps, the merge message. Slot order is the Director's call — among ready PRs
   the default is changed-file count, smallest first (the Director's ruling of
-  2026-09-26, the order the owner landed by hand), and the slot goes to a ready
-  PR rather than being held empty. The slot follows readiness, never a list
+  2026-09-26, the order the owner landed by hand), each count read from the pull
+  request at the ordering moment, since a count read before a sync goes stale,
+  and the slot goes to a ready PR rather than being held empty. The slot
+  follows readiness, never a list
   order written earlier: a draft is not on the ready list until its legs
   can bind, and a slot needs a named keeper, not just a next PR (two
-  handovers thirty minutes apart left it unkept, 2026-09-24). Settle-ready
+  handovers thirty minutes apart left it unkept, 2026-09-24). A hold needs a
+  named receiver as a slot needs a keeper: "a hold with a sensor and no seat
+  to trigger it is a hold on nobody" (the Director, 2026-09-26, on two pull
+  requests held behind a red check that needed only a re-run); a re-run is
+  not a push, so it runs off the slot. Settle-ready
   needs a BINDING round: a dismissed round binds nothing and Copilot never
   approves, so the door's refusal on that is the system working, never a
   blocker to route around (2026-08-19). A holder that has synced and is
@@ -1545,12 +1613,16 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   the holder cured a red check, and an order to land one of them arrived
   twice while the holder waited on its leg, and was held); or its heartbeat
   and state lines stop for twenty
-  minutes and a direct ping goes unanswered, which frees the slot. While the
+  minutes and a direct ping goes unanswered, which frees the slot. A heartbeat written by a
+  loop proves the process, not the attention behind it: a holder about to go
+  unattended hands the slot over first, or names on the stream the condition
+  under which a peer takes it (2026-09-27: a ready pull request waited a night
+  behind a holder whose loop kept beating). While the
   owner lands by hand, every seat holds its syncs until the owner says done.
   A coordination fold takes the slot at its time. Any auto-sync babysitter — a watcher running
   `gh pr update-branch` on OPEN and BEHIND auto-merge PRs — runs for the
   slot-holder only; a waiting PR is never auto-synced, because each sync is
-  a push and each push is a review round. Worked instance (2026-09-06): one
+  a push, and a sync that is not pure is a review round. Worked instance (2026-09-06): one
   PR was knocked BEHIND twice in one evening by other seats' merges, and its
   round five came from a sync push, not a cure.
 - **The work-in-progress limit** (owner, 2026-09-26 and 2026-09-27; the
@@ -1564,7 +1636,9 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   cannot run code "need to be checked out locally, evaluated, and then
   worked on as normal by the team"; for Dependabot, "Team lands green ones".
   The goal is "aiming for zero while useful value is still created and
-  merged", because "a static zero means no useful work is happening". The
+  merged", because "a static zero means no useful work is happening". A seat
+  the owner names alone is its own Director: it routes and it executes, and
+  its limit is one open pull request across the repositories. The
   operating steps:
   - No PR that starts new work opens while the count is at the limit or over
     it, other than a repository's one coordination PR. The reservation comes
@@ -1602,13 +1676,29 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   - While the count is full, a seat prepares without a worktree or a commit
     (reading, planning, reviewing a peer's PR), because `worktree-hygiene`
     allows no worktree to hold work without a PR; its landing turns and any
-    cure that frees the count come first.
+    cure that frees the count come first. The owner's word of 2026-09-29,
+    relayed verbatim by the Director: "the entire team is supposed to have
+    been instructed NOT to create new PRs while waiting for old ones, that is
+    how WIP is managed... if you move on while the older work is still pending
+    you create an ever growing tail" and "We are aiming for trend to zero open
+    PRs". So an ordered "then" means after the earlier pull request lands, a
+    seat with an open PR cuts its next worktree after that PR merges, and a
+    seat holding two opens nothing until both land (the Director's readings
+    that day). It recurred with this bullet loaded: a seat built its next
+    branch while its PR waited (2026-09-29), and the consolidation seat cut
+    and pushed two branches while its PR was open (2026-10-01). The cure is a
+    check at the first push, in the frictions register, and not this sentence.
   - **The owner lands small green pull requests by hand, in changed-file
     order** (owner, 2026-09-26: "I can make judgements that allow me to merge
     small PRs many, many times faster than Practice agents"). Never hold a
     small green PR for the owner; keep a ready list with links, ordered by
     changed-file count, and while the owner is landing hold every sync push
-    until the owner says done.
+    until the owner says done. The owner weighed the breakage the same day,
+    to the Director: "I recognise my rapid merging may have caused issues, but
+    I still think that identifying and fixing them will take much, much less
+    effort than would have been required to merge those PRs". What a hand
+    landing breaks is cured forward, and a red run on the last owner-landed
+    tip is the first cure lane (the Director's ruling of that hour).
   - **Review rounds per pull request never go up** (owner, 2026-09-14): after
     round two every remaining finding is dispositioned in the last push's slot
     turn, cured or rejected with its reason, and the pull request settles;
@@ -1632,6 +1722,11 @@ ready and before the door" (the seat's lesson of 2026-09-21, event a68de270).
 The yield in the landing slot is a throughput rule: Altair spins Umbra measured that "the yielding
 rule is throughput, not courtesy (two landings inside the window this lane would have held)" (the
 seat's reading of 2026-09-10, event 2a55fd9a).
+
+**No merge rests on an authority the pull request's own diff grants.** Where the diff edits
+the rule that would permit its merge, the merge waits for the authority the unedited rule
+names. And no approval is given without re-reading the open threads first (a decision from a
+handoff record).
 
 ## Phase 8 — After merge
 
@@ -1672,6 +1767,10 @@ untracked by design and rotate (ADR-199, PDR-094); fourteen pointers from
 three lanes (2026-09-04/05) lived only on lane-closed events until the
 consolidation of 2026-09-06 recovered them. The Director applies this to its
 own closes from 2026-09-06.
+
+**A superseded pull request closes only when every surviving delta has a successor.** Each
+change it carried is either in a merged successor or has an evidenced supersession. Matching
+commit ids are not the test: a squash merge changes them.
 
 ## Failure modes this skill exists to prevent (all observed)
 

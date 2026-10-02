@@ -1,6 +1,7 @@
 import { err, ok, type Result } from '@engraph/result';
 
-import { parseGitRemoteUrl } from '../core/git-remote-url.js';
+import { parseGitRemoteUrl, type GitRemoteRepository } from '../core/git-remote-url.js';
+import { printable } from '../pr-watch/printable.js';
 import { DEFAULT_BRANCH_NAMES } from './branch-arg.js';
 import type { GitCommandResult } from './git-executor.js';
 import { describeGitChildEnd, type PushGitReads } from './push-git.js';
@@ -16,8 +17,8 @@ import type { BotIdentity } from './resolve-identity.js';
  * from the default one breaks every fetch on a case-insensitive disk.
  *
  * The origin read is trusted only when origin names the repository the push
- * goes to, since the push itself goes to the configured repository's URL,
- * never to `origin`. It is a snapshot: a fetch does not move an existing
+ * goes to, over https or ssh, since the push itself goes to the configured
+ * repository's URL, never to `origin`. It is a snapshot: a fetch does not move an existing
  * `origin/HEAD`, so after the repository's default branch changes,
  * `git remote set-head origin --auto` refreshes it. Where the configured
  * repository's ruleset on the default branch binds the bot, as this
@@ -53,7 +54,7 @@ function refused(reason: string): TargetBranch {
 
 /** The refusal for a branch that is a default branch, by name or as origin names it. */
 function defaultBranchRefusal(branch: string): string {
-  return `"${branch}" is a default branch — changes reach it through a pull request, never a direct push`;
+  return `"${printable(branch)}" is a default branch — changes reach it through a pull request, never a direct push`;
 }
 
 /** The refusals that need only the name, decided before any read of origin. */
@@ -62,7 +63,7 @@ function refuseBranchName(branch: string): string | undefined {
     return `"${branch}" names no branch — HEAD is git's name for the current commit; name the branch to push`;
   }
   if (branch.startsWith('refs/')) {
-    return `"${branch}" reads as a full ref — name the branch alone; the push always writes refs/heads/<branch>`;
+    return `"${printable(branch)}" reads as a full ref — name the branch alone; the push always writes refs/heads/<branch>`;
   }
   return DEFAULT_BRANCH_NAMES.has(branch.toLowerCase()) ? defaultBranchRefusal(branch) : undefined;
 }
@@ -89,7 +90,20 @@ function originReadFailure(result: GitCommandResult, cure: string): Error {
       );
 }
 
-/** Whether origin's one URL names the configured repository on github.com. */
+/**
+ * The repository origin's one URL names, when it is read over a transport the
+ * push trusts. What a remote advertises over plain http, its default branch
+ * included, is not trusted; the parser reads that form all the same, for
+ * callers that need only the repository a URL names.
+ */
+function trustedOriginRepository(urls: readonly string[]): GitRemoteRepository | undefined {
+  const url = urls[0]?.trim();
+  return urls.length !== 1 || url === undefined || url.startsWith('http://')
+    ? undefined
+    : parseGitRemoteUrl(url);
+}
+
+/** Whether origin's one URL names the configured repository on github.com, over https or ssh. */
 function trustOrigin(result: GitCommandResult, repository: Repository): Result<undefined, Error> {
   const repo = `github.com/${repository.owner}/${repository.repoName}`;
   const cure = `point origin at https://${repo}.git, then ${SET_HEAD_CURE}`;
@@ -97,7 +111,7 @@ function trustOrigin(result: GitCommandResult, repository: Repository): Result<u
     return err(originReadFailure(result, cure));
   }
   const urls = result.stdout.split('\n').filter((line) => line.trim() !== '');
-  const remote = urls.length === 1 ? parseGitRemoteUrl(urls[0] ?? '') : undefined;
+  const remote = trustedOriginRepository(urls);
   const names =
     remote?.host.toLowerCase() === 'github.com' &&
     remote.owner.toLowerCase() === repository.owner.toLowerCase() &&
@@ -188,7 +202,7 @@ export async function settleCommitFor(
     ? commit
     : err(
         new Error(
-          `HEAD moved from branch "${branch}" to ${now.value === undefined ? 'no branch' : `"${now.value}"`} while the push settled its target; nothing was minted or pushed; run the push again`,
+          `HEAD moved from branch "${printable(branch)}" to ${now.value === undefined ? 'no branch' : `"${printable(now.value)}"`} while the push settled its target; nothing was minted or pushed; run the push again`,
         ),
       );
 }

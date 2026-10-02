@@ -392,7 +392,7 @@ the waits run out, it reports an operational failure with every refusal
 shown. Any other failure is final at once, including a 403 after the hook
 ran: trying that again would run the whole gate again. The refusal check
 keeps a bounded copy of the push's output (`REFUSAL_TRANSCRIPT_BOUND`, same
-file); the output itself streams to stderr in full.
+file); the output itself reaches stderr in full.
 
 Two things are checked before each attempt, the first included
 (`agent-tools/src/merge-bot/push-attempt-guards.ts`); either stops the push

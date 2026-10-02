@@ -28,7 +28,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-29
+last_updated: 2026-10-02
 ---
 
 # Practice exchange
@@ -435,6 +435,19 @@ entries composed whole and appended in one write.
 3. The cards for conflicting rows, one batch.
 4. Inbound landings, one pull request per eight claims, in the register's order, after goal
    one's close and the review that follows it (ruling 44).
+   Capabilities found on 2026-10-01 by the second two-estate consolidation with no register
+   row. At the closure of 2026-10-02 three of the four are rows of the inventory (OCE only, or
+   different bytes) and the extraction plan reads them from there; the runbook index lives
+   under OCE's `docs/operations/`, outside the inventory's directories, and this paragraph is
+   the extraction plan's input for it. Inbound: OCE's `agent-tools
+   skill-evals` runner, which projects a skill's `evals.json` onto the host's `claude plugin
+   eval` (this estate's parallax fixtures are unexecuted without it); a runbook index
+   (`docs/operations/README.md` §Runbook Index in OCE, which OCE's `continuity-practice`
+   points at); content binding in `pr-watch` (OCE's
+   `agent-tools/src/pr-watch/content-binding.ts`, by which a pure sync opens no review round;
+   this estate's pull-request lifecycle skill carries OCE's pure-sync text since 2026-10-02).
+   Outbound: OCE's `session-metadata/window-registry.ts` lacks the three Opus 5 rows this
+   estate's carries (OCE's friction F-191).
 5. The outbound note and material, delivered through the join ceremony.
 6. The close, on the owner's ratified bar (ruling 40), one pull request, prose-class, when the
    bar is met: every J row inside the register's count (§Disposition vocabulary: a lineage cell
@@ -469,6 +482,7 @@ entries composed whole and appended in one write.
    amendments as register candidates, stay the node's, after the bar. Next act after this
    amendment lands: the census's order, J1's N1 (the rule-generator slice) first.
    Dated 2026-09-29 (the lineage's exchange seat, after the register pull request's fourth review round): the total this paragraph carries (N of 26) is the close-bar ruling's as written on 2026-09-28; the live count and its units are the register's §The count, whose dated recounts explain 26 to 32.
+   Closed 2026-10-02 (the finish node `practice-work-finish`, end state 3): the register reads 79 of 79 rows closed against the Practice inventory, 17 landed, 15 declined, 47 as measured difference rows; the residue-unit count is retired, and the inventory is the extraction plan's input.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
@@ -491,6 +505,28 @@ entries composed whole and appended in one write.
    lineage's chain), recorded here under todo 8 and not as a J row; the lineage's count reads
    30 with it. Its number is 301, opened 2026-09-29 02:33Z and merged as SHA:eb1ad3f80 at 2026-09-29T03:19:24Z:
    the twin is landed on both estates and the condition holds.
+
+Routed here on 2026-10-01 from the walk of both comms streams, each one piece of parity work
+with no other home: twin OCE's pr-watch content binding (`agent-tools/src/pr-watch/content-binding.ts`
+and `pr-lifecycle`'s "binds the tip exactly or by content" passage, landed there 2026-09-28), so
+a pure sync keeps reviewer legs bound here as it does there; and move this estate's host-tagged
+amendment entries in PDR-008 (two), PDR-082 (two) and PDR-132 (two) to a host-side record so
+that each Core record is one blob in both estates, this estate going first to set the shape
+(the Director's ruling, 2026-09-26 11:53Z), with the Core validator then refusing a host-named
+amendment heading.
+
+Routed here on 2026-10-02 from the same pass: OCE holds a ratified strategic node,
+`outcome-informed-practice-learning`, that this estate has no counterpart for. Its bet is that
+a learning decision is tested through three contracts (the capability and its consequence; the
+intended effect and its assumptions; the feedback that can confirm, challenge, narrow or retire
+it), with criteria for promoting a local lesson (corroboration, a scoped trial, preserved
+dissent, a bounded blast radius, a rollback path), human leadership read as legible judgement
+and appeal and not as more approval gates, and a boundary against surveillance and proxy
+optimisation. Here the Practice stream has one strategic node by rulings 19 and 27 above, and
+the choice the bet elaborates is PRACTICE-2 (the learning loop is closed). The form is the
+owner's to rule: PRACTICE-2 reworded to carry the bet, a delivery sketch under
+`best-of-each-practice`, or the node read in OCE alone. Until that ruling the lessons are read
+there, and nothing is built here on them.
 
 ## Plan-body first-principles check
 

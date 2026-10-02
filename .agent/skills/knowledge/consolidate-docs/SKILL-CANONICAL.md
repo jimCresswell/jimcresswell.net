@@ -295,6 +295,20 @@ on a buffers PR ahead of their homes on a skills PR, and a reviewer caught the w
 which no landed state held them; on 2026-09-07 two register entries were drained whose
 target homes had not yet been written, and were restored at review.
 
+**A buffer too large for one sitting is read whole, in halves, never sampled.** List its
+headings, read each half, and keep one analysis table per buffer in the session's state
+directory (lesson, verdict, home or reason) with a closed verdict vocabulary: homed,
+superseded, tracked (lives in code or a plan), released (state of its day), unhomed, private
+(the owner's), check. Test every unhomed verdict by a probe of the doctrine paths at the
+default branch, a regex batch with a known-positive control term first (the control shows the
+probe reaches the doctrine, never that a lesson is absent), matched on short distinctive terms
+because a phrase wraps across lines and is paraphrased; then read the likely homes the probe
+points at before the verdict stands. Where a sibling estate shares the Practice, probe both.
+The writes that survive are anchored scripts (dry, then apply) run on a lane branch, so the
+home lands as reviewable bytes, and the buffer archives by proof only after those writes merge.
+Three rotated napkins of 1,706 lines yielded about 200 lessons and four writes this way
+(2026-10-02).
+
 **Checklist failure / anti-example**: archiving a buffer or source file before
 reading, extracting, routing, and verifying the home is not curation. An
 archive-only "drain" leaves the buffer live for completion purposes, even if
@@ -634,9 +648,13 @@ Rule; the standalone crosswalk plan was archived in the same pass.)
     finished entries graduated and their homes read back; the finished range
     moved whole to `archive/<surface>-YYYY-MM-DD.md` beside the surface (a
     letter suffix for a second archive that day; never overwrite one) and
-    proven byte-identical against the committed blob (finished ranges that are
-    not contiguous: a snapshot of the whole pre-curation file, proven the same
-    way, then the live file curated); the runbook's token and
+    proven byte-identical against the committed blob (the comparison takes the
+    archive's body, after any frontmatter of its own; finished ranges that are
+    not contiguous move whole in file order with nothing between them and are
+    compared with the same ranges cut from the pre-move blob (the surface as
+    committed at `HEAD` before the move) and joined in that order; no whole-file
+    snapshot is written, because that commit, the move commit's parent, holds
+    the whole pre-curation file); the runbook's token and
     neighbour checks run; the live surface left with its live state and a
     one-line pointer. This is the trigger the continuity surfaces lacked
     until 2026-09-17, when only the napkin had one. Archiving happens only after

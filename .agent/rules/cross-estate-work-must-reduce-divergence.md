@@ -34,9 +34,12 @@ transplant, or an edit to any path that exists at the same relative location in 
    settled blobs (the Director's ruling of 2026-09-26; of eleven exchange-lane events applying
    it, four had stated a mutual wait, which holds both copies).
    Before a port in either direction, each thing the destination lacks is read as a decision
-   first and a loss second: run `git log -S'<distinctive string>' -- <file>` in the destination
-   and read the commit that removed it; no commit means it was never there, and the port is an
-   addition. A diff shows that the estates differ; only history shows
+   first and a loss second: run `git log --all -m -S'<distinctive string>'` in the destination,
+   over every fetched ref, through merge commits and with no path (without `--all` the search
+   starts at `HEAD`; without `-m` a change made in a merge resolution is not searched; a
+   path-limited search stops at a rename), and read the commit that removed it; no commit means
+   no fetched ref of a full clone ever held the text, and the port is treated as an addition. A
+   diff shows that the estates differ; only history shows
    who decided (two instances on 2026-10-01: assertions one estate had deleted on purpose were
    restored in the other and removed again at review).
 3. **Measure at the close.** The activity closes only when neither number is above the baseline
@@ -45,6 +48,23 @@ transplant, or an edit to any path that exists at the same relative location in 
    estate-specific worked instance), or a defect owed to a named seat with its cure.
 4. **Say the two measurements** beside the buffer counts in every close report of a two-estate
    activity.
+
+"The same bytes" is a goal for the outcome, not a licence for the port. Before a port changes a
+shared module, search each estate for every importer of that module: an importer one estate
+alone has is where identical bytes break (2026-10-01). And before a port takes a form, read the
+destination's own structure and the owner's rulings on it: a strategic plan node ratified in
+one estate was routed as a question, not copied, into an estate whose owner had ruled one node
+for that stream (2026-10-02).
+
+Small differences between the estates are of three kinds. A host anchor (a decision record's
+number, a skill prefix, a package scope) is a standing difference. Wording one estate already
+holds host-neutral is where both converge. Content one estate has and the other lacks is
+knowledge at risk: once it is classed as portable knowledge, not an estate-specific fact
+(the guard above) or a recorded deliberate difference, it ports, after a search of the whole
+history for a deliberate removal.
+Measure divergence at the close of a pair of pull requests, never between its halves: twin
+pull requests land an hour or more apart, and each estate's review changes the bytes
+(2026-10-02).
 
 ## The owner's word
 

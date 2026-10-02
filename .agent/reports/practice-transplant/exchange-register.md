@@ -113,6 +113,19 @@ ruling of 06:1xZ), #297 not yet merged. Since the census, sixteen lineage pull r
 their own and change no unit. The inbound direction's count opens with its own census (todo 4,
 ruling 44).
 
+Closed on 2026-10-02 against the Practice inventory (`practice-inventory-2026-10-02.md`, beside
+this file; the finish node `practice-work-finish`, end state 3), read at jcnet `main` and
+OCE's `engraph` at the heads the inventory names: **79 of 79 rows closed**, 17 landed, 15
+declined, 47 closed as difference rows (10 with partial landings, 37 never landed): 26 of
+them measured in the inventory's closure table as the same, different and one-sided paths under
+their globs, and 21 (17 whose globs fall outside the inventory's directories, 4 with
+no globs) closed as difference rows on their register cells alone, which the extraction plan
+reads from this register. The residue-unit count above (16 of 32 at 2026-09-29) is retired by this
+closure: the unit
+was the residue pull request, and the owner's ruling of 2026-10-02 ends the exchange at a known
+count of rows rather than recounting it upward; a row closed as a difference is sequenced into
+the extraction plan from the inventory, never reopened here as a lane.
+
 ## Rows from the lineage's delta (since `e477e62f7e`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |
@@ -307,3 +320,4 @@ Appended as each row lands: row, estate, pull request, head read.
 | J3 | jcnet | PR 270 (merged `1cdcce7590`, 2026-09-29T05:56:37Z; PARTIAL: the shellcheck gate's flow-back, converging on the lineage's modules (the runtime split, the `.tools` refusal, the skills-lock exclusion, the lost-file refusal read from the index, the wider silencing directive, the tsx shebang forms), differing only at the git reader; two Copilot rounds, round one's item 1 cured, the rest Rejected; written here for Siren herds Rudder, one writer for the table) | lineage `e07d6b34ef` |
 | J16 | lineage | PARTIAL by ruling, no pull request yet, 2026-09-29: the entrypoint half (this estate's `CLAUDE.md` and `GEMINI.md` adapter-model sections) is declined by the lineage's entrypoint contract (its session-handoff skill's step 6d, its homing rule's item 3, ADR-125's Layer 3: a heading and one pointer line, named extensions only on `AGENTS.md`, `skills.md` and the Copilot instructions), every fact homed in the lineage's AGENT.md §Rules, its artefact inventory and its extending.md; a draft in this estate's form was withdrawn before any commit on the onboarding read, and the reverse read (this estate's own sections under this estate's entrypoint contract) is an observation for this estate's seat. The Gemini half is ruled in by the Director as J16's one unit: the lineage's ADR-125 amendment of 2026-05-10 retires its `.gemini/commands/review-*.toml` adapters once native Gemini agent support exists, which its surface matrix records; the lane declares Gemini on the reviewer roles after a vendor-shape verification, renders `.gemini/agents/` as this estate does, retires the TOMLs and amends ADR-125, the matrix, the inventory's recipe and the roster; sequenced after J2's three. | lineage `e07d6b34ef` |
 | J8 | jcnet | no pull request, 2026-09-29: five findings received from the lineage's port of this estate's corpus workflow (its J8 pull requests A, B1 and B2 with B3, Nova turns Penumbra), each read there and routed here, unverified against this estate's code, a cure its own lane: (1) `workflows/*` claimed homes given as absolute paths are refused by a root match on the raw string, although the runbook says the driver resolves either form; (2) a root that is a symlink out of the repository lets an outside file count as a claimed home; (3) the directory cell of the claimed-home check claims `.agent/rules` itself, which the roots check excludes first, so a mutant counting any entry survives it; (4) `workflows/stage-io.ts` refuses a partition file with a leading slash, a drive letter, a backslash or a parent segment and admits `~/.ssh/id_rsa`, `$HOME/x`, `file:///etc/passwd`, a leading space and an embedded newline, which the map prompt renders as a second line of its file list (the lineage's B1 replaces the deny-list with an allow-list in core); (5) the corpus-analysis builder resolves a relative checkpoint path against the working directory, not the repository root (Codex's P1 on #311; not a regression there, the same before B3; the alignment with core's flag-path-resolve is a named follow-up on the lineage) | lineage `ecf59d763a` |
+| L34 | lineage | #310 (merged `2e8892fed0`, 2026-10-01T15:36:37Z; the push retry on GitHub's pre-hook refusal with one token on its backoff, the port of this estate's PR 261; read at the closure of 2026-10-02, not at its landing) | jcnet `24b72825e3` |

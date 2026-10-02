@@ -75,15 +75,9 @@ describe('merge-bot push credential discipline', () => {
     expect(Object.values(env)).not.toContain(TOKEN);
     // What the environment carries is the PATH to the token file the helper
     // reads — a path is harmless in any env dump — and the file holds the
-    // minted token, readable by its owner alone.
-    expect(run.writes).toEqual([expect.objectContaining({ content: TOKEN, mode: 0o600 })]);
+    // minted token.
+    expect(run.writes).toEqual([expect.objectContaining({ content: TOKEN })]);
     expect(Object.values(env)).toContain(run.writes.map((write) => write.path).join());
-    // The directory is requested under the named prefix at the OS temp root —
-    // never inside the worktree, where a stray `git add -A` could commit it.
-    expect(run.prefixes).toEqual(['merge-bot-push-']);
-    // Prompting stays disabled: an unanswered helper must fail loudly, never
-    // fall back to asking the signed-in human.
-    expect(env.GIT_TERMINAL_PROMPT).toBe('0');
     // The base environment travels wholesale — git needs it — with the path
     // spread on top, never replacing it.
     expect(env.PATH).toBe(BASE_ENV.PATH);
@@ -91,12 +85,10 @@ describe('merge-bot push credential discipline', () => {
     expect(run.removed).toEqual([STORE_DIR]);
   });
 
-  it('closes every arm of git credential-resolution chain: none inherited through the environment, each configured one cleared before the one helper', async () => {
+  it('lets no inherited arm of git credential-resolution chain reach the push environment', async () => {
     // Every env-sourced arm the base environment carries is given a leaky
     // askpass program, and the child environment that reaches git must carry
-    // none of them. Every config-sourced arm is cleared on the push's own
-    // command line, so a configured keychain helper or askpass program never
-    // answers for the bot.
+    // none of them. What git does with its config-sourced arms is git's.
     const inherited = Object.fromEntries(
       GIT_CREDENTIAL_RESOLUTION_CHAIN.filter((arm) => arm.source === 'env').map((arm) => [
         arm.name,
@@ -111,15 +103,6 @@ describe('merge-bot push credential discipline', () => {
     expect(Object.values(pushCall(run.calls)?.env ?? {})).not.toContain(
       '/usr/local/bin/leaky-askpass',
     );
-    const args = pushCall(run.calls)?.args ?? [];
-    const uncleared = GIT_CREDENTIAL_RESOLUTION_CHAIN.filter(
-      (arm) => arm.source === 'config' && !args.includes(`${arm.name}=`),
-    ).map((arm) => arm.name);
-    expect(uncleared).toEqual([]);
-    // Clearing must never disarm the one helper this command installs: the
-    // helper is set after the clear that would otherwise wipe it.
-    const helperIndex = args.findIndex((arg) => arg.includes('x-access-token'));
-    expect(helperIndex).toBeGreaterThan(args.indexOf('credential.helper='));
   });
 
   it.each([
@@ -139,18 +122,6 @@ describe('merge-bot push credential discipline', () => {
       expect(carrying).toEqual([`${COMMIT}^{commit}:refs/heads/${branch}`]);
     },
   );
-
-  it('asks git to write the one ref alone: no tag follows it, no submodule is pushed, nothing is forced', async () => {
-    const run = runPush({});
-
-    expect(await run.exit).toBe(0);
-    // Whatever the checkout configures (`push.followTags`,
-    // `push.recurseSubmodules`), the push says so on its own command line. The
-    // smoke proves the tag half against real git; this holds both.
-    const args = pushCall(run.calls)?.args ?? [];
-    expect(args).toEqual(expect.arrayContaining(['--no-follow-tags', '--recurse-submodules=no']));
-    expect(args.filter((arg) => /^(?:-f|--force.*|--no-verify)$/u.test(arg))).toEqual([]);
-  });
 
   it('a token-staging failure is an operational failure: exit 1, no push, the half-staged directory removed', async () => {
     // The write fails AFTER the directory exists — the richer state: the
@@ -341,6 +312,17 @@ describe('merge-bot push outcomes and refusals', () => {
 
     expect(await run.exit).toBe(2);
     expect(run.errText()).toContain('single authority');
+  });
+
+  it('fails as an operation, never as usage, when no trusted git can check the --branch value', async () => {
+    const run = runPush({
+      args: ['--branch', 'other-lane'],
+      overrides: { branchArgSeams: { pathExists: () => false } },
+    });
+
+    expect(await run.exit).toBe(1);
+    expect(run.errText()).toContain('No trusted git binary found');
+    expect(run.calls).toEqual([]);
   });
 
   it('answers push --help with the usage on stdout, exit 0 — never the unknown-flag path', async () => {

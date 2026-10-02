@@ -146,7 +146,7 @@ What changes. §Prediction and falsifier and §Consequences name the
 pr-throughput register as the standing instrument once it gains
 commits-per-PR and changeset-class dimensions. That register was retired from
 this estate on 2026-09-14 (transplant closure item 5b, pull request #68) with
-three other lineage instruments, re-importable from the OCE pin; this
+three other OCE instruments, re-importable from the OCE pin; this
 record no longer promises it here. The falsifier's measurement stands as the
 corpus-methodology re-run, recomputable from the repository host on demand
 (per pull request: opened and merged times, changed files, and each vendor
@@ -172,8 +172,8 @@ an operating default with no PDR-132 text change").
 
 ### 2026-09-26 — a pull request's flat cost puts the optimum slice above one line
 
-Owner word (2026-09-26, to the Director, after merging thirteen small pull requests in the
-lineage by hand in fifteen minutes), verbatim: "Perhaps we need to update our cost model for
+Owner word (2026-09-26, to the Director, after merging thirteen small pull requests in OCE
+by hand in fifteen minutes), verbatim: "Perhaps we need to update our cost model for
 PRs, there are flat costs that dominate for tiny PRs, and while complexity based cost rises
 exponetially with complexity, the fixed cost suggests that there is an optimum in the effort to
 value curve that is well above a single line change". The Director's ruling of the same hour

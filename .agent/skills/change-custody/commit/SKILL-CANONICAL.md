@@ -223,7 +223,11 @@ Run these steps **before** formulating the commit message.
    seat amended one unpushed commit four times folding new substance in, and
    every amend invalidated shas already published to a ticket, the comms
    stream and a rapid channel, manufacturing its own correction churn.
-   Commits only append; the PR body maps the trail once at open. A "one
+   Commits only append; the PR body maps the trail once at open (owner,
+   2026-09-10, verbatim: "we must NOT rewrite the shared history, all
+   commits happened, we are adding more or we are not" — a one-parent
+   commit made by mistake stays, and gains its ancestry from a further
+   merge commit on top). A "one
    clean commit" aesthetic is a squash instinct in a never-squash estate.
 
    **The `commit-msg` hook is the real gate — do not test the checker.** The
@@ -745,6 +749,13 @@ runs on a missing file (`stage-by-explicit-pathspec` §What to Do Instead,
 refused subject or a body line that opens `word:` (read as a footer under strict
 commitlint) costs a full gate run (five refusals across two seats, 2026-09-23 to
 2026-09-25); check the message file before the gate, never after.
+
+Check the header before the commit is launched: it is at most 100 characters
+(`header-max-length`) and its subject starts lower-case (`subject-case`). Write the
+message file, run the checker on it, and chain the launch after the checker with
+`&&` (`pnpm agent-tools:check-commit-message -F <file> && …`), so the launch is
+gated on the checker's exit code and never on the file existing: a file that
+exists can still hold a message the hook refuses.
 
 ## Stream truncation at the depcruise → turbo handover — workaround
 

@@ -87,7 +87,7 @@ napkin entry references /tmp/synthesis.md for follow-on author      ❌
 comms event references /tmp/handover.md as the handover record      ❌
 plan file references /tmp/cycle-evidence.md as substrate            ❌
 .agent/ surface points at /tmp/ for ongoing context                 ❌
-curator-pass log names /tmp/ as load_bearing_working_artefact       ❌
+curator pass closes with its substance still only at /tmp/          ❌
 handoff record body asks the next agent to read /tmp/...md          ❌
 ```
 
@@ -135,6 +135,12 @@ instruction, surface the conflict in one sentence at the action moment
 ("tracking them in place — say if you'd rather I snapshot instead"), never
 resolve it silently toward the weaker protection.
 
+A placement that feels easy under a sensitivity constraint is checked against the tree before
+it is made. Search the tracked files for the thing being protected: one such search found
+sixty-two tracked files already naming it, and both of the estate's own tiers for derived
+analysis already in place. Repository data does not go in a machine-local folder (owner,
+2026-09-25); a guard's allowance of a path shape is not a reason to place something there.
+
 ## Composition With Other Rules
 
 - **The no-machine-local-paths principle** (principles.md; shapes in
@@ -158,13 +164,13 @@ resolve it silently toward the weaker protection.
 - **PDR-067 (surface classification)**: per-user-memory is a buffer,
   not a personal store. By the same logic, `/tmp/` is a buffer, not
   a substrate store.
-- **PDR-081 (curator role)**: the curator's per-pass log MAY name a
-  `/tmp/` working artefact only as a transient pointer that is
-  immediately resolved (substance absorbed by reference into routed
-  homes, or copied to a durable in-repo location, before the pass
-  closes). A pass that *closes* with the per-pass log's
-  `load_bearing_working_artefact` still pointing at `/tmp/` is in
-  violation.
+- **PDR-081 (curator role)**: the curator keeps no per-pass log (the
+  commit plus the homed substance is its record, PDR-081 as amended
+  2026-06-14), so a `/tmp/` working artefact used during a pass is
+  resolved before the pass closes: its substance is absorbed by
+  reference into routed homes, or copied to a durable in-repo
+  location. A pass that *closes* with substance still only at `/tmp/`
+  is in violation.
 
 ## Detection
 
@@ -205,9 +211,9 @@ curator-pass's own surface survey.
   after a reboot, will not have it.
 - "I'll move it later" pointers. The migration is the rule's whole
   cure — defer it and the substrate decays.
-- Curator-pass log files whose `load_bearing_working_artefact`
-  pointer remains at `/tmp/` after the pass closes. The pass-close
-  step is where the migration completes.
+- A curator pass that closes with its survey or working artefact
+  still only at `/tmp/`. The pass-close step is where the migration
+  completes.
 - Substrate-bridge files left at `/tmp/` after the agent who composed
   them retires. The bridge artefact is durable substrate by purpose;
   its home is `.agent/state/collaboration/handoffs/`.
@@ -249,17 +255,17 @@ naming the new durable location, not retroactive event editing.
 ### Example 3 — curator-pass first-day self-instantiation
 
 A deep-curation survey commissioned by an outgoing curator is
-delivered at `/tmp/<survey>.md`. The incoming curator's per-pass log
-names this `/tmp/` artefact as `load_bearing_working_artefact` in the
-frontmatter. **This is acceptable only as a transient pointer.** The
-pass's first concrete cycle is the migration: either copy the survey
-into `.agent/state/collaboration/handoffs/<handover-record>.md` (when
-the artefact is a one-shot role-transfer record) or absorb its
-substance by reference into routed permanent homes and delete the
-temp file (when the substance has been distributed across multiple
-permanent homes). The per-pass log's frontmatter pointer updates to
-the durable home — or the pointer is removed entirely once substance
-is distributed.
+delivered at `/tmp/<survey>.md`. The incoming curator reads it as a
+transient input and records no pointer to it anywhere (the curator
+keeps no per-pass log; PDR-081 as amended 2026-06-14). **The artefact
+is acceptable only while the pass is open.** The pass's first concrete
+cycle is the migration: either copy the survey into
+`.agent/state/collaboration/handoffs/<handover-record>.md` (when the
+artefact is a one-shot role-transfer record) or absorb its substance
+by reference into routed permanent homes and delete the temp file
+(when the substance has been distributed across multiple permanent
+homes). The commit that homes the substance is the record of where it
+went.
 
 The same custody hazard applies to UNTRACKED files inside the repo:
 durable-tier artefacts (formation letters, succession and permanent
@@ -278,4 +284,5 @@ July 2026).
 - PDR-014 (capture → distil → graduate → enforce; the layered model
   this rule's "buffer vs reference" distinction maps onto).
 - PDR-067 (surface classification; per-user-memory as buffer).
-- PDR-081 (curator role; per-pass log metadata-only contract).
+- PDR-081 (curator role; no per-pass log, the commit plus the homed
+  substance is the record).
