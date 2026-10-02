@@ -155,10 +155,12 @@ into the permanent record):
    The passes are worth their cost on code and rule text; a status change is
    also checked against every condition the record itself states.
 
-**No draft waits for a ratification.** A plan that awaits the owner's word waits on its branch
-and its ticket, and the pull request opens at the moment of ratification (the owner retired
-the waiting draft; from a handoff record): a draft that cannot move holds a slot and ages its
-base.
+**No draft waits for a ratification.** Work whose premise awaits the owner's word waits on
+its ticket with no commit on a worktree branch; the branch, its first commit and its draft
+open together at the moment of ratification (`worktree-hygiene` §1 fires at the first
+commit, so a plan with no commit holds no draft and the two rules govern different moments).
+A draft that cannot move holds a slot and ages its base (the owner retired a waiting draft;
+from a handoff record).
 
 ## Phase 2 — Open with a reviewer-facing description
 

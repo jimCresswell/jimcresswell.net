@@ -110,11 +110,13 @@ too. Write to it whenever you learn something worth recording:
 - **You re-read the napkin mid-task** because you are about to
   do something you have gotten wrong before. Good. Do this.
 
-On a primary checkout that several seats share, a candidate goes into
-`napkin.md` in the same step as the records commit that carries it: text
-left uncommitted in the file rides whichever seat next stages the file by
-pathspec. Lint the append before a push (one unlinted append stopped a
-fold's push, 2026-09-27).
+On a primary checkout that several seats share, capture stays immediate
+(the file is the buffer) and the commit stays batched: a candidate rides
+whichever seat's records commit next stages the file by pathspec, so the
+seat that writes one names it in its own next records commit's message,
+and a seat whose records commit carries a peer's block names the author.
+Lint the append before a push (one unlinted append stopped a fold's push,
+2026-09-27).
 
 ## What to Log
 

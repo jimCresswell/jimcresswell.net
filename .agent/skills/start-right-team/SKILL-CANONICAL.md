@@ -87,8 +87,9 @@ retain-set above, and the n=2 mode is not available to it.
 When the owner pairs two seats, the first message between them carries
 state, and assignments come from the routing or after asking: a seat that
 opens by proposing the split has decided what the other seat was paired to
-help decide. Two seats writing to one pull request divide it by direct
-message, one driving the door, the cut and the rotation, the other
+help decide. Two seats writing to one pull request divide it over their
+dialogue channel (n=2 mode, step 1), the division mirrored to the stream
+at occurrence, one driving the door, the cut and the rotation, the other
 disposing threads on its own files (two instances). Routing
 broadcasts that cross are settled by ratifying the version already in flight
 and closing the chain in one event, never by a third version (a lesson from a

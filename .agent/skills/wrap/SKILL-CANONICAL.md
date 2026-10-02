@@ -191,8 +191,10 @@ and Forge herds Vapor, event 5c30f92a of 2026-09-24).
    session-handoff and `start-right-team` §Closeout Contract require
    already emitted (final heartbeat-end included).
 
-**At the owner's stop or compaction word, the freeze covers every outward act** after the push
-already in flight: no reply, no comment, no description edit, no review request. One more call
+**At the owner's stop or compaction word, the freeze covers every outward act of the seat's
+own initiative** after the push already in flight: no reply to a reviewer, no comment, no
+description edit, no review request; the owner's own follow-on questions are answered, as
+above. One more call
 "to make it coherent" changes nothing for a reviewer that started on the push (2026-09-29). A
 pause stops every process the seat started: watchers, monitors, loops and reviewers, read from
 the task list and the agent list as well as the process table (2026-09-27: "nothing else runs

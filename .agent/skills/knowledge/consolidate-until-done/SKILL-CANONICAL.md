@@ -309,8 +309,10 @@ Archive moves are allowed only as normal lifecycle cleanup after the item-level
 disposition already proves the source content is graduated, duplicate, or
 rejected.
 
-A surface that accepts appends is a buffer from its birth: name its drain when it is created.
-That holds for the consolidation's own working lists. A list of writes still to make is a
+A capture surface that accepts appends is a buffer from its birth: name its drain when it is
+created. (An append-only record kept as evidence, a diagnostics trace or a provenance log
+whose lifecycle the substrate manifest declares as retention, is not a buffer and needs no
+drain.) That holds for the consolidation's own working lists. A list of writes still to make is a
 buffer, and a session that ends with the list closed, grouped and unlanded has moved the
 knowledge from one buffer to another. Count the list's open and landed items first in every
 report, and land the memory-surface items as they are found: they need no pull request
