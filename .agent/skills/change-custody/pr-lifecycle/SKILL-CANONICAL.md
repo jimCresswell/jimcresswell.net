@@ -327,7 +327,11 @@ surfaces. Partial reads produce false "no problems" verdicts:
    bodies with no thread state, and those suppressed findings have run real
    at a striking rate. A thread never auto-outdates when its fix lands in a
    DIFFERENT file than the anchored line — reply with the actual fix
-   location and resolve manually, or it reads unaddressed forever.
+   location and resolve manually, or it reads unaddressed forever. Read
+   the reviews surface unfiltered, every time (owner, 2026-08-12: "never
+   ever filter reviews, ever"): no login, state or tip filter on any
+   review read; a narrow read is lawful only after an unfiltered read in
+   the same breath has enumerated the full set.
 3. **All checks** — `gh pr checks`, including the external ones (SonarCloud,
    CodeQL, Vercel, Cursor Bugbot, Codex). A failed check's *first* failure is
    the root to chase: a 20-second `install` failure cascades into skipped
@@ -999,6 +1003,11 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    the pull request instead of a review (first on #116, four seconds after
    its creation on 2026-09-10 06:53Z; on #117 at ready-for-review) — the
    owner named the outage at 08:3xZ (out of credit until about
+   2026-09-16). A reviewer's reported result has two transports, and the
+   leg reads both: the review object, and a completion comment on the
+   conversation. The Codex connector's completion comment for a
+   zero-findings run ("Didn't find any major issues", naming the commit it
+   read) is a positive result, not missing evidence (owner ruling,
    2026-09-16). **Review legs are desirable, never required; the front
    door declares the configured reviewers AVAILABLE, and a subagent
    review posted on the pull request stands as a leg** (owner ruling
