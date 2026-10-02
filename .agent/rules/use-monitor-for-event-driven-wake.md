@@ -24,12 +24,14 @@ the periodic-comms-check cadence rule.
 
 The owner's word (2026-09-29, verbatim): "Wherever reasonable we must use
 monitors instead of ad-hoc shell scripts in order to stay aware of events".
-It binds every wait, for all work, except the one-shot wait §When the Rule
-Does Not Fire names (a command whose only event is its exit, which Bash in
-the background reports): a wait on a pull request, a review or a CI run
-is a Monitor that emits its pass and fail lines and exits at the
+It binds every wait, for all work: a wait on a pull request, a review or a
+CI run is a Monitor that emits its pass and fail lines and exits at the
 terminal state, never a scripted loop; a long command whose lines must be
-watched runs as a Monitor too. Where a script is unavoidable it sets its own paths,
+watched runs as a Monitor too. The owner's later word (2026-10-02,
+verbatim: "always use monitors, not ad-hoc shell processes") closed the
+one-shot carve-out this rule once made for a command whose only event is
+its exit: that wait is a Monitor too, one that prints its exit line and
+ends, so that it appears in the task list every pause and resume reads. Where a script is unavoidable it sets its own paths,
 locks itself, is syntax-checked (`bash -n`), and sends its failures to the
 stream, because five scratch scripts failed silently in four days
 (2026-09-25 to 29).
@@ -101,9 +103,9 @@ pending" never fired beside a person's standing request (2026-10-02).
 
 ## When the Rule Does Not Fire
 
-- One-shot "wait until this completes" — use Bash with
-  `run_in_background: true` and accept the completion notification
-  the harness delivers when the process exits.
+- A one-shot "wait until this completes" is NOT an exception since the
+  owner's word of 2026-10-02 (above): it runs as a Monitor that prints its
+  exit line and ends.
 - Genuinely periodic checks (poll a remote queue at a fixed cadence,
   re-read a status file every N minutes) — Monitor cannot replace a
   poll because the source surface emits no stream. A poller that emits a

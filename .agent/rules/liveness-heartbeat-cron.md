@@ -87,6 +87,15 @@ authoritative source of substance.
   work-evidence cross-check of §"Heartbeat-only stall diagnostic" have
   both come back negative — see §"State thresholds" and §"Claim
   auto-rebalance protocol on retirement" below.
+- **The owner's word (2026-10-02, verbatim): "heartbeats are supposed to be a
+  liveness signal, if they are interupting work then there is a process
+  issue, stopping and starting is an unbelievable waste of time and
+  attention".** Under it a seat beats the claims registry only (`claims
+  heartbeat`, every four minutes), never the stream, and never pauses the
+  beat around a push window or a peer's gate; a gate that fails on a peer's
+  heartbeat is a tooling fault to fix (F-219's cure is the gate's, never the
+  seat's). The stream phenotype below describes the emitter before that
+  word.
 - The current repo phenotype (emitter migrated
   2026-08-02) lands heartbeats in the canonical lifecycle shape: the
   agent-tools CLI's heartbeat mode (`comms send --tag heartbeat`)
@@ -250,7 +259,10 @@ failure instance from the 2026-06-11 team window:
   2026-09-29) a seat read dark on the peer-liveness poll after its
   monitors expired inside an owner card or a plan-approval turn, one of
   sixteen hours. On leaving such a turn the seat re-arms first and reads
-  `heartbeat_at` back. If a seat that does so still reads dark, this
+  `heartbeat_at` back; and before raising a card it re-arms every watch at
+  its full timeout and tells the Director the card is up, so that the
+  silence has a named cause (a card raised into an unattended session let
+  every monitor expire, 2026-10-02). If a seat that does so still reads dark, this
   sentence is not the cure.
 
 ### Owner-input precedence on every scheduled tick
