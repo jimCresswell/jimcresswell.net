@@ -18,7 +18,7 @@ barrier:
 > scheduling discipline. Recognising the gate as fabricated is the
 > first move in not repeating the deferral.
 
-Imported from the lineage at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
+Imported from OCE at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are OCE's; local divergence is recorded where it exists.
 
 ## Principle
 
@@ -134,13 +134,13 @@ This pattern composes with:
   fabricated gates under failure pressure. Fabricated-gate vocabulary
   is a specific shape of rounding — a partial classification (`XL`,
   `vaporware-gated`) is rounded into a whole verdict (deferred).
-- `templates-encode-failure-modes` (at the pin, not imported):
+- [`templates-encode-failure-modes`](templates-encode-failure-modes.md):
   the pending-graduations metadata schema (size / trigger / status)
   is a template that institutionalised the deferral framing. The
   schema fields are useful — but the *vocabulary* in the values
   has accumulated avoidance shape that the schema itself does not
   require.
-- `mechanical-sequence-is-activity-bias-diagnostic` (at the pin, not imported):
+- [`mechanical-sequence-is-activity-bias-diagnostic`](mechanical-sequence-is-activity-bias-diagnostic.md):
   classifying entries one-by-one through the gate vocabulary
   *feels* like progress (each entry receives a verdict) while the
   queue depth never decreases. Mechanical-ness without queue depth
@@ -176,5 +176,5 @@ When the next consolidation pass meets a pending-graduation entry:
 - Owner correction 2026-05-10 in the `knowledge graduation` session
   (Sylvan Fruiting Glade `a53e45`).
 - Plan
-  `~/.claude/plans/<plan>.md` (the lineage seat's own plan file, machine-local)
+  `~/.claude/plans/<plan>.md` (the OCE seat's own plan file, machine-local)
   — the in-session reframe that triggered this capture.

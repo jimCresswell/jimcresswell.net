@@ -18,7 +18,7 @@ barrier:
 
 # Parallel `isolation:"worktree"` Dispatch Is Unreliable; Prefer Sequential
 
-Imported from the lineage at pin `e477e62f7` on 2026-09-13 (practice-completion todo 1). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
+Imported from OCE at pin `e477e62f7` on 2026-09-13 (practice-completion todo 1). The worked instances and measurements are OCE's; local divergence is recorded where it exists.
 
 ## Problem
 
