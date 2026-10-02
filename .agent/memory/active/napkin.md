@@ -1056,3 +1056,10 @@ is structural (the clause above), not a reminder.
   definitions and instances never share a directory), with the moves as one slice per
   directory; trigger: the owner's word, and the generator's six excluded directories as the
   evidence. The extraction design reads this before it reads the inventory.
+- **Learning signal (Parallax, 19:3xZ)**: the parity plan's first draft put three instruments
+  (survey, ledger, records) before its one value step (the carries), the same shape the owner
+  corrected three times today (the bucket, the end states, the heartbeat ceremony); two reviews
+  and the Parallax pass moved the small carries first and collapsed the instruments into one
+  slice. Recurrence hypothesis: a plan written under a "finish" word defaults to measurement
+  first. `candidate:` one sentence in the Director brief's §Standing lessons (the value step is
+  the first todo, the measure serves it); trigger: this instance after three corrections.
