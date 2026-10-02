@@ -601,9 +601,12 @@ Director's landing record of 2026-09-06, event f05a54da).
 - **Prettier reads nothing under `.agent/`**: `.prettierignore` lists the directory in both
   estates, so `prettier --check` on a rule, skill or directive prints "All matched files use
   Prettier code style!" having read no file (`prettier --file-info <path>` says
-  `"ignored": true`). An evidence line cites only checks that read the file: for `.agent/`
-  that is markdownlint and the docs validators (first recorded 2026-09-28; the same false
-  evidence line was written into eight pull-request bodies on 2026-10-01).
+  `"ignored": true`). An evidence line cites only checks that read the file. markdownlint's
+  config ignores part of `.agent/` as well (`.agent/reference/` and `.agent/reports/` among
+  others, in both estates), so cite it only for the files its run counts as linted, beside the
+  docs validators (first recorded 2026-09-28; the same false evidence line was written into
+  eight pull-request bodies on 2026-10-01, and a markdownlint line over two ignored files
+  the day after).
 - **A review thread is a review comment with no `in_reply_to_id`**: read them with
   `gh api repos/<owner>/<name>/pulls/<n>/comments --paginate` and recompute the count before
   writing it into a record (2026-09-27).

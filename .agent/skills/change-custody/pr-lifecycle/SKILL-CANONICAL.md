@@ -154,15 +154,6 @@ into the permanent record):
    record's promotion and round one found the record's own unmet condition.
    The passes are worth their cost on code and rule text; a status change is
    also checked against every condition the record itself states.
-7. **Expert passes before opening remove findings from round one; they do not
-   make round one empty.** Three instances (2026-09-27 to 2026-09-28): a
-   pre-push pass found three edges and the pull request's later rounds found
-   nothing; two expert findings were cured before another opened; a pre-open
-   review of a doctrine commit found contradictions with two rules. One
-   counter-instance (2026-10-01): three expert reviews passed a decision
-   record's promotion and round one found the record's own unmet condition.
-   The passes are worth their cost on code and rule text; a status change is
-   also checked against every condition the record itself states.
 
 ## Phase 2 — Open with a reviewer-facing description
 
@@ -336,10 +327,6 @@ surfaces. Partial reads produce false "no problems" verdicts:
   reader, the act they would take, the harm, the class and the verb. A finding
   labelled below the bar and then cured by a push has been dispositioned twice
   and priced once (eight roles, 2026-09-27).
-- **A below-bar call on the deciding seat's own record gets one confirming line
-  from a live seat before it is signed** (the Director's ruling on its own
-  records pull requests, 2026-09-27, two instances; on one of them a below-bar
-  label proved wrong and the cure stood).
 - **A below-bar call on the deciding seat's own record gets one confirming line
   from a live seat before it is signed** (the Director's ruling on its own
   records pull requests, 2026-09-27, two instances; on one of them a below-bar
@@ -1571,10 +1558,6 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   order written earlier: a draft is not on the ready list until its legs
   can bind, and a slot needs a named keeper, not just a next PR (two
   handovers thirty minutes apart left it unkept, 2026-09-24). A hold needs a
-  named receiver as a slot needs a keeper: "a hold with a sensor and no seat
-  to trigger it is a hold on nobody" (the Director, 2026-09-26, on two pull
-  requests held behind a red check that needed only a re-run); a re-run is
-  not a push, so it runs off the slot. A hold needs a
   named receiver as a slot needs a keeper: "a hold with a sensor and no seat
   to trigger it is a hold on nobody" (the Director, 2026-09-26, on two pull
   requests held behind a red check that needed only a re-run); a re-run is
