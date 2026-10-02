@@ -27,6 +27,12 @@ tool retires them.
   `${n}:`; run watch loops as `bash` scripts, prove a loop on a landed event
   before trusting its silence, and never pipe a Monitor through `grep` (the
   filter goes inside the script, or the exit code is the pipe's).
+- **A `:` straight after an unbraced parameter is a modifier, inside double
+  quotes too** (verified 2026-10-01): zsh reads `$NAME:r` (and `:h`, `:t`,
+  `:e`, and `:a` above) as a history-style modifier on the parameter, so
+  `"+refs/heads/$FOLDED:refs/remotes/origin/$FOLDED"` expands to `$FOLDED`
+  with its suffix removed, then `efs/remotes/origin/…`, the `r` consumed.
+  Brace the name: `"+refs/heads/${FOLDED}:refs/remotes/origin/${FOLDED}"`.
 - **zsh reserves `path` and `status`** (2026-09-26): a loop variable named `path`
   replaced `PATH`, every later command was "not found", and two thread replies
   never posted. Never name a shell variable `path`, `status`, `argv`, `options`
@@ -558,6 +564,10 @@ Director's landing record of 2026-09-06, event f05a54da).
   `open().read()` on one aborts the pass; restrict with `--include='*.md'` or guard the decode. A
   substring exclusion list over-excludes: `practice.md` matched `accessibility-practice.md`; match
   on the basename, never a substring (2026-10-01).
+- **A script that rewraps Markdown has to know frontmatter and code fences** (2026-09-30, one
+  pass): an archiving script's rewrap joined a YAML frontmatter block into one line and moved
+  two paragraphs inside a code fence. Skip the frontmatter block and every fenced block, or do
+  not rewrap.
 
 ## 2026-10-01 consolidation batch (from the handoff and thread records; each searched for in both estates' permanent surfaces first)
 
@@ -588,3 +598,95 @@ Director's landing record of 2026-09-06, event f05a54da).
 - **With `noUncheckedIndexedAccess` off, a guard on `arr[i]` is not a TS2367 error**: the
   comparison with `undefined` always compiles, so the compiler will not show which guards the
   flag would make necessary (one record, 2026-09-26).
+- **Prettier reads nothing under `.agent/`**: `.prettierignore` lists the directory in both
+  estates, so `prettier --check` on a rule, skill or directive prints "All matched files use
+  Prettier code style!" having read no file (`prettier --file-info <path>` says
+  `"ignored": true`). An evidence line cites only checks that read the file. markdownlint's
+  config ignores part of `.agent/` as well (`.agent/reference/` and `.agent/reports/` among
+  others, in both estates), so cite it only for the files its run counts as linted, beside the
+  docs validators (first recorded 2026-09-28; the same false evidence line was written into
+  eight pull-request bodies on 2026-10-01, and a markdownlint line over two ignored files
+  the day after).
+- **A review thread is a review comment with no `in_reply_to_id`**: read them with
+  `gh api repos/<owner>/<name>/pulls/<n>/comments --paginate` and recompute the count before
+  writing it into a record (2026-09-27).
+- **`git status` lists no empty directory, even with `--untracked-files=all`**: a fresh empty
+  results directory leaves a clean-tree test true (probe, 2026-09-27; a reviewer's finding
+  was rejected on it).
+- **`git fetch --prune` can delete the tracking ref that was a post-merge commit's last
+  name**: a proof that reads only local refs then passes, and the branch is deleted with the
+  commit reachable from nothing. Prove a branch merged against the remote's own refs
+  (reproduced 2026-09-28).
+- **A branch whose configured upstream is the default branch reports its ahead count against
+  that base**: the count that matters for a push is the one against the pull request's own
+  remote branch (2026-09-25).
+- **TS6133 refuses what eslint's `after-used` allows**: an unused parameter in an
+  interface-shaped fake passes lint and fails `tsc` under `noUnusedParameters`. Name it
+  `_name` with a reason comment, and run `tsc --noEmit` in the pre-checks (2026-09-29).
+- **Zod 4.4.3 carries a custom failure reason in `issues[0].message`** when the schema uses
+  the `error` option (recorded in the Codex dialogues thread, September 2026).
+- **A hermetic smoke fixture drops every `GIT_*` environment variable, not a chosen few**: a
+  `GIT_CONFIG_COUNT` reproduction passed only after that (2026-09-29).
+- **`process.exit` skips `finally`**: a smoke's `fail()` removes its fixtures itself, through
+  a cleanup set filled after `mkdtemp`; a set-up throw in a TUI smoke leaks the temporary
+  directory the same way (2026-09-29).
+- **The Turbo remote-cache action fails with `Input "team" is required` when
+  `vars.TURBO_TEAM` resolves empty**: an organisation variable's repository selection can
+  exclude the repository. The action takes `team` (required), `audience`, `policy` and
+  `revoke` (default true), and fails with a named error without `id-token: write`
+  (read first-hand 2026-09-29).
+- **The operator-profile sync push stages every tracked profile document**: before any
+  profile write, pull, and read `git status --short` in that root; ask another writer to
+  push first (both estates, 2026-09-26).
+- **axe disables its colour-contrast rule under forced colours**: a forced-colours contrast
+  regression has no automated sensor and is caught only by a rendered read (2026-08-18).
+- **Claude Code resolves a relative `@` import against the importing file, and skips code
+  spans**: a hand-kept `@.agent/rules/<name>.md` inside `.claude/rules/` pointed at a path
+  that does not exist. A mid-turn harness injection showing a file's own text neither proves
+  nor disproves expansion at launch; state such a claim as a prediction (vendor docs read
+  2026-09-13).
+- **Rule front matter differs by host**: Claude Code's `.claude/rules` `paths` is a YAML
+  list with brace expansion (1000 patterns and 4 MiB per rule); Cursor's `.mdc` takes
+  `globs` as one comma-joined string and an explicit `alwaysApply` (vendor shapes read
+  2026-09-13).
+- **A guard's fail-closed claim never leans on husky's `sh -e`**: the guard refuses by its
+  own exit, and its smoke resolves the shell through a trusted resolver, never a literal
+  `/bin/sh` (two review findings, 2026-09-26).
+- **A seat's scripts take the repository root as an argument and never `cd`**: a foreground
+  `cd` moves the session's working directory for every later command (2026-09-27, and again
+  2026-10-01).
+- **Copilot's review can start by itself**: GitHub requests it when a pull request is marked
+  ready, and some pushes start one. Read the pull request's reviews and requested reviewers
+  before requesting a leg: an explicit request after an automatic one returns HTTP 422, and a
+  duplicate can cost a review round (four records, September 2026).
+- **A workflow re-run keeps the original `github.actor`** and that actor's privileges; it does
+  not take the identity of whoever re-ran it (GitHub's contexts reference, read 2026-09-29).
+- **A workflow run dispatched with the bot's token is capped at that token's permissions**, so
+  the mint scope for a dispatch names every permission the dispatched run needs (2026-09-20).
+- **Array expansion hides a flag from a text-matching security analyser**: a `curl --proto`
+  built into an array is invisible to it. Write the flag and the URL literally at every call
+  site the analyser must see (ten literal sites were flagged and six variable ones were not;
+  2026-09-02).
+- **A registry audit cannot see repository advisories**: a dependency gate built on the
+  registry's audit misses an advisory published only on the package's repository (one resolved
+  version sat inside two such advisories; September 2026).
+- **Owner-only file modes do not hold on a mount that ignores modes** (WSL `/mnt/c`, CIFS,
+  vfat): read the mode back after setting it, and refuse or replace a file whose mode admits
+  another account (2026-09-25).
+- **The comms watcher's event line truncates a long body**: read the full body from the event
+  file in the comms store before acting on it (a freeze message was cut, 2026-09-29).
+- **`comms send` prints an `event_id` JSON on success, and echoes the body**: test for the id or
+  the exit code, never by searching the output for the word "error" (a misread result caused
+  duplicate events; 2026-09-25).
+- **`claims open` can refuse as blind to comms while a gate runs**: under gate load the
+  watcher's heartbeat lags past its 90-second bound. Re-run after the gate (2026-09-25).
+- **The cited-paths validator checks paths, not record numbers**: a citation of a decision
+  record by number is verified by reading the record's title at the target (2026-09-13).
+- **The pending-graduations counter reads one entry shape**: only an inline-bracket entry is
+  counted; an entry filed under a heading with bullets is neither counted nor flagged, so the
+  register reads empty while holding it (found 2026-09-13).
+- **`comms send --tag heartbeat-end` is refused**: the tag namespace is `failure-mode`,
+  `behaviour-note` and `heartbeat`. Put `heartbeat-end:` at the start of the title (found by a
+  spot check on 2026-10-02 to be stated in neither estate).
+- **`gh pr create` needs the head branch on the remote**: push first, and read the push back,
+  before the create call (a thread record of September 2026).
