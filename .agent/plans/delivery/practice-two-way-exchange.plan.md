@@ -482,7 +482,7 @@ entries composed whole and appended in one write.
    amendments as register candidates, stay the node's, after the bar. Next act after this
    amendment lands: the census's order, J1's N1 (the rule-generator slice) first.
    Dated 2026-09-29 (the lineage's exchange seat, after the register pull request's fourth review round): the total this paragraph carries (N of 26) is the close-bar ruling's as written on 2026-09-28; the live count and its units are the register's §The count, whose dated recounts explain 26 to 32.
-   Closed 2026-10-02 (the finish node `practice-work-finish`, end state 3): the register reads 79 of 79 rows closed against the Practice inventory, 17 landed, 15 declined, 47 as measured difference rows; the residue-unit count is retired, and the inventory is the extraction plan's input.
+   Closed 2026-10-02 (the finish node `practice-work-finish`, end state 3, carried since the same day by `practice-parity-for-extraction`): the register reads 79 of 79 rows closed against the Practice inventory, 16 landed, 15 declined, 48 as difference rows, 26 of them measured against the inventory's paths and 22 closed on their register cells; the residue-unit count is retired, and the register and the inventory are the extraction plan's two inputs.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
