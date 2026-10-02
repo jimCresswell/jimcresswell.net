@@ -23,9 +23,9 @@ amend), [PDR-105](PDR-105-reference-direction-invariants.md) (portability),
 
 Several repositories carry one Practice, copied from one another at known
 points and evolved apart since. The owner's opening words of 2026-09-21,
-verbatim: "we transplanted the Practice from [the lineage] to [a second
+verbatim: "we transplanted the Practice from [OCE] to [a second
 estate]. In that process we improved and evolved the Practice. The Practice
-in [the lineage] also continued to evolve. We need to bring each Practice
+in [OCE] also continued to evolve. We need to bring each Practice
 instance up to the highest standards and best capabilities of each. We also
 have [a third estate] which has a Practice that is badly lagging, some of
 which needs replacing, and some bad ideas need removing." Later the same
@@ -72,7 +72,7 @@ avoided because of the future extraction". Of its pace (2026-09-21): "above all,
 both go slow and take your time, alignment is far more important than speed here". Of its
 goal (2026-09-24, relayed; 2026-09-25, the owner's words as recorded by the seat they were
 spoken to; the estates given as roles): "We are prioritising all [the second estate's]
-Practice innovations being integrated into [the lineage], then we review. This is a fixed
+Practice innovations being integrated into [OCE], then we review. This is a fixed
 process with an end, not an ongoing effort. Once the Practice contains the best of both it
 will be extracted into an installable entity."
 
@@ -225,12 +225,12 @@ Owner direction 2026-09-21 (the opening words, the together-NOW word, the
 equal-partners word, and nine answers by card, each recorded verbatim with
 its question in the estate where it was given). Authored jointly by the two
 exchange seats, Brazier spins Temper (c70341) in the second estate and
-Zephyr guards Leeward (281e44) in the lineage, on the shared rapid-comms
+Zephyr guards Leeward (281e44) in OCE, on the shared rapid-comms
 channel of 2026-09-21: two blind drafts, four real cases answered blind, a
 blind ordering of the shared work, four adversarial checks from the
 seats' own model family and one from another vendor's model (Whippoorwill
 holds Frost, 1e8a53), five versions, both signatures. Numbering allotted
-from the lineage estate, where PDR numbers are canonical; taken before the
+from the OCE estate, where PDR numbers are canonical; taken before the
 third estate's colliding records renumber above 141.
 
 ## Amendment Log
@@ -272,7 +272,7 @@ so.
 
 **Context.** Asked how a receiver treats a donor's bytes that its own format gate refuses, with
 option 1 a sentence letting each receiver normalise to its own format, the owner answered: "We
-are standardising the Practice between [the lineage] and [the second estate]. broadly I agree
+are standardising the Practice between [OCE] and [the second estate]. broadly I agree
 with option 1, but in this case we are also trying minimise the cost of the eventual extraction
 and replacement of the Practice". The seats' narrower words went back to the owner and were
 ratified by card. The final reviews of the entry above, in both estates, found its wording

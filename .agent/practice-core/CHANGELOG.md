@@ -4,6 +4,15 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-10-02 — OCE named where this changelog, two records and the provenance file used a role noun
+
+- The JC.net-authored entries of this changelog, PDR-132, PDR-142 and the
+  provenance file now say OCE where they had called the sibling estate by
+  its role in the Practice's lineage (34 lines); the owner's word of
+  2026-10-02. No clause of any record changes. The two directives that
+  carry the same noun are edited in a window under the context meter's
+  floor, and the pattern files under memory by the records channel.
+
 ## [jimcresswell.net] 2026-10-01 — PDR-075 promoted to Proposed and PDR-130 retained at their slow-lane reviews
 
 - PDR-075 (Director substrate-writing discipline) moves from Candidate to
@@ -54,7 +63,7 @@ Practice Core package.
   50.
 - PDR-079 gains the dated pointers in §PDR Portability Rule, §Mechanism,
   §Notes, §Forbids and §Accepted Costs, so each section the amendment changed
-  points at its Amendment Log. Joint bytes with the lineage, where the pointers
+  points at its Amendment Log. Joint bytes with OCE, where the pointers
   landed first.
 
 ## [jimcresswell.net] 2026-09-28 — PDR-079 withdraws the ADR-identifier permission
@@ -66,7 +75,7 @@ Practice Core package.
   the concept the ADR records, and the pairing of a PDR with a host's ADR
   lives in that host's practice-index bridge. PDR-079's Status line and its
   row in the decision-record index carry the amendment. PDR-105 governs, by
-  the Director's ruling of 2026-09-28, and the lineage takes the same entry
+  the Director's ruling of 2026-09-28, and OCE takes the same entry
   as a pair.
 
 ## [jimcresswell.net] 2026-09-26 — PDR-132's cost model and two-round text; PDR-140 clause 4 joins
@@ -78,8 +87,8 @@ Practice Core package.
   request, is the Director's ruling of that hour. §Consequences points to
   `design-work-for-small-prs`, which carries the floor, and an amendment
   entry records the word. The item and the entry are joint bytes for the
-  lineage.
-- PDR-132 §Decision item 1 takes the lineage's paragraph on the two-round
+  OCE.
+- PDR-132 §Decision item 1 takes OCE's paragraph on the two-round
   rule, with one joint cure naming clause 4's late-cure push as the door:
   after round two, every remaining finding is dispositioned in the same
   turn as the last push. Item 1 differs from this estate's 2026-09-14
@@ -88,13 +97,13 @@ Practice Core package.
   push; and a further push opens only through PDR-140's doors, where the
   2026-09-14 entry made a round three a Director call on a correctness
   defect only.
-- PDR-140 clause 4 takes the lineage's paragraph on the rebudget under the
+- PDR-140 clause 4 takes OCE's paragraph on the rebudget under the
   owner's 2026-09-14 ruling, byte-identical, and a new amendment entry
   records it; its Status line names its amendments. By the Director's
   ruling of 2026-09-26, the late-cure push requests its expected leg so
   the tip binds for the merge boundary, and that leg's findings are
   dispositions only. The record is one blob in both estates once the
-  lineage takes the entry, the line and the sentence.
+  OCE takes the entry, the line and the sentence.
 
 ## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
 
@@ -102,16 +111,16 @@ Practice Core package.
   recorded by the seat they were spoken to, with the estates given as
   roles, in place of the fragments quoted before. PDR-142's Status line and
   its row in the decision-record index carry the 2026-09-25 amendment. The
-  lineage carries the same blob, so the record is one blob in both estates.
+  OCE carries the same blob, so the record is one blob in both estates.
 
 ## [jimcresswell.net] 2026-09-25 — joint cures: PDR-009's Forbidden bullet, PDR-063's hold, PDR-142's pace, goal and authority class
 
 - PDR-009's Forbidden item reads "Substantive content that is an adapter's
   own, in platform adapter directories", the wording a review of the
-  lineage's PR 213 found incomplete. The lineage took this blob.
+  OCE's PR 213 found incomplete. OCE took this blob.
 - PDR-063: a lane waiting on a peer needs the same release condition as a
   hold, because a hold with no default is a stall waiting to happen. These
-  are the lineage's bytes.
+  are OCE's bytes.
 - PDR-142: the owner's words on the exchange's pace and its goal sit beside
   the owner's sentence. §Boundaries names the authority class a seat reads
   before curing any finding: a change of concept in ratified text is the
@@ -159,8 +168,8 @@ Practice Core package.
   `practice-verification.md` item 11 follows.
 - PDR-125 clause 7's worked instance names the lint rule by what it checks
   (list spacing), not by one linter's rule id.
-- The lineage's exchange seat drafted the amendment. Both seats signed it,
-  and these are the lineage's bytes, twinned in window with its PR 201.
+- OCE's exchange seat drafted the amendment. Both seats signed it,
+  and these are OCE's bytes, twinned in window with its PR 201.
 
 ## [jimcresswell.net] 2026-09-24 — joint sets K2 and K3: an adapter that carries its prompt, lint before delivery
 
@@ -182,7 +191,7 @@ Practice Core package.
   go to the normal records, where the Director reads them when it needs them.
   The routing contract's owner-ratified asymmetry clause keeps its words and
   gains a reading through the ruling. A dated amendment section records the
-  change. The same texts land in the lineage as a joint cure.
+  change. The same texts land in OCE as a joint cure.
 
 ## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: a receiver's format gate is a standard to align; PDR-141: its amendment recorded
 
@@ -207,7 +216,7 @@ Practice Core package.
   and a new falsifier, which tests the remedy where it is used, replaces one
   that concluded from the remedy's absence that it was not needed.
 - PDR-141 gains its 2026-09-23 amendment section, naming the four changed
-  places and each estate's authority, byte-identical with the lineage.
+  places and each estate's authority, byte-identical with OCE.
 
 ## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: concepts travel; PDR-141: every write on the operator's word is pushed
 
@@ -222,7 +231,7 @@ Practice Core package.
   also covers "never re-authors" and places a third-reason rendition at receipt,
   never as an edit of a merged line, and its merged-text bullet names a third
   remedy: a contradiction the donor carries too, cured jointly at the source.
-- PDR-141 takes the lineage's cure in all four places, so the record is
+- PDR-141 takes OCE's cure in all four places, so the record is
   byte-identical in both estates. Decisions 11 and 14: the push after a write
   covers every write made on the operator's word, not only ratified writes,
   matching the record's own rule that no write sits unpushed across a session
@@ -238,29 +247,29 @@ Practice Core package.
   owner's words where the owner spoke: union upward, the higher of two, the
   bad removed everywhere; the owner's scope layers; how each kind of surface
   travels; and that a ruling about the Practice given in one estate reaches
-  every estate, for now. Numbered from the lineage, where PDR numbers are
+  every estate, for now. Numbered from OCE, where PDR numbers are
   canonical, ahead of the third estate's renumbering above 141. Its bytes are
   identical in every estate that carries it; each estate's own seat lands it.
 
-## [jimcresswell.net] 2026-09-21 — PDR-117, PDR-026 and PDR-011 amendments taken from the lineage
+## [jimcresswell.net] 2026-09-21 — PDR-117, PDR-026 and PDR-011 amendments taken from OCE
 
 - PDR-117 (the 2026-09-14 and 2026-09-17 amendments and the routing,
   planning, executor-binding and review-lane clauses), PDR-026 (the
   2026-07-30 owner endorsement of surfaced falsifiable structure) and PDR-011
   (the 2026-09-17 amendment: graduate, then archive; the four-part surface
-  lifecycle) taken byte-identical from the lineage's text of 2026-09-21 as
+  lifecycle) taken byte-identical from OCE's text of 2026-09-21 as
   register rows L2, L4 and L5 of the three-estate Practice exchange. This
-  changelog carries the lineage's entries of 2026-09-14 to 2026-09-19 below,
+  changelog carries OCE's entries of 2026-09-14 to 2026-09-19 below,
   in date order beside this estate's own.
 
-## [jimcresswell.net] 2026-09-21 — PDR-141 and the operator-profile schema taken from the lineage
+## [jimcresswell.net] 2026-09-21 — PDR-141 and the operator-profile schema taken from OCE
 
-- PDR-141 (Accepted on the lineage 2026-09-14, with its 2026-09-14,
+- PDR-141 (Accepted on OCE 2026-09-14, with its 2026-09-14,
   2026-09-17 and 2026-09-21 amendments) taken byte-identical from the head of
-  the lineage's pull request #172 (the 2026-09-21 amendment that makes
+  OCE's pull request #172 (the 2026-09-21 amendment that makes
   decision 7's emit call abstract), and
   `schemas/operator-profile.schema.json` (family 1.0.0) taken byte-identical
-  from the lineage at its #169 fold, as the first inbound landing of the
+  from OCE at its #169 fold, as the first inbound landing of the
   three-estate Practice exchange (the owner's word, 2026-09-21). Both estates validate the same home-directory files with the
   same contract, so the schema stays twinned byte for byte. The host binds
   its enforcement validator and names `pnpm profile:check` and
@@ -2407,7 +2416,7 @@ surfaces install in Session 4 as well.
 
 - Promoted the split-loop continuity model into the portable Core:
   `session-handoff` is now a required command, prompts explicitly carry live
-  continuity contracts, and the lineage now records that ordinary continuity
+  continuity contracts, and OCE now records that ordinary continuity
   and deep convergence are separate loops
 - Promoted the platform-configuration doctrine into the portable Core:
   tracked project settings define the agentic system contract, gitignored local
