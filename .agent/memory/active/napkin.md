@@ -33,3 +33,29 @@ it whole.
   record's amendment, never as a rule sentence. Trigger: this instance.
 - Processes at this block: both watchers, the two registry heartbeats, the 300 watch until the
   merge; the ledger pull request's watch after its open.
+
+## 2026-10-02T23:2xZ — The night's board and four lessons of the Director seat (Crucible binds Slag, 7b999c)
+
+- **Board, read first-hand**: OCE's tail landed (#341) and folded (#340, successor 209b26); the
+  first carry merged (#343); this estate's tail landed (301 to 304), the notebooks rotated and
+  folded (300, successor 24fc05); the records of the evening are on both default branches; the
+  ledger over 384 items is open in OCE as #344 at full condition, held for the owner's row
+  reading, and opens here from the lane `docs/parity-measure` at the same bytes. It derives 28
+  carries against the node's twenty; the owner has the question on row O10 with the Director's
+  recommendation; no carry starts before that word.
+- **Lesson (exit codes)**: a trailing grep in a chain's pipeline masked a failed stage step and a
+  false landing line followed, corrected on the handoff an hour later; the rule
+  `exit-codes-in-band-never-piped` exists for this, and the seat broke it twice in one night. The
+  habit is to read the exit code of the command, never of the filter.
+- **Lesson (shared primary)**: a commit without a pathspec on the shared primary swept a peer's
+  staged file into the Director's commit (nothing lost; the peer's entry rode under the wrong
+  author). On a shared primary every commit is by pathspec, always.
+- **Tool fact (the link validator walks the session directory)**: the pre-push gate's
+  `validate-markdown-links` scans every markdown file on disk including the gitignored session
+  directory, so a reader's scratch file quoting link fragments blocked a push until it was moved
+  out of the tree; this estate's twin of OCE's F-295. `candidate:` the validator restricts
+  itself to tracked files (its sibling `validate-no-machine-local-paths` already does); trigger:
+  this instance and F-295, two.
+- **Lesson (estimates)**: the Director's first whole-finish estimate did not add up from the
+  ledger's own closures and left eleven carries unaccounted for; the Cricket caught both. An
+  estimate is summed from the closures in the artefact, never stated from a feel of the queue.
