@@ -119,8 +119,9 @@ About five seat-hours in all; finished within one day of the resume.
      filter reviews, ever"): no login, state or tip filter on any review read; a narrow read is
      lawful only after an unfiltered read in the same breath has enumerated the full set." The
      Copilot request paragraph of W84 is carried in fuller words by the skill's Copilot review
-     policy and its merge-boundary item (the bare REST request as the bot, verified on the
-     timeline, never on the response), so the slice adds nothing for it: closed on reading.
+     policy and its merge-boundary item (the request mechanism named per estate, in this one
+     the operator's credential; verified on the timeline, never on the response), so the slice
+     adds nothing for it: closed on reading.
    - `.agent/memory/executive/cross-platform-agent-surface-matrix.md` needs nothing: the Codex
      bounded-poll challenge (W26) and the adapter import-path sentence (W39) landed verbatim on
      2026-10-02 as SHA:e4f71e7d, before this slice was cut; the audit of 18:3xZ read an earlier

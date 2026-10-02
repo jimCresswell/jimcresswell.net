@@ -85,10 +85,13 @@ finding's remedy; the observation still passes step 1.
    cadence; this discipline batches bot lanes only, and pending
    bot-lane cures may ride human-lane pushes.
 
-Where the cure is cheaper than the argument against it, cure; a
-disposition that costs more than the fix is the wrong instrument. A
-second raising of the same finding by an independent reviewer tips any
-disposition to a cure.
+Two triggers operate inside the bar's batching, never outside it: a
+below-bar finding whose cure is cheaper than its written disposition
+joins the next settlement push instead of earning a route or a
+rejection (a disposition that costs more than the fix is the wrong
+instrument), and a second raising of the same finding by an independent
+reviewer moves a disposed finding into that batch. Neither opens a push
+of its own.
 
 ## Failure mode prevented
 
