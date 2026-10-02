@@ -215,12 +215,15 @@ prove the test bites) is in
   reading, 2026-09-13, of the owner's words as its handoff relays them:
   "proven by relation to the injected seam, not by asserting the helper's
   name"). §Prove the guard bites asks that a mutant of the guarded
-  behaviour dies; it does not ask that a literal be pinned. A mutant that
-  changes only a decision value written as a literal, and survives, is
-  this rule working, not a gap: hold an assertion against this rule
-  before adding it because such a mutant survives, or restoring it
-  because a sibling estate removed it (2026-10-01, two instances in one
-  day).
+  behaviour dies; it does not ask that our own configuration be pinned. A
+  surviving mutant is a gap only when it changes behaviour at a boundary.
+  One that changes a value of our own configuration and leaves every
+  required result as it was (in the instances, a directory prefix and
+  flags handed to git) survives because this rule is working; one that
+  alters a required result (a status code, a retry limit) is a gap,
+  however the value is written. Hold an assertion against this rule
+  before adding it because a mutant survives, or restoring it because a
+  sibling estate removed it (2026-10-01, two instances in one day).
 - **No useless tests** - Each test must prove something useful
   about the product code. If a test is only testing the test or
   mocks, delete it.
@@ -544,7 +547,8 @@ The site workspace applies the taxonomy above with these fixed conventions:
   often or in what order is implementation (§Philosophy). A collaborator
   that both answers queries and receives output (a store with get and put)
   is judged per operation: what it receives is output, and the queries it
-  answers are never asserted. Order is never itself the claim. Where an
+  answers are never asserted. Across ports, the order in which the
+  product reaches them is never itself the claim. Where an
   outcome depends on one port not being reached before another decides (a
   refusal that must mint nothing), the proof is the outcome: give the
   port that must not be reached a fake that fails, so that reaching it
