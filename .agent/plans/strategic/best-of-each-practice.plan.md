@@ -13,7 +13,10 @@ ratified_where: >-
   The owner's card answer of 2026-09-21 in the session of Brazier spins Temper
   (c70341), "Ratify both texts", ratifying this plan and the definition it
   serves (PDR-142) together; the nine card answers that shaped both are recorded
-  verbatim in the delivery node practice-two-way-exchange, §Rulings, items 9 to 17.
+  verbatim in the delivery node practice-two-way-exchange (superseded 2026-10-02,
+  archived under the plans delivery archive), §Rulings of 2026-09-21, items 9 to
+  17; the three of them that still govern (9, 11 and 12) are carried by PDR-142's
+  Amendment Log entries of 2026-10-02.
 serves: PRACTICE-1
 impact_areas:
   - practice-and-estate

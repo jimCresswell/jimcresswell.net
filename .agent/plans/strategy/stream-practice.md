@@ -43,7 +43,9 @@ runbook declares the strategic node it serves. Enumerate them by searching `.age
 for those `serves` values, never by a hand-kept list (the plans README); the plan-corpus
 validator resolves every edge. PRACTICE-2 and PRACTICE-3 have no node of their own: they trace
 to `best-of-each-practice`, and a search for their `serves` value finds nothing by design (the
-owner's card of 2026-09-23, recorded in `practice-two-way-exchange` as ruling 27).
+owner's card of 2026-09-23, recorded as ruling 27 of the delivery node `practice-two-way-exchange`,
+superseded on 2026-10-02 and archived at
+`.agent/plans/delivery/archive/practice-two-way-exchange.plan.md`).
 
 ## Won't do
 

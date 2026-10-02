@@ -7,7 +7,8 @@ overview: >-
   since its ancestor, compare at the concept level, and land the higher form of
   every concept in every estate, each under its own owner's word. Three estates
   since 2026-09-21: this one, the lineage, and castr.
-status: ratified
+status: superseded
+superseded_by: practice-parity-for-extraction
 ratified_by: Jim Cresswell
 ratified_date: 2026-09-14
 ratified_where: >-
@@ -32,6 +33,12 @@ last_updated: 2026-10-02
 ---
 
 # Practice exchange
+
+Superseded on 2026-10-02 by the delivery node `practice-parity-for-extraction`, after this node's
+register closed 79 of 79 against the Practice inventory of that date. The rulings below stand as
+the historical record; the five that still govern and had no record home (9, 11, 12, 36 and 45)
+are carried by PDR-142's Amendment Log entries of 2026-10-02. The castr criterion (the sixth
+acceptance criterion) is dead as written: castr moved into OCE by ruling 13.
 
 ## Rulings of 2026-09-21
 
