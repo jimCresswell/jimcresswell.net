@@ -112,11 +112,10 @@ too. Write to it whenever you learn something worth recording:
 
 On a primary checkout that several seats share, capture stays immediate
 (the file is the buffer) and the commit stays batched: a candidate rides
-whichever seat's records commit next stages the file by pathspec, so the
-seat that writes one names it in its own next records commit's message,
-and a seat whose records commit carries a peer's block names the author.
-Lint the append before a push (one unlinted append stopped a fold's push,
-2026-09-27).
+whichever seat's records commit next stages the file by pathspec, and
+that commit's message names the blocks it carries with their authors,
+the committing seat's own and its peers' alike. Lint the append before a
+push (one unlinted append stopped a fold's push, 2026-09-27).
 
 ## What to Log
 

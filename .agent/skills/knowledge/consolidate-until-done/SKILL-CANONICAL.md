@@ -315,8 +315,9 @@ whose lifecycle the substrate manifest declares as retention, is not a buffer an
 drain.) That holds for the consolidation's own working lists. A list of writes still to make is a
 buffer, and a session that ends with the list closed, grouped and unlanded has moved the
 knowledge from one buffer to another. Count the list's open and landed items first in every
-report, and land the memory-surface items as they are found: they need no pull request
-(2026-10-02, a list of 105 with none landed).
+report, and land the memory-surface items as they are found: they need no pull request of
+their own, since a records commit on the coordination branch rides its fold (2026-10-02, a list
+of 105 with none landed).
 
 ## Pre-Archive Verification Gate
 
