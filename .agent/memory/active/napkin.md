@@ -1091,3 +1091,20 @@ is structural (the clause above), not a reminder.
   exists" as the usual home. The skill is 1,705 lines here; a seat under time pressure reads
   none of it. Not a sidequest now; one bounded item after the parity work, the same bytes in
   both estates; trigger: the owner's word, with four corrections today as the instances.
+
+## 2026-10-02T20:0xZ — Compaction: the plan is one node; the owner's rulings; the measure's first numbers (Crucible binds Slag, 7b999c)
+
+- **Where everything lives**: the plan is `practice-parity-for-extraction` (both estates, the
+  same bytes, sizes trued to the owner's two-hour bound); the state of every tree, the rulings
+  verbatim, the measure's numbers and the next session's order are in OCE's Director handoff
+  §STATE 20:0xZ; the measure's scripts and outputs are in both estates' synced session
+  directories under `comms-analysis-2026-10-01/session-7b999c/measure/`; the owner's
+  corrections of the evening are in this notebook's blocks of 19:4xZ to 20:0xZ.
+- **The measure, first-hand**: the extended survey reads 4,580 rows (1,241 same, 959 different,
+  536 JC.net only, 1,844 OCE only); the dry-run three-way merge of the Practice-wide text with
+  the transplant pin as base: 445 shared, 279 identical, 166 differing, 72 merging clean, 89 in
+  conflict (207 hunks: 56 reviewer surfaces, 49 skills, 46 rules, 39 directives, 12 Core, 5
+  hooks), 5 with no base; 46 JC.net-only and 59 OCE-only files waiting. Host-token
+  normalisation resolves 1 of the 89, so the hunks are the ledger's read.
+- **Lesson of the session, in one line**: four corrections on one shape (meta-work before
+  value); the next session opens the node and lands, it does not re-plan.
