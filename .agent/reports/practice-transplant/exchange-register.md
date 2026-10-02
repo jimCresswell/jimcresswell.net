@@ -116,9 +116,12 @@ ruling 44).
 Closed on 2026-10-02 against the Practice inventory (`practice-inventory-2026-10-02.md`, beside
 this file; the finish node `practice-work-finish`, end state 3), read at jcnet `main` and
 OCE's `engraph` at the heads the inventory names: **79 of 79 rows closed**, 17 landed, 15
-declined, 47 closed as difference rows (10 with partial landings, 37 never landed), each difference
-row measured in the inventory's closure table as the same, different and one-sided paths under its
-globs. The residue-unit count above (16 of 32 at 2026-09-29) is retired by this closure: the unit
+declined, 47 closed as difference rows (10 with partial landings, 37 never landed): 26 of
+them measured in the inventory's closure table as the same, different and one-sided paths under
+their globs, and 21 (17 whose globs fall outside the inventory's directories, 4 with
+no globs) closed as difference rows on their register cells alone, which the extraction plan
+reads from this register. The residue-unit count above (16 of 32 at 2026-09-29) is retired by this
+closure: the unit
 was the residue pull request, and the owner's ruling of 2026-10-02 ends the exchange at a known
 count of rows rather than recounting it upward; a row closed as a difference is sequenced into
 the extraction plan from the inventory, never reopened here as a lane.

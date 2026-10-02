@@ -436,8 +436,10 @@ entries composed whole and appended in one write.
 4. Inbound landings, one pull request per eight claims, in the register's order, after goal
    one's close and the review that follows it (ruling 44).
    Capabilities found on 2026-10-01 by the second two-estate consolidation with no register
-   row; at the closure of 2026-10-02 they are rows of the inventory (OCE only, or different
-   bytes) and the extraction plan reads them from there. Inbound: OCE's `agent-tools
+   row. At the closure of 2026-10-02 three of the four are rows of the inventory (OCE only, or
+   different bytes) and the extraction plan reads them from there; the runbook index lives
+   under OCE's `docs/operations/`, outside the inventory's directories, and this paragraph is
+   the extraction plan's input for it. Inbound: OCE's `agent-tools
    skill-evals` runner, which projects a skill's `evals.json` onto the host's `claude plugin
    eval` (this estate's parallax fixtures are unexecuted without it); a runbook index
    (`docs/operations/README.md` §Runbook Index in OCE, which OCE's `continuity-practice`
