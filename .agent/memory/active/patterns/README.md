@@ -145,6 +145,11 @@ the schema block above, and the 2026-09-02 rotation graduated five pattern files
 prose form.
 The `use_this_when` field is the primary discovery mechanism. It describes the moment an engineer should think "I have seen this before." For anti-patterns, the trigger is the moment the failure mode is about to fire — the diagnostic moment.
 
+A `proven_in` path that does not exist in this repository names a file in OCE, the estate where
+the pattern was first recorded. 231 of the patterns here arrived from OCE on 2026-10-02 as OCE's
+text, and 38 of them cite OCE product code as their proving instance. The path is the record of
+where the shape was first seen; the shape is what applies here.
+
 ### Cross-Plane Span Tag (optional)
 
 `cross_plane: true` is an optional frontmatter field naming patterns whose substance genuinely spans multiple memory planes (`active/`, `operational/`, `executive/`). Added when a pattern's behaviour-change reaches beyond learning-loop (active) into continuity state (operational) or stable catalogues (executive). Defined by [PDR-030 Plane-Tag Vocabulary](../../../practice-core/decision-records/PDR-030-plane-tag-vocabulary.md); routes through the graduation channel defined in [PDR-028 Executive-Memory Feedback Loop](../../../practice-core/decision-records/PDR-028-executive-memory-feedback-loop.md). Accumulation of `cross_plane: true` patterns in a rolling window is the Family-B Layer-2 seam-review signal per [PDR-029](../../../practice-core/decision-records/PDR-029-perturbation-mechanism-bundle.md). Omit the field entirely when the pattern is single-plane — do not set `cross_plane: false`.
