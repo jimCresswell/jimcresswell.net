@@ -23,7 +23,7 @@ impact_areas:
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-24
+last_updated: 2026-10-02
 ---
 
 # No-IO test boundary and dependency-injection recovery
