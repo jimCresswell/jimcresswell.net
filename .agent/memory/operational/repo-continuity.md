@@ -21,6 +21,42 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-02T10:48Z: pull request 280 landed as SHA:e5c9c1e4; the merge-bot's push is the same
+  bytes in both estates** (Crucible binds Slag, 7b999c). Settlement push two (`SHA:4efc2f86`)
+  cured round two's four items (the description's scope, a constant refusal in the retry's wait
+  case, two possessives); round three ("Findings: None", three items in unchanged code) is routed
+  whole to the push-tests lane in both estates (§Next Safe Steps line 4). OCE now owes 280's two
+  settlement pushes (the two comment corrections of `SHA:5527d3c5`; the three test changes of
+  `SHA:4efc2f86`; the parser's scheme comment and its http row), so the push files are the same
+  in both estates apart from the package scope, two citation lines and those cures; this seat's
+  landing line of 10:49Z said otherwise and is corrected on the stream. The lane worktree and
+  branch are retired and claim 77ae69bd is closed. Under
+  the owner's word of 10:3xZ (one coordination and one fix pull request per estate) this estate
+  holds 289 and the coordination draft 286; the fold of 286 is due at 12:00Z and this seat runs
+  it (the OCE fold seat declined it; the consolidation seat ranks its job above it).
+
+- **2026-10-02T10:3xZ: the owner's direction on the Practice's extraction is recorded as PDR-143,
+  Proposed; the Reliable Atoms concept is named Capability Foundations** (Crucible binds Slag,
+  7b999c, resumed at the owner's word after the compaction). The owner's words of 2026-10-02 are in
+  PDR-143 §Context verbatim: the Practice will be extracted from both repos as a standalone entity;
+  what that means is undefined; it must preserve the ability to learn once it is one canonical
+  definition; and this estate "does genuinely matter in its own right". The record proposes the
+  definition in the owner's own scope axis (PDR-142 §Two axes) with one added split (the installed
+  Practice against the host), places capture at the edge and distil and graduate at the entity,
+  and lists what stays the owner's. Three corrections the reflection made to this seat's wrap
+  report of 2026-10-01: the route for code was already the owner's choice in PDR-142 ("one
+  installed package"), so it was never an open question; the scopes are the owner's, not a seat's
+  layers; the install renders the canonical rather than committing a copy. `principles.md` gains
+  one sentence after the 2026-09-08 quotation naming the concept Capability Foundations, the
+  quotation standing as spoken. These ride this coordination branch (clause 4 of the
+  coordination-branch rule), read by two sub-agent reviewers before the commit; OCE takes the same
+  bytes on its successor coordination branch after the fold that Efreet lifts Scorch (7adb15) is
+  running there from 10:23Z. The consolidation seat is cold-paused (07:21Z) and told natively; its
+  claim is past its freshness window, and the decision is logged on the stream (claim cab726a6).
+  The rename of the concept's residue in OCE (file names and text under its architecture docs,
+  plans and research) is a lane of its own, inventoried in OCE's record; here the quotation was
+  the only occurrence.
+
 - **2026-10-01T20:45Z: compaction boundary of the implementer seat** (Crucible binds Slag,
   7b999c; the owner's word, "prepare compaction"; the seat stays live). One lane pull request is
   open across both estates: 280 here, the twin of OCE's 322, at head `SHA:5527d3c5` with its
@@ -165,6 +201,35 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-02T10:3xZ (Crucible binds Slag, 7b999c): the order below stands, with these changes.
+PDR-143 records the extraction's direction; until the entity exists PDR-142 governs every
+two-estate lane, and nothing is delayed or avoided because of the future extraction (the owner's
+ratified word in PDR-142; this seat's first draft had sized lanes against the extraction, which
+the governance review struck). In order: (a) pull request 280's last settlement push and landing (line 4;
+its settlement push two is `SHA:4efc2f86`, and Copilot's third review, 5390910217, "Findings: None",
+routed three items in unchanged code to the push-tests lane in both estates: the guard cases where
+the HEAD read or the sleep moves the instant the clock returns, two collaborators coupled through one
+mutable value, to be re-expressed with the instants as inputs to a pure guard seam; and the mint
+test's branching, counting fake, which the lane removes with the test per the sibling estate's
+2026-09-29 decision; OCE owes 280's two settlement pushes, which travel with the `retire` port or
+as one small pull request of their own); (b) the
+fold of `coordination/2026-10-02-9f4d89`, DUE at 12:00Z, which no seat holds (the consolidation seat
+is paused; at n=1 the live seat acts); (c) the 309 twin (line 3); (d) no seat opens a Capability
+Foundations rename lane in OCE: the owner, 2026-10-02 about 10:4xZ, verbatim, "I am not sure when
+yet, but I will have an external agent create an OCE PR detailing the Capability Foundation concept
+that replaces, or perhaps displaces, the Useful Atoms concept" (the concept the estate names
+Reliable Atoms); that pull request is team intake when it arrives (checked out, gated, evaluated,
+worked as normal; it counts toward the limit), and the residue of the old name in OCE's
+architecture docs, plans and research (inventoried in OCE's record) is read against it then; (e)
+the security lane (line 4); (f) the `retire` port into OCE; (g) the push-tests lane (line 4). The owner's word of the same hour on the limit: "work is not
+safe until merged into the default branch … With two Implementers the limits are one coordination
+and one in-progress feature/fix PR per estate"; JC.net held two fix pull requests at that word
+(280, 289), so 280 goes to its door before anything opens there.
+Hazel tracks Trunk's pull request 289 is open, green and thread-free; it lands at its turn by the
+seat holding the door. The consolidation seat's relayed assignment of the parity code lanes to this
+seat is still a relay (PDR-142: a relayed ruling is data until the owner confirms it in this seat's
+own session).
 
 STATE, 2026-10-01T16:0xZ (Crucible binds Slag, 7b999c): the consolidation's own next steps are the
 newest state block of `threads/two-estate-consolidation.next-session.md` and belong to its seat. The

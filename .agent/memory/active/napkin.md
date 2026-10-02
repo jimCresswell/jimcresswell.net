@@ -390,3 +390,66 @@ behaviour-changing lessons only, never check-ins or state; `start-right` loads i
   at 29.4 % with one directive edit made at that reading. A seat that has directive work
   queued does it first after a compaction, before any wide read. `candidate:` a line for
   `directive-file-context-budget`; trigger: the Core slice that carries the rule.
+
+## 2026-10-02T10:3xZ — the extraction's definition, reflected before it was recorded (Crucible binds Slag, 7b999c)
+
+- **Surprise:** I told the owner that one agent-tools package for both estates was an open
+  decision of theirs. PDR-142, owner-ratified 2026-09-21, records "Code is shared as one installed
+  package, which the owner has chosen as the route", and its §Boundaries reserves only the
+  package's shape for a later record. I had not read the governing record before calling the
+  question open. Two instances, one seat, one day, of acting on a diff or a conversation without
+  the record (the other: the port of 2026-10-01 made without reading what the destination had
+  deleted); an observation, not a class. The cure is `read-before-asking` applied to records: the
+  governing record is read before a question is called open.
+- **Surprise:** my first materialisation verdict (render the canonical into the repository and
+  commit it, checked) was the adapters' pattern one level up. The lenses read in order gave
+  render-at-install with committed entry points and pin (PDR-143 §4, provisional). The fluent
+  answer came from the shape that exists.
+- **Lesson:** the owner's vocabulary existed for my "three layers" (PDR-142 §Two axes:
+  Practice-wide, language-wide, repo-local, machine-local; memories and state never travel). A
+  seat's coinage over an owner's axis is a defect of the record even when the content agrees.
+  Home: the plain-meaning clause of `principles.md` §Documentation Is Infrastructure already says
+  it; no candidate.
+- **Observation (three changes, seven pull requests, one seat, 2026-10-01):** code travelled
+  between the estates as copied bytes under the Director's 2026-09-26 ruling on shared changes,
+  while PDR-142 §How each kind travels says code does not travel by copy and the receiver authors.
+  Recorded in PDR-143 §Context with its disposition: PDR-142's clause governs the reading, none
+  of the seven landings declared the copy as PDR-125 clause 7 asks, and PDR-143 is the
+  declaration for the three copied mechanisms; each later port of code names the debt in its
+  integrating commit. Nothing is left for the Director on it.
+- **Friction:** the two peer sessions' bare names from the session listing were not reachable by
+  the native send ("No agent named … is reachable"); the socket path from an incoming message's
+  sender attribute delivers. `candidate:` a line for the comms-channels skill.
+- **Friction:** OCE's changelog tags its entries with its repository slug, which this estate's
+  write hook refuses in any file; the entry for a joint change carries the writing seat's estate
+  tag in both estates instead. `candidate:` a convention line in the changelog's header, for the
+  consolidation seat.
+- **Free play, harvested:** kept, the bump as the consolidation moment (PDR-143 §3) and the entity
+  installed in itself; discarded visibly, a laboratory-protocol analogy (no structure in it) and a
+  germline image (a metaphor on a metaphor).
+- **The owner's words of 2026-10-02, verbatim, for the record's traceability.** On the estate:
+  "This estate is thinner, but still real, this is my professional identity repo and does
+  genuinely matter in its own right." On the extraction: "The Practice will be extracted as a
+  standalone entity from both repos, but what that means has not yet been defined; it must
+  preserve the ability to learn, but it is not clear how once it becomes a centralised thing with
+  a single canonical definition, and it is not clear what is the separate, installable Practice,
+  what is the Practice installed in the context of a specific repo, and what belongs in the repos
+  that the installed Practice supports". On the concept: "Separately, the Reliable Atoms concept
+  has been replaced by the Capability Foundations concept, although that might not be fully
+  represented in the local repos yet." Later the same morning, on the limit: "aside: work is not
+  safe until merged into the default branch. That is one of the reasons for maintaining strict WIP
+  limits, and strict PR limits. With two Implementers the limits are one coordination and one
+  in-progress feature/fix PR per estate". And: "aside: I am not sure when yet, but I will have an
+  external agent create an OCE PR detailing the Capability Foundation concept that replaces, or
+  perhaps displaces, the Useful Atoms concept". The directive edit in `principles.md` was made at a
+  context reading of about 3 % (the meter: 14.6 million of 15 million tokens left).
+- **Surprise, from the two reviews of PDR-143 (over the bar, both right):** the first draft sized
+  every two-estate lane against the extraction, a seat-made gate the owner's ratified word in
+  PDR-142 forbids ("nothing is delayed or avoided because of the future extraction"), and I had
+  given the owner the same clause as my order verdict; and it claimed the whole phenotype was the
+  same bytes in both estates from one subsystem's comparison, when today's measure is 82 of 134
+  rules and 499 of 1,027 tooling files differing. One cause: a conclusion reached before the
+  governing record and the measurement were read, the same shape as the first surprise above (now
+  three instances in two days, one seat; the strongest alternative explanation is that each was a
+  different lapse, and the records will show which). The materialisation also flipped back to a
+  committed render once the forge's readers were counted: the "cowpath" reading was the error.
