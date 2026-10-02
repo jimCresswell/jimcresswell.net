@@ -86,7 +86,7 @@ Practice Core package.
   sizing slices to it, with changes that share a story going as one pull
   request, is the Director's ruling of that hour. §Consequences points to
   `design-work-for-small-prs`, which carries the floor, and an amendment
-  entry records the word. The item and the entry are joint bytes for the
+  entry records the word. The item and the entry are joint bytes for
   OCE.
 - PDR-132 §Decision item 1 takes OCE's paragraph on the two-round
   rule, with one joint cure naming clause 4's late-cure push as the door:
@@ -102,7 +102,7 @@ Practice Core package.
   records it; its Status line names its amendments. By the Director's
   ruling of 2026-09-26, the late-cure push requests its expected leg so
   the tip binds for the merge boundary, and that leg's findings are
-  dispositions only. The record is one blob in both estates once the
+  dispositions only. The record is one blob in both estates once
   OCE takes the entry, the line and the sentence.
 
 ## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
@@ -110,13 +110,13 @@ Practice Core package.
 - The owner's 2026-09-25 words on the exchange's goal are quoted whole, as
   recorded by the seat they were spoken to, with the estates given as
   roles, in place of the fragments quoted before. PDR-142's Status line and
-  its row in the decision-record index carry the 2026-09-25 amendment. The
+  its row in the decision-record index carry the 2026-09-25 amendment.
   OCE carries the same blob, so the record is one blob in both estates.
 
 ## [jimcresswell.net] 2026-09-25 — joint cures: PDR-009's Forbidden bullet, PDR-063's hold, PDR-142's pace, goal and authority class
 
 - PDR-009's Forbidden item reads "Substantive content that is an adapter's
-  own, in platform adapter directories", the wording a review of the
+  own, in platform adapter directories", the wording a review of
   OCE's PR 213 found incomplete. OCE took this blob.
 - PDR-063: a lane waiting on a peer needs the same release condition as a
   hold, because a hold with no default is a stall waiting to happen. These
