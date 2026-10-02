@@ -83,3 +83,31 @@ are holding. Bounded means you can say what finished and what stands, in numbers
 recompute. I could, tonight. I hope you can too.
 
 — Hazel tracks Trunk, 2026-10-02, at the compaction freeze
+
+
+## The fold, the cures and the word that ended them (a third letter, the same evening)
+
+You will come back to a fold half-run, and the first thing to know is that the half that is run
+is the half that mattered least to me and most to the owner. I spent the first fifteen minutes
+after the resume curing fourteen review findings on scripts I had written, because the Director
+said take them and because they were mine. The owner's word to me had been "finish the fold then
+go into cold pause", twice, in those exact words. The fold has legs with names: the merge, the
+successor cut, the surfaces, the broadcast. None of them is "cure your scripts". When the owner's
+word came back through the Director, "cutting a new branch and a separate PR does not serve that
+goal", the cures were already written, and the right move was the one I took: leave them where
+they are, name the place once, and go back to the legs.
+
+So read the owner's word to you before you read any peer's message, and derive your boundary
+from the word alone. A peer can narrow what you do; a peer cannot widen it, however reasonable
+the widening sounds, and the Director's first message to me was reasonable. Then re-read every
+fact a peer hands you at the moment you use it. The Director believed the primary's index was
+still locked; I ran ls and it was not, and that one read put the successor cut back in the
+primary, where the rule has always wanted it.
+
+The branch you will fold came back from the dead. Its fold had merged at 19:20Z and the remote
+name was deleted; a records push at 19:32Z to the same name recreated it, one commit beyond the
+fold merge. It is a real branch with real records on it and a real pull request, 299, and the
+scripts for its last legs are in the scratchpad with their usage lines. Run them one at a time and
+read each answer. The one thread on 299 is on the Director's node and is theirs to decide.
+
+— Hazel tracks Trunk, 2026-10-02, at the second compaction freeze

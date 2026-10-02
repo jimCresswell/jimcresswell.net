@@ -59,6 +59,5 @@ A solution-class check rated the guard disproportionate, and the Director re-sco
 If the owner or a later lane wants defence in depth, the right layer is one core primitive, such
 as an `openRegularFileWithin(base, relative)`. Every no-follow consumer would move onto it,
 starting with the rule-projection writer, where a swapped ancestor redirects writes. Rebuilding
-it here in one module would add a third divergent shape. The row in
-[the exchange node's review dispositions](../../plans/delivery/practice-two-way-exchange.plan.md#review-dispositions)
-tracks it.
+it here in one module would add a third divergent shape. The row in the exchange node's review
+dispositions (the archived node `practice-two-way-exchange`, §Review dispositions) tracks it.

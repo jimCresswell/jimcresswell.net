@@ -107,6 +107,149 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-02T22:42Z — the resume after the usage limit: 302 and 303 landed, the rotation archived, the three old notebooks moved (Hazel tracks Trunk, 7d8b9d)
+
+The seat stopped at its usage limit at 20:49Z (stop line 04255eb9) and resumed at 22:1xZ at the
+Director's word (resume at 302's door; then 2y, 2z, the notebooks' move and the rotation's records
+commit; then the fold of 300 as the day's second fold here). Done since, each read back: 302
+merged as SHA:27de48fd6 at 22:22Z after one settlement push curing Copilot's five findings (the
+merge-tree proof is the tree equality; the fold's door is exactly the rules' contexts; the lock
+route conditional on the surfacing step; the owner's word on the work-in-progress limit
+superseding `worktree-hygiene` §1 and `no-parallel-long-lived-branches`' first-push timing with
+the same dated clause in each; the no-push rationale conditional); 303 (slice 2y, seven files,
+the knowledge and planning lessons with Efreet lifts Scorch's two twin clauses from OCE 341)
+opened at SHA:41567611; slice 2z (eight files, the seats and tooling lessons, the owner's words on
+heartbeats and monitors verbatim) committed locally on `docs/consolidation-2z-seats-tooling`,
+opening after 303 merges under the limit; the rotation's archive by byte proof and the three
+old notebooks' moves in this records commit (the notebook's rotation note names the blob and the
+archive; the 2026-03-08 copy omits one line, named in the commit, never quoted).
+
+The write list's last rows, re-trued: the twelfth entry's table marked W112 to W116 NOT-AN-ITEM
+because the record's lists end at W111, yet their texts stand in the three old notebooks
+themselves (2026-08-12 lines 44 to 48 and 520 to 522; 2026-03-09 lines 257 to 259), read at the
+session's analyses. W112 (upgrade before working around) is in `dependency-currency` §Ground
+rules; W113 (the exact local invariant) in `inter-practice-collaboration`; W116 (the
+current-state audit before a rewrite) in the plan skill §Before Writing; W115 (a dated FAIL on a
+boundary test is a disposition) landed in the plan skill §Completion by 303; W114 is a read in
+OCE (whether its commits are signed), the one row left to that estate. Counts: pending
+graduations 0 in both registers; the write list 97 items with its residue landed by 301, 302, 303
+and the 2z slice; the live notebook rotated to its note.
+
+Still to do in this estate after 2z: the fold of 300 (the day's second fold here, the owner's
+twice-a-day word), the successor cut, the rotation broadcast; then the step 2 carry (the
+host-tagged amendment entries of PDR-008, PDR-082 and PDR-132 to a host record with the Core
+validator), then OCE's twins of the three slices as one pull request. For the owner's hand:
+`records/2026-10-02-7d8b9d` at SHA:3802b36a (content on main but for a superseded citation;
+the forced delete is denied to seats).
+
+### 2026-10-02T20:12Z — the fold of 299 finished at the Director's word; the successor cut; cold pause (Hazel tracks Trunk, 7d8b9d)
+
+The owner's word at 20:0xZ, verbatim: "the pause is lifted, ask the Director for direction. Go
+slow, reflect, take your time". Asked (directed event 313f63fa); the Director's word at 20:0xZ:
+merge the fold as it stands, the one Copilot finding correct and routed to the parity records pull
+request (the node's step 5), not cured on the fold; the lane commit SHA:92644157 is the measure's
+input, branched by the Director from that tip and landed under the measure pull request by merge,
+the branch retired by proof afterwards, nothing for this seat to push; then cold pause.
+
+Done, each read back: the thread resolved with the Director's text; 299 merged as the bot at
+SHA:f19bed6d5 at 20:08Z, the door recomputed from the default branch's rules (the script's
+hand-carried check names were another estate's and refused a green pull request once; cured to
+read the rules); the successor `coordination/2026-10-02-f19bed` cut in the primary from that tip
+and read back on the remote at the base; `coordination/2026-10-02-9f4d89` retired locally and on
+the remote, both tips proved in main; this fold's entry in the continuity record, the notebook's
+block and this entry committed as the successor's first records commit with the three freeze
+files, its draft pull request opened as the bot; the rotation broadcast posted. Counts
+unchanged: pending graduations 0 in both registers; the write list 97 items with its residue
+sized in `write-list-residue-and-notebook-close`.
+
+Left for the Director's measure step: the lane's `docs/consolidation-2j-inventory-cures` at
+SHA:92644157 (theirs to branch from); the old `records/2026-10-02-7d8b9d` at SHA:3802b36a
+(content on main; delete on the content proof's zero, `run/branch_content_proof.py`). The cold
+pause this entry planned did not happen: the Director's direction of 20:1xZ, at the owner's word
+"ask the Director for direction", kept the seat on the node's step 1 (the next entry).
+
+### 2026-10-02T19:59Z — the second compaction freeze: the fold of 299 half-run, the cures withdrawn at the owner's word, how the resume finishes it (Hazel tracks Trunk, 7d8b9d)
+
+The owner's words this window, verbatim: "finish the fold then go into cold pause" (19:27Z, with the
+team and fold skills, and again at 19:5xZ); "you are cold paused, stay that way" (19:5xZ, every
+process of this seat stopped by the owner's hand); then "Please prepare compaction ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all
+processes". The freeze binds from the last line: this entry and the notebook's block are the last
+writes, uncommitted in the primary; nothing is pushed, replied, edited or requested until the
+owner's word after the compaction.
+
+Counts first: unchanged (pending graduations 0 in both registers; the write list 97 items with its
+residue sized in `write-list-residue-and-notebook-close`; the notebooks as there).
+
+What the window found at seating, read first-hand: 298 merged at 19:14Z as SHA:a35b5f32 by the
+owner's hand with its five Copilot threads uncured; 286 folded at 19:20Z as SHA:ba5ad39a and the
+remote branch deleted at the merge; the Director's records push of 19:32Z recreated
+`coordination/2026-10-02-9f4d89` one commit beyond the fold merge, so the branch read folded on the
+pull request and live on the remote; this estate held no open pull request; the primary's index lock
+of the morning was gone (ls). OCE: 332 open at full checks with fourteen threads, every one on this
+seat's inventory and census scripts.
+
+What landed. In OCE, Efreet lifts Scorch ran the fold at the owner's routing: 332 merged as
+SHA:2b25ced1b at 19:40Z, the fourteen findings absorbed into the parity node's measure step by the
+owner's word of 20:0xZ (per finding by risk, cost and value), the successor
+`coordination/2026-10-02-2b25ce` cut with its first records commit SHA:b4205aebb and the Director's
+compaction records SHA:d3d67f3d8. In this estate, the fold's remaining legs are this seat's and are
+half-run: pull request 299 opened at 19:4xZ from the recreated branch (records-class, the merge of
+main in proved content-free by `git merge-tree`, so not made), now at SHA:8940b7e7 after the
+Director's two records pushes (the parity node's size table trued to the owner's two-hour bound;
+their compaction block and the measure scripts), Copilot requested at the ready-mark as the fold
+skill's step 7 now says, the body re-trued; one unresolved Copilot thread stands on it, on the
+parity node (its copy-based carries read against `best-of-each-practice` line 74, which lists
+copying code between estates as deliberately not done), which is the Director's to decide, not this
+seat's. The primary was fast-forwarded to the branch tip in place after the Director's settled files
+were staged by pathspec (byte-identical to the tip, read by cmp), its tree clean, its tooling
+rebuilt; the Director then committed in it and pushed. Not done: the merge, the successor cut, the
+fold entry, the successor's draft pull request, the rotation broadcast, the folded branch's
+retirement.
+
+The cures for 332's fourteen threads (298's twin findings) were authored in full in the first
+fifteen minutes and then withdrawn from landing at the owner's word of 19:5xZ, relayed by the
+Director: "the point of the PR response budgets is to reduce time spent on PR ceremony; cutting a
+new branch and a separate PR does not serve that goal". The bytes stay named once: OCE's synced
+session directory under `cures-332/` (the four scripts, the inventory regenerated at main
+SHA:ba5ad39a and engraph SHA:d51669d2f reading 16 landed, 15 declined, 48 difference rows, 26
+measured, 22 on cells; the census reading 514 files and 81 offenders here, 732 and 93 in OCE), and
+this estate's lane worktree `.claude/worktrees/consolidation-2` as the local, unpushed commit
+SHA:92644157 on `docs/consolidation-2j-inventory-cures`, with the register's closing paragraph and
+the exchange plan's dated line re-trued. The Director reads them at the measure step's generator
+extension; no pull request carries them on their own.
+
+How the resume finishes the fold (the scripts are in the session scratchpad's `coord/` directory,
+synced to the session directory under `.agent/state/collaboration/` in both estates; each is one
+plain call):
+
+1. Read the task list (expect nothing running) and `git status --branch` in the primary and the
+lane; fetch; read 299's head, checks and threads. If the branch moved past SHA:8940b7e7, the three
+uncommitted files of this freeze in the primary (the notebook, this record, the formation letter)
+are committed by pathspec on the coordination branch and pushed under a hold line before the merge,
+since a fast-forward refuses over them; otherwise they ride step 6. 2. The Copilot thread is the
+Director's; the merge waits for its disposition (one settlement push at most, or a decline in the
+thread) and for CLEAN. 3. `fold-merge.sh <primary> jimCresswell jimcresswell.net 299 main`: the door
+recomputed by name, the bot's merge at the fetched head, the ancestor proved. 4. Post
+`cut-announce.tmpl.md` with `@MSHA@` filled; then `successor-cut.sh <primary>` in the primary (the
+name minted from the post-fold main by the tool, the cut tree-preserving, the push as the bot, the
+remote read back at the base). 5. `retire-folded.sh <primary> coordination/2026-10-02-9f4d89
+<base-sha> jimCresswell jimcresswell.net` (both tips proved in main; a tip reading unmerged is
+surfaced, never deleted). 6. Fill `fold2-entry.tmpl.md` and `fold2-napkin.tmpl.md` (`@TIME@`,
+`@MSHA@`, `@SUCC@`, `@BASE@`), place them with `insert_fold_entry.py` and the notebook append tool,
+commit by pathspec with `msg-succ-records.txt` (naming the three freeze files if they ride), push as
+the bot to the successor under a hold line, open the successor's draft pull request as the bot from
+`split/succ-body-jc.md` filled, post `rotation-broadcast.tmpl.md` filled, re-read whole first. 7.
+Re-arm by id only what is absent: the two watchers (`run/comms-watch.sh <root> "$PPID"`), the
+registry heartbeats (`run/heartbeat-registry.sh <root> <claim>`; the owner's word: never the stream
+leg, never paused), a 299 watch until the merge. 8. The lane's `records/2026-10-02-7d8b9d` at
+SHA:3802b36a has its content on main (the notebook there is a superset): delete it after
+`run/branch_content_proof.py` reads zero. `docs/consolidation-2j-inventory-cures` stays until the
+Director has read the batch.
+
+The finish for this seat: 299 merged, the successor cut and announced, the lane branches proved and
+retired, then cold pause.
+
 ### 2026-10-02T18:53Z — compaction freeze at the owner's word: the residue node authored, what stands, how the resume re-arms (Hazel tracks Trunk, 7d8b9d)
 
 The owner's words, 18:4xZ, verbatim: "Please prepare compaction ultrathink /jc-metacognition

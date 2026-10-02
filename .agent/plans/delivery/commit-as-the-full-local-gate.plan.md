@@ -29,7 +29,9 @@ already recorded: `no-unbounded-host-load` item 6 (2026-09-07, "two, max three s
 full local gates … it is ALL about engineering"; 2026-09-20, "two parallel gate runs are fine
 as long as they are in different work trees"); the lineage's 2026-09-14 ruling that the commit
 triggers the gates and they never run separately as well; and "All six here now" (2026-09-21,
-`practice-two-way-exchange` ruling 12), which lands that ruling in this estate.
+carried by PDR-142's Amendment Log entry of 2026-10-02 on full alignment first; recorded first as
+ruling 12 of the delivery node `practice-two-way-exchange`, superseded and archived on 2026-10-02),
+which lands that ruling in this estate.
 
 ## Goal
 
