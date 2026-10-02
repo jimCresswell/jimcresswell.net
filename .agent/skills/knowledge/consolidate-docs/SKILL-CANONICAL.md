@@ -295,6 +295,18 @@ on a buffers PR ahead of their homes on a skills PR, and a reviewer caught the w
 which no landed state held them; on 2026-09-07 two register entries were drained whose
 target homes had not yet been written, and were restored at review.
 
+**A buffer too large for one sitting is read whole, in halves, never sampled.** List its
+headings, read each half, and keep one analysis table per buffer in the session's state
+directory (lesson, verdict, home or reason) with a closed verdict vocabulary: homed,
+superseded, tracked (lives in code or a plan), released (state of its day), unhomed, private
+(the owner's), check. Prove every unhomed verdict by a probe of the doctrine paths at the
+default branch, a regex batch with a known-positive control term first, so an absent home is
+shown and not assumed; where a sibling estate shares the Practice, probe both. The writes that
+survive are anchored scripts (dry, then apply) run on a lane branch, so the home lands as
+reviewable bytes, and the buffer archives by proof only after those writes merge. Three
+rotated napkins of 1,706 lines yielded about 200 lessons and four writes this way
+(2026-10-02).
+
 **Checklist failure / anti-example**: archiving a buffer or source file before
 reading, extracting, routing, and verifying the home is not curation. An
 archive-only "drain" leaves the buffer live for completion purposes, even if
