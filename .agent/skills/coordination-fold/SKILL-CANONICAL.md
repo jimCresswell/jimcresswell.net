@@ -114,7 +114,11 @@ fold merges (a Director's ruling with the lane's agreement, 2026-09-07, events d
    one merge message named #157 while the merge also carried #158).
    Probe the merge for silent stale-capture reverts (a clean merge can
    still revert an approved newer version — marker-probe suspicious
-   files against the default branch) before pushing.
+   files against the default branch) before pushing. When the default branch
+   is merged into a recreated or already-folded branch,
+   `git merge-tree --write-tree origin/<default> <tip>` printing the tip's own
+   tree proves the merge content-free: say so in the pull request body and make
+   no merge commit (2026-10-02).
    The napkin resolves as a union of both sides' blocks in time order — unless
    the target branch's napkin was ROTATED since the snapshot, in which case keep
    the rotated file and run the semantic-merge skill's archive-coverage check
@@ -154,10 +158,11 @@ fold merges (a Director's ruling with the lane's agreement, 2026-09-07, events d
    findings on one fold, 2026-09-24; a pickup that said "first act: fold this
    branch" inside the branch whose merge made it false).
 7. Arm a settle watch (Monitor) whose filter is loud on EVERY terminal
-   state (`silence-is-never-liveness`). Full condition = the four
-   required checks BY NAME (CodeQL, SonarCloud Code Analysis,
-   run-quality-gates, Vercel) all green + zero unresolved review
-   threads + MERGEABLE. A fold is reviewed before it merges: where the host
+   state (`silence-is-never-liveness`). Full condition = every status
+   context the default branch's rules require, read from the rules at run
+   time and each SUCCESS, plus the deployment check (a door computed from a
+   list of names carried from the other estate refused a green fold,
+   2026-10-02) + zero unresolved review threads + MERGEABLE. A fold is reviewed before it merges: where the host
    does not review a ready pull request by itself, request the vendor review
    at the ready-mark. A fold merged with no review took six true findings
    after its merge (2026-09-21), and on 2026-10-01 one estate's vendor
@@ -226,7 +231,15 @@ fold merges (a Director's ruling with the lane's agreement, 2026-09-07, events d
    surface it, never delete it. Carry them into the successor by a merge
    commit, so they land at its fold, and only then delete the folded branch
    (four record commits reached a folded branch after the owner merged its
-   fold PR by hand, 2026-09-26; one instance). GitHub's auto-delete of a merged head is
+   fold PR by hand, 2026-09-26; one instance). After the merge, nothing is
+   pushed to the folded NAME: the merge deletes the remote ref and a push
+   recreates it one commit beyond the fold, where it reads folded on the pull
+   request and live on the remote and costs a second fold pull request (299
+   for one records commit, 2026-10-02); the successor is cut first and records
+   go there. A foreign index lock on the primary holds only the local commits
+   and this rotation; the pull request's landing (records pass, ready-mark,
+   review, settlement, the bot's merge) touches no local index and proceeds.
+   GitHub's auto-delete of a merged head is
    not relied on: both folded heads of 2026-09-27 survived their merges
    (`worktree-hygiene` §3). If the default branch moves again during or just after the ceremony (a
    lane PR merging mid-rotation), merge `origin/<default>` in and rebuild promptly: until
