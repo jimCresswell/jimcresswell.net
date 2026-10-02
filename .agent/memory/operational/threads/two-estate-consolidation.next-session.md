@@ -107,6 +107,35 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-02T00:10Z — both folds merged, the record files half-read (Hazel tracks Trunk, 7d8b9d)
+
+- **Folds.** JC.net 276 merged as SHA:9f4d8920 (23:38Z) and OCE 318 as SHA:73668b712 (23:59Z);
+  the successors are `coordination/2026-10-02-9f4d89` and `coordination/2026-10-02-73668b`.
+  Read-only reviewers checked the records before the ready-marks: two failed and four
+  borderline claims in the continuity records, and eleven frictions entries whose claims the
+  code did not bear out, all corrected first. OCE's vendor reviews then found two more in the
+  register (F-208's status line, F-219's scope); both are cured.
+- **Landed since 21:41Z.** Rules: JC.net 282, 283 and 284, OCE 324, 325 and 326 (35 rule files
+  across the two estates). JC.net 285 is open: nine hunk-level ports from OCE, the
+  history-check cure (`--all`) and nine tool facts.
+- **Records (wave 2).** The 200 owner words no comms event held are decided. A fleet triaged
+  the other 2,748 items: knowledge 1,867, possibly open obligations 768, released 113. A homed
+  check covered 450 knowledge items: 189 homed in both estates, 76 in one, 141 in neither, 44
+  for code lanes. The seat read all 420 obligations found in handoff records: every pull
+  request they name is merged, and nine open obligations that no surface tracked are listed
+  in the pass's plan file. 2,166 knowledge items are not yet checked for a home.
+- **Spend.** The fleet ceiling the owner set (30M subagent tokens) is spent to about 29.6M.
+  The triage stage cost 2.1M against an estimate of 0.7M (no pilot leg); wave 2 as a whole
+  ran about 10.0M against 9.4M estimated, inside the owner's per-wave stop term. No fleet runs
+  without the owner's word.
+- **Divergence.** 150 files and 7,225 lines at the default tips at 23:16Z, against 147 and
+  7,142 at the open; fifteen files carry 5,021 of the lines.
+- **Next safe step.** Merge 285 at its pushed head. OCE's twin slice is saved as one patch
+  (`split/j-oce-prepared-2026-10-01.patch` in the pass's state directory) and is cut after 285
+  merges. Then OCE's frictions register: 134 entries JC.net's register lacks, each read
+  against the code in both estates. The plan file is
+  `.agent/state/collaboration/comms-analysis-2026-10-01/plan.md` (gitignored, this machine).
+
 ### 2026-10-01T21:41Z — wave 1 decided, the first pull request in review, a context boundary (Hazel tracks Trunk, 7d8b9d)
 
 - **Counts.** Pending graduations: 0 live in each estate. Buffers not yet drained: OCE's napkin,

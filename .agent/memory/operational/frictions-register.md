@@ -127,14 +127,12 @@ below is a cross-reference index, not a second source of truth.
   hook-materialisation (hooksPath resolves + `_` shims present) so a hookless
   working copy cannot read green; (c) CI remains the backstop but is not the
   cure — the contract is local-gates-bind.
-- **Status**: open (mitigated in the originating lane only).
+- **Status**: open. Cure (a) is a step of `set-up-worktree-lane` in both estates (its `.husky/_`
+  check). Cure (b), a recomputing check on the commit and push path, exists in neither estate's
+  agent-tools (no `hooksPath` reader found; read 2026-10-01).
 - **Instance, 2026-09-27** (a seat, JC PR 231's first push): a fresh worktree's first install
   failed at postinstall and the second ran no husky prepare, so `.husky/_` was absent and the push
   ran ungated; the pre-open review widened cure (b) to git's own HEAD, objects and refs tests.
-- **Status read 2026-10-01**: "mitigated in the originating lane only" is out of date: cure (a) is
-  a step of `set-up-worktree-lane` in both estates (its `.husky/_` check), while cure (b), a
-  recomputing check on the commit and push path, exists in neither estate's agent-tools (no
-  `hooksPath` reader found).
 
 ### F-194 — the `SHA:` prefix rule is unenforced, and the in-scope records carry hundreds of bare shas
 
@@ -221,11 +219,11 @@ below is a cross-reference index, not a second source of truth.
 - **Summary-comment instances, 2026-09-27 and 2026-09-28** (seats, OCE; the Director): the doors
   of OCE PRs 267, 268 and 264 held because Codex recorded each clean run only by editing its
   summary comment, posting a review object only with findings; 264 landed after PR 274's cure.
-- **Status read 2026-10-01**: the summary-comment arm is cured in OCE by `SHA:c85d4d8e8`
+- **Status**: open (read 2026-10-01): the summary-comment arm is cured in OCE by `SHA:c85d4d8e8`
   (2026-09-28, PR 274, "the connector's own edit of its summary is its report"; OCE `pr-lifecycle`
-  reads "unedited or last edited by its author"); JC's pr-watch and merge-bot carry no
-  editor-aware reading (read 2026-10-01), so the arm stays open there; the quota-notice-as-comment
-  arm and the reaction arm of the 2026-10-01 instance stay open in both.
+  reads "unedited or last edited by its author"); JC's pr-watch and merge-bot carry no editor-aware
+  reading (read 2026-10-01), so the arm stays open there; the quota-notice-as-comment arm and the
+  reaction arm of the 2026-10-01 instance stay open in both.
 
 ### F-218 — the shared atomic writer takes caller-supplied paths with no link check (2026-10-01)
 
@@ -261,13 +259,11 @@ below is a cross-reference index, not a second source of truth.
   board item of 2026-09-13): `atomic-file.ts` has three product importers in both estates, so
   the no-follow seam lands with its move to `core/`, a test and a header, one same-bytes change.
 
-### F-219 — a peer's comms event during the pre-push gate fails the push: the generated log is stale (2026-10-01)
+### F-219 — a comms event written without a render during the pre-push gate fails the push: the generated log is stale (2026-10-01)
 
 - **Source**: Crucible binds Slag, first-hand, the push of the coordination fold on 2026-10-01.
 - **Surface**: JC.net's pre-push `practice-substrate check`, reached through `pnpm check` (in OCE the script `practice:substrate:check` exists and no hook calls it); `collaboration-state -- comms append`.
-- **Observed**: the check renders the comms log from the event files and refuses when the rendered text differs from `shared-comms-log.md` on disk (`live-shared-comms-log.ts`); it makes no age test. `comms append` writes an event without rendering the log, and any
-  seat's event written during the ten-minute gate makes the log stale. Cost: one full gate run.
-  Cure used: `comms render`, then push again, with the peer asked to hold comms writes.
+- **Observed**: the check renders the comms log from the event files and refuses when the rendered text differs from `shared-comms-log.md` on disk (`live-shared-comms-log.ts`); it makes no age test. `comms send` appends and then renders (`cli-comms-send.ts`, both estates), so a send leaves the log current. The log goes stale for a writer that does not render (`comms append`) and in a race between two renders (the instances of 2026-09-26 and 2026-09-27 below). Which writer made the 2026-10-01 instance stale was not read. Cost: one full gate run. Cure used: `comms render`, then push again. Asking peers to hold `comms send` during a gate is not needed (a reviewer's finding on OCE's pull request 318, verified in the code).
 - **Expected**: a push does not depend on an untracked, generated file that another seat's
   write can invalidate mid-gate.
 - **Candidate cure**: the check writes the rendered log back before comparing (the repair is deterministic), or the file on disk stops being an input; `comms append` renders.
@@ -1238,3 +1234,7 @@ below is a cross-reference index, not a second source of truth.
 - **Target surface**: `session-handoff`; agent-tools CLI (`collaboration-state`).
 - **Status**: open.
 - **Owner direction status**: standing
+- **Instance, read 2026-10-01**: neither estate holds a `handoff-record.schema.json` or a worked
+  example: the second tranche of the handoff-record decision (OCE's ADR-182), which was to land
+  them, never landed, so PDR-063's four sections are the only statement of the record's shape and no
+  check reads a record against it.

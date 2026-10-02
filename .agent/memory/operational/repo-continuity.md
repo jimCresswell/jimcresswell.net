@@ -63,6 +63,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   takes those on one small pull request. An arc measured here before this landing lost the
   entries that held those two characters.
 
+- **2026-10-01T23:38Z: pull request 276 folded into `main` as SHA:9f4d8920** (Hazel tracks Trunk,
+  7d8b9d; the bot's merge at the pinned head, after a records pass by read-only reviewers and
+  before any vendor review, a records-class fold). The folded branch is deleted, local and
+  remote; the successor is `coordination/2026-10-02-9f4d89`. moved for the sites: nothing in this
+  fold / moved for the Practice: the frictions register gains the tooling frictions and
+  recurring owner rulings found by the walk of both comms streams and of the record files (F-195
+  to F-279); three patterns arrive from OCE; the Director handoff and the owner-signal record
+  gain owner words that no comms event held; the continuity records carry 2026-10-01's landings.
+  OCE's fold, pull request 318, merged there as SHA:73668b712 at 23:59Z.
 - **2026-10-01T15:58Z: OCE's open work landed, and upstream is in `engraph`** (Crucible binds Slag,
   7b999c, non-resident there). In order: the coordination fold, pull request 299 (SHA:972020417);
   the three lanes, one sync each, 313 (SHA:e453ff81a), 309 (SHA:2691a8143) and 310
