@@ -107,50 +107,302 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-02T17:42Z — the owner's three rulings and the finish node; the last slice of this estate landed; the records by the worktree route; the omnibus branch's residue (Hazel tracks Trunk, 7d8b9d)
+
+Counts first. Pending graduations: 0 inline in either register; slow-lane rows this estate 1, OCE 6,
+each read against the Director's test of 17:2xZ (a prediction, a falsifier and a dated review
+trigger) and each carrying all three, none due before 2026-10-10. Buffers: the three unconsolidated
+napkins in this estate are fully processed by the write list and move to the archive when the list
+reads zero open items (the owner, 17:1xZ, relayed by the Director: "we don't archive napkins, we
+fully process them, and once all knowledge is safe we move them to an archive"), the one phrase the
+privacy directive keeps out of version control omitted from the archived copy; this estate's live
+napkin rotates with this records commit; OCE's is 232 lines. Write list: the count line of the
+earlier entries (116 numbered, 83 open) is not recomputable, and this entry retires it: the record
+numbers only W61 to W116 explicitly, and the 01:10Z entry's 44 bullets bundle the items counted as
+W1 to W60. Of W61 to W116, read by home file against every consolidation pull request in both
+estates (this estate 287 to 296, OCE 328 to 337; the table is in the session state directory, three
+rows verified first-hand): 23 merged in both estates, 16 merged in this estate only with their OCE
+copies in the unopened u, q, s and y slices, 9 closed on reading, 1 on a memory surface, 7 not
+mapped by home (W84; W104, which is the omnibus residue below; W112 to W116, whose text the record
+never attached to the numbers). The cure, in the next records entry, is one numbered table of every
+item from the 01:10Z entry onward with its home, its slice in each estate and its status, so that
+criterion 1's count is one a reader recomputes.
+
+The owner's words of the window, verbatim, 17:0xZ in this seat's session: "NOTHING should be worked
+on without clear completion criteria, sizing, and an unambiguous and provable statement of how it
+provides ratified value. Run a fully Cricket suite"; in the Director's session, 17:0xZ: "NOTHING is
+blocked on me", and 17:1xZ: "ALL of this work is bounded, ALL of it must have a known, reachable,
+measurable end state, and ALL of it must be finished soon." The Director answered with the delivery
+node `practice-work-finish` (five end states, sized from the day's measured rate, finished within
+one day), the same bytes in both estates; it replaces the definition of done of 15:1xZ. This seat's
+todo under it: land the last slice; recount the exchange register at the current heads and compute
+the port delta; close the open rows into the generated inventory of every Practice artefact with its
+PDR-143 scope class and byte-sameness; run the census here; move the notebooks after the write list
+closes; rotate the notebook.
+
+The Cricket suite ran on every lane's three statements (four variants, two adversarial): the work
+ON-TRACK by three and DRIFTING by one on proportion; the frame CONTRADICTED by three on one reading,
+that the ten re-trued OCE owner items' retirement was the Director's to write, where the Director's
+words were "your next OCE records commit". Corrected: the retirement is this seat's, each item with
+one verb of the owner's triage taxonomy, in OCE's continuity record with the next records commit
+there; items 5, 9 and 10, still open in the verdict column, take DELETE because none carries
+criteria, a size or a value line on record (the Director's confirmation, 17:2xZ).
+
+The last slice of this estate, 296 (Practice Core, ten files), landed at SHA:c44edc837: a second
+Copilot round found three things in the review body, none an inline thread, all holding (PDR-052's
+report clause said a compaction releases a held edit where the record requires the repeated reading;
+PDR-055 named this host's tooling package and plan files while claiming every clause portable; the
+temp-files rule still prescribed the curator's per-pass log PDR-081 retired on 2026-06-14, in five
+places); one script (a144) cured all three and travels to OCE's copy of u after a143. The two-push
+budget was spent on the slice; no third request; the door at CLEAN. The pattern files' naming (a133)
+needed no run: zero lines in the ten files still say "the lineage" on the primary.
+Six slices of this estate landed today, 291 to 296.
+
+The omnibus branch `docs/consolidation-2-routed-cures` (SHA:767c05a9) failed its content proof: a
+script that checks every line the branch added against main's copy of each file found 73 absent (113
+against the coordination branch). Read by content, PDR-075's "Accepted" lines, PDR-130's line and
+the changelog and README rows are superseded by 281's review (PDR-075 is Proposed), F-219 is in the
+register under a reworded heading, the commit skill's header check is carried in substance, and the
+shell-gotchas lines are on main; the real residue is the first batch's skills split, which was never
+cut (281, 282 and 283 landed; no skills pull request of that batch exists): `coordination-fold`,
+`inter-practice-collaboration`, `consolidate-docs` step 6b, `pr-lifecycle`, `start-right-team` and
+`tooling.md`, about 30 lines; the exchange plan's paragraph on capabilities found 2026-10-01 with no
+register row and the retrospective's measure rerun of 2026-10-01 (the records channel); and
+`continuity-practice`'s archive clause (20 lines, a directive, PDR-052's floor). The Director
+approved it as the lane `docs/consolidation-2fb-first-batch-skills` in both estates (criterion the
+script's zero against main plus the passages landed; size one six-file pull request per estate, one
+records commit, one directive edit per estate; value the fold reviews' contradiction cures decided
+at the owner's review of 2026-10-01 and end states 1 and 2); OCE's copy is Efreet lifts Scorch's own
+pull request after s and before y, and both omnibus branches are deleted on the script's zero. The
+record's earlier sentence that the branch's content had landed by other slices was wrong in part; a
+claim about a branch is proved by its content, never by memory of the split.
+
+What stands. The zero-byte index lock in this estate's primary (10:56Z) holds nothing: by the
+Director's route the dirty records (this record's eighth to eleventh entries, the napkin with the
+seats' blocks, the memory README, the WS-8 synthesis header, three patterns, the register's nine
+entries, two formation letters, the finish node) are committed from this seat's built lane worktree
+on a branch cut from the coordination branch's remote tip and pushed to that branch's ref; the fold
+of 286 is the Director's by the same route. Next for this seat, in the Director's order: the remote
+retirement of `docs/consolidation-2a-decision-records` (merged as 281, never retired); OCE's records
+commit (the ten retirements, this entry); the first-batch skills lane in this estate's slot; then
+the inventory lane (the recount is its sizing act; its value line is the owner's word of 2026-09-29
+in the exchange plan's §Finish: "I want the Practice exchange finished"; "a means to an end, not an
+endless horizon"), then the census here. The two directive lines and the archive clause wait for a
+context reading under the floor, read twice after a compaction (PDR-052 §2); this window's reading
+is not taken.
+
+### 2026-10-02T16:47Z — five of this estate's slices landed in one afternoon; the sixth open with main merged in; what remains of the list (Hazel tracks Trunk, 7d8b9d)
+
+Counts first. Pending graduations: none inline in either register; the slow-lane rows (this estate
+1, OCE 6) are gated on their review dates. Buffers: the three unconsolidated napkins in this estate
+are read whole and archive by proof once the skills slice merges in both estates (this estate's did
+at 15:41Z; OCE's is last in the implementer's order) and the owner rules on one line (owner-private,
+chat only); this estate's live napkin carries four seats' blocks and rotates after the records
+commit; OCE's is 232 lines. Write list: 116 numbered, 26 closed on reading, 7 on memory surfaces, 83
+open, of which 19 were merged in both estates at the day's start, and since then every lane slice of
+this estate but one has merged (291 rules and templates, 292 skills, 293 the method and twin, 294
+plans and ports, 295 the lineage wording) with the Practice Core slice open, while OCE's implementer
+has merged the retire port and three slices (nb, r with 291's cures, and v at its door) with w, u,
+q, s and y to go.
+
+The afternoon's shape, by the Director's definition of done (15:1xZ): one open pull request per
+estate, the door read at CLEAN by name, every review finding dispositioned within a budget of two
+settlement pushes, the branch retired on proof. Twelve findings over five slices, every one holding
+in whole or in part, every one cured: seven in-file contradictions on the skills slice, one on the
+method (a control term proves reach, not absence), two frontmatter dates, four wrapped articles.
+Three cures found by this seat's own pre-open read in the merged tree (a clause on y; a wrapped
+phrase in PDR-132; the plans-and-ports description re-trued) cost no round. The cure scripts for
+OCE's copies (a135, a136 for s; a137, a138 for y) are in the synced session directory and announced
+on OCE's stream.
+
+What stands. The Practice Core slice took main by merge, never a rebase, before it opened, its one
+collision (two changelog entries at the head) kept newest first; it runs its round now. The
+zero-byte index lock in this estate's primary (10:56Z) still stands, so the records commit (the
+thread record's eighth, ninth and this tenth entry, the napkin with four seats' blocks, the memory
+README, the WS-8 synthesis header, three patterns, the register's nine entries, two formation
+letters) and the fold of 286 wait on it; the Director routed the slices around it so the fix slot
+never idled. The two directive lines wait for a window under the context meter's floor (the meter
+read 60 % at 16:45Z); the pattern files take the same naming by the records channel. After the list:
+Goal 1 item 3, the exchange register's recount at the current heads and the computed path delta
+between the two default tips.
+
+### 2026-10-02T15:15Z — the resume at the owner's routing word: the Director's definition of done, 291 landed, 292 open (Hazel tracks Trunk, 7d8b9d)
+
+Counts first. Pending graduations: none inline in either register; the slow-lane rows (this estate
+1, OCE 6) are gated on their review dates. Buffers: the three unconsolidated napkins in this estate
+are read whole and archive by proof once the skills slice merges in both estates and the owner rules
+on one line (owner-private, chat only); this estate's live napkin carries three seats' blocks since
+the freeze and rotates at the list's seventh item; OCE's is 232 lines. Write list: 116 numbered, 26
+closed on reading, 7 on memory surfaces, 83 open, of which 19 are merged in both estates, the
+rules-and-templates lessons are merged in this estate (pull request 291) and committed in OCE (slice
+r, with the estate's implementer), the skills lessons are open in this estate (292) and committed in
+OCE (slice s), and the rest are committed on lane branches in both estates.
+
+The owner's word at the resume, verbatim: "The Director will tell you what needs doing, prepare a
+report for them." The seat re-armed first (two watchers, two heartbeats, a lock watch, every one a
+Monitor, verified by id: nothing had survived the compaction), recomputed every figure, and wrote
+the report (`coord/report-director-1500.md` in the session's state directory, synced to both
+estates) before any act on the finish list. The Director's routing followed by session message: this
+seat's definition of done is the finish list of the eighth entry, this estate's side, with two
+reassignments: the seven OCE slices (item 2) are the estate's implementer's by the PDR-063 record,
+and the three OCE owner cards (item 5) are the Director's to raise. After the list: the exchange
+register's recount at the current heads, then twin lanes in this estate's fix slot as the Director
+routes them. The order after 291 is s, y, x, u, z (u after the fold of 286, or with main merged in,
+never rebased, because its changelog and catalogue rows collide with PDR-143's; z last so the
+"lineage" rewrite does not race u's text). Rules of the window: one open pull request per estate; a
+seat with a pending pull request builds nothing new; "parked" is refused as indefinite-deferral
+vocabulary, a lane names its gate.
+
+What landed. Pull request 291 (eight rules, three reviewer templates) merged by this seat's door at
+CLEAN at 15:06Z as SHA:54a219d50: eleven checks green, zero unresolved threads, one review round of
+five findings, all cured; the head proved an ancestor of main; the branch retired remote and local.
+Pull request 292 (slice s: eleven skills in two commits, the ten skills' lessons twinned from OCE's
+merged slice and the three napkin writes of a122) opened at SHA:ba67b4704 behind a hold line, its
+description re-trued to the second commit before it opened; Copilot requested at 15:12Z; a dry-run
+merge against main after 291 produced one tree and no conflict. The PDR-063 step-4 directed event
+for the OCE slices hand-off went to the implementer on OCE's stream and was absorbed within a
+minute; OCE's resume line carries the eighth entry's rendering for the next records commit there and
+names slice y as opening in this estate first.
+
+What stands. The zero-byte index lock in this estate's primary (10:56Z, no holder) still stands; the
+records commit (the thread record's eighth and this ninth entry, the napkin with three seats'
+blocks, the memory README, the WS-8 synthesis header, three patterns, the register's nine entries,
+two formation letters) and the fold of 286 wait on it, the fold with the rotation. Two lessons of
+the resume: a push-window hold line whose holder has stopped is honoured on the line alone until its
+push-done or release (the Director's window of 14:47Z closed by their line at 15:01Z after the push
+ran post-compaction), and a report for a live peer is recomputed at the moment of posting, not of
+drafting; and every commit SHA in a collaboration surface is written with the `SHA:` prefix the
+gitleaks allowlist reads (the rule surfaced on this resume; earlier lines of this seat carry bare
+SHAs).
+
+### 2026-10-02T14:48Z — compaction freeze at the owner's word: what finishes this pass, what stands, how the resume re-arms (Hazel tracks Trunk, 7d8b9d)
+
+Counts first. Pending graduations: none inline in either register; the slow-lane rows (this estate
+1, OCE 6) are gated on their review dates. Buffers: the three unconsolidated napkins in this estate
+are read whole and archive by proof once the skills slice merges in both estates and the owner rules
+on one line (owner-private, chat only); this estate's live napkin is 582 lines and rotates at the
+next drain step; OCE's is 232. Write list: 116 numbered, 26 closed on reading, 7 on memory surfaces,
+83 open, of which 19 are merged in both estates (two slices), 64 are committed on lane branches
+(five in this estate after this window, seven in OCE, handed to the estate's implementer by a
+PDR-063 record), and none is unscripted.
+
+The owner's words this window, verbatim: "prepare compaction … then stop all processes — and
+remember, you are working on a bounded task, not open ended, we must always understand the goal so
+that we are able to finish." The correction absorbed: a drain pass has a finish list, and a front
+not on the list does not open. This afternoon three audits ran in parallel (the owner-decision
+items, the set-aside defects, the "lineage" wording) beside the slice work; each is on the list
+below, and each was also the shape by which a loop grows its surface.
+
+What finishes this pass (the finish list, counted): (1) six slices of this estate land by pull request,
+one at a time in the estate's fix slot (the rules-and-templates slice is open at its first
+settlement push, 0 threads; then skills, Practice Core, plans, the method and twin, the "lineage"
+wording); (2) seven OCE slices land by the estate's implementer in the order nb, r, v, w, u, q, s,
+with the two prepared cure scripts (a125 for q, a132 for r) and the napkin-writes script (a122 for
+s) applied first; (3) one records commit lands on this estate's coordination branch once the stale
+index lock in its primary is cleared (eight dirty, linted files: the thread record with its seventh
+and this eighth entry, the napkin, the memory README, the WS-8 synthesis header, three patterns'
+scope rename, the register's nine entries); (4) the three unconsolidated napkins archive by proof
+after (1) and the owner's word on the one line; (5) three owner cards on OCE's re-trued decision
+items are raised by the Director; (6) two directive lines and the monitor rule's one-shot carve-out
+are edited in a window under the context meter's floor; (7) this estate's napkin rotates. Nothing
+else is in this pass.
+
+What stands. Both default branches hold the first two lessons slices and PDR-143. This estate's pull
+request 291 is at its first settlement push with its five findings cured and replied to; its door
+opens on green and the merge ceremony is the resume's first act. OCE's coordination branch carries
+this seat's seventh record, the ten owner-decision items re-trued against the estate (verified line
+by line), and frictions entries F-286 to F-294 with a dated note on F-174 — the same entries sit in
+this estate's register awaiting its records commit. Divergence at the default branches: 144 files
+and 7,154 lines on the comparable prefixes (from 146 and 7,167 at the day's start); 157 and 7,508
+with the pattern files now in the instrument. The scripts, slice definitions, replies, analyses and
+verification reads are in the session's state directory, synced into both estates.
+
+The resume re-arms as if nothing survived, verifying by id first: the two comms watchers
+(`run/comms-watch.sh <estate-root> "$PPID"`, one per estate), the two heartbeats (`run/heartbeat.sh
+<estate-root> <claim-id> consolidation-2 <branch> <label>`), the lock watch (`run/wait-gone.sh
+<primary>/.git/index.lock 2`) while the lock stands, and the pull-request watch (`run/pr-terminal.sh
+<root> jimCresswell jimcresswell.net 291 <head>`); then reads the Director's stream lines since
+14:4xZ before any write. Claims this estate 009bbaea and OCE 08f94e2a stay this seat's with handoff
+pointers; the one open pull request's claim is retained until it merges.
+
+### 2026-10-02T11:03Z — the owner's review and the resume: every slice committed, 289 landed, the three napkins read (Hazel tracks Trunk, 7d8b9d)
+
+Counts first. Pending graduations: no inline entry in either register; the slow-lane rows (this
+estate 1, OCE 6) are gated on their review dates and none is due. Write list: 116 numbered; 25
+closed on reading; 7 landed on memory surfaces; 84 open: 10 merged in both estates (the first
+lessons slice, this estate 289 and OCE 331, with the four cures the second review found travelling
+back to OCE); 66 committed on local lane branches in both estates (five slices in this estate, six
+in OCE, and the four-file back-port); 5 unscripted, plus four new from the napkins. Buffers: the
+three unconsolidated napkins are read whole (about 200 lessons; every one homed, superseded, tracked
+or released except the four writes and one line that is the owner's); the live napkins carry this
+window's entries; the per-user memory is dispositioned by marker.
+
+The owner's review (10:1xZ). Asked what was done, what remains and what was missed, the seat
+recomputed every figure from its source. Missed: the three napkins had been held behind a privacy
+review the owner lifted on 2026-09-14; a record imported from OCE sits uninventoried in this
+estate's active memory; the divergence measure excludes the pattern port and reads the merged state
+as more divergent than at the open (7,167 lines against 7,142; 7,081 with every prepared slice
+landed); three ported patterns carry the upstream package scope the port's plan said it would
+rename; eleven set-aside code defects were never filed; OCE's ten owner-decision items were not
+re-trued; the method lives only in buffers and scripts; the sixty-six applied lessons were
+git-durable nowhere. The owner agreed the ten proposals.
+
+Done since. Every prepared slice is a local commit, because nothing is safe until it is merged (the
+owner's word of this morning), and each opens by pull request in turn under one fix pull request per
+estate. 289 merged after one settlement push curing four findings on bytes OCE had merged first; the
+cures are committed for OCE. 290, this estate's nine-rule slice, is open. The seat's own misreadings
+this window: the work-in-progress word forbids open pull requests, not local commits; three records
+claimed code "names none" where the code exists and the policy does not wire it (a code claim has
+two parts). The owner's words of the day: "always use monitors, not ad-hoc shell processes"; the
+Practice is to be extracted as a standalone entity (PDR-143, the Director's record).
+
+Resume. Open the slices one pull request at a time per estate (290, then r, s, u and x in this
+estate; the back-port, then q, r, s, u, v and w in OCE, by the seat the owner names); write W112,
+W113, W115 and W116 as second commits on the slices that carry their files; archive the three
+napkins by proof after the owner's word on the one line; wave 4 stands as listed in the plan.
+
 ### 2026-10-02T03:51Z — the hold ended; two directive pull requests landed and the slices are opening (Hazel tracks Trunk, 7d8b9d)
 
-Counts first. Write list: 111 numbered; 19 closed on reading their homes (five more this
-window: the adapter clause, held by PDR-009 in both estates; two directive-bound follow-ups
-the registers show already graduated; the content boundary for a private lane, held by the
-privacy directive's rules 5 and 7; the Sonar policy port, a host difference); 7 landed on
-memory surfaces; 85 open. Of the open, 74 are scripted and applied in the estates' lane
-working trees, the twins' added lines compared file by file and equal; 11 are not yet
-scripted (product documents in OCE, two documents in this estate, two product ideas for OCE's
-backlog, two whole-file ports, the convergence of the pull-request skill, the capability
-inventory). Pending graduations: no inline entry in either register; the
+Counts first. Write list: 111 numbered; 19 closed on reading their homes (five more this window: the
+adapter clause, held by PDR-009 in both estates; two directive-bound follow-ups the registers show
+already graduated; the content boundary for a private lane, held by the privacy directive's rules 5
+and 7; the Sonar policy port, a host difference); 7 landed on memory surfaces; 85 open. Of the open,
+74 are scripted and applied in the estates' lane working trees, the twins' added lines compared file
+by file and equal; 11 are not yet scripted (product documents in OCE, two documents in this estate,
+two product ideas for OCE's backlog, two whole-file ports, the convergence of the pull-request
+skill, the capability inventory). Pending graduations: no inline entry in either register; the
 slow-lane rows (this estate 1, OCE 6) are gated on their review dates and none is due (PDR-130,
 decision 3). Buffers named at the open: none unread, three read by scan only.
 
-The hold. The harness compacted and the meter read 0 %, then 8.4 %. The directive cure for
-This estate's pull request 288 was re-read in full at that figure and three of its five texts were
-rewritten there. 288 merged with one settlement push. OCE's pull request 330 carried the
-same cure; its review made one claim in the body and no thread (the archive proof relied on
-HEAD and never checked the surface was clean), which held, and 330 merged with one settlement
-push. This estate still holds the first form of that step: the back-port is in its lane working
-tree and rides its next slice. The meter reached 29.4 % with one more directive edit made at
-that reading (OCE's stale orientation row); directive edits wait again from there.
+The hold. The harness compacted and the meter read 0 %, then 8.4 %. The directive cure for this
+estate's pull request 288 was re-read in full at that figure and three of its five texts were
+rewritten there. 288 merged with one settlement push. OCE's pull request 330 carried the same cure;
+its review made one claim in the body and no thread (the archive proof relied on HEAD and never
+checked the surface was clean), which held, and 330 merged with one settlement push. This estate
+still holds the first form of that step: the back-port is in its lane working tree and rides its
+next slice. The meter reached 29.4 % with one more directive edit made at that reading (OCE's stale
+orientation row); directive edits wait again from there.
 
-Open now: OCE's pull request 331, the first lessons slice (ten files). Two vendor reviews
-raised six findings, five distinct, all holding in part or whole; the cures are committed as
-settlement push one and are in this estate's lane working tree too.
+Open now: OCE's pull request 331, the first lessons slice (ten files). Two vendor reviews raised six
+findings, five distinct, all holding in part or whole; the cures are committed as settlement push
+one and are in this estate's lane working tree too.
 
-Prepared and waiting, one pull request at a time, OCE first and its twin after each:
-rules two (nine files); rules three with three reviewer templates (eleven); skills (ten);
-Practice Core (seven decision records, the decision-record README, the changelog, the
-context-budget rule, and in OCE two one-line convergence ports and the orientation row);
-plans (fifteen files in OCE, two in this estate). Each slice's branch, paths, message and
-description are files in the session's scratchpad state directory, with the order of the
-apply scripts in the plan note beside them.
+Prepared and waiting, one pull request at a time, OCE first and its twin after each: rules two (nine
+files); rules three with three reviewer templates (eleven); skills (ten); Practice Core (seven
+decision records, the decision-record README, the changelog, the context-budget rule, and in OCE two
+one-line convergence ports and the orientation row); plans (fifteen files in OCE, two in this
+estate). Each slice's branch, paths, message and description are files in the session's scratchpad
+state directory, with the order of the apply scripts in the plan note beside them.
 
-Decided this window: the lessons of the agent-tools architecture exploration stay homed in
-OCE's ratified strategic node; in this estate they are routed into the exchange plan with the
-question that is the owner's, because the owner's rulings give its Practice stream one
-strategic node. The Sonar disposition policy is not ported to this estate, which runs no Sonar
-analysis: a host difference, recorded for the capability inventory.
+Decided this window: the lessons of the agent-tools architecture exploration stay homed in OCE's
+ratified strategic node; in this estate they are routed into the exchange plan with the question
+that is the owner's, because the owner's rulings give its Practice stream one strategic node. The
+Sonar disposition policy is not ported to this estate, which runs no Sonar analysis: a host
+difference, recorded for the capability inventory.
 
-Resume. Read the open pull request's reviews in full (bodies as well as threads); cure by
-script in both lane trees; one settlement push; replies after the push is read back; merge by
-the scripted door; then the twin. Directive and decision-record edits only under 30 %.
+Resume. Read the open pull request's reviews in full (bodies as well as threads); cure by script in
+both lane trees; one settlement push; replies after the push is read back; merge by the scripted
+door; then the twin. Directive and decision-record edits only under 30 %.
 
 ### 2026-10-02T03:08Z — the hold stands; what was prepared and landed while it does (Hazel tracks Trunk, 7d8b9d)
 

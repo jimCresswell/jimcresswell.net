@@ -27,6 +27,9 @@ rotation.
   consolidated; empty when the learning loop is current.
 - `active/archive/` — processed napkin rotations only. An archive is where material
   goes after full processing, never before (owner ruling 2026-09-13).
+- `active/ws-8-ratification-reviewer-synthesis-2026-05-24.md` — a reviewer synthesis imported
+  from OCE; the worked-instance artefact `important-state-not-in-temp-files` cites, kept at the
+  path that rule names.
 
 **Read trigger**: session start (Ground First step 3 of start-right).
 
