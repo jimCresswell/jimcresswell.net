@@ -1,5 +1,6 @@
 import { err, ok, type Result } from '@engraph/result';
 
+import { printable } from '../pr-watch/printable.js';
 import { readBranchArg, type BranchArgSeams } from './branch-arg.js';
 
 /**
@@ -34,7 +35,7 @@ export const PUSH_USAGE = `merge-bot push [--branch <name>] [--json]
   stderr. Before each attempt, the first included, it stops (exit 1) when the
   token is within five minutes of its expiry, or when HEAD no longer names
   the commit the push began with: the pre-push hook validates the checkout,
-  so a commit the gate did not run on is never pushed.
+  never the commit git is handed.
 
   The token reaches git ONLY through a 0600 file that lives exactly as long
   as the transfer, read by a static credential helper; the child environment
@@ -96,7 +97,7 @@ export function parsePushArgs(
       continue;
     }
     if (flag !== '--branch') {
-      return err(new Error(`unknown argument "${flag}"\n${PUSH_USAGE}`));
+      return err(new Error(`unknown argument "${printable(flag)}"\n${PUSH_USAGE}`));
     }
     const branch = readBranchArg(state.branch, rest[index + 1], seams, PUSH_USAGE);
     if (!branch.ok) {

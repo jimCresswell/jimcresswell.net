@@ -47,6 +47,11 @@ files.
   environment.
 - Never author a `.cjs` file or CJS-shaped module code (`require`,
   `module.exports`) anywhere — ESM only.
+- A dynamic `import(...)` is an error (owner, 2026-08-09: "dynamic imports
+  error-with-recorded-exemptions"). The estate's ESLint plugin reports it
+  (`no-dynamic-import`, at error in its recommended configuration) in every
+  file the lint configuration covers; a file outside that scope, and one that
+  must stay, carries a recorded exemption in place.
 - Shell only where it significantly reduces effort. A shell script that
   accretes parsing or branching logic carries the
   promotion-overdue signals; port it to TypeScript.

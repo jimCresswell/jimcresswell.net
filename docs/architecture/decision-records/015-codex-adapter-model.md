@@ -11,6 +11,13 @@ The reusable cross-platform architecture decision now lives in
 This ADR remains as the local provenance trail for the repo's first Codex
 integration pass.
 
+One sentence of section 4 no longer describes the repository: it says no
+parallel `.agents/rules/` layer is defined, and the estate now projects rule
+wrappers there as a portable rule-adapter layer. Codex's always-on behaviour
+still comes from the entry-point chain, as section 4 decides. The current
+statement of every platform's surfaces is the
+[cross-platform surface matrix](../../../.agent/memory/executive/cross-platform-agent-surface-matrix.md).
+
 ## Date
 
 2026-03-08

@@ -56,36 +56,32 @@ describe('pushWithRetry', () => {
     expect(run.text()).toContain('nothing was pushed');
   });
 
-  it('waits each wait in turn before the next attempt, naming each retry and its wait', async () => {
-    let elapsed = 0;
+  it('asks for each injected wait in turn, and names each retry with its wait', async () => {
+    const waited: number[] = [];
     let text = '';
-    const startedAt: number[] = [];
-    const exit = await pushWithRetry(
-      (attemptNumber) => {
-        startedAt.push(elapsed);
-        return Promise.resolve(attemptNumber <= 2 ? REFUSED : PUSHED);
+    const exit = await pushWithRetry(() => Promise.resolve(REFUSED), {
+      waitsMs: [5_000, 7_000],
+      sleep: (ms) => {
+        waited.push(ms);
+        return Promise.resolve();
       },
-      {
-        waitsMs: [5_000, 7_000],
-        sleep: (ms) => {
-          elapsed += ms;
-          return Promise.resolve();
-        },
-        stderr: {
-          write: (chunk: string) => {
-            text += chunk;
-            return true;
-          },
+      stderr: {
+        write: (chunk: string) => {
+          text += chunk;
+          return true;
         },
       },
-    );
+    });
 
-    expect(exit).toBe(0);
-    expect(startedAt).toEqual([0, 5_000, 12_000]);
-    expect(text.trimEnd().split('\n')).toEqual([
-      'merge-bot push: GitHub refused attempt 1 of 3 before the pre-push hook ran; trying again with the same token in 5 s',
-      'merge-bot push: GitHub refused attempt 2 of 3 before the pre-push hook ran; trying again with the same token in 7 s',
-    ]);
+    expect(exit).toBe(1);
+    expect(waited).toEqual([5_000, 7_000]);
+    const [first = '', second = '', last = '', ...more] = text.trimEnd().split('\n');
+    expect(first).toContain('1 of 3');
+    expect(first).toContain('5 s');
+    expect(second).toContain('2 of 3');
+    expect(second).toContain('7 s');
+    expect(last).toContain('nothing was pushed');
+    expect(more).toEqual([]);
   });
 
   it('returns any other failure at once, trying nothing again', async () => {

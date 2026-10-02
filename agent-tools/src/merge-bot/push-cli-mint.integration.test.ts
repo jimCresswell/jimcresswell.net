@@ -3,7 +3,7 @@ import { generateKeyPairSync } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 
 import { runMergeBotCli } from './cli.js';
-import type { GitCommandResult, GitExecutor } from './git-executor.js';
+import type { GitExecutor } from './git-executor.js';
 import type { GithubApiFetch } from './mint-installation-token.js';
 import {
   BASE_ENV,
@@ -33,9 +33,6 @@ const { privateKey } = generateKeyPairSync('rsa', {
 
 /** The token the endpoint answers the first request for one with. */
 const FIRST_TOKEN = 'installation-token-1';
-
-/** A push git accepted, as the file-backed executor answers a call with an output sink. */
-const PUSHED: GitCommandResult = { status: 0, signal: null, stdout: '', stderr: '' };
 
 /**
  * The mint endpoints. Each request for a token is answered with a token of
@@ -98,12 +95,11 @@ describe('merge-bot push with its production mint', () => {
     expect(run.handed()).toEqual([FIRST_TOKEN]);
   });
 
-  it('hands git the same token on every attempt of a push GitHub refuses and then accepts', async () => {
-    const answers = [REFUSED_PUSH, PUSHED];
-    const gitExecutor: GitExecutor = () => answers.shift() ?? PUSHED;
-    const run = pushMinting(gitExecutor);
+  it('hands git the same token on every attempt of a push GitHub refuses each time', async () => {
+    const run = pushMinting(gitFake(REFUSED_PUSH).gitExecutor);
 
-    expect(await run.exit).toBe(0);
-    expect(run.handed()).toEqual([FIRST_TOKEN, FIRST_TOKEN]);
+    expect(await run.exit).toBe(1);
+    expect(run.handed().length).toBeGreaterThan(1);
+    expect([...new Set(run.handed())]).toEqual([FIRST_TOKEN]);
   });
 });

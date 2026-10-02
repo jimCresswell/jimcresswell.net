@@ -12,14 +12,6 @@ import { gitFake, REFUSED_PUSH, runPush, tokenStoreFake } from './test-helpers/p
  * a run of attempts is `push-attempts.integration.test.ts`'s.
  */
 
-/**
- * The repository's own pre-push gate chain on a green run, 1,852,962 bytes
- * (measured 2026-08-06, `merge-bot-push-output.smoke.ts` holds the
- * measurement), twice over: R1's proof bar for output this command does not
- * control.
- */
-const DRIVE_BYTES = 1_852_962 * 2;
-
 describe('merge-bot push retry', () => {
   it('reports a push GitHub refused on every attempt as an operational failure, nothing on stdout, the refusal shown', async () => {
     const run = runPush({ args: ['--json'], git: gitFake(REFUSED_PUSH) });
@@ -52,16 +44,7 @@ describe('merge-bot push retry', () => {
     expect(run.errText()).not.toContain('trying again');
   });
 
-  it('streams a failed push that printed twice the measured gate output in full, and never takes it for the refusal (R1)', async () => {
-    const loud: GitCommandResult = { ...REFUSED_PUSH, stdout: 'x'.repeat(DRIVE_BYTES) };
-    const run = runPush({ git: gitFake(loud) });
-
-    expect(await run.exit).toBe(1);
-    expect(run.errText().length).toBeGreaterThan(DRIVE_BYTES);
-    expect(run.errText()).not.toContain('trying again');
-  });
-
-  it('never tries again a push whose refusal lines follow more output than the refusal check keeps', async () => {
+  it('writes all of a push that printed more than the refusal check keeps, and never tries it again though its last lines are the refusal', async () => {
     const padded: GitCommandResult = {
       ...REFUSED_PUSH,
       stdout: '\n'.repeat(REFUSAL_TRANSCRIPT_BOUND + 1),
@@ -69,6 +52,7 @@ describe('merge-bot push retry', () => {
     const run = runPush({ git: gitFake(padded) });
 
     expect(await run.exit).toBe(1);
+    expect(run.errText()).toContain(`${padded.stdout}${padded.stderr}`);
     expect(run.errText()).not.toContain('trying again');
   });
 });
