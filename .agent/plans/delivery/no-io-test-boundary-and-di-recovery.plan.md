@@ -139,6 +139,14 @@ loads it fails through `--max-warnings 0`. Its gaps are these:
    - checks leave its scope by location (`jcdotnet/e2e/`, `smoke-tests/`), never by an allow-list,
      and a companion refusal rejects any file there that imports product code and runs it in
      process, so location alone never exempts a test;
+   - the agent-tools smoke suites leave that location list: the owner, 2026-10-01, of the
+     suites that spawn processes and worktrees on every pre-push (39 `*.smoke.ts` files here
+     and 31 in OCE, read that day), "is not acceptable, make a note that we need to move those
+     into real tests with no IO and with DI"; each smoke becomes a no-IO test over injected
+     fakes or moves to validation;
+   - it refuses call inspection (`toHaveBeenCalled*`, `.mock.calls`, `calls.length`) beside
+     IO, with no allow-list, so a ported test below the bar fails the port's first lint gate
+     (five comms reports);
    - it detects clock reads and the missing modules;
    - the localhost `fetch` allowance and both allow-lists are deleted;
    - it runs at `error`;

@@ -137,6 +137,9 @@ On Claude, run the four registered Cricket roles as a panel:
    changed.
 4. Collect all eight returns. A missing return is `UNDELIVERED`; do not replace it with a
    generic agent or a differently pinned role.
+5. A frame that quotes a file at a git ref says so (`git show <sha>:<path>`), or copies that
+   file into scratch and cites the scratch path: a role with only `Read` cannot resolve a ref,
+   and one read the older working-tree copy and called a true citation false (2026-09-24).
 
 Label every dispatch and every tally row by the dual scale, so a reader sees that effort climbs
 as model power descends (owner ruling 2026-09-13): `Cricket judgement: highest power, low
