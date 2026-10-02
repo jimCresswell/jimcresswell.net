@@ -247,7 +247,11 @@ the first comms write, claim, or registration).
    because by the owner's word one shared form is higher than two;
    until they do, change only what the gate refuses and
    declare each change in the integrating commit body as a debt to that
-   alignment. Where the donor's text is false
+   alignment. A migration of a local file to the shared format states,
+   before it runs, the exact local invariant it preserves (which values,
+   in which order, read by which consumers), and its diff is judged against
+   that sentence rather than against the migrator's memory of the file
+   (2026-08-12). Where the donor's text is false
    here, take the remedies in PDR-142's order: raise the standard the
    receiver lacks, cure a donor-local fact at its source, cure a shared
    contradiction jointly, and write the concept in the receiver's words

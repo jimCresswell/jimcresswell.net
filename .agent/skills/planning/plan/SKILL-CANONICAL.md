@@ -54,6 +54,11 @@ runs in CI and at pre-commit.
    yardstick, and use [`reason`](../../cognition/reason/SKILL-CANONICAL.md) to structure
    the framing before committing to plan shape.
 
+   When the plan stack itself has drifted from the implementation, the first
+   artefact is a current-state audit against the live code, and the rewrite
+   is judged against it: a stack rewritten from its own claims inherits their
+   ambiguity (2026-03-09).
+
 2. Read the directives:
    - `../../../directives/principles.md`
    - `../../../directives/testing-strategy.md`
