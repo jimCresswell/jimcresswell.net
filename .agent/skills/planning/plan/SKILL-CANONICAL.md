@@ -312,6 +312,14 @@ execution cycle:
   re-pointed at ADR-227, #961, 2026-09-03 — a recurrence despite the home,
   filed on the doctrine-traction lane).
 
+Three further disciplines. Do not assume the plan is correct or useful (the owner's words): a
+plan is a pointer written at one moment, and its premises are recomputed at execution. Before
+writing a procedure that touches shared state, list every actor that reads or writes each
+resource, scheduled jobs included: actors missing from that list cost one procedure three
+review rounds. And an amendment that can only be decided at execution, against the source and
+its fixtures, is recorded in the conserved design when it is made, never left in the session
+that made it.
+
 ## Readiness and Review
 
 Before presenting a plan for ratification, invoke required reviewers by

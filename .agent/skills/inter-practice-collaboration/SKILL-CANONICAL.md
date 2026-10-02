@@ -263,6 +263,20 @@ the first comms write, claim, or registration).
    search; version or schema mismatches are typed refusals to
    surface, never best-effort parses.
 
+**Porting and joint text, five lessons.** A port is cut from a diff of normalised files (the
+package scope renamed, host anchors set aside), never from the other estate's raw patch: a
+lenient `patch` run reversed a hunk the target already held (2026-10-02). Estate-local
+self-references are rewritten, with the source attributed so it stays checkable. Before
+amending a peer's joint text, open your own estate's home for the same concept: a sentence
+about fakes was tightened from memory against a section that said the opposite (2026-09-24).
+Where both copies are open at once, hold each door until both copies' review legs have
+settled: where one copy merged at round two and the other was then reviewed, seven further
+findings landed on shared bytes and the merged copy had to be re-taken (2026-09-26). Where
+one seat's single slot makes the copies sequential, the second estate's review is a second
+reading of the first estate's bytes, so plan the first estate's follow-up before the twin
+opens (2026-10-02: one estate's review found five true defects in a slice, the other's found
+three more in the same text).
+
 ## Leaving
 
 Close claims you opened (an open pull request's claim stays active until
