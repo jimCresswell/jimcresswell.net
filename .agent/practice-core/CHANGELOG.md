@@ -4,6 +4,19 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-10-02 — six records and the decision-record README trued from the two-estate consolidation
+
+- PDR-027's 2026-09-25 amendment states that a subagent's collaboration write
+  is its parent's. PDR-052 says what a seat does when only held directive
+  edits remain. PDR-055 names each adopting host's own build-isolation choice,
+  not one repo's. PDR-064 records the five transmission failures of Director
+  tenures and the cure enacted for them. PDR-081's rationale, cascade,
+  consequences, forbids and falsifiability agree with its 2026-06-14
+  supersession of the per-pass log. PDR-130 has a review find and answer every
+  condition a record puts on its own status. The decision-record README says
+  how an owner quote is carried in a PDR and that a PDR withdrawing a clause
+  amends the PDR that granted it. Joint bytes in both estates.
+
 ## [jimcresswell.net] 2026-10-02 — OCE named where this changelog, two records and the provenance file used a role noun
 
 - The JC.net-authored entries of this changelog, PDR-132, PDR-142 and the
