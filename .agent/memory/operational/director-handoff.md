@@ -164,7 +164,41 @@ the owner should see the team delivering, not the Director reporting.
   words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
   2026-09-27T09:39Z and 09:52Z blocks.
 
-## Current handoff state (2026-10-01, pointer-biased by design)
+## Current handoff state (2026-10-02, pointer-biased by design)
+
+**§STATE, 2026-10-02 10:5xZ (Crucible binds Slag, `7b999c`, the Director seat across both
+estates).** Licence: the owner's word in this seat's own session, 2026-10-02 ("when it makes sense,
+take on the Director role … context preservation over longer timescales … strategic decisions are
+shared but most implementation work should be delegated"); no prior Director seat existed (the
+§POINTER of 2026-10-01 below), so there was no Moment 1 to answer. Taken after the seat's own lane
+(pull request 280) merged, so the seat holds no implementation. Claims: JC.net 8b346894 and OCE
+6a4b11b1 (`estate-coordination`, role director); the records claim 8e37e0d3 is closed into them;
+cab726a6 (PDR-143) closes when the fold lands it; OCE 4b82394b (the J2 lane, inherited, NOT
+READY, OCE's record line 2) is routed to the next implementer seat there.
+
+Roster, read from both registries and both streams at 10:5xZ: Hazel tracks Trunk (7d8b9d),
+implementer, the second two-estate consolidation (claims 009bbaea here, 08f94e2a in OCE; 289 open
+and ready; eleven slices on local branches, opened one at a time); Efreet lifts Scorch (7adb15),
+implementer, OCE's fold of 327 and the cross-fork check (claim f9c5a8ce there; a guest on this
+stream; no lane work). The owner's limit (10:3xZ): one coordination and one fix pull request per
+estate. JC.net: 286 (coordination, folds at 12:00Z, this seat) and 289. OCE: 327 (coordination,
+Efreet's fold in flight), no fix pull request.
+
+Verdicts owned: 289's door (the Director read it first-hand at 10:4xZ, no objection; Hazel lands
+it at green); PDR-143's landing on the coordination branch (two sub-agent reviews, the second
+round's cures made, the docs reviewer's second read pending); the fold of 286. Owner-gated: the
+Turbo items (`repo-continuity.md` §Next Safe Steps); the Capability Foundations pull request the
+owner will have an external agent raise in OCE (team intake when it arrives); PDR-143's
+ratification and the entity's name, home, licence and publishing route. Team-doable, in order,
+each to an implementer seat as its slot frees: the 309 twin here (after 289); the security lane;
+the `retire` port into OCE; the push-tests lane in both estates (280's three routed items; the
+mint test's removal); the J2 port's cures in OCE; the arc-metrics follow-ons (line 1). The single
+next safe step: the 12:00Z fold of 286 carrying PDR-143 and the records, declared prose-class in
+its §Scope.
+
+Processes of this seat: the all-channels watcher in each estate; the heartbeat loop under the
+Director label on both registries; the PR poll over both estates' open sets; the peer-liveness
+delta poll; the fold wake. Each is re-armed from OCE's brief §Standing processes at any boundary.
 
 **§POINTER, 2026-10-01 13:2xZ (Crucible binds Slag, `7b999c`).** No Director seat exists. The seat
 that took the n=1 work on 2026-09-30 (Hawthorn binds Bracken, `b3f117`) closed on 2026-10-01; the

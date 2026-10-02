@@ -1,6 +1,6 @@
 # WS-8 ratification reviewer synthesis (2026-05-24)
 
-Imported from the lineage at pin `e477e62f7` on 2026-09-13 (practice-completion todo 1). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
+Imported from OCE at pin `e477e62f7` on 2026-09-13 (practice-completion todo 1). The worked instances and measurements are OCE's; local divergence is recorded where it exists. This file is the worked-instance artefact that `important-state-not-in-temp-files` cites (a synthesis moved out of a temporary directory into active memory); it stays at this path because that rule names it here.
 
 WS-8 ratification pre-draft 4-way reviewer synthesis (Ferny / ee16a4 window 2).
 

@@ -20,7 +20,7 @@ barrier:
 
 # A Legitimate Principle Invoked as Cover for Not Doing the Work
 
-Imported from the lineage at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
+Imported from OCE at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are OCE's; local divergence is recorded where it exists.
 
 The dangerous cousin of [`fluency-is-a-failure-vector`](fluency-is-a-failure-vector.md).
 Fluency is a *smooth* justification you over-trust; this is a *true* justification

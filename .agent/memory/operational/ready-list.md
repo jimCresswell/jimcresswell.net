@@ -10,19 +10,25 @@ GraphQL `reviewThreads` connection gives each pull request's unresolved threads 
 
 ## Ready now
 
-- None (read 2026-10-01 23:24Z).
+- JC.net 289 (Hazel tracks Trunk's first lessons slice: six rules, three references, one skill;
+  read 2026-10-02 10:2xZ): green, zero unresolved threads. Its seat is cold-paused, so it lands at
+  its door turn by the seat holding the door.
 
 ## Open, not yet ready
 
-- JC.net 280 (opened 2026-10-01 20:29Z, 16 files): the twin of OCE 322. One settlement push made
-  (`SHA:5527d3c5`), checks green. Its second review round (20:43Z) left one open thread and three
-  items in the review body, read and not yet dispositioned: the lane is frozen at the owner's
-  compaction word. The implementer seat's one open lane.
-- JC.net 284 (opened 2026-10-01 23:19Z, 15 files): fifteen rules from the second two-estate
-  consolidation; checks running at this reading. The consolidation seat's one open lane.
+- None (read 2026-10-02 10:49Z).
 
-The coordination pull requests of both estates (JC.net 276, OCE 318) land by the
-`coordination-fold` skill and are not listed here.
+The coordination pull requests of both estates (JC.net 286, OCE 327) land by the
+`coordination-fold` skill and are not listed here; 276 and 318 folded at the 2026-10-01 rollover,
+and 284 landed at 23:24Z.
+
+## Landed on 2026-10-02
+
+- JC.net 280 (10:48Z, the twin of OCE 322: the push's tests held to the testing directive, the
+  plain-http refusal at the push's origin check, printable refusals, SHA:e5c9c1e4; two settlement
+  pushes, three review rounds, three items routed to the push-tests lane in both estates).
+- Overnight, by the consolidation seat: JC.net 284 (23:24Z), 285 (00:12Z), 287 (01:08Z), 288
+  (03:24Z); OCE 323 to 326, 328 (00:43Z), 329 (02:37Z), 330 (03:39Z), 331 (04:06Z).
 
 ## Landed on 2026-10-01
 
