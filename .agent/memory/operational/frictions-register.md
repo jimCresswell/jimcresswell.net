@@ -167,7 +167,8 @@ below is a cross-reference index, not a second source of truth.
 - **Status**: open
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of pnpm, not of this estate's code; no code surface to check (no
+  modules-purge setting is configured here).
 
 ### F-28 — Directed STOP can arrive after an irreversible commit hook starts
 
@@ -194,7 +195,7 @@ below is a cross-reference index, not a second source of truth.
 - **Status**: open
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check.
 
 ### F-32 — `comms send/direct/reply/append --body "..."` silently corrupts bodies containing backticks or dollar signs
 
@@ -286,7 +287,7 @@ below is a cross-reference index, not a second source of truth.
   2026-06-14) decides amend-PDR-down vs close-gaps-as-defects; the plan's
   §Reality Reconciliation gap ledger is the input.
 - **Target surface**: PDR-051; the owning plan
-  [`current/skills-standardisation-and-adapter-generator.plan.md`](../../plans-backlog-2026-07/agent-tooling/current/skills-standardisation-and-adapter-generator.plan.md)
+  `current/skills-standardisation-and-adapter-generator.plan.md`
   (§Reality Reconciliation); generator + validator.
 - **Status**: recorded — review deferred to a later session (owner direction
   2026-06-14). Gap ledger lives in the owning plan's §Reality Reconciliation.
@@ -305,7 +306,7 @@ below is a cross-reference index, not a second source of truth.
 
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the skills generator exists here; its output was not compared with the required set.
 
 ### F-42 — Comms `reply`/`show` need git-style event-id prefix resolution
 
@@ -323,7 +324,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: prefix handling appears in the comms query modules here; the 8-character case was
+  not re-run.
 
 ### F-44 — `claims list` freshness_status ignores the live heartbeat stream (SAFETY)
 
@@ -369,7 +371,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `freshness_status` is computed here; the claims listing names the heartbeat on one
+  line.
 
 ### F-48 — Shell-significant collaboration-CLI arguments need a structural affordance
 
@@ -391,7 +394,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `--body-file` exists here; no wider affordance was found.
 
 ### F-53 — `getSkillPermissionIssues` live skill-dir test path uncovered
 
@@ -407,7 +410,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `getSkillPermissionIssues` exists here; its test coverage was not read.
 
 ### F-55 — Comms write-side must refuse self-only addressing (two-participant invariant)
 
@@ -426,7 +429,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the read-side exclusion (`classifyEventForAgent`) is here; no write-side refusal was
+  found.
 
 ### F-57 — Generated-adapter/doc drift check missing from the blocking commit gate
 
@@ -448,7 +452,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the pre-commit hook here names no adapter drift check.
 
 ### F-60 — non-reproducing pre-push failures under concurrent worktree gate runs
 
@@ -468,7 +472,8 @@ below is a cross-reference index, not a second source of truth.
   standalone in the same tree and on retry; whether a gate ran beside it is unrecorded.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation under concurrent gate runs, not re-run; this estate has the gate-slot
+  tool.
 
 ### F-62 — relocating tsx-invoked entry points silently breaks knip's entry config
 
@@ -485,7 +490,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a knip entry config exists here.
 
 ### F-63 — negation-contrast tombstone form needs a structural detector
 
@@ -507,7 +512,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: no detector for the negation-contrast form was found here (the same want as F-154).
 
 ### F-66 — BSD `sed -i ''` transient siblings race directory watchers
 
@@ -521,7 +526,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: unsolicited.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of BSD `sed`, not of this estate's code; no code surface to check.
 
 ### F-68 — `commit-queue enqueue` prints the intent_id as a bare UUID on the last line, not JSON
 
@@ -535,7 +540,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: unsolicited.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the enqueue module prints no JSON here.
 
 ### F-69 — No automatic cleanup for stale collaboration state (claims / seen-files / heartbeats); a gitignore gap lets a mis-placed seen-file get committed
 
@@ -552,7 +557,7 @@ below is a cross-reference index, not a second source of truth.
 
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `archive-stale` exists here; no wider sweep was found.
 
 ### F-71 — `pnpm agent-tools:*` wrapper buries the CLI's own error behind `ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL`
 
@@ -566,7 +571,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (owner 2026-06-19, as F-70).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the same pnpm filter wrappers are in the root `package.json` here.
 
 ### F-76 — Heartbeat mode still requires `--title`, but the help text implies it does not
 
@@ -625,7 +630,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions, event `2dbd74f6`)
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of pnpm, not of this estate's code; no code surface to check (the same
+  wrappers exist here).
 
 ### F-92 — `comms send --tag heartbeat` still requires `--title`, but the HEARTBEAT MODE help does not say so
 
@@ -641,7 +647,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions, event `2dbd74f6`)
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: no help string names `--title` beside heartbeat mode (the same defect as F-76).
 
 ### F-93 — `comms send --body` 1500-char limit has no clean home for a long directed coordination steer
 
@@ -655,7 +661,41 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions, event `2dbd74f6`)
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the body limit is in the code here.
+
+### F-96 — Continuity-buffer handoff commit blocked by markdownlint
+
+- **Source**: Director-handoff "Known friction" (`.agent/memory/operational/director-handoff.md`), 2026-06-25 worktree-pilot Director handoff.
+- **Surface**: `.husky/pre-commit` markdownlint gate over shared multi-agent continuity buffers (`.agent/memory/active/napkin.md`, `distilled.md`, registers, director-handoff, repo-continuity).
+- **Observed**: a mid-arc Director handoff commit can hit a markdownlint wall because the shared continuity buffers it must touch carry pre-existing MD trips from other agents' writes. The only path to land the handoff commit is then a full dedicated-consolidation pass (rotate + lint the whole buffer set) before any handoff commit can land — the handoff is held hostage to the entire buffer set's pre-existing lint debt rather than just its own clean files.
+- **Expected**: a handoff commit can land its own clean files without first clearing the whole buffer set's pre-existing lint debt.
+- **Candidate cure**: a lint-incremental / per-committer-scope path (lint only the committer's own changed files, or only the lines this commit touches) so a clean handoff commit is not blocked by debt it did not introduce. Distinct from F-83's structural cure (per-agent worktrees) in that it targets the handoff-commit unblock specifically.
+- **Target surface**: `.husky/pre-commit` markdownlint scope (changed-files vs whole-tree); relates to F-83 (whole-tree pre-commit gate hostage) and F-39 (markdownlint MD004 wrap).
+- **Status**: open — captured for the next team session; interim cure is the dedicated consolidation pass (rotate + lint, then commit).
+- **Owner direction status**: standing (record-all-frictions, event `2dbd74f6`)
+- **Review 2026-09-30**: LIVE against its own drift: the pre-commit ran `markdownlint-staged` on the
+  friction date (since 2026-05-12) and `.husky/pre-push:63-64` still lints every tracked Markdown
+  file, so the per-committer or touched-lines scope asked for never landed.
+- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
+  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
+  2026-10-02: the pre-commit hook runs markdownlint here too.
+
+### F-100 — No workspace-creation skill, and no per-category config canon; new-workspace scaffolding is manual and error-prone
+
+- **Source**: Alder tracks Topsoil, 2026-06-26 — creating `packages/core/safe-path` (the SSOT extraction of `assertPathWithinBase` for PR #242). Owner-directed need (2026-06-26).
+- **Surface**: new-workspace creation across the monorepo; per-workspace `package.json` / `tsconfig*.json` / `tsup.config.ts` / `vitest.config.ts` / `eslint.config.ts` / README / `src/index.ts`; `pnpm-workspace.yaml`; config-expert.
+- **Observed**: scaffolding `safe-path` was manual and error-prone — mirror a sibling's full config set, **register in the EXPLICIT `pnpm-workspace.yaml` list (NOT a glob — easy to miss; missed on the first `pnpm install`, owner had to prompt)**, wire `workspace:*` deps into consumers, confirm turbo auto-discovery, run config-expert to catch divergences. Separately, config shapes diverge across workspaces with no agreed per-category canon — the `default` export condition is split 11-omit / 7-have, and config-expert wrongly called adding it a "MUST" (it is not; some packages legitimately ship without it, e.g. `type-helpers`).
+- **Expected**: (a) a detailed workspace-creation skill, templated per workspace kind (core util / lib / sdk / app), that generates all config from the canonical sibling, registers in `pnpm-workspace.yaml`, wires deps, and verifies turbo + the config-expert patterns; (b) an agreed per-category config canon so new packages are consistent by construction and config-expert checks against the canon, not ad-hoc.
+- **Candidate cure**: author the workspace-creation skill (templates per kind); precede it with an analyse-categorise-and-standardise pass over every workspace (assign a category, diff each against a per-category canonical template, decide principled vs accidental divergence under strict + LTAE). The two pair: the categorisation defines the canon the skill instantiates.
+- **Target surface**: a new `.agent/skills/` workspace-creation skill + a config-categorisation analysis/plan; `pnpm-workspace.yaml`; per-category config templates.
+- **Status**: open
+- **Owner direction status**: owner-directed (2026-06-26) — both the skill and the categorisation.
+
+---
+
+- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
+  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
+  2026-10-02: no workspace-creation skill exists here.
 
 ### F-105 — Heartbeat loop label is frozen at arm-time, so a working agent reads as stalled
 
@@ -683,7 +723,7 @@ below is a cross-reference index, not a second source of truth.
   read silent. Cured by reading the id from a file each tick; JC's rule copy lacks that clause.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the cycle-label argument exists here; the frozen label was not re-run.
 
 ### F-106 — CLI help strings are a hand-maintained doc-drift surface; generate them from the spec table
 
@@ -736,7 +776,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions); owner-directed capture at this closeout.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the closed-claims archive file name is in the code here.
 
 ### F-110 — `gh` calls must route through a rate-limit-aware agent-tools command (batch + jitter + backoff)
 
@@ -790,7 +830,8 @@ below is a cross-reference index, not a second source of truth.
   'shared' part needs to live in the primary checkout").
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: rate-limit handling appears on four lines in pr-watch and merge-bot here; no shared
+  broker exists.
 
 ### F-111 — Claude Bash-tool execution environment: sandbox silently blanks `.agent/memory/` content reads; the shell is zsh, not bash
 
@@ -817,7 +858,8 @@ below is a cross-reference index, not a second source of truth.
 - **Status**: open (documentation-level; behaviour is the platform's).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of the Claude Bash tool, not of this estate's code; no code surface to
+  check.
 
 ### F-113 — `commit-queue enqueue`/`guard` usage text omits required `--id`; `guard` error names the claim kind but not the re-enqueue cure
 
@@ -838,7 +880,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the commit-queue usage text here names no `--id`.
 
 ### F-116 — `commit-queue guard` rejects the commit-window claim when its area-pattern is spelled `git:index/head`
 
@@ -869,7 +911,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `claimCoversGitIndexHead` is in the commit-queue guard here; the spelling case was
+  not re-run.
 
 ### F-117 — `commit-queue enqueue --claim-id` rejects a mistyped UUID with an opaque `unknown claim_id`
 
@@ -890,7 +933,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the `unknown claim` error is in the commit queue here.
 
 ### F-119 — `claims open` writes rows with no `status` field, so status-keyed jq probes silently miss live claims
 
@@ -914,7 +957,8 @@ below is a cross-reference index, not a second source of truth.
   "active"`; treat presence-in-file as the liveness signal.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an active status literal is written on four lines in the collaboration-state code
+  here and in OCE; read the claim writer before trusting the entry.
 
 ### F-120 — `git merge` leaves a stale agent-tools dist that fail-CLOSES the Bash guard and bricks the worktree (recurrence-confirmed)
 
@@ -954,7 +998,7 @@ below is a cross-reference index, not a second source of truth.
   friction is first-class user feedback).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the guard shim reads the built `dist` here.
 
 ### F-121 — `comms append --in-response-to` accepts any string; a fabricated event id ships a dangling threading edge
 
@@ -989,7 +1033,8 @@ below is a cross-reference index, not a second source of truth.
   estates' `cli-comms-commands.ts` (line 208) still pass `--in-response-to` on unchecked.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the option is read in `cli-comms-commands.ts` here; no check that the id exists was
+  read.
 
 ### F-122 — `claims close` fails ENOENT rather than creating the untracked closed-claims archive container
 
@@ -1011,7 +1056,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the claims close modules here create no directory.
 
 ### F-123 — `claims open` can crash AFTER writing the claim (exit 1, claim landed)
 
@@ -1028,7 +1073,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the claims open module exists here; the crash was not re-run.
 
 ### F-125 — cwd drift breaks root pnpm scripts and whole-estate gate runs; the cure is location-independent root-level gate scripts
 
@@ -1052,7 +1097,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check (the root scripts
+  here are the same pnpm filter wrappers).
 
 ### F-126 — semantic-merge losslessness proof is hand-rolled every time; wants a verifier command
 
@@ -1074,7 +1120,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (capture-practice-tool-feedback).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: no memory-merge command exists here.
 
 ### F-127 — PR review-thread state needs GraphQL every time; wants `agent-tools pr review-threads <n>`
 
@@ -1090,7 +1136,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (capture-practice-tool-feedback).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: pr-watch reads review threads here (`review-threads.ts`); no `pr review-threads`
+  command exists.
 
 ### F-128 — the lint config estate is not self-linted (root-level config files sit outside every workspace lint run)
 
@@ -1108,7 +1155,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: this estate has no root eslint config file and three root lint scripts; the gap was
+  not confirmed here.
 
 ### F-129 — comms concept gate: two next-cycle residuals from the founding review
 
@@ -1125,7 +1173,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the concept gate module exists here; the two residuals were not re-run.
 
 ### F-130 — no mechanical merge-ready check exists; "checks green" gets declared as "merge-ready" despite the loaded rule
 
@@ -1153,7 +1201,8 @@ below is a cross-reference index, not a second source of truth.
   correction named it; the candidate command would also print the head sha and draft state read.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `merge-bot merge` has a decision module here that reads the merge state and
+  unresolved threads; whether it closes the entry was not read.
 
 ### F-131 — a harness-timeout kill of `git commit` orphans the pre-commit hook chain as a whole-tree lint fleet
 
@@ -1184,7 +1233,7 @@ below is a cross-reference index, not a second source of truth.
   "a process-group trap or pid-liveness on the intent, never a guard-side valve"; cure (c) fires at the first two-chain host-load reading.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the pre-commit hook runs turbo here; the orphaned chain was not re-run.
 
 ### F-133 — the `commit-queue commit` workflow verifies staged state against the PRIMARY checkout, so worktree seats structurally cannot ride it
 
@@ -1211,7 +1260,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the verify-staged step is in the commit workflow here; the worktree case was not
+  re-run.
 
 ### F-135 — `comms inbox` rejects `--since`; the watcher rule's mandated gap sweep has no compliant tool shape (OWNER PRIORITY)
 
@@ -1236,7 +1286,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: owner-directed 2026-07-08.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `cli-comms-inbox.ts` names no `since` option here.
 
 ### F-137 — staged RENAMES cannot ride the commit-queue workflow (name-only verify vs both-sides pathspec)
 
@@ -1332,7 +1382,7 @@ below is a cross-reference index, not a second source of truth.
   this entry in the same directed event.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check.
 
 ### F-143 — `commit-queue -- commit` races a concurrent peer's file six-for-six; direct `git commit` passed clean twice, immediately
 
@@ -1380,7 +1430,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the commit command module exists here; the race was not re-run.
 
 ### F-144 — `commit-queue -- record-staged` dies with `spawnSync <system-git> ENOBUFS` on a large staged bundle
 
@@ -1403,7 +1453,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: one `maxBuffer` setting is in the commit queue here; the large-bundle case was not
+  re-run.
 
 ### F-145 — the PreToolUse blocked-patterns hook has no per-instance owner-authorisation valve
 
@@ -1428,7 +1479,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing (record-all-frictions).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an owner-approval marker exists for the content guard here; no per-instance valve
+  for the Bash patterns was found.
 
 ### F-148 — a suspended session's heartbeat Monitor keeps emitting: false liveness from an autonomous emitter
 
@@ -1449,7 +1501,7 @@ below is a cross-reference index, not a second source of truth.
   session's last reasoning activity and stands down when stale.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of the harness, not of this estate's code; no code surface to check.
 
 ### F-149 — comms send/direct inline `--body` dies on shell interpretation; the failure hides behind filters
 
@@ -1471,7 +1523,34 @@ below is a cross-reference index, not a second source of truth.
   (`comms direct` currently prints none).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `--body-file` exists here; the inline `--body` hazard stands (as F-32).
+
+### F-151 — the major-version guard blocks prose, and its own fix-instruction is unfollowable
+
+- **Source**: Cygnus weaves Vastness (41a8c5), MCP-151 majors sweep 2026-07-25
+  (`@semantic-release/*` commit, PR #551).
+- **Observed**: `prevent-accidental-major-version` uppercases the whole commit
+  message and substring-matches `BREAKING CHANGES`, so an ordinary sentence
+  describing an upstream dependency's release — "the stated breaking changes
+  are the module format and the two floors" — is rejected as a release-major
+  footer. The guard's own error text then advises _"document breaking changes
+  in the commit body (without the BREAKING CHANGE footer)"_, which its matcher
+  makes impossible: any wording of that advice trips it.
+- **Expected**: the guard should catch the conventional-commits **footer**,
+  which is what semantic-release's analyzer actually reads, and leave prose
+  alone.
+- **Standing agent cure**: never write the phrase in a commit body; describe
+  upstream majors as "what the major alters" or similar. Never reach for
+  `--no-verify` — the guard is right about the risk, only wrong about the
+  match.
+- **Candidate structural cure**: anchor the match the way the analyzer does —
+  a line beginning `BREAKING CHANGE:` / `BREAKING-CHANGE:` (optionally after
+  the blank line that starts the footer block) — rather than a bare substring
+  anywhere in the message. Then correct the advice line, which currently
+  describes behaviour the code does not permit.
+- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
+  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
+  2026-10-02: the major-version guard is present here.
 
 ### F-152 — comms send/direct with a long inline --body exits 2 writing nothing; --body-file lands the identical body
 
@@ -1498,7 +1577,7 @@ below is a cross-reference index, not a second source of truth.
   entry's three instances and the two seats' napkin notes.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `--body-file` exists here; the inline `--body` hazard stands (as F-32).
 
 ### F-153 — first new-shape comms event poisons all stale-dist readers (strict parsers + poison-pill drain)
 
@@ -1528,7 +1607,7 @@ below is a cross-reference index, not a second source of truth.
   suite can reach it).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: strict parsers are in the comms code here; the stale-reader case was not re-run.
 
 ### F-154 — negation-contrast tombstone detection has no enforcement layer (structural form exceeds the innate hook)
 
@@ -1562,7 +1641,8 @@ below is a cross-reference index, not a second source of truth.
   pointer first (the generator this row's own history proves).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: no detector for the negation-contrast form was found in the tools or the policy
+  here.
 
 ### F-155 — the prose-width hard limit fires on markdown headings, which are structurally unwrappable
 
@@ -1584,7 +1664,7 @@ below is a cross-reference index, not a second source of truth.
   own convention).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the fitness code here names no heading exemption.
 
 ### F-157 — commit-queue inner pathspec commit dropped four staged-new files from a 118-path intent
 
@@ -1614,7 +1694,7 @@ below is a cross-reference index, not a second source of truth.
   dropped path. Route: agent-tooling backlog.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the pathspec module exists here; the dropped files were not re-run.
 
 ### F-158 — full `pnpm check` green minutes before the same tree's pre-commit turbo run found 24 type-check tasks red
 
@@ -1641,7 +1721,7 @@ below is a cross-reference index, not a second source of truth.
   divergence between invocations. Route: agent-tooling backlog.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation of one landing, not re-run.
 
 ### F-159 — Claude Code TUI silently switches session model at quota exhaustion; no resume-time lineage check exists
 
@@ -1670,7 +1750,8 @@ below is a cross-reference index, not a second source of truth.
   - PDR-014 graduation pipeline.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of the Claude Code TUI, not of this estate's code; no code surface to
+  check.
 
 ### F-160 — comms watcher quiet config dies at the drain-step deadline on a large event directory
 
@@ -1705,7 +1786,7 @@ below is a cross-reference index, not a second source of truth.
   archive pass is overdue. Route: agent-tooling backlog.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the drain deadline is in the watcher here.
 
 ### F-162 — pr-watch all-green exit ignores merge and review state
 
@@ -1727,7 +1808,7 @@ below is a cross-reference index, not a second source of truth.
 - **Status**: open.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: pr-watch reads merge and review state here; the all-green exit was not re-run.
 
 ### F-164 — `pr-watch --watch` is silent across head and check transitions and exits ALL-GREEN on a conflicting, changes-requested PR
 
@@ -1826,7 +1907,7 @@ below is a cross-reference index, not a second source of truth.
 - **Route**: agent-tooling backlog.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: no amend verb exists here.
 
 ### F-166 — the PDR-078 §4 consumer-absent exemption has no re-arm trigger when fleet composition changes
 
@@ -1895,7 +1976,7 @@ below is a cross-reference index, not a second source of truth.
   this register exists to catch.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: PDR-078 is here with its consumer clause; no re-arm trigger was found.
 
 ### F-167 — Copilot's automatic review does not bind a tip that is only a merge commit of the base
 
@@ -1914,7 +1995,7 @@ below is a cross-reference index, not a second source of truth.
 - **Route**: pr-lifecycle worked instance.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of Copilot, not of this estate's code; no code surface to check.
 
 ### F-168 — `merge-bot merge`'s 45-minute poll budget outlives a 10-minute background-shell bound
 
@@ -1932,7 +2013,8 @@ below is a cross-reference index, not a second source of truth.
   pr-lifecycle skill.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the merge deadline module exists here; its budget against the shell bound was not
+  read.
 
 ### F-170 — the liveness heartbeat loop has no consumer-absence exit
 
@@ -1955,7 +2037,8 @@ below is a cross-reference index, not a second source of truth.
   exemption already names the condition.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check (the liveness rule
+  is loaded here).
 
 ### F-172 — a failed pre-commit step leaves a fresh intent that blocks the next enqueue
 
@@ -1972,7 +2055,7 @@ below is a cross-reference index, not a second source of truth.
   ceremony text.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the intent modules exist here; the stale intent was not re-run.
 
 ### F-173 — the liveness readers cannot see a paused seat: retired at ten minutes, claim swept at freshness expiry
 
@@ -1999,7 +2082,7 @@ below is a cross-reference index, not a second source of truth.
   read from the team-start registration and the watcher's live assertion.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: peer liveness has no paused state here.
 
 ### F-174 — `assert-watcher-live` keys on the display name alone
 
@@ -2016,7 +2099,7 @@ below is a cross-reference index, not a second source of truth.
   `identity preflight` read.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the assert names neither platform nor model here.
 
 ### F-176 — workflow fan-outs launch without a per-stage budget or a pilot measurement
 
@@ -2037,7 +2120,8 @@ below is a cross-reference index, not a second source of truth.
   wrap skill's workflow template carries a stage budget.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check (the fleet design
+  review rule is loaded here).
 
 ### F-177 — pr-lifecycle's in-loop step-back did not fire on a prose-class PR; corrected out of band
 
@@ -2066,7 +2150,7 @@ below is a cross-reference index, not a second source of truth.
   valid, with no artefact counting anything.
 
   The instrument that would end it is
-  [`pr-tally`](../../plans/delivery/pr-tally.plan.md), owner-ratified 2026-09-08
+  `pr-tally` (`pr-tally.plan.md`, a file OCE holds), owner-ratified 2026-09-08
   ("pr-tally, ratified") and NOT BUILT: `pnpm agent-tools pr-tally --pr <n>`, building
   the tally by the commit each review binds to, printing one row per settled round with
   raised and cure-worthy counts and the mechanical step-back verdict. The plan already
@@ -2089,7 +2173,8 @@ below is a cross-reference index, not a second source of truth.
   clause 8 files that as a defect against `pr-lifecycle`, never a usage pattern.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check (the pr-lifecycle
+  skill is loaded here).
 
 ### F-178 — `git branch -d` refuses a branch merged into HEAD when its configured upstream lacks it
 
@@ -2106,7 +2191,8 @@ below is a cross-reference index, not a second source of truth.
   recorded verbatim at the next prune; never `-D`.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of git, not of this estate's code; no code surface to check (the gotchas
+  reference carries it here).
 
 ### F-179 — sub-agent reports truncate in transit when the return payload is large
 
@@ -2121,7 +2207,8 @@ below is a cross-reference index, not a second source of truth.
   intermediate findings to disk).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: a behaviour of the harness, not of this estate's code; no code surface to check (the
+  verify rule carries the lesson here).
 
 ### F-180 — the heartbeat cannot tell "alive and turning" from "alive but stalled": absorption-dark seats read green
 
@@ -2144,7 +2231,64 @@ below is a cross-reference index, not a second source of truth.
   silence past the deadline is the alarm, not the heartbeat"; no turn stamp exists in agent-tools.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check.
+
+### F-181 — a relative `OAK_STATUSLINE_LOG_FILE` follows the seat's cwd into foreign repositories
+
+- **Source**: Sandpiper weaves Updraft (`a96287`) 2026-09-12, found by free-play
+  over the session's own material, then verified first-hand
+- **Surface**: `.claude/settings.local.json` env block →
+  `.claude/scripts/statusline-identity.mjs` → the agent-tools statusline adapter
+- **Observed**: the variable is set to the RELATIVE path `.logs/statusline.log`,
+  so it resolves against whatever cwd the statusline child inherits rather than
+  against the project. Two foreign checkouts received it in one morning: a
+  third-party clone in a session scratchpad, and — the one that matters —
+  `visitors/pedagogy-library`, which is a SATELLITE REPOSITORY WITH ITS OWN GIT
+  AND ITS OWN REMOTE. That repo does not ignore the path: `git -C
+  visitors/pedagogy-library status --short` reports `?? .logs/`, and
+  `check-ignore` exits non-zero. The file there is 12,080 bytes written
+  2026-09-12 08:53–08:54 by session `2de3685d`, and each line is a raw
+  statusline payload carrying an absolute home path, a transcript path, and
+  cost and rate-limit telemetry.
+- **Expected**: session instrumentation writes inside the project that owns the
+  session, never into a directory the seat merely visited. A satellite repo's
+  working tree is another repository's surface.
+- **Why it matters beyond tidiness**: the payload content is exactly the class
+  `no-machine-local-paths` exists to keep out of version control (absolute
+  `/Users/<name>/…` paths are PII by that rule's own reasoning), and the
+  estate's validator cannot see it — `validate-no-machine-local-paths` scans
+  THIS repository's tracked files, so a sibling repo's untracked working tree is
+  structurally outside its reach. One `git add -A` in the visitor commits
+  another session's telemetry to a different remote.
+- **Candidate cure**: make the path absolute at its source — resolve it from
+  `CLAUDE_PROJECT_DIR` (already used by the shim two lines above) or from the
+  `project_dir` the statusline payload itself carries, rather than leaving a
+  bare relative path in the env block. Unsetting it is the zero-cost
+  alternative; it is an opt-in diagnostic, not a required surface.
+- **Target surface**: the statusline log-path resolution (adapter), plus the
+  machine-local settings entry that supplies it
+- **Status**: open — the settings file is machine-local and untracked, so the
+  one-line change is the OWNER'S to make deliberately; this row is the
+  disposition, not a request
+- **Owner direction status**: unsolicited
+- **Instance, 2026-09-24** (Zephyr guards Leeward, `281e44`; Marten mends Shadow,
+  `74fc02`): the statusline's relative log path wrote `.logs/statusline.log` inside
+  the skill tree and the incoming Box, and the pre-push skill-adapter check refused
+  the push; the two cures stand as written (a fixed log path, or the adapter check
+  skipping dot-directories).
+- **Instances, 2026-09-29** (the Director): the relative log path planted `.logs` under
+  `.agent/rules` and `.agent/skills`, and two push validators refused them; both are recorded
+  whole as F-217, which is this entry's class.
+- **Status read 2026-10-01**: the Surface and Status lines are out of date: the variable is now
+  `PRACTICE_STATUSLINE_LOG_FILE`, and the tracked resolver (`resolveDebugLogConfig` in
+  `agent-tools/src/claude/statusline-debug-log.ts`, both estates, read 2026-10-01) returns any
+  `*.log` value as the path unresolved, so the cure need not wait on the owner's settings edit:
+  resolving a relative value against the payload's `project_dir`, or refusing it with the existing
+  invalid-config warning, is the estate's change. F-217 duplicates this entry and can fold into
+  it.
+- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
+  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
+  2026-10-02: the statusline log-file variable is read here under this estate's name for it.
 
 ### F-182 — instruments that answer about themselves rather than about their input
 
@@ -2183,7 +2327,7 @@ below is a cross-reference index, not a second source of truth.
   first-class user feedback, Pelagic event `2dbd74f6`)
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check.
 
 ### F-183 — a peer seat reached the owner's GitHub credential for pull-request writes
 
@@ -2222,7 +2366,35 @@ below is a cross-reference index, not a second source of truth.
   gitignored `.agent/state/collaboration/handoffs/74fc02-pr-g-gh-write-guard-uncommitted-2026-09-24.patch`.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the bot-identity rule is loaded here; no guard in code was read.
+
+### F-184 — the root `test` task's inputs omit the root registry files its tests read, so the pre-push cache replays a stale pass
+
+- **Observed**: 2026-09-07 (a693fb). An edit to `RULES_INDEX.md` (an
+  explaining cell on a new core row) passed every local gate — the pre-push
+  log read `@oaknational/agent-tools:test: cache hit, replaying logs` —
+  then failed CI's `rules-index-classification` test cold; one CI cycle and
+  one extra push on a terminal PR. The task declares only package-local
+  inputs (`$TURBO_DEFAULT$`, `**/*.ts`, `vitest.config.ts`).
+- **Expected**: every root file a package's tests read is declared among
+  that task's inputs (`$TURBO_ROOT$/RULES_INDEX.md`, the form
+  `tsconfig.base.json` already uses), so a root-file edit invalidates the
+  cache and the classification test runs on push.
+- **Route**: a one-line `turbo.json` change per root file the tests read,
+  as its own config change with the classification test as proof;
+  `build-system.md` §Caching carries the interim discipline (run the
+  dedicated test directory before pushing an edited registry file).
+- **Instances, 2026-09-25 and 2026-09-27** (seats, OCE): agent-tools test tasks omitted
+  `.husky/refuse-commit-on-main.sh` and `.agent/hooks/policy.json`, so an edit to either alone
+  replayed a cached pass; each was cured by one `$TURBO_ROOT$` input line (PR 272 for the policy).
+- **Status read 2026-10-01**: this entry's own file is still absent: `turbo.json` (last changed
+  2026-09-30) lists `.agent/hooks/policy.json` for `agent-tools#test` and `#test:e2e` and the
+  commit guard for `#test:e2e`, but no `$TURBO_ROOT$/RULES_INDEX.md`, so the entry stays open;
+  three root files in one class point to a check that fails when a cached task's tests read a root
+  path its inputs omit (JC's agent-tools test tasks are `cache: false`).
+- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
+  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
+  2026-10-02: `turbo.json` names no rules-index file among its task inputs.
 
 ### F-185 — `merge-bot merge` cannot read review-run liveness and degrades the verdict to SILENT-WAIT
 
@@ -2251,7 +2423,7 @@ below is a cross-reference index, not a second source of truth.
   holds the number.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the SILENT-WAIT verdict is in merge-bot here.
 
 ### F-186 — `turbo run lint` returns a cached green that never ran the new linter
 
@@ -2284,7 +2456,7 @@ below is a cross-reference index, not a second source of truth.
   `test`, which are equally blind to a toolchain-only change.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the turbo lint task is declared here; its inputs were not read.
 
 ### F-187 — three identity and link-validator defects a transplant seat found, verified and never cured
 
@@ -2319,7 +2491,8 @@ below is a cross-reference index, not a second source of truth.
   `.claude/hooks/practice-session-identity.mjs` appends it).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the identity hook builds `additionalContext` here; the three defects were first
+  reported from this estate and were not re-run.
 
 ### F-188 — no check refuses a drain tombstone left in a drainable buffer
 
@@ -2344,7 +2517,7 @@ below is a cross-reference index, not a second source of truth.
   the check is dead weight.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: no validator here names the drain tombstone.
 
 ### F-192 — a mid-session model change collides with the seat's live identity in the comms route
 
@@ -2373,7 +2546,7 @@ below is a cross-reference index, not a second source of truth.
   the harness moved a seat from `claude-fable-5-1` to `claude-opus-5-5` mid-session, continuous.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `active-agents.ts` exists here; the collision was not re-run.
 
 ### F-193 — the operator-profile push leg checks the working tree, not the commits it pushes
 
@@ -2395,7 +2568,7 @@ below is a cross-reference index, not a second source of truth.
   host's tracker for the lane.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the operator-profile code exists here; the push leg was not read.
 
 ### F-194 — the `SHA:` prefix rule is unenforced, and the in-scope records carry hundreds of bare shas
 
@@ -2435,7 +2608,7 @@ below is a cross-reference index, not a second source of truth.
   (`liveness-heartbeat-cron`). One instance.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: `archive-stale` exists here; its liveness source was not read.
 
 ### F-197 — a smoke check's ten-second wall-clock wait failed a push on a loaded host
 
@@ -2461,7 +2634,8 @@ below is a cross-reference index, not a second source of truth.
   steps plus `pollMs`; JC derives it (`4 * SMOKE_STEP_TIMEOUT_MS + SMOKE_POLL_MS`), the port.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the smoke file exists here and waits on a timer; the literal bound the entry names
+  was not found in either estate.
 
 ### F-199 — the commit queue's `commit` command runs `git commit` without `--author`, so a ceremony commit on the primary is bot-authored
 
@@ -2483,7 +2657,7 @@ below is a cross-reference index, not a second source of truth.
   instance by the ceremony path; four bot-authored commits in two days across two seats.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the commit queue passes no `--author` here.
 
 ### F-200 — the commit tool read an empty staged set seconds after `git add` filled it, three dates, cause unread
 
@@ -2502,7 +2676,7 @@ below is a cross-reference index, not a second source of truth.
   bytes are in the seat-instruments report of 2026-09-23. Three instances, one seat.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the staged-set read is in the commit queue here; the empty read was not re-run.
 
 ### F-201 — the merge door does not refuse a merge whose tip lacks an attested deletion sweep
 
@@ -2587,22 +2761,7 @@ below is a cross-reference index, not a second source of truth.
 - **Route**: merge-bot; the commit skill names the reading (2026-09-25). Two instances.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
-
-### F-203 — the review-cost survey prices an unreviewed settlement push at 0, so the gate fails open
-
-- **Observed**: 2026-09-25 (Marten mends Shadow, `74fc02`): eight of one session's
-  fourteen pull requests carried settlement pushes no reviewer reviewed, priced at 0;
-  on two the declared budget was spent in full and the gate read 0, so a third push
-  after two unreviewed ones would pass. The ledger's column definition counts reviewed
-  heads only.
-- **Expected**: the gate counts pushes to the pull request after open, not only
-  reviewed heads.
-- **Route**: the review-cost gate (agent-tools review-cost); the ledger rows for #197
-  to #210 carry the readings. One session.
-- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
-  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the push modules exist here; the silent output was not re-run.
 
 ### F-204 — the comms archive harness takes no curator disposition for non-heartbeat events
 
@@ -2617,7 +2776,7 @@ below is a cross-reference index, not a second source of truth.
   spec. One class, five rotations.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the archive-move harness exists here.
 
 ### F-206 — a shared channel append has no compare-and-swap on the channel's last heading
 
@@ -2631,7 +2790,7 @@ below is a cross-reference index, not a second source of truth.
   (2026-09-25). Two instances, two seats.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check.
 
 ### F-207 — the PreToolUse policy's argv matcher reads prose inside heredocs and event bodies as git commands
 
@@ -2680,7 +2839,8 @@ below is a cross-reference index, not a second source of truth.
   "is blocked by the `--force` substring". JC's open case of the compound-command class is F-225.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the hook policy handles heredoc bodies on 14 lines here and on none in OCE; this
+  estate holds a cure OCE lacks, and the entry was not re-run here.
 
 ### F-211 — a seat's heartbeat loop attests a seat the harness is not waking
 
@@ -2720,7 +2880,8 @@ below is a cross-reference index, not a second source of truth.
   agent-tools), and cure (a) is unapplied in both estates' landing-slot bullet (read 2026-10-01).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: an observation about seats and practice; no code surface to check (the liveness rule
+  is loaded here).
 
 ### F-212 — agent-tools' test:e2e rebuilds `dist` while lint and type-check may read it
 
@@ -2769,7 +2930,8 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: unsolicited.
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: this estate declares no shellcheck dependency and carries no guard for the shim; how
+  its shellcheck binary is installed was not read.
 
 ### F-214 — the docs validators' entry decisions have no automated boundary proof
 
@@ -2796,7 +2958,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: session-scoped (a reviewer's observation, routed by the seat).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: the validator and its entry functions exist here; no boundary proof was found.
 
 ### F-215 — the health probe in `core` imports the sub-agent declarations module
 
@@ -2853,7 +3015,16 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: session-scoped (a reviewer's observation, routed by the seat).
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: both modules exist here; no automated proof was found.
+
+### F-217 — the local statusline settings plant `.logs` directories under whatever cwd the statusline runs from; two validators refuse them (2026-09-29)
+
+Observed twice on 2026-09-29 by the Director: `.agent/rules/.logs` refused by the portability validator at the 00:0xZ fold push, and `.agent/skills/.logs` refused by the skills adapter validator at the 11:3xZ push ("no readable SKILL-CANONICAL.md"). Both directories held one gitignored statusline log written by the owner's local statusline settings, whose log path is relative (`.logs/statusline.log`). Cure each time: the log relocated to the Director's scratchpad with its bytes kept, the empty directory removed, the push re-run green. The generator is the relative path in the local settings; an absolute path or a home-directory path ends the class. Class: host artefact, not a content defect.
+
+- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
+  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
+  2026-10-02: `.logs` is named on two lines in the statusline code or the ignore file here; the
+  validators were not re-run.
 
 ### F-218 — the shared atomic writer takes caller-supplied paths with no link check (2026-10-01)
 
@@ -3057,7 +3228,7 @@ below is a cross-reference index, not a second source of truth.
 - **Owner direction status**: standing
 - **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
   entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
+  2026-10-02: tests here read agent documents; `check:docs` runs no test task.
 
 ### F-230 — the divergence measure names a directory neither estate has and skips three shared trees (2026-10-01)
 
@@ -3752,25 +3923,6 @@ below is a cross-reference index, not a second source of truth.
 - **Target surface**: agent-tools CLI (`core`, the PreCompact hook).
 - **Status**: open; a design finding, no incident.
 - **Owner direction status**: standing
-
-### F-271 — the schema-drift runner has no injectable seam and reads the live schema unbounded (2026-09-04)
-
-- **Source**: a seat's routing, 2026-09-04 (events 1a25c9fd and a77022b4), carried in the
-  2026-09-25 comms decision table.
-- **Surface**: `agent-tools/src/ci/ci-schema-drift-check.ts` (OCE; JC has no
-  `agent-tools/src/ci`).
-- **Observed**: the module calls `await main()` at top level (line 156), so no test reaches its
-  decisions, and reads the live schema with `response.json()` and no byte bound (line 109).
-- **Expected**: the runner's decisions are testable through injected ports, and the fetch is
-  bounded.
-- **Candidate cure**: give `main` injected fetch and output ports and cap the body at a declared
-  byte bound.
-- **Target surface**: agent-tools CLI (`ci`, OCE).
-- **Status**: open; no incident.
-- **Owner direction status**: standing
-- **Ported**: from OCE's register on 2026-10-02; no commit on any ref of this estate ever held the
-  entry; the status above is OCE's reading at its own dates. Checked against this estate's code on
-  2026-10-02: not yet.
 
 ### F-272 — merge-bot's `--expect` grammar admits the `unknown` login of a deleted account (2026-09-20)
 
