@@ -199,7 +199,9 @@ validator of an AUTHORED repository surface (Markdown, links, lint, docs): its u
 tracked tree (`git ls-files`), never a disk walk; a link validator that walked a gitignored
 session directory refused commits on scratch copies (OCE F-295, 2026-10-02), so the lesson
 written once for the Markdown gate binds each later such validator at its second consumer.
-State-integrity validators of the live tier (collaboration state, the practice substrate's
+The clause binds; it does not describe: in this repository the Markdown-links validator globs
+the disk and the fitness-vocabulary walker reads directories, two cures the clause names, not
+exceptions it admits (2026-10-03). State-integrity validators of the live tier (collaboration state, the practice substrate's
 instance JSON) read their untracked state by design (`important-state-not-in-temp-files`) and
 are outside this clause.
 
