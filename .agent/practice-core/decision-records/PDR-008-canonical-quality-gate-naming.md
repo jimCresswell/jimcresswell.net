@@ -369,58 +369,17 @@ to add further aliases.
 
 ## Amendment Log
 
-### 2026-09-12 — jimcresswell.net: OCE's live convention supersedes the `check`-mutates model
+### 2026-09-12 — `check` applies no fixes; `check:fix` and `check:ci` retired
 
-Owner direction (2026-09-12): adopt OCE's `package.json`
-script naming as practised, not as this record's tables describe it. OCE's live root scripts, which every skill and rule in the transplanted
-Practice already assume, are:
-
-- `check` is the **read-only** aggregate; `fix` is the mutating aggregate
-  (`format:root`, `markdownlint:root`, `lint:fix`); `check:docs` and
-  `fix:docs` are the documentation subset. The `check`-as-alias-of-`check:fix`
-  exception above is retired: bare `check` verifies, and mutation is always an
-  explicit `fix`.
-- There is no `:ci` form. CI runs the same legs as `check`, one run step per
-  leg, and a parity validator (`validate-check-ci-parity`) refuses drift
-  between the two, which is the guarantee the `:ci` suffix was for.
-- Root-only formatting and markdown gates are named for the ecosystem tool and
-  the scope: `format-check:root` / `format:root`, `markdownlint-check:root` /
-  `markdownlint:root`. Workspace packages carry only their own task gates
-  (`build`, `clean`, `dev`, `start`, `type-check`, `lint`, `lint:fix`, `test`,
-  `test:watch`, `test:e2e`, `test:ui`) plus tool scripts named
-  `<subject>:<verb>`; formatting, markdown, unused-code and secret scans run
-  once, at the root.
-- Validators are grouped as `docs-validators:check` (reference direction,
-  machine-local paths, markdown links, cited scripts, patterns index) and
-  `repo-validators:check` (CI parity, claim freshness, guard routing, policy
-  reappraisal, lifecycle scripts, stale invocations, collaboration state,
-  identity naming, workspace config isolation), both legs of `check`.
-
-The tables and rules above describe the earlier model and are read through
-this amendment; `practice-verification.md` item 9 lists the amended set. The
-OCE's own copy of this record has not been amended and its
-`package.json` contradicts it — a cohesion finding for that estate, not this
-one.
-
-### 2026-09-14 — jimcresswell.net: the validator groups are read from their live homes
-
-Owner card (2026-09-14, the morning cards; the closure record's item 78, "PDR-008
-and PDR-132: both amended by card"), raised at the closure record's item 66 when
-OCE-name leak gate joined `docs-validators:check` and the gates skill's
-enumeration no longer matched the 2026-09-12 entry above ("PDR-008 is ratified
-text and stays untouched, the mismatch a card").
-
-What changes. The 2026-09-12 entry's two leg lists were the live sets on that
-day and are read as historical; the grouping principle stands: documentation
-validators under `docs-validators:check`, repository validators under
-`repo-validators:check`, both legs of `check`, and a leg joins its group's
-root script and the gates skill's enumeration in the same change that lands
-it. The live sets are enumerated by the root `package.json` and the gates
-skill (`.agent/skills/change-custody/gates/`), never restated here (the
-no-moving-targets rule). At the transplant's closure (2026-09-14) the groups
-carried seven documentation legs (reference direction, machine-local paths,
-lineage names, markdown links, cited scripts, cited paths, patterns index)
-and twelve repository legs (CI parity, claim freshness, guard routing, policy
-reappraisal, lifecycle scripts, stale invocations, collaboration state,
-identity naming, workspace config isolation, plan corpus, protocol wire
-contract, practice substrate), a dated fact of the closure, not a contract.
+Owner direction (2026-09-12), adopting the convention the Practice's skills
+and rules already assume of the repositories that carry it. The body is read
+through this entry: `check` is the aggregate gate and applies no
+fixes, `fix` is the mutating aggregate, and CI runs every verifying leg of
+`check` under a parity validator, which gives the guarantee a separate CI form
+was for. Retired with it: `check` as an ergonomic alias of a mutating
+`check:fix`, the non-mutating `check:ci`, and the requirement to consolidate
+CI into one aggregate script. A host repository enumerates its live gate and
+validator sets in its own scripts and gates skill, never here (the
+no-moving-targets rule); which scripts it names and how its validators are
+grouped are the host's own record, paired with this record in its bridge
+index.

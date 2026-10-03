@@ -333,7 +333,8 @@ Runs the focused verify-only baseline for general documentation changes without
 builds, product tests, or browser suites: root Prettier and markdownlint, then
 the documentation validators (`validate-reference-direction`,
 `validate-no-machine-local-paths`, `validate-no-lineage-names`,
-`validate-core-adr-citations`, `validate-markdown-links`,
+`validate-core-adr-citations`, `validate-no-host-names-in-core-headings`,
+`validate-markdown-links`,
 `validate-cited-scripts`, `validate-cited-paths`,
 `validate-patterns-index`, `validate-exchange-register`).
 It is deliberately narrower than `pnpm check` and
