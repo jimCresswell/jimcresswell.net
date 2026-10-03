@@ -558,3 +558,33 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   rows the surfaces settle as `landed` carries only with their demonstration named.
 - **Processes at this block**: two watchers (bhjnzblte here, bk5fm7y19 in OCE), two registry
   beats (bpqb9kzul here, bo13ap491 in OCE), the 312 review watch (b49l8kty7).
+
+## 2026-10-03T20:02Z — the day's close at the owner's direction word (Hazel tracks Trunk, 7d8b9d)
+
+- **Lesson (the fold's records pass is a step, not a ritual)**: the fold of the coordination
+  branch was marked ready without the records pass the skill names before the ready-mark, and
+  Copilot's six threads were all records slips a reader would have found in five minutes (a stale
+  next-step block, a pointer to an archived node, a missing identity, a freshness stamp, a plan's
+  requested date against its forecast). The finish-line cluster the metacognition directive
+  names, one more instance; the cure is the step, run before the mark. Trigger: this instance.
+- **Lesson (a host's lint is a host binding the ledger does not see)**: three of the ledger's
+  readings were refused by this estate's gates, not by a reader: a rule glob with no tracked file
+  (portability), a `_` emphasis style (markdownlint MD049, this estate wants asterisks), and a
+  doubled blank line in a byte-copied research note (MD012). A landing runs `check:docs` before
+  it claims the reading lands; the ledger's host-binding column is a hypothesis. Trigger: three
+  instances in one day.
+- **Lesson (a reference copied into adapters cannot link across skills)**: a skill's reference file
+  that links a sibling skill by a relative path resolves in the canonical tree and breaks in every
+  generated adapter copy (the prefixed directory). Name the sibling's file and its canonical home
+  in a code span, never a relative link, inside `references/`. Trigger: 318's one Copilot finding;
+  the same bytes sit in OCE's copy.
+- **Lesson (a contract I wrote is still a contract)**: a stream-post helper that reads the body
+  from the third line refused two messages written title-then-body with no blank line, and a third
+  for length; a merge helper's `FETCH_HEAD` moved under it between two calls (a watcher's fetch),
+  so a named remote ref is the only stable handle. Re-read a helper's usage line before each use;
+  pass refs by name. Trigger: four refusals in one window.
+- **Fact (the owner's word on direction)**: at 20:0xZ the owner asked for a handoff record with
+  the assumptions and framing choices highlighted, to evaluate direction before another session
+  takes the work. The record is in the handoffs directory; the question it leaves the owner is
+  text parity first against capability parity first, and whether the rows measure the whole
+  divergence.

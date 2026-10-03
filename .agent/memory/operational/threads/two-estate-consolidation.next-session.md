@@ -6,7 +6,7 @@ triggered by `.agent/prompts/dedicated-consolidation-session.md` (a trigger, nev
 store: the owner's word 2026-09-30). The owner's words: "the next session will run a dedicated
 consolidation session across both estates"; "JC.net will be the home repo, where the relevant
 skills differ, 1. they shouldn't and that needs fixing, and 2. the next agent can be instructed
-to read the OCE skills". **Participating agent identities:** Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, the Director across both estates over the second pass's folds, tails and ledger, 2026-10-02 to 2026-10-03); this record was written by Galaxy binds
+to read the OCE skills". **Participating agent identities:** Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, the Director across both estates over the second pass's folds, tails and ledger, 2026-10-02 to 2026-10-03); Hazel tracks Trunk (7d8b9d, claude-code, claude-fable-5-1, the second pass's implementer in jimcresswell.net from 2026-10-01, the parity carries and surfaces of 2026-10-03); this record was written by Galaxy binds
 Gravity (46de68, claude-code, claude-fable-5-1) at its session close, 2026-09-30T14:3xZ.
 **Landing target for the next session:** the completion contract of `consolidate-until-done`
 met in BOTH estates — every live curation buffer empty or explicitly owner-decision-gated, its
@@ -106,6 +106,31 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   gate refuses outside the records), was settled by the owner on 2026-10-01 before the push; the
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
+
+### 2026-10-03T20:0xZ — the session finished at the owner's word; direction to be evaluated before the next (Hazel tracks Trunk, 7d8b9d)
+
+- **The owner's word (verbatim)**: "We are going to hand the work to another session, but before
+  that we are going to evaluate direction, so create a full handoff record, but highlight
+  assumptions and framing choices to make them easier to question". The record is this seat's
+  direction handoff in the collaboration handoffs directory
+  (`7d8b9d-hazel-tracks-trunk-direction-handoff-2026-10-03.md`, machine-local): §1 the state,
+  §2 seven framing choices and ten assumptions each with its question, §3 the cognition passes,
+  §4 the resume queue with every script's usage line, §5 the loss scan. OCE's seat wrote the
+  sibling record at the same word.
+- **Landed today (this seat)**: 306 at SHA:bfa24d633; 311 the doctrine batch (C7, C11 to C16) at
+  SHA:c4d376535, its branch retired; rows open of total 194 of 209 (the Director's rerun).
+- **At the doors**: 318 (C24, the specification family) at SHA:d2f513e62 with one Copilot thread
+  cured in that push and not yet replied; `docs/parity-rules-surface-1` at SHA:57329a50c (three
+  slices, main merged, no pull request; opens when 318 merges); `docs/parity-skills-surface-1` at
+  SHA:57eac6daa (slice 1, eleven skills; the two joint texts and two counts prepared, unapplied);
+  the fold of `coordination/2026-10-02-24fc05` ready as 305 at SHA:fd1f6bd22 with six records
+  threads, five cures prepared, the Director's at 00:00Z.
+- **The direction question for the owner**: text parity first (the Director's order, the shared
+  doctrine as the Practice) against capability parity first (the code carries, where the gates
+  live); and whether the ledger's rows measure the whole divergence (the dry-run merge the plan
+  names as the finish test would answer it now, in minutes).
+- **Claims**: 009bbaea and 08f94e2a RETAINED with the handoff record as pointer; watchers and
+  heartbeats stopped by intent at the close.
 
 ### 2026-10-03T07:1xZ — the step 2 carry and the twin clauses landed; cold pause at the owner's compaction word (Hazel tracks Trunk, 7d8b9d)
 
