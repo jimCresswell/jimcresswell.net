@@ -33,7 +33,10 @@ comments are the record owner's own voice, and stay theirs.**
 About to write to any ticket, board, project, or tracker owned by
 someone else: a colleague's tracker project, another team's issue, a
 foreign repository's GitHub issue, a knowledge-base database that is not
-ours. Reading is unceremonied; the rule fires at the write. A surface
+ours. This rule puts no ceremony on a read and fires at the write; a read of
+the upstream repository's surfaces is governed by
+`downstream-checkout-never-writes-upstream-surfaces`, which this rule leaves
+intact. A surface
 with its own owner-set write rule stays in scope deliberately — such a
 rule asks whether we may write at all, not which fields are ours to
 author, so the two compose rather than duplicate. See **Precedence**.

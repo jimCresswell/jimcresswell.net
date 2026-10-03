@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: invoke docs adr expert
+description: Invoke `docs-adr-expert` when changes add or alter ADRs, EDRs, READMEs, `.agent/` documentation or other permanent narrative surfaces.
 trigger: surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces
 ---
 
