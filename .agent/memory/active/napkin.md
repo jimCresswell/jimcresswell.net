@@ -511,3 +511,50 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   open, 9 settled, 3 unread; 306 changes no row; 311 closes C7, C11 to C16 when it lands.
 - Processes at this block: four monitors (two watchers, two registry beats) and the 311 door
   watch.
+
+## 2026-10-03T13:5xZ — The resume at the start-right word; the ledger's revision open as 312 (Crucible binds Slag, 7b999c)
+
+- **The owner's start-right word of 13:2xZ** lifted the freeze (standing rule 3; nothing said it
+  remained). The harness opened in plan mode, so the run order went to the plan file first and
+  the owner's approval released it: re-arm, the route restated on both streams (66809a49 here,
+  9512f755 in OCE) with the standing words' homes (words 1, 2, 4 and the scripts ruling into the
+  collaboration directive on Efreet's directives surface; word 3 into the wrap skill's freeze
+  paragraph on Hazel's skills surface), the Core hunks to the seat that lands its second surface
+  first (Hazel by default), the plan twin routed to Efreet rather than raced on the OCE primary
+  (landed as SHA:303568714, proved: the delivery node the same bytes, the parent node
+  frontmatter-only).
+- **311 read twice**: the batch at SHA:4e9ce0032 by containment (every shared file's added lines
+  present at OCE's tip; the host-authored lines only where the rows allow) and its settlement at
+  SHA:9cbba47c2 (five hunks, two of them joint texts posted for Efreet's twin); verdicts
+  6ec19d0a and 8ca2108b: merge when Copilot settles.
+- **The ledger's revision, 312** from `docs/parity-ledger-revision-2` at SHA:5f481560 (the
+  measure worktree, re-cut from main at SHA:bfa24d633). The rerun at today's tips (JC.net
+  `bfa24d633`, OCE `e790eab33`): 201 hunks in 87 files; over the read tips' rows 198 open, 9
+  settled, 3 unread. Shape chosen under proportionality: the ledger is NOT re-based at each
+  rerun (the surfaces will settle most rows today); settled rows keep their reading with the
+  rerun's tips in their evidence, unread hunks take rows anchored at the rerun, and the closer's
+  `--rerun` output is the rows-open-of-total figure (201 of 209 now). One collision resolved by
+  re-anchoring, not duplicating: the changelog's hunk 1 at the rerun is the same row with a new
+  first line.
+- **Two shape defects from my own keyed transform, caught by lint and a cell read, not by the
+  closer**: replacing the LAST cell of a row by splitting on `" | "` drops the trailing pipe (the
+  last cell carries it); appending a cell by suffixing text before the final pipe puts the text
+  INSIDE the last cell and leaves an empty cell after it, which the width check accepts. Lesson:
+  a table transform rebuilds the row from its cells and re-joins with both edge pipes; the
+  closer's width check is necessary, not sufficient, so the cell read (`grep ' | |$'`) is part
+  of the proof.
+- **markdownlint by explicit path** does not lint `.agent/reports/**`: the cli2 config's
+  ignores persist under `--no-globs` and `--config`. The working form is a copy of the files in
+  a directory outside the repository, linted with the repository's rules config
+  (`.markdownlint.json`) by absolute binary path; D44 names this.
+- **Copilot's review request on a JC.net pull request** is made under the operator credential
+  with the login `copilot` (`copilot-pull-request-reviewer` is refused as a non-collaborator);
+  the request registers silently (the requested-reviewers list stays empty); the review arriving
+  is the proof. `merge-bot push` pushes only; the pull request is opened with `gh pr create`.
+- **For the next revision** (the evening fold's): Hazel's scratch tools that became general
+  today (`hdr2.sh`, `retire-merged-branch.sh`, `insert_after.py`, `replace_once.py`,
+  `reply-resolve.sh`, `pr-terminal.sh`) are tool rows T6 onward where T1 to T5 do not cover them
+  (reply-resolve is T3); the rules surface counts 48 hunks in 35 files; the closer learns the
+  rows the surfaces settle as `landed` carries only with their demonstration named.
+- **Processes at this block**: two watchers (bhjnzblte here, bk5fm7y19 in OCE), two registry
+  beats (bpqb9kzul here, bo13ap491 in OCE), the 312 review watch (b49l8kty7).
