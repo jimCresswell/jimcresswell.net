@@ -59,3 +59,51 @@ it whole.
 - **Lesson (estimates)**: the Director's first whole-finish estimate did not add up from the
   ledger's own closures and left eleven carries unaccounted for; the Cricket caught both. An
   estimate is summed from the closures in the artefact, never stated from a feel of the queue.
+
+## 2026-10-03T00:09Z — The step 2 carry's build and review: a gate whose needles come from the Core's own records (Hazel tracks Trunk, 7d8b9d)
+
+- **Design (needles derived, not declared)**: the host-name heading gate (307) reads its host
+  names from the Core's own records, every provenance `repo:` field and every changelog entry
+  tag with an owner/name tag split three ways, plus the tree's origin owner and name. The first
+  draft read provenance alone and ran green over OCE's tree, where the sibling's name is in no
+  provenance entry (the chain is written by the receiving repository) but in every changelog tag
+  the joint-change convention writes; the changelog tags closed it. Over OCE's tree by its root
+  argument the gate reports exactly the two headings OCE's twin cures; here seven before the
+  edits, none after. Lesson: a cross-estate gate is demonstrated on the other tree before it is
+  called done, and the demonstration is what found the needle gap.
+- **Lesson (a smoke's comment is a claim)**: the smoke's comment said the refusal arms "stay with
+  the helpers' cells"; they live in the entry point and no cell reached them. Copilot read the
+  comment as a claim and tested it. Cured with a refusal arm over a fresh repository with no Core
+  (exit 2, the diagnostic asserted). A test file's comment names what each surface proves,
+  never where a proof is assumed to be.
+- **Candidate (one Markdown fence reader)**: the gate's fence state machine was corrected to
+  CommonMark's closer and opener rules by copying the plan corpus's YAML fence scanner
+  (`validate-plan-corpus-helpers` and its fence module), so the estate now has two fence readers
+  with the same rules. `consolidate-at-second-consumer` names this moment; the consolidation is a
+  code change with its cells and is its own small pull request after 307, not a widening of a
+  carry already at eighteen files. Trigger: two consumers, met.
+- **Tool fact (the work-in-progress check read the old rule)**: the seat's branch-cut script
+  refused on OCE's open twin pull request, reading the limit as "either estate"; the owner's word
+  is per estate (one coordination, one in-progress fix), and the Director's ruling is that a pull
+  request held at its door for the owner's reading is a review surface, not work in progress.
+  The check now takes the estate root and a held list. Lesson: a scratch guard encodes a reading
+  of a rule and goes stale when the rule's reading moves; re-read the guard at each new ruling.
+- **Tool fact (Copilot never appears in requested reviewers)**: after `--add-reviewer @copilot`
+  the pull request's requested-reviewers list showed only the owner, on 307 and on 306 where
+  Copilot had already reviewed; the request is consumed into a pending review at once. The proof
+  of a request is the review arriving, never that list; a second request on that evidence is
+  harmless and unneeded.
+- **Tool fact (the host does not follow renames in mergeability)**: 306 read CONFLICTING after
+  300 moved the exchange node's plan to the archive while the ledger branch had changed one line
+  of it; `git merge-tree` resolves it cleanly by rename detection, the host's check does not. The
+  cure is a merge of main into the branch (merge, never rebase), from the worktree that holds the
+  branch, which was another seat's: routed to the Director as a request, done by them.
+- **Tool fact (max-lines)**: the helpers module crossed the 250-line cap on the second round's
+  cure and the fence reader moved to its own module, which is where a Markdown concern belongs
+  (F-289's near-cap observation, a third instance).
+- **Review**: Copilot's six findings on 307 were all correct (two code, four prose: deictic
+  references that a verbatim move leaves pointing at the wrong document; a host-relative phrase
+  in a portable claim; a stale count in the bridge index, cured by removing the count). One
+  settlement push, six threads replied with the cure's commit and resolved; the second budget
+  unspent.
+- Processes at this block: both watchers, the two registry heartbeats, the 307 door watch.
