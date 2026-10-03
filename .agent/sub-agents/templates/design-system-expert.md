@@ -1,5 +1,12 @@
 ---
 description: Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm.
+claude:
+  tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
+  disallowedTools: Write, Edit, NotebookEdit
+  color: purple
+  note: |-
+    Review or recommend; do not modify code. The calling agent executes any
+    changes you propose.
 ---
 
 ## Delegation Triggers

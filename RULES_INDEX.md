@@ -41,12 +41,14 @@ edit it by hand.
 | `.agent/rules/directive-file-context-budget.md` | situational | `surface:directive-files ∪ ceremony:consolidation` |
 | `.agent/rules/documentation-hygiene.md` | situational | `surface:**/*.{ts,tsx,mts}` |
 | `.agent/rules/dont-break-build-without-fix-plan.md` | core | — |
+| `.agent/rules/downstream-checkout-never-writes-upstream-surfaces.md` | core | — |
 | `.agent/rules/executive-memory-drift-capture.md` | core | — |
 | `.agent/rules/exit-codes-in-band-never-piped.md` | core | — |
 | `.agent/rules/fleet-design-review-before-expensive-fleets.md` | core | — |
 | `.agent/rules/follow-agent-collaboration-practice.md` | core | — |
 | `.agent/rules/follow-collaboration-practice.md` | core | — |
 | `.agent/rules/follow-the-practice.md` | core | — |
+| `.agent/rules/foreign-board-write-discipline.md` | core | — |
 | `.agent/rules/handoff-messages-self-contained.md` | core | — |
 | `.agent/rules/hook-policy-substring-discipline.md` | core | — |
 | `.agent/rules/identify-as-agent-under-shared-credentials.md` | core | — |
@@ -96,6 +98,7 @@ edit it by hand.
 | `.agent/rules/no-verify-requires-fresh-authorisation.md` | core | — |
 | `.agent/rules/no-warning-toleration.md` | core | — |
 | `.agent/rules/one-instance-is-an-observation.md` | core | — |
+| `.agent/rules/one-pr-per-leaf-issue.md` | core | — |
 | `.agent/rules/owner-attention-at-action-moments.md` | core | — |
 | `.agent/rules/per-user-memory-is-a-buffer.md` | core | — |
 | `.agent/rules/permanent-doc-is-the-consolidation-record.md` | core | — |
