@@ -37,7 +37,8 @@ with open(ledger_path, encoding="utf-8") as f:
 
 READINGS = ("same meaning", "host binding", "capability gap", "host-local")
 MERGE_READINGS = ("lands merged", "host-bound inside", "contradiction")
-STATUSES = ("queued", "owner", "pointer", "tail-likely")
+STATUSES = ("queued", "owner", "pointer", "tail-likely", "landed")
+TOOL_STATUSES = ("queued", "landed")
 DIRECTIONS = ("OCE → JC.net", "JC.net → OCE", "both")
 SURFACES = OrderedDict([
     (".agent/directives/", "directives"), (".agent/hooks/", "hooks"),
@@ -64,11 +65,46 @@ def sections(text):
     return out
 
 
-def table_rows(lines):
-    rows = []
+def tables(lines):
+    """Every table of a section as (header cells, data rows), split at its header row."""
+    out, header, rows = [], None, []
     for line in lines:
-        if line.startswith("| ") and not line.startswith("| ---"):
-            rows.append(cells(line))
+        if line.startswith("| ---"):
+            continue
+        if line.startswith("| "):
+            if header is None:
+                header = cells(line)
+            else:
+                rows.append(cells(line))
+        elif header is not None:
+            out.append((header, rows))
+            header, rows = None, []
+    if header is not None:
+        out.append((header, rows))
+    return out
+
+
+def table(section, header, where):
+    """The rows of every table in a section carrying this header; a row of another width refuses.
+
+    A row the old filters would have dropped (a reading misspelt, a cell missing) is refused by
+    name instead: a closure instrument that drops a malformed row silently reports a green that
+    recomputes nothing (306's review, 2026-10-03).
+    """
+    found = [rows for h, rows in tables(section) if h == header]
+    if not found:
+        raise SystemExit(f"{where}: no table carries the header {header}")
+    rows = [r for rows in found for r in rows]
+    bad = [r[0] for r in rows if len(r) != len(header)]
+    if bad:
+        raise SystemExit(f"{where}: rows of a width other than the header's: {bad}")
+    return rows
+
+
+def checked(rows, index, allowed, where):
+    bad = [f"{r[0]} ({r[index]})" for r in rows if r[index] not in allowed]
+    if bad:
+        raise SystemExit(f"{where}: rows outside the set {allowed}: {bad}")
     return rows
 
 
@@ -110,8 +146,21 @@ missing = [k for k in "abcdefghi" if k not in secs]
 if missing:
     raise SystemExit(f"ledger lacks sections {missing}")
 
+HUNK_HEADER = ["file", "hunk", "reading", "lands as / parameter / capability", "evidence"]
+MERGE_HEADER = ["file", "reading", "what the landing must do", "evidence"]
+SIDE_HEADER = ["file", "side", "reading", "lands as / parameter / capability", "evidence"]
+CARRY_HEADER = ["id", "capability", "direction", "closure", "size in pull requests", "status",
+                "rows covered"]
+TOOL_HEADER = ["id", "tool", "replaces", "criteria", "status"]
+OWNER_HEADER = ["id", "the owner's row", "what it decides", "rows",
+                "decided (2026-10-03, the Director under the lenses; the owner declines by row)"]
+PARAMETER_HEADER = ["id", "parameter", "JC.net value", "OCE value", "rows"]
+HOST_LOCAL_HEADER = ["file", "where", "reason"]
+DOUBT_HEADER = ["id", "doubt", "from", "rows"]
+ANCHOR_HEADER = ["file", "hunk", "side", "first line"]
+
 # (a) the conflict hunks
-a = [r for r in table_rows(secs["a"]) if len(r) == 5 and r[2] in READINGS]
+a = checked(table(secs["a"], HUNK_HEADER, "§(a)"), 2, READINGS, "§(a)")
 a_keys = [(r[0].strip("`"), int(r[1])) for r in a]
 if len(set(a_keys)) != len(a_keys):
     raise SystemExit("duplicate (file, hunk) rows in §(a)")
@@ -120,11 +169,11 @@ a_surface = Counter(surface_of(k[0]) for k in a_keys)
 a_files = len({k[0] for k in a_keys})
 
 # (b) the clean merges
-b = [r for r in table_rows(secs["b"]) if len(r) == 4 and r[1] in MERGE_READINGS]
+b = checked(table(secs["b"], MERGE_HEADER, "§(b)"), 1, MERGE_READINGS, "§(b)")
 b_reading = Counter(r[1] for r in b)
 
 # (c) the one-sided files
-c = [r for r in table_rows(secs["c"]) if len(r) == 5 and r[2] in READINGS]
+c = checked(table(secs["c"], SIDE_HEADER, "§(c)"), 2, READINGS, "§(c)")
 c_reading = Counter(r[2] for r in c)
 SIDES = {"JC.net": "JC.net", "JC.net (at the report)": "JC.net", "OCE": "OCE"}
 unknown_sides = sorted({r[1] for r in c} - set(SIDES))
@@ -133,19 +182,29 @@ if unknown_sides:
 c_side = Counter(SIDES[r[1]] for r in c)
 
 # (d) the carries
-d = [r for r in table_rows(secs["d"]) if len(r) == 7 and re.fullmatch(r"C\d+", r[0])]
-bad = [r[0] for r in d if r[5] not in STATUSES or r[2] not in DIRECTIONS]
-if bad:
-    raise SystemExit(f"carries with a status or direction outside the sets: {bad}")
+d = checked(checked(table(secs["d"], CARRY_HEADER, "§(d)"), 5, STATUSES, "§(d)"), 2, DIRECTIONS,
+            "§(d)")
 d_status = Counter(r[5] for r in d)
 d_dir = Counter(r[2] for r in d)
+t = checked(table(secs["d"], TOOL_HEADER, "§(d) tool rows"), 4, TOOL_STATUSES, "§(d) tool rows")
+
+
+def ids(rows, pattern, where):
+    bad = [r[0] for r in rows if not re.fullmatch(pattern, r[0])]
+    if bad:
+        raise SystemExit(f"{where}: ids outside the form {pattern}: {bad}")
+    return rows
+
+
+ids(d, r"C\d+", "§(d)")
+ids(t, r"T\d+", "§(d) tool rows")
 
 # (e) the owner's rows, (f) the parameters, (g) the host-local rows, (h) the doubts, (i) the anchors
-e = [r for r in table_rows(secs["e"]) if len(r) == 4 and re.fullmatch(r"O\d+", r[0])]
-f_ = [r for r in table_rows(secs["f"]) if len(r) == 5 and re.fullmatch(r"P\d+", r[0])]
-g = [r for r in table_rows(secs["g"]) if len(r) == 3 and r[0] != "file"]
-h = [r for r in table_rows(secs["h"]) if len(r) == 4 and re.fullmatch(r"D\d+", r[0])]
-i_ = [r for r in table_rows(secs["i"]) if len(r) == 4 and r[0] != "file"]
+e = ids(table(secs["e"], OWNER_HEADER, "§(e)"), r"O\d+", "§(e)")
+f_ = ids(table(secs["f"], PARAMETER_HEADER, "§(f)"), r"P\d+", "§(f)")
+g = table(secs["g"], HOST_LOCAL_HEADER, "§(g)")
+h = ids(table(secs["h"], DOUBT_HEADER, "§(h)"), r"D\d+", "§(h)")
+i_ = table(secs["i"], ANCHOR_HEADER, "§(i)")
 i_keys = [(r[0].strip("`"), int(r[1])) for r in i_]
 duplicate_anchors = sorted(k for k, n in Counter(i_keys).items() if n > 1)
 if duplicate_anchors:
@@ -173,8 +232,10 @@ line = (
     f"host binding {c_reading['host binding']}, capability gap {c_reading['capability gap']}, host-local "
     f"{c_reading['host-local']}; JC.net-only {c_side['JC.net']}, OCE-only {c_side['OCE']}); "
     f"{len(d)} carries (queued {d_status['queued']}, owner {d_status['owner']}, pointer "
-    f"{d_status['pointer']}, tail-likely {d_status['tail-likely']}; OCE → JC.net {d_dir['OCE → JC.net']}, "
-    f"JC.net → OCE {d_dir['JC.net → OCE']}, both {d_dir['both']}); {len(e)} owner's rows; "
+    f"{d_status['pointer']}, tail-likely {d_status['tail-likely']}, landed {d_status['landed']}; "
+    f"OCE → JC.net {d_dir['OCE → JC.net']}, JC.net → OCE {d_dir['JC.net → OCE']}, both {d_dir['both']}); "
+    f"{len(t)} tool rows (queued {Counter(r[4] for r in t)['queued']}, landed "
+    f"{Counter(r[4] for r in t)['landed']}); {len(e)} owner's rows; "
     f"{len(f_)} host-binding parameters; {len(g)} host-local rows; {len(h)} doubts; {len(i_)} anchors."
 )
 
@@ -191,7 +252,14 @@ print("count line", "agrees" if agree else "DISAGREES")
 def dump_anchors(path):
     with open(path, encoding="utf-8") as f:
         text = f.read()
+    declared = re.match(r"# Conflict hunks for the ledger's read: (\d+) hunks in (\d+) files", text)
+    if not declared:
+        raise SystemExit(f"{path}: not a dump of dump_hunks.py (its header line is absent)")
     parts = re.split(r"^### (.+?) — hunk (\d+)\n", text, flags=re.M)
+    parsed = (len(parts) - 1) // 3
+    if parsed != int(declared.group(1)):
+        raise SystemExit(f"{path}: declares {declared.group(1)} hunks and carries {parsed} headings; "
+                         "an empty, truncated or wrong dump reads nothing settled")
     pairs = []
     for k in range(1, len(parts), 3):
         file, n, body = parts[k], int(parts[k + 1]), parts[k + 2]
