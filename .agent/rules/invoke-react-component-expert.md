@@ -6,7 +6,7 @@ globs:
   - "**/*.tsx"
 ---
 
-# Invoke React Component Reviewer
+# Invoke React Component Expert
 
 Invoke `react-component-expert` when changes touch `app/`, `components/`, hooks, client or server
 boundaries, hydration, or component performance. Use it for React composition and lifecycle

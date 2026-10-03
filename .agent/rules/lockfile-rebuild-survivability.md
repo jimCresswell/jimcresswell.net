@@ -55,7 +55,7 @@ every workspace manifest, and stay in that shell for the assertions:
 scratch="$(mktemp -d)"   # an empty directory
 git ls-files -z -- package.json '*/package.json' pnpm-workspace.yaml .npmrc \
   | xargs -0 tar -cf - | tar -xf - -C "$scratch"
-pnpm --dir "$scratch" install --lockfile-only   # resolve from declarations alone
+pnpm --dir "$scratch" install --lockfile-only --ignore-scripts   # resolve from declarations alone; no lifecycle scripts
 ```
 
 `git ls-files` names only tracked paths, so stage a new workspace's
@@ -63,7 +63,10 @@ pnpm --dir "$scratch" install --lockfile-only   # resolve from declarations alon
 lockfile is never touched. Copy `"$scratch/pnpm-lock.yaml"` into the checkout
 only when its state is the one you mean to commit, and before assertion 4.
 
-Then assert all four, and read each result rather than the exit code alone:
+Then assert all four, and read each result rather than the exit code alone.
+The first three read `"$scratch/pnpm-lock.yaml"` and run
+`pnpm --dir "$scratch" audit`; the fourth runs in the checkout against the
+lockfile to be committed, once the cold result is that lockfile:
 
 1. **Floors** — every advisory-carrying package resolves at or above its fixed
    version in `"$scratch/pnpm-lock.yaml"`.
@@ -88,7 +91,7 @@ pnpm `overrides` replace the **effective specifier of every dependency they
 bind**, direct dependencies included, and the lockfile records the override's
 specifier and the overrides themselves. An override and the manifests it binds
 therefore drift apart in two ways, and pnpm treats them differently (measured
-on pnpm 12.4.2, 2026-09-16):
+on pnpm 12.4.2, 2026-09-16, and again on OCE's pnpm 11.20.0, 2026-09-25):
 
 - **An override changed without regenerating the lockfile fails loudly.** The
   lockfile's recorded overrides no longer match the workspace's, and

@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Test immediate-fail checklist. Any single violation rejects the test; first-pass screen before any deeper analysis.
-trigger: surface:**/*.test.ts
+trigger: surface:test-authoring
 globs:
   - "**/*.test.ts"
 ---

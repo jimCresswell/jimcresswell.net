@@ -132,7 +132,7 @@ edit it by hand.
 | `.agent/rules/strict-validation-at-boundary.md` | situational | `surface:boundary-data — TypeScript and authored content where external data enters` |
 | `.agent/rules/subagent-practice-core-protection.md` | situational | `surface:AGENTS.md,CLAUDE.md,.agent/practice-core/**/*,.agent/directives/**/*,.agent/rules/**/*` |
 | `.agent/rules/tdd-for-refactoring.md` | core | — |
-| `.agent/rules/test-immediate-fails.md` | situational | `surface:**/*.test.ts` |
+| `.agent/rules/test-immediate-fails.md` | situational | `surface:test-authoring` |
 | `.agent/rules/third-party-skills-require-security-review.md` | situational | `ceremony:skill-vendoring` |
 | `.agent/rules/tsdoc-and-documentation-hygiene.md` | situational | `surface:**/*.ts,**/*.tsx,docs/**/*,.agent/**/*,README.md` |
 | `.agent/rules/unattended-seats-never-prompt.md` | core | — |
