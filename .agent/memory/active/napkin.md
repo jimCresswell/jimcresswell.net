@@ -165,3 +165,75 @@ it whole.
   SHA:847de822 (landed by content through the re-cut, unmerged by ancestry) and its remote; the
   worktree is removed and the re-cut branch deleted locally after the merge. The #347
   relay-clause nuance remains a note for one joint cure as the same bytes when both seats run.
+
+## 2026-10-03T07:13Z — Compaction freeze at the owner's word, in cold pause: the five passes and the re-arm recipe (Hazel tracks Trunk, 7d8b9d)
+
+- **State**: cold pause on the Director's word (00:3xZ) since 00:37Z, both claims held (009bbaea
+  here, 08f94e2a in OCE) with handoff pointers to `7d8b9d-hazel-tracks-trunk-cold-pause-2026-10-03`
+  in each estate's handoffs directory; the heartbeat-end is on both streams; every process of this
+  seat is stopped (two watchers, two registry heartbeats, the door watches ended at their merges,
+  the one Cricket agent returned and stopped). JC.net main SHA:691b93198; this branch at
+  SHA:684162547 before this block; 306 held at its door for the owner's rows; 305 the draft of this
+  branch; next fold 2026-10-03 12:00Z. OCE: Efreet's 346 (the carry's copy) open at 00:20Z, the
+  twin of 308 to follow. Nothing of the carry queue starts before the owner's word on O10; the
+  Director resumes this seat by message.
+- **Re-arm recipe (as if nothing survives; verify by the task list first, re-arm only what is
+  absent)**: four Monitors, each 30 minutes and re-armed at expiry, from the synced session
+  directory `comms-analysis-2026-10-01/session-7d8b9d/` under each estate's collaboration state:
+  `run/comms-watch.sh <estate-root> "$PPID"` once per estate; `run/heartbeat-registry2.sh
+  <estate-root> <claim-id>` once per estate (the successor script keeps a failure's last stderr
+  line). A pull request at its door takes `run/pr-terminal.sh <lane> jimCresswell jimcresswell.net
+  <pr> <sha9>` (reports, never merges). The lane scripts of the night: `coord/wip-check.sh
+  <estate-root>` with `coord/held-prs.txt`; `run/lane-cut-wt2.sh`, `run/lane-push-jc.sh`,
+  `run/lane-settle-jc2.sh`, `split/open-pr.sh`, `run/reply-group.sh`, `split/reply-only.sh`,
+  `run/docs-merge.sh`, `run/wt-status.sh`, `coord/append_block.py`; each carries its usage line.
+- **Metacognition (retrospective)**: three over-claims in one night, all sentences about what a tool
+  or a test does, none self-caught, each caught by Copilot: "the refusal arms stay with the
+  helpers' cells"; "the push scripts already read it back"; "declared as degraded". The generator
+  is one: a claim about a tool written from the memory of similar tools, under the drive to land.
+  The structural cure is the one the directive names: a sentence that says what a tool does is
+  written after opening the tool, never before; the night's one instance of doing so (the two
+  validators that glob the disk) was the one such sentence that held. Generative: the carry's
+  gate reads headings only, a scanner's convenience, not the constraint's shape; the rule names
+  the body-text clause as unscanned, so the gap is declared, not hidden.
+- **Reason (the one live decision)**: whether the successor starts the thirteen text and small-code
+  carries before the owner's word on O10. The node's Mechanism item 3 (ratified) holds the carries
+  until the ledger's reading so nothing lands that a decline reverts; the owner's "nothing is
+  blocked on me" is the general word, the node's item the specific one, and the hold costs a
+  night at most while a wrong carry costs a revert in two estates. Verdict: the hold stands, no
+  change; falsifier, an owner word of "carry all" makes the night's hold the whole cost.
+- **Concept exploration (host facts leaking into the portable Core)**: one class under four
+  faces tonight: host-tagged headings (cured by 307), a host name in PDR-005's body, host-relative
+  phrasing in a portable claim ("sibling estate"), a count in the bridge index gone stale. The
+  mechanism is in-situ editing of a shared Core by seats holding one host's view, read literally
+  by review bots. The fluent cure is more validators; the inverted reading is that every such
+  validator is a bridge until the Core is edited in one place (PDR-143's entity), so the
+  extraction's definition should carry "where the Core is edited" as a row. Proposals: (a) that
+  row for the Director and owner; falsifier, a Core edited in one place that still leaks. (b) A
+  body-text scan with the gate's derived needle set and a short, named allowlist of records that
+  may name a host (provenance, changelog, worked-instance sections); falsifier, an allowlist that
+  grows past a handful, which would mean the constraint is mis-stated, not the text.
+- **Free play (harvest)**: `play seed:` the Core remembers where it has lived in its changelog
+  tags, not in its provenance, which made the gate's needles possible, a passport's stamps rather
+  than its birth certificate (kept; routed nowhere beyond the gate). `play seed:` the host's
+  mergeability check that cannot follow a rename beside git's merge-tree that can, next to two
+  fence readers of one grammar: every grammar in the estate acquires a second reader somewhere,
+  and the readers part at the edges (kept, to concept-exploration when a third instance appears).
+  Discarded visibly: Copilot vanishing from the requested reviewers "like a waiter who takes the
+  order" (decoration); the system finding its own rest after the owner slept (decoration).
+- **Wrap**: work safety read from every worktree (`run/wt-status.sh`): the primary level with its
+  remote; 2w, 2x, 2y, 2z and director-records detached and clean, their branches merged and
+  retired; `consolidation-2` on the Director's measure-input branch, one commit ahead of main's
+  tracking ref, which is the Director's to read (an inference: that branch's content is the
+  ledger's base, cut from it). Promises: every one discharged or routed (the twins to Efreet, the
+  clauses as 308, 306's threads to the Director, the fence reader and F-296 as candidates, the
+  two owner-private items awaiting the owner in per-user memory). Inferences flagged: Copilot's
+  absence from requested reviewers is a two-instance model; the heartbeat pair's cause (the
+  pre-push gate's load) is coincidence in time, not a read. Blind spots: the watcher filters;
+  306's state after the Director's merge is read once at the compaction wrap (07:1xZ) and not watched: MERGEABLE and
+  CLEAN at SHA:505e6bd64, and six review threads still unresolved on the host, where the
+  Director's broadcast of 23:53Z said they were dispositioned and resolved (a discrepancy read
+  first-hand, left for the Director; this seat's freeze admits no outward act on it). External bound: point outside eyes at every
+  sentence of this seat that says what a tool does, and at every "already". A third pass would
+  re-find those two; the recursion closes here.
+- Processes at this block: none.

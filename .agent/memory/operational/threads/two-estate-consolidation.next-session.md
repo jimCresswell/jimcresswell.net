@@ -107,6 +107,40 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-03T07:1xZ — the step 2 carry and the twin clauses landed; cold pause at the owner's compaction word (Hazel tracks Trunk, 7d8b9d)
+
+- **Landed since the sixteenth entry**: 304 merged (the last rotation slice), 300 folded with the
+  successor `coordination/2026-10-02-24fc05` (draft 305); 306 (the Director's parity ledger over
+  384 items) opened from `docs/parity-measure` and held at its door for the owner's row reading;
+  307 merged at SHA:e394fcea4, the parity node's step 2 carry (PDR-008's and PDR-132's host-tagged
+  amendment entries moved verbatim to ADR-023, the host-side adoption record, paired in the
+  bridge index; PDR-005, PDR-082 and PDR-132 with headings of date and subject alone; the Core
+  gate `validate-no-host-names-in-core-headings`, needles derived from the Core's provenance repo
+  fields and changelog tags plus the tree's origin, demonstrated on both trees: seven findings
+  here before the edits, none after, two in OCE for its twin); 308 merged at SHA:691b93198, six
+  one-clause cures from the review of OCE's twins of 302 to 304. Review intake across 307 and
+  308: eight Copilot findings, all correct, cured in one settlement push each, threads replied and
+  resolved. This estate's step 1 and step 2 of the parity node are landed.
+- **Held**: 306 at its door, MERGEABLE after the Director merged main into it (the exchange node's
+  plan renamed to the archive by 300; the host's check does not follow renames); its six Copilot
+  threads carry this seat's assessments and the Director's dispositions under the spent
+  settlement budgets, and read as still unresolved on the host at 07:1xZ (the Director's own
+  broadcast said resolved; the successor reads it again before the door). No carry starts before
+  the owner's word on row O10 (the node's Mechanism item 3); the Director recommends carrying the
+  thirteen text and small-code carries and deferring the four large ones to the entity's design.
+- **OCE**: Efreet's 345 (the twins of 302 to 304) merged at SHA:c1a2d1ade; 346 (the carry's copy,
+  ADR-232) open at 00:20Z; the twin of 308 follows it.
+- **Records**: the notebook's blocks of the carry, of 308 and of the compaction freeze, and F-296
+  (two authored-surface validators read the disk) on this branch; the per-user memory holds the
+  Director's ruling that a pull request held at its door is a review surface, not work in progress.
+  Candidates, not work: one Markdown fence reader for its two consumers; F-296's code cure; a row
+  for the extraction's definition naming where the Core is edited.
+- **Seat state**: cold pause on the Director's word (00:3xZ), confirmed by the owner's compaction
+  word; both claims held with handoff pointers; every process stopped; the heartbeat-end on both
+  streams. The successor resumes on the Director's message, re-arms by the recipe in the
+  notebook's compaction block, reads this record and the stream since 00:37Z, and takes the first
+  carry the Director names.
+
 ### 2026-10-02T22:42Z — the resume after the usage limit: 302 and 303 landed, the rotation archived, the three old notebooks moved (Hazel tracks Trunk, 7d8b9d)
 
 The seat stopped at its usage limit at 20:49Z (stop line 04255eb9) and resumed at 22:1xZ at the
