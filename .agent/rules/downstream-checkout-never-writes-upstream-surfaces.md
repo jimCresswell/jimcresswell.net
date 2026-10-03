@@ -12,6 +12,11 @@ architecture decision on organisational identity below the tree; this
 estate runs as its own origin with no upstream today, so the fork clauses
 bind the moment a second remote or a fork of this tree exists, and the
 explicit-repository and derived-default-branch clauses bind every call now.
+One gap in this estate's own tooling is known: the spawn command's `--base`
+defaults to `origin/main` and its pull request opens against that literal;
+deriving the default branch there is a code carry of the parity queue, and
+until it lands the clause binds the seat, which passes `--base` explicitly,
+not the tool.
 
 A checkout that runs this repository downstream of another (a fork, a
 mirror, an organisation running the tree as its own) has exactly one set

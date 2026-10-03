@@ -216,7 +216,7 @@ go-ahead-gated steps.
 | `gitleaks version` | The secrets scanner the gates require installed? |
 | `.tools/bin/shellcheck --version` | The pinned shellcheck the gates require installed in this checkout? |
 | The other tools named in the live README prerequisites (`jq`, bash 5.2 or later) | Present or absent, per tool |
-| `node_modules/` exists at repo root | Dependencies installed? |
+| `node_modules/` exists at repo root | Dependencies were installed at some point; the directory does not say whether completely or currently (a failed postinstall leaves it behind, and it can predate a lockfile change), so report the state as unknown and offer the README's install step with go-ahead |
 | `git remote -v` | Clone wired to the expected origin? |
 | For each `**/.env.example`: does a `.env.local` sibling exist? | Workspace env set up (structural — never hardcode workspace names) |
 

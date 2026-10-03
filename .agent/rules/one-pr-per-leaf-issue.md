@@ -8,8 +8,10 @@ description: HARD RULE (owner, 2026-09-02). A leaf issue is delivered by exactly
 **HARD RULE.** Deliver a **leaf** issue — one with no children — with **exactly one**
 pull request, and close the issue from that PR's body with a closing keyword:
 `Fixes <issue>`, or the equivalent `Closes` / `Resolves`, in the tracker's own
-form (this estate tracks work in GitHub issues, so `Fixes #nnn`; an estate on a
-ticket tracker writes its issue id, such as `Fixes ABC-nnn`). You settle this
+form (an estate tracking work in GitHub issues writes `Fixes #nnn`; one on a
+ticket tracker writes its issue id, such as `Fixes ABC-nnn`; this estate mints
+no leaf issue in either today, its work living in the plan estate, so the rule
+binds from the first leaf issue it mints, in that tracker's form). You settle this
 twice — cardinality at ticket-scoping time, before a branch exists; the closing
 keyword at PR-body authoring time, before the PR is opened. Many leaf issues may
 map to one PR; one leaf issue may never map to two. A leaf needing a second PR is
@@ -81,7 +83,7 @@ Every PR delivering a leaf names it with a **closing keyword** in the PR body, i
 the tracker's form:
 
 ```text
-Fixes #nnn
+Fixes <issue-id>
 ```
 
 `Closes` and `Resolves` are equivalent. **`References`, `Refs:`, `Related:` and a

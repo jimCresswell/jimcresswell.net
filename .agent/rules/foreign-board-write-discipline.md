@@ -104,9 +104,9 @@ must update.
 
 The same reading applies to any surface whose owner sets its own write
 rule: read that rule as the outer gate, this one as the field split
-within it. This estate writes to no tracker or knowledge base of its own
-beyond GitHub today, so the rule binds here the moment a seat writes to a
-record it does not own — a foreign repository's issue first of all.
+within it. The rule fires here at any write to a record this estate does
+not own, whatever the surface: a foreign repository's issue, another
+team's tracker project, a knowledge-base page that is not ours.
 
 ## Failure Mode Prevented
 
