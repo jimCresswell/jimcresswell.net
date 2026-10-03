@@ -89,11 +89,14 @@ This step applies to standard and separately provisioned profiles only. In a
 detected ChatGPT Work cloud session, step 0 replaces it completely.
 
 The identity lives once in the clone's shared local config and every worktree
-inherits it. In this repository lane commits are made under the owner's identity
-(owner, 2026-09-17: "Owner identity, as now"). The acting agent is named in the
-commit's `Co-Authored-By` trailer, and bot credentials are for third-party writes
-only (`bot-identity-on-third-party-systems`). A new worktree therefore needs no
-identity step at all — only a check that what it inherited matches the primary:
+inherits it. This estate's identity contract, set by the owner's word of
+2026-09-17 ("Owner identity, as now"): the owner is author and committer from
+the clone's shared identity, the acting agent is named in the commit's
+`Co-Authored-By` trailer, and bot credentials are for third-party writes only.
+The mechanics are the estate's committer identity rule
+(`bot-identity-on-third-party-systems`); this skill holds no value of an
+identity. A new worktree therefore needs no identity step at all — only a
+check that what it inherited matches the primary:
 
 ```bash
 PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
@@ -110,11 +113,13 @@ done
 ```
 
 Both keys must report inherited (the check exits non-zero otherwise), and both
-values must be the owner's. The check proves inheritance, not correctness: a
-worktree inherits the primary's error too, so compare `want` with the owner's
-identity: the email [`secops`](../../directives/secops.md) §Git identity names,
-and the name on the owner's GitHub profile. If either differs, is absent, or
-names anyone else, fix the SHARED config once, with the owner's name and email.
+values must be the identity the estate's committer identity rule names. The
+check proves inheritance, not correctness: a worktree inherits the primary's
+error too, so compare `want` with the value that rule derives (here the
+owner's identity: the email [`secops`](../../directives/secops.md) §Git identity
+names, and the name on the owner's GitHub profile). If either differs, is
+absent, or names another identity, fix the SHARED config once, as that rule
+directs.
 Never patch this worktree: a `--worktree` override is a second copy that
 outlives the next correction and reintroduces the exact drift this step exists to
 catch.
@@ -189,7 +194,7 @@ local runtime or full-gate claim is made.
 | Identity resolves in the worktree | `git -C <path> config user.name` and `git -C <path> config user.email` | the primary's name and address |
 | Nothing shadows the shared copy | `git -C <path> config --worktree --get-regexp '^user\.'` | no output |
 | Base is clean | `git -C <path> log --oneline origin/<base>..HEAD` | only this story's commits |
-| Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author and committer the owner; the agent in the `Co-Authored-By` trailer |
+| Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author and committer as the estate's committer identity rule sets them (here the owner for both; the agent in the `Co-Authored-By` trailer) |
 
 The second row is not optional, and a green first row cannot stand in for it. A
 `--worktree` override holding the *same* value reads correct today and silently keeps
@@ -257,8 +262,8 @@ never as a local-gate result.
   platform-pinned; clause 8's pre-PR contamination check.
 - [`worktree-hygiene`](../../rules/worktree-hygiene.md) — lane lifecycle, the
   first-push draft PR clause, and §6 dispositions when the lane ends.
-- the estate's committer identity rule, here
-  [`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
-  — the identity contract this configures, and the author/committer ruling.
+- [`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
+  — the estate's committer identity rule: the identity this skill verifies, and the
+  author and committer ruling.
 - [`never-commit-to-main`](../../rules/never-commit-to-main.md) — why lane work
   starts on its own branch in its own worktree at all.

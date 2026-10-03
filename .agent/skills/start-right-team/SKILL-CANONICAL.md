@@ -53,8 +53,8 @@ remains background.
 
 ### n=2 mode (overlay on team-member modes)
 
-1. **Open a dialogue channel** with your partner — native session messaging where both
-   seats can use it, otherwise an ArcAngel channel
+1. **Open a dialogue channel** with your partner — s2s where both seats can use it and the
+   transcript is not itself the record, otherwise an ArcAngel channel
    ([`channel-by-audience-lifetime-and-consumer`](../../rules/channel-by-audience-lifetime-and-consumer.md)) — or any agent you will
    substantively collaborate with. ArcAngel is predominantly a _pairwise_
    channel, but it can be used for n=3 as well.
@@ -628,7 +628,8 @@ graduations buffer, surfacing home-gaps as structural-cure proposals).
 A session may run a curator lane in parallel with implementer /
 reviewer / marshal lanes; the curator's traceability surface is the
 commit plus the homed substance, with the close-of-pass broadcast
-(PDR-081 §Amendment Log; the `curator-pass` skill's Step 8).
+(PDR-081 §Amendment Log; the `curator-pass` skill's Step 8;
+`permanent-doc-is-the-consolidation-record`).
 
 **The `marshal` / commit-warden runs the team's awareness surface.**
 In a multi-agent window only ONE agent owns `git:index/head`, runs the
@@ -998,8 +999,8 @@ Coordinator role transitions have two distinct moments per
 [PDR-064](../../practice-core/decision-records/PDR-064-coordinator-handoff-two-moments.md);
 conflating them creates a coordinator-less window the team cannot
 detect. Inside the authority window, from Moment 2 of acquiring the role to
-Moment 1 of releasing it, what the coordinator writes to the stream as it
-happens is
+Moment 1 of releasing it, what a coordinator holding the Director role
+writes to the stream as it happens is
 [PDR-075](../../practice-core/decision-records/PDR-075-director-substrate-writing-discipline.md)'s
 discipline: rulings and owner-decision answers go on the stream when they
 occur, so a successor reads the stream and the handoff record stays small.

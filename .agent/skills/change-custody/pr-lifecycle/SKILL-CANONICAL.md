@@ -545,20 +545,31 @@ contradicts (2026-10-02).
   `MERGEABLE`/mergeable-state alongside the checks, and confirm runs exist
   for the CURRENT head via `gh run list` filtered per-head — a checks-green
   read against a head with zero runs is reading the PREVIOUS head's truth.
-- The repo's budgeted watcher, `pnpm agent-tools:pr-watch <n> --watch --interval 60`,
-  is not a settle watch while it runs through the unified entrypoint: that path
-  buffers every line until exit, so a Monitor on it reads silence (frictions
-  F-164, five instances; OCE's copy of this skill withdrew the form on
-  2026-09-16). Arm a poll of the pull request's own fields as the Monitor, or
-  call `runPrWatchCli` from dist with the process streams. Where the watcher
-  does print, it gives one line per state
-  change, including new comments by author and the unresolved review-thread
-  count moving in EITHER direction. KNOWN SUBSET: pr-watch currently reads
-  PR-view fields, REST review comments, and thread counts — not review
-  bodies or `latestReviews` — so a summary-only review does NOT change its
-  snapshot. Treat its events as wake signals only, never as the state; the
-  Phase 3 harvest is the authoritative read on every wake, and extending
-  pr-watch to the full compound floor is tracked as the
+- Watch with a compound read that emits on change: a background loop under
+  a Monitor that runs one compound GraphQL read of the pull request per
+  60-second tick (state, merge state, head, the check rollup counted by state,
+  unresolved threads, reviews bound to the head; a connection that reports
+  truncation is paged within the tick, as item 1 requires) and prints one line only when that
+  reading changes, ending only on MERGED or CLOSED. It also prints a heartbeat
+  line at a fixed cadence (every tenth tick) and a line when it exits for any
+  other reason, so a dead or hung watcher is told apart from a quiet pull
+  request (F-164's expected shape); the heartbeat is liveness, never state. No tool provides that
+  loop yet: the seat writes it, running the compound selection of the
+  review-round state machine's item 1 at a 60-second interval (not tight
+  polling), until the `ws6-pr-watch-compound-floor` item below
+  gives it a tool form. For a single verdict,
+  `pnpm agent-tools pr state <n> --expect <login> [--expect <login> ...]`,
+  with one `--expect` per available configured reviewer as for the merge
+  (the flag declares the whole expected set), computes the front door's
+  reading once and never merges. Do NOT use
+  `pnpm agent-tools:pr-watch <n> --watch --interval 60` as the watch: through
+  the unified entrypoint that path buffers every line until exit, so a Monitor
+  on it reads silence (frictions F-164, five instances), and it was silent
+  across head and check transitions at three seats and exited early on
+  ALL-GREEN at a fourth, so its silence cannot be told from its failure. Treat
+  any watcher's events as wake signals only, never as the state; the Phase 3
+  harvest is the authoritative read on every wake, and extending pr-watch to
+  the full compound floor is tracked as the
   `ws6-pr-watch-compound-floor` item in
   `pr-merge-readiness-discipline.plan.md`.
   Passing checks alone are not green — an
@@ -668,8 +679,11 @@ case-insensitively, an optional scope prefix `In scope,` or
 nothing else. `**Over-bar**`, `**In scope, over-bar**` and
 `**Over-bar on prong two.**` read; `**Not over-bar**`,
 `**Below-bar, not over-bar**` and any span with other words read as no
-marker. The prong and the scope reading are stated where they apply; the
-count does not read them. After the marker comes the disposition
+marker. The prong and the scope reading are stated where they apply, and
+the reply states them BEFORE any cure is written: naming the generator
+twice did not stop cure-reflex rounds at one seat, and stating the prong
+did, at once (2026-09-12, OCE #136 and #138; "a sentence that must be written is
+a step"). The count does not read them. After the marker comes the disposition
 sentence: `Cured in SHA:<sha>` (the `SHA:` prefix and seven to forty
 lowercase hex characters, bare or inside a code span), `Routed to <home>`, or
 `Rejected` with the rationale — the convention for a reader; the raised
@@ -875,7 +889,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    before): "If you know there is broken code, fix it". On 2026-09-27 it
    carried one named fix push for a verified code defect past a spent round
    budget; it never means a pull request per true finding, a reading that fed
-   twelve rounds on one pull request. A code-class finding is outside this pricing altogether: a
+   twelve rounds on one pull request. A code-class finding is outside this prose pricing: a
    verified defect follows the code-review state machine's own transitions
    (PDR-132's round budget and the step-back arms above), never a
    settlement-push cap. The tip of the LAST budgeted settlement push — the
@@ -1326,7 +1340,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   clears it when the review lands. `gh agent-task list` enumerates
   coding-agent sessions (`--json id,name,createdAt,completedAt`;
   `completedAt` null = in flight) and `gh agent-task view <session-id>
-  --json` maps one to its PR (the list JSON carries no PR number; the
+  --json` maps a run to its PR (the list JSON carries no PR number; the
   PR-number positional is interactive-only — vendor shapes verified
   2026-07-21). Its contract is item 4's: an OBSERVED live session mapped
   to the PR is a measured guard and blocks settlement; a run's ABSENCE is

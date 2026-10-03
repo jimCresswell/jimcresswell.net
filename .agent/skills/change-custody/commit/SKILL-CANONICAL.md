@@ -287,10 +287,11 @@ old path as well as the new one or the move never lands, and chain the `git add`
 to the `git commit` with `&&`, never `;`, because a rename staged by `git mv`
 matches no old-path pathspec and the add fails silently (2026-09-26). The separate host bound
 — two, at most three, simultaneous full local gates — is engineered as a
-semaphore, not declared (`no-unbounded-host-load` item 6); until it lands, seats
-run full gates side by side only in different worktrees, at most two at once, and
-inside one worktree gate runs are sequential (owner, 2026-09-20: "two parallel
-gate runs are fine as long as they are in different work trees").
+semaphore, not declared (`no-unbounded-host-load` item 6): each hook's full gate
+holds a host gate slot, so it waits while two gates run on the host or one runs
+in its own worktree, and `pnpm agent-tools:gate-slot status` names the holders
+(owner, 2026-09-20: "two parallel gate runs are fine as long as they are in
+different work trees").
 
 ### Intent-Scoped End-to-End (2026-05-22 cure)
 
@@ -598,7 +599,12 @@ topology for memory-file reconciliation):
    resolution — read `git status` and `git diff --cached --stat` and confirm
    every path belongs to the merge (conflict resolutions plus the merge's own
    union writes). There is no queue fingerprint; the first-hand read is the
-   verification.
+   verification. Assert the merge is still in progress before the commit
+   (`git rev-parse -q --verify MERGE_HEAD`) and read the parent count after it
+   (`git rev-list --parents -n 1 HEAD`): a resolution committed once the merge
+   state had gone landed as a plain one-parent commit (2026-09-10). In a linked
+   worktree the marker lives in that worktree's own git directory
+   (`worktree-hygiene`).
 3. **Commit the whole index plainly**: `git commit` (message via `-F`, no
    pathspec, no `--no-verify`) so the full pre-commit gate runs and the hook
    is the green verdict.
@@ -623,6 +629,12 @@ catastrophic shape. A foreign lock means another agent is mid-commit:
    view, active claims, and `git log` for the live committer.
 3. Surface the foreign lock to the owner with the diagnostics and the
    wait-vs-handoff options. The owner decides; the agent never loops on the
+
+The common holder on the shared primary is a peer's running `git commit`, whose
+hooks run for minutes: wait on the process table (that `git commit` exiting),
+never on the lock file, then re-run the ceremony alone (two ceremonies lost the
+race to a periodic git process, 2026-09-20; two lost it to peers' commits,
+2026-09-25).
    lock file.
 
 The advisory commit queue, `git:index/head` active claim, and shared-log
@@ -656,10 +668,22 @@ Before opening the four-move protocol above:
 
 1. `git status` — see all changes; `git diff --staged && git diff` —
    understand what will be committed.
-2. Confirm quality gates have passed (or run them now). Do NOT
-   pre-prime the turbo cache by running `bash .husky/pre-commit`
-   separately — the real commit will warm it; the pre-prime is
-   wasted ~30s and confuses symptom for cause.
+2. Do not run the quality gates before or beside the commit: the
+   commit's own hook is the gate (owner, 2026-09-14, verbatim: "the
+   commit triggers the gates, there is no point and a fair amount of
+   cost running the gates separately as well, never, ever do that").
+   Do NOT pre-prime the turbo cache by running `bash .husky/pre-commit`
+   either, and never pre-run one of the hook's instruments (Prettier,
+   markdownlint) on the staged files. When the hook refuses, fix what
+   the refusal names and commit again. After an interrupted or refused
+   ceremony, read `git log -1` before the next act: a commit that an
+   interrupt appeared to stop had landed, and the re-run ceremony was
+   refused for an empty bundle (2026-09-20). A gate-bearing commit or
+   push runs under an event-driven watch that reports progress on a
+   cadence and the exit code at the end; its captured log can stay
+   empty while the pre-push runs (`merge-bot push` under redirection,
+   2026-09-23 and 2026-09-24), so progress is read from the process
+   tree and the outcome from the remote tip.
 3. Stage selectively — never blindly `git add .`. Skip `.env`,
    credentials, `bulk-downloads/`. The `commit-queue` enqueue +
    guard chain in move 2 enforces explicit pathspecs by design.

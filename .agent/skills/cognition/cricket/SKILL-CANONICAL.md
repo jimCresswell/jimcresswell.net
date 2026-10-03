@@ -222,4 +222,6 @@ inside the read-only lens: no messaging peers, no drafting, no write-access requ
 owner-invoked suites of 2026-09-03 recorded it stepping from judging into doing (messaging the
 PR B subagent; drafting the ADR and asking for write access) — a recurring instrument defect,
 so a run whose procedure seat acted is recorded in the tally's behaviour-note column and its
-verdict weighed accordingly.
+verdict weighed accordingly. Its UNGROUNDED marks are its method's floor, not findings: it
+cannot read git history, so every claim that rests on a commit reads as ungrounded to it and its
+verdict slides to DRIFTING (2026-09-23).

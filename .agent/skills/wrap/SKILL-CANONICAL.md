@@ -52,7 +52,11 @@ directly instead — the seat stays live there; wrap is for ends. An
 owner-called mid-cycle handoff additionally follows PDR-063's five-step
 protocol; wrap supplies the depth of the record it freezes.
 
-A freeze order binds until the owner discharges it. After "prepare for
+A freeze order binds until the owner discharges it, and a start-right
+invocation by the owner discharges it unless the owner says the freeze
+remains (the owner's standing rule of 2026-10-03, verbatim: "As a standing
+rule, if I invoke a start right skill and do not explicitly say that the
+freeze remains then the freeze/pause is lifted"). After "prepare for
 compaction and stop all processes", the owner's follow-on questions reopen
 analysis, never spend: answering is always in order, STARTING anything — a
 fleet, a monitor, a subagent — is gated until the compaction lands (owner

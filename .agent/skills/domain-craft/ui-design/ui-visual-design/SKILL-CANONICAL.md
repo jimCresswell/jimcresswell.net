@@ -17,7 +17,7 @@ description: >-
 
 # UI visual design
 
-Judgment, not values. The Engraph Design System already decides
+Judgment, not values. The design system already decides
 what a colour, a step of the type scale, or a spacing unit *is*; this skill
 decides what a screen should **emphasise, group, sequence, and afford**. When
 a decision here needs a value, take it from the system —
