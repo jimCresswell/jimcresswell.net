@@ -126,3 +126,15 @@ it whole.
 - **Records**: F-296 (two authored-surface validators read the disk) on coordination; the Markdown
   fence reader's second consumer is a napkin candidate above.
 - Processes at this block: both watchers, both registry heartbeats (successor script).
+
+## 2026-10-03T01:0xZ — The night's close (Crucible binds Slag, 7b999c)
+
+- Landed on both sides, each read first-hand: the node's step 1 (the tails, the rotation and its
+  twins), step 2 (the registry rows; the host-tagged entries to ADR-023 here and ADR-232 in OCE with
+  the Core host-name heading gate live in both docs validators), step 5 (the records on both default
+  branches); both coordination branches folded twice. Step 3, the ledger, is open in both estates at
+  the same bytes (306 here, #344 in OCE), at full condition, held at the door for the owner's reading
+  by row; step 4 waits on the owner's word on row O10. Owed here as one twin slice when this seat's
+  lane next opens: three cures on the validator's shared bytes and one Codex relay nuance from OCE's
+  reviews of #346 and #347. Both implementer seats are cold-paused by the Director's word with
+  claims held; the Director holds with the registry heartbeats on and no watcher.
