@@ -466,3 +466,48 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   surface; the seats' "busy" labels are the harness's. Blind spot: events after the watchers stop
   until the resume reads the streams. Fixed point: a further pass re-finds only the unhomed
   standing words and the OCE twin; the recursion closes here.
+
+## 2026-10-03T13:20Z — Out of cold pause: the ledger landed as 306, the doctrine batch open as 311 (Hazel tracks Trunk, 7d8b9d)
+
+- **The owner's word of 12:5xZ**: "all pauses and freezes are lifted". Re-ground: four monitors
+  re-armed from the recipe (nothing had survived the compaction); the Director's order of work
+  received by session message and mirrored as absorption acks (7035e463, c2c1c8e4): step 1 the
+  ledger's landing, then today doctrine before code, the batch as ONE pull request, then the
+  shared text by surface with this seat on rules and skills and Efreet on directives and
+  sub-agents (agreed on the OCE stream, 90cc1db8), the code carries tomorrow one each.
+- **Step 1, landed**: main merged into `docs/parity-measure` as SHA:51a34266f (clean merge-tree;
+  `git merge -F`, never a rebase), bot push, read back. The bot refused the first merge:
+  Copilot's leg OWED on the moved tip, because a merge of main moves the tip and the review binds
+  a tip. Re-requested under the operator credential (the one exception); four new findings, all
+  correct, all accepted and carried to the ledger's next revision with the six earlier ones;
+  budgets spent, each thread replied and resolved. Merged as SHA:bfa24d633; ancestor proved;
+  `docs/parity-measure` retired by the successor script `run/retire-merged-branch.sh` (detach,
+  bot DELETE, ls-remote exit 2, `branch -d`); the measure-input worktree removed clean, its
+  branch `docs/consolidation-2j-inventory-cures` left for the owner's hand (no remote, not an
+  ancestor; a forced delete is the owner's).
+- **The doctrine batch (C7, C11, C12, C13, C14, C15, C16) as 311** from
+  `docs/parity-doctrine-batch` at SHA:4e9ce0032, cut from main at SHA:bfa24d633, 51 files
+  (27 authored, 24 rendered). Method: one-sided files copied byte for byte from OCE's engraph
+  tip by `git show`, then parameterised; two-sided hunks applied by two small scratch tools
+  (`coord/insert_after.py` after a unique anchor line, `coord/replace_once.py` for an exact
+  once-occurring text), each refusing on zero or many matches; no file read whole into context
+  to edit it. Parameterisation: `under-the-hood` keeps OCE's method and takes this estate's
+  document map, headline decisions (README §Key Design Decisions, six of them), access fork
+  (collaborator or visitor; contributions by invite) and honesty invariants (the content speaks
+  for the owner; the privacy directive binds); the three C15 rules name OCE's tracker,
+  knowledge-base rules and fork-line record in words, never by link; `one-pr-per-leaf-issue`
+  takes GitHub's `Fixes #nnn` as this estate's closing form with OCE's instance anonymised.
+- **What the gates asked for**: `portability:fix` refused until the four new skills had
+  `Skill(jc-<name>)` entries in the tracked Claude settings (every skill adapter needs one);
+  `RULES_INDEX.md` is rendered, not hand-edited; a new rule or skill means `portability:fix`
+  AND `skills:generate`, in that order of need, both before the commit. `check:docs` over the
+  lane's tree was the doctrine demonstration (green). The Gemini check C14 names is answered
+  "no" here: the Gemini renderer carries the read-only default and grants no web tool.
+- **Scratch tooling that became general tonight** (the owner's ruling relayed at 12:13Z,
+  repeated scripts become agent tools; candidates for the Director's rows): `hdr2.sh` (the
+  header check exempting the two sanctioned trailers), `retire-merged-branch.sh`,
+  `insert_after.py`, `replace_once.py`, `reply-resolve.sh`, `pr-terminal.sh`.
+- **Rows open of total** as the Director's rerun of 12:4xZ read them at main SHA:a4fdc188: 198
+  open, 9 settled, 3 unread; 306 changes no row; 311 closes C7, C11 to C16 when it lands.
+- Processes at this block: four monitors (two watchers, two registry beats) and the 311 door
+  watch.
