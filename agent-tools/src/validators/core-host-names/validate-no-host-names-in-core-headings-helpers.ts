@@ -27,14 +27,16 @@
  * token-bounded: a name is a name, not a pattern, and `castr` inside a longer
  * word is not the host.
  *
- * Only ATX headings outside fenced code blocks are inspected, and the changelog
- * itself is exempt: its headings carry the tag by convention, a record of who
- * changed the Core, not a decision.
+ * Only ATX headings outside fenced code blocks are inspected (the reading is
+ * `markdown-headings.ts`), and the changelog itself is exempt: its headings
+ * carry the tag by convention, a record of who changed the Core, not a decision.
  *
  * @packageDocumentation
  */
 
 import { type ScanFile } from '../../core/tracked-file-scan.js';
+
+import { atxHeadings } from './markdown-headings.js';
 
 export type { ScanFile };
 
@@ -52,12 +54,6 @@ const PROVENANCE_REPO_LINE = /^\s*-?\s*repo:\s*(?:'([^']*)'|"([^"]*)"|(\S+))\s*$
 
 /** A changelog entry heading: the level-two hashes, then the bracketed repository tag. */
 const CHANGELOG_TAG_LINE = /^## \[([^\]]+)\]/u;
-
-/** An ATX heading: one to six hashes, a space or tab, then the text. */
-const ATX_HEADING = /^ {0,3}(#{1,6})[ \t]+(.*)$/u;
-
-/** A fence opener or closer: three or more backticks or tildes at the line's start. */
-const FENCE = /^ {0,3}(`{3,}|~{3,})/u;
 
 /** A character that would make a host name part of a longer token. */
 const TOKEN_CHARACTER = /[\p{L}\p{N}]/u;
@@ -177,32 +173,6 @@ function indexOfToken(line: string, needle: string): number {
     }
     from = at + 1;
   }
-}
-
-/** True when `marker` closes a fence opened by `openFence`: the same character, at least as long. */
-function closesFence(openFence: string, marker: string): boolean {
-  return marker.charAt(0) === openFence.charAt(0) && marker.length >= openFence.length;
-}
-
-/** The ATX headings of a markdown document outside fenced code, with their 1-based line numbers. */
-export function atxHeadings(content: string): { readonly line: number; readonly text: string }[] {
-  const headings: { line: number; text: string }[] = [];
-  let openFence: string | undefined;
-  content.split('\n').forEach((rawLine, index) => {
-    const marker = FENCE.exec(rawLine)?.[1];
-    if (marker !== undefined) {
-      if (openFence === undefined) {
-        openFence = marker;
-      } else if (closesFence(openFence, marker)) {
-        openFence = undefined;
-      }
-      return;
-    }
-    if (openFence === undefined && ATX_HEADING.test(rawLine)) {
-      headings.push({ line: index + 1, text: rawLine });
-    }
-  });
-  return headings;
 }
 
 /**

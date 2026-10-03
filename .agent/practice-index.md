@@ -75,8 +75,8 @@ Site architecture decisions are ADRs under
 ## Practice Decision Records
 
 The portable Practice governance decisions are PDRs under
-[`practice-core/decision-records/`](practice-core/decision-records/) — 140
-records, PDR-001 through PDR-140, from the OCE lineage. A PDR names no host; this
+[`practice-core/decision-records/`](practice-core/decision-records/), from the
+OCE lineage; the directory and its README are the inventory. A PDR names no host; this
 repo's applications of PDR-008 (its quality-gate script names and validator
 groups) and PDR-132 (the retired pull-request throughput register) are recorded
 in ADR-023, the host-side adoption record, and this paragraph is the pairing

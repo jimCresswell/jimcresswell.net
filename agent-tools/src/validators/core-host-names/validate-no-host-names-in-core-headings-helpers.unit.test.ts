@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import { atxHeadings } from './markdown-headings.js';
 import {
-  atxHeadings,
   changelogRepositories,
   findHostNameHeadingHits,
   hostNeedles,
@@ -120,6 +120,21 @@ describe('atxHeadings', () => {
       { line: 6, text: '### Real' },
       { line: 12, text: '#### Last' },
     ]);
+  });
+
+  it('a closing run followed by text does not close the fence (CommonMark)', () => {
+    const content = ['```', '```not-a-closer', '## still quoted', '```', '## Real'].join('\n');
+    expect(atxHeadings(content)).toEqual([{ line: 5, text: '## Real' }]);
+  });
+
+  it('a backtick run whose info string carries a backtick opens no fence', () => {
+    const content = ['``` `inline` ```', '## Real heading', '```', '## quoted', '```'].join('\n');
+    expect(atxHeadings(content)).toEqual([{ line: 2, text: '## Real heading' }]);
+  });
+
+  it('a tilde opener may carry a backtick in its info string', () => {
+    const content = ['~~~ `x`', '## quoted', '~~~', '## Real'].join('\n');
+    expect(atxHeadings(content)).toEqual([{ line: 4, text: '## Real' }]);
   });
 });
 

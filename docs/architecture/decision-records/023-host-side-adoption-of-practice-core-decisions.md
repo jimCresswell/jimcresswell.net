@@ -69,6 +69,13 @@ section.
 
 ## PDR-008 — canonical quality-gate naming
 
+> The two entries below are reproduced as they stood in this repository's
+> PDR-008 on 2026-10-03. Inside them, "this record", "this amendment", "the
+> tables and rules above" and "the exception above" refer to PDR-008 as it
+> then read, not to this ADR; and the closing sentence of the first entry
+> describes OCE's copy of PDR-008 as it stood on 2026-09-12, before that copy
+> took its own amendment of 2026-09-24.
+
 ### 2026-09-12 — jimcresswell.net: OCE's live convention supersedes the `check`-mutates model
 
 Owner direction (2026-09-12): adopt OCE's `package.json`
@@ -126,6 +133,10 @@ identity naming, workspace config isolation, plan corpus, protocol wire
 contract, practice substrate), a dated fact of the closure, not a contract.
 
 ## PDR-132 — changeset health and round budgets
+
+> The entry below is reproduced as it stood in this repository's PDR-132 on
+> 2026-10-03. Inside it, "this record", "§Prediction and falsifier" and
+> "§Consequences" refer to PDR-132, whose sections those are, not to this ADR.
 
 ### 2026-09-14 — jimcresswell.net: the pr-throughput register is retired from this estate
 

@@ -371,9 +371,9 @@ to add further aliases.
 
 ### 2026-09-12 — `check` applies no fixes; `check:fix` and `check:ci` retired
 
-Owner direction (2026-09-12), adopting the convention the sibling estate's
-Practice already ran and every transplanted skill and rule assumes. The body
-is read through this entry: `check` is the aggregate gate and applies no
+Owner direction (2026-09-12), adopting the convention the Practice's skills
+and rules already assume of the repositories that carry it. The body is read
+through this entry: `check` is the aggregate gate and applies no
 fixes, `fix` is the mutating aggregate, and CI runs every verifying leg of
 `check` under a parity validator, which gives the guarantee a separate CI form
 was for. Retired with it: `check` as an ergonomic alias of a mutating
