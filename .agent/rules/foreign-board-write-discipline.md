@@ -158,7 +158,10 @@ boundary.
 - OCE's per-surface owner-set rules (the placement of its own tickets,
   the knowledge-base edit boundary with its change ledger, and the
   read-only strategy page) are that estate's host-local instances of the
-  outer gate this rule defers to; this estate carries none yet.
+  outer gate this rule defers to. This estate's one such outer gate is
+  [`downstream-checkout-never-writes-upstream-surfaces`](./downstream-checkout-never-writes-upstream-surfaces.md):
+  a write to an upstream repository, tracker or chat is refused outright
+  there, before this rule's field split is ever reached.
 
 ## Enforcement
 
