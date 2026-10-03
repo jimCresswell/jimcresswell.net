@@ -159,6 +159,18 @@ HOST_LOCAL_HEADER = ["file", "where", "reason"]
 DOUBT_HEADER = ["id", "doubt", "from", "rows"]
 ANCHOR_HEADER = ["file", "hunk", "side", "first line"]
 
+# every table of every section carries a header the section expects; a table with a header
+# misspelt or unknown is refused by name, never dropped beside its siblings (312's review)
+EXPECTED_HEADERS = {
+    "a": [HUNK_HEADER], "b": [MERGE_HEADER], "c": [SIDE_HEADER], "d": [CARRY_HEADER, TOOL_HEADER],
+    "e": [OWNER_HEADER], "f": [PARAMETER_HEADER], "g": [HOST_LOCAL_HEADER], "h": [DOUBT_HEADER],
+    "i": [ANCHOR_HEADER],
+}
+for letter, allowed in EXPECTED_HEADERS.items():
+    strange = [hd for hd, _ in tables(secs[letter]) if hd not in allowed]
+    if strange:
+        raise SystemExit(f"§({letter}): tables with a header the section does not expect: {strange}")
+
 # (a) the conflict hunks
 a = checked(table(secs["a"], HUNK_HEADER, "§(a)"), 2, READINGS, "§(a)")
 a_keys = [(r[0].strip("`"), int(r[1])) for r in a]
@@ -189,21 +201,26 @@ d_dir = Counter(r[2] for r in d)
 t = checked(table(secs["d"], TOOL_HEADER, "§(d) tool rows"), 4, TOOL_STATUSES, "§(d) tool rows")
 
 
-def ids(rows, pattern, where):
-    bad = [r[0] for r in rows if not re.fullmatch(pattern, r[0])]
-    if bad:
-        raise SystemExit(f"{where}: ids outside the form {pattern}: {bad}")
+def ids(rows, prefix, where):
+    """Every id is <prefix><n>, the set is exactly 1 to n, no id twice (a mistyped id would
+    otherwise keep the count while a row vanished from every reference; 312's review)."""
+    found = [r[0] for r in rows]
+    expected = [f"{prefix}{k}" for k in range(1, len(rows) + 1)]
+    if sorted(found, key=lambda s: int(s[len(prefix):]) if re.fullmatch(prefix + r"\d+", s) else -1) != expected:
+        dup = sorted(k for k, n in Counter(found).items() if n > 1)
+        raise SystemExit(f"{where}: ids are not {prefix}1 to {prefix}{len(rows)} once each; "
+                         f"found {found}; duplicates {dup}")
     return rows
 
 
-ids(d, r"C\d+", "§(d)")
-ids(t, r"T\d+", "§(d) tool rows")
+ids(d, "C", "§(d)")
+ids(t, "T", "§(d) tool rows")
 
 # (e) the owner's rows, (f) the parameters, (g) the host-local rows, (h) the doubts, (i) the anchors
-e = ids(table(secs["e"], OWNER_HEADER, "§(e)"), r"O\d+", "§(e)")
-f_ = ids(table(secs["f"], PARAMETER_HEADER, "§(f)"), r"P\d+", "§(f)")
+e = ids(table(secs["e"], OWNER_HEADER, "§(e)"), "O", "§(e)")
+f_ = ids(table(secs["f"], PARAMETER_HEADER, "§(f)"), "P", "§(f)")
 g = table(secs["g"], HOST_LOCAL_HEADER, "§(g)")
-h = ids(table(secs["h"], DOUBT_HEADER, "§(h)"), r"D\d+", "§(h)")
+h = ids(table(secs["h"], DOUBT_HEADER, "§(h)"), "D", "§(h)")
 i_ = table(secs["i"], ANCHOR_HEADER, "§(i)")
 i_keys = [(r[0].strip("`"), int(r[1])) for r in i_]
 duplicate_anchors = sorted(k for k, n in Counter(i_keys).items() if n > 1)
