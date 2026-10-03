@@ -370,3 +370,99 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
 - Tooling friction, captured: in zsh a loop variable named `path` is the PATH array, and a worktree
   sweep that read into it lost every later command; name loop variables `wt`. `claims close` takes
   `--summary` and `--now`, never `--reason`. The merge bot's `--expect` takes reviewer logins.
+
+## 2026-10-03T13:1xZ — Compaction boundary at the owner's word, mid-session: the resume, the route, the rulings (Crucible binds Slag, 7b999c)
+
+- **The owner's words this stretch, verbatim where they bind.** 12:4xZ: "all pauses and freezes
+  are lifted". 13:0xZ: "Once you have a goal and plan for finishing the work, update the repo plan
+  and include sizing, I would still like this work finished today." The standing rules of the
+  morning: decide under the lenses and record, the owner declines by row, only an unknown
+  high-risk item comes to the owner; name the sentences the owner would refuse before a stamp; a
+  start-right invocation lifts a freeze unless the owner says it remains; fewer seats running
+  continuously. Relayed by Efreet lifts Scorch at 12:13Z: "if a script is used repeatedly it should
+  be made into a standardised agent tool in the agent tools workspace". 13:1xZ: prepare compaction
+  with the passes and the wrap when it makes sense, then stop all processes. The standing rules
+  are in the per-user memory and not yet homed in the collaboration directive and the wrap skill's
+  freeze paragraph (the same bytes in both estates): the Director's, after the ledger revision.
+- **Landed.** The wrap records of the morning (`SHA:abd46535`, `SHA:a504288c`). The plan
+  correction `SHA:3622fb07` on `coordination/2026-10-02-24fc05`: the node's §Size loses the
+  deferral of the code carries and gains the sized plan to finish; mechanism 2 loses the clause
+  that excused copies; the parent node's bet loses its dated clause. Its first push was refused by
+  the substrate gate on a stale generated comms log (the untracked read model; friction 296's
+  class), cured by `comms render --comms-dir .agent/state/collaboration/comms --output
+  .agent/state/collaboration/shared-comms-log.md` in both estates; the push rides this block's.
+  The OCE twin of the correction waits: Efreet's fold of #342 has that primary mid-merge (41
+  dirty files at 13:0xZ, never touched by this seat); it lands on the successor branch as the same
+  bytes at the resume.
+- **The route, both seats resumed at 12:45Z to 12:53Z with absorption acks on both streams.**
+  Today is doctrine before code. Hazel tracks Trunk (JC.net): main merged into docs/parity-measure
+  at `SHA:51a34266f`, 306 merges through the bot with Copilot as the expected leg; then the
+  doctrine batch as one pull request (C7, C11, C12, C13, C14, C15, C16, then C24); then the shared
+  text by surface, rules (46 hunks) then skills (49). Efreet lifts Scorch (OCE): the fold of #342
+  (overdue since 12:00Z), engraph into docs/parity-measure, #344 merged; the doctrine batch as one
+  pull request (C8 cured at source, C10, C4 with C20, C21); then directives (39) then sub-agents
+  (56). Each twins the other's surface by content; the 68 clean merges ride their surfaces; the six
+  contradictions are joint cures posted on the stream before landing; Core (12) is read by the
+  Director first-hand; hooks (5) go with tomorrow's code carries. Tomorrow: C3, C17, C23, C25 with
+  C19, C26, C28 (two to three pull requests) and C22 with C5 into JC.net; C19 and C27 (from the J2
+  worktree's 23 staged files) into OCE; one pull request each with tests and the
+  `Practice-Generalisation:` trailer in its received-from form.
+- **Rulings on the streams.** O7 (event 0e4510e1 in OCE): Efreet's read of the tracked tally,
+  three position-changed closes of four against the rule of three, so the instrument continues and
+  the deferral in this estate's sif lifts; C22 with C5 are tomorrow's into JC.net. The other twelve
+  rows are decided and go on the ledger's next revision: O1 both layers; O2 a Practice ruling; O3
+  and O4 copy with tests, last; O5 one tier per rule; O6 host-local; O8 and O12 cite, never
+  restate; O9 Practice-wide; O10 the carry shape; O11 a design input; O13 one lineage chain.
+- **The ledger's next revision, the Director's deliverable after 306 and #344 merge, one pull
+  request per estate as the same bytes.** Today's rerun at main `SHA:a4fdc188` and engraph
+  `SHA:992ec4804` against the pin: 201 hunks in 87 files, 198 rows open, 9 settled (practice-core
+  CHANGELOG 1; pr-lifecycle 1, 12, 13, 14; coordination-fold 1; inter-practice-collaboration 1 and
+  2; ticket-management 1), 3 unread (CHANGELOG 1 with its anchor moved; liveness-heartbeat-cron 1
+  and no-warning-toleration 2, host-binding neighbours of the twin clauses: OCE's ADR pointers
+  beside the shared text), 68 clean merges (consolidate-docs, consolidate-until-done, napkin and
+  wrap settled by the tails; liveness-heartbeat-cron became a conflict; validators-must-recompute
+  is new), PDR-143 shared with no base; a doubt, the dry run's own summary counts 216 hunks where
+  the dump counts 201. Edits: §The rerun gains the dated paragraph; §(a) the settled rows take the
+  rerun's tips in evidence and the unread hunks take rows; §(d) C9 reads landed, the preamble
+  records the carry shape and the demonstration rule, and the tool rows T1 to T5 are added from the
+  owner's ruling (T1 twin-apply, T2 twin-added, T3 reply-resolve, T4 the report generators, T5 the
+  measure scripts; criteria an agent-tools command with tests, a knip entry and a README row,
+  demonstrated by replacing the script's next use; one pull request each, one to two hours; queued
+  after the first carry batch); §(e) gains the decided column; the closer recomputes the count
+  line and the rerun proof goes in the body. The rerun outputs are in the scratchpad `rerun/` and
+  are regenerated by the three scripts at the tips if lost.
+- **Crickets at the seating.** Judgement high: ON-TRACK, frame NARROWED; redirection taken, the
+  ledger revision is the Director's one deliverable and the standing words wait behind it.
+  Procedure xhigh: DRIFTING on two steps it read as uncited, the fold and the lane merges; their
+  forcing facts are the coordination branch's 24-hour rule past its DUE and both lanes behind their
+  defaults with 306 having conflicted once; the route stands.
+- **The passes at this boundary.** Metacognition: three failed anchors on one plan edit, ten
+  minutes, because I edited prose with compound regex scripts while the start-right text I read
+  today carries the owner's correction of 2026-09-06 (the platform's per-file edit tool, one plain
+  command per shell call); the cure is the Edit tool for every prose edit from here. Free play: the
+  comms gate refused "an exception to" in my own team-start before the owner could; the immune
+  system is the second reader (association); discarded, visibly: the forty-one dirty files as "a
+  fold's breath". Concept exploration and reason on "finished today": the doctrine fits today at
+  about fifteen seat-hours if both seats run continuously; the bridge claim is two hours per
+  surface, unmeasured, and the first surface measures it; the falsifier is a surface past three
+  hours, at which the evening fold's count tells the owner that "today" needs a word.
+- **Processes at the owner's stop word.** Two watchers and two registry loops stopped by intent
+  after a heartbeat-end on each stream; the two Crickets had ended. Claims retained with their
+  pointers unchanged. The seats continue; their questions to the Director queue on the streams
+  until the resume. Re-arm as if nothing survives: the watcher as a thirty-minute Monitor from
+  each clone's root, `timeout 1740 pnpm --silent agent-tools:collaboration-state -- comms watch
+  --platform claude --model claude-fable-5-1 --supervisor-pid "$PPID" --step-timeout-ms 120000
+  --max-events-per-drain 100`; the registry loop per estate, `while true; do date -u
+  +%Y-%m-%dT%H:%M:%SZ | xargs -I{} pnpm --silent agent-tools:collaboration-state -- claims
+  heartbeat --active .agent/state/collaboration/active-claims.json --claim-id <claim> --now {}
+  >/dev/null || echo "beat failed"; sleep 240; done` with 726da755 here and 302e8307 in OCE, a
+  two-hour bound re-armed on exit; no cron. Resume order: verify the task and agent lists; read
+  ahead/behind on both coordination branches and both ledger lanes; re-arm what is absent; read
+  both streams from 13:0xZ; land the OCE twin of `SHA:3622fb07` on the successor branch; start
+  the ledger revision when 306 and #344 are merged; then the standing words into the directive.
+- **Loss scan and metaloss.** Promises: the OCE node twin; the ledger revision; the standing words
+  homed; tomorrow's code-carry order to Hazel including C22 and C5; the Director's first-hand
+  read of Core files before merge and of each carry's twin proof. Inferences flagged: two hours per
+  surface; the seats' "busy" labels are the harness's. Blind spot: events after the watchers stop
+  until the resume reads the streams. Fixed point: a further pass re-finds only the unhomed
+  standing words and the OCE twin; the recursion closes here.
