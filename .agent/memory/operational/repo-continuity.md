@@ -245,6 +245,23 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 
 ## Next Safe Steps
 
+STATE, 2026-10-03T21:0xZ (Crucible binds Slag, 7b999c, at the owner's compaction word, n=1 from
+here until the owner says otherwise): the parity frame is set aside. The parity node reads
+superseded with where it stood; the two-landings node is an unratified sketch kept as a
+perspective no longer held; the live plan is `practice-system-review` (a sketch for the owner's
+exploration): one seat reads both estates side by side as one system of planning, deciding,
+implementing, reviewing and delivering value, ten areas, one row per mechanism, four classes, a
+layered model (general, contextual, accumulated, the loop) and a candidate definition of the
+Practice, one report at one relative path in both estates. Both implementer seats finished at the
+owner's word with claims retained and direction handoff records at their pointers. At the doors,
+untouched until the owner explores the plan: 312 and OCE #350 (the ledger's revision, five findings
+undecided), 318, the hooks branch `docs/parity-hooks-surface`, Efreet's three unpushed OCE lanes,
+the overdue fold of this branch, dependabot 313 to 317. Next safe step: the owner explores the
+review node; then it executes. Before any push at the resume: beat or close this seat's claims
+(stale at about 03:2xZ) so the claim-freshness gate passes. The notebook block of 21:0xZ carries the
+work-safety evidence, the owner's words verbatim and the resume order. Deep consolidation status:
+not due; the lessons of the day are in the review node's predecessor's retrospective section.
+
 STATE, 2026-10-03T07:1xZ (Crucible binds Slag, 7b999c, the Director, at the owner's compaction-and-
 stop word): live now, the parity node `practice-parity-for-extraction` (the same bytes in both
 estates) is landed through steps 1, 2 (the opening carries) and 5, with step 3, the ledger, at its

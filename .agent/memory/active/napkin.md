@@ -588,3 +588,98 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   takes the work. The record is in the handoffs directory; the question it leaves the owner is
   text parity first against capability parity first, and whether the rows measure the whole
   divergence.
+
+## 2026-10-03T21:0xZ — Compaction boundary at the owner's word: the parity frame set aside, the system review planned (Crucible binds Slag, 7b999c)
+
+- **The owner's words of the evening, verbatim where they bind.** "Yesterday I said finish
+  within 2 hours as a guide, if the estimate hits four we have a problem. Today I said finish
+  today. Now you are telling me that we need all of today and ten straight hours tomorrow. And I
+  am telling you, that means we are doing it wrong." Then "I am happy to do this in two large
+  PRs"; then, forty minutes later, the two-landings node marked "an unratified and questionable
+  sketch, not to be implemented but to use as a perspective we once held and hold no longer".
+  On the Practice: "everything under .agent except where excluded, and we should explore those
+  exclusions"; git hooks, the quality gates and how package.json specifies them, the standardised
+  tooling configuration across workspaces, the custom eslint rules on structure and complexity,
+  "a lot of the things that are not product code, are Practice"; the ADR and PDR natures and
+  their relationship "are core"; the transmissible Practice Core "is NOT all that is needed";
+  "There is the Practice in general, the Practice in a context, and the ephemeral state and
+  memory and records that the Practice accumulates over time in a context and learns from. There
+  is the learning loop itself. I don't think we have a definition of what the Practice is."
+  Operating rule from now: "two estates with one system of development and value provision and
+  contracts and authority", one review, one report, never "do it twice"; "This is an n=1 session
+  and will stay that way until we have a simple model to proceed with, I will decide when."
+- **What landed tonight, both coordination branches, the same bytes**: the parity node reads
+  superseded with a "where it stands" paragraph (JC.net `SHA:d93c5493`, OCE `SHA:c1490c97a`);
+  the two-landings node written, then re-marked a sketch; the review node
+  `practice-system-review` (ten areas, one row per mechanism, four classes, the layered model,
+  the divergence classes, one report at one relative path in both estates, about seven and a
+  half hours of one seat) validated, reviewed by the assumptions and documentation reviewers,
+  landed in the records commit that carries this block. The owner explores it after the
+  compaction, then it executes.
+- **Metacognition, retrospective.** The frame that shaped two days was inherited from the
+  transplant: "the Practice" meant the copyable subset, so parity meant bytes, so the work became
+  hunks times a pull-request lifecycle, twinned, gated by my reads, and my own hours went to the
+  instrument (records carry no review risk; a memory file already said so; a Cricket said
+  DRIFTING at 14:00 and I discounted it). The owner's three layers and the loop dissolve the
+  frame rather than resize it. Second generator: I re-sized each estimate with reasons instead of
+  stopping at twice the guide. Third: I took a peer's worktree by its directory name (restored in
+  a minute; the lesson is in the plan's retrospective). Fourth: my messages to the owner and the
+  seats were long; the owner reads every one.
+- **Reason.** The kind of thing is now an unshaped concept (what is the Practice), so the right
+  instrument is a bounded exploration with a named purpose, never a decision workflow or another
+  ledger; the review node is that exploration. Its warrant: reading the artefacts that run and
+  bind, side by side across the two estates, recovers the system; its falsifier: a mechanism
+  both estates rely on that neither instantiates anywhere, which the node's honesty rules turn
+  into a row.
+- **Concept exploration, the four movements in brief.** Observations: the ledger's categories
+  were a document frame; the second ring (hooks, gates, configs, lint rules, workflows) was never
+  read as Practice; the ADR to PDR relationship is the one place both estates already behave the
+  same way for the same reason. Problem space: one system, two instantiations, no model. The
+  fluent answer, a definition PDR first, was set aside: the definition is derived from the
+  reading, never imposed on it. Synthesis: the review node.
+- **Free play, seeds only (routed here, asserted nowhere).** The Practice as a compiler: the
+  general layer its language, the contextual layer its target binding, the accumulated layer its
+  traces, the loop its optimiser. The gate chain as the Practice's type system: every rule could
+  name the gate that enforces it or declare itself unenforced, a strictness map. Two estates are
+  two instances of a class that lives nowhere yet; the entity question is where the class lives.
+  The loop is per instance today: a lesson graduated in one estate reaches the other only by
+  carry, so a shared loop needs a shared home, which may be the entity's first real function.
+- **Work safety, read first-hand at 20:5xZ.** JC.net: the primary on
+  `coordination/2026-10-02-24fc05` level with its remote before this commit (two plan files
+  uncommitted until it); `jc-wt-parity-measure` on `docs/parity-ledger-revision-2` clean, pushed
+  (312 at `SHA:ea61eeb6`); `director-records` on `docs/parity-hooks-surface` pushed
+  (`SHA:c6262b00`, no pull request); Hazel's lanes `docs/parity-c24-specification` (318),
+  `docs/parity-rules-surface-1` (`SHA:57329a50c`) and `docs/parity-skills-surface-1`
+  (`SHA:57eac6daa`) pushed, clean. OCE: the primary on `coordination/2026-10-03-e790ea` level
+  before this commit; `oce-wt-parity-measure` on `docs/parity-ledger-revision-2` pushed (#350);
+  Efreet's lanes carry UNPUSHED commits under its retained claim (`feat/parity-carry-doctrine-batch`
+  with `SHA:fe05f463a` beyond #349's remote tip; `feat/parity-surface-directives` at
+  `SHA:1d77e8b03`, one beyond its remote; `feat/parity-surface-subagents` one ahead of engraph,
+  unopened), named in Efreet's handoff record; `oce-wt-j2-docs-validators` holds 23 staged
+  uncommitted files, the J2 port, the owner's (C27, O4). Nothing of this seat is unpushed after
+  this commit.
+- **Open at the doors, for the resume, none of it to be acted on before the owner explores the
+  plan**: 312 and #350 with five review findings undecided (the two rules rows moved the positional
+  numbering; the rules breakdown line; C28's size; the dump parser's fence check; the register
+  parser's columns); 318 with one thread cured and unreplied; the hooks branch unopened; the JC.net
+  fold overdue since 12:00Z; dependabot pull requests 313 to 317; the superseded parity node's
+  `superseded_by` naming a sketch; the housekeeping branches (`fix/parity-heading-gate-cures`,
+  `docs/consolidation-2j-inventory-cures`).
+- **Processes and claims at this block.** No process of this seat runs: the owner stopped the two
+  watchers and the two registry loops at 20:4xZ; the reviewer sub-agents end with their reports.
+  Claims retained with pointers: 726da755, d5492b18 here; 302e8307, 9ecef634, 4b82394b in OCE.
+  They go stale twelve hours after their last beat (about 03:2xZ) and the push gate's
+  claim-freshness validator reads the registry: at the resume, before any push, beat or close
+  them (n=1 needs no claim: close with `claims close --summary --now`), and close the two null-beat
+  rows.
+- **Re-arm recipe for an n=1 resume**: nothing to re-arm; no peer, so no watcher and no
+  heartbeat (PDR-078 §4's consumer-absent exemption); the task list verified empty first. Resume
+  order: read this block, the review node and the owner's words above; the owner explores the
+  plan, then it executes, one seat, both estates side by side, the report at one relative path.
+- **Loss scan.** Decisions: the owner's words above, verbatim. State: the branches above. Open
+  items: listed. Lessons: the plan's retrospective section and the two-landings node's standing
+  paragraph. Pointers: Hazel's and Efreet's direction handoff records at their claims' pointers
+  (each carries its lanes' exact state and a framing-assumptions list for the owner). Metaloss:
+  the compression that survives is the retrospective, decision-sufficient; the unstated
+  assumption is that reading alone recovers the system (the node names its falsifier); the
+  pointers above are the only places this block relies on.
