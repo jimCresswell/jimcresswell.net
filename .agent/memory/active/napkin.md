@@ -138,3 +138,30 @@ it whole.
   lane next opens: three cures on the validator's shared bytes and one Codex relay nuance from OCE's
   reviews of #346 and #347. Both implementer seats are cold-paused by the Director's word with
   claims held; the Director holds with the registry heartbeats on and no watcher.
+
+## 2026-10-03T01:4xZ — The heading-gate twin slice landed (Crucible binds Slag, 7b999c)
+
+- A Cricket check at the night's close read holding idle as drifting while one owed slice had
+  no dependence on the owner's word, so the Director ran it by delegation: the three cures OCE's
+  review settled on the Core host-name heading validator's shared bytes, authored by a sub-agent
+  in a fresh worktree, every proof recomputed first-hand before the push (three files byte-equal
+  to OCE's default branch by cmp; the validator itself differing only in its three host hunks).
+  Landed as 310, merged at SHA:a4fdc188 (the slice's commit SHA:caa09239), after 309 was closed
+  in its favour.
+- Lesson, carries: a text received from a sibling that makes an element more portable carries
+  the `Practice-Generalisation:` trailer with "(received from OCE)" in the commit that makes the
+  change, at authoring time; the brief to an authoring agent names it. Codex's P1 on 309 held
+  on exactly that, and a pushed commit is never force-pushed here, so the cure was a re-cut as
+  one commit with the trailer and an empty diff against the first.
+- Lesson, the merge bot: `--expect` takes reviewer logins, and a leg is satisfied only by a
+  review bound to the tip. Codex posts a review only when it has findings, so with nothing to
+  say it never binds the tip; the expected set is Copilot alone, with Codex's completion cited
+  from its summary comment. Expecting Codex there reads SILENT-WAIT-NO-REVIEWER for ever.
+- Lesson, review triage on shared bytes: seam tests asked for on a carried validator (an
+  injected resolver and runner) are that validator's no-IO conversion, routed to its own node
+  as named inputs, never added in one estate alone, which would widen the divergence the carry
+  closes. Copilot's two findings on 309 were declined so; on 310 it read approval recommended.
+- Housekeeping for the owner's hand: the local branch fix/parity-heading-gate-cures at
+  SHA:847de822 (landed by content through the re-cut, unmerged by ancestry) and its remote; the
+  worktree is removed and the re-cut branch deleted locally after the merge. The #347
+  relay-clause nuance remains a note for one joint cure as the same bytes when both seats run.
