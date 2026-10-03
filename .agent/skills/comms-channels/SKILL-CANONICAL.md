@@ -153,6 +153,17 @@ which always does (2026-10-02).
    state carries the `SHA:` prefix discipline — the channel may be
    ephemeral but its claims get acted on.
 
+The test for a peer message is usefulness to the receiver: it changes what they
+would do, or tells them something the artefact does not already show. The owner,
+2026-09-24, verbatim: "do you really need to spend time and tokens informing
+another agent that a file got bigger? … tools like git don't need 'telling'",
+then "it is also reasonable to send information to a fellow agent, sometimes
+that is important and is neither a question not a request, but it should be
+useful information". Git and the file already record edits to a shared file.
+A Director that posts nothing on the canonical stream holds no id there, so
+`comms direct` cannot reach it: the question goes as a narrative event (the
+record) plus a native message (the delivery) (2026-09-24).
+
 Before writing an awaiting-direction status, read what arrived since your last read (the watcher
 stream, or `comms list --since <last read>`). A status ping written blind can cross a directed
 assignment already sent to you and forces a corrective round trip (OCE friction F-24, settled 2026-05-26).
@@ -180,9 +191,9 @@ record) rather than minting per-platform behaviours.
 - [`references/comms-landscape.md`](references/comms-landscape.md) —
   the full lane-by-lane comparison, what the channels learn from each
   other, and the analysis provenance.
-- `../slack-watcher/SKILL-CANONICAL.md`
+- [`../slack-watcher/SKILL-CANONICAL.md`](../slack-watcher/SKILL-CANONICAL.md)
   and
-  `../talk-to-slack-watcher/SKILL-CANONICAL.md`
+  [`../talk-to-slack-watcher/SKILL-CANONICAL.md`](../talk-to-slack-watcher/SKILL-CANONICAL.md)
   — the Slack-via-Watcher lane's own protocols (mantle, tenure status
   message, correspondent discipline). The comparative analysis behind
   the lane row is the 2026-08-24 Watcher estate review (leg 3),

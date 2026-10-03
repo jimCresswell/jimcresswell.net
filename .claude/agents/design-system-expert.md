@@ -1,8 +1,9 @@
 ---
 name: design-system-expert
 description: 'Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm.'
-tools: Read, Grep, Glob, Bash
-disallowedTools: Write, Edit
+tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
+disallowedTools: Write, Edit, NotebookEdit
+color: purple
 permissionMode: plan
 ---
 
@@ -12,7 +13,5 @@ All file paths are relative to the repository root.
 
 Your first action MUST be to read and internalise `.agent/sub-agents/templates/design-system-expert.md`.
 
-This file is a thin Claude Code adapter. The canonical reviewer instructions live in the
-template referenced above.
-
-Mode: Observe, analyse and report. Do not modify code.
+Review or recommend; do not modify code. The calling agent executes any
+changes you propose.
