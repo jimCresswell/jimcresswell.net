@@ -36,9 +36,10 @@ pause and resume reads; on Codex and other hosts without the primitive it
 takes the host's own proven notification path named above, never a poll.
 On Codex that path is the relay, which reaches an active root turn and
 cannot start an idle one, so a one-shot wait there is the bounded
-foreground wait the Codex bootstrap below names, declared as degraded, and
-a Codex seat confirms the relay's reach before it relies on the wait (a
-reviewer's reading, 2026-10-02). Where a script is unavoidable it sets its own paths,
+foreground wait the Codex bootstrap below names as a requirement of Codex
+participation (not the degraded fallback, which is the case without the
+session relay), and a Codex seat confirms the relay's reach before it relies
+on the wait (a reviewer's reading, 2026-10-02). Where a script is unavoidable it sets its own paths,
 locks itself, is syntax-checked (`bash -n`), and sends its failures to the
 stream, because five scratch scripts failed silently in four days
 (2026-09-25 to 29).
