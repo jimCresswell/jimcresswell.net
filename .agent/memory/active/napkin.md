@@ -237,3 +237,136 @@ it whole.
   sentence of this seat that says what a tool does, and at every "already". A third pass would
   re-find those two; the recursion closes here.
 - Processes at this block: none.
+
+## 2026-10-03T06:3xZ — Compaction boundary at the owner's word: the Director's wrap (Crucible binds Slag, 7b999c)
+
+The owner's word at 06:2xZ: prepare compaction with the four cognition passes and the wrap, stop
+every process, report, stop. Every outward act of this seat's own initiative is frozen from here;
+the records below and their push are the wrap's own.
+
+**Landed against the session's target (PDR-026).** The target at the 19:0xZ seating was the parity node landed and ratified, its steps 1, 2 (the
+opening carries), 3 and 5 on both default branches with the ledger at its door, and step 4 to the
+owner's word. Landed: the node ratified at 19:2xZ and on both default branches; step 1 on both sides
+(OCE #341, #345, #347; here 301 to 304 and 308); step 2 (OCE #343; here 307 and OCE #346 with the
+Core heading gate live in both docs validators); step 5 (PDR-019 amended, PDR-143 trimmed, the
+exchange node archived with five PDR-142 entries, the parent node's dated entry, two portability
+cures); the ledger over 384 items at its door as the same bytes (306 here at `SHA:505e6bd6`, OCE #344
+at `SHA:35db66466`); overnight, one owed twin outside the ledger, 310 at `SHA:a4fdc188`. Not
+landed: step 4, the carries. What prevented: the owner's word on row O10, because the ledger derived
+28 carries against the node's ceiling of twenty and the node's own text reopens it with the owner at
+that count; evidence: the ledger's count line and the node's §Size; a later seat checks it by
+reading the owner's word on the ledger pull requests. The next session re-attempts step 4 under that
+word, in the shape the node's §Size now recommends.
+
+**The four passes, run at this boundary.**
+
+- Metacognition, retrospective. Inherited shape: the Director holds idle on the owner's word. A
+  Cricket at 01:1xZ read it as drifting, because one owed slice had no dependence on the word, and
+  the slice ran by delegation. The correction that changed a reflex: the authoring brief lacked the
+  generalisation trailer although the rule sat in this seat's loaded rules; the brief flowed from
+  the sibling's diff and the rule's precondition (a change under agent-tools that makes an element
+  more portable) was never checked, the fluency tripwire exactly. The cure is structural, not a
+  resolution: the carry brief names the trailer (registered below as a candidate for the pr-
+  lifecycle rewrite the owner named). Second finding: the node's §Size went stale while the board
+  stayed current, and the node is the owner's reading surface; cured in this wrap on both
+  coordination branches. Bridge to impact: the owner wakes to one decision with a cheaper
+  recommendation and nothing in flight.
+- Free play, the harvest (associations, never findings). Codex's silence reads as OWED at the merge
+  bot while the Practice reads a declared pause as PAUSED and never as a retirement: these look
+  shaped alike, a vocabulary for declared absence that the reviewer legs lack; play seed for the
+  tooling, a leg satisfied by Codex's own completed summary. The re-cut reminded me of event
+  sourcing: history here is append-only, a correction is a new event and never an edit, and the
+  hook's refusal of force pushes is that invariant made mechanical. Discarded, visibly: the ledger's
+  four readings looked like the four review verdicts (reject, absorb, re-home, close); forced, since
+  host binding has no verdict counterpart. Discarded: the zsh loop variable named `path` that
+  emptied my PATH as an instance of a check's name claiming its target; cute and forced.
+- Concept exploration, four movements on the unshaped thing: what a carry costs. Observations: 310
+  was four files and forty-four lines, two minutes of copying, about seventy minutes door to merge;
+  the day's earlier rate of fifteen to nineteen minutes was for wording slices; the owner's standing
+  word that a rate measured under ceremony is not the rate of the work; the ledger's 28 carries
+  sized as fifteen pull requests at about eight seat-hours. Problem frame: the unit of cost is the
+  pull request, not the file; the harm is the owner's attention and the seats' hours spent on a
+  fixed cost per pull request (two reviews, a settlement budget, a trailer, records, the bot's
+  merge, about an hour); constraints: the same bytes in both estates, one fix pull request per
+  estate, review loops that must shrink. Reflection on solutions: the fluent answer, thirteen pull
+  requests, inherited the node's one-pull-request-per-carry sized to its import closure, written for
+  code; for text carries the closure argument does not bite. Synthesis: batch by kind, the doctrine
+  text as one pull request per estate and the small code as one; warrant, tonight's measurement;
+  falsifier, a batched pull request whose review round grows with its file count, split at the first
+  such round; a declined row is one hunk reverted. Unresolved: the owner's reading may decline rows
+  the batch already carries, which the revert handles.
+- Reason. Kind: deciding, at the mechanism altitude, in a complicated system. The frame, warrant and
+  falsifier are the exploration's. Reversibility: a batched pull request splits, so the stakes are
+  low and the first batch is the direct trial, bounded by one review round. Decision: the
+  recommendation on O10 is revised on the node's §Size (both coordination branches, the same bytes)
+  and the owner's word decides.
+
+**Work safety, read first-hand at 06:1xZ from every worktree of both clones.** jimcresswell.net: the primary on `coordination/2026-10-02-24fc05` clean and level with its remote;
+`docs/parity-measure` (306) at `SHA:505e6bd6`, zero unpushed, six behind main; the lane worktree on
+`docs/consolidation-2j-inventory-cures` at `SHA:92644157`, one commit with no remote, 241 of its 242
+added lines on the ledger branch and the last in the exchange node since archived, so it retires by
+content when 306 merges; five detached checkouts under the harness worktree directory, every one an
+ancestor of main. OCE: the primary on `coordination/2026-10-02-209b26` clean and level;
+`docs/parity-measure` (#344) at `SHA:35db66466`, zero unpushed, twelve behind engraph; the registry-
+rows lane merged with its remote gone, the worktree to retire; two detached checkouts on engraph.
+The one unsafe item, unchanged tonight and known to the records since 2026-09-29: OCE's J2 lane
+worktree holds 23 staged, uncommitted files, the docs-validators port's starting point, on
+`feat/exchange-j2-docs-validators` at `SHA:e07d6b34e` with no remote; it cannot pass the push gate
+as it stands (three core exports missing) and is ledger row C27 and the owner's row O4.
+
+**Review loops, the seat's reading (this host carries no review-cost gate).** 306: opening plus two settlement pushes, stopped at round three by the budget with the pull request
+at its door; the right round. 309: one round, stopped by the re-cut at Codex's held P1. 310: one
+round with no findings, merged by the bot with Copilot as the expected leg. The OCE rows for #344
+and #342 are on that host's ledger.
+
+**Claims, monitors, comms; the re-arm recipe written as if nothing survives the compaction.** Claims retained with handoff pointers, by intent: here 726da755 (the Director) and d5492b18 (the
+records and the measure, which covers 306); in OCE 302e8307, 9ecef634 (#344) and 4b82394b (the J2
+lane). The registry loops stop at the owner's word after a heartbeat-end on each stream, so
+staleness past that event reads as the declared pause. No watcher is live (no peer is). Resume, in
+this order: verify by the harness task list and the agent list before any act; read ahead/behind
+against the remote on every branch named above; re-arm only what is absent. Registry loop, from the
+clone's root, one per estate, a two-hour bound re-armed on exit: `while true; do date -u
++%Y-%m-%dT%H:%M:%SZ | xargs -I{} pnpm --silent agent-tools:collaboration-state -- claims heartbeat
+--active .agent/state/collaboration/active-claims.json --claim-id <claim> --now {} >/dev/null ||
+echo "beat failed"; sleep 240; done` with 726da755 here and 302e8307 in OCE. Watcher, only while a
+peer is live, as a Monitor of thirty minutes from the clone's root: `timeout 1740 pnpm --silent
+agent-tools:collaboration-state -- comms watch --platform claude --model claude-fable-5-1
+--supervisor-pid "$PPID" --step-timeout-ms 120000 --max-events-per-drain 100`. No cron, no one-shot
+wake. The seats resume by this seat's message after the owner's word: Hazel tracks Trunk (claims
+009bbaea, 08f94e2a) and Efreet lifts Scorch (006c79ad).
+
+**Metaloss passes.**
+
+- Compressed reasoning: the O10 revision compresses one night's measurement into a recommendation;
+  decision-sufficient because its falsifier is cheap and the owner holds the word; the judgement is
+  recorded here.
+- Promises sweep: #344 takes a merge of engraph before its own and 306 a merge of main (the recipe);
+  the resume messages to both seats wait on the word; the pr-lifecycle rewrite the owner named is a
+  candidate below; the no-IO inputs (seam tests for the heading gate's two refusals) are named in
+  310's body and here; the #347 relay-clause nuance remains a note for one joint cure; the owner's
+  housekeeping list is in the continuity record. No promise dropped silently.
+- Attribution inferences, flagged: that Codex posts no review when it has no findings rests on two
+  instances (309 with one finding, 310 with none); Hazel's `busy` in the agent list is the harness's
+  label, not an observation of work; Efreet's reading of the smoke's spawn shape as a host fact was
+  a peer's reading that this seat overrode for the twin.
+- Blind-spot bounds: the OCE stream was unwatched from 01:0xZ and both streams were swept by title
+  at 04:12Z and 06:12Z; the contexts of the six ledger readers, the Cricket and the authoring agent
+  are gone, their verified facts surviving only in the ledger and 310's body; the owner-private
+  fenced phrases are not in this context, so the fence sweep here was the hooks' own gates (lineage
+  names, machine-local paths) on every commit, and nothing more.
+- Index of homes: this block; the OCE handoff's §STATE of the same hour; the node's §Size; 310's
+  body; the memory file on the trailer and the merge bot's expected leg; the continuity records of
+  both estates.
+- External bound: the recursion cannot certify itself. Where outside eyes caught what this seat
+  missed tonight: Codex caught the trailer; the Cricket caught the idle hold; the commit-msg hook
+  caught a header of 103; Hazel's request caught 306's conflict. Point external scrutiny at this
+  seat's counts and at the negatives it reports.
+- Fixed point: a third pass would only re-find the J2 worktree and the two-instance Codex inference;
+  the recursion closes here.
+
+- candidate: the carry brief names the `Practice-Generalisation:` trailer with its received-from
+  form, and a carry is priced as a pull request, not as files (the owner's near-future item, the pr-
+  lifecycle skill's triage and cost-risk-value rewrite in both estates, takes both).
+- Tooling friction, captured: in zsh a loop variable named `path` is the PATH array, and a worktree
+  sweep that read into it lost every later command; name loop variables `wt`. `claims close` takes
+  `--summary` and `--now`, never `--reason`. The merge bot's `--expect` takes reviewer logins.

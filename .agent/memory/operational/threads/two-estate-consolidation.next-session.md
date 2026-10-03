@@ -6,7 +6,7 @@ triggered by `.agent/prompts/dedicated-consolidation-session.md` (a trigger, nev
 store: the owner's word 2026-09-30). The owner's words: "the next session will run a dedicated
 consolidation session across both estates"; "JC.net will be the home repo, where the relevant
 skills differ, 1. they shouldn't and that needs fixing, and 2. the next agent can be instructed
-to read the OCE skills". **Participating agent identities:** none yet; this record was written by Galaxy binds
+to read the OCE skills". **Participating agent identities:** Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, the Director across both estates over the second pass's folds, tails and ledger, 2026-10-02 to 2026-10-03); this record was written by Galaxy binds
 Gravity (46de68, claude-code, claude-fable-5-1) at its session close, 2026-09-30T14:3xZ.
 **Landing target for the next session:** the completion contract of `consolidate-until-done`
 met in BOTH estates — every live curation buffer empty or explicitly owner-decision-gated, its

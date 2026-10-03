@@ -245,6 +245,23 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 
 ## Next Safe Steps
 
+STATE, 2026-10-03T06:3xZ (Crucible binds Slag, 7b999c, the Director, at the owner's compaction-and-
+stop word): live now, the parity node `practice-parity-for-extraction` (the same bytes in both
+estates) is landed through steps 1, 2 (the opening carries) and 5, with step 3, the ledger, at its
+door as 306 (`docs/parity-measure` at `SHA:505e6bd6`, six behind main, so main merges into it before
+its own) and OCE #344; step 4 waits on the owner's word on row O10, and the node's §Size carries the
+revised recommendation (two batched pull requests per estate). 310 landed the heading gate's three
+cures (`SHA:a4fdc188`). Seats: Hazel tracks Trunk cold-paused with claims 009bbaea and 08f94e2a
+retained; this seat's 726da755 and d5492b18 retained with handoff pointers; no watcher, the loops
+stopped by intent. Next safe step: at the owner's word, merge main into `docs/parity-measure`, merge
+306, resume Hazel by message with the carries in the shape the owner chose. Housekeeping for the
+owner's hand: the branch `fix/parity-heading-gate-cures` (`SHA:847de822`, landed by content through
+310) local and remote; the lane worktree on `docs/consolidation-2j-inventory-cures` (`SHA:92644157`,
+carried by content on the ledger branch) retires when 306 merges; five detached harness worktrees,
+all on main. Deep consolidation status: not due, because the exchange node's closure graduated in-
+session on both default branches (the PDR-142 entries, PDR-019 and PDR-143, the archive move) and
+the parity node stays open.
+
 STATE, 2026-10-02T10:3xZ (Crucible binds Slag, 7b999c): the order below stands, with these changes.
 PDR-143 records the extraction's direction; until the entity exists PDR-142 governs every
 two-estate lane, and nothing is delayed or avoided because of the future extraction (the owner's
