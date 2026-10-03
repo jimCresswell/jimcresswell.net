@@ -107,3 +107,22 @@ it whole.
   settlement push, six threads replied with the cure's commit and resolved; the second budget
   unspent.
 - Processes at this block: both watchers, the two registry heartbeats, the 307 door watch.
+
+## 2026-10-03T00:32Z — The twin clauses landed (308); two over-claims a reviewer caught; a reasonless heartbeat pair (Hazel tracks Trunk, 7d8b9d)
+
+- **Landed**: 308 merged at 00:31Z with the six clauses the review of OCE's twins raised, one per
+  surface, prepared in a detached lane while 307 waited at its door and cut when the slot freed
+  (a Cricket read the preparation as on track: uncommitted edits open no pull request). Copilot's
+  two findings were both over-claims in my clauses: "the push scripts already read it back" (the
+  tracked push reports git's exit status and reads nothing; the read-back is the seat's own
+  scripts' step) and "declared as degraded" on Codex's bounded wait (the bootstrap names it a
+  requirement of ordinary participation; degraded is the case without the relay). Lesson: a
+  clause that says what a tool does is checked against the tool's source before it is written,
+  the same reading the no-warning-toleration clause needed earlier tonight.
+- **Observation (one pair)**: both registry heartbeats failed in the same second, 00:19:37Z,
+  while a pre-push gate ran in the primary; by hand a minute later both beat. The script discarded
+  stderr, so the reason is lost; its successor keeps the last stderr line in the failure event.
+  One instance, recorded, not yet a friction.
+- **Records**: F-296 (two authored-surface validators read the disk) on coordination; the Markdown
+  fence reader's second consumer is a napkin candidate above.
+- Processes at this block: both watchers, both registry heartbeats (successor script).
