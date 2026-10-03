@@ -180,19 +180,19 @@ policy decision taken entry by entry.
   file path (`archive/`), a `**/*` suffix (`**/*.plan.md`), or a root-anchored
   path led by `./` (`./.agent/memory/`), which matches from the repository root
   only, so a nested copy of an exempt path cannot claim its exemption; the
-  whole-tree gates that reuse the scoping (lineage names, machine-local paths)
-  read the same forms. For the write-hook the root is the session's project
-  directory (`CLAUDE_PROJECT_DIR` when set, else the policy's own checkout), so
-  a write into another checkout matches no root-anchored exemption and the
-  block fires; an absolute path is read with its `..` segments resolved, so a
-  path that climbs back out of an exempt directory is scoped where it lands; an
+  whole-tree gate that reuses the scoping (machine-local paths) reads the same
+  forms. For the write-hook the root is the session's project directory
+  (`CLAUDE_PROJECT_DIR` when set, else the policy's own checkout), so a write
+  into another checkout matches no root-anchored exemption and the block fires;
+  an absolute path is read with its `..` segments resolved, so a path that
+  climbs back out of an exempt directory is scoped where it lands; an
   `apply_patch` path is relative to the payload's `cwd` and is resolved against
   it before scoping, and without a `cwd` it claims no root-anchored exemption
   either: the anchor fails closed, never open.
 
   `excludes_other_repositories` is for a concept that governs only this
-  repository's own files, such as `lineage-name`: another repository's files
-  may name what this one must not. A repository is known by its common git
+  repository's own files: another repository's files may name what this one
+  must not. A repository is known by its common git
   directory, which every worktree of it shares, so this repository's worktrees
   stay guarded wherever they sit on disk; two common directories are compared
   by identity on disk (device and inode), never by spelling. The walk starts
@@ -209,9 +209,9 @@ policy decision taken entry by entry.
   climb; a path it could not place; or a session root whose own repository it
   cannot tell. A move's source, and a Write's prior content, are read only as
   regular files, never waiting on a pipe, and one request's reads share a byte
-  budget, so no read holds the hook past its timeout. The whole-tree gates
-  read only this repository's tracked files, so the option never changes what
-  they find.
+  budget, so no read holds the hook past its timeout. The whole-tree gate
+  reads only this repository's tracked files, so the option never changes what
+  it finds.
 
 **The deny message carries the reappraisal.** When a group fires, the message
 names the concept the matched text is a fingerprint of, states the `reappraisal`
