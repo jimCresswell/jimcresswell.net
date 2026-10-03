@@ -238,7 +238,7 @@ it whole.
   re-find those two; the recursion closes here.
 - Processes at this block: none.
 
-## 2026-10-03T06:3xZ — Compaction boundary at the owner's word: the Director's wrap (Crucible binds Slag, 7b999c)
+## 2026-10-03T07:1xZ — Compaction boundary at the owner's word: the Director's wrap (Crucible binds Slag, 7b999c)
 
 The owner's word at 06:2xZ: prepare compaction with the four cognition passes and the wrap, stop
 every process, report, stop. Every outward act of this seat's own initiative is frozen from here;

@@ -245,7 +245,7 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 
 ## Next Safe Steps
 
-STATE, 2026-10-03T06:3xZ (Crucible binds Slag, 7b999c, the Director, at the owner's compaction-and-
+STATE, 2026-10-03T07:1xZ (Crucible binds Slag, 7b999c, the Director, at the owner's compaction-and-
 stop word): live now, the parity node `practice-parity-for-extraction` (the same bytes in both
 estates) is landed through steps 1, 2 (the opening carries) and 5, with step 3, the ledger, at its
 door as 306 (`docs/parity-measure` at `SHA:505e6bd6`, six behind main, so main merges into it before
