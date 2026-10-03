@@ -17,7 +17,7 @@ that instrument routine instead of exceptional, so a delivery-dark seat
 becomes distinguishable from a working one within minutes rather than
 by a hand-delivered unblock. Origin: three dated absorption-dark
 instances on 2026-07-29 (each heartbeat-fresh, each cured by hand);
-upstream ticket MCP-393 and its delivery plan (an OCE record).
+the ticket MCP-393 and its delivery plan (OCE records, kept there).
 
 ## Trigger
 
