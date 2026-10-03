@@ -169,7 +169,7 @@ declaration set yet. Dated observations already on record:
 - **Slack Watcher organ (Slack channel + cloud-harness reminder
   substrate) — full 14-class declaration, 2026-08-24**: recorded
   skill-locally for operational reading in
-  `slack-watcher` §6 (an OCE skill not carried here)
+  `slack-watcher` §6 (received from OCE on 2026-10-03)
   (this ledger points, never restates). Headline rows: `NOTIFY`
   cannot-certify (no dated externally observed wake on record; a
   self-bind reminder records no run history), proxy = the tenure

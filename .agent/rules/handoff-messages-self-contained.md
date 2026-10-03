@@ -39,6 +39,12 @@ A handoff message MUST name:
 
 A receiver should be able to act WITHOUT a clarifying question back to the sender. If they need to ask, the message was incomplete.
 
+A handoff's next-step list names the credential route beside each write
+(the merge-bot's push command, the minted token), since a pickup reads the
+steps, not the rule: steps that said "merge", "push", "request Copilot" with
+the credential implicit produced three writes under the owner's credential in
+one day (2026-09-24).
+
 A handoff's content is of two kinds, and the receiver treats them differently. Owner rulings,
 deliberate oddities and recorded mistakes are inherited as written: nothing in the tree can
 recompute them. Lane state, branch state and pull-request state are recomputed from the live

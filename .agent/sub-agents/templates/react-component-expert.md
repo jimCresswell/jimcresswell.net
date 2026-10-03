@@ -1,5 +1,12 @@
 ---
 description: React component reviewer checking hooks, hydration, and memoisation.
+claude:
+  tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
+  disallowedTools: Write, Edit, NotebookEdit
+  color: green
+  note: |-
+    Review or recommend; do not modify code. The calling agent executes any
+    changes you propose.
 ---
 
 ## Delegation Triggers
