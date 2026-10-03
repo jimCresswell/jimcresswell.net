@@ -114,13 +114,16 @@ their own and change no unit. The inbound direction's count opens with its own c
 ruling 44).
 
 Closed on 2026-10-02 against the Practice inventory (`practice-inventory-2026-10-02.md`, beside
-this file; the finish node `practice-work-finish`, end state 3), read at jcnet `main` and
-OCE's `engraph` at the heads the inventory names: **79 of 79 rows closed**, 17 landed, 15
-declined, 47 closed as difference rows (10 with partial landings, 37 never landed): 26 of
-them measured in the inventory's closure table as the same, different and one-sided paths under
-their globs, and 21 (17 whose globs fall outside the inventory's directories, 4 with
-no globs) closed as difference rows on their register cells alone, which the extraction plan
-reads from this register. The residue-unit count above (16 of 32 at 2026-09-29) is retired by this
+this file; the finish node `practice-work-finish`, end state 3, carried since the same day by
+`practice-parity-for-extraction`), read at jcnet `main` and OCE's `engraph` at the heads the
+inventory names: **79 of 79 rows closed**, 16 landed, 15 declined, 48 closed as difference rows
+(11 with partial landings, 37 never landed): 26 of them measured in the inventory's closure table
+as the same, different and one-sided paths under their globs, and 22 (17 whose globs fall outside
+the inventory's directories, 5 with no globs) closed as difference rows on their register cells
+alone. A row is settled only by §Landings rows of its receiving estate (J rows in OCE, L and C
+rows in jcnet, L34 in OCE under the ruling above), so J11 reads partial on its four OCE rows and
+L34 landed on its one. The extraction plan reads two inputs: this register for the rows and the
+inventory for the paths. The residue-unit count above (16 of 32 at 2026-09-29) is retired by this
 closure: the unit
 was the residue pull request, and the owner's ruling of 2026-10-02 ends the exchange at a known
 count of rows rather than recounting it upward; a row closed as a difference is sequenced into

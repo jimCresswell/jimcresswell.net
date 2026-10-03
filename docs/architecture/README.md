@@ -183,6 +183,7 @@ All significant architectural decisions are recorded as ADRs in [decision-record
 | [020](decision-records/020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model is the source of truth for shared identity atoms     |
 | [021](decision-records/021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                                        |
 | [022](decision-records/022-rendering-risk-needs-blocking-visual-proof.md)    | Rendering-risk changes need blocking visual proof                 |
+| [023](decision-records/023-host-side-adoption-of-practice-core-decisions.md) | Host-side adoption of Practice Core decisions                     |
 
 The retired tilt content and its former canonical-alias rationale are preserved
 in the [CV tilt reference](reference/cv-tilt-content-and-rationale.md).

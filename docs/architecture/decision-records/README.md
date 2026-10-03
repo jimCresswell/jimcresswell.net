@@ -38,3 +38,4 @@ Each ADR follows a lightweight format:
 | [020](020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model is the source of truth for shared identity atoms     | Accepted              | 2026-08-12 |
 | [021](021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                                        | Accepted              | 2026-08-12 |
 | [022](022-rendering-risk-needs-blocking-visual-proof.md)    | Rendering-risk changes need blocking visual proof                 | Accepted              | 2026-04-19 |
+| [023](023-host-side-adoption-of-practice-core-decisions.md) | Host-side adoption of Practice Core decisions                     | Accepted              | 2026-10-03 |

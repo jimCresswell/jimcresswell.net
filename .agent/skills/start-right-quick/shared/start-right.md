@@ -349,9 +349,12 @@ not after.
 worktree's pre-push `test:e2e` leg (and `test:ui`) dies with "Executable
 doesn't exist at …chrome-headless-shell" until you run
 `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
-once in the worktree. Read the log before assuming a known flake. Full
-fresh-worktree setup is install, build, AND the Playwright browser install
-before the browser-test gates run.
+once in the worktree. Read the log before assuming a known flake, and read the
+failing job's own error lines before calling any check a defect or a flake: the
+fan-in job goes red with any failed leg and names no cause of its own (a
+font-loader flake read as the diff's fault, 2026-09-25). Full fresh-worktree
+setup is install, build, AND the Playwright browser install before the
+browser-test gates run.
 
 The collaboration substrate is also unseeded on a fresh checkout: the
 instance-tier state files are untracked by design (`.agent/state/README.md`). The
