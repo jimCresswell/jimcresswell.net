@@ -683,3 +683,42 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   the compression that survives is the retrospective, decision-sufficient; the unstated
   assumption is that reading alone recovers the system (the node names its falsifier); the
   pointers above are the only places this block relies on.
+
+## 2026-10-04T09:4xZ — The resume at the owner's word: the review node reshaped before ratification (Crucible binds Slag, 7b999c)
+
+- **The owner's word (verbatim)**: "review the plan, run all questions and unknowns through the
+  decision matrix, raise any that survive as user questions ... Aside: I have closed the dependabot
+  PRs, our priority if finishing this work across both estates." The decision matrix is the Decision
+  Lenses of `principles.md`, concept exploration first, constitutively-the-owner's as the survival
+  test (`route-blocks-and-questions-to-director.md` item 2).
+- **Live facts at 09:2xZ**: both trees clean at the boundary commits (18c4f933, OCE fb82fa446); no
+  comms event since 20:07Z; every claim in both estates stale (this seat's 726da755, d5492b18,
+  302e8307, 9ecef634, 4b82394b; Hazel's and Efreet's retained with pointers); the JC coordination
+  branch overdue for its fold since 2026-10-03 12:00Z, the OCE one since 2026-10-04 00:00Z; open:
+  318, 312, 305 here, #350, #349, #348 in OCE; dependabot 313 to 317 closed by the owner.
+- **Two Crickets on the first sketch (normal and adversarial), the same verdict, DRIFTING and
+  NARROWED**: 7.5 hours against the owner's guide of hours (3.75 times the two-hour yardstick, past
+  the sibling node's own "twice the guide is a stop to reshape"); one row per mechanism is the
+  ledger's shape in prose; twin PRs with a `cmp` proof are the parity reflex under a new name; AC3
+  contradicted the mechanism's README rows and PDR amendments; a three-week gate with no named
+  successor. My own lens pass had reached the same five before their reports arrived; the crickets
+  added the sharpest words.
+- **The cures applied, same bytes both estates, validators green, uncommitted until the owner's
+  word lands in the stamp commit**: the model first (a two-hour layer pass, the draft page posted at
+  two hours as a report, never a pause); one coarse row per area with exceptions and `unread` only;
+  one landing here, the sibling's copy riding the landing of the owner's dated word there; the PDR
+  amendments and the parent line after the word, in the successor step; the gate expires 2026-10-07
+  and names its successor; about four hours in one sitting.
+- **Survivors of the matrix**: one, ratification of the reshaped node (constitutively the owner's,
+  born-sketch rule). Resolved as the Director's and stated: n=1 stands on the owner's word; the
+  two folds are due and land the stamped node to the default branches; 318 merges as a green
+  capability carry (owner's word of 2026-10-01, never a question of whether); 312 and #350 merge
+  as they stand with the five findings answered as rows for a later revision (records carry no
+  review risk; the owner-decided rows O1 to O13 belong on main); the hooks branch, Efreet's lanes
+  and the housekeeping branches wait for the model.
+- **Lesson**: a node written at a compaction boundary inherits the boundary's fatigue shape: the
+  first sketch reproduced the instrument it was replacing. The cheap cure is the one used here, two
+  Crickets in both stances at the resume before the owner reads the plan.
+- **09:5xZ, the owner's card answer: "Ratify as reshaped (Recommended)".** Stamped in both copies
+  (same bytes); this seat's five claims closed (n=1, no peer); next: the stamp commits, the two
+  folds, 318, 312 and #350, then the layer pass with the draft page due at two hours.
