@@ -728,3 +728,67 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   suite". This morning's two legs agreed, so no remainder is owed; a split pair runs the rest
   before either verdict is acted on; a matrix survivor travels as a card and, with the owner away,
   as a push notification.
+
+## 2026-10-04T14:1xZ — The layer pass read in twenty minutes; the draft page written; the folds mid-settlement (Crucible binds Slag, 7b999c)
+
+- **The owner's mid-turn word, verbatim**: "are we still aligned, define the Practice then two
+  commits?" Answered yes with one correction: the stretch after the ratification went to the two
+  overdue folds and their review settlement (Director on the instrument, the retrospective's
+  pattern); cut to the minimum, the draft page put in front of the owner.
+- **What the layer pass found** (the report at `.agent/reports/agentic-engineering/practice-system-review-2026-10.md`,
+  uncommitted, 227 lines, lint clean, cited paths checked): four layers hold as a model; seven
+  divergence classes (A general text diverged; B general capability one-sided; C mechanism
+  placement diverged, the gate-placement ruling of 2026-09-12 reached one estate only; D layout
+  contract drifted from the tree; E contextual by design; F accumulated; G the loop's path between
+  instances is doctrine, not mechanism); four exceptions the layers do not place (patterns and
+  PDRs under accumulated directories; the Core changelog written twice; the invoke rules
+  one-sided; the CI required set's shape). The reading took twenty minutes of wall-clock because
+  it read names, counts and diff sizes, and the hooks in full; the estimate of two hours was for
+  reading text, which the model did not need.
+- **Fold state**: 305's six Copilot threads settled (two cures at SHA:036b122f, four answered);
+  the bot refused the merge, "OWED, no review binds the current tip"; Copilot re-requested by
+  the REST requested-reviewers call under the operator credential (the gh --add-reviewer form
+  fails for both credentials here). #348 readied as the bot, its eight findings (Codex 4,
+  Copilot 4) settled at SHA:f4e901d8d; Copilot re-requested as the bot by the same call. Both
+  merges wait on the re-reviews. 318's one thread answered (a first reply mis-described the cure;
+  corrected from the diff in a second reply). 312 has zero unresolved threads. #350's five
+  findings untouched.
+- **Lessons**: (1) the time stamp: a card can wait hours; stamp the ratification from the clock
+  at the answer, never from the clock at the ask (09:5xZ written, 13:3xZ true, corrected in both
+  estates). (2) `claims close` needs `--platform claude --model claude-fable-5-1`. (3) a commit
+  body line that reads `word: text` is a footer to commitlint; OCE's hook fails on the warning.
+  (4) the bot's merge needs a review AT THE TIP; a settlement push after the review re-owes it;
+  so settle, push once, re-request, merge.
+- **14:3xZ, the owner's word on a missing layer, verbatim**: "I think there may or possibly may
+  not be a missing layer, between the general Practice and a contextual instance in a repo, there
+  is the repo tooling family, e.g. Typescript, Python, Rust, each family has conventions, for
+  instance I would expect all Typescript family repos to have the same package.json scripts, at
+  least for Practice operations, which includes all quality gates." And: "here is an early effort
+  at a Python instance, it is not canonical, but it still shows the differences needed in
+  structure because of the different tooling ecosystem and community conventions" (the Python
+  repository template beside this repository on the host). Evidence read: 68 root scripts shared
+  by name between the two TypeScript estates, 50 identical after scope normalisation, the 18
+  differing ones exactly the gates; the Python template carries a gate contract file naming the
+  same vocabulary (clean, build, dev, lint, format, typecheck, markdownlint, test, coverage, fix,
+  check, check-ci) bound to ruff, pyright, pytest, deptry, import-linter, pre-commit and
+  commitizen, with a repo-audit contract that checks the documented commands against the
+  contract. The family layer is real; the gate VOCABULARY is general and visible across both
+  families; the report revised with it. Lesson: a layer every observed instance shares reads as
+  the general layer until a second family is in the room; the counterfactual question ("would a
+  Python host have this file?") finds it without the second family.
+- **15:0xZ, the owner's six decisions and the standing direction, verbatim**: "The broad approach
+  should be, I think, tooling agnostic policy, strict universal contracts, tooling specific
+  implementations where a universal approach is not efficient or appropriate." 1 patterns:
+  "agreed, patterns are a core part of the memory loop. Although, an observation, unless they
+  are linked to from strategy or architecture or rules or some other known source of information
+  or process, I am not sure if they are providing value ... Patterns likely fall into the same
+  layers as the Practice". 2 changelog: "I don't mind what happens to the changelog, if you think
+  we have redundant information without the redundancy being valuable then please handle it"
+  (handled: Core text, merged as class A). 3: "Agreed on turning the 14 rules in to 1 rule and a
+  table, and yes that should be in both estates". 4: "Agreed" (the fan-in in both). 5: "This is
+  a question for the extraction ... general Practice files, markdown, json etc that are
+  universal, and then tooling family specific adapters which adhere to strict and comprehensive
+  universal contracts and schemas ... the open question of how we feed learning from the repo
+  operations back into the local Practice and then the central Practice ... questions for
+  another day, important questions". 6: "Agreed". All recorded in the report with the words at
+  each item; the memory file tooling-agnostic-policy-strict-universal-contracts.

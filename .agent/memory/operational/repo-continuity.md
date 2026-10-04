@@ -217,13 +217,6 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   a separate act on the owner's request. 2026-09-29: PR 273 (b6232c77) made the workspace
   documents only and cured `main`'s knip gate; the lane is at rest, its seat (Galaxy binds
   Gravity, 46de68) closed 2026-09-30, and the record's latest block governs.
-- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): its seat closed with the
-  Director lane on 2026-09-29; the record's latest dated block governs, and its landings list is the
-  lane's proof. Its two pull requests that were still open in OCE landed on 2026-10-01 under
-  Crucible binds Slag, who had adopted their claims: 309 (SHA:2691a8143) and 310 (SHA:2e8892fed).
-  Of its two OCE lane worktrees, arc-metrics landed as OCE 320 and 321 and is gone; the J2
-  docs-validators port still holds work outside any pull request and is line 2 of §Next Safe
-  Steps.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
@@ -234,9 +227,12 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   requests have landed, PR 275 here (SHA:f6a26954) and OCE PR 313 (SHA:e453ff81a, 2026-10-01);
   the owner's two acts for criterion 1 are still owed. The record's latest dated block governs.
 - Two-estate consolidation (`threads/two-estate-consolidation.next-session.md`): the first pass
-  closed on 2026-10-01 (Hawthorn binds Bracken); the second runs from 2026-10-01T13:1xZ (Hazel
-  tracks Trunk) at the owner's word, JC.net the home and OCE worked non-resident; the record's
-  newest state block governs and opens with the counts.
+  closed on 2026-10-01 (Hawthorn binds Bracken); the second ran from 2026-10-01T13:1xZ (Hazel
+  tracks Trunk, finished at the owner's word 2026-10-03) at the owner's word, JC.net the home
+  and OCE worked non-resident, with Crucible binds Slag (7b999c) the Director across both
+  estates from 2026-10-02 and the n=1 seat from the 2026-10-04 resume; the consolidation flow is
+  paused at the owner's word of 2026-10-03, the live plan is `practice-system-review` (ratified
+  2026-10-04), and the record's newest state block governs.
 
 ## Paused Threads
 

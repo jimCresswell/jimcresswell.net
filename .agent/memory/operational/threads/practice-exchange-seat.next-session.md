@@ -1,3 +1,8 @@
+> **RETIRED — thread superseded 2026-10-04.**
+> Its node `practice-two-way-exchange` is archived; the exchange continues under the thread
+> `two-estate-consolidation` and the delivery node `practice-system-review`. Retained as
+> continuity history; not a live lane. Not listed in `repo-continuity.md` Active or Paused threads.
+
 # Thread: practice-exchange-seat — JC.net's side of the two-way Practice exchange
 
 **Thread identity.** JC.net's exchange seat on the node `practice-two-way-exchange`: outbound

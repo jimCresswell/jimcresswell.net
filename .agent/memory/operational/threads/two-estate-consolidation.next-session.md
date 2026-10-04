@@ -6,14 +6,16 @@ triggered by `.agent/prompts/dedicated-consolidation-session.md` (a trigger, nev
 store: the owner's word 2026-09-30). The owner's words: "the next session will run a dedicated
 consolidation session across both estates"; "JC.net will be the home repo, where the relevant
 skills differ, 1. they shouldn't and that needs fixing, and 2. the next agent can be instructed
-to read the OCE skills". **Participating agent identities:** Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, the Director across both estates over the second pass's folds, tails and ledger, 2026-10-02 to 2026-10-03, closing the day at the owner's word of 2026-10-03 20:0xZ with the parity frame set aside and the review node `practice-system-review` planned, n=1 from there); Hazel tracks Trunk (7d8b9d, claude-code, claude-fable-5-1, the second pass's implementer in jimcresswell.net from 2026-10-01, the parity carries and surfaces of 2026-10-03); this record was written by Galaxy binds
+to read the OCE skills". **Participating agent identities:** Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, the Director across both estates over the second pass's folds, tails and ledger, 2026-10-02 to 2026-10-03, closing the day at the owner's word of 2026-10-03 20:0xZ with the parity frame set aside and the review node `practice-system-review` planned, n=1 from there; the n=1 seat again from the resume of 2026-10-04, the review node reshaped and ratified, the layer pass read, the report drafted); Hazel tracks Trunk (7d8b9d, claude-code, claude-fable-5-1, the second pass's implementer in jimcresswell.net from 2026-10-01, the parity carries and surfaces of 2026-10-03); this record was written by Galaxy binds
 Gravity (46de68, claude-code, claude-fable-5-1) at its session close, 2026-09-30T14:3xZ.
-**Landing target for the next session:** the completion contract of `consolidate-until-done`
-met in BOTH estates — every live curation buffer empty or explicitly owner-decision-gated, its
-insight in permanent homes, no memory file worse than soft at rest — with the two estates' counts
-said first in every report. **Grounding order:** JC.net's `AGENT.md` and `start-right-quick`,
-this record, then `consolidate-until-done` and `consolidate-docs` read from OCE's copies where
-the two estates' copies differ (the owner's instruction for the opening statement).
+**Landing target for the next session (rewritten 2026-10-04):** the consolidation flow
+(`consolidate-until-done` met in BOTH estates, every live curation buffer empty or
+owner-decision-gated, the counts said first) is paused at the owner's word of 2026-10-03; the
+live plan is the ratified delivery node `practice-system-review` and its report, and the next
+session resumes from the newest dated state block below, never from §Current Continuation,
+which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.md` and
+`start-right-quick`, the review node, this record's newest state block, then the report under
+`.agent/reports/agentic-engineering/`.
 
 ## Current Continuation
 
