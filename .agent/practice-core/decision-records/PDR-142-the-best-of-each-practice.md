@@ -11,7 +11,8 @@ the owner's word that concept transfer is the goal and identical bytes only a
 means (the Decision's clause on concepts and bytes and its merged-text bullet; the Amendment
 Log), and again the same day on the owner's card on format at receipt (the same clause), and
 2026-09-25 on the owner's words on pace and goal and the authority class before a cure (the
-same section and §Boundaries; the Amendment Log)
+same section and §Boundaries; the Amendment Log), and 2026-10-04 on the owner's words of
+2026-10-03 on the measure, read per layer of the ratified definition (the Amendment Log)
 **Date**: 2026-09-21
 **Related**: [PDR-125](PDR-125-inter-practice-collaboration-protocol.md)
 (the inter-Practice protocol; clause 6's union posture, which this record
@@ -422,3 +423,29 @@ packs per domain.
 **Falsifier.** A domain skill whose fundamentals cannot be separated from one host's layer
 without losing the skill, or an entity install that carries one host's layer as canonical. One
 such instance reopens this entry with the owner, and this log says so.
+
+### 2026-10-04 — the owner's words of 2026-10-03 on the measure, heard first-hand
+
+**Context.** The exchange this record defines was worked for two days as byte-level parity between
+the two estates, measured by the dry-run merge this record's §Prediction names. The owner, to the
+Director seat Crucible binds Slag (7b999c) on 2026-10-03, verbatim: "Yesterday I said finish
+within 2 hours as a guide, if the estimate hits four we have a problem. Today I said finish today.
+Now you are telling me that we need all of today and ten straight hours tomorrow. And I am telling
+you, that means we are doing it wrong. Why, why is bringing two estates of well understood files
+into alignment taking this long, question your framing and assumptions". And: "there are two
+estates with one system of development and value provision and contracts and authority and so on,
+and that system currently has divergences that we are trying to resolve". And: "The act of
+bringing the two instances of the Practice into alignment is how we explore what the Practice
+currently is".
+
+**Decision.** The dry-run merge stays an observable, never the headline (§Prediction's own
+caveat): the divergences are resolved from a model of the system, which PDR-143 §Decision now
+carries as the ratified definition in five layers, and §How each kind travels is read per layer:
+the general layer travels by concept (as written), the family layer by convention within a
+family, the contextual layer never, the accumulated layer never. The unit of landing is the
+estate, one pull request per class of divergence, never the hunk; the count of pull requests a
+plan implies is its cost and is counted before work starts.
+
+**Falsifier.** A divergence the model cannot class, or a landing by class that the dry-run merge
+shows regressing the text both estates already shared. One such instance reopens this entry with
+the owner, and this log says so.
