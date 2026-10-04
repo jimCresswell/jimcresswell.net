@@ -4,8 +4,10 @@
 delivery into the lineage's Box and joint sets with the lineage's seat (goal one), inbound
 landings here (goal two). **Participating agent identities:** Brazier spins Temper (c70341),
 then Siren herds Rudder (158275), then Crucible binds Slag (7b999c, claude-code,
-claude-fable-5-1, implementer, then the Director across both estates, last session 2026-10-03). **Landing target for the next session:** the latest dated block
-governs. **Grounding order:** `AGENT.md`, the start-right-team skill, this record, the node's
+claude-fable-5-1, implementer, then the Director across both estates, last session 2026-10-03). **Landing target for the next session:** none. This thread was
+retired on 2026-10-04: its node `practice-two-way-exchange` is archived, the exchange continues
+under the thread `two-estate-consolidation` and the delivery node `practice-system-review`, and
+the dated blocks below are history, never a lane to resume. **Grounding order:** `AGENT.md`, the start-right-team skill, this record, the node's
 §Rulings and §Todos at main, the register, then the lineage's comms stream from OCE event
 269c5e97 onwards.
 
