@@ -722,3 +722,9 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
 - **09:5xZ, the owner's card answer: "Ratify as reshaped (Recommended)".** Stamped in both copies
   (same bytes); this seat's five claims closed (n=1, no peer); next: the stamp commits, the two
   folds, 318, 312 and #350, then the layer pass with the draft page due at two hours.
+- **10:0xZ, the owner's two standing words, verbatim**: "I have enabled push notifications, so
+  next time you have a question it should reach my mobile device. And when we run a reduced
+  Cricket suite and they give opposite results, follow up with the remainder of the full Cricket
+  suite". This morning's two legs agreed, so no remainder is owed; a split pair runs the rest
+  before either verdict is acted on; a matrix survivor travels as a card and, with the owner away,
+  as a push notification.
