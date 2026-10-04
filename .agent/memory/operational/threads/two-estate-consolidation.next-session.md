@@ -109,6 +109,26 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-04T22:4xZ — the doctrine landing open in both estates; the code landing next (Crucible binds Slag, 7b999c)
+
+- **State**: jimcresswell.net 321 (`docs/practice-doctrine-landing` at `SHA:a9081f17`, seven
+  commits, reviews settled at the tip: Codex two and Copilot one, cured and resolved; Copilot
+  re-requested) and OCE #353 (`docs/practice-doctrine-landing` at `SHA:bd969cbaf`, the same bytes
+  plus 42 contextual-bound variants; #350 merging in as 312 did into 321). The byte proof at the
+  two tips reads DRIFT 0 over 744 shared paths (702 identical, 42 contextual-bound). 312 closed
+  into 321. The parameter list P1 to P37 is in the review report's new section in both.
+- **Next safe step**: merge 321 and #353 when their reviews settle (`merge-bot merge --expect
+  copilot-pull-request-reviewer`); then the code landing (the node's mechanism item 2) here
+  first, cut from main: the 18 scripts, the hooks (OCE's secret scan and review-cost gate
+  carried to the push), the CI fan-in, the four compiler flags, the formatter format, the
+  package-manager major, the markdownlint config, the carries C1 to C28 with tests (the skills
+  one-sided each way, the validators four each way, the 14 tooling modules and 7 lint rules, the
+  distillation skill), the family conformance check, the validators aligned so one text passes
+  one gate set; the doors 318 and the hooks branch disposed in it.
+- **Owed to the owner**: the OCE-in-Core card (the owner's 2026-09-30 and 2026-10-02 words
+  against PDR-142's host-neutrality clause), put with 321.
+- The napkin block of 2026-10-04T22:4xZ carries the measurements, the decisions and the lessons.
+
 ### 2026-10-04T19:0xZ — the definition landed on both default branches; the alignment node ratified; compaction at the owner's word (Crucible binds Slag, 7b999c)
 
 - **State.** The definition's landings merged: jimcresswell.net 319 at `SHA:02178ff0b` (main),

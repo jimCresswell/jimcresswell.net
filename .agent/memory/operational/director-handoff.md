@@ -166,6 +166,14 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-04 22:4xZ (Crucible binds Slag, `7b999c`, the n=1 seat).** The doctrine
+landing of `practice-alignment-by-class` is open in both estates: jimcresswell.net 321 at
+`SHA:a9081f17` (reviews cured at the tip, Copilot re-requested) and OCE #353 at `SHA:bd969cbaf`;
+the byte proof at the two tips reads DRIFT 0 (744 shared, 702 identical, 42 contextual-bound by
+design). The next safe step is to merge both when their reviews settle, then the code landing
+(mechanism item 2), here first. The live record is the two-estate thread's block of
+2026-10-04T22:4xZ; the napkin block of the same hour carries the lessons.
+
 **§STATE, 2026-10-04 19:0xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's
 compaction word; this block supersedes the blocks below where they differ).** The definition's
 landings merged: 319 at `SHA:02178ff0b` on main, OCE #351 at `SHA:82cb7fba4` on engraph, the

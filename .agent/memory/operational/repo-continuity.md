@@ -231,8 +231,9 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   tracks Trunk, finished at the owner's word 2026-10-03) at the owner's word, JC.net the home
   and OCE worked non-resident, with Crucible binds Slag (7b999c) the Director across both
   estates from 2026-10-02 and the n=1 seat from the 2026-10-04 resume; the consolidation flow is
-  paused at the owner's word of 2026-10-03, the live plan is `practice-system-review` (ratified
-  2026-10-04), and the record's newest state block governs.
+  paused at the owner's word of 2026-10-03; the live plan is `practice-alignment-by-class`
+  (ratified 2026-10-04), whose doctrine landing is open in both estates (321, #353) with the
+  byte proof green, the code landing next; the record's newest state block governs.
 
 ## Paused Threads
 

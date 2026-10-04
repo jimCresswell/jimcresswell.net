@@ -893,3 +893,57 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   split-cricket-verdicts-run-the-full-suite. Metaloss: the compression that survives is this
   block plus the node; the only thing this context holds that no record does is the feel of how
   long each review round took, and the 16:4xZ lesson carries that as a number.
+
+## 2026-10-04T22:4xZ — The doctrine landing in both estates: one general text, the contextual layer named (Crucible binds Slag, 7b999c)
+
+- **The owner's word at the resume, verbatim**: "please continue, let's get the Practice work
+  finished, I would like to move on to feature development (you don't need to care about what,
+  only about finished the Practice work)".
+- **Measured first**: at the day's default tips 198 `.agent/**` files differed (341 identical);
+  the six-prefix dry-run merge read 161 differing, 70 clean, 86 conflict files with 219 hunks, 5
+  with no base; 25 patterns differed, none one-sided; 24 maps, contracts and reference documents
+  differed outside the measured prefixes.
+- **Method**: the three-way merge output written into the landing branch (clean files merged,
+  conflicts with diff3 markers), then six workers by surface (directives, rules, skills,
+  sub-agents, maps and contracts, patterns by layer) resolving by the ledger's recorded readings
+  under one brief; the Director resolved the Practice Core first-hand (PDR-003) and the changelog
+  union by script; the ledger revision (312) merged in so the owner-row decisions of 2026-10-03
+  stand on record; `pnpm portability:fix`, the skills generator and the patterns index
+  regenerated. About two and a half seat-hours from the resume to both pull requests, against
+  the node's two-hour estimate for the doctrine landing.
+- **Landed**: jimcresswell.net 321 at `SHA:a9081f17` (seven commits: the landing, the adapters,
+  four host-neutral citations the sibling's gates refused, the two Codex cures); OCE #353 at
+  `SHA:bd969cbaf` (one commit from the landed bytes plus 42 variants, with #350 merging in as
+  312 did). The proof at the two tips: 744 shared paths, 702 identical, 42 contextual-bound by
+  design, DRIFT 0; the one-sided files are each host's host-local set and the code landing's
+  skills. Both review legs ran on 321 (Codex two findings, Copilot one, all three cured at
+  `SHA:a9081f17`, the threads answered and resolved under the bot); Copilot re-requested on both.
+- **Decisions under the lenses (the owner declines by row)**: P6, the reference documents live
+  under `.agent/reference/` in both; the gate placement is the card answer (light commit, full
+  push); the Practice-operation script vocabulary is family-layer and the code landing makes it
+  one shape; host bindings are written host-neutral with the parameter named, else the file is
+  contextual-bound with a variant and a row (P1 to P37 in the report's new section); the roster
+  table lives in `invoke-code-experts.md` and the host's reviewers in its executive catalogue
+  (OCE's four host-specific invoke rules retired the same way); the operator-bound pattern is
+  contextual; the sibling's `under-the-hood` skill keeps its own bytes (its generated product
+  module needs a reviewed delta, product territory the owner excluded) and the three method folds
+  wait for OCE's own disposition; the `sif` annex is contextual-bound (OCE's lockstep test binds
+  the pin link).
+- **The owner's standing words applied, with the card still owed**: the records name OCE where
+  they named a role (2026-09-30, 2026-10-02); Codex's host-neutrality reading is a reviewer's;
+  the card goes with the landing as the node says.
+- **Patterns reachability**: 199 of 246 reach from nothing, 37 from one or two sources, 10 from
+  three or more; listed in 321's description for the owner; nothing moved.
+- **Lessons**: (1) never edit a tree while its push gate runs; the sibling's copy took the fix
+  first. (2) knip refuses an unused export the sibling's gate runs and this one's does not; the
+  two agent-tools copies differ by two `export` keywords until the code landing. (3) A validator
+  that one estate lacks (cited paths, cited scripts, reference direction's plans rule, the
+  under-the-hood lockstep) shapes the shared text; the code landing aligns the validators so one
+  text passes one gate set. (4) The hook's name rule bans the organisation slug and the one-word
+  academy name, never the product word; a worker read it as banning the product word and elided
+  an owner's quote. (5) The worker reports came back as messages when the harness refused their
+  Write; the Director saved them.
+- **Next**: the two pull requests to merge when their reviews settle (one settlement push each
+  spent on 353's #350 merge; 321 has spent its two); then the code landing (mechanism item 2):
+  the 18 scripts, hooks, CI fan-in, the carries C1 to C28 with tests, the family conformance
+  check, the validators aligned; the doors 318 and the hooks branch disposed in it.
