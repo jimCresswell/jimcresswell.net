@@ -78,7 +78,7 @@ inventory rather than copying the rule list here.
 ### 2. ADRs for the workstream
 
 Open any ADR whose slug matches your current workstream from the
-[ADR index](../../../../docs/architecture/decision-records/README.md); the
+the host's ADR index (the decision-record directory under `docs/architecture/`); the
 Cardinal Rule's records (ADR-020, ADR-021) apply to any work that touches a
 rendered surface.
 

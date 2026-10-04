@@ -34,7 +34,7 @@ Read and internalise these documents:
 6. @.agent/directives/orientation.md — layering contract and authority order
 7. @.agent/memory/operational/threads/README.md — thread convention + identity discipline (PDR-027)
 8. Open any ADR whose slug matches your current work area from the
-   [ADR index](../../../../docs/architecture/decision-records/README.md).
+   the host's ADR index (the decision-record directory under `docs/architecture/`).
 
 **Plans must include regularly re-reading and re-committing to these foundation documents.**
 
