@@ -109,6 +109,24 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-04T19:0xZ — the definition landed on both default branches; the alignment node ratified; compaction at the owner's word (Crucible binds Slag, 7b999c)
+
+- **State.** The definition's landings merged: jimcresswell.net 319 at `SHA:02178ff0b` (main),
+  OCE #351 at `SHA:82cb7fba4` (engraph), the same bytes. The successor delivery node
+  `practice-alignment-by-class` is ratified by the owner's four card answers of 16:xZ (four pull
+  requests, two per estate; proceed at about five hours over two sittings; a light commit and a
+  full push as the family's convention; the conformance check included) and sits on both
+  successor coordination branches (here `SHA:11d0ed3f`, OCE `SHA:5125881ce`) with the Cricket
+  suite's tally. No claim, no process, no unpushed commit of this seat.
+- **Next safe step.** The doctrine landing (the node's §Mechanism 1): cut from main here, one pull
+  request, the general-layer text merged by concept from the ledger's 209 recorded readings and a
+  fresh read of the 33 unmeasured files, the rules collapsed to one rule and a table, the maps
+  trued, the parameter list, the four cures deferred from 319 and #351, and the OCE-in-Core
+  conflict as a card for the owner; then the sibling's from engraph, the same bytes; then the
+  code landing. One in-progress pull request per estate.
+- **Open doors, untouched**: 312 and #350, 318, the hooks branch, the OCE implementer's unpushed
+  lanes; disposed inside the landing of their class.
+
 ### 2026-10-04T16:0xZ — the Practice defined and ratified; the folds merged; the landing next (Crucible binds Slag, 7b999c)
 
 - **State.** The review node `practice-system-review` was reshaped at two Cricket verdicts and

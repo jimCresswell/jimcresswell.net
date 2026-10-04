@@ -166,6 +166,18 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-04 19:0xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's
+compaction word; this block supersedes the blocks below where they differ).** The definition's
+landings merged: 319 at `SHA:02178ff0b` on main, OCE #351 at `SHA:82cb7fba4` on engraph, the
+same bytes. The successor delivery node `practice-alignment-by-class` is ratified (the owner's
+four card answers of 16:xZ: four pull requests, two per estate; proceed at about five hours over
+two sittings; a light commit and a full push as the family's convention; the conformance check
+included) and sits on both successor coordination branches with the Cricket suite's tally (eight
+legs, unanimous). The live record is the two-estate thread's block of 2026-10-04T19:0xZ, whose
+next safe step is the doctrine landing here first. One conflict is the owner's, carried with that
+landing: the owner's 2026-09-30 word ("it's OCE") against PDR-142's host-neutrality clause. No
+claim, no process, no unpushed commit of this seat; nothing to re-arm at the resume.
+
 **§STATE, 2026-10-04 16:0xZ (Crucible binds Slag, `7b999c`, the n=1 seat; this block supersedes
 the blocks below where they differ).** The Practice has a canonical definition: five layers
 (general; family; contextual; accumulated; the loop), ratified by the owner's card answer of

@@ -842,3 +842,54 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   (3) Both estates' napkins and READMEs will conflict at the next fold on adjacent insertions;
   resolve by keeping both rows.
 - **Next**: the doctrine landing, this estate first; the owner's word stands: finish.
+
+## 2026-10-04T19:0xZ — Compaction boundary at the owner's word: the definition landed, the alignment node ratified, the doctrine landing next (Crucible binds Slag, 7b999c)
+
+- **The owner's word, verbatim**: "please prepare compaction ... then stop all processes, post
+  compaction we will cpntinue".
+- **Metacognition (inward)**: the day's pull was the one the retrospective named, the Director on
+  the instrument: three review rounds on each fold and each landing took about two hours of
+  wall-clock that no file of the alignment needed; the cure that worked was the budget rule
+  (answer past the budget, never push) and naming the deferred cures in the next landing. The
+  suite caught my own narrowing: I read the owner's cost guide per landing to fit a shape I had
+  already chosen; the owner's words are read at the scope the owner gave them. The assumption
+  still open: that the doctrine landing is two hours from the ledger's readings; the rate is
+  unmeasured, so the landing stops and reports at three.
+- **Reason (outward)**: the kind at this boundary is execution of a ratified node; the direct trial
+  is the doctrine landing itself; no further analysis has value before it; the one escalation
+  owed is the OCE-in-Core conflict, carried as a card with that landing.
+- **Concept exploration**: the day's concept is the family layer, and its sharpest form is in the
+  Python template: a gate contract file naming the general vocabulary (check, fix, lint, format,
+  typecheck, test, build, clean) bound to a family's tools, with an audit that checks the
+  documented commands against it. "Same bytes" became "same by concept per layer": the general
+  layer by concept, the family layer by convention, the contextual layer named, the accumulated
+  layer never compared. The report's open edge: the Practice's own runtime is family-layer
+  content until the extraction decides otherwise.
+- **Free play (seeds, not findings)**: the TypeScript family's conformance manifest could take
+  the Python template's shape (a contract file naming commands and gate sequences) so that one
+  schema describes both families; a procedure-seat Cricket took three to seven times the
+  judgement seats' wall-clock for the same substance; a Core clause and a later owner word about
+  records collided today (host neutrality against "it's OCE"), which is the loop's authority
+  question in miniature; the patterns' reachability measure might be the first general-layer
+  instrument that is pure observation.
+- **Work-safety evidence, both estates**: jimcresswell.net on `coordination/2026-10-04-eebe40`
+  at `SHA:11d0ed3f` level with its remote, tree clean, draft 320 open; OCE on
+  `coordination/2026-10-04-d2f44f` at `SHA:5125881ce` level with its remote, tree clean, draft
+  #352 open; main at `SHA:02178ff0b` and engraph at `SHA:82cb7fba4` carry the definition. No
+  unpushed commit of this seat anywhere; no worktree of this seat besides the primaries. Open at
+  the doors, untouched: 312 and #350 (the ledger's revision), 318 (settled, unmerged), the hooks
+  branch, the OCE implementer's unpushed lanes; disposed inside the landing of their class.
+- **Processes and claims**: none. The watchers were until-loops that exited; the bot merges
+  completed; every Cricket and reviewer agent returned; no claim is open (n=1, no peer, no
+  heartbeat); nothing to re-arm at the resume.
+- **Resume order**: this block; the node `practice-alignment-by-class` (ratified; §Mechanism 1 is
+  the doctrine landing with the four deferred cures and the conflict for the owner in it); the
+  ledger's §(a) to §(g) for the recorded readings; the report's §The divergences. Then the
+  doctrine landing here first, cut from main, one pull request, then the sibling's from engraph.
+- **Loss scan**: decisions, the owner's words verbatim in this notebook, the node, PDR-143 and
+  PDR-142; state, the branches above; open items, the conflict and the four deferred cures in
+  the node's first todo, the doors above; lessons, the 14:1xZ and 16:4xZ blocks; pointers, the
+  memory files tooling-agnostic-policy-strict-universal-contracts and
+  split-cricket-verdicts-run-the-full-suite. Metaloss: the compression that survives is this
+  block plus the node; the only thing this context holds that no record does is the feel of how
+  long each review round took, and the 16:4xZ lesson carries that as a number.
