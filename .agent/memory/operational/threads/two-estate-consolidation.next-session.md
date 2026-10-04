@@ -109,6 +109,25 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-04T16:0xZ — the Practice defined and ratified; the folds merged; the landing next (Crucible binds Slag, 7b999c)
+
+- **State.** The review node `practice-system-review` was reshaped at two Cricket verdicts and
+  ratified by the owner's card answer of 13:3xZ; the layer pass read both estates side by side
+  and the report was written; the owner added the family layer, confirmed by a Python-family
+  instance on the host, decided the six placements, and ratified the five-layer definition as
+  canonical by card ("Ratify as canonical"). The coordination branches folded: jimcresswell.net
+  305 at `SHA:eebe40ea2` (successor `coordination/2026-10-04-eebe40`); OCE #348 through the bot.
+  This seat's five claims are closed (n=1, no peer).
+- **Next safe step.** One landing pull request per estate, cut from the folded default tip:
+  PDR-143 (Accepted, the definition in §Decision, the 2026-10-04 amendment), `practice.md`'s
+  opening definition, PDR-142's amendment entry, the report
+  `.agent/reports/agentic-engineering/practice-system-review-2026-10.md` with its README row,
+  the parent node's dated line, this node archived; the same bytes in both estates; Copilot once;
+  merged by the bot. Then the successor delivery node, written from the model: one pull request
+  per divergence class per estate.
+- **Open doors, untouched**: 312 and #350 (the ledger's revision, zero and five findings open),
+  318 (settled, unmerged), the hooks branch, the OCE implementer's unpushed lanes.
+
 ### 2026-10-03T20:0xZ — the session finished at the owner's word; direction to be evaluated before the next (Hazel tracks Trunk, 7d8b9d)
 
 - **The owner's word (verbatim)**: "We are going to hand the work to another session, but before

@@ -1,5 +1,9 @@
 # Napkin (rotated 2026-10-02)
 
+> **Rotation due (overflow flag, 2026-10-04).** This notebook passed its ~500-line rotation
+> trigger on 2026-10-03 and holds about 810 lines; the rotation (napkin skill §Rotation,
+> consolidate-docs step 6) is the next consolidation's act. Nothing here is trimmed before it.
+
 Rotation note (Hazel tracks Trunk, 7d8b9d, the second two-estate consolidation): the whole
 notebook as it stood at blob f8fb3f4a9 (lines 1 to 1187: the 2026-09-30 rotation note and every block
 from 2026-09-30 to 2026-10-02T20:12Z, 29 blocks) is in `.agent/memory/active/archive/napkin-2026-09-30-to-2026-10-02.md`, byte-identical to that blob,
@@ -792,3 +796,16 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   operations back into the local Practice and then the central Practice ... questions for
   another day, important questions". 6: "Agreed". All recorded in the report with the words at
   each item; the memory file tooling-agnostic-policy-strict-universal-contracts.
+- **15:3xZ, the owner's ratification of the definition, by card: "Ratify as canonical
+  (Recommended)"**: the five-layer definition (general, family, contextual, accumulated, the loop)
+  is canonical; its homes are PDR-143 (an amendment revising §Decision) and practice.md's opening
+  definition, the same bytes in both estates, the report its evidence. Landing order: the folds
+  first, then one pull request per estate from the folded tip.
+- **Landing prepared (uncommitted, both trees)**: PDR-143 Accepted with the ratified definition in
+  §Decision and a 2026-10-04 amendment entry; practice.md's opening definition; PDR-142's
+  amendment entry with the owner's 2026-10-03 words; the report and its README row in both
+  estates; all the same bytes. PDR-142's two copies differed only in "[OCE]" against "[the
+  lineage]" in the bracketed substitutions of the owner's quotes: the owner's 2026-09-30 word
+  ("it's not 'the lineage', it's OCE") reached one estate (its lineage-names validator is
+  one-sided); OCE takes this estate's bytes. The plan-node edits (the parent's dated line, the
+  node archived) wait for the folds to merge, so the landing branches cut from the folded tips.

@@ -166,6 +166,20 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-04 16:0xZ (Crucible binds Slag, `7b999c`, the n=1 seat; this block supersedes
+the blocks below where they differ).** The Practice has a canonical definition: five layers
+(general; family; contextual; accumulated; the loop), ratified by the owner's card answer of
+2026-10-04 and recorded in PDR-143 §Decision (Accepted) and `practice.md`, with the report
+`practice-system-review-2026-10` as evidence; the owner's direction, verbatim, "tooling agnostic
+policy, strict universal contracts, tooling specific implementations where a universal approach
+is not efficient or appropriate". The six placements are decided (the report records the words).
+The folds merged: 305 at `SHA:eebe40ea2`, successor `coordination/2026-10-04-eebe40`; OCE #348
+through the bot, its successor cut after. The live record is the two-estate thread's block of
+2026-10-04T16:0xZ, which names the next safe step: one landing pull request per estate from the
+folded tip, the same bytes; then the successor delivery node from the model, one pull request
+per divergence class per estate. Claims: none (n=1, no peer). The parity doors (312, #350, 318,
+the hooks branch, the OCE lanes) wait for the successor node.
+
 **§STATE, 2026-10-02 10:5xZ (Crucible binds Slag, `7b999c`, the Director seat across both
 estates).** Licence: the owner's word in this seat's own session, 2026-10-02 ("when it makes sense,
 take on the Director role … context preservation over longer timescales … strategic decisions are
