@@ -65,11 +65,22 @@ export function findMissingPathCitations(
  */
 const FOREIGN_TREE_PHRASE = 'source repo-relative path';
 
-/** Whether the citation's line, joined with the line before it, declares a foreign tree. */
-function namesForeignTree(lines: readonly string[], line: number): boolean {
+/**
+ * Whether this citation is the provenance target: the first code span after the foreign-tree
+ * phrase, on the phrase's line or the one after it. Any other citation in that window is a
+ * local citation and resolves as usual.
+ */
+function namesForeignTree(lines: readonly string[], line: number, match: string): boolean {
   const previous = line >= 2 ? (lines[line - 2] ?? '') : '';
   const current = lines[line - 1] ?? '';
-  return `${previous} ${current}`.replaceAll(/\s+/g, ' ').includes(FOREIGN_TREE_PHRASE);
+  const joined = `${previous} ${current}`.replaceAll(/\s+/g, ' ');
+  const phraseAt = joined.indexOf(FOREIGN_TREE_PHRASE);
+  if (phraseAt === -1) {
+    return false;
+  }
+  const afterPhrase = joined.slice(phraseAt + FOREIGN_TREE_PHRASE.length);
+  const firstSpan = /`([^`]+)`/.exec(afterPhrase);
+  return firstSpan !== null && firstSpan[1] === match;
 }
 
 function missingCitationsInFile(
@@ -78,7 +89,7 @@ function missingCitationsInFile(
 ): readonly MissingPathFinding[] {
   const lines = file.content.split('\n');
   return extractPathCitations(file.content)
-    .filter((citation) => !namesForeignTree(lines, citation.line))
+    .filter((citation) => !namesForeignTree(lines, citation.line, citation.match))
     .filter((citation) => !resolves(citation.target))
     .map((citation) => ({
       path: file.path,

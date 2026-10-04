@@ -34,23 +34,27 @@ describe('parsePatternEntry', () => {
   });
 
   it('treats use_this_when as optional (the corpus is not uniform)', () => {
-    expect(parsePatternEntry('y.md', FILE({ name: 'N', category: 'code' }))).toEqual({
+    expect(
+      parsePatternEntry('y.md', FILE({ name: 'N', category: 'code', layer: 'general' })),
+    ).toEqual({
       filename: 'y.md',
       name: 'N',
       category: 'code',
       useThisWhen: undefined,
       isAntiPattern: false,
+      layer: 'general',
     });
   });
 
   it('falls back to the first H1 when name is absent', () => {
-    const content = `---\ncategory: agent\n---\n\n# Derived From Heading\n\nbody`;
+    const content = `---\ncategory: agent\nlayer: general\n---\n\n# Derived From Heading\n\nbody`;
     expect(parsePatternEntry('h.md', content)).toEqual({
       filename: 'h.md',
       name: 'Derived From Heading',
       category: 'agent',
       useThisWhen: undefined,
       isAntiPattern: false,
+      layer: 'general',
     });
   });
 
@@ -65,6 +69,24 @@ describe('parsePatternEntry', () => {
     expect(parsePatternEntry('z.md', 'no frontmatter here')).toEqual({
       filename: 'z.md',
       reason: 'no frontmatter block',
+    });
+  });
+});
+
+describe('parsePatternEntry layer contract', () => {
+  it('refuses a pattern that declares no layer', () => {
+    expect(parsePatternEntry('z.md', FILE({ name: 'Z', category: 'code' }))).toEqual({
+      filename: 'z.md',
+      reason: 'missing frontmatter key: layer',
+    });
+  });
+
+  it('refuses a layer outside the closed set', () => {
+    expect(
+      parsePatternEntry('z.md', FILE({ name: 'Z', category: 'code', layer: 'universal' })),
+    ).toEqual({
+      filename: 'z.md',
+      reason: 'unknown layer "universal" (expected one of general, family, contextual)',
     });
   });
 });
@@ -85,6 +107,7 @@ describe('renderPatternIndex', () => {
         category: 'code',
         useThisWhen: 'b case',
         isAntiPattern: false,
+        layer: 'general',
       },
       {
         filename: 'a.md',
@@ -110,7 +133,7 @@ describe('renderPatternIndex', () => {
         '### Code (2)',
         '',
         '- **Alpha** *(anti-pattern, general)* -- Use this when: a case. → [a.md](a.md)',
-        '- **Beta** -- Use this when: b case. → [b.md](b.md)',
+        '- **Beta** *(general)* -- Use this when: b case. → [b.md](b.md)',
         '',
         '### Process (1)',
         '',
@@ -122,15 +145,35 @@ describe('renderPatternIndex', () => {
 
   it('omits the "Use this when" clause for an entry without the hint', () => {
     const entries: PatternEntry[] = [
-      { filename: 'h.md', name: 'Hint-less', category: 'code', isAntiPattern: false },
+      {
+        filename: 'h.md',
+        name: 'Hint-less',
+        category: 'code',
+        isAntiPattern: false,
+        layer: 'general',
+      },
     ];
-    expect(renderPatternIndex(entries)).toContain('- **Hint-less** → [h.md](h.md)');
+    expect(renderPatternIndex(entries)).toContain('- **Hint-less** *(general)* → [h.md](h.md)');
   });
 
   it('places an unknown category after the known ones', () => {
     const entries: PatternEntry[] = [
-      { filename: 'n.md', name: 'N', category: 'novel', useThisWhen: 'n', isAntiPattern: false },
-      { filename: 'c.md', name: 'C', category: 'code', useThisWhen: 'c', isAntiPattern: false },
+      {
+        filename: 'n.md',
+        name: 'N',
+        category: 'novel',
+        useThisWhen: 'n',
+        isAntiPattern: false,
+        layer: 'general',
+      },
+      {
+        filename: 'c.md',
+        name: 'C',
+        category: 'code',
+        useThisWhen: 'c',
+        isAntiPattern: false,
+        layer: 'general',
+      },
     ];
     const out = renderPatternIndex(entries);
     expect(out.indexOf('### Code')).toBeLessThan(out.indexOf('### Novel'));

@@ -103,12 +103,18 @@ describe('findMissingPathCitations', () => {
         path: '.agent/skills/x/SKILL-CANONICAL.md',
         content: [
           'Imported from a sibling Practice (source repo-relative',
-          'path `.agent/skills/x/SKILL-CANONICAL.md`; PDR-125 exchange).',
+          'path `.agent/skills/x/SKILL-CANONICAL.md`; see `.agent/rules/also-gone.md`).',
           'See `.agent/memory/active/patterns/gone.md`.',
         ].join('\n'),
       },
     ];
     expect(findMissingPathCitations(files, () => false)).toEqual([
+      {
+        path: '.agent/skills/x/SKILL-CANONICAL.md',
+        line: 2,
+        match: '.agent/rules/also-gone.md',
+        target: '.agent/rules/also-gone.md',
+      },
       {
         path: '.agent/skills/x/SKILL-CANONICAL.md',
         line: 3,

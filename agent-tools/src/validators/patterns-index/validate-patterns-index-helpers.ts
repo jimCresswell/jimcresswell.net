@@ -20,6 +20,14 @@ export const PATTERNS_README = 'README.md';
 /** Heading that opens the generated section; everything from here to EOF is owned. */
 const PATTERN_INDEX_HEADING = '## Pattern Index';
 
+/** The Practice layer a pattern is placed in (PDR-143 §Decision); every pattern declares one. */
+export const PATTERN_LAYERS = ['general', 'family', 'contextual'] as const;
+export type PatternLayer = (typeof PATTERN_LAYERS)[number];
+
+function isPatternLayer(value: string): value is PatternLayer {
+  return PATTERN_LAYERS.some((layer) => layer === value);
+}
+
 /** A single indexable pattern, distilled from one file's frontmatter. */
 export interface PatternEntry {
   readonly filename: string;
@@ -28,8 +36,8 @@ export interface PatternEntry {
   /** The `use_this_when` hint, when the file declares one (optional in the corpus). */
   readonly useThisWhen?: string;
   readonly isAntiPattern: boolean;
-  /** The Practice layer the pattern is placed in (`general`, `family` or `contextual`), when declared. */
-  readonly layer?: string;
+  /** The Practice layer the pattern is placed in. */
+  readonly layer: PatternLayer;
 }
 
 /** A pattern file that could not be indexed (missing/invalid frontmatter). */
@@ -102,13 +110,22 @@ export function parsePatternEntry(
   const useThisWhen = getFrontmatterValue(frontmatter, 'use_this_when');
   const polarity = getFrontmatterValue(frontmatter, 'polarity');
   const layer = getFrontmatterValue(frontmatter, 'layer');
+  if (layer === '') {
+    return { filename, reason: 'missing frontmatter key: layer' };
+  }
+  if (!isPatternLayer(layer)) {
+    return {
+      filename,
+      reason: `unknown layer "${layer}" (expected one of ${PATTERN_LAYERS.join(', ')})`,
+    };
+  }
   return {
     filename,
     name: resolveName(frontmatter, content, filename),
     category,
     useThisWhen: useThisWhen === '' ? undefined : useThisWhen,
     isAntiPattern: polarity === 'anti-pattern',
-    layer: layer === '' ? undefined : layer,
+    layer,
   };
 }
 
@@ -123,11 +140,8 @@ function orderedCategories(present: ReadonlySet<string>): string[] {
 
 /** Render one entry line in the index's house format: polarity and layer tags, then the hint. */
 function renderEntryLine(entry: PatternEntry): string {
-  const tags = [
-    ...(entry.isAntiPattern ? ['anti-pattern'] : []),
-    ...(entry.layer === undefined ? [] : [entry.layer]),
-  ];
-  const anti = tags.length === 0 ? '' : ` *(${tags.join(', ')})*`;
+  const tags = [...(entry.isAntiPattern ? ['anti-pattern'] : []), entry.layer];
+  const anti = ` *(${tags.join(', ')})*`;
   const link = `→ [${entry.filename}](${entry.filename})`;
   if (entry.useThisWhen === undefined) {
     return `- **${entry.name}**${anti} ${link}`;
