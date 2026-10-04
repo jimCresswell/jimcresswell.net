@@ -3,8 +3,8 @@ name: set-up-worktree-lane
 classification: active
 description: >-
   Create and verify a lane worktree: the branch cut explicitly from origin/<base>,
-  the inherited commit identity verified with no worktree-scoped override, deps
-  installed, .env.local carried, a draft PR at first push; in a detected ChatGPT
+  the inherited commit identity verified with no worktree-scoped override, deps,
+  the pinned shellcheck and the end-to-end gate's browser installed, .env.local carried, a draft PR at first push; in a detected ChatGPT
   Work cloud host, static branch/base checks only with execution routed to
   draft-PR CI. Use for a new lane or a misbehaving worktree (commits attributed
   to nobody, missing env, hook failures). Not for switching branches in place,
@@ -89,11 +89,18 @@ This step applies to standard and separately provisioned profiles only. In a
 detected ChatGPT Work cloud session, step 0 replaces it completely.
 
 The identity lives once in the clone's shared local config and every worktree
-inherits it. In this repository lane commits are made under the owner's identity
-(owner, 2026-09-17: "Owner identity, as now"). The acting agent is named in the
-commit's `Co-Authored-By` trailer, and bot credentials are for third-party writes
-only (`bot-identity-on-third-party-systems`). A new worktree therefore needs no
-identity step at all — only a check that what it inherited matches the primary:
+inherits it. The estate's committer identity rule sets who is author and who
+is committer, on the owner's word in each estate (OCE, 2026-08-04: "we need
+to tell Vercel on whose authority this work was done"; "keep the bot identity
+locally shared, not in version control": the team bot the clone's merge-bot
+config names is the committer and the push transport, and the human on whose
+authority the work is done is the author, passed per commit; jimcresswell.net,
+2026-09-17: "Owner identity, as now": the owner as author and committer from
+the clone's shared identity, the acting agent named in the commit's
+`Co-Authored-By` trailer, bot credentials for third-party writes only). The
+mechanics are that rule's; this skill holds no value of an identity. A new
+worktree therefore needs no identity step at all — only a check that what it
+inherited matches the primary:
 
 ```bash
 PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
@@ -110,14 +117,16 @@ done
 ```
 
 Both keys must report inherited (the check exits non-zero otherwise), and both
-values must be the owner's. The check proves inheritance, not correctness: a
-worktree inherits the primary's error too, so compare `want` with the owner's
-identity: the email [`secops`](../../directives/secops.md) §Git identity names,
-and the name on the owner's GitHub profile. If either differs, is absent, or
-names anyone else, fix the SHARED config once, with the owner's name and email.
-Never patch this worktree: a `--worktree` override is a second copy that
-outlives the next correction and reintroduces the exact drift this step exists to
-catch.
+values must be the identity the estate's committer identity rule names. The
+check proves inheritance, not correctness: a worktree inherits the primary's
+error too (the app-id address of 2026-08-04 would pass on both sides), so where
+that rule derives the value, run its derivation (for a bot committer, the
+merge-bot config and the API; for the owner's own identity, the address the
+estate's security directive records and the name on the owner's GitHub
+profile) and compare it with `want`. If either differs, is absent, or names
+another identity, fix the SHARED config once, as that rule directs. Never
+patch this worktree: a `--worktree` override is a second copy that outlives
+the next correction and reintroduces the exact drift this step exists to catch.
 
 ### 3. Make the worktree buildable
 
@@ -129,6 +138,7 @@ not trigger provisioning.
 pnpm --dir <path> install
 pnpm --dir <path> build
 pnpm --dir <path> --filter <app> exec playwright install chromium-headless-shell
+<path>/.agent/setup/install-shellcheck.sh
 ```
 
 After the install, confirm the hooks exist: `ls <path>/.husky/_` (this repository's
@@ -137,18 +147,23 @@ worktree whose install failed part-way has no hooks and commits and pushes ungat
 run `pnpm --dir <path> prepare` before the first commit if the directory is missing
 (2026-09-27).
 
-All three scoped to the worktree with `--dir`, because this step runs before entry, from the
+The three pnpm lines are scoped to the worktree with `--dir`, and the installer by its path (it
+installs beside itself), because this step runs before entry, from the
 principal: an unscoped `pnpm install` there rebuilds the principal and leaves the new
-worktree without its dependencies or `dist/`. All three, before any gate, work or entry:
+worktree without its dependencies or `dist/`. All four, before any gate, work or entry:
 `type-check` and `vitest` pass on install alone, and the install's bootstrap builds
 every package agent-tools reaches that has built entry points, the internal ESLint plugin
-among them, so a lint config loads; the build line writes the rest, the site's `.next/` among
-them, whose generated route types the site's `type-check` includes. The third line runs once
-for each workspace whose gate drives a browser (`<app>`). `pnpm install` fetches no Playwright browser: the binaries sit in one
-per-user cache outside the tree, keyed by the revision the lockfile's Playwright selects,
-and an install in any checkout on the host can remove a revision another needs. So every
-lane runs the line, and a gate that fails with `Executable doesn't exist` is this step
-missed, not a flake. A fresh worktree has **no `.env.local`** — copy it from
+among them, so a lint config loads; the build line writes what install leaves unbuilt and a
+gate reads (generated route types a `type-check` includes; a workspace's `dist/` that
+dependency-cruiser, knip and typed lint read). The third line runs once for each workspace
+whose gate drives a browser (`<app>`). `pnpm install` fetches no Playwright browser: the
+binaries sit in one per-user cache outside the tree, keyed by the revision the lockfile's
+Playwright selects, and an install in any checkout on the host can remove a revision another
+needs. So every lane runs the line, and a gate that fails with `Executable doesn't exist` is
+this step missed, not a flake. The fourth line installs the pinned shellcheck into the
+worktree's ignored `.tools/bin`, where the shell lint gate looks before `PATH`; without it the
+gate falls back to the shellcheck on `PATH`, which passes only while that one is the pinned
+version. A fresh worktree has **no `.env.local`** — copy it from
 a worktree that has one when the lane runs anything env-dependent (codegen, ingest, a
 local server). Data directories that are gitignored (bulk downloads) do not travel
 either; fetch them per the owning workflow rather than copying, so their manifest
@@ -189,7 +204,7 @@ local runtime or full-gate claim is made.
 | Identity resolves in the worktree | `git -C <path> config user.name` and `git -C <path> config user.email` | the primary's name and address |
 | Nothing shadows the shared copy | `git -C <path> config --worktree --get-regexp '^user\.'` | no output |
 | Base is clean | `git -C <path> log --oneline origin/<base>..HEAD` | only this story's commits |
-| Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author and committer the owner; the agent in the `Co-Authored-By` trailer |
+| Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author and committer as the estate's committer identity rule sets them |
 
 The second row is not optional, and a green first row cannot stand in for it. A
 `--worktree` override holding the *same* value reads correct today and silently keeps
@@ -257,8 +272,8 @@ never as a local-gate result.
   platform-pinned; clause 8's pre-PR contamination check.
 - [`worktree-hygiene`](../../rules/worktree-hygiene.md) — lane lifecycle, the
   first-push draft PR clause, and §6 dispositions when the lane ends.
-- the estate's committer identity rule, here
-  [`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
-  — the identity contract this configures, and the author/committer ruling.
+- [`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
+  — the estate's committer identity rule: the identity this skill verifies, and the
+  author and committer ruling.
 - [`never-commit-to-main`](../../rules/never-commit-to-main.md) — why lane work
   starts on its own branch in its own worktree at all.

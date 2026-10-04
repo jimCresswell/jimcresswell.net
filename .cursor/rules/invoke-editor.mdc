@@ -1,7 +1,0 @@
----
-description: Route editorial and public-copy changes through the editor
-globs: jcdotnet/content/**/*,docs/editorial/**/*,jcdotnet/app/**/*,jcdotnet/components/**/*.tsx,jcdotnet/lib/jsonld.ts,linkedin/**/*
-alwaysApply: false
----
-
-Read and follow `.agent/rules/invoke-editor.md`.

@@ -1,7 +1,10 @@
 # Invoke Specialist Experts
 
 After non-trivial changes, invoke `code-expert` plus all specialist experts
-required by the change profile. `code-expert` is the gateway reviewer.
+required by the change profile. `code-expert` is the gateway reviewer. The
+general-layer roster below is the same in every Practice instance; each host
+adds its own domain reviewers and its path triggers in the last section of
+this file, §This host's reviewers and triggers.
 
 Documentation drift (`docs-adr-expert`) applies whenever behaviour or
 architecture changes, even if no docs are explicitly edited. `docs-adr-expert`
@@ -12,8 +15,10 @@ decoupling, stable indexes); `prose-expert` owns the **craft** of the writing.
 The two compose on one document and do not overlap.
 
 Prose craft (`prose-expert`) applies to the writing of any authored document.
-Jim's editorial voice, positioning and audience fit on content that represents
-him belong to `editor`. Invoke `prose-expert` proportionately — for significant
+A host that defines an editorial voice (PDR-102) names its voice reviewer in
+§This host's reviewers and triggers: voice, positioning and audience fit on the
+content that voice covers belong to that reviewer, craft stays with
+`prose-expert`. Invoke `prose-expert` proportionately — for significant
 authored prose, not every trivial doc touch.
 
 AGENT.md intentionally points here rather than carrying reviewer rosters or
@@ -44,45 +49,34 @@ Ask what kind of change this is:
 
 Then route by domain:
 
-1. HTTP headers, the content security policy, secrets, environment
-   variables, PII, a proxy or middleware, third-party scripts, external
-   input at a trust boundary, or a dependency upgrade with a security
-   bearing -> `security-expert`
-2. The entity model, Schema.org types, JSON-LD, `@id` conventions, or
-   structured-data output -> `pkg-expert`; `jcdotnet/content/`, the graph
-   modules in `jcdotnet/lib/`, JSON-LD or metadata wiring ->
-   `architecture-expert-barney`
-3. Routes, navigation, layout composition, header or footer behaviour ->
-   `architecture-expert-betty`
-4. Builds, caching, PDF generation, build-time scripts, the proxy, E2E
-   against the production build, or deployment and runtime resilience ->
-   `architecture-expert-fred`
-5. Practice governance: `.agent/` surfaces, plans, PDR or ADR wiring, and
-   cross-platform Practice contracts -> `architecture-expert-wilma`
-6. The reviewer estate: sub-agent templates, platform adapters, `invoke-*`
-   rules, skills, or the platform entry points (`CLAUDE.md`, `AGENTS.md`,
-   `GEMINI.md`, `.github/copilot-instructions.md`, `skills.md`) ->
+1. Secrets, credentials, PII, authentication or authorisation, HTTP headers
+   and the content security policy, middleware or a proxy, third-party
+   scripts, external input at a trust boundary, or a dependency upgrade with
+   a security bearing -> `security-expert`
+2. The reviewer estate: sub-agent templates, platform adapters, the
+   reviewer-invocation rule, skills, or the platform entry points ->
    `subagent-architect`
-7. Plans marked decision-complete, 3+ agents, asserted blocking
+3. Plans marked decision-complete, 3+ agents, asserted blocking
    relationships, a third-party vendor integration, or technology
    commitments before research -> `assumptions-expert`
-8. Onboarding flows, start-right entrypoints, or ADR discoverability ->
+4. Onboarding flows, start-right entrypoints, or ADR discoverability ->
    `onboarding-expert`
-9. Rendered UI, CSS, design tokens, or React components -> UI/Frontend
+5. Rendered UI, CSS, design tokens, or React components -> UI/Frontend
    cluster: `accessibility-expert`, `design-system-expert`,
-   `react-component-expert`; the generated PDF's accessibility ->
-   `accessibility-expert`
-10. Significant authored prose whose readability matters -> `prose-expert`
-11. Content that represents Jim (CV, front page, LinkedIn, structured-data
-    descriptions, editorial docs) -> `editor`
+   `react-component-expert`
+6. Significant authored prose whose readability matters -> `prose-expert`
+7. The host's own domain signals (its data model, its product's protocol,
+   its vendors, its editorial voice) -> the host's domain reviewers, listed
+   with their triggers in §This host's reviewers and triggers
 
 ### Layer 3 — Cross-Cutting Concerns
 
 Always check these regardless of category:
 
-1. Workspace boundaries, import direction, module structure, dependency
-   injection, or public APIs -> `architecture-expert`, plus the persona for
-   the lane the change touches (Layer 2)
+1. Module structure, import direction, workspace boundaries, dependency
+   injection, or public APIs -> the architecture reviewers (the structural
+   reviewer and the persona for the lens or lane the change touches; the host
+   section names how its personas are dispatched)
 2. Test additions, modifications, or TDD concerns -> `test-expert`
 3. Type complexity, generics, or schema flow -> `type-expert`
 4. Tooling configs, the lockfile, or quality gates -> `config-expert`
@@ -137,8 +131,8 @@ counts only when the lenses were genuinely distinct and the brief non-leading
 counts for nothing.
 
 **Conflicting verdicts resolve by authority scope, not reviewer tier.** A
-domain specialist (`pkg-expert` on Schema.org and JSON-LD semantics,
-`accessibility-expert` on WCAG conformance, `security-expert` on
+domain specialist (a host's data-model or protocol reviewer on its domain's
+semantics, `accessibility-expert` on WCAG conformance, `security-expert` on
 exploitability) has final say over the generalist architecture reviewers on
 the domain's semantics — the generalists stay authoritative on repo
 boundaries and structure. When two generalists give opposite *lens-correct*
@@ -295,6 +289,17 @@ Brief-construction disciplines (per PDR-015 reviewer authority):
   governs, and require the reviewer's verdict to cite the doctrine it read.
   Absorb the verdict per `verify-dont-trust` §Rule (reviewer output is
   evidence to test) — never adopt a load-bearing claim unverified.
+- **Make the evidence shape cheap to verify.** A locator or verifier brief asks
+  for each result as `path:line` with a short quoted fragment and, for a
+  finding, the command and an output excerpt that shows it; then checking a
+  claim is one read of one line. It also asks for a coverage statement (what was
+  read, roughly how many claims were checked) and says "no findings is a valid
+  result" so nothing is manufactured. Worked instances: four locators proposed
+  homes for about 150 items from the napkin, the comms stream and the experience
+  letters, and their best yield was the contradictions
+  found beside those homes (2026-09-16); four context-free verifiers checked
+  about 415 claims on a records fold, and all 31 findings survived the seat's
+  own check at their sources (2026-09-17).
 
 ## Reviewer Dispatch vs Peer Collaboration
 
@@ -357,26 +362,21 @@ Always invoke:
 
 - `code-expert` (gateway — also responsible for flagging when specialists are missing, recommending review depth, and checking coverage)
 
-Invoke additional specialists when applicable:
+Invoke additional specialists when applicable. These rows are the general
+layer; the host's own rows (its voice reviewer and its domain reviewers) follow
+in §This host's reviewers and triggers.
 
 | Change Category | Required Specialist(s) |
 |---|---|
-| Workspace boundaries, import direction, module structure, dependency injection, public APIs | `architecture-expert` |
-| `jcdotnet/content/`, the graph and JSON-LD modules in `jcdotnet/lib/`, metadata wiring and graph identity | `architecture-expert-barney` |
-| Routes, navigation, layout composition, header or footer behaviour | `architecture-expert-betty` |
-| Builds, caching, PDF generation, build-time scripts, the proxy, E2E against the production build, deployment and runtime resilience | `architecture-expert-fred` |
-| Practice governance: `.agent/` surfaces, plans, PDR or ADR wiring, cross-platform Practice contracts | `architecture-expert-wilma` |
-| Entity model, Schema.org types, JSON-LD, `@id` conventions, structured-data output | `pkg-expert` |
+| Module structure, import direction, workspace boundaries, dependency injection, public APIs | the architecture reviewers (the host section names the personas and how they are dispatched) |
 | Test changes or TDD concerns | `test-expert` |
 | Type-system complexity or assertion pressure | `type-expert` |
 | Tooling/config quality-gate changes, the lockfile | `config-expert` |
-| HTTP headers, the content security policy, secrets, environment variables, PII, proxy or middleware, third-party scripts, external input at a trust boundary, dependency upgrades with a security bearing | `security-expert` |
+| Secrets, credentials, PII, authentication or authorisation, HTTP headers and the content security policy, middleware or a proxy, third-party scripts, external input at a trust boundary, dependency upgrades with a security bearing | `security-expert` |
 | README/TSDoc/ADR/docs updates, documentation structure (SSOT/DRY/god-documents), or expected documentation drift | `docs-adr-expert` |
 | Significant authored prose whose readability matters | `prose-expert` (craft for any doc) |
-| Content that represents Jim: CV, front page, LinkedIn, structured-data descriptions, editorial docs | `editor` (voice, positioning, audience fit) |
 | Rendered UI, CSS, design tokens, React components | UI/Frontend cluster: `accessibility-expert`, `design-system-expert`, `react-component-expert` |
-| Accessibility of the generated PDF | `accessibility-expert` |
-| Sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `skills.md`) | `subagent-architect` |
+| Sub-agent templates, platform adapters, the reviewer-invocation rule, skills, platform entry points | `subagent-architect` |
 
 Specialist on-demand (not standard roster -- situational trigger only):
 
@@ -396,9 +396,12 @@ their roles:
 
 ## Worked Examples
 
-**Security-surface change** (headers, CSP, secrets, environment variables, proxy or middleware): Invoke `code-expert` + `security-expert` immediately. Add `config-expert` when the change rewires configuration. If the change is also structural, add the persona for its lane: `architecture-expert-fred` for caching or proxy runtime behaviour, `architecture-expert-betty` for a route reorganisation.
+The host's own worked examples (its domain reviewers and voice reviewer in
+play) follow in §This host's reviewers and triggers.
 
-**Architecture refactor**: Invoke `code-expert` + `architecture-expert` immediately, plus the persona for the lane the refactor touches. Add `type-expert` if generics or schema flow are affected. Add `docs-adr-expert` if boundaries or ADRs change.
+**Security-surface change** (headers, the content security policy, secrets, environment variables, auth, a proxy or middleware): Invoke `code-expert` + `security-expert` immediately. Add `config-expert` when the change rewires configuration. If the change is also structural (new middleware, a route reorganisation), add the architecture reviewer for the lens or lane it touches.
+
+**Architecture refactor**: Invoke `code-expert` + the architecture reviewers immediately (the structural reviewer and the persona for the lens or lane the refactor touches). Add `type-expert` if generics or schema flow are affected. Add `docs-adr-expert` if boundaries or ADRs change.
 
 **Test-only change**: Invoke `code-expert` + `test-expert` immediately.
 
@@ -407,18 +410,11 @@ their roles:
 a narrative doc); `docs-adr-expert` reviews structure and accuracy, `prose-expert`
 reviews craft.
 
-**Editorial content change** (CV, front page, LinkedIn, structured-data
-descriptions, editorial docs): Invoke `editor` immediately. Add `prose-expert`
-when sentence craft matters (it keeps the register `editor` owns),
-`architecture-expert-barney` when the change is under `jcdotnet/content/`,
-`pkg-expert` if the change touches the graph's structured data, and
-`accessibility-expert` if link text, headings, labels or accessible names on a
-rendered surface change.
-
 **Onboarding docs/path update**: Invoke `code-expert` + `docs-adr-expert` immediately. Add `onboarding-expert` when the change affects onboarding journeys (human and/or AI), `start-right` discoverability, or ADR progressive disclosure.
 
-**Significant documentation or Practice change**: Per
-[`invoke-doc-and-onboarding-experts-on-significant-changes`](../../rules/invoke-doc-and-onboarding-experts-on-significant-changes.md),
+**Significant documentation or Practice change**: Per the reviewer-invocation
+rule ([`invoke-code-experts`](../../rules/invoke-code-experts.md), the
+significant-change clause under its roster),
 significant doc/Practice changes always pair `docs-adr-expert` with `onboarding-expert`
 (both reviewers, in parallel) — neither alone covers the failure surface the other catches.
 "Significant" includes: any new ADR/PDR/governance doc/rule; any rename or restructure
@@ -427,13 +423,9 @@ across permanent doctrine surfaces; any change to onboarding entry points
 
 **Release go/no-go**: Invoke `release-readiness-expert` (on-demand, situational trigger).
 
-**Entity graph or structured-data change**: Invoke `code-expert` + `pkg-expert` + `architecture-expert-barney` immediately. Add `type-expert` if the entity schemas or the types derived from them change, and `editor` if descriptions that represent Jim change.
+**Reviewer estate change** (sub-agent templates, platform adapters, the reviewer-invocation rule, skills, platform entry points): Invoke `code-expert` + `subagent-architect` immediately, plus the architecture persona whose lens or lane covers Practice governance; a significant change also takes the `docs-adr-expert` and `onboarding-expert` pair above.
 
-**Build, PDF or caching change**: Invoke `code-expert` + `architecture-expert-fred` immediately. Add `config-expert` when a configuration file or script changes, and `security-expert` when response headers move.
-
-**Reviewer estate change** (sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points): Invoke `code-expert` + `subagent-architect` + `architecture-expert-wilma` immediately; a significant change also takes the `docs-adr-expert` and `onboarding-expert` pair above.
-
-**UI/Frontend change**: Invoke `code-expert` + relevant UI/Frontend cluster specialist(s) immediately. Add `architecture-expert-betty` when routes, navigation or layout composition change.
+**UI/Frontend change**: Invoke `code-expert` + relevant UI/Frontend cluster specialist(s) immediately. Add an architecture reviewer when routes, navigation or layout composition change.
 
 **Plan finalisation**: Invoke `assumptions-expert` when a plan is marked decision-complete or ready for execution. Also invoke when a plan proposes 3+ new agents, asserts blocking relationships, integrates a third-party vendor, or commits to technology choices before research phases complete. For active assumption auditing during planning, dispatch `assumptions-expert` in its active-workflow mode.
 
@@ -497,7 +489,13 @@ get **mechanical UNSOUND tripwires** (explicit per-item criteria whose
 failure forces an UNSOUND verdict, since frame-rejection cannot be expected
 of the tier); and the fleet author's own deliverable carries arithmetic
 closure proofs (the table author sits in the Sonnet position with respect
-to their own frame). Composes with the frame clause below: specialist
+to their own frame). Before any lens is dispatched, the coordinator reads
+the material first-hand and states the purpose question — what are these
+files FOR, and why do they exist in this form now — and treats lenses run
+on one model from one brief as correlated evidence, never as independent
+confirmations (owner corrections at one reviewer seat, 2026-09-09: a
+fan-out interrupted twice, first for the coordinator's own read, then for
+the purpose question). Composes with the frame clause below: specialist
 review validates correctness WITHIN a frame — tier choice decides whether
 anyone in the fleet can reject the frame at all.
 
@@ -515,6 +513,14 @@ artefact gap seven deeper seats graded ON-TRACK. Depth buys frame
 judgement; literalness buys stratum coverage — neither substitutes for
 the other, and a cheap instrument's dissent from an expensive consensus
 is a signal to investigate, never noise to average away.
+
+### Cursor Reviewer Invocation
+
+On Cursor, invoke a reviewer through the Task tool with `readonly: true` and the
+reviewer's `subagent_type` (the canonical template's name, for example
+`subagent_type: code-expert`). The reviewer-invocation rules' Cursor adapters
+carried this line by hand until the adapters became generated pointers; this is
+its one home.
 
 ### Codex Reviewer Adapter Preflight
 
@@ -653,3 +659,116 @@ standing requirement, 2026-06-10):
   re-review; Copilot threads need manual GraphQL `resolveReviewThread`.
   Verify zero-unresolved via GraphQL (REST does not expose resolved state)
   before merge.
+
+## This host's reviewers and triggers
+
+The reviewers and triggers this host adds to the general layer above, for this
+host (jimcresswell.net). The sibling estate's copy of this file carries its own
+section here; everything above it is the same text in both. The triggers were
+carried by one `invoke-*` rule per reviewer until the rules collapsed into the
+one reviewer-invocation rule; this section is their home.
+
+### The voice reviewer (P20)
+
+`editor` reviews content that represents Jim: public-facing copy, CV and
+front-page content, drafts in the LinkedIn workspace (`linkedin/`),
+structured-data descriptions, and the editorial docs. It fires on
+`jcdotnet/content/**/*`, `docs/editorial/**/*`, `jcdotnet/app/**/*`,
+`jcdotnet/components/**/*.tsx`, `jcdotnet/lib/jsonld.ts` and `linkedin/**/*`.
+Give it a short brief naming what to review (a section, a draft, a narrative
+against a source); it reads the sources its template lists, then the content,
+and returns structured feedback (`must fix` / `should fix` / `consider`) with
+precise citations and any ripple effects to other content. It is read-only;
+you apply the feedback. Editor review informs a draft and is not a landing
+gate: the owner, 2026-09-29, "I told you to commit and push and merge the
+linkedin work just like any other work, it's not special, only putting it on
+Linkedin is special, and that happens manually". `prose-expert` keeps the
+craft; `editor` keeps the register.
+
+### The domain reviewer
+
+`pkg-expert` reviews the personal knowledge graph: the entity model
+(`jcdotnet/content/entities.json`), the graph and JSON-LD modules in
+`jcdotnet/lib/`, JSON-LD emission, Schema.org types, `@id` conventions and
+graph-backed metadata. It has final say on Schema.org and JSON-LD semantics
+(§Conflicting verdicts above); the `pkg` skill is its author-side companion.
+
+### The architecture personas (P21)
+
+The four personas are generic lenses in the framework (the ledger's O1); this
+host dispatches them as separate reviewers, one per lane of the site, beside
+the structural reviewer:
+
+| Reviewer | Lane |
+| --- | --- |
+| `architecture-expert` | Workspace boundaries, import direction between `jcdotnet`, `agent-tools` and `tooling/*`, module structure, dependency injection, public APIs; invoke the persona whose lane the change also touches (`.agent/sub-agents/components/architecture/reviewer-team.md`) |
+| `architecture-expert-barney` | `jcdotnet/content/`, the graph modules in `jcdotnet/lib/`, JSON-LD, metadata wiring, graph identity contracts |
+| `architecture-expert-betty` | `jcdotnet/app/` routes, navigation, layout composition, header and footer behaviour, user-journey architecture |
+| `architecture-expert-fred` | Builds, build-time scripts, caching, the proxy, PDF generation, Playwright against the production build, Vercel config and deployment plumbing, runtime resilience |
+| `architecture-expert-wilma` | `.agent/`, Practice governance, plans, PDR and ADR wiring, cross-platform Practice surfaces, canonical workflow documentation |
+
+### Path triggers for the general-layer reviewers
+
+| Reviewer | Fires on | File surfaces |
+| --- | --- | --- |
+| `accessibility-expert` | Rendered markup, semantics, interaction flow, WCAG, keyboard, focus, contrast, ARIA, motion, PDF accessibility, assistive technology | `**/*.tsx`, `**/*.css`, `jcdotnet/scripts/generate-pdf.ts` |
+| `design-system-expert` | Design tokens, theming, CSS custom properties, global CSS, colour palette, spacing, typography, motion, layout rhythm, breakpoints, multi-surface (page and PDF) styling, shared-component styling, visual consistency | `**/*.css`, `jcdotnet/components/**/*.tsx`, `jcdotnet/lib/**/*.tsx`, `jcdotnet/app/**/*.tsx` |
+| `react-component-expert` | `app/` and `components/` edits: hooks, render performance, prop API, composition, client or server boundaries, hydration, lifecycle | `**/*.tsx` |
+| `config-expert` | TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser or Husky configuration, `package.json` scripts, the lockfile, env handling, the site's Next.js, PostCSS or Playwright settings, deployment-relevant tooling | the configuration files named |
+| `security-expert` | Headers, the content security policy, secrets, env loading, middleware, the proxy, dependencies, auth, public attack surface | — |
+| `test-expert` | Test files, test helpers, proof layers, Vitest and Playwright config, TDD discipline | the test and harness files |
+| `type-expert` | Types, exported types, type flow, generics, assertions, schemas and schema inference, compile-time guarantees | — |
+| `docs-adr-expert` | `docs/`, ADRs, EDRs (the editorial decision records), READMEs, `.agent/` documentation, permanent narrative surfaces | — |
+| `subagent-architect` | The reviewer roster, `.agent/sub-agents/`, the reviewer-invocation rule, `.agent/skills/`, the platform agent, rule and skill adapters, the platform entry points (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `skills.md`) | `.agent/**/*`, `.cursor/**/*`, `.claude/**/*`, `.codex/**/*`, `.github/**/*`, `.agents/**/*` |
+| `assumptions-expert` | Plan authoring; decision-complete or ready-for-execution marks; blocking claims; 3+ agents; workspace or package topology changes; a third-party vendor integration without attesting that first-party integrations (plugins, SDKs, managed flows, official GitHub Actions) were evaluated first; technology commitments before research; a related PDR, ADR or plan set drafted in one session (review the set boundary, not each document alone); a requested assumption audit or proportionality check | — |
+
+### Domain signals in this host (Layer 2)
+
+1. The entity model, Schema.org types, JSON-LD, `@id` conventions, or
+   structured-data output -> `pkg-expert`; `jcdotnet/content/`, the graph
+   modules in `jcdotnet/lib/`, JSON-LD or metadata wiring ->
+   `architecture-expert-barney`
+2. Routes, navigation, layout composition, header or footer behaviour ->
+   `architecture-expert-betty`
+3. Builds, caching, PDF generation, build-time scripts, the proxy, E2E
+   against the production build, or deployment and runtime resilience ->
+   `architecture-expert-fred`
+4. Practice governance: `.agent/` surfaces, plans, PDR or ADR wiring, and
+   cross-platform Practice contracts -> `architecture-expert-wilma`
+5. The generated PDF's accessibility -> `accessibility-expert`
+6. Content that represents Jim (CV, front page, LinkedIn, structured-data
+   descriptions, editorial docs) -> `editor`
+
+### This host's matrix rows
+
+| Change Category | Required Specialist(s) |
+|---|---|
+| `jcdotnet/content/`, the graph and JSON-LD modules in `jcdotnet/lib/`, metadata wiring and graph identity | `architecture-expert-barney` |
+| Routes, navigation, layout composition, header or footer behaviour | `architecture-expert-betty` |
+| Builds, caching, PDF generation, build-time scripts, the proxy, E2E against the production build, deployment and runtime resilience | `architecture-expert-fred` |
+| Practice governance: `.agent/` surfaces, plans, PDR or ADR wiring, cross-platform Practice contracts | `architecture-expert-wilma` |
+| Entity model, Schema.org types, JSON-LD, `@id` conventions, structured-data output | `pkg-expert` |
+| Content that represents Jim: CV, front page, LinkedIn, structured-data descriptions, editorial docs | `editor` (voice, positioning, audience fit) |
+| Accessibility of the generated PDF | `accessibility-expert` |
+
+### This host's worked examples
+
+**Security-surface change, structural**: add the persona for its lane —
+`architecture-expert-fred` for caching or proxy runtime behaviour,
+`architecture-expert-betty` for a route reorganisation.
+
+**Editorial content change** (CV, front page, LinkedIn, structured-data
+descriptions, editorial docs): Invoke `editor` immediately. Add `prose-expert`
+when sentence craft matters (it keeps the register `editor` owns),
+`architecture-expert-barney` when the change is under `jcdotnet/content/`,
+`pkg-expert` if the change touches the graph's structured data, and
+`accessibility-expert` if link text, headings, labels or accessible names on a
+rendered surface change.
+
+**Entity graph or structured-data change**: Invoke `code-expert` + `pkg-expert` + `architecture-expert-barney` immediately. Add `type-expert` if the entity schemas or the types derived from them change, and `editor` if descriptions that represent Jim change.
+
+**Build, PDF or caching change**: Invoke `code-expert` + `architecture-expert-fred` immediately. Add `config-expert` when a configuration file or script changes, and `security-expert` when response headers move.
+
+**Reviewer estate change**: the Practice-governance persona is `architecture-expert-wilma`.
+
+**UI/Frontend change**: the architecture reviewer for routes, navigation or layout composition is `architecture-expert-betty`.

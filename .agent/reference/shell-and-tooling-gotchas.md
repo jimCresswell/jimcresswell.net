@@ -498,10 +498,12 @@ Director's landing record of 2026-09-06, event f05a54da).
   path in the original brief and ask for the report on disk plus a one-line
   pointer; a follow-up message asking for the file worked first time.
 - **A merge-bot token re-runs a workflow job only under the `workflow-dispatch`
-  scope** (`Resource not accessible by integration` under `pull-request-work`,
-  2026-09-08 and 2026-09-09): that scope does not request `actions: write`. The
-  installation holds it, and a `workflow-dispatch` mint succeeds (2026-09-25),
-  so mint that scope for a re-run rather than pushing an empty commit.
+  scope** (Actions write): the `pull-request-work` scope does not request
+  `actions: write` and answers `Resource not accessible by integration`
+  (2026-09-08 and 2026-09-09). The installation holds the permission (read as
+  held on 2026-09-11; the merge-bot reference document cites two bot re-runs of
+  2026-09-12 in OCE) and a `workflow-dispatch` mint succeeds (2026-09-25), so
+  mint that scope for a re-run; the empty-commit re-trigger is retired.
 - **`apt` fetching Google's chrome-stable index returned "Hash Sum mismatch" at
   the Playwright install step** — three consecutive `browser-tests` reds in
   sixteen minutes (2026-09-09): an external-mirror class; re-run after it

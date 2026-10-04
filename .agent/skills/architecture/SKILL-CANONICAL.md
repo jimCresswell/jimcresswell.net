@@ -14,17 +14,14 @@ lanes, so start by choosing the right lane rather than collapsing them.
 ## Read in order
 
 1. The relevant architecture lane:
-   - Structure across the workspaces:
-     `.agent/rules/invoke-architecture-expert.md` and
-     `.agent/sub-agents/templates/architecture-expert.md`
-   - Barney: `.agent/rules/invoke-architecture-expert-barney.md` and
-     `.agent/sub-agents/templates/architecture-expert-barney.md`
-   - Betty: `.agent/rules/invoke-architecture-expert-betty.md` and
-     `.agent/sub-agents/templates/architecture-expert-betty.md`
-   - Fred: `.agent/rules/invoke-architecture-expert-fred.md` and
-     `.agent/sub-agents/templates/architecture-expert-fred.md`
-   - Wilma: `.agent/rules/invoke-architecture-expert-wilma.md` and
-     `.agent/sub-agents/templates/architecture-expert-wilma.md`
+   - Structure across the workspaces: the `architecture-expert` row of
+     `.agent/rules/invoke-code-experts.md` (the roster) and
+     `.agent/sub-agents/templates/architecture-expert.md`; this host's lane
+     triggers are in `.agent/memory/executive/invoke-code-experts.md`
+   - Barney: `.agent/sub-agents/templates/architecture-expert-barney.md`
+   - Betty: `.agent/sub-agents/templates/architecture-expert-betty.md`
+   - Fred: `.agent/sub-agents/templates/architecture-expert-fred.md`
+   - Wilma: `.agent/sub-agents/templates/architecture-expert-wilma.md`
 2. Relevant changed files in the lane you picked
 3. The ADRs or Practice files named by that reviewer template
 

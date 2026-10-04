@@ -31,8 +31,10 @@ multi-agent session the two first-class seats — **Director** and
 Team shape is owner-set per session; never infer a pairing from archived
 collaboration records.
 
-For planning work, read [metacognition.md](./metacognition.md) and follow its
-reflection discipline before finalising a plan.
+Read [metacognition.md](./metacognition.md) and apply it: its generative mode
+is the default for any non-trivial work, and its retrospective mode runs on
+every correction signal, wherever in the work it arrives, not only when a plan
+is being finalised.
 
 ## The Practice
 
@@ -109,12 +111,13 @@ five `@engraph/*` packages under `tooling/`. For setup and topology see the
 Read [principles.md](./principles.md); reflect on it, apply it, and follow it
 at all times.
 
-The always-applied rule tier lives in [`.agent/rules/`](../rules/). Rules
-operationalise principles, ADRs, and PDRs. The canonical, platform-independent
-enumeration is [`RULES_INDEX.md`](../../RULES_INDEX.md) at the repo root.
-Claude and Cursor load their adapter tiers automatically; Codex and any other
-non-loader platform MUST read every canonical `.agent/rules/*.md` listed there
-at session open.
+The rule tier, core and situational, lives in [`.agent/rules/`](../rules/). Rules
+operationalise principles, ADRs, and PDRs; each declares how it loads and what
+it is for in its frontmatter, from which [`RULES_INDEX.md`](../../RULES_INDEX.md)
+at the repo root and the host's platform adapters (P1) are rendered
+(`pnpm portability:fix`), never edited by hand. Claude and Cursor load their
+adapter tiers automatically; Codex, Gemini, and any other non-loader platform
+MUST read every canonical `.agent/rules/*.md` file listed there at session open.
 
 ## Reviewers And Tools
 
@@ -203,16 +206,39 @@ existing home.
 
 ## Commands
 
-From the repo root, through Turborepo. Run gates one at a time while iterating;
-`pnpm check` is the canonical full aggregate, writing no tracked file, and
-`pnpm fix` the mutating pass that precedes it; its legs are listed once, in
-[principles.md §Quality gates](principles.md#code-quality). Site-only commands run through the workspace filter:
-`pnpm --filter @jimcresswell/www dev | build | test:e2e | visual-regression-harness`.
-`pnpm check` and the E2E suite run sequentially, never in parallel. The
-command source of truth is root `package.json` and
-[Build System](../../docs/engineering/build-system.md). Before every commit,
-check the message in isolation: `pnpm agent-tools:check-commit-message -m "…"`
-(the `commit-msg` hook is the backstop, not the first check).
+From the repo root, through Turborepo. The hooks are the gate, placed by the
+family convention "light commit, full push" (owner, 2026-09-12 and 2026-10-04,
+both estates): the commit hook runs the light gate (formatting and lint over
+the staged and changed files), the push hook runs the full `pnpm check`
+aggregate, and CI composes the same legs with the pull request's checks. An
+agent never runs the gates by hand beside the hooks (owner, 2026-09-14: "the
+commit triggers the gates, there is no point and a fair amount of cost
+running the gates separately as well, never, ever do that"). Running one test
+file while a change is red is development, not a gate run. `pnpm check` is
+the aggregate the hooks and CI compose, kept for their parity, writing no
+tracked file; `pnpm fix` is the mutating pass that precedes it. Before every
+commit, check the message in isolation:
+`pnpm agent-tools:check-commit-message -m "…"` (the `commit-msg` hook is the
+backstop, not the first check). The command source of truth is root
+`package.json` and [Build System](../../docs/engineering/build-system.md).
+
+These commands apply only after the environment classification permits local
+execution. ChatGPT Work uses its non-execution route instead. Claude cloud uses
+its separate [operating document](../claude-harness-integrations/cloud-environment.md).
+
+The browser suites run as pull request checks. When one refuses and the cure
+needs a local reproduction, run that one suite in a browser-capable host
+environment with the necessary process permissions on the first attempt; do
+not run it in the restricted sandbox to rediscover the known Playwright launch
+failure.
+
+When collecting evidence, keep independent command outputs attributable. Run
+independent checks separately or through the parallel tool wrapper; use shell
+chaining only when the dependency between commands is the behaviour being
+tested.
+
+The [Build System](../../docs/engineering/build-system.md) enumerates the live
+entrypoints; do not duplicate that command inventory here.
 
 ## Project Structure
 
@@ -232,6 +258,11 @@ docs/                   # Architecture, ADRs, editorial records, project docs,
 .claude/ .cursor/       # Generated platform adapters (pnpm portability:fix)
 .codex/ .gemini/ .agents/ .github/
 ```
+
+Site-only commands run through the workspace filter:
+`pnpm --filter @jimcresswell/www dev | build | test:e2e | visual-regression-harness`.
+The push hook runs `pnpm check` and then the site's E2E suite; the two never
+run in parallel.
 
 ## Agent Behaviour
 

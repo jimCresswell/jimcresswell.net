@@ -3,6 +3,7 @@ name: CLI Writer Boundary Discipline
 polarity: pattern
 use_this_when: A command-line tool or hook is about to write a file whose path, name or content comes from a caller, a flag, an environment variable or another process — apply the three cells before the first pull request, not after review finds them
 category: code
+layer: general
 proven_in: "agent-tools: the atomic write in the collaboration-state writer (PR #55 round four, 2026-09-13); the link refusal in core/flag-path-resolve.ts; the two are not yet joined in one writer"
 proven_date: 2026-09-13
 barrier:
@@ -55,8 +56,8 @@ its first pull request.
 - A new CLI that writes files under a caller-supplied name cites this pattern in its TSDoc and
   ships the three cells in its first pull request; the reviewer templates check for them.
 - Before writing a seam that reads or writes the tree, search the estate for its precedents
-  (`protocol-conformance.ts`, `carriage-fs.ts`): on PR #55 the reviewer found two defects those
-  files had already named, an environment variable taking precedence over the tree and a write
+  (`protocol-conformance.ts`, `carriage-fs.ts`): on JC.net's PR #55 the reviewer found two defects
+  those files had already named, an environment variable taking precedence over the tree and a write
   through a symbolic link (2026-09-13).
 - Outside review goes first to every `--fix` or write path and every path-resolution call. The
   three defect classes outside eyes caught in that lane were a parser re-implemented where one

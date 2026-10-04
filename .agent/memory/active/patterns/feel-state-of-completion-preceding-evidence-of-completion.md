@@ -3,6 +3,7 @@ name: Feel-State of Completion Preceding Evidence of Completion
 polarity: anti-pattern
 use_this_when: About to mark a to-do completed, defer an item at session-handoff, raise a limit, install a tripwire, or report what landed — before the report, ask whether the evidence loop the doctrine requires has actually fired, or whether the agent's own sense of "done" is standing in for it
 category: agent
+layer: general
 proven_in: .agent/memory/active/napkin.md (three cross-session independent instances, 2026-04-21 / 2026-04-22; owner-adjudicated 3/3, 2026-04-22 Session 8 open)
 proven_date: 2026-04-22
 related_pdr: PDR-026

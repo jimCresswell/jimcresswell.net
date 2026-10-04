@@ -1,8 +1,17 @@
 # Architectural Review Team
 
-Architecture review in this monorepo is one structural reviewer and four named personas, each a
-separate sub-agent with its own brief for one lane. This file summarises the lanes; each
-reviewer's template and invoke rule carry the detail:
+Architecture review is one shared brief, `.agent/sub-agents/templates/architecture-expert.md`,
+read through four named lenses, each a leaf component under
+`.agent/sub-agents/components/personas/`:
+
+- **Barney** - Simplification and dependency/boundary cartography
+- **Fred** - Rigorous ADR/boundary enforcement and standards discipline
+- **Betty** - System coherence, coupling management, and change-cost trade-offs
+- **Wilma** - Failure-mode resilience and adversarial edge-case pressure testing
+
+A host binds the lenses to its own surfaces; the roster below is this host's. In this estate the
+brief is also a reviewer of its own, `architecture-expert`, and each lens is bound by a lane
+template with its own invoke rule:
 
 - **`architecture-expert`** - Workspace boundaries, import direction, module structure and
   dependency injection across `jcdotnet`, `agent-tools` and `tooling/*`
@@ -16,5 +25,5 @@ reviewer's template and invoke rule carry the detail:
 - **Wilma** (`architecture-expert-wilma`) - Practice governance and docs: `.agent/` surfaces,
   plans, PDR and ADR wiring, and cross-platform Practice contracts
 
-When a finding falls in another reviewer's lane, explicitly recommend a follow-up review from that
-reviewer by name.
+When a finding falls in a colleague's lens or lane, explicitly recommend a follow-up review from
+that reviewer by name.

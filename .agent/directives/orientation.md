@@ -21,12 +21,12 @@ for the operational-memory surfaces and authority order within them.
 
 | Layer | Purpose | Surfaces | Read trigger |
 | --- | --- | --- | --- |
-| **Doctrine** | Read-and-internalise; sets stance for every session | `.agent/directives/` (AGENT.md, principles, testing-strategy, tdd-as-design, validation-strategy, metacognition, orientation) | Session open — Ground First step 1 |
+| **Doctrine** | Read-and-internalise; sets stance for every session | `.agent/directives/` (`AGENT.md` is the index, and the rest are read by trigger per its §Essential Links) | Session open — Ground First step 1 |
 | **Portable Doctrine** | Cross-repo Practice doctrine; travels with Practice Core | `.agent/practice-core/` (trinity, PDRs, patterns) | Orientation + when Practice questions arise |
 | **Active Memory** | Learning loop — capture, distil, graduate, enforce | `.agent/memory/active/` (napkin, distilled, patterns, archive) | Session open — Ground First step 3 |
 | **Operational Memory** | Continuity / session-resume state | `.agent/memory/operational/` (repo-continuity, threads) | Session open — Ground First step 4 |
 | **Executive Memory** | Stable organisational contracts and catalogues | `.agent/memory/executive/` (artefact inventory, reviewer catalogue, adapter matrix) | Ad-hoc lookup when taking an action the surface governs |
-| **Plans** | Scope, sequencing, acceptance criteria | `.agent/plans/` (the plan-node estate: `strategy/`, `strategic/`, `delivery/`, `runbooks/`, `templates/`; the pre-migration corpus conserved at `.agent/plans-legacy-2026-09/`) | When picking up a lane |
+| **Plans** | Scope, sequencing, acceptance criteria | `.agent/plans/` (the plan-node estate, laid out as its [README](../plans/README.md) states; the pre-migration corpus is conserved in a dated directory beside it) | When picking up a lane |
 | **Reference** | Curated library — owner-vetted evergreen read-to-learn material; promotion-gated ([PDR-032](../practice-core/decision-records/PDR-032-reference-tier-as-curated-library.md)) | `.agent/reference/` | When consulting promoted reference material |
 | **Research** | Default exploratory-synthesis tier and holding bay for un-promoted material | `.agent/research/` (with optional transient `notes/` holding bay) | When investigating a topic, or when authoring fresh material that has not been (and may not be) promoted to reference |
 | **Workflow** | Named rituals and canonical skills | `.agent/skills/`, `.agent/rules/`, `.agent/sub-agents/` | On invocation or trigger |
@@ -39,7 +39,7 @@ When two surfaces make conflicting claims on the same field, the
 higher-authority surface wins. This is a tiebreaker for same-scope
 conflicts, not a gating rule across different-scope claims.
 
-1. **Plans** (`.agent/plans/`, V0 corpus) — scope, sequencing,
+1. **Plans** (`.agent/plans/`) — scope, sequencing,
    acceptance criteria, validation.
 2. **`memory/operational/repo-continuity.md`** — canonical continuity
    contract.
@@ -74,8 +74,8 @@ the binding and nothing else.
 A missing profile is the expected condition, not a defect: readers proceed on
 tracked defaults and say nothing. The tier lives in the home directory,
 `~/.practice/profile/`, shared by every Practice repository on the machine
-(PDR-141, taken from OCE 2026-09-21); the full contract, including what
-must never be stored there, is
+(PDR-141, 2026-09-14); the full contract, including what must never be stored
+there, is
 [PDR-141](../practice-core/decision-records/PDR-141-operator-profile-in-the-home-directory.md)
 and the Core schema it names.
 

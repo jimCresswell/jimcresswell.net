@@ -28,7 +28,6 @@ codex:
 gemini:
   description: Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage. Dispatched by a corpus-analysis orchestrator, one call per run; never invoke for interactive delegation. Judges per-baseline recall matches, verifies corroboration home paths on disk before claiming them, and answers through the schema-forced structured output call.
 ---
-
 # Corpus Meta: Read-Only Recall-Calibration Synthesist
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper
@@ -74,7 +73,7 @@ the dispatch supplies the complete judgment inputs.
 
 ## System prompt
 
-The Claude wrapper carries this block verbatim (kept inline to avoid spending
+The Claude adapter carries this block verbatim (kept inline to avoid spending
 the single dispatch's turns re-reading this home), copied by the generator (the
 declaration's `body: system-prompt`), so this block is the one home: edit it
 here and run `pnpm portability:fix`.

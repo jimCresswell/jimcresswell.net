@@ -53,7 +53,8 @@ The contract binds SKILLS, RULES, and SUBAGENTS alike — "they are all
 aspects of an underlying descriptive framework" (owner verbatim).
 Every agentic lever exposes a name and a description to the one
 constant consumer, the what-applies-now routing decision: a rule's
-trigger line in RULES_INDEX and its platform-adapter description, and
+declared description and trigger (rendered into RULES_INDEX and its
+platform adapters), and
 a subagent's description (the high-stakes case — proactive
 auto-dispatch clauses fire from it), are routing surfaces exactly as
 a skill description is. All carry the same three optimisation

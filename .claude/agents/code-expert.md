@@ -1,8 +1,9 @@
 ---
 name: code-expert
-description: 'Gateway code reviewer — quality, correctness, and triage. Assesses code changes for correctness, edge cases, security, performance, readability, maintainability, and test coverage. Triages to specialists.'
+description: 'Gateway code review specialist for quality, correctness, and maintainability. Invoke immediately after any code is written or modified — features, bug fixes, refactors, and performance changes. Also responsible for identifying which specialist reviewers (security-expert, type-expert, test-expert, architecture reviewers) are needed.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
+color: orange
 permissionMode: plan
 ---
 

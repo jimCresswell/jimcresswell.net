@@ -28,6 +28,8 @@ export interface PatternEntry {
   /** The `use_this_when` hint, when the file declares one (optional in the corpus). */
   readonly useThisWhen?: string;
   readonly isAntiPattern: boolean;
+  /** The Practice layer the pattern is placed in (`general`, `family` or `contextual`), when declared. */
+  readonly layer?: string;
 }
 
 /** A pattern file that could not be indexed (missing/invalid frontmatter). */
@@ -99,12 +101,14 @@ export function parsePatternEntry(
   }
   const useThisWhen = getFrontmatterValue(frontmatter, 'use_this_when');
   const polarity = getFrontmatterValue(frontmatter, 'polarity');
+  const layer = getFrontmatterValue(frontmatter, 'layer');
   return {
     filename,
     name: resolveName(frontmatter, content, filename),
     category,
     useThisWhen: useThisWhen === '' ? undefined : useThisWhen,
     isAntiPattern: polarity === 'anti-pattern',
+    layer: layer === '' ? undefined : layer,
   };
 }
 
@@ -117,9 +121,13 @@ function orderedCategories(present: ReadonlySet<string>): string[] {
   return [...known, ...extra];
 }
 
-/** Render one entry line in the index's house format. */
+/** Render one entry line in the index's house format: polarity and layer tags, then the hint. */
 function renderEntryLine(entry: PatternEntry): string {
-  const anti = entry.isAntiPattern ? ' *(anti-pattern)*' : '';
+  const tags = [
+    ...(entry.isAntiPattern ? ['anti-pattern'] : []),
+    ...(entry.layer === undefined ? [] : [entry.layer]),
+  ];
+  const anti = tags.length === 0 ? '' : ` *(${tags.join(', ')})*`;
   const link = `→ [${entry.filename}](${entry.filename})`;
   if (entry.useThisWhen === undefined) {
     return `- **${entry.name}**${anti} ${link}`;

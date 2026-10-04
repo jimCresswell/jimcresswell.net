@@ -100,9 +100,11 @@ here.
 
 A watching role watches every surface it answers for. A seat that answers for a pull request
 watches its checks, its threads and its merge state, not the comms stream alone: a comms-only
-watcher was blind to all three. A pull-request watch emits terminal conditions only (a failed
-check, a new unresolved thread, not open, ready); a ticker of check counts spends context and
-tells the seat nothing it can act on.
+watcher was blind to all three. A pull-request watch emits on change of the compound state it
+answers for (the head, the merge state, the check rollup, the unresolved threads, the tip-bound
+reviews), on every state that means stuck, and on the terminal states, merged and closed
+(`pr-lifecycle`, the compound watch loop); a ticker that repeats an unchanged count spends
+context and tells the seat nothing it can act on.
 
 Before a new watch's silence is trusted, see it emit once, and read each of its conditions
 against one live sample. A watch run through a buffering entrypoint said nothing for half an
@@ -316,7 +318,9 @@ lifetime — the watcher keeps running; MCP-229).
 
 On a Monitor-capable host, run with `persistent: true`, **pipe-less** — the
 `comms watch` CLI already self-excludes and emits only relevant events, so no
-grep filter is needed or wanted. On Codex, use the root watcher plus
+grep filter is needed or wanted. Each expiry at the Monitor's 30-minute cap
+costs one agent turn to re-arm (about twenty-four turns over one idle night,
+2026-09-24); the cost is known, and no exemption from the watch follows from it. On Codex, use the root watcher plus
 [relay-child procedure](#codex-notify-session-relay), not Monitor. Each
 emitted event is a multi-line block whose **first line is `--- NEW
 [<CHANNEL>] EVENT ---`**: the channel tag sits MID-line, after the `--- NEW`
@@ -342,7 +346,7 @@ failure cause reaches the output file even when it does not notify.
 ## Why This Is a Rule, Not a Preference
 
 A single instance landed as a behavioural surface
-(`jc-start-right-team` SKILL §0 defaults to Monitor), but the
+(the `start-right-team` SKILL §0 defaults to Monitor), but the
 underlying choice — *which harness wrapper to use for any
 event-driven stream* — generalises beyond comms watching. Treating
 it as a general rule prevents the same Bash-background reflex from

@@ -1,6 +1,6 @@
 ---
 name: release-readiness-expert
-description: 'Release go/no-go specialist. Synthesises quality-gate evidence, breaking-change risk, migration impact, and operational readiness into an explicit GO / GO WITH CONDITIONS / NO-GO recommendation. Use at release boundaries: before merging to a release branch, before a version bump, when a change set includes contract or schema changes, or when a prior NO-GO is being re-evaluated after fixes.'
+description: 'Release go/no-go specialist. Use for release-critical changes to assess quality-gate status, migration risk, rollout safety, and final readiness recommendations.'
 readonly: true
 ---
 

@@ -3,6 +3,7 @@ name: Contamination Scan Method
 polarity: pattern
 use_this_when: A plan, report, or memory estate may contain contaminated current-truth claims and needs a repeatable scan that separates live residue from historical mention
 category: process
+layer: general
 proven_in: .agent/reports/mandate-1-contamination-scan-2026-06-02.md
 proven_date: 2026-06-02
 barrier:

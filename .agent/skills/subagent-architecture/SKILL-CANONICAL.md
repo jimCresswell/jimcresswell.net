@@ -14,7 +14,7 @@ estate-shape review.
 ## Read in order
 
 1. `.agent/sub-agents/templates/subagent-architect.md`
-2. `.agent/rules/invoke-subagent-architect.md`
+2. The `subagent-architect` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. The relevant changed surfaces under `.agent/`, `.cursor/`, `.claude/`,
    `.codex/`, `.gemini/`, `.github/`, and `.agents/`
 4. `docs/architecture/decision-records/015-codex-adapter-model.md` when Codex

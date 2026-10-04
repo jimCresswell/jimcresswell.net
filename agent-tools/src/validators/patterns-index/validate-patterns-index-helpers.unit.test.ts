@@ -20,6 +20,7 @@ describe('parsePatternEntry', () => {
         polarity: 'anti-pattern',
         category: 'code',
         use_this_when: 'a thing happens',
+        layer: 'general',
       }),
     );
     expect(entry).toEqual({
@@ -28,6 +29,7 @@ describe('parsePatternEntry', () => {
       category: 'code',
       useThisWhen: 'a thing happens',
       isAntiPattern: true,
+      layer: 'general',
     });
   });
 
@@ -90,6 +92,7 @@ describe('renderPatternIndex', () => {
         category: 'code',
         useThisWhen: 'a case.',
         isAntiPattern: true,
+        layer: 'general',
       },
       {
         filename: 'p.md',
@@ -97,6 +100,7 @@ describe('renderPatternIndex', () => {
         category: 'process',
         useThisWhen: 'p case',
         isAntiPattern: false,
+        layer: 'family',
       },
     ];
     expect(renderPatternIndex(entries)).toBe(
@@ -105,12 +109,12 @@ describe('renderPatternIndex', () => {
         '',
         '### Code (2)',
         '',
-        '- **Alpha** *(anti-pattern)* -- Use this when: a case. → [a.md](a.md)',
+        '- **Alpha** *(anti-pattern, general)* -- Use this when: a case. → [a.md](a.md)',
         '- **Beta** -- Use this when: b case. → [b.md](b.md)',
         '',
         '### Process (1)',
         '',
-        '- **Pee** -- Use this when: p case. → [p.md](p.md)',
+        '- **Pee** *(family)* -- Use this when: p case. → [p.md](p.md)',
         '',
       ].join('\n'),
     );

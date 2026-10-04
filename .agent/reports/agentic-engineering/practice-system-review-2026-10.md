@@ -354,3 +354,58 @@ this review.
 Revision of 2026-10-04 14:3xZ: the family layer added at the owner's word, with the script,
 hook, toolchain and compiler-base evidence; class C recast as family conformance; class E
 narrowed to the host's lists; the loop given the family as a graduation destination.
+
+## The parameter list: the contextual layer named, 2026-10-04
+
+The doctrine landing of `practice-alignment-by-class` wrote the general layer as one text in both
+estates and named every binding that differs by design as a parameter: a value each installation
+of the Practice carries so that one shared text reads true in it. Where a sentence could read
+true in both with the parameter named ("the repository's ADR directory", "the `plan` skill",
+"the host's gate list"), the text is host-neutral and the same bytes; where a value had to be
+stated, the file carries this estate's value and is a contextual-bound file (the last column),
+its sibling copy differing at that value only. The ids continue the parity ledger's §(f), whose
+rows record where each was read; P30 and up were named at the landing. The list is the
+extraction's first input (PDR-143 §Open questions).
+
+| id | parameter | jimcresswell.net | OCE | contextual-bound files |
+| --- | --- | --- | --- | --- |
+| P1 | the platforms adapters render for | cursor, claude, codex, gemini | cursor, claude, codex | templates declaring `platforms`; `AGENT.md` |
+| P2 | the npm organisation scope | `@engraph/*` (the site `@jimcresswell/www`) | the sibling's scope | none (neutralised) |
+| P3 | the skill adapter prefix | `jc-` | `oak-` | `use-monitor-for-event-driven-wake` (the Codex bootstrap token) |
+| P4 | the lane commit identity | the owner as author and committer, the agent in Co-Authored-By | the team bot as committer and transport, the human as author | none |
+| P5 | who obtains the Copilot review leg | the owner's CLI credential | the bot's own request | none |
+| P6 | the home of Practice reference documents | `.agent/reference/` | `.agent/reference/` (aligned at this landing; `docs/engineering/` copies are the host's) | none |
+| P7 | the host's decision-record directory | `docs/architecture/decision-records/` | `docs/architecture/architectural-decisions/` | none (neutralised) |
+| P8 | the host records cited beside shared clauses | none for most (the rule stated); ADR-016, ADR-020, ADR-022 | ADR-230, ADR-168, ADR-001, ADR-161, ADR-231, ADR-038, DDR-009 | none (cited as instances) |
+| P9 | the test tooling set (HTTP E2E driver, rendering proof, protocol client) | Playwright request API; the visual regression harness; none | Supertest; none; the MCP client SDK | `testing-strategy.md` |
+| P10 | the mutation instrument | none adopted (claim-directed mutants) | Stryker | `testing-strategy.md`, `validation-strategy.md` |
+| P11 | the system under test and its channel | the site over HTTP or the browser; an agent-tools CLI over stdio | the MCP server over stdio or HTTP; a UI in the browser | `testing-strategy.md` |
+| P12 | E2E and smoke locations, suffixes, runners | `jcdotnet/e2e/`, `*.e2e-ui.test.ts`, `*.e2e-api.test.ts`; `agent-tools/smoke-tests/` | `e2e-tests/`, `*.e2e.test.ts`; `*.spec.ts` | `testing-strategy.md`; the test-expert template |
+| P13 | the UI rules' and reviewers' file globs | `jcdotnet/app/**`, `jcdotnet/components/**`, `jcdotnet/lib/**`, `jcdotnet/content/**` | `apps/**`, `demos/**`, `packages/design/**`, `docs/design/**` | `design-values-come-from-the-system`, `visual-verdicts-require-rendered-proof`, `render-the-reference-before-reproducing`; the UI reviewer templates |
+| P14 | the founding instance of strict validation | the entity model in `jcdotnet/lib` | every MCP tool's schemas | none (both named) |
+| P15 | the plan-node estate's directories | `strategy/`, `strategic/`, `delivery/`, `runbooks/`, `templates/` | `delivery/`, `strategic/`, `sector-engagement/` | none (the plans README is cited) |
+| P16 | the PreCompact observer's source form | TypeScript source | a prebuilt `dist` artefact | the hooks (the code landing) |
+| P17 | what the build line writes that install does not | the site's `.next/` | every workspace's `dist/` | the worktree skills (host line) |
+| P18 | the browser-install filter | `@jimcresswell/www` | the host's app | `start-right` (host line) |
+| P19 | the ESLint standards plugin path | `tooling/eslint/` | `packages/core/<plugin>/` | none (neutralised) |
+| P20 | the editorial voice (PDR-102) | `editorial-guidance.md`, `editorial-strategy.md`, the `editor` template, `invoke-editor` retired into the catalogue | `editorial-tone.md`, carried by `prose-expert` | the named files (host-local) |
+| P21 | the architecture personas | four lenses (shared components) bound to four lanes (host templates) | four lenses | the lane templates; `reviewer-team.md` |
+| P22 | the design-system consumption skill and home | `.agent/skills/design-system/` | `domain-craft/ui-design/design-system-usage/` | the named skills |
+| P23 | the README's onboarding section name | Getting Started | Quick Start | none (both named) |
+| P24 | the estate's and product's names | Engraph Ecosystem; the sites; the Engraph Design System | the sibling's names | none (neutralised) |
+| P25 | the host's gate list and instruments beyond the family's | the visual regression harness, the site's E2E suite | the widget and accessibility suites, codegen, the showcase probe | `gates`, `start-right*`, `visual-verification`, `validation-strategy.md`, `AGENT.md` (host lines) |
+| P26 | the Sif instrument roster | none until C22 lands | the Codex dialogues, `codex-helper` | `sif` (host line) |
+| P27 | the Cursor session-identity hook and mirror file | `practice-session-identity.mjs`, `practice-composer-session.local.json` | `oak-session-identity.mjs` | none (the sibling's rename cures it) |
+| P28 | the no-hedging in-scope surface list | without `docs/governance/` | with `docs/governance/` | `no-hedging-vocabulary` (the hook's scope is the source) |
+| P29 | the provenance chain's shape | one shared lineage chain (O13) | the same | none |
+| P30 | the host's privacy bindings (the owner's categories, rules and authorisations) | recorded in `privacy.md` §This host's bindings | none recorded yet | `privacy.md` |
+| P31 | the host's secops bindings (git identity, disclosure pointers, PII checklist) | recorded in `secops.md` §This host's bindings | none recorded yet | `secops.md` |
+| P32 | the substrate manifest's plan roots | `plan_roots: []`; the two archive roots as `historical_roots` | two plan paths; the same historical roots | the substrate contracts manifest |
+| P33 | the Codex wired surfaces | no `.codex/rules/`, no tracked MCP server | both present | the cross-platform surface matrix |
+| P35 | the architecture reviewer's host block (workspace map, import direction, lint rules, constraints) | `jcdotnet`, `agent-tools`, `tooling/*`, dependency-cruiser | `apps/`, `packages/{core,libs,sdks}`, `eslint-rules/`, its ADRs | the architecture-expert template |
+| P36 | the host's environment helper | helpers with a comment naming each secret's origin | a resolver against its env schemas | the config-expert template |
+| P37 | the host's security-headers record | ADR-013 | none named | the security-expert template |
+| P34 | the host's own reviewers and path triggers | editor, pkg-expert, the four lane-bound personas, this host's globs | clerk, elasticsearch, mcp, sentry, ground-truth-designer, the sibling's globs | the executive catalogue `invoke-code-experts.md`; the sub-agents README; `reviewer-team.md` |
+
+A contextual-bound file is compared by its variant in the landing's proof, never counted as
+drift; every other general-layer file is identical bytes at the two landed tips.

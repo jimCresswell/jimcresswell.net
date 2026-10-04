@@ -18,16 +18,16 @@ split_strategy: "Move recipes to docs/engineering/testing-patterns.md and docs/e
 
 - Vitest (unit and integration; runtime logic)
 - React Testing Library (component integration, in-process)
-- Playwright (E2E checks: the UI in the browser and the API via the request
-  API, both against a production build — ADR-019)
-- The visual regression harness (rendering proof — ADR-022)
+- Playwright (UI E2E checks in the browser, against a production build)
+- The HTTP E2E driver, the protocol client and the rendering-proof harness the
+  host declares (P9; §This host's bindings)
 
 Mutation testing is **meta-quality** — it audits the test surface, not the
 product, and is the constraint that makes coverage meaningful (a test that
 executes code without checking behaviour scores the same as one that
-describes it). No mutation runner is adopted in this repository; the
-claim-directed practice (write the mutant that would falsify the guard,
-prove the test bites) is in
+describes it). The instrument, where one is adopted, is the host's (P10;
+§This host's bindings); the claim-directed practice (write the mutant that
+would falsify the guard, prove the test bites) is in
 [`validation-strategy.md` §Prove the guard bites](validation-strategy.md).
 
 ## Philosophy
@@ -84,10 +84,11 @@ prove the test bites) is in
   and a seat refutes such a precedent claim itself, never routing it upward
   as a question for the owner.
   What a test cannot prove without IO is not a test's to prove. It is proven
-  by non-test validation kept to a minimum (a validator script's own
-  self-proof, run by a CI-gated task) or by an observation made once at cure
-  time and recorded ([validation-strategy.md](validation-strategy.md) §Right
-  tool). Existing code that breaks the invariant is a defect: it is cured by
+  by non-test validation kept to a minimum, which never alters the code or
+  triggers a build (a validator script's own self-proof, run by a CI-gated
+  task; [validation-strategy.md](validation-strategy.md) §Validators), or by
+  an observation made once at cure time and recorded (§Right tool there).
+  Existing code that breaks the invariant is a defect: it is cured by
   injection or moved to validation, never exempted, and its presence
   licenses nothing.
 - NEVER create complex mocks, use simple mocks passed as arguments
@@ -247,7 +248,7 @@ prove the test bites) is in
   `xdescribe`) are forbidden outright. A check that needs an external
   resource fails fast with a helpful error, never silently skips. Validation
   scripts requiring external resources are standalone scripts, not
-  tests. Operationalised by the [`no-skipped-tests` rule][no-skip-rule].
+  tests.
 - **No conditional tests** - Conditional execution of any kind is a
   symptom of architectural failure: `skipIf`, `runIf`, conditional
   registration, runtime branching in test bodies, conditional
@@ -276,11 +277,10 @@ prove the test bites) is in
   absolute time: time the same operation at two input sizes and compare
   the ratio (about two for a doubling when linear). A fast machine hides
   a quadratic behind a small constant: a 200 KB word took 1.4 s locally
-  and 6.3 s on the runner, where the test timed out red (2026-09-10, in the
-  lineage, the Bash-guard matcher), and the two-size ratio would have shown it in ten
+  and 6.3 s on the runner, where the test timed out red (2026-09-10, in OCE,
+  the Bash-guard matcher), and the two-size ratio would have shown it in ten
   seconds.
 
-[no-skip-rule]: ../rules/no-skipped-tests.md
 [no-cond]: ../rules/no-conditional-tests.md
 
 - **No ambient global state access** - Tests MUST NOT read or mutate
@@ -311,7 +311,7 @@ prove the test bites) is in
   IO; where no injection seam below it can carry the proof (a fake would
   model libuv engine semantics, the "double models the engine" trap), the
   proof is an observation made once at cure time and recorded, or a
-  validator's self-proof outside the in-process test run (OCE's
+  validator's self-proof outside the in-process test run (the
   `file-backed-stdio-for-spawned-gate-children` pattern describes the
   shape being proven). An existing suite that spawns is a defect under
   this rule, cured the same way.
@@ -387,8 +387,8 @@ not on error-shape absence.
   points define boundaries of responsibility. Integration points
   have integration tests. Naming convention:
   `*.integration.test.ts`.
-- System: the site served over HTTP, or an agent-tools CLI driven over
-  stdio.
+- System: a complete running system driven over its protocol channel; the
+  host names its systems and their channels (P11; §This host's bindings).
   Systems have E2E checks (validation, not tests; see §Out-of-process
   checks).
 
@@ -434,8 +434,9 @@ causes of issues, and cast a wider net. The scope words stay, because
 the questions they name stay:
 
 - **E2E check**: proves a running system's behaviour over its protocol
-  channel (stdio for an agent-tools CLI; HTTP or the browser for the
-  site). It drives the system and asserts on the response; it never
+  channel (stdio for a CLI, HTTP for a server, the browser for a UI; the
+  host's systems are in §This host's bindings, P11). It drives the system
+  and asserts on the response; it never
   manipulates the surrounding environment, and only its harness boots
   the system. Classification follows the **boundary, not the tool** (owner,
   2026-07-29): "It depends on if it is calling a black box running
@@ -499,37 +500,6 @@ directly. They never spawn processes, open sockets, test deployed
 systems, or exchange with any running system; no network-shaped
 exchange is permitted, loopback included (§Test Types).
 
-### Site Workspace Conventions (`jcdotnet`)
-
-The site workspace applies the taxonomy above with these fixed conventions:
-
-- **Unit**: `*.unit.test.ts`, beside the code, `pnpm --filter @jimcresswell/www test`.
-- **Integration**: `*.integration.test.ts(x)`, beside the code, same runner; React component trees
-  use React Testing Library; simple injected fakes only.
-- **E2E-UI**: `*.e2e-ui.test.ts` under `e2e/journeys/` (user-story journeys) and `e2e/behaviour/`
-  (cross-cutting: a11y, SEO, content); Playwright browser automation.
-- **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
-  against the running site — the black-box boundary, never an imported app.
-- **Proof layers split by what they prove**: the contract assertion stays in Vitest beside the
-  module and the emitted-channel assertion in Playwright against the served site; an E2E spec never
-  imports a product module (bundler-resolved JSON imports fail there) and reads
-  `content/entities.json` with a JSON import attribute when it needs graph-backed expectations
-  (three instances, 2026-03-09; graduated 2026-10-01 at the owner's card).
-- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` starts the site's `e2e:server` script
-  from Playwright's global setup (ADR-019; §Harnesses Adapt to Shared Hosts): one process that
-  binds a free port and keeps the socket for its whole life, builds the site with that port and
-  serves the build from the socket in-process, so no other process, the build's PDF generator
-  among them, can ever be handed the test port. PDF generation is part of the build, so PDF
-  proofs run with everything else. Never run the root `check` in parallel with the E2E suite.
-- **Rendering risk**: any change that can alter rendered output runs the visual regression harness
-  as blocking proof during implementation (ADR-022), separate from and complementary to the suites
-  above. Zero pixel difference can still carry an intentional semantic HTML change — review the
-  HTML diff, do not normalise it away.
-- **Accessibility**: axe runs inside the E2E suite; pre-hydration fallback states are tested
-  states and must pass contrast.
-- **Proof layer**: tests prove runtime behaviour. Types, lint, portability and Practice fitness
-  are proven by their own validators, never by tests.
-
 ### Stubs vs Fakes
 
 - **Runtime stubs**: plain functions that live in product code and are used when
@@ -566,18 +536,20 @@ infrastructure.
 Smoke checks are validators, never tests: booting an artefact is
 process and filesystem IO. The files and directories still named
 "smoke tests" are history; each is run by a CI-gated task, never by the
-test runner's in-process suites.
+test runner's in-process suites. As validators they start the fewest
+processes, never alter the code and never build: a smoke reads the artefact
+a separate step built ([validation-strategy.md](validation-strategy.md)
+§Validators).
 
 The taxonomy above classifies by SCOPE of behaviour (unit →
 integration → E2E). There is a second, orthogonal axis: EXECUTION
 SURFACE. Scope-axis tests and checks typically execute source through a
 loader-assisted harness (vitest, tsx) while production executes built
 artefacts under plain `node` — and nothing at any scope level REQUIRES
-surface fidelity. An E2E check MAY boot the built artefact (the site's
+surface fidelity. An E2E check MAY boot the built artefact (jimcresswell.net's
 Playwright suite runs against the production build its `e2e:server` script
-builds and serves on the port the config held, and OCE's CLI contract E2E
-booted its built binary), but that coverage is
-incidental to its scope classification.
+builds and serves, and OCE's CLI contract E2E booted its built binary), but
+that coverage is incidental to its scope classification.
 Smoke checks own the surface axis and make artefact fidelity MANDATORY:
 minimum behaviour scope, maximum surface fidelity. Defects that exist
 only in the built form — extensionless ESM import specifiers in
@@ -702,10 +674,11 @@ the slicing was wrong.
 
 - ALWAYS USE TDD at ALL levels
 - Use Vitest for all in-process tests (unit + integration)
-- HTTP E2E checks use Playwright's request API; an integration test
-  calls the route handler below the listener and opens no socket (see
-  §Test Types)
+- HTTP E2E checks use the HTTP E2E driver the host declares (P9), only
+  against a separately running system; an integration test calls the
+  handler below the listener and opens no socket (see §Test Types)
 - Use Playwright for UI E2E checks
+- Protocol E2E checks use the protocol client the host declares (P9)
 - Use the canonical mocking approaches for the testing tools in use for a given test
 - Tests live next to the code they test, not in a `test` directory
   - Unit tests live next to the pure function file containing the
@@ -714,14 +687,14 @@ the slicing was wrong.
     containing the integration points they test. They MUST end in
     `*.integration.test.ts`
   - E2E checks live apart from product code, because they drive a
-    running _system_ rather than importing it: the site's Playwright
-    suite in `jcdotnet/e2e/`, named `*.e2e-ui.test.ts` and
-    `*.e2e-api.test.ts` and run by the site's `test:e2e` against the
-    production build. An agent-tools check that drives a built CLI lives
-    under `agent-tools/smoke-tests/`, where the smoke runner runs its
-    `*.smoke.ts` files: it is a smoke check when it proves the artefact's
-    truth-set, and an E2E check when it proves feature behaviour over
-    stdio. A check is reachable from a CI-gated task,
+    running _system_ rather than importing it. Protocol and CLI E2E
+    checks (Vitest) live in the workspace's `e2e-tests/` directory,
+    named `*.e2e.test.ts` and run by the workspace's `test:e2e`. UI
+    and HTTP E2E checks (Playwright) live in the directory the
+    workspace's Playwright config names as its `testDir`, named as its
+    `testMatch` states and run by the Playwright scripts that
+    workspace's `package.json` names (the host's values: P12, §This
+    host's bindings). Either way a check is reachable from a CI-gated task,
     because a check that nothing runs is the worse defect (the
     reachability rule of §Smoke Checks)
 
@@ -796,9 +769,9 @@ running under `pnpm test`, CI timeouts that don't reproduce
 locally).
 
 - **Pattern 1 (preferred)**: Import and re-export
-  `baseTestConfig` from `@engraph/workspace-config/vitest` (a
-  declared `workspace:*` devDependency — never a relative path out
-  of the workspace).
+  `baseTestConfig` from the workspace-config package's `vitest` export
+  (P2; a declared `workspace:*` devDependency — never a relative path
+  out of the workspace).
 - **Pattern 2 (custom)**: Define a workspace-specific config.
   Non-negotiable: `exclude` MUST contain `'**/*.e2e.test.ts'`.
   `include` SHOULD use explicit conventions (`*.unit.test.ts`,
@@ -806,8 +779,8 @@ locally).
 
 Workspaces with `*.e2e.test.ts` files MUST also have
 `vitest.e2e.config.ts` (extending `baseE2EConfig` from
-`@engraph/workspace-config/vitest-e2e`, or workspace-specific)
-and a `test:e2e` script in `package.json`. A file they govern that drives a separately
+the workspace-config package's `vitest-e2e` export (P2), or
+workspace-specific) and a `test:e2e` script in `package.json`. A file they govern that drives a separately
 running system is an E2E check (§Out-of-process checks); one that
 imports product code and runs it in the test process is an integration
 test under the wrong name
@@ -845,7 +818,7 @@ the schedule. Worked instances: a fixed-port Playwright `webServer` turned
 one seat's render server into a fleet-wide push outage (cure: an ephemeral
 port the harness's own server process binds and keeps for its whole life,
 serving the build from that socket, so no server this run did not start is
-ever proved; this estate's site config, 2026-09-13, starts that process from
+ever proved; jimcresswell.net's site config, 2026-09-13, starts that process from
 global setup and hands its origin to the workers through the runner's own
 environment, read there only as the runner's internal handshake channel, so
 the environment never sets the harness's port or origin from outside); a
@@ -872,4 +845,59 @@ Four browser-specific proof categories for UI-shipping workspaces:
 3. **Responsive validation** — viewport and fluid layout coverage.
 4. **Theme/mode correctness** — light, dark, high-contrast passes.
 
-See `.agent/reference/accessibility-practice.md`.
+See the accessibility practice document the host declares (§This host's
+bindings).
+
+## This host's bindings
+
+The values the shared text above names by parameter, for this host
+(jimcresswell.net). The sibling estate's copy of this file carries its own
+section here; everything above it is the same text in both.
+
+- **P9, the test tooling set**: HTTP E2E checks use Playwright's request API
+  (`APIRequestContext`) against the running site; the rendering-proof harness
+  is the visual regression harness (ADR-022); no protocol client is declared.
+- **P10, the mutation instrument**: none adopted; claim-directed mutants per
+  validation-strategy §Prove the guard bites.
+- **P11, the systems under test**: the site served over HTTP or the browser;
+  an agent-tools CLI driven over stdio.
+- **P12, E2E and smoke locations**: the site's Playwright suite in
+  `jcdotnet/e2e/`, named `*.e2e-ui.test.ts` and `*.e2e-api.test.ts` and run
+  by the site's `test:e2e` against the production build; agent-tools' Vitest
+  E2E checks in `agent-tools/e2e-tests/`. An agent-tools check that drives a
+  built CLI lives under `agent-tools/smoke-tests/`, where the smoke runner
+  runs its `*.smoke.ts` files: it is a smoke check when it proves the
+  artefact's truth-set, and an E2E check when it proves feature behaviour
+  over stdio.
+- **Accessibility practice**:
+  [`.agent/reference/accessibility-practice.md`](../reference/accessibility-practice.md).
+
+### Site Workspace Conventions (`jcdotnet`)
+
+The site workspace applies the taxonomy above with these fixed conventions:
+
+- **Unit**: `*.unit.test.ts`, beside the code, `pnpm --filter @jimcresswell/www test`.
+- **Integration**: `*.integration.test.ts(x)`, beside the code, same runner; React component trees
+  use React Testing Library; simple injected fakes only.
+- **E2E-UI**: `*.e2e-ui.test.ts` under `e2e/journeys/` (user-story journeys) and `e2e/behaviour/`
+  (cross-cutting: a11y, SEO, content); Playwright browser automation.
+- **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
+  against the running site — the black-box boundary, never an imported app.
+- **Proof layers split by what they prove**: the contract assertion stays in Vitest beside the
+  module and the emitted-channel assertion in Playwright against the served site; an E2E spec never
+  imports a product module (bundler-resolved JSON imports fail there) and reads
+  `content/entities.json` with a JSON import attribute when it needs graph-backed expectations
+  (three instances, 2026-03-09; graduated 2026-10-01 at the owner's card).
+- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` starts the site's `e2e:server` script
+  from Playwright's global setup (ADR-019; §Harnesses Adapt to Shared Hosts): one process that
+  binds a free port and keeps the socket for its whole life, builds the site with that port and
+  serves the build from the socket in-process, so no other process, the build's PDF generator
+  among them, can ever be handed the test port. PDF generation is part of the build, so PDF
+  proofs run with everything else. Never run the root `check` in parallel with the E2E suite.
+- **Rendering risk**: any change that can alter rendered output runs the visual regression harness
+  as blocking proof during implementation (ADR-022), separate from and complementary to the suites
+  above. Zero pixel difference can still carry an intentional semantic HTML change — review the
+  HTML diff, do not normalise it away.
+- **Accessibility**: axe runs inside the E2E suite; pre-hydration fallback states are tested
+  states and must pass contrast.
+- **Proof layer**: [principles.md §Testing](principles.md#testing).

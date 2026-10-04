@@ -56,11 +56,29 @@ export function findMissingPathCitations(
   return files.flatMap((file) => missingCitationsInFile(file, exists));
 }
 
+/**
+ * The phrase an import provenance uses to name a path in the tree a surface was imported
+ * from. A citation on such a line (or one wrapped from the previous line) names a foreign
+ * tree by design and is never resolved against this repository (PDR-142: the record of where
+ * a surface came from is the record; the cited-paths gate checks this repository's own
+ * citations).
+ */
+const FOREIGN_TREE_PHRASE = 'source repo-relative path';
+
+/** Whether the citation's line, joined with the line before it, declares a foreign tree. */
+function namesForeignTree(lines: readonly string[], line: number): boolean {
+  const previous = line >= 2 ? (lines[line - 2] ?? '') : '';
+  const current = lines[line - 1] ?? '';
+  return `${previous} ${current}`.replaceAll(/\s+/g, ' ').includes(FOREIGN_TREE_PHRASE);
+}
+
 function missingCitationsInFile(
   file: { readonly path: string; readonly content: string },
   resolves: (target: string) => boolean,
 ): readonly MissingPathFinding[] {
+  const lines = file.content.split('\n');
   return extractPathCitations(file.content)
+    .filter((citation) => !namesForeignTree(lines, citation.line))
     .filter((citation) => !resolves(citation.target))
     .map((citation) => ({
       path: file.path,

@@ -107,7 +107,8 @@ These scripts make this skill actionable end-to-end:
 - **`pnpm agent-tools:check-commit-message`** — validates a commit message against
   this repo's commitlint config in isolation from the rest of the pre-commit /
   commit-msg hook chain. Mirrors `git commit` message intake (`-m` repeats,
-  `-F`, `-F -`, stdin). Exit 0 conforms, 1 violates, 2 invalid usage. Catches
+  `-F`, `-F -`, stdin). Exit 0 conforms, 1 violates (a commitlint WARNING is a
+  violation: strict mode, as in the hook), 2 invalid usage or no verdict. Catches
   `header-max-length`, `body-max-line-length`, and case violations in ~1s
   before the ~34s pre-commit cycle. The orchestrator above invokes this
   script as the third (message) gate; call it directly only when iterating
@@ -206,15 +207,20 @@ Run these steps **before** formulating the commit message.
    **Second shape, created by WRAPPING (bisected 2026-08-05):** a body line
    that BEGINS `<word>:` — one ordinary word plus a colon — also parses as a
    footer token and fires the same rule. This one is nastier than the
-   `token #ref` shape for three reasons: the wrap creates it rather than
+   `token #ref` shape for these reasons (the third is history since strict mode): the wrap creates it rather than
    anything you wrote (the same sentence on one line is fine); any plausible
    mid-sentence word triggers it (`fixed:`, `note:`, `result:`, `evidence:`,
-   `cure:`), so a 100-char wrap can push one to a line start; and it only
-   WARNS, so the commit lands and `check-commit-message` exits 0 on it — you
-   discover it in the hook output of a commit that has already succeeded.
-   **Cure: after wrapping a body, scan line STARTS for `^\w+:` and reword or
-   rewrap.** `no-warning-toleration` has no carve-out for "it only warned", so
-   an unpushed commit carrying it is amended (which the safety rules permit)
+   `cure:`), so a 100-char wrap can push one to a line start; and the preset
+   rates it a WARNING. Until 2026-09-20 that meant the commit landed and
+   `check-commit-message` exited 0 on it. Since then the `commit-msg` hook and
+   `check-commit-message` both run commitlint in strict mode, so a warning
+   (this rule or `body-leading-blank`, the preset's other one) refuses the commit
+   and the tool exits 1: the structural cure, made after one
+   seat pushed two such messages fourteen minutes apart with this paragraph already
+   written. **Cure for the message: scan line STARTS for `^\w+:` after
+   wrapping, and reword or rewrap.** For a commit made before strict mode that
+   carries the warning, `no-warning-toleration` has no carve-out for "it only
+   warned", so an unpushed one is amended (which the safety rules permit)
    — but read the amend precondition below before doing so: a pushed commit is
    never amended to clear a cosmetic warning, and one seat inverted exactly
    that proportion under this pressure. The permission is that narrow: a
@@ -273,13 +279,16 @@ git operations colliding, that is not necessary for work in separate worktrees")
 The queue and the bare `git:index/head` window serialise the SHARED PRIMARY
 checkout only. A lane in its own worktree (PDR-117) commits by plain pathspec —
 `git add -- <paths>` then `git commit -F <message> -- <paths>` — hooks running,
-the owner as author and committer from the clone's shared identity (owner,
-2026-09-17; the lane-setup skill checks it), with an audit line in the message
-naming the worktree and that the queue was not used; it opens no queue intent and
-no window claim (F-132, F-139 and F-169 are superseded by scope). The audit line
-is true of the PATH that produced the commit (queue, worktree or primary checkout),
-never of the seat's habit: a seat that commits by both paths writes a different
-line on each (2026-10-02). Two mechanics of
+the author and committer as the estate's committer identity rule sets them (the
+lane-setup skill checks the inherited identity; where that rule names an author
+other than the worktree's `user.*`, the `--author` flag goes on every commit,
+since an omitted flag yields a commit authored by the worktree's identity), with
+an audit line in the message naming the worktree and that the queue was not
+used; it opens no queue intent and no window claim (F-132, F-139 and F-169 are
+superseded by scope). The audit line is true of the PATH that produced the
+commit (queue, worktree or primary checkout), never of the seat's habit: a seat
+that commits by both paths writes a different line on each (2026-10-02). Two
+mechanics of
 the pathspec commit, measured 2026-09-07: the queue guard accepts only the bare
 `index/head` label (a scoped `index/head@<worktree>` is refused), and a pathspec
 commit records a deletion only for a path it names — after a `git mv`, list the
@@ -287,10 +296,11 @@ old path as well as the new one or the move never lands, and chain the `git add`
 to the `git commit` with `&&`, never `;`, because a rename staged by `git mv`
 matches no old-path pathspec and the add fails silently (2026-09-26). The separate host bound
 — two, at most three, simultaneous full local gates — is engineered as a
-semaphore, not declared (`no-unbounded-host-load` item 6); until it lands, seats
-run full gates side by side only in different worktrees, at most two at once, and
-inside one worktree gate runs are sequential (owner, 2026-09-20: "two parallel
-gate runs are fine as long as they are in different work trees").
+semaphore, not declared (`no-unbounded-host-load` item 6): each hook's full gate
+holds a host gate slot, so it waits while two gates run on the host or one runs
+in its own worktree, and `pnpm agent-tools:gate-slot status` names the holders
+(owner, 2026-09-20: "two parallel gate runs are fine as long as they are in
+different work trees").
 
 ### Intent-Scoped End-to-End (2026-05-22 cure)
 
@@ -458,6 +468,15 @@ direct CLI commands for inspection and recovery.
      --message-file "$MSGFILE"
    ```
 
+   The queue's `commit` command passes no `--author`, so a commit made through
+   it is bot-authored, against the author-and-committer split the
+   bot-identity rule requires (F-199, 2026-09-25: one such commit by the
+   documented ceremony). Until the command carries the flag, on the shared
+   primary run the same bookends by hand: `verify-staged --intent-id <id>
+   --commit-subject "<subject>"`, then
+   `git commit --author="<owner name> <owner noreply email>" -F "$MSGFILE" -- <paths>`,
+   then `complete --intent-id <id>`; the hooks stay the gate.
+
    The two verify-staged checks book-end the advisory orchestrator so
    tree-widening during the advisory pass is caught before history is
    written. Any failure between intent-load and successful `git
@@ -563,6 +582,12 @@ the owner authorises it after you have proved no git process is active.
 
 ### Merge commits — the queue workflow does not apply
 
+`git merge -m` takes no `--author`, so a sync merge recorded with it is
+bot-authored (one was re-recorded with an identical tree before its push,
+2026-09-25); the form that carries the owner as author and runs the same
+commitlint path as any other commit is `git merge --no-commit origin/<base>`,
+then `git commit --author="<owner name> <owner noreply email>" -F <message>`.
+
 Merge commits CANNOT ride the `commit-queue -- commit` workflow: a
 pathspec-scoped `git commit` is illegal mid-merge, and the queue's inner
 commit is pathspec-scoped by design. This is a structural mismatch, not a
@@ -598,7 +623,12 @@ topology for memory-file reconciliation):
    resolution — read `git status` and `git diff --cached --stat` and confirm
    every path belongs to the merge (conflict resolutions plus the merge's own
    union writes). There is no queue fingerprint; the first-hand read is the
-   verification.
+   verification. Assert the merge is still in progress before the commit
+   (`git rev-parse -q --verify MERGE_HEAD`) and read the parent count after it
+   (`git rev-list --parents -n 1 HEAD`): a resolution committed once the merge
+   state had gone landed as a plain one-parent commit (2026-09-10). In a linked
+   worktree the marker lives in that worktree's own git directory
+   (`worktree-hygiene`).
 3. **Commit the whole index plainly**: `git commit` (message via `-F`, no
    pathspec, no `--no-verify`) so the full pre-commit gate runs and the hook
    is the green verdict.
@@ -624,6 +654,12 @@ catastrophic shape. A foreign lock means another agent is mid-commit:
 3. Surface the foreign lock to the owner with the diagnostics and the
    wait-vs-handoff options. The owner decides; the agent never loops on the
    lock file.
+
+The common holder on the shared primary is a peer's running `git commit`, whose
+hooks run for minutes: wait on the process table (that `git commit` exiting),
+never on the lock file, then re-run the ceremony alone (two ceremonies lost the
+race to a periodic git process, 2026-09-20; two lost it to peers' commits,
+2026-09-25).
 
 The advisory commit queue, `git:index/head` active claim, and shared-log
 entry are the coordination surfaces; the lock file is never one of them.
@@ -656,10 +692,27 @@ Before opening the four-move protocol above:
 
 1. `git status` — see all changes; `git diff --staged && git diff` —
    understand what will be committed.
-2. Confirm quality gates have passed (or run them now). Do NOT
-   pre-prime the turbo cache by running `bash .husky/pre-commit`
-   separately — the real commit will warm it; the pre-prime is
-   wasted ~30s and confuses symptom for cause.
+2. Do not run the quality gates before or beside the commit: the
+   commit's own hook is the gate (owner, 2026-09-14, verbatim: "the
+   commit triggers the gates, there is no point and a fair amount of
+   cost running the gates separately as well, never, ever do that").
+   Do NOT pre-prime the turbo cache by running `bash .husky/pre-commit`
+   either, and never pre-run one of the hook's instruments (Prettier,
+   markdownlint) on the staged files. When the hook refuses, fix what
+   the refusal names and commit again. After an interrupted or refused
+   ceremony, read `git log -1` before the next act: a commit that an
+   interrupt appeared to stop had landed, and the re-run ceremony was
+   refused by the queue for an empty bundle (2026-09-20). The commit tool read
+   an empty staged set seconds after `git add` had filled it on three dates
+   (2026-09-20, 2026-09-21, 2026-09-23; cause unread, a concurrent writer to
+   the shared index the untested candidate; F-200): a refusal "staged files do
+   not match" reports what the tool READ, which the queue's own record keeps
+   (`staged_name_status`), so read that record before touching the index. A
+   gate-bearing commit or push runs under an event-driven watch that reports
+   progress on a cadence and the exit code at the end; its captured log can
+   stay empty while the pre-push runs (`merge-bot push` under redirection,
+   2026-09-23 and 2026-09-24; F-202), so progress is read from the process
+   tree (CPU per child) and the outcome from the remote tip.
 3. Stage selectively — never blindly `git add .`. Skip `.env`,
    credentials, `bulk-downloads/`. The `commit-queue` enqueue +
    guard chain in move 2 enforces explicit pathspecs by design.
@@ -1012,9 +1065,10 @@ Adapters are generated skill-form thin pointers. PDR-051 is authoritative for
 the current adapter topology; do not hand-maintain a platform inventory here.
 For this owned skill the generated adapters currently live at:
 
-- `.agents/skills/jc-commit/SKILL.md` — cross-tool alias used by Codex,
+- `.agents/skills/<prefix>-commit/SKILL.md` — cross-tool alias used by Codex,
   Cursor, Gemini, and other `.agents/` consumers.
-- `.claude/skills/jc-commit/SKILL.md` — Claude Code adapter.
+- `.claude/skills/<prefix>-commit/SKILL.md` — Claude Code adapter (the host's
+  skill prefix).
 
 The retired custom-command and per-platform skill directories are not valid
 homes for this workflow. Regenerate adapters with `pnpm skills:generate`
@@ -1022,4 +1076,8 @@ homes for this workflow. Regenerate adapters with `pnpm skills:generate`
 `--prefix`) and verify with `pnpm skills:check` or
 `pnpm portability:check` after canonical changes. The workspace-filtered
 form now also works (its script anchors at the repo root and pins the
-prefix; the 2026-07-02 wrong-cwd failure is cured at the script).
+prefix; the 2026-07-02 wrong-cwd failure is cured at the script). A body-only
+edit needs no render; a description change does, since the rendered adapters
+carry the description and the path: run `pnpm skills:generate` then
+`pnpm skills:check` before the commit (a description change that skipped the
+render failed the push in the sibling estate, 2026-10-02).

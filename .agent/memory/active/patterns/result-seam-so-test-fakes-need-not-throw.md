@@ -3,6 +3,7 @@ name: "Result-Seam So Test Fakes Need Not Throw"
 polarity: pattern
 use_this_when: "Testing an error path that wraps a throwing dependency (execFileSync, a path resolver, a vendor call), and a throwing test-fake would trip the no-throw warn rule — lift the seam to return Result and translate the throw at the single real boundary, so the fake returns err() and never throws."
 category: testing
+layer: family
 proven_in: "agent-tools spawn-flow / collaboration-state error-path tests (2026-06-28) — supervisor-liveness and coordination-home resolvers"
 proven_date: 2026-06-28
 related_pattern: "interface-segregation-for-test-fakes (the sibling: narrow the type a fake must satisfy; this one removes the throw a fake must mimic)"

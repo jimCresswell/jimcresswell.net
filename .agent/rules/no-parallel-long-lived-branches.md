@@ -80,6 +80,7 @@ metrics, ticket-first) is the standing cure this rule pins.
 
 Behavioural at branch/PR creation, plus mechanical layers as they land:
 a ticket-ID branch gate in the shared hooks and a `pr-contract` required CI
-status (ticket link + size bounds) as they land here. The stray-code register
+status (ticket link + size bounds) as they land (OCE's means-home for the two
+is its tickets AIP-128 and AIP-129). The stray-code register
 pattern (OCE, 2026-07-16)
 is the audit shape when drift is suspected: enumerate, commit, PR, adjudicate.

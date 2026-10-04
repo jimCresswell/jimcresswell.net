@@ -3,6 +3,7 @@ name: Fabricated Gate as Avoidance
 polarity: anti-pattern
 use_this_when: A pending-graduation entry, plan slice, or queued artefact is classified as deferred under gate-shaped vocabulary (`size: XL`, `vaporware-gated`, `sequenced-deferral pointer`, `N>=3-validation`, `dedicated-session-required`) — check whether the gate is a real epistemic / dependency / capacity constraint or a fabricated escape hatch the substance does not require
 category: agent
+layer: general
 proven_in: .agent/memory/operational/pending-graduations.md (7 due items classified as DEFER-DEDICATED-SESSION or HELD-PLAN-GATED before owner correction, 2026-05-10)
 proven_date: 2026-05-10
 barrier:

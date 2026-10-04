@@ -2,6 +2,7 @@
 name: "A Baseline Transmits Its Stance, Not Only Its Facts"
 polarity: anti-pattern
 category: agent
+layer: general
 use_this_when: "Composing a brief, a judge prompt, or a fleet dispatch that hands the legs a prior document — a matrix, a ratified node, a previous round's result — as their starting point, especially inside a space the owner has reopened."
 proven_in: "Round-1 census judges handed a prior matrix as baseline carried its editorial stance unratified into their target states; the round that centred the question produced a dramatically different result (2026-08-14). Fleet briefs seeded with 'ratified structure must be respected' converted surface-with-verdict into defend-the-ruling across every panel — the owner's diagnosis was 'self-congratulatory theater' — and only the anchor-free legs survived the day, independently agreeing with the owner (2026-08-17; cure record .agent/research/workspace-basis-regrounding-2026-08-17.md). Anti-deference briefs then held at a five-leg panel two days later (2026-08-17 evening). Conserved in OCE's archived napkin of 2026-09-02 (not imported)."
 proven_date: 2026-08-17

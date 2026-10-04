@@ -27,7 +27,6 @@ gemini:
   description: Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched by a corpus-analysis orchestrator, one agent per time-contiguous corpus window; never invoke for interactive delegation. Reads one window's corpus files in full and answers only through the schema-forced structured output call.
   tools: [read_file]
 ---
-
 # Corpus Mapper: Read-Only Leaf-Signal Extractor
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper
@@ -73,7 +72,7 @@ complete task inputs.
 
 ## System prompt
 
-The Claude wrapper carries this block verbatim (kept inline so the dispatch
+The Claude adapter carries this block verbatim (kept inline so the dispatch
 spends its turns on corpus reads, not on re-reading this home), copied by the
 generator (the declaration's `body: system-prompt`), so this block is the one
 home: edit it here and run `pnpm portability:fix`.

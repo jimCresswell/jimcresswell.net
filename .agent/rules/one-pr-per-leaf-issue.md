@@ -9,9 +9,9 @@ description: HARD RULE (owner, 2026-09-02). A leaf issue is delivered by exactly
 pull request, and close the issue from that PR's body with a closing keyword:
 `Fixes <issue>`, or the equivalent `Closes` / `Resolves`, in the tracker's own
 form (an estate tracking work in GitHub issues writes `Fixes #nnn`; one on a
-ticket tracker writes its issue id, such as `Fixes ABC-nnn`; this estate mints
-no leaf issue in either today, its work living in the plan estate, so the rule
-binds from the first leaf issue it mints, in that tracker's form). You settle this
+ticket tracker writes its issue id, such as `Fixes ABC-nnn`; an estate that
+mints no leaf issue today, its work living in the plan estate, is bound from
+the first leaf issue it mints, in that tracker's form). You settle this
 twice — cardinality at ticket-scoping time, before a branch exists; the closing
 keyword at PR-body authoring time, before the PR is opened. Many leaf issues may
 map to one PR; one leaf issue may never map to two. A leaf needing a second PR is
@@ -156,7 +156,8 @@ closing keyword — and that check must demand a *stated reason* rather than ban
 `References`, because the deliberate `References` above was correct. "Justified
 exception" is currently justified to nobody, which is the gap. OCE tracks that
 check on its own tracker beside its derived-label action, so it rides one piece of
-PR automation rather than two; this estate carries no such check yet.
+PR automation rather than two; until a host lands the check, the rule is
+behavioural there.
 
 **Falsifier for this rule**: a leaf issue that genuinely cannot be delivered by one
 PR without an indivisible-proof argument of the kind

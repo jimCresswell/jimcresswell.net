@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: "Adopting a third-party skill, pack, or plugin — a pnpx skills install, vendoring, plugin install, or a pin bump: review the executable surface (hooks, scripts, install-time code, session-start injectors) before landing — record what runs, when, with what reach, and the reviewed source SHA; markdown-only payloads record the zero-executables determination. Prefer file-level content to auto-run plugin installs; pin bumps re-fire the gate. Not for Oak-authored skills. Failure shape: installing a pack whose session-start hook injects into every session while its SSRF findings sit open."
+description: "Adopting a third-party skill, pack, or plugin — a pnpx skills install, vendoring, plugin install, or a pin bump: review the executable surface (hooks, scripts, install-time code, session-start injectors) before landing — record what runs, when, with what reach, and the reviewed source SHA; markdown-only payloads record the zero-executables determination. Prefer file-level content to auto-run plugin installs; pin bumps re-fire the gate. Not for repo-authored skills. Failure shape: installing a pack whose session-start hook injects into every session while its SSRF findings sit open."
 trigger: ceremony:skill-vendoring
 ---
 
@@ -70,9 +70,11 @@ rule's first exercise: adversarial review of all seven hooks, the
 script set, and the four plugin manifests, producing a per-executable
 account and the verdict — not safe to install as a Claude Code plugin
 at the reviewed SHA; file-level vendoring of individual SKILL.md files
-safe; the tier-3 eval runner unsafe outside a container. The estate's
-prior vendored adoptions in OCE were markdown-and-scripts
-payloads that predated the rule; this repository starts with none.
+safe; the tier-3 eval runner unsafe outside a container. OCE's prior
+vendored adoptions (its identity-provider skill family, the MCP inspector and
+the skill-creator) were markdown-and-scripts payloads that predated the rule,
+and their reviews backfill at their next pin bump; jimcresswell.net started
+with none.
 
 ## Enforcement
 

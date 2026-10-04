@@ -1,8 +1,9 @@
 ---
 name: type-expert
-description: 'TypeScript type safety reviewer. Traces type flow from origin through the system. Detects widening, assertions, and missed compile-time guarantees. Core principle: why solve at runtime what you can embed at compile time?.'
+description: 'TypeScript type system specialist focused on compilation-time type embedding and schema-driven type flow. Invoke proactively when type assertions appear (as SomeType, !, any, @ts-expect-error), generics grow complex, type errors resist clean resolution, generated code output changes, or external data enters without schema-driven validation. Also invoke when code-expert flags assertion pressure or type widening.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
+color: cyan
 permissionMode: plan
 ---
 

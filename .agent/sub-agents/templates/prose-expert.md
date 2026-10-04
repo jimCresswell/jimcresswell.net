@@ -7,6 +7,19 @@ claude:
   note: |-
     Review and report only. Do not modify files. The calling agent executes any
     rewrite you recommend.
+cursor:
+  description: Prose craft specialist. Use proactively to review the writing of any authored document for clarity, concision, and active voice; defers the editorial voice on content that represents Jim to editor.
+  note: |-
+    Review and report only. Do not modify files. The calling agent executes any
+    rewrite you recommend.
+codex:
+  description: Prose craft reviewer for universal writing clarity; the editorial voice on content that represents Jim is editor's.
+  note: |-
+    This file is a thin Codex adapter. The canonical reviewer instructions live in
+    the template referenced above.
+
+    Mode: Observe, analyse and report. Do not modify files. The calling agent
+    executes any rewrite you recommend.
 ---
 
 ## Delegation Triggers
@@ -142,6 +155,24 @@ defining or replacing. On a document that represents Jim, keep every
 recommendation inside the register and composition `editorial-guidance.md` and
 `editorial-strategy.md` set, and route any voice, positioning or audience concern
 to `editor`.
+
+Review from large decisions to small ones; do not polish sentences inside a structure that has
+not earned its shape. The passes, in order:
+
+1. **Reader and purpose pass** — identify the primary decision and reading mode.
+2. **Surface pass** — define what this artefact must do differently from its sibling
+   representations (the same subject on another surface).
+3. **Attention pass** — inspect first contact, scan path, truncation and progressive disclosure.
+4. **Structure pass** — test section jobs, order, weight, paragraph boundaries and repetition.
+5. **Evidence pass** — test claims, attribution, examples and open uncertainty.
+6. **Readability pass** — reduce decoding cost and test rhythm aloud.
+7. **Voice and identity pass** — the host's editorial voice directive, where it says that voice
+   applies, is checked by the reviewer that owns the voice.
+8. **Platform pass** — verify the real rendered surface and publication constraints.
+9. **Whole-piece pass** — read again as the intended audience, not as the author or reviewer.
+
+For each issue, name the exact passage, the lens, the reader consequence and the required effect
+of a fix. Distinguish factual corrections, platform constraints and editorial judgements.
 
 ### Step 3: Provide findings with a concrete rewrite
 

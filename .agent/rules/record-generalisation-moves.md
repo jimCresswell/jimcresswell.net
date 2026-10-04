@@ -1,13 +1,17 @@
 ---
 classification: situational
-description: When a change makes an element of the Practice more general or more portable, the commit that makes it carries a Practice-Generalisation trailer naming the element and why; the list is computed from git history for contributions to and from sibling estates, the next transplant, and the later extraction of the Practice.
-trigger: surface:agent-tools/**, .agent/practice-core/**, .agent/rules/**, .agent/skills/**, .agent/directives/** — a change that makes a Practice element more general or portable
+description: Record every change that makes an element of the Practice more general or more portable with a Practice-Generalisation trailer in the commit that makes it, naming the element and saying in one sentence what became more general and why (owner direction 2026-09-13). Use when a change under agent-tools/, the Practice Core, rules, skills, directives or the platform adapters derives what it used to list, stops naming its host, replaces a host record's number with the concept, states a general form, or takes a sibling estate's more general text (marked received from that estate). Not for fixes to this repository's own product or paths, and never added later from memory. Failure shapes — a register file beside the commits that stopped getting rows after ten days while qualifying moves kept landing; a list rebuilt from commit subjects that keeps the changes but loses the reasons.
+trigger: surface:practice-substrate ∪ ceremony:commit
 globs:
   - agent-tools/**
   - .agent/practice-core/**
   - .agent/rules/**
   - .agent/skills/**
   - .agent/directives/**
+  - .claude/**
+  - .cursor/**
+  - .agents/**
+  - .gemini/**
 ---
 
 # Record Generalisation Moves
@@ -71,7 +75,8 @@ generalisation move and carries no trailer.
 
 The owner's direction and the rule were first written in the jimcresswell.net Practice on
 2026-09-13, in a register form: `.agent/rules/record-generalisation-moves.md` as that
-repository's history holds it before 2026-09-24. The open-curriculum-ecosystem Practice took it through the Practice Box exchange of
+repository's history holds it before 2026-09-24.
+The open-curriculum-ecosystem Practice took it through the Practice Box exchange of
 2026-09-24 (batch one). The adaptation: the note moves from an append-only register file into
 a commit trailer, and the list is computed from git history. The register form stopped
 getting rows after ten days while qualifying moves kept landing, and a register cannot keep a

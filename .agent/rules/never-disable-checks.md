@@ -56,8 +56,7 @@ state.
   warnings are not deferrable; downgrading to `warn` is suppression
   with extra steps).
 - **Adding `eslint-disable` / `eslint-disable-next-line`** to
-  silence a rule. The
-  [`no-eslint-disable`](../../tooling/eslint/src/rules/no-eslint-disable.ts)
+  silence a rule. The estate's ESLint plugin's `no-eslint-disable`
   rule already enforces this; the rule itself must never be exempted.
 - **Adding `// @ts-expect-error` / `// @ts-ignore`** to bypass a
   type error. Fix the type flow upstream — see
@@ -191,8 +190,8 @@ For this rule, a check or gate is any of:
 
 - A lint rule (ESLint, Prettier, markdownlint, custom eslint-rules).
 - A type-checker invocation (`tsc`, `pnpm type-check`).
-- A test in any test suite (`pnpm test`, `pnpm test:e2e`, the
-  visual-regression harness, etc.).
+- A test in any test suite (`pnpm test`, the end-to-end checks, the
+  host's rendering-proof instrument, etc.).
 - A static analysis tool (knip, depcruise, Sonar, CodeQL).
 - A pre-commit hook (`.husky/`, `.claude/hooks/`,
   `pre-tool-use` / `post-tool-use` agentic hooks).

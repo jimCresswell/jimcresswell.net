@@ -14,7 +14,7 @@ check once the slice is shaped.
 ## Read in order
 
 1. `.agent/sub-agents/templates/design-system-expert.md`
-2. `.agent/rules/invoke-design-system-expert.md`
+2. The `design-system-expert` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. Relevant changed files in `app/`, `components/`, `app/globals.css`, `lib/`,
    and `public/`
 4. `docs/architecture/decision-records/006-header-responsive-layout.md` when

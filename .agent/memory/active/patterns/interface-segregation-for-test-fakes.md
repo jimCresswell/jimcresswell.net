@@ -3,6 +3,7 @@ name: "Interface Segregation for Test Fakes"
 polarity: pattern
 use_this_when: "Test fakes cannot satisfy a complex generated type without type assertions"
 category: testing
+layer: general
 proven_in: "apps/oak-curriculum-mcp-streamable-http (widget renderer contracts, tool execution tests)"
 proven_date: 2026-02-22
 barrier:

@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Test immediate-fail checklist. Any single violation rejects the test; first-pass screen before any deeper analysis.
-trigger: surface:**/*.test.ts
+trigger: surface:test-authoring
 globs:
   - "**/*.test.ts"
 ---
@@ -86,7 +86,8 @@ seam, extract a pure function, inject a dependency).
    Code imported into the test process is proven at the handler
    seam, called directly: a harness's loopback listener is a socket.
    Network reach lives in validation checks run by CI-gated tasks, the
-   deploy pipeline and operator context; never in a test.
+   deploy pipeline and operator context; never in a test (OCE records
+   that boundary as its ADR-161, the network-free PR-check CI boundary).
 
 ## Mock/Stub Immediate Fails
 
@@ -194,7 +195,7 @@ The test-expert flags the symptom. The fix is usually upstream.
   on `process.env` reads/writes, `vi.stubGlobal`, `vi.mock`,
   `vi.doMock`, `vi.useFakeTimers` and `vi.setSystemTime`.
 - `.agent/directives/testing-strategy.md` §Rules — the skip-mechanism
-  prohibition (no-skipped-tests bullet).
+  prohibition (the **No skipped tests** bullet).
 - `.agent/rules/no-conditional-tests.md` — prohibition on conditional
   execution and the architectural-failure diagnosis.
 - `.agent/directives/testing-strategy.md` — full authoritative

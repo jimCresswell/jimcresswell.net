@@ -3,6 +3,7 @@ name: "A Compile-Time-Only Helper Has No Standalone Runtime Test — Co-Land It 
 polarity: pattern
 use_this_when: "Authoring a helper whose entire value is a compile-time guarantee (exhaustiveness, type narrowing) and TDD pressure wants a standalone unit test for it before any consumer exists."
 category: testing
+layer: family
 proven_in: "assertNeverResult exhaustiveness helper, OCE's result package WS0 + graph-core term-reconstruction WS4 — 2026-06-19 (Merlin spins Cirrus)."
 proven_date: 2026-06-19
 barrier:

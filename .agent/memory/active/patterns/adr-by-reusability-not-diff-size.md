@@ -4,6 +4,7 @@ name: "ADR by Reusability, Not Diff Size"
 polarity: pattern
 use_this_when: "closing a small implementation lane and deciding whether the decision it encoded deserves to be promoted to an ADR"
 category: process
+layer: general
 proven_in: ".agent/plans/architecture-and-infrastructure/active/sentry-otel-integration.execution.plan.md (hygiene closure, 2026-04-17)"
 proven_date: 2026-04-17
 barrier:

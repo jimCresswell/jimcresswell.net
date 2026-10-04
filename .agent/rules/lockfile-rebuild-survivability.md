@@ -31,7 +31,12 @@ gets mistaken for "the constraint is expressed".
 ## Action
 
 Run the rebuild; do not reason about it. Reasoning cannot see an incidental
-pin.
+pin. Run it cold, in an empty directory: pnpm with no lockfile seeds its
+resolution from `node_modules/.pnpm/lock.yaml`, so a rebuild beside the
+checkout's `node_modules` writes the old lockfile back when the declarations
+match the last install, and nothing was resolved (the second estate measured
+it on pnpm 12.4.2, under 30 ms, with and without `--lockfile-only`; the same
+declarations resolved cold picked up five in-range releases).
 
 Resolve the declarations cold, in an empty directory, never in a checkout with
 `node_modules`. There, `pnpm install` without a lockfile seeds its resolution
@@ -52,10 +57,10 @@ Run the block in one shell from the repository root, where the pathspecs name
 every workspace manifest, and stay in that shell for the assertions:
 
 ```bash
-scratch="$(mktemp -d)"   # an empty directory
+scratch="$(mktemp -d)"   # empty: no install state to seed from
 git ls-files -z -- package.json '*/package.json' pnpm-workspace.yaml .npmrc \
   | xargs -0 tar -cf - | tar -xf - -C "$scratch"
-pnpm --dir "$scratch" install --lockfile-only   # resolve from declarations alone
+pnpm --dir "$scratch" install --lockfile-only --ignore-scripts   # resolve from declarations alone; no lifecycle scripts
 ```
 
 `git ls-files` names only tracked paths, so stage a new workspace's
@@ -63,7 +68,10 @@ pnpm --dir "$scratch" install --lockfile-only   # resolve from declarations alon
 lockfile is never touched. Copy `"$scratch/pnpm-lock.yaml"` into the checkout
 only when its state is the one you mean to commit, and before assertion 4.
 
-Then assert all four, and read each result rather than the exit code alone:
+Then assert all four, and read each result rather than the exit code alone.
+The first three read `"$scratch/pnpm-lock.yaml"` and run
+`pnpm --dir "$scratch" audit`; the fourth runs in the checkout against the
+lockfile to be committed, once the cold result is that lockfile:
 
 1. **Floors** — every advisory-carrying package resolves at or above its fixed
    version in `"$scratch/pnpm-lock.yaml"`.
@@ -78,7 +86,8 @@ Then assert all four, and read each result rather than the exit code alone:
 
 **A byte-identical cold rebuild is the strongest pass.** A rebuild that merely
 satisfies all four assertions is still a pass: newly-published in-range
-versions are legitimate drift, not a violation. A rebuild that drops a floor,
+versions are legitimate drift, not a violation. A byte-identical result
+beside `node_modules` proves nothing: it is the seeded lockfile written back. A rebuild that drops a floor,
 crosses a hold, or fails the frozen install means the constraint was never
 declared — fix the declaration, never re-pin by hand.
 
@@ -88,7 +97,7 @@ pnpm `overrides` replace the **effective specifier of every dependency they
 bind**, direct dependencies included, and the lockfile records the override's
 specifier and the overrides themselves. An override and the manifests it binds
 therefore drift apart in two ways, and pnpm treats them differently (measured
-on pnpm 12.4.2, 2026-09-16):
+in jimcresswell.net on pnpm 12.4.2, 2026-09-16):
 
 - **An override changed without regenerating the lockfile fails loudly.** The
   lockfile's recorded overrides no longer match the workspace's, and
@@ -104,18 +113,24 @@ on pnpm 12.4.2, 2026-09-16):
   `>=1.7.1 <2` floor). A manifest raise meant to pick up a new patch leaves the
   old version installed with every gate green.
 
+OCE measured the same two directions on its pnpm 11.20.0 (2026-09-25, the
+frozen lockfile check with `--lockfile-only` over a copy of the tracked
+manifests and lockfile): the moved override failed loudly with
+`ERR_PNPM_LOCKFILE_CONFIG_MISMATCH`, and the moved manifest passed silently.
+
 So an override's comment names the manifests it rewrites, and the override and
 those manifests move in the same change, with the lockfile regenerated.
 
 ## Worked instances
 
-- **A security slice and a drift sweep**: a slice setting bounded security
-  floors and an estate-wide drift sweep were each tested by full
-  delete-and-rebuild and came back **byte-identical**: every floor, the major
-  holds and the audit state read as declaration-derived rather than
-  lockfile-retained. That was the delete-and-rebuild recipe, which runs in the
-  checkout, and beside `node_modules` a byte-identical result does not prove
-  the floors were declared (see §Action).
+- **A security slice and a drift sweep** (OCE MCP-151, #530 and #531,
+  2026-07-25): a slice setting bounded security floors and an estate-wide
+  drift sweep were each tested by full delete-and-rebuild and came back
+  **byte-identical**: every floor, the major holds and the audit state read
+  as declaration-derived rather than lockfile-retained. That was the
+  delete-and-rebuild recipe, which runs in the checkout, and beside
+  `node_modules` a byte-identical result does not prove the floors were
+  declared (see §Action).
 - **The corollary, same lane**: the sweep moved a type package's manifests one
   patch ahead while its override still pinned the old patch, and CI's frozen
   install failed with `ERR_PNPM_OUTDATED_LOCKFILE`. An older pnpm failed

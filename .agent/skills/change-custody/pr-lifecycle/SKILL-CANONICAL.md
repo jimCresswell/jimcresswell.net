@@ -48,7 +48,16 @@ One stacked-PR mechanic that bites at open and at retarget: **a base
 retarget fires no `synchronize` event, so required checks do not re-run**
 and the PR can sit green-stale or pending forever. The cure is an empty
 commit on the head branch (`git commit-tree` against the same tree, push),
-touching no checkout.
+touching no checkout. A second stacked-PR mechanic bites at the merge
+boundary, after every review round is spent (measured first-hand
+2026-08-11): on native GitHub stack members the synchronous REST merge
+endpoint answers 403 ("use the asynchronous merge endpoint") even at a
+settle-ready verdict, base edits answer 422, and the vendor's only
+stack-merge instrument is a CLI cascade under ambient credentials — which
+the bot-identity rule forbids. If PRs are stacked for review ergonomics,
+plan the merge boundary from the start as stack dissolution plus sequential
+bottom-up merges on the standard bot path; never discover the 403 at
+settle.
 
 ## What a PR is (the intent under every phase below)
 
@@ -63,20 +72,20 @@ then posted a disposition reply un-gated on its own verification — a false cla
 into the permanent record):
 
 - **Every comment is a claim entitled to full epistemics** — verify, adjudicate,
-  integrate or refute with evidence. *Resolved* is the outcome of that
+  integrate or refute with evidence. _Resolved_ is the outcome of that
   treatment, never the goal; racing resolution inverts the artefact.
 - **While a PR is open, the conversation IS the work.** A reviewer finding is a
   bug report against the proposal — session priority #1, ahead of new work. A
   push changes the proposal, so the entire review surface is stale the moment
   it lands: re-harvest and disposition before reporting anything.
 - **The record outlives the merge.** Description + threads + dispositions are
-  how future readers (and agents answering from PR history) recover *why* the
+  how future readers (and agents answering from PR history) recover _why_ the
   change is what it is. A false disposition reply poisons that well permanently
   — gate every reply on its own verification, and VERIFY description edits
   actually stuck (bot summary re-appends can silently mask a failed edit).
 - **"Mergeable" is a git-graph fact about ancestry, not readiness.** Readiness
   is a property of the conversation: every thread dispositioned with evidence,
-  every check green, the description true of the *current* diff, the record
+  every check green, the description true of the _current_ diff, the record
   coherent for a reader who was not there. Report in those terms.
 - **The PR exists to structure shared attention** so nobody has to chase state;
   making the owner chase threads defeats the artefact even when the diff is
@@ -97,6 +106,41 @@ into the permanent record):
   inventory a seat may hold; the count is reported at every wrap and acted
   on at every boundary — merged when green and clean, closed with its
   reason, or owned with a named seat and a next step.
+- **A review lane's deliverable is the review ON the PR, and a review of a PR
+  lands on that PR's branch.** Post the first typed, first-hand-verified
+  finding on the PR as soon as it exists and say what follows; the report,
+  the node, the thread record and the panels are the record, never the gate
+  (owner, 2026-09-06, after ninety minutes of plan, fleet design, census
+  scripts and continuity artefacts: "there is not a single review on the PR
+  from you so far"). A record about an open PR — a review report, its node,
+  its rows — lands on that PR's branch, pushed as the bot under the PR's own
+  review contract, never as a separate PR into the base (owner, 2026-09-07,
+  after re-basing such a PR by hand: "I never wanted the review in a
+  separate PR, that is of very little use, you should have added your work
+  to 66 in the first place"); "never push to the reviewed PR's branch" was a
+  seat's borrowed etiquette, never doctrine, and the owner's own act on their
+  PR is authority. When the reviewed branch is behind the base, sync it in
+  the same push. And the lane stays denominated in the review of the
+  object's substance — chapters read, findings made — not in the apparatus
+  built to review it (owner, 2026-09-07: "Your one job was to review PR 66,
+  have you done that?").
+- **A remote branch without a PR is not safe.** Closing a PR is never a
+  preservation move (owner, 2026-09-04, verbatim: "a remote branch without a
+  PR is NOT considered safe, the work will rot or be orphaned, if it is
+  worthwhile then it stays open"). The PR is the visible index and the merge
+  vehicle; a bare branch is invisible inventory that decays. Never present
+  "close, branch preserved" as a disposition: judge the work's worth —
+  worthwhile work stays open as an owned lane (sync, gates, first-hand review,
+  settle, merge); worthless work closes with the reason and its branch goes.
+  The earlier form of the same ruling (owner, 2026-07-26, on a "preservation
+  draft" PR that went from frozen reference to conflicting to owner card in one
+  day): "work sitting on a branch is not 'preserved', merged work is preserved,
+  if it is valuable we find a way to merge it, if not we delete it." A branch
+  is a decaying claim, not a home; "frozen for reference", "parked" and "kept
+  for pickup" are not dispositions. At a seat's closeout a wrap-mandated
+  tracked artefact reaches its safety floor as an open DRAFT PR (remote,
+  discoverable, merge-vehicle attached) — never local preservation — and the
+  draft still owes a merge-or-delete disposition afterwards.
 
 ## Phase 1 — Before opening
 
@@ -107,13 +151,23 @@ into the permanent record):
    Tripwire: a conflict beyond trivial union-append on `.agent`
    continuity/state/memory files STOPS the merge and routes to the Director —
    resolving it solo is how approved versions get silently reverted.
-2. **Tree and gates**: working tree clean; a successful push already ran the
-   full pre-push gate suite, so a clean push IS the local-green proof — do not
-   re-run gates just to re-confirm it. When several branches need pushing,
-   push them as ONE multi-ref command (`git push origin refA refB refC`) —
-   the pre-push gate chain runs once per push invocation, not per ref, so N
-   separate pushes pay the ~3-minute suite N times for the same tree
-   (first-hand, 2026-08-06).
+2. **Tree and gates**: working tree clean. A push whose pre-push hook ran has
+   already run the full gate suite, so a clean push IS the local-green proof —
+   do not re-run gates just to re-confirm it. A push made with `HUSKY=0` runs
+   no local gate and proves nothing local: the ChatGPT Work cloud profile
+   pushes that way (its routing directive names the static checks it reports
+   instead), and so do Claude cloud sessions by the owner's 2026-08-31 ruling
+   (`.agent/claude-harness-integrations/cloud-environment.md`, which relies on
+   CI as the gate and names the in-session validation it keeps). The identity route for a push is
+   `bot-identity-on-third-party-systems`, which evaluates the ChatGPT Work
+   cloud profile first: a detected Work cloud session pushes as
+   [`cloud-environment-routing.md`](../../../directives/cloud-environment-routing.md#chatgpt-work-cloud-profile)
+   routes it (the configured credential, `HUSKY=0`, no pnpm and no bot
+   minting). Every other push goes through
+   `pnpm agent-tools merge-bot push --branch <name>`, never a plain
+   `git push`, and the pre-push gate chain runs once per push invocation, so
+   batch a branch's cures into one push rather than paying the ~3-minute
+   suite once per cure.
 3. **Worktree PRs**: a worktree's branch should have carried a draft PR from
    its first commit (`worktree-hygiene` §1); this skill takes it to ready.
 4. **Scope the PR for review, not for tidiness**: an artefact that invites
@@ -164,6 +218,26 @@ from a handoff record).
 
 ## Phase 2 — Open with a reviewer-facing description
 
+Where the repository's PR label ledger defines no fleet-authorship label, this
+step has nothing to apply (this repository, 2026-09-24). Otherwise every PR
+created under the owner's identity or the fleet bot carries the
+repository's fleet-authorship label at creation (`--label` on the create
+call, or the API equivalent; the label and its meaning are in the PR label
+ledger under `docs/engineering/`). Owner standing word (2026-08-11): "PRs are
+getting created without the jimbot label, if a PR is created with my identity
+or the jimbot identity, it needs that label." The label is the filter that
+separates this estate's PRs from other authors' on a shared repository; a
+PR found without it is labelled at sight, and this open-step is the
+generator cure so the convention never depends on per-seat vigilance.
+
+Request no HUMAN reviewer at open or at any later round without the owner's
+express word (owner standing rule, 2026-08-13: "don't request matt as a
+reviewer, don't tag anyone in a Linear ticket without my express request").
+Review requests and ticket mentions fire notifications at real people;
+pulling in a colleague's attention is the owner's call, never an agent
+default. Bot reviewers (Copilot, the Codex connector) stay within the
+standing grants; an owner-named exception binds for that instance only.
+
 Read `.github/pull_request_template.md` and fill it as a **communication
 artefact for reviewers**, never a file list: what changed, why it matters,
 what reviewers should focus on, what was deliberately left out, and what
@@ -209,9 +283,10 @@ true defect, including bytes the twin estate had merged unreviewed, so a
 docs-only pull request that changes a rule or a skill requests the
 review. Cadence is at-open plus
 substance-triggered (a reshaped diff), never per intermediate cure push;
-on a code pull request the tip that goes to the front door carries the
-request (under the held-cure shape that is the slot's one sync push, so
-the cadence and the tip-bound gate meet at the same push). Copilot's
+on a code pull request the last push that changes the pull request's own
+diff carries the request (under the held-cure shape that is the slot's one
+sync push, so the cadence and the tip-bound gate meet at the same push); a
+pure sync requests nothing (§merge boundary item 5). Copilot's
 absence never blocks a merge on a docs-only bot-authored pull request (the
 owner's 2026-09-03 exception, §merge boundary item 5); on a code pull
 request the configured Copilot leg is OWED until it binds the tip, and the
@@ -275,8 +350,57 @@ actually present**:
   framing does not cover.
 - **Removals** — anything the diff deletes that a reader of the title would not
   expect to lose.
+- **Invariants and tool behaviour** — table each invariant the description
+  states ("counted", "never", "only") and each tool behaviour it names against
+  every code site that binds it (each arm, each consumer) and the assertion or
+  predicate that holds it there; when an exclusion is added beside an existing
+  one, the existing one's consumer list is the site list. A claim-bearing
+  changeset (records, doctrine, a description stating invariants) also gets one
+  context-free verification pass against its sources and code before it is
+  published; the pass replaces post-push rounds and never adds to them, and a
+  changeset with no stated claims skips it. Worked instances, 2026-09-16: #149's
+  round one found a counted invariant unasserted in two arms and a regression in
+  a consumer its own file enumerated, and pre-publication passes caught about
+  eighteen claim errors in one wrap's records and seven in a retrospective's
+  citations. Prediction: claim-class findings in round one become rare on
+  changesets that ran the pass; falsifier: such a changeset still draws three or
+  more rounds of claim-class findings, or the pass costs more than the rounds it
+  replaced. **A text cure's sweep reads outward, not only at the cited line**: the
+  corrected claim across the whole branch (in other words and in other files), the
+  surviving sentences in the same file that teach the model the cure withdraws, and the
+  governing texts of any act a new sentence prescribes. On the first run of this pass
+  (#152, 2026-09-17: 31 claim errors before publication), round one still raised five
+  over-bar findings, three of them this class — a new push instruction that skipped the
+  Work-cloud route its identity rule evaluates first, a withdrawal banner above surviving
+  instructions, and a cured tool claim repeated in a continuity record.
+  The sweep binds an authored re-truing as much as a review cure: on #153 a re-truing
+  written before this paragraph existed left five sentences in the same files teaching
+  the model it withdrew, and they were five of the doctrine group's nine findings.
+  Two further verifier lenses, from the classes the pass did not reach on #153 and #155
+  (2026-09-17 to 2026-09-19): **an amendment's neighbours** (after amending a sentence in a
+  record or a decision, grep the same file and its sister records for the old claim's nouns;
+  nine of #155's fifteen pre-publication findings were unchanged siblings of text just
+  amended), and **a mechanism claim is read against the code** (a sentence saying what a
+  tool does is checked at the tool's source, not at its documentation). When one sentence
+  is about to be amended a third time, stop and re-read the whole passage against the
+  mechanism's source first: four of #155's eight review findings were on one sentence of
+  one decision, each cure drawing the next.
+  A changeset that lands a corrected direction (an owner ruling that renames a category,
+  withdraws a shape or reverses a reading) opens its pass with the two-list sweep of
+  [`no-tombstones-for-removed-ideas`](../../../rules/no-tombstones-for-removed-ideas.md)
+  §Corrected Directions, run estate-wide by the OLD name before any verifier reads: every hit
+  is residue to re-true or a fact to harvest, and the sweep's range is the whole estate.
+  Worked instance, 2026-09-20: the no-IO test invariant's landing searched
+  the eight files it changed and their citers; 22 of the fold's 34 review findings were
+  residue in the next rings (a reviewer template, two ADR bodies, four docs, a rule), found one
+  ring per round. Falsifier: a changeset that ran the sweep still draws two rounds of
+  residue-class findings.
+  A cure is a new claim and gets the same check at source as the text it replaces, before
+  its commit runs: on the same fold three of the author's cure sentences were wrong when
+  first written (a "Phase 4" that is step 8, "the existing smoke suites" that is one suite,
+  and `request(app)` relabelled as an E2E check), each caught by that check or by a reviewer.
 
-Worked failure (2026-07-26, PR #557): a PR titled *"action pin bumps"* carried
+Worked failure (2026-07-26, PR #557): a PR titled _"action pin bumps"_ carried
 `github/codeql-action` v3 → v4 and `slackapi/slack-github-action` v3 → v4 — two
 majors, one on a required status check, one on an alert path `if: failure()`
 that no CI run exercises. The diff was correct and the pins were genuine; the
@@ -304,7 +428,14 @@ only after the owner's stated acceptance (a Director's ruling, from a thread rec
 ## Phase 3 — Harvest EVERY feedback surface (the step most often botched)
 
 Immediately after opening — and again after every push — pull all four
-surfaces. Partial reads produce false "no problems" verdicts:
+surfaces. Partial reads produce false "no problems" verdicts. Where the PR is
+linked to a ticket, the ticket's comments are a fifth surface: a
+collaborator's bots comment on Linear tickets instead of on PRs (owner,
+2026-08-11: "start monitors watching for changes in Linear tickets, Matt's
+bots are commenting on them instead of on PRs"), so a "settled" PR can carry
+unharvested findings sitting on the ticket; fold ticket-borne commentary into
+the round tally before any settle signal, with a change monitor on the lane's
+live tickets where the platform is in use.
 
 1. **Review threads (the authoritative comment surface)** — GraphQL
    `pullRequest.reviewThreads`, reading per thread `isResolved`, `path`, and
@@ -325,7 +456,18 @@ surfaces. Partial reads produce false "no problems" verdicts:
    silence from a wait is never "no review") (the paged
    `reviews` connection carries both) — the binding the state machine's
    tally (item 2) buckets body findings by; a Sonar gate summary or a bot
-   capability notice lives here. The dual of item 1's REST-only failure: a
+   capability notice lives here. Read this surface UNFILTERED, every time
+   (owner, 2026-08-12, verbatim: "never ever filter reviews, ever. That means
+   accepting some noise about exhausted quotas, so be it, better that than
+   missing feedback"): no login filter, no state filter, no tip filter on any
+   review read at any point in a drive — a read selected on one bot's login
+   left four changes-requested reviews under a colleague's identity invisible
+   until the merge ruleset bounced the merge. A narrow read is lawful only
+   AFTER an unfiltered read in the same breath has enumerated the full set.
+   And the suppressed block is harvested as if it were the review body,
+   every round: two suppressed findings left silent on one PR came back as a
+   headline comment on the merged PR two weeks later and were raised again on
+   its successor (2026-09-02). The dual of item 1's REST-only failure: a
    reviewThreads-ONLY harvest also structurally undercounts — Copilot's
    "suppressed low-confidence findings" live only in review submission
    bodies with no thread state, and those suppressed findings have run real
@@ -337,7 +479,7 @@ surfaces. Partial reads produce false "no problems" verdicts:
    review read; a narrow read is lawful only after an unfiltered read in
    the same breath has enumerated the full set.
 3. **All checks** — `gh pr checks`, including the external ones (SonarCloud,
-   CodeQL, Vercel, Cursor Bugbot, Codex). A failed check's *first* failure is
+   CodeQL, Vercel, Cursor Bugbot, Codex). A failed check's _first_ failure is
    the root to chase: a 20-second `install` failure cascades into skipped
    builds and a failed deployment — fix the root, not the echoes. CodeQL
    alert reads are ref-scoped: the per-number GET returns `state=null` when
@@ -349,7 +491,18 @@ surfaces. Partial reads produce false "no problems" verdicts:
 4. **Sonar quality gate** — when it fails, pull the ACTUAL issues
    (`search_sonar_issues_in_projects` with `pullRequestId`, per the
    `sonarqube-mcp-instructions` rule) and read each flagged site. The gate
-   summary names conditions; only the issue list names the work.
+   summary names conditions; only the issue list names the work. Sonar on
+   this repository is automatic analysis (server-side, fired by the push
+   webhook; no CI scan step), so the required "SonarCloud Code Analysis"
+   check can stay absent forever when the webhook drops: the ruleset shows
+   it "expected", the merge endpoint refuses, and everything else is green
+   (PR #465, 2026-07-21). Docs-only PRs are analysed too, so absence never
+   means not-applicable. A settle watch therefore checks BOTH that no check
+   is pending AND that Sonar's public API reports a verdict for the PR
+   (`api/qualitygates/project_status` with the pull-request key returning a
+   status other than NONE); a checks-only watch calls "settled" too early.
+   The cure for a dropped trigger is an empty commit pushed to re-fire the
+   webhook; analysis follows within minutes.
 
 ## Phase 4 — TRIAGE every comment; fix at source
 
@@ -370,10 +523,10 @@ surfaces. Partial reads produce false "no problems" verdicts:
 
 - **The triage ruling** (owner, 2026-07-27, verbatim, a SEAT-LEVEL
   obligation applied at the moment each comment is read — never deferred to
-  Director discretion): *"We do NOT have to address every comment, we have
+  Director discretion): _"We do NOT have to address every comment, we have
   to TRIAGE every comment, if it is incorrect reject it, if it is correct,
   relevant and proportionate address it, if it is anything else raise a
-  ticket, tell the Director, and close the comment."*
+  ticket, tell the Director, and close the comment."_
   Read through the owner's later ruling for all agents (2026-09-23,
   verbatim: "do not update the Director unless you have a question or other
   request, the normal records keep the record"), the ticket is how the
@@ -399,7 +552,11 @@ surfaces. Partial reads produce false "no problems" verdicts:
   2026-09-11/12: a true observation about
   nested fences became a container-aware parser nobody had asked for (five rounds, then
   deleted); a report's per-claim marker contract was cured by narrowing the claim, never by
-  adding markers (one push).
+  adding markers (one push). The scope test reads CAUSAL scope as well as declared scope:
+  a regression the pull request's own change introduces is inside it whatever §Scope says,
+  because declared scope is the author's promise to the reviewer and causal scope is the
+  change's promise to the codebase (2026-09-16, #149: a reviewer filed a phantom OWED leg as
+  "outside this PR's declared scope"; the change had caused it, and it was cured in the PR).
 - The three-way test, exactly one terminal state per finding:
   1. **INCORRECT → reject**, with verified reasoning in the reply
      (`dispositions-need-verified-failure-scenarios`). Rejection is a
@@ -413,6 +570,13 @@ surfaces. Partial reads produce false "no problems" verdicts:
      ALL THREE conjuncts are required: individual validity is NOT
      sufficiency — a correct finding whose cure widens the PR beyond its
      ticket's story fails the proportionality conjunct and goes to state 3.
+     On code, RELEVANT means exercised by a tested or recorded input of the
+     pull request's specification (the state machine's item 2): a correct
+     case no such input exercises fails this conjunct and goes to state 3
+     as a fixture at pickup, never to state 2 (PR #139, 2026-09-12). Once
+     the declared settlement-push budget is spent, every finding goes to
+     state 3 whatever it exercises — the cost gate refuses the push, and
+     the reviewer blocks read the same items as observations.
   3. **ANYTHING ELSE → ticket + tell the Director + CLOSE the comment.**
      Correct-but-elsewhere, correct-but-disproportionate, out-of-story
      hardening, adjacent design questions: raise a pointer ticket (never a
@@ -429,7 +593,7 @@ surfaces. Partial reads produce false "no problems" verdicts:
   this ruling landed). Underlying principles:
   `concept-exploration` §Loop Dynamics; sizing gate: `proportionality`.
 - **A sampling finder has no fixed point — cure the CLASS, not the instance.**
-  A bot reviewer over a large, dense diff *samples* it differently each pass
+  A bot reviewer over a large, dense diff _samples_ it differently each pass
   rather than converging: measured suppressed-finding counts across one arc ran
   5, 5, 2, 4, 3, 3, and round 10 flagged two surfaces that had been unchanged
   since round 1. Waiting for such a loop to reach zero is waiting on a process
@@ -441,8 +605,8 @@ surfaces. Partial reads produce false "no problems" verdicts:
   - **Tally-then-step-back at ~4 settled rounds**, with the materiality line
     stated: cure correctness-class findings, disposition polish with a verified
     failure scenario, make every item visibly adjudicated on the PR, and give any
-    routed residue a named carrier. Convergence then means *the loop closed
-    honestly*, not *the finder went quiet*.
+    routed residue a named carrier. Convergence then means _the loop closed
+    honestly_, not _the finder went quiet_.
 - **A growing round is a routing failure.** If the surface under review expands
   between rounds, the loop cannot converge by construction — freeze the text and
   route the additions, rather than reviewing a moving target (worked instance: a
@@ -451,11 +615,15 @@ surfaces. Partial reads produce false "no problems" verdicts:
   by horizon, not more rounds).
 - Order by blocking force and risk, not by tool order; root causes before
   echoes.
-- Sonar findings keep their per-site channel: **owner-dispositioned with
-  evidence** (per-site, e.g. a false-positive with rationale at that site)
-  remains a terminal state alongside the three above. Triage routes
-  findings; it never buries them — never dismissed by category, never
-  gate-narrowed, never warning-downgraded, never suppressed.
+- Analyser findings, Sonar's and CodeQL's alike, have no per-site
+  disposition channel: every finding is cured at source (the owner's
+  2026-09-08 ruling, "we don't dismiss issues, we fix them"); the one
+  excepted class is OCE's tracked CodeQL query exclusion of
+  `js/missing-rate-limiting` (the owner's 2026-09-17 mechanism ruling,
+  about that one issue; OCE's sonar disposition policy records it).
+  Triage routes findings; it never buries them — never dismissed by
+  category or per site, never gate-narrowed, never warning-downgraded,
+  never suppressed.
 - Fix the class, not the instance: a spelling finding on two lines gets a
   repo-wide sweep of the class; a stale literal gets checked against its
   source constant convention. The class sweep that ends a loop re-runs
@@ -523,7 +691,7 @@ contradicts (2026-10-02).
 
 - **Every PR-state read STARTS from the compound read — the review-round
   state machine's item 1, below — in ONE call.** This is a floor, not a
-  ceiling: the Phase 3 harvest and the pr-watch poll are consumers and
+  ceiling: the Phase 3 harvest and the compound watch loop are consumers and
   refinements of the same compound state — what is forbidden is reading any
   SINGLE field in isolation to answer a question, however narrow the
   prompting signal (owner correction, ~50th instance of the class, PR #329,
@@ -545,40 +713,53 @@ contradicts (2026-10-02).
   `MERGEABLE`/mergeable-state alongside the checks, and confirm runs exist
   for the CURRENT head via `gh run list` filtered per-head — a checks-green
   read against a head with zero runs is reading the PREVIOUS head's truth.
-- The repo's budgeted watcher, `pnpm agent-tools:pr-watch <n> --watch --interval 60`,
-  is not a settle watch while it runs through the unified entrypoint: that path
-  buffers every line until exit, so a Monitor on it reads silence (frictions
-  F-164, five instances; OCE's copy of this skill withdrew the form on
-  2026-09-16). Arm a poll of the pull request's own fields as the Monitor, or
-  call `runPrWatchCli` from dist with the process streams. Where the watcher
-  does print, it gives one line per state
-  change, including new comments by author and the unresolved review-thread
-  count moving in EITHER direction. KNOWN SUBSET: pr-watch currently reads
-  PR-view fields, REST review comments, and thread counts — not review
-  bodies or `latestReviews` — so a summary-only review does NOT change its
-  snapshot. Treat its events as wake signals only, never as the state; the
-  Phase 3 harvest is the authoritative read on every wake, and extending
-  pr-watch to the full compound floor is tracked as the
+- Watch with a compound read that emits on change: a background loop under
+  a Monitor that runs one compound GraphQL read of the pull request per
+  60-second tick (state, merge state, head, the check rollup counted by state,
+  unresolved threads, reviews bound to the head; a connection that reports
+  truncation is paged within the tick, as item 1 requires) and prints one line only when that
+  reading changes, ending only on MERGED or CLOSED. It also prints a heartbeat
+  line at a fixed cadence (every tenth tick) and a line when it exits for any
+  other reason, so a dead or hung watcher is told apart from a quiet pull
+  request (F-164's expected shape); the heartbeat is liveness, never state. No tool provides that
+  loop yet: the seat writes it, running the compound selection of the
+  review-round state machine's item 1 at a 60-second interval (not the tight
+  polling F-110 forbids), until the `ws6-pr-watch-compound-floor` item below
+  gives it a tool form. For a single verdict,
+  `pnpm agent-tools pr state <n> --expect <login> [--expect <login> ...]`,
+  with one `--expect` per available configured reviewer as for the merge
+  (the flag declares the whole expected set), computes the front door's
+  reading once and never merges. Do NOT use
+  `pnpm agent-tools:pr-watch <n> --watch --interval 60` as the watch: run
+  through the unified entrypoint, that path buffers every line until exit, so
+  a Monitor on it reads silence; it was silent across head and check
+  transitions at three seats and exited early on ALL-GREEN at a fourth
+  (frictions F-164, five instances), so its silence cannot be told from its
+  failure. Treat any watcher's events as wake signals only, never as the
+  state; the Phase 3 harvest is the authoritative read on every wake, and
+  extending pr-watch to the full compound floor is tracked as the
   `ws6-pr-watch-compound-floor` item in
   `pr-merge-readiness-discipline.plan.md`.
   Passing checks alone are not green — an
   unresolved thread blocks merge-readiness just as hard. The Phase 3 GraphQL
   harvest remains the authoritative read for which threads and what they say.
-- **Know the watcher's designed hole: it also ENDS on ALL-GREEN.** Comments
-  post asynchronously up to ~10 minutes after a push, so an all-green exit
-  opens an unguarded window exactly when a bot round may still be composing.
-  **The mandated shape is a SUPERVISED watch**: a loop that re-arms pr-watch
-  on EVERY exit and terminates ONLY on MERGED/CLOSED, recomputing the
-  compound state at each re-arm (proven live end-to-end on PR #330,
-  2026-07-08: the watch rode the full arc to MERGED and self-terminated on
-  the recompute). MERGED/CLOSED is the only terminal claim — the only state
-  no late comment can un-green. Two refinements to the re-arm loop, both
-  worked instances: (a) **the loop SPINS when the PR is all-green but the
-  merge waits on an authorisation gate** — pr-watch's all-green exit fires
-  instantly on every re-arm and the cycle floods the notification surface
-  until the platform kills the monitor (2026-07-15). On an all-green exit
-  with the PR still OPEN, swap to a slow compound poll (~120s, one GraphQL
-  compound read per tick, emit only on deviation or terminal state).
+- **Know the designed hole of any watch that ends before MERGED/CLOSED.**
+  pr-watch ends on ALL-GREEN and `gh pr checks --watch` ends when the checks
+  complete, but comments post asynchronously up to ~10 minutes after a push,
+  so such an exit opens an unguarded window exactly when a bot round may still
+  be composing. **The mandated shape is a SUPERVISED watch**: one that
+  terminates ONLY on MERGED/CLOSED — the compound loop above does so by
+  construction; the earlier shape re-armed a shorter watch on EVERY exit and
+  recomputed the compound state at each re-arm (proven live end-to-end on PR
+  #330, 2026-07-08: the watch rode the full arc to MERGED and self-terminated
+  on the recompute). MERGED/CLOSED is the only terminal claim — the only state
+  no late comment can un-green. Two worked instances shaped the compound loop:
+  (a) **a re-arm loop SPINS when the PR is all-green but the merge waits on an
+  authorisation gate** — pr-watch's all-green exit fired instantly on every
+  re-arm and the cycle flooded the notification surface until the platform
+  killed the monitor (2026-07-15); the cure was a slow compound poll that
+  emits only on change or terminal state, the shape the watch above takes
+  from the start.
   (b) **The watch must emit on every state that means "stuck", not only
   failure and success**: an auto-merge/queue entry stalled at BEHIND or
   ejected from a merge group looks identical to "still waiting" unless the
@@ -587,8 +768,8 @@ contradicts (2026-10-02).
 - **There is no push-event transport to wait on instead**: true push events
   are webhooks (they need a server); `gh api repos/…/events` is itself a poll
   with ~30–60s feed latency; `gh pr checks --watch` has the same
-  exit-at-completion hole class. Polling the PR GraphQL at 60s (pr-watch,
-  budget-aware) is the strongest available primitive. Never hand-roll tight
+  exit-at-completion hole class. Polling the PR GraphQL at 60s (one compound
+  read per tick) is the strongest available primitive. Never hand-roll tight
   `gh` polling loops (the shared 5,000/hr API budget; frictions F-110).
   Between events, continue other work or hold; the watcher wakes you.
 - **The round in front of you is priority one over the next unit.**
@@ -605,9 +786,11 @@ contradicts (2026-10-02).
   settles, never answered with a push** — an apt mirror returning "Hash Sum
   mismatch" at the Playwright install step failed three runs in sixteen
   minutes (2026-09-09). The bot re-runs the failed job under its
-  `workflow-dispatch` scope (the installation holds Actions write: a
-  `workflow-dispatch` mint succeeded on 2026-09-25, recorded in
-  `.agent/reference/merge-bot.md`), so no push is made: an empty-commit
+  `workflow-dispatch` scope (the installation holds Actions write in each
+  estate: OCE read it from the installations endpoint on 2026-09-11 and
+  cites two bot re-runs of 2026-09-12; jimcresswell.net minted a
+  `workflow-dispatch` run on 2026-09-25; `.agent/reference/merge-bot.md`
+  records the host's evidence), so no push is made: an empty-commit
   re-trigger was the route only while the bot used a scope without that
   permission.
 
@@ -668,8 +851,11 @@ case-insensitively, an optional scope prefix `In scope,` or
 nothing else. `**Over-bar**`, `**In scope, over-bar**` and
 `**Over-bar on prong two.**` read; `**Not over-bar**`,
 `**Below-bar, not over-bar**` and any span with other words read as no
-marker. The prong and the scope reading are stated where they apply; the
-count does not read them. After the marker comes the disposition
+marker. The prong and the scope reading are stated where they apply, and
+the reply states them BEFORE any cure is written: naming the generator
+twice did not stop cure-reflex rounds at one seat, and stating the prong
+did, at once (2026-09-12, #136 and #138; "a sentence that must be written is
+a step"). The count does not read them. After the marker comes the disposition
 sentence: `Cured in SHA:<sha>` (the `SHA:` prefix and seven to forty
 lowercase hex characters, bare or inside a code span), `Routed to <home>`, or
 `Rejected` with the rationale — the convention for a reader; the raised
@@ -704,8 +890,8 @@ cure-worthy count reads the marker and nothing else (a below-bar finding
 and a build-changing one can both be routed to a home); signed replies and
 comments are excluded from the raised count (item 2). The recorded corpus
 that fixed this format is OCE's harvest of its pull request #135 (a fixture with a README in that
-estate, not carried here: it is that repository's review data); this
-repository's own corpus is recorded at its first tallied pull request.
+estate: that repository's review data, never carried); each estate's own
+corpus is recorded at its first tallied pull request.
 
 1. **The compound read.** One GraphQL selection is the BASELINE compound
    state — it answers most PR-state questions, but two inputs come from
@@ -717,30 +903,43 @@ repository's own corpus is recorded at its first tallied pull request.
    `headRefOid` (the current tip every review binding is compared
    against) + `mergeStateStatus` + unresolved `reviewThreads` count +
    `statusCheckRollup` + `latestReviews(first:20){totalCount
-   pageInfo{hasNextPage endCursor} nodes{author{login} commit{oid} state
-   submittedAt body}}` — the per-author latest-review connection, verified
+pageInfo{hasNextPage endCursor} nodes{author{login} commit{oid} state
+submittedAt body}}` — the per-author latest-review connection, verified
    live on PR #391, 2026-07-16 (the leg added 2026-07-16, PR #390). A
    bounded `reviews(last:20)` read is WRONG here: a long review history
    pushes an earlier bot's latest review out of the window (#390 exceeded
    20 review records), and omitting `body` makes a reviewer's skip marker
    unreadable. Treat `totalCount > 20` as truncation and page before
    concluding a reviewer is absent (re-query with
-   `after: <pageInfo.endCursor>` until `hasNextPage` is false). `latestReviews` serves ONLY the
+   `after: <pageInfo.endCursor>` until `hasNextPage` is false). The `pr view --json` projection is the
+   state, never the evidence: a merge verdict reads the paginated connection
+   (three truncation points: `latestReviews`, commits bounded at 100, the
+   comments' edit flag; 2026-09-20). `latestReviews` serves ONLY the
    reviewer-leg and settled checks (items 3–4, latest review per author);
    never the tally (item 2); it CANNOT
    reconstruct round history — rows vanish from the connection whenever a
    reviewer posts again.
 2. **The tally store.** One row per settled round, `{round commit SHA,
-   raised count, cure-worthy count}` — the raised count is every finding
+raised count, cure-worthy count}` — the raised count is every finding
    in reviews bound to that commit (the sampler record); the cure-worthy
    count is the subset that cleared the PDR-140 worthiness bar, and it
    is the count `c[n]`, the terminal-zero test, and both step-back arms
    read (a round can settle at raised > 0, cure-worthy = 0: that IS the
    terminal success state under triage). In lanes PDR-140 excludes
-   (code-class changesets; human and code findings of mixed ones) no
-   routing disposition exists — every verified-correct finding is
-   cure-worthy by definition — so the two counts coincide there and the
-   pre-PDR-140 reading of `c[n]` is unchanged. Rows are PERSISTED in the
+   (code-class changesets; human and code findings of mixed ones)
+   PDR-140's prose pricing does not apply; the bar is the specification
+   the pull request carries — its tests and recorded fixtures: a
+   verified-correct finding that a tested or recorded input exercises is
+   cure-worthy while the declared settlement-push budget lasts; a
+   verified-correct case no such input exercises, and every finding once
+   the budget is spent, is a fixture at pickup — Phase 4's state 3,
+   dispositioned below-bar with the reason and routed as that state
+   routes, never a mechanism edit (PR #139, 2026-09-12: reading "verified correct" as
+   "cure-worthy by definition" on an instrument over an open input space
+   ran seven settlement pushes against a declared budget of two and 98
+   comments, every finding correct, none exercised by a recorded input,
+   until the owner stopped the loop — the out-of-band correction this
+   block names as a defect against the skill). Rows are PERSISTED in the
    shepherd's working notes and built from the Phase 3 full harvest — each
    review thread's originating review carries its commit binding
    (`comments.nodes[0].pullRequestReview.commit.oid`). Findings are counted
@@ -784,19 +983,19 @@ repository's own corpus is recorded at its first tallied pull request.
    and can falsely trigger, or mask, non-convergence). Convergence is the
    per-round count strictly decreasing (under PDR-140 triage, read on
    the cure-worthy count per the firing-gate block above). The
-born-sketch plan-PR convergence cap (owner ruling 2026-07-25) is
-subsumed by PDR-140's intake contract. The cap's terms — after round 4,
-disposition to named homes unless a finding shows an actual falsehood;
-merge at any settle-green tip whose deltas are cap-dispositions or
-falsehood-cures; hard-stop only for new owner parameters — now read
-through the bar: for plan-class artefacts the verification point is
-pickup, so a falsehood earns a cure only if it would mislead before
-pickup (PR #32, 2026-08-31: reading every technical falsehood as
-cure-worthy ran the loop to eleven waves; the bar reading is what lets
-the loop terminate). The cap's four-round full-engagement grace is
-deliberately gone — triage binds from wave one. **The step-back trigger is
+   born-sketch plan-PR convergence cap (owner ruling 2026-07-25) is
+   subsumed by PDR-140's intake contract. The cap's terms — after round 4,
+   disposition to named homes unless a finding shows an actual falsehood;
+   merge at any settle-green tip whose deltas are cap-dispositions or
+   falsehood-cures; hard-stop only for new owner parameters — now read
+   through the bar: for plan-class artefacts the verification point is
+   pickup, so a falsehood earns a cure only if it would mislead before
+   pickup (PR #32, 2026-08-31: reading every technical falsehood as
+   cure-worthy ran the loop to eleven waves; the bar reading is what lets
+   the loop terminate). The cap's four-round full-engagement grace is
+   deliberately gone — triage binds from wave one. **The step-back trigger is
    mechanical, with the exact predicate `c[n] >= c[n-1] AND
-   c[n-1] >= c[n-2]` (two consecutive non-decreasing transitions across
+c[n-1] >= c[n-2]` (two consecutive non-decreasing transitions across
    three settled counts) OR 4 total settled rounds in the epoch — and
    EITHER ARM FIRES ONLY WHILE the latest settled round's count is
    non-zero**: a zero-finding settled round is the terminal SUCCESS state
@@ -875,10 +1074,19 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    before): "If you know there is broken code, fix it". On 2026-09-27 it
    carried one named fix push for a verified code defect past a spent round
    budget; it never means a pull request per true finding, a reading that fed
-   twelve rounds on one pull request. A code-class finding is outside this pricing altogether: a
+   twelve rounds on one pull request. A code-class finding is outside this prose pricing: a
    verified defect follows the code-review state machine's own transitions
-   (PDR-132's round budget and the step-back arms above), never a
-   settlement-push cap. The tip of the LAST budgeted settlement push — the
+   (PDR-132's round budget, the step-back arms above, and item 2's
+   specification boundary), and its cures land inside the same declared
+   settlement-push budget — a code loop with no cap ran seven pushes on
+   PR #139 (2026-09-12). The budget is enforced at the push: the review
+   cost gate (`agent-tools review-cost gate`, in the pre-push hook) prices
+   every reviewed round and prints `warn` at half the declared budget and
+   refuses the push past it (BUDGET-EXHAUSTED). `warn` is this machine's
+   re-pricing checkpoint, answered once in the round's disposition
+   comment with one of three moves — stop and reject the rest, split
+   along the finding classes, or ask the owner for a rebudget recorded on
+   the description; pushing anyway is not a move. The tip of the LAST budgeted settlement push — the
    declared budget (two by default, PDR-140 clause 4) plus any rebudget
    recorded when exhaustion left a mandatory cure pending — is the FINAL
    HEAD, named on the PR when that push lands. Read with the owner's ruling of
@@ -949,22 +1157,104 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    (2026-08-19: rounds 3–8 on one PR each found real holes in code born
    in round 3's cure).
 3. **Reviewer-leg states**, computed per (reviewer, tip): **SATISFIED** —
-   ANY harvested review by the reviewer binds to the current tip (the
+   ANY harvested review by the reviewer binds to the current tip AND
+   carries a SUBSTANTIVE body: non-empty after trimming, and not a skip
+   marker (the
    Phase 3 harvest is the source; the compound read's `latestReviews` alone
    can hide this when overlapping review jobs complete out of order — an
    older-tip review landing after a current-tip one makes the author's
    "latest" point backwards, leaving the leg falsely OWED and untouchable
-   by the timeout).
+   by the timeout). A review BINDS the tip exactly (it names the tip
+   commit) or by content: the commit it names carries the same patch as the
+   tip against its merge base with the base branch as read now (`git
+   patch-id --verbatim` of each commit's diff from GitHub's compare
+   endpoint). A PURE SYNC is a merge of the base that leaves that patch
+   unchanged; a clean merge is not always pure, since a base change inside
+   a hunk's context lines changes the patch. `pr state` names the inference
+   in the leg's evidence, and a commit whose content it cannot read binds
+   exactly or not at all. A review bound only by content does not stand in
+   for a round requested of its reviewer at or after it: a pending request,
+   a review-request or ready-for-review event, or an `@codex review`
+   comment (GitHub's pending requests never list a bot, so `pr state` reads
+   the rounds from the pull request's history). The leg waits for that
+   round. The door does not wait for an unrequested run, such as Codex's
+   own review of a push: a result it lands after the merge is a post-merge
+   finding, fixed forward. The limit is a decision: a base change outside
+   the patch that alters what the pull request's code does still binds,
+   and the synced head's checks cover it
+   (OCE's `agent-tools/src/pr-watch/content-binding.ts`). An EMPTY body satisfies nothing: replying to a review
+   thread through the API creates a review with an empty body under the
+   REPLIER's identity, so a pull request whose author dispositioned
+   findings carries tip-bound empty reviews of its own (seven on #142's
+   tip 92018c1f1, 2026-09-12; seven on #147's tip 15de4bc69, 2026-09-15),
+   and the declared set may name the seat's own posting identity under the
+   vendor-outage ruling above — so the hole is reachable by design, not
+   only by accident. The empties are COUNTED in the leg's detail, never
+   dropped silently: a predicate over a filtered set says how many items
+   it filtered and why, or an empty result set reads the same as a
+   satisfied one. The leg's SATISFIED reads the LATEST LANDED review
+   binding the current tip (exactly or by content) whose body is non-empty and unsigned — a skip
+   marker still counts, because a vendor posting one is reviewer
+   activity — never the author's globally latest review and never an
+   empty-bodied one: the leg measures REVIEWER activity, not the seat's own
+   dispositioning (2026-09-15, #147: the quiet-window proxy then in use
+   anchored on the seat's own reply, seven minutes after the round's last
+   real review; the signed-self-reply exclusion did not catch it, because an
+   empty body carries no signature to detect). A reviewer's reported result has TWO
+   transports, and the leg reads both: the review object, and a completion
+   comment on the conversation — the Codex connector's transport for a
+   zero-findings run ("Didn't find any major issues", naming the commit it
+   read), which by the owner's ruling of 2026-09-16 is a positive result,
+   not missing evidence (OCE's merge-door comment-evidence decision record of
+   2026-09-16).
+   The connector also keeps one summary comment per pull request, which it
+   rewrites on every run; the completed Code Review row of its table names
+   the commit a code review read, whatever it found (findings arrive as
+   review objects and threads, which the leg reads first). Such a comment
+   SATISFIES the leg when its author is an
+   expected reviewer, it is unedited or last edited by its author (the
+   author's rewrite is its report; an edit by any other account is not), and
+   the commit prefix it names resolves to exactly one commit of the pull
+   request, that commit binding the current tip (exactly or by content,
+   above); the evidence names the
+   transport. An expected reviewer's comment that fails a
+   precondition, on a leg the tip does not otherwise satisfy, is never read
+   as no comment: the verdict is `UNCLASSIFIED-EVIDENCE`, naming the
+   precondition and quoting the comment (a near-miss that reads as silence
+   puts the reader back where they started); the door refuses it by name,
+   and the cure is a fresh result on the tip (an `@codex review` comment),
+   never an edit; a summary whose Code Review row is still running is
+   refused as such, and its cure is to run the door again when the row
+   completes. The refusal decides the verdict when the round is
+   otherwise settled or when it is the blocking reviewer's; a live run
+   outranks it, and a refusal on another reviewer rides in the evidence
+   beside the blocking leg's own state. A declared STAND-IN takes a vendor's
+   place when it cannot review: `--unavailable <login>=<comment-url>` names
+   the bot's own comment on the pull request, opening with
+   `**<login> leg unavailable on head SHA:<40-hex>.**`, and it stands in for
+   that vendor's review of the named head only on the pull request's own
+   evidence (OCE's `pr-watch/declared-unavailable.ts`): the bot posted it and no
+   other account edited it; the timeline shows the outage (an error review
+   from the vendor on that head, or a round asked of it over sixty minutes
+   ago with no review since; the ruling of 2026-09-28); and the vendor has not
+   reviewed since. A declaration that fails, or names a head that does not
+   bind the tip, is `UNCLASSIFIED-EVIDENCE` at once, before the checks ladder.
    **SKIPPED** — via a tip-scoped marker, or via the timeout. The MARKER
    leg: an explicit skip marker in a review body satisfies SKIPPED only
    when its review binds to the current tip, OR when its body declares a
-   terminal / until-re-enabled scope. A reviewer QUOTA notice posted as a
+   terminal / until-re-enabled scope. The skip phrase counts only outside
+   quotation: inside a double-quoted or code span it is a reviewer quoting
+   it, and the body is a review. A reviewer QUOTA notice posted as a
    tip-bound review ("unable to review … quota limit") IS such a
    scope-declared marker (scope: quota restored) and NEVER counts as a
    zero-finding review — reading a bounce as settlement is the silent-wait
    class at the reviewer leg (worked instance 2026-07-21: quota bounces
    estate-wide were ruled SKIPPED by the owner and settled PRs merged on
-   green checks + zero threads + dispositioned findings). A scope-declared marker is re-checked
+   green checks + zero threads + dispositioned findings). A vendor ERROR
+   review (a body recorded in `pr-watch/vendor-error-reviews.ts`, such as
+   Copilot's "encountered an error and was unable to review") is neither a
+   review nor a marker: whatever its state it satisfies no leg, the leg's
+   detail counts it, and its cure is a fresh request of that reviewer. A scope-declared marker is re-checked
    each round against OBSERVABLE state and holds until its stated condition
    ends (e.g. spend restored); each re-check RECORDS condition, observed
    state, and verdict in the shepherd's working record alongside the skip
@@ -1004,9 +1294,17 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    governs each leg's rounds like any other's. How a configured leg binds
    a tip, first-hand on 2026-09-09/10 across nine landings: Copilot
    reviews the FIRST push and any tip the bot explicitly requests it on
-   (below); the Codex connector binds at creation and on later pushes
-   while its account has credit (#105, #106, #108, #110) and, when it has
-   none, posts "Codex usage limits have been reached for code reviews" on
+   (below); the Codex connector's own text lists its triggers as open,
+   ready-for-review and an `@codex review` comment — a push is not among
+   them, and #147's integration head (pushed 2026-09-15 ~15:3xZ) drew no
+   review in the fourteen minutes before an `@codex review` comment, though
+   rounds on #105, #106, #108 and #110 had arrived after pushes — so
+   a seat that needs Codex on a new tip requests it with an `@codex review`
+   comment on that tip rather than waiting on a push, posted as the bot (a
+   bot-posted `@codex review` drew the connector's reaction in thirteen seconds
+   and a clean review three minutes later, 2026-09-24; the owner's account is
+   not needed for it); while its account
+   has no credit it posts "Codex usage limits have been reached for code reviews" on
    the pull request instead of a review (first on #116, four seconds after
    its creation on 2026-09-10 06:53Z; on #117 at ready-for-review) — the
    owner named the outage at 08:3xZ (out of credit until about
@@ -1030,7 +1328,8 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    THE SHA IT REVIEWED exactly as the vendor leg is bound per tip: the
    posted review names the head it read; the landing premises record that
    sha and every push since; and those pushes may carry only cures of the
-   posted findings, the tip sync and landing-defect cures (a red required
+   posted findings, the tip sync (a pure one; a sync that changes the pull
+   request's own diff is other content) and landing-defect cures (a red required
    check) — a push carrying any other content needs a fresh leg on the new
    head (#117 and #113 landed that way on 2026-09-10, each with a posted
    Opus review and Copilot; #116's adversarial leg read 39e9cc36f and the
@@ -1052,7 +1351,11 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    from 06:53Z; seats shaped pull requests around the silence until the
    owner named it at 08:3xZ). A fresh pull request, where one is opened
    for any reason, needs a NEW branch name because the platform refuses a
-   second open pull request on a branch that already has one, and closes
+   second open pull request on a branch that already has one (`gh pr
+create` on such a branch exits non-zero with "a pull request for branch …
+   already exists" and the EXISTING pull request's address inside that error
+   text, gh 2.97.0; a script that keeps the output and drops the exit status
+   reads that address as a new pull request), and closes
    its predecessor with a pointer once it is open. The ruling's grounds,
    owner verbatim: "policy on PR reviews is that a codex or copilot or
    external claude review is desirable, and more vendors is better because
@@ -1085,7 +1388,12 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    host has none) would be the SETTLED-NO-REVIEW deadlock in another coat
    (Director's verdict on #65, 2026-09-14) (round-3 correction, 2026-07-16: without the skip clause a
    timed-out reviewer stays bound to an older commit and the settled state
-   is unreachable). Until 2026-09-13 the boundary was a PROXY, a quiet
+   is unreachable). After a pure sync, a leg SATISFIED before it stays
+   SATISFIED by content, and the synced tip settles at its first green once
+   the round reads closed, by intent. A pure sync opens no round: the tally
+   (item 2), the round budget and both step-back arms bucket a review by the
+   commit it names, never by content binding, so its findings count once,
+   in their own round. Until 2026-09-13 the boundary was a PROXY, a quiet
    window of more than ten minutes since the latest tip-bound review,
    because agents could not see a review round start or finish; the owner,
    who could, superseded it from that direct visibility (owner word
@@ -1130,21 +1438,24 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    Claude Code Review's standing verdict and NO Copilot leg expected; for
    that class a timeout-settled round IS merge-eligible. Grounds: the
    Claude review posts no review on a clean tip, so the leg never
-   satisfies. The Copilot leg is obtained by a review request on the tip:
-   in OCE the bot's own `POST
-   repos/{owner}/{repo}/pulls/{n}/requested_reviewers` with
-   `reviewers[]=copilot-pull-request-reviewer[bot]` under the
-   pull-request-work token returned 201 and the timeline showed
-   `review_requested Copilot` within seconds (first-hand there on #108,
-   #109, #110, #114); in THIS estate that call under the bot token
-   registers nothing, and the owner's CLI credential registers the request
-   on the timeline within a minute unless the previous request's review is
-   still in flight (verified live 2026-09-13; `.agent/reference/merge-bot.md`
-   §Agent actions run as the bot). Verify on the timeline or the GraphQL
-   `reviewRequests` connection, since gh's requested-reviewers list never
-   shows a Bot request, and never through the draft/ready toggle, which
-   fires nothing on a pull request already undrafted once. A synced tip
-   gets its Copilot leg by that one request, and a CODE pull
+   satisfies. The Copilot leg is obtained by a review request on the tip,
+   `POST repos/{owner}/{repo}/pulls/{n}/requested_reviewers` with
+   `reviewers[]=copilot-pull-request-reviewer[bot]`, under the credential
+   that registers it in the estate (`.agent/reference/merge-bot.md` names
+   it): in OCE the bot's own pull-request-work token returns 201 and the
+   timeline shows `review_requested Copilot` within seconds (first-hand on
+   #108, #109, #110, #114); in jimcresswell.net that call under the bot
+   token registers nothing, and the owner's CLI credential registers the
+   request on the timeline within a minute unless the previous request's
+   review is still in flight (verified live 2026-09-13). Verify on the
+   timeline or the GraphQL `reviewRequests` connection, since gh's
+   requested-reviewers list never shows a Bot request, and never through
+   the draft/ready toggle, which fires nothing on a pull request already
+   undrafted once. After a sync push, read `pr state` on the synced tip: a
+   leg it reads SATISFIED, exactly or by content (state machine item 3),
+   needs nothing; a leg it reads OWED (the sync changed the pull request's
+   own diff, or its content could not be read) is requested on that tip,
+   Copilot by that one request. A CODE pull
    request lands only through the front door with every AVAILABLE
    configured leg bound plus the posted subagent review where a vendor
    is unavailable (item 3's owner ruling of 2026-09-10), never by the
@@ -1252,7 +1563,20 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   the roster read is ambiguous in both directions (Copilot leaves it the
   moment it starts). Verify via the issue TIMELINE's `review_requested`
   events, which fire within seconds of the call. Cap identical REST
-  retries at two.
+  retries at two. Three mechanics of that read (2026-08-11/12): the
+  review lands under `copilot-pull-request-reviewer[bot]`, so watch for
+  landings by the observed-login SUBSTRING (`copilot`), never an exact
+  login written from memory (an exact-match filter ran silent ten minutes
+  past a landed review); the timeline WRITE can trail a read by up to a
+  minute, so one short retry precedes any "dropped" verdict (a seat read
+  "no fresh event" seconds after a fire, diagnosed a dead path and routed
+  the leg away while the first fire had in fact bound); and re-requesting
+  an already-pending reviewer is a silent no-op that mimics a drop, so
+  check for a pending request before diagnosing one. There are no
+  proven-requester seats and no seat-specific lore (owner, 2026-08-12:
+  "it's a cli call, there is nothing special about you calling rather than
+  someone else") — a fire with no timeline event gets an instance
+  diagnosis, never a routed-away leg.
 - **A review row is not a review.** Read the review BODY before counting
   it — a `COMMENTED` row on the exact head once contained only a
   spend-limit skip notice (the spend limit itself is never an agent
@@ -1266,7 +1590,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   fragment; REST `requested_reviewers` and `gh pr view` omit them.
 - **Run the merge-base deletion sweep before ANY merge**:
   `git diff "$(git merge-base origin/<base> HEAD)" -- <touched paths> |
-  grep -E "^-" | grep -v "^---"` and read every printed line — each is an
+grep -E "^-" | grep -v "^---"` and read every printed line — each is an
   intended deletion or a silent revert. A stale whole-file capture
   produces a clean, conflict-free overwrite that every gate in the chain
   is structurally blind to (worked instance 2026-07-28: a green docs PR
@@ -1305,16 +1629,19 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   Hold thread replies until the push lands, so no external record ever
   cites a superseded commit — the held-replies discipline saved both
   rounds.
-- **Silent-wait sweep after every push (PDR-132)**: verify the expected
-  reviewer is REQUESTED on the new tip — a push does not re-request (the
+- **Silent-wait sweep after every push (PDR-132)**: read each expected
+  reviewer's leg on the new tip. A leg `pr state` reads SATISFIED, exactly
+  or by content after a pure sync (state machine item 3), needs no request;
+  an OWED leg must be REQUESTED on the new tip — a push does not re-request (the
   bot requests Copilot on the new tip with the reviewers endpoint, item 5
   of the merge boundary), and a
   tip with no requested reviewer and no tip-bound review waits forever
   looking healthy (two live instances, 2026-07-20). The request is
   CONDITIONAL on the tip the front door will verdict: Copilot reviews
   the first push and any tip it is requested on, so request it only
-  when that tip lacks Copilot's review — a request on an intermediate
-  head that a held cure or a sync will supersede is spent for nothing
+  when that tip's Copilot leg reads OWED — a request on an intermediate
+  head that a held cure, or a sync that changes the pull request's own
+  diff, will supersede is spent for nothing
   (first-hand 2026-09-10 on #108, #114 and #116). The same sweep names a
   shepherd for every open PR: threads with no owner are the same disease.
   The sweep's third leg is **review-round liveness**: the outstanding
@@ -1326,7 +1653,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   clears it when the review lands. `gh agent-task list` enumerates
   coding-agent sessions (`--json id,name,createdAt,completedAt`;
   `completedAt` null = in flight) and `gh agent-task view <session-id>
-  --json` maps one to its PR (the list JSON carries no PR number; the
+  --json` maps a run to its PR (the list JSON carries no PR number; the
   PR-number positional is interactive-only — vendor shapes verified
   2026-07-21). Its contract is item 4's: an OBSERVED live session mapped
   to the PR is a measured guard and blocks settlement; a run's ABSENCE is
@@ -1414,6 +1741,20 @@ posted, then fired within the minute — fully auditable). Then:
   correction at the MCP-673 wrap, 2026-09-03: #961 merged at green while a
   wrap workflow's output was still owed, and a fourth PR had to be
   authorised).
+- **A PR authored by a human colleague, or by that colleague's own agents, is
+  reviewed and (where it earns it) approved — never merged by us.** The
+  owner's standing word (2026-08-03/04, verbatim): "you can review PRs from
+  Matt on my behalf, just make sure it is clear that it is an agent review,
+  and surface if he insists on it actually being me who reviews" and "Don't
+  merge Matt's PRs for him, ever, but do review and if appropriate approve."
+  The agent review states in its body that it is an agent review on the
+  owner's behalf at his standing word, under the identity the action map
+  assigns; the merge is the author's own act, and an approved, green, clean
+  PR of theirs needs nothing further from us. If the mechanical code-owner
+  gate still demands the owner's personal approval, report that one click
+  remains; if the author asks for the owner personally, stop and surface —
+  never argue the grant at them. The bot-merges-at-settled practice below
+  applies to OUR PRs only.
 - **`mergeable` means POSSIBLE to merge; it does NOT mean READY to merge**
   (owner, 2026-07-08). GitHub's `mergeable: MERGEABLE` asserts only
   conflict-freeness and reads TRUE on a PR with failing checks and open

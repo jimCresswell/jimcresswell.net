@@ -328,16 +328,19 @@ substantial work — not only the primary checkout:
 ```bash
 pnpm install
 pnpm build
+.agent/setup/install-shellcheck.sh
 ```
 
 `type-check` and `vitest` pass on install alone, and the install's bootstrap
-builds every package agent-tools reaches that has built entry points, including the internal
-`@engraph/eslint-plugin-standards` whose package `exports` resolve to
-`dist/`, so ESLint's flat config loads on install alone too. What install
-does not write is the site's `.next/`. Until `pnpm build`, the site's
-`type-check` passes without the generated route types it includes, while CI
-checks them after its build step. So a worktree-based lane runs the build
-itself before trusting any gate.
+builds every package agent-tools reaches that has built entry points, including
+the internal ESLint standards plugin (the estate's `eslint-plugin-standards`
+package) whose package `exports` resolve to `dist/`, so ESLint's flat config
+loads on install alone too. What install does not write, the build does: the
+generated outputs a gate reads (a site's route types its `type-check`
+includes; a workspace's `dist/` that dependency-cruiser, knip and typed lint
+read). The primary checkout is usually already built, which masks this in the
+main tree only — so a worktree-based lane runs the build itself before
+trusting any gate.
 
 It also matters beyond gates: a worktree session shows **no statusline** unless the
 worktree was built **before the session started** (a known primary-checkout
@@ -346,15 +349,26 @@ session's statusline. So build every new worktree **before** opening the session
 not after.
 
 `pnpm install` also does NOT fetch Playwright browser binaries, so a fresh
-worktree's pre-push `test:e2e` leg (and `test:ui`) dies with "Executable
-doesn't exist at …chrome-headless-shell" until you run
-`pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
-once in the worktree. Read the log before assuming a known flake, and read the
-failing job's own error lines before calling any check a defect or a flake: the
-fan-in job goes red with any failed leg and names no cause of its own (a
-font-loader flake read as the diff's fault, 2026-09-25). Full fresh-worktree
-setup is install, build, AND the Playwright browser install before the
-browser-test gates run.
+worktree's pre-push `test:ui`/`test:e2e` legs die with "Executable doesn't
+exist at …chrome-headless-shell" until you run
+`pnpm --filter <app> exec playwright install chromium-headless-shell` once in
+the worktree. Read the log before assuming a known flake, and read the failing
+job's own error lines before calling any check a defect or a flake: the fan-in
+job goes red with any failed leg and names no cause of its own (a font-loader
+flake read as the diff's fault, 2026-09-25).
+
+The pinned shellcheck lives in the worktree's ignored `.tools/bin`, where the
+shell lint gate looks before `PATH`; `.agent/setup/install-shellcheck.sh` puts
+it there at a new clone or worktree's first setup (where the estate's
+`pnpm install` runs the installer from its `postinstall`, by that; otherwise by
+hand, the lane-setup skill's fourth line). Without it the gate falls back to
+the shellcheck on `PATH`, which passes only while that one is the pinned
+version, so every worktree without its own `.tools/bin` fails at once when the
+`PATH` copy is upgraded.
+
+Full fresh-worktree setup is install, build, the pinned shellcheck before the
+first push, AND the Playwright browser install before the browser-test gates
+run.
 
 The collaboration substrate is also unseeded on a fresh checkout: the
 instance-tier state files are untracked by design (`.agent/state/README.md`). The
@@ -414,7 +428,7 @@ fi
 
 Check `.agent/practice-core/incoming/` for practice-core files. If
 present, alert the user — incoming material may carry learnings from
-another repo. Full integration happens during `/jc-consolidate-docs`.
+another repo. Full integration happens during the `consolidate-docs` skill.
 
 ## Per-Session Landing Commitment
 
@@ -556,17 +570,42 @@ first.
 
 ## Quality Gates
 
-Run after making changes, one gate at a time from the repo root. The
-sequence is the [gates skill](../../change-custody/gates/SKILL-CANONICAL.md):
-`pnpm check` unrolled one leg per line, then the gates outside it (build,
-end-to-end, visual regression, docs validators, plan gates). Caching
-details are in @docs/engineering/build-system.md.
-
-Practice health, informational and never a gate:
+The hooks are the gates. The pre-commit hook runs the light gate (the staged
+formatting and markdown checks, then the lint of the workspaces the commit
+changes); the pre-push hook runs the full aggregate, `pnpm check`, under a
+host gate slot, then the host's product legs; CI composes the same legs
+(owner, 2026-10-04: light commit, full push, in both estates). So never run
+these gates before, beside or after a commit or push (owner, 2026-09-14,
+verbatim: "the commit triggers the gates, there is no point and a fair amount
+of cost running the gates separately as well, never, ever do that"). Running
+one test file while a change is red is development, not a gate run; the ban
+is on running the suites the hooks run. The
+[gates skill](../../change-custody/gates/SKILL-CANONICAL.md) unrolls `check`
+one leg per line; the host's list below names the commands outside `check`,
+for reading a failure and for curing one: a command marked "cure" mutates the
+tree and is run only when a hook has refused and named it, never as a gate.
+Shell lint runs inside `check` with the pinned shellcheck from the checkout's
+`.tools/bin` (§8 says how it gets there); without it the gate falls back to
+the `PATH` copy, which passes only while that one is the pinned version. A
+cloud profile follows `cloud-environment-routing.md`. Some gates trigger
+earlier ones and caching prevents duplicate work: see
+@docs/engineering/build-system.md.
 
 ```bash
+# jimcresswell.net: the push hook runs `pnpm check`, then the site's end-to-end
+# suite; the commit hook runs the light gate. Never run them separately.
+pnpm test:e2e                   # push hook, after check: the site's Playwright suite
+pnpm fix                        # cure: format, markdownlint and lint:fix together
+pnpm lint:fix                   # cure: when the lint gate refuses
+pnpm format:root                # cure: when the format gate refuses
+pnpm markdownlint:root          # cure: when the markdown gate refuses
+pnpm check:docs                 # the docs subset of check, for reading a docs failure alone
+pnpm visual-regression:harness  # outside the hooks: rendered-proof comparison for visual work
+pnpm plan-gates:check           # outside the hooks: plan-node gate drift
+
+# Practice health — informational, never a gate
 pnpm practice:fitness:informational  # four-zone report (always exit 0)
-# Consolidation-closure signal (run via /jc-consolidate-docs):
+# Consolidation-closure signal (run via the consolidate-docs skill):
 #   pnpm practice:fitness:strict-hard
 # Vocabulary consistency:
 #   pnpm practice:vocabulary

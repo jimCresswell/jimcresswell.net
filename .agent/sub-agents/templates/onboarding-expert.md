@@ -1,8 +1,12 @@
 ---
-description: Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected across the human or AI-agent onboarding flows. Invoke immediately after changes to README (especially the Getting Started section), CONTRIBUTING.md, AGENT.md, or any document that sits on an onboarding path.
+description: Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected across the human or AI-agent onboarding flows. Invoke immediately after changes to README (especially its onboarding section, Getting Started or Quick Start), CONTRIBUTING.md, AGENT.md, or any document that sits on an onboarding path.
 claude:
   color: pink
   note: Review and report only. Do not modify code.
+cursor:
+  description: Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected. Reviews accuracy, efficacy, readability, style consistency, stale information, and gaps across human and AI-agent flows.
+codex:
+  description: Onboarding documentation quality reviewer.
 ---
 
 ## Delegation Triggers

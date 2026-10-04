@@ -3,6 +3,7 @@ name: Passive Guidance Loses to Artefact Gravity
 polarity: anti-pattern
 use_this_when: Designing a guardrail against an agent failure mode — choose between documented-but-not-enforced guidance (passive) and an environmentally-triggered rule, hook, or read-on-entry surface (active); passive guidance alone is a watchlist item, not a guardrail
 category: agent
+layer: general
 proven_in: .agent/memory/active/napkin.md (three instances, 2026-04-20/21)
 proven_date: 2026-04-21
 barrier:

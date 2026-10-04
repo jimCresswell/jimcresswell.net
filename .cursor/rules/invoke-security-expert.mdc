@@ -1,6 +1,0 @@
----
-description: invoke security expert
-alwaysApply: false
----
-
-Read and follow `.agent/rules/invoke-security-expert.md`.
