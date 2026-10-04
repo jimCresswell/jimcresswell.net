@@ -719,10 +719,10 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
 - **Lesson**: a node written at a compaction boundary inherits the boundary's fatigue shape: the
   first sketch reproduced the instrument it was replacing. The cheap cure is the one used here, two
   Crickets in both stances at the resume before the owner reads the plan.
-- **09:5xZ, the owner's card answer: "Ratify as reshaped (Recommended)".** Stamped in both copies
+- **13:3xZ, the owner's card answer: "Ratify as reshaped (Recommended)" (the card was posted about 09:3xZ and waited four hours; the stamp first read 09:5xZ and was corrected).** Stamped in both copies
   (same bytes); this seat's five claims closed (n=1, no peer); next: the stamp commits, the two
   folds, 318, 312 and #350, then the layer pass with the draft page due at two hours.
-- **10:0xZ, the owner's two standing words, verbatim**: "I have enabled push notifications, so
+- **13:3xZ, the owner's two standing words, verbatim**: "I have enabled push notifications, so
   next time you have a question it should reach my mobile device. And when we run a reduced
   Cricket suite and they give opposite results, follow up with the remainder of the full Cricket
   suite". This morning's two legs agreed, so no remainder is owed; a split pair runs the rest
