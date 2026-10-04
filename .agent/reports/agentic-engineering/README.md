@@ -22,6 +22,7 @@ OCE's.
 | [why-the-transplant-arc-cost-what-it-cost-2026-09-15.md](why-the-transplant-arc-cost-what-it-cost-2026-09-15.md) | The retrospective on the transplant arc: its measured cost, causal stack, counterfactuals and proposals |
 | [2026-09-26-the-estates-programme-plan.md](2026-09-26-the-estates-programme-plan.md) | The Director's programme for both estates at the owner's word of 2026-09-26 (zero open PRs, the door, the exchange, Codex citizenship): the approved plan verbatim under a provenance header, with the owner's four card answers and the door's shape. |
 | [2026-09-30-two-estate-consolidation-retrospective.md](2026-09-30-two-estate-consolidation-retrospective.md) | The two-estate consolidation of 2026-09-30 read back by six adversarial legs; the divergence measure between the estates; the owner's decisions |
+| [cricket-suite-tally-2026-10-04-alignment-node.md](cricket-suite-tally-2026-10-04-alignment-node.md) | The full eight-leg suite on the successor delivery node before its card: eight ON-TRACK, seven CONTRADICTED and one NARROWED on the same two facts (six pull requests against the owner's two; the cost guide read per landing), and the reshape they drove |
 
 The transplant's own process records live in
 [`../practice-transplant/`](../practice-transplant/README.md).

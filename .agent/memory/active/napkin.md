@@ -809,3 +809,36 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   ("it's not 'the lineage', it's OCE") reached one estate (its lineage-names validator is
   one-sided); OCE takes this estate's bytes. The plan-node edits (the parent's dated line, the
   node archived) wait for the folds to merge, so the landing branches cut from the folded tips.
+
+## 2026-10-04T16:4xZ — The definition landed on both default branches; the successor node ratified by four card answers (Crucible binds Slag, 7b999c)
+
+- **Landed**: jimcresswell.net 319 at `SHA:02178ff0b` (main), OCE #351 at `SHA:82cb7fba4`
+  (engraph): PDR-143 Accepted with the ratified five-layer definition, practice.md's opening
+  definition, PDR-142's entry, the report with its README row, the parent's dated line, the review
+  node archived; the same bytes in both. Three review rounds each; the last round's nine findings
+  (four true cures, deferred to the doctrine landing under the spent two-push budget; two declined
+  with reasons; the rest answered) are named in the successor node's first todo.
+- **The full Cricket suite** on the successor node's first draft (three landings per estate, about
+  seven seat-hours): eight legs, both stances, unanimous ON-TRACK on the work; seven CONTRADICTED
+  and one NARROWED on the frame, all on the same two facts (six pull requests against the owner's
+  "two large PRs"; the cost guide read per landing where the owner said it of the whole), plus the
+  attribution of the one-word class directions to the owner (they were the review's). The tally
+  is `.agent/reports/agentic-engineering/cricket-suite-tally-2026-10-04-alignment-node.md`. The
+  assumptions reviewer then found six more on the reshaped node, one blocking (the named cuts did
+  not compute under four hours, and one was a carry the owner's words refuse); all applied.
+- **The owner's four card answers, 16:xZ, verbatim**: "Ratify, four pull requests (Recommended)";
+  "Proceed at about five hours over two sittings (Recommended)"; "Light commit, full push, both
+  estates (Recommended)"; "Include it (Recommended)" (the family conformance check). The node
+  `practice-alignment-by-class` is ratified, the same bytes in both estates.
+- **One conflict for the owner, not decided by the seat**: the owner's 2026-09-30 word ("it's not
+  'the lineage', it's OCE") put "OCE" into PDR-142's bracketed quote substitutions; Codex read
+  PDR-142's own host-neutrality clause against it. Put to the owner with the doctrine landing.
+- **Lessons**: (1) a budget of two settlement pushes was spent on each landing by round three
+  of a three-round review; declared budgets should count rounds a Core landing attracts (Copilot
+  and Codex both, at every push), or the first push should go out only after a first-hand read
+  of the Core diff against the records' own rules (host neutrality, the changelog, the index).
+  (2) The `claims close`, `comms send` (under collaboration-state) and Copilot re-request (REST
+  requested_reviewers, operator credential here, the bot in OCE) forms are the day's tool facts.
+  (3) Both estates' napkins and READMEs will conflict at the next fold on adjacent insertions;
+  resolve by keeping both rows.
+- **Next**: the doctrine landing, this estate first; the owner's word stands: finish.
