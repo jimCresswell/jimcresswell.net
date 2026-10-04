@@ -6,14 +6,16 @@ triggered by `.agent/prompts/dedicated-consolidation-session.md` (a trigger, nev
 store: the owner's word 2026-09-30). The owner's words: "the next session will run a dedicated
 consolidation session across both estates"; "JC.net will be the home repo, where the relevant
 skills differ, 1. they shouldn't and that needs fixing, and 2. the next agent can be instructed
-to read the OCE skills". **Participating agent identities:** none yet; this record was written by Galaxy binds
+to read the OCE skills". **Participating agent identities:** Crucible binds Slag (7b999c, claude-code, claude-fable-5-1, the Director across both estates over the second pass's folds, tails and ledger, 2026-10-02 to 2026-10-03, closing the day at the owner's word of 2026-10-03 20:0xZ with the parity frame set aside and the review node `practice-system-review` planned, n=1 from there; the n=1 seat again from the resume of 2026-10-04, the review node reshaped and ratified, the layer pass read, the report drafted); Hazel tracks Trunk (7d8b9d, claude-code, claude-fable-5-1, the second pass's implementer in jimcresswell.net from 2026-10-01, the parity carries and surfaces of 2026-10-03); this record was written by Galaxy binds
 Gravity (46de68, claude-code, claude-fable-5-1) at its session close, 2026-09-30T14:3xZ.
-**Landing target for the next session:** the completion contract of `consolidate-until-done`
-met in BOTH estates — every live curation buffer empty or explicitly owner-decision-gated, its
-insight in permanent homes, no memory file worse than soft at rest — with the two estates' counts
-said first in every report. **Grounding order:** JC.net's `AGENT.md` and `start-right-quick`,
-this record, then `consolidate-until-done` and `consolidate-docs` read from OCE's copies where
-the two estates' copies differ (the owner's instruction for the opening statement).
+**Landing target for the next session (rewritten 2026-10-04):** the consolidation flow
+(`consolidate-until-done` met in BOTH estates, every live curation buffer empty or
+owner-decision-gated, the counts said first) is paused at the owner's word of 2026-10-03; the
+live plan is the ratified delivery node `practice-system-review` and its report, and the next
+session resumes from the newest dated state block below, never from §Current Continuation,
+which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.md` and
+`start-right-quick`, the review node, this record's newest state block, then the report under
+`.agent/reports/agentic-engineering/`.
 
 ## Current Continuation
 
@@ -106,6 +108,65 @@ the two estates' copies differ (the owner's instruction for the opening statemen
   gate refuses outside the records), was settled by the owner on 2026-10-01 before the push; the
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
+
+### 2026-10-03T20:0xZ — the session finished at the owner's word; direction to be evaluated before the next (Hazel tracks Trunk, 7d8b9d)
+
+- **The owner's word (verbatim)**: "We are going to hand the work to another session, but before
+  that we are going to evaluate direction, so create a full handoff record, but highlight
+  assumptions and framing choices to make them easier to question". The record is this seat's
+  direction handoff in the collaboration handoffs directory
+  (`7d8b9d-hazel-tracks-trunk-direction-handoff-2026-10-03.md`, machine-local): §1 the state,
+  §2 seven framing choices and ten assumptions each with its question, §3 the cognition passes,
+  §4 the resume queue with every script's usage line, §5 the loss scan. OCE's seat wrote the
+  sibling record at the same word.
+- **Landed today (this seat)**: 306 at SHA:bfa24d633; 311 the doctrine batch (C7, C11 to C16) at
+  SHA:c4d376535, its branch retired; rows open of total 194 of 209 (the Director's rerun).
+- **At the doors**: 318 (C24, the specification family) at SHA:d2f513e62 with one Copilot thread
+  cured in that push and not yet replied; `docs/parity-rules-surface-1` at SHA:57329a50c (three
+  slices, main merged, no pull request; opens when 318 merges); `docs/parity-skills-surface-1` at
+  SHA:57eac6daa (slice 1, eleven skills; the two joint texts and two counts prepared, unapplied);
+  the fold of `coordination/2026-10-02-24fc05` ready as 305 at SHA:fd1f6bd22 with six records
+  threads, five cures prepared, the Director's at 00:00Z.
+- **The direction question for the owner**: text parity first (the Director's order, the shared
+  doctrine as the Practice) against capability parity first (the code carries, where the gates
+  live); and whether the ledger's rows measure the whole divergence (the dry-run merge the plan
+  names as the finish test would answer it now, in minutes).
+- **Claims**: 009bbaea and 08f94e2a RETAINED with the handoff record as pointer; watchers and
+  heartbeats stopped by intent at the close.
+
+### 2026-10-03T07:1xZ — the step 2 carry and the twin clauses landed; cold pause at the owner's compaction word (Hazel tracks Trunk, 7d8b9d)
+
+- **Landed since the sixteenth entry**: 304 merged (the last rotation slice), 300 folded with the
+  successor `coordination/2026-10-02-24fc05` (draft 305); 306 (the Director's parity ledger over
+  384 items) opened from `docs/parity-measure` and held at its door for the owner's row reading;
+  307 merged at SHA:e394fcea4, the parity node's step 2 carry (PDR-008's and PDR-132's host-tagged
+  amendment entries moved verbatim to ADR-023, the host-side adoption record, paired in the
+  bridge index; PDR-005, PDR-082 and PDR-132 with headings of date and subject alone; the Core
+  gate `validate-no-host-names-in-core-headings`, needles derived from the Core's provenance repo
+  fields and changelog tags plus the tree's origin, demonstrated on both trees: seven findings
+  here before the edits, none after, two in OCE for its twin); 308 merged at SHA:691b93198, six
+  one-clause cures from the review of OCE's twins of 302 to 304. Review intake across 307 and
+  308: eight Copilot findings, all correct, cured in one settlement push each, threads replied and
+  resolved. This estate's step 1 and step 2 of the parity node are landed.
+- **Held**: 306 at its door, MERGEABLE after the Director merged main into it (the exchange node's
+  plan renamed to the archive by 300; the host's check does not follow renames); its six Copilot
+  threads carry this seat's assessments and the Director's dispositions under the spent
+  settlement budgets, and read as still unresolved on the host at 07:1xZ (the Director's own
+  broadcast said resolved; the successor reads it again before the door). No carry starts before
+  the owner's word on row O10 (the node's Mechanism item 3); the Director recommends carrying the
+  thirteen text and small-code carries and deferring the four large ones to the entity's design.
+- **OCE**: Efreet's 345 (the twins of 302 to 304) merged at SHA:c1a2d1ade; 346 (the carry's copy,
+  ADR-232) open at 00:20Z; the twin of 308 follows it.
+- **Records**: the notebook's blocks of the carry, of 308 and of the compaction freeze, and F-296
+  (two authored-surface validators read the disk) on this branch; the per-user memory holds the
+  Director's ruling that a pull request held at its door is a review surface, not work in progress.
+  Candidates, not work: one Markdown fence reader for its two consumers; F-296's code cure; a row
+  for the extraction's definition naming where the Core is edited.
+- **Seat state**: cold pause on the Director's word (00:3xZ), confirmed by the owner's compaction
+  word; both claims held with handoff pointers; every process stopped; the heartbeat-end on both
+  streams. The successor resumes on the Director's message, re-arms by the recipe in the
+  notebook's compaction block, reads this record and the stream since 00:37Z, and takes the first
+  carry the Director names.
 
 ### 2026-10-02T22:42Z — the resume after the usage limit: 302 and 303 landed, the rotation archived, the three old notebooks moved (Hazel tracks Trunk, 7d8b9d)
 

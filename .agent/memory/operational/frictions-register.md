@@ -4344,3 +4344,28 @@ Observed twice on 2026-09-29 by the Director: `.agent/rules/.logs` refused by th
 - **Status**: open; mitigated by the records route under a foreign lock (the commit skill,
   2026-10-02).
 - **Owner direction status**: standing (the lock rule); the cure unsolicited
+
+### F-296 — two authored-surface validators read the disk, not the tracked tree: the Markdown-links validator globs and the fitness-vocabulary walker reads directories (2026-10-03)
+
+- **Source**: the live notebook's blocks of 2026-10-02 (the Director's 23:2xZ block: the link
+  validator walked the gitignored session directory and blocked a push; a scratch file moved out
+  of the tree) and 2026-10-03 (the step 2 carry's block); OCE's F-295, the same defect in its
+  Markdown-links validator and its fitness-vocabulary walker, cured there as a host-fact sentence
+  beside the shared clause; this estate's `no-warning-toleration` tracked-tree clause, which names
+  both validators as the cures it binds (308).
+- **Surface**: `agent-tools/src/validators/markdown-links/validate-markdown-links.ts` (a glob over
+  the working tree) and `agent-tools/src/validators/fitness-vocabulary/walk.ts` (a directory
+  walk with a skip list).
+- **Observed**: a reader's scratch file quoting link fragments inside the gitignored session
+  directory failed the pre-push link gate until it was moved out of the tree (2026-10-02); the
+  walker's skip list is a second, hand-kept copy of what `.gitignore` already says.
+- **Expected**: every validator of an authored repository surface lists its universe from
+  `git ls-files` (`core/tracked-file-scan`'s `listTrackedFiles`), as the Markdown gate, the
+  machine-local-path, lineage-name, Core ADR-citation and Core host-name gates do, so a gitignored
+  file can never fail a gate and no skip list shadows the ignore file.
+- **Candidate cure**: both validators take their file list from `listTrackedFiles` filtered by
+  their patterns, the glob and the walk retired with their skip lists; one small code pull
+  request with the cells that prove a gitignored file is unseen.
+- **Target surface**: agent-tools validators (two files and their cells).
+- **Status**: open; the clause binds in prose (308) until the code lands.
+- **Owner direction status**: unsolicited (the clause is the Practice's; the cure follows from it)

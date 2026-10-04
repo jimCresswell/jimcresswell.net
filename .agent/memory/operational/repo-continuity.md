@@ -21,6 +21,23 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-02T23:12Z: pull request 300 folded into `main` as SHA:24fc052e9** (Hazel tracks Trunk,
+  7d8b9d; the day's second fold of this estate's coordination branch under the owner's
+  twice-a-day word; `coordination/2026-10-02-f19bed` carried the Director's records of the
+  evening: the parent node's dated entry on the carries and the parity node ratified with its
+  size current, PDR-019's amendment (records carry decisions, plans carry planning), the PDR-143
+  trim with its passages held in the parity node, the exchange node archived with five PDR-142
+  entries, two Core portability cures from OCE's fold review; and this seat's records: the
+  compaction freeze's three files, the fold entry of 299, the live notebook rotated and archived
+  by byte proof with the three old notebooks moved after full processing, the frictions
+  register's F-295, the thread record's entries to the sixteenth; the bot's merge at the pinned
+  head with every status context the branch rules require green; a fold is not reviewed: the
+  threads that arrived were triaged per finding). The folded branch is deleted, local and
+  remote, both tips proved in `main`; the successor is `coordination/2026-10-02-24fc05`, cut in the primary from `main`
+  at SHA:24fc052e9. moved for the sites: nothing in this fold / moved for the Practice: the parity
+  node's step 1 on this side is complete (the write list's residue landed by 301 to 304, the
+  notebooks archived), and the records definition the owner directed is on `main`.
+
 - **2026-10-02T20:08Z: pull request 299 folded into `main` as SHA:f19bed6d5** (Hazel tracks Trunk,
   7d8b9d; the second fold of `coordination/2026-10-02-9f4d89`, which pull request 286 had folded
   at 19:20Z as SHA:ba5ad39a; the Director's records push of 19:32Z recreated the branch beyond
@@ -200,13 +217,6 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   a separate act on the owner's request. 2026-09-29: PR 273 (b6232c77) made the workspace
   documents only and cured `main`'s knip gate; the lane is at rest, its seat (Galaxy binds
   Gravity, 46de68) closed 2026-09-30, and the record's latest block governs.
-- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): its seat closed with the
-  Director lane on 2026-09-29; the record's latest dated block governs, and its landings list is the
-  lane's proof. Its two pull requests that were still open in OCE landed on 2026-10-01 under
-  Crucible binds Slag, who had adopted their claims: 309 (SHA:2691a8143) and 310 (SHA:2e8892fed).
-  Of its two OCE lane worktrees, arc-metrics landed as OCE 320 and 321 and is gone; the J2
-  docs-validators port still holds work outside any pull request and is line 2 of §Next Safe
-  Steps.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
@@ -217,9 +227,12 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   requests have landed, PR 275 here (SHA:f6a26954) and OCE PR 313 (SHA:e453ff81a, 2026-10-01);
   the owner's two acts for criterion 1 are still owed. The record's latest dated block governs.
 - Two-estate consolidation (`threads/two-estate-consolidation.next-session.md`): the first pass
-  closed on 2026-10-01 (Hawthorn binds Bracken); the second runs from 2026-10-01T13:1xZ (Hazel
-  tracks Trunk) at the owner's word, JC.net the home and OCE worked non-resident; the record's
-  newest state block governs and opens with the counts.
+  closed on 2026-10-01 (Hawthorn binds Bracken); the second ran from 2026-10-01T13:1xZ (Hazel
+  tracks Trunk, finished at the owner's word 2026-10-03) at the owner's word, JC.net the home
+  and OCE worked non-resident, with Crucible binds Slag (7b999c) the Director across both
+  estates from 2026-10-02 and the n=1 seat from the 2026-10-04 resume; the consolidation flow is
+  paused at the owner's word of 2026-10-03, the live plan is `practice-system-review` (ratified
+  2026-10-04), and the record's newest state block governs.
 
 ## Paused Threads
 
@@ -227,6 +240,40 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-03T21:0xZ (Crucible binds Slag, 7b999c, at the owner's compaction word, n=1 from
+here until the owner says otherwise): the parity frame is set aside. The parity node reads
+superseded with where it stood; the two-landings node is an unratified sketch kept as a
+perspective no longer held; the live plan is `practice-system-review` (a sketch for the owner's
+exploration): one seat reads both estates side by side as one system of planning, deciding,
+implementing, reviewing and delivering value, ten areas, one row per mechanism, four classes, a
+layered model (general, contextual, accumulated, the loop) and a candidate definition of the
+Practice, one report at one relative path in both estates. Both implementer seats finished at the
+owner's word with claims retained and direction handoff records at their pointers. At the doors,
+untouched until the owner explores the plan: 312 and OCE #350 (the ledger's revision, five findings
+undecided), 318, the hooks branch `docs/parity-hooks-surface`, Efreet's three unpushed OCE lanes,
+the overdue fold of this branch, dependabot 313 to 317. Next safe step: the owner explores the
+review node; then it executes. Before any push at the resume: beat or close this seat's claims
+(stale at about 03:2xZ) so the claim-freshness gate passes. The notebook block of 21:0xZ carries the
+work-safety evidence, the owner's words verbatim and the resume order. Deep consolidation status:
+not due; the lessons of the day are in the review node's predecessor's retrospective section.
+
+STATE, 2026-10-03T07:1xZ (Crucible binds Slag, 7b999c, the Director, at the owner's compaction-and-
+stop word): live now, the parity node `practice-parity-for-extraction` (the same bytes in both
+estates) is landed through steps 1, 2 (the opening carries) and 5, with step 3, the ledger, at its
+door as 306 (`docs/parity-measure` at `SHA:505e6bd6`, six behind main, so main merges into it before
+its own) and OCE #344; step 4 waits on the owner's word on row O10, and the node's §Size carries the
+revised recommendation (two batched pull requests per estate). 310 landed the heading gate's three
+cures (`SHA:a4fdc188`). Seats: Hazel tracks Trunk cold-paused with claims 009bbaea and 08f94e2a
+retained; this seat's 726da755 and d5492b18 retained with handoff pointers; no watcher, the loops
+stopped by intent. Next safe step: at the owner's word, merge main into `docs/parity-measure`, merge
+306, resume Hazel by message with the carries in the shape the owner chose. Housekeeping for the
+owner's hand: the branch `fix/parity-heading-gate-cures` (`SHA:847de822`, landed by content through
+310) local and remote; the lane worktree on `docs/consolidation-2j-inventory-cures` (`SHA:92644157`,
+carried by content on the ledger branch) retires when 306 merges; five detached harness worktrees,
+all on main. Deep consolidation status: not due, because the exchange node's closure graduated in-
+session on both default branches (the PDR-142 entries, PDR-019 and PDR-143, the archive move) and
+the parity node stays open.
 
 STATE, 2026-10-02T10:3xZ (Crucible binds Slag, 7b999c): the order below stands, with these changes.
 PDR-143 records the extraction's direction; until the entity exists PDR-142 governs every
