@@ -84,7 +84,7 @@
     "type-check": "turbo run --continue type-check",
     "visual-regression:harness": "pnpm --filter @jimcresswell/www visual-regression:harness",
     "knip:gate": "pnpm agent-tools:repo-check knip-gate",
-    "agent-tools:review-cost": "pnpm --filter @engraph/agent-tools review-cost",
+    "agent-tools:review-cost": "pnpm --fail-if-no-match --filter @engraph/agent-tools review-cost",
     "agent-tools:skill-evals": "pnpm --filter @engraph/agent-tools skill-evals",
     "agent-tools:pr-throughput": "pnpm --filter @engraph/agent-tools pr-throughput"
   },
