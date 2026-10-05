@@ -7,7 +7,8 @@ import { existsReading, probeReading, symbolicReading } from './retire-git-read.
  * git's answers read as the command's, over literal results. A failed read
  * is a failure, never an answer: a remote git could not reach is never read
  * as a branch already gone, and a name git could not ask about is never read
- * as not symbolic.
+ * as not symbolic. The reads that run git through its injected executor are
+ * `retire-git-read.integration.test.ts`.
  */
 
 const SHA = 'a'.repeat(40);

@@ -4,7 +4,6 @@ import { failureMessage } from './test-helpers/result-failure.js';
 import {
   caseCollisionsOf,
   gitWords,
-  githubRepoOf,
   isRetirableBranchName,
   parseExactRemoteRef,
   parseRefListing,
@@ -13,8 +12,8 @@ import {
 } from './retire-parse.js';
 
 /**
- * The `merge-bot retire` parsers: git's and a remote URL's text in, typed
- * readings out. Pure; every input here is the literal text git prints.
+ * The `merge-bot retire` parsers: git's text in, typed readings out. Pure;
+ * every input here is the literal text git prints.
  */
 
 const SHA_A = 'a'.repeat(40);
@@ -131,29 +130,6 @@ describe('parseWorktrees', () => {
       { path: '/repo-wt', branch: undefined, prunable: false },
       { path: '/gone-wt', branch: 'refs/heads/feat/x', prunable: true },
     ]);
-  });
-});
-
-describe('githubRepoOf', () => {
-  it.each([
-    'https://github.com/acme/widgets.git',
-    'https://github.com/acme/widgets',
-    'git@github.com:acme/widgets.git',
-    'ssh://git@github.com/acme/widgets.git',
-    'https://x-access-token:s3cret@github.com/acme/widgets.git',
-    'https://s3cret@github.com/acme/widgets',
-  ])('reads the owner and repository from a GitHub URL form git accepts: %s', (url) => {
-    expect(githubRepoOf(url)).toEqual({ owner: 'acme', repo: 'widgets' });
-  });
-
-  it.each([
-    'https://example.com/acme/widgets.git',
-    '/srv/git/widgets.git',
-    'https://github.com/ac\u200bme/widgets.git',
-    'https://github.com/acme/widgets?access_token=s3cret',
-    'https://github.com/acme/widgets#s3cret',
-  ])('reads nothing from a URL that is not a plain GitHub repository: %s', (url) => {
-    expect(githubRepoOf(url)).toBeUndefined();
   });
 });
 

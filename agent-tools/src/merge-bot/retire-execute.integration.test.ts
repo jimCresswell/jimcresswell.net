@@ -6,6 +6,8 @@ import {
   GRAPHQL_ERROR,
   LOCAL_REF,
   LOCAL_WORLD,
+  MINT_ANSWERING,
+  MINT_FAILING,
   OTHER,
   REMOTE_TIP,
   REMOTE_WORLD,
@@ -17,10 +19,11 @@ import {
 
 /**
  * The retire command's writes through the `merge-bot retire` front door,
- * where one constant answer decides them. The remote delete: GitHub answers
- * every GraphQL call the same way for the run, and each case checks the
- * exit, the outcome kind and reason, and that the token reaches neither
- * output stream. The local deletes: git's port answers the in-use check,
+ * where one constant answer decides them. The remote delete: the mint
+ * answers or fails, GitHub answers every GraphQL call the same way for the
+ * run, and each case checks the exit and the outcome kind and reason; one
+ * case per output shape checks that the token reaches neither output
+ * stream. The local deletes: git's port answers the in-use check,
  * read again before them, as failed or as naming a worktree (a constant
  * world standing for a worktree taken since the proof), or answers that a
  * compare-and-swap cannot run; each case checks the report. The outcomes
@@ -31,16 +34,14 @@ import {
  * real git in the smokes.
  */
 
-async function retireRemote(graphql: unknown, json = true): ReturnType<typeof runRetire> {
-  const args = json ? ['--branch', BRANCH, '--json'] : ['--branch', BRANCH];
-  const run = await runRetire(args, REMOTE_WORLD, { graphql });
-  expect(`${run.out}${run.err}`).not.toContain(TOKEN);
-  return run;
+/** The remote delete over the branch merged everywhere: GitHub's one answer, and a mint that answers. */
+function retireRemote(graphql: unknown, ...flags: string[]): ReturnType<typeof runRetire> {
+  return runRetire(['--branch', BRANCH, ...flags], REMOTE_WORLD, { graphql, mint: MINT_ANSWERING });
 }
 
 describe('merge-bot retire, the remote delete', () => {
   it('refuses with exit 3 when the remote moved after its proof', async () => {
-    const run = await retireRemote(refRead(OTHER));
+    const run = await retireRemote(refRead(OTHER), '--json');
 
     expect(run.exit).toBe(3);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'refused' });
@@ -48,7 +49,7 @@ describe('merge-bot retire, the remote delete', () => {
   });
 
   it("refuses with exit 3 when the bot's repository has another default branch", async () => {
-    const run = await retireRemote(refRead(REMOTE_TIP, 'trunk'));
+    const run = await retireRemote(refRead(REMOTE_TIP, 'trunk'), '--json');
 
     expect(run.exit).toBe(3);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'refused' });
@@ -56,25 +57,39 @@ describe('merge-bot retire, the remote delete', () => {
   });
 
   it('fails with exit 1 when the re-read at the mint fails', async () => {
-    const run = await retireRemote(GRAPHQL_ERROR);
+    const run = await retireRemote(GRAPHQL_ERROR, '--json');
 
     expect(run.exit).toBe(1);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'failed' });
   });
 
-  it('fails with exit 1 when GitHub answers the delete with a body it does not recognise and the branch reads back unchanged', async () => {
-    const run = await retireRemote(refRead(REMOTE_TIP));
+  it('fails with exit 1, the token off both streams, when GitHub answers the delete with a body it does not recognise and the branch reads back unchanged', async () => {
+    const run = await retireRemote(refRead(REMOTE_TIP), '--json');
 
     expect(run.exit).toBe(1);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'failed' });
     expect(run.out).toContain('did not accept');
+    expect(`${run.out}${run.err}`).not.toContain(TOKEN);
   });
 
   it('keeps the token off both streams in human output after a mint', async () => {
-    const run = await retireRemote(refRead(REMOTE_TIP), false);
+    const run = await retireRemote(refRead(REMOTE_TIP));
 
-    expect(run).toMatchObject({ exit: 1, minted: true, out: '' });
+    expect(run).toMatchObject({ exit: 1, out: '' });
     expect(run.err).toContain('did not accept');
+    expect(run.err).not.toContain(TOKEN);
+  });
+
+  it('fails with exit 1, deleting nothing, when the mint fails', async () => {
+    const run = await runRetire(['--branch', BRANCH, '--json'], REMOTE_WORLD, {
+      graphql: refRead(REMOTE_TIP),
+      mint: MINT_FAILING,
+    });
+
+    expect(run.exit).toBe(1);
+    expect(JSON.parse(run.out)).toMatchObject({ kind: 'failed' });
+    expect(run.out).toContain('minting the branch-retire token');
+    expect(run.out).toContain('nothing was deleted');
   });
 });
 

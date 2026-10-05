@@ -1,5 +1,7 @@
 import { typeSafeEntries, typeSafeHasOwn, typeSafeKeys } from '@engraph/type-helpers';
 
+import { BRANCH_TOKEN_SCOPES } from './branch-token-scopes.js';
+
 /**
  * The bot token's permission policy: which GitHub App permissions each kind of
  * bot work is allowed to mint.
@@ -130,6 +132,14 @@ export const TOKEN_SCOPES = {
    * business also starting arbitrary runs for the fifty-minute life of a merge
    * poll, and a seat that needs one dispatch has no business holding contents
    * write. GitHub keeps them as separate permissions and so does this table.
+   * NOT for the upstream mirror: its run writes with the dispatcher's
+   * ceiling, so a dispatch under this scope fails its reference update (run
+   * 35240876819, 2026-09-17) — mint `upstream-mirror-dispatch` for that one
+   * workflow. This scope stays actions-only for the carrier dispatch and for
+   * re-running a failed job (two re-runs on 2026-09-12, CodeQL run
+   * 34748348080 and CI run 34748348052, both green on the second attempt; a
+   * re-run keeps the original run's context, so the cap below does not
+   * apply to it).
    *
    * ## Provenance, 2026-09-11
    *
@@ -151,61 +161,41 @@ export const TOKEN_SCOPES = {
   },
 
   /**
-   * Deleting one merged branch ref: what `merge-bot retire` mints, and only
-   * when its proof has planned a remote delete.
+   * Dispatching the upstream-mirror workflow, whose RUN moves the mirror
+   * branch. `contents: write` is here for that run, not for the dispatch call.
    *
-   * `contents: write` is wider than the act (it also permits pushes to
-   * unprotected branches and tag writes), and GitHub offers nothing narrower
-   * for a ref delete. `workflows` and `pull_requests` are left out: a delete
-   * creates no workflow file and touches no pull request, and the
-   * `pull-request-work` note above is why an unused `workflows: write` must
-   * not sit in memory for an act that never needs it (security D3).
+   * ## Provenance, 2026-09-17: the dispatched run inherits this token's ceiling
    *
-   * ## Provenance, 2026-09-28
+   * A workflow run that the bot dispatches gets a `GITHUB_TOKEN` capped at the
+   * permissions of the token that dispatched it, in addition to the job's own
+   * `permissions:` block. GitHub's token documentation, read 2026-09-17,
+   * states no such rule; the measurement is the warrant. Observed on the
+   * upstream-mirror workflow:
+   * every scheduled run fast-forwards the mirror branch (run 35212280055 moved
+   * 57 commits at 10:47Z), and the first bot-dispatched run that reached the
+   * same `PATCH git/refs` step (run 35240876819, dispatched under
+   * `workflow-dispatch`, which carries `actions: write` alone) answered 403
+   * `Resource not accessible by integration` at that step while its read
+   * steps succeeded; `main` carries no ruleset and no branch protection, and
+   * the job declares `contents: write`. Under a token carrying both
+   * permissions, run 35241924531 fast-forwarded `main` by 19 commits.
    *
-   * A live probe in this repository, under a token minted with this row
-   * alone: the bot created a throwaway branch at main's tip (REST
-   * `POST git/refs`), then deleted it with GraphQL `updateRefs`. A stale
-   * `beforeOid` left the ref in place, answered by a generic GraphQL error
-   * ("Something went wrong while executing your query"), not a named
-   * mismatch; the right `beforeOid` deleted it, and both a REST read and
-   * `git ls-remote` then read it absent. So contents alone suffices, the
-   * compare-and-swap holds, and a failed update is classified by re-reading
-   * the ref, never by the error's text.
+   * The MIRROR writes through the run's own token by design (its node's
+   * decision 7: a reference the run token moves triggers no workflow, which
+   * keeps CI off the mirror branch), so the token that dispatches it must
+   * carry what the run writes with. The CARRIER workflow writes through an
+   * App token it mints in the run, so its dispatch needs nothing beyond
+   * `actions` and stays on `workflow-dispatch`. Named for the act that
+   * writes, so no other dispatch holds a push-capable token for an hour it
+   * never uses.
    */
-  'branch-retire': {
+  'upstream-mirror-dispatch': {
+    actions: 'write',
     contents: 'write',
   },
 
-  /**
-   * Reading one repository's refs through GitHub: its id, its default
-   * branch's name and tip, and one branch ref, in one GraphQL query. It
-   * requests no write of any kind.
-   *
-   * ## Provenance, 2026-09-28
-   *
-   * A live probe in jimCresswell/jimcresswell.net, under a token minted with
-   * this row alone, through the production mint:
-   *
-   * - GitHub's mint response granted exactly `contents: read` and
-   *   `metadata: read`, for this one repository.
-   * - The GraphQL query `merge-bot retire` uses for its ref reads returned
-   *   the repository id, the default branch's name and tip, and the branch
-   *   ref, and `null` for a ref that does not exist.
-   * - GraphQL `updateRefs` itself, the mutation a remote delete sends, was
-   *   refused. The probe asked it to create a throwaway branch at main's tip
-   *   (a zero `beforeOid`). GitHub answered HTTP 200 with `updateRefs: null`
-   *   and a `FORBIDDEN` error, "Resource not accessible by integration", and
-   *   a read-back found no such ref.
-   *
-   * The refused write is the evidence for the grant. The repository is
-   * public, so the successful read alone would show nothing. A port to a
-   * private repository probes this row again there, where the read half
-   * becomes evidence too.
-   */
-  'branch-read': {
-    contents: 'read',
-  },
+  /** The branch acts (`merge-bot retire`): their rows and provenance are `branch-token-scopes.ts`. */
+  ...BRANCH_TOKEN_SCOPES,
 } as const satisfies Readonly<Record<string, TokenPermissionSet>>;
 
 /** The closed set of scope names, derived so there is one source. */
