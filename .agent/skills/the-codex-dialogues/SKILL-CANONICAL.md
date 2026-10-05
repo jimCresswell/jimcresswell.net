@@ -177,9 +177,8 @@ or personal data.
   verbatim (direct mode holds the raw turns, so fidelity is by
   construction), then compose and append the close event, then append
   the same canonical `key=value;` line as a row to the host's tracked
-  trial tally (OCE:
-  `.agent/reports/agentic-engineering/the-codex-dialogues-trial-tally-2026-08.md`;
-  a host without one creates it at the first close)
+  trial tally (OCE keeps it under its agentic-engineering reports as the dialogues'
+  trial tally of 2026-08; a host without one creates it at the first close)
   in the same close sequence — the comms event is transport; the
   tally row is the durable copy the trial window reads, and it is
   conserved only when it LANDS (committed and pushed with the close,

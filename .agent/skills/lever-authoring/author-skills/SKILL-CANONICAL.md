@@ -315,5 +315,6 @@ A skill change is complete when:
 - `.agent/directives/principles.md`
 - `.agent/skills/change-custody/gates/SKILL-CANONICAL.md`
 - `.agent/skills/knowledge/napkin/SKILL-CANONICAL.md`
-- `.agent/directives/editorial-tone.md`
+- the host's editorial directive, where it keeps one (OCE: editorial tone; jimcresswell.net:
+  editorial guidance)
 - `.agent/rules/skill-naming-and-description-quality.md`

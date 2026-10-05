@@ -62,10 +62,7 @@ export function advance(state: LineState, token: string, next: string | undefine
  * (`cd ..` from a directory returns to the root), or lost when the target is
  * absent, unnameable, or climbs out of the repository.
  */
-export function changeDirectory(
-  context: CommandContext,
-  target: string | undefined,
-): CommandContext {
+function changeDirectory(context: CommandContext, target: string | undefined): CommandContext {
   if (context.lost || target === undefined || COMMAND_TERMINATORS.has(target)) {
     return LOST;
   }
