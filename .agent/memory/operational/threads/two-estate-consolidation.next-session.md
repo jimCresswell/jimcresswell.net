@@ -109,6 +109,188 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-05T16:4xZ — both landings merged; the alignment node at its finish (Sycamore holds Spore, 18d874)
+
+- **The finish, first-hand.** 322 merged at `SHA:d3647a9d` (16:26:59Z) and the sibling's #354 at
+  `SHA:ef42bd11f` (16:33:15Z), each through the bot's door with Copilot's review binding the tip
+  (`--expect copilot-pull-request-reviewer`). 322 took six settlement pushes from the predecessor's
+  `SHA:d371218b` (`SHA:15804f7a`, `SHA:a3635494`, `SHA:159b5d95`, `SHA:aeb49538` among them), #354
+  four, the same bytes but for the package scope and the skill prefix; the last push in each
+  estate under the one PDR-140 clause 4 rebudget, taken by this seat's recorded decision on each
+  description (the gate's text says "by the owner"; highlighted for the owner). The byte proof at
+  the merged tips is a comment on each landing: 829 shared, 776 identical, 9 placeholder-only, 44
+  differing, the contextual layer the doctrine landing named; no family-layer path differs.
+- **What was cured and what was routed.** Cured with tests in both estates: the conformance
+  validator's presence readings (ENOENT alone is absence; the optional-reads class one module at
+  the reader seam), the fan-in's `if: always()` required, one family gate run per `check`, the
+  depcruise gate's root containment, the `review-cost` alias fail-closed, the spawn-topology proof
+  a smoke, the python helper's exits and stderr; the sibling's setup action pinned and its fan-in's
+  one skip condition. Rejected with RUN evidence: Codex's Windows P1, Copilot's knip claim. Routed
+  as signed lines: three observations on carried one-body modules on 322, the cited scripts'
+  `../` escape and the tracked `skills-lock.json` read on #354, and Copilot's last finding on the
+  final sibling tip, true in both estates: the family manifest's `agent-tools:build`,
+  `agent-tools:prevent-accidental-major-version` and `agent-tools:secret-scan` lack
+  `--fail-if-no-match` while the hook comments say every agent-tools alias carries it. The first
+  follow-up pull request per estate cures the class (the flag on every filtered alias, a manifest
+  self-check in the validator).
+- **The estate after the merges.** The ruleset 12555444 requires `run-quality-gates` and
+  `CodeQL` alone (PUT under the operator credential, read back active). Retired under the bot and
+  read back absent, their clean worktrees removed first: here `feat/practice-code-landing`,
+  `docs/parity-c24-specification` (318), `fix/parity-heading-gate-cures` (309, re-cut as 310),
+  `docs/parity-rules-surface-1` and `docs/parity-skills-surface-1` (the owner's card answer),
+  `docs/parity-hooks-surface` (unopened, disposed inside the landing by the node's mechanism; its
+  tip `SHA:c6262b00` carried eighteen README lines main does not hold byte for byte); in the
+  sibling `feat/practice-code-landing`, `feat/parity-carry-doctrine-batch` (#349), and the two
+  surface lanes on the owner's card answer. The local ledger branches and the detached
+  `consolidation-2w` worktree removed after `merge-base --is-ancestor` read their tips in the
+  default branches.
+- **Todo 3.** The strategic node `best-of-each-practice` §Delivery carries the dated finish line
+  with both merge shas; `practice-alignment-by-class`, `practice-parity-two-landings` and
+  `practice-parity-for-extraction` are archived in both estates with their dispositions
+  (`status: archived`; the extraction node's `superseded_by` now names the alignment node);
+  `practice-language-separation` archived earlier on the owner's card answer with its three
+  questions kept. `validate-plan-corpus` OK in both.
+- **The seat's processes at this block.** The comms watcher (Monitor) live; no claim beyond the
+  implementer claim in the home registry; no heartbeat (n=1). The remaining acts: these records
+  committed on the coordination branches, both folds (DUE), the wrap with its closeout broadcast
+  and the claim closed.
+
+### 2026-10-05T11:3xZ — the code landing open in both estates; the handoff at the owner's word (Crucible binds Slag, 7b999c)
+
+- **The owner's words of this sitting, verbatim.** 09:1xZ: "take your time to plan remaining
+  steps. Remember: finished this Practice work happens today, it is bounded, it will end. There
+  are also two PRs across the estates that are about 2 days old, that's bad PR hygeine, we should
+  keep on top of it to avoid creating rework. Use all appropriate skills to plan and execute the
+  work". 11:0xZ: "When you reach a sensible point, please prepare for a full handoff to another
+  agent. You have been doing an excellent job, but this session is several days old and the
+  context is accumulating cruft even with compaction".
+- **State.** jimcresswell.net: 322 open on `feat/practice-code-landing` at `SHA:d371218b`
+  (thirteen commits, keystone-first; the eighth the git-read core and the substrate audit; the
+  last five the cures the gates and the reviews found), CI green at the previous tip
+  `SHA:b1988de4` with the fan-in `run-quality-gates` passing; nine review threads triaged in one
+  settlement push (six cured, three observations recorded as named remainders in the
+  description), Copilot's second review left one finding (the trusted-origin check and an https
+  URL carrying userinfo), cured at `SHA:d371218b` and awaiting its reply and a third review; 318
+  closed with a comment naming 322. OCE: `feat/practice-code-landing` at `SHA:b79e0c23d`
+  (twelve commits), pushed at 11:12Z after four refused gates (the Playwright browser build, one
+  unused type export, the depcruise roots, the current-source review hash), open as #354 with
+  Copilot requested under the bot; #349 closed with a comment naming it. The coordination
+  branches `coordination/2026-10-04-eebe40` and `coordination/2026-10-04-d2f44f` carry this
+  sitting's records and are past their 24-hour lifetime: the fold is DUE.
+- **What the landing is.** The family shape in both estates (30 Practice-operation scripts one
+  body with two placeholders, the `check` skeleton with the sibling's two host slots, the nine
+  hooks byte-identical, the CI fan-in, ten compiler flags, `prettier.config.ts`, pnpm 12, the
+  manifest `.agent/family/typescript/practice-operations.json` with `host.json` per estate and
+  `validate-family-conformance` as a leg of `repo-validators:check`); the carries each way with
+  their tests (the descriptions of 322 and the sibling's pull request list them with the
+  host-local decisions and their reasons); PDR-142's clause at the owner's card answer; the Core
+  changelog entry; the doors 318 and #349 closed into the landings.
+- **Assumptions and framing choices to treat as open** (the owner's word of 2026-10-03: a handoff
+  highlights them). (1) The three Copilot observations on carried one-body modules (the cluster
+  signature's `|` join, the review-cost base-merge exemption, the pr-watch classifiers) were
+  dispositioned as observations under PDR-140's specification reading and recorded as remainders;
+  a reader may rule them findings owed a cure before merge. (2) The sibling's 23 `.css` knip hints
+  are read as information there and would be errors here (`treatConfigHintsAsErrors`); the family
+  drift is named, not cured. (3) The sibling's current-source review hash for the fetch execution
+  file was moved by this seat for a behaviour-preserving cure (a trailing return into a `default:`
+  branch); the sibling's governance may expect a human review of that delta. (4) The home's fourth
+  workspace (`linkedin`) joined the depcruise cruise by the computed roots; it passed, but it was
+  never cruised before. (5) The landing's cumulative time: about 2 h of authoring and about 2 h of
+  gates and settlement so far, against the node's 3 h estimate and the owner's ruled "about five
+  hours over two sittings" for both landings together; the stop line of this sitting was 13:45Z.
+- The sibling's `windows-basic` job fails at setup on #354 since the pnpm 12 bump: the
+  setup-node cache step runs `pnpm store path` through pnpm/action-setup's cmd shim, which
+  resolves to a path under `global\v11\...\node_modules\pnpm\pnpm` that cmd cannot run (pnpm 12's
+  Windows shim; pnpm issue 16573 is the same family). The fan-in needs that job, so #354 cannot
+  merge until it is cured: pin a newer pnpm/action-setup or a pnpm 12.x with the shim fix, or set
+  the action's `version` and `standalone` inputs; the `engraph` run before the bump is green.
+- **Next safe step, in order.** (a) Read `git status --branch` in both primaries and the remote
+  tips of the two landing branches before any act. (b) 322: reply on the origin thread naming
+  `SHA:d371218b`, resolve it, re-request Copilot; when a review binds the tip,
+  `pnpm --silent agent-tools merge-bot merge --pr 322 --expect copilot-pull-request-reviewer
+  --json --interval 30 --max-polls 60`; then the ruleset switch (id 12555444; the payload is the
+  saved file named in the napkin block, contexts `run-quality-gates` and `CodeQL`). (c) The
+  sibling's pull request the same under the bot's token (`merge-bot mint-token --scope
+  pull-request-work`, never printed), its ruleset already on the fan-in. (d) After both merges:
+  delete the landing branches, `docs/parity-c24-specification`, `feat/parity-carry-doctrine-batch`,
+  `fix/parity-heading-gate-cures`, `docs/parity-hooks-surface` through the API under the bot; run
+  the byte proof (`proof_cmp.py` in the napkin block) at the two merged tips and post it as a
+  comment on each; one card to the owner: delete the four superseded surface lanes
+  (`docs/parity-rules-surface-1`, `docs/parity-skills-surface-1`, the sibling's two
+  `feat/parity-surface-*`) and renew or archive the three expired gates of
+  `practice-language-separation`. (e) Todo 3: the strategic node's §Delivery takes the finish
+  line; archive `practice-alignment-by-class` (it lives on this estate's coordination branch, not
+  on main), `practice-parity-two-landings`, `practice-parity-for-extraction`, sweeping inbound
+  links; the same in the sibling. (f) Fold both coordination branches (DUE), then wrap.
+
+### 2026-10-05T00:4xZ — compaction boundary: 321 merged, #353 open, the suite's direction (Crucible binds Slag, 7b999c)
+
+- 321 merged into main at `SHA:4992af38`; #353 at `SHA:df70cd153`, cured and resolved, waiting
+  on a review at the tip; the proof DRIFT 1 (`subagent-practice-core-protection`'s globs, owed
+  to the code landing here). The owner's card answer: "Your words stand (Recommended)". The
+  full Cricket suite: ON-TRACK unanimous on the code landing as sized; the finish is the owner's
+  ruling of five hours over two sittings, the whole projecting near 6.5 h, reported as one line.
+- **Next safe step**: the code landing here from main, keystone-first, without waiting for
+  #353 (its merge when a review binds its tip); the napkin block of 2026-10-05T00:4xZ carries
+  the full resume order and the loss scan.
+
+### 2026-10-04T22:4xZ — the doctrine landing open in both estates; the code landing next (Crucible binds Slag, 7b999c)
+
+- **State**: jimcresswell.net 321 (`docs/practice-doctrine-landing` at `SHA:a9081f17`, seven
+  commits, reviews settled at the tip: Codex two and Copilot one, cured and resolved; Copilot
+  re-requested) and OCE #353 (`docs/practice-doctrine-landing` at `SHA:bd969cbaf`, the same bytes
+  plus 42 contextual-bound variants; #350 merging in as 312 did into 321). The byte proof at the
+  two tips reads DRIFT 0 over 744 shared paths (702 identical, 42 contextual-bound). 312 closed
+  into 321. The parameter list P1 to P37 is in the review report's new section in both.
+- **Next safe step**: merge 321 and #353 when their reviews settle (`merge-bot merge --expect
+  copilot-pull-request-reviewer`); then the code landing (the node's mechanism item 2) here
+  first, cut from main: the 18 scripts, the hooks (OCE's secret scan and review-cost gate
+  carried to the push), the CI fan-in, the four compiler flags, the formatter format, the
+  package-manager major, the markdownlint config, the carries C1 to C28 with tests (the skills
+  one-sided each way, the validators four each way, the 14 tooling modules and 7 lint rules, the
+  distillation skill), the family conformance check, the validators aligned so one text passes
+  one gate set; the doors 318 and the hooks branch disposed in it.
+- **Owed to the owner**: the OCE-in-Core card (the owner's 2026-09-30 and 2026-10-02 words
+  against PDR-142's host-neutrality clause), put with 321.
+- The napkin block of 2026-10-04T22:4xZ carries the measurements, the decisions and the lessons.
+
+### 2026-10-04T19:0xZ — the definition landed on both default branches; the alignment node ratified; compaction at the owner's word (Crucible binds Slag, 7b999c)
+
+- **State.** The definition's landings merged: jimcresswell.net 319 at `SHA:02178ff0b` (main),
+  OCE #351 at `SHA:82cb7fba4` (engraph), the same bytes. The successor delivery node
+  `practice-alignment-by-class` is ratified by the owner's four card answers of 16:xZ (four pull
+  requests, two per estate; proceed at about five hours over two sittings; a light commit and a
+  full push as the family's convention; the conformance check included) and sits on both
+  successor coordination branches (here `SHA:11d0ed3f`, OCE `SHA:5125881ce`) with the Cricket
+  suite's tally. No claim, no process, no unpushed commit of this seat.
+- **Next safe step.** The doctrine landing (the node's §Mechanism 1): cut from main here, one pull
+  request, the general-layer text merged by concept from the ledger's 209 recorded readings and a
+  fresh read of the 33 unmeasured files, the rules collapsed to one rule and a table, the maps
+  trued, the parameter list, the four cures deferred from 319 and #351, and the OCE-in-Core
+  conflict as a card for the owner; then the sibling's from engraph, the same bytes; then the
+  code landing. One in-progress pull request per estate.
+- **Open doors, untouched**: 312 and #350, 318, the hooks branch, the OCE implementer's unpushed
+  lanes; disposed inside the landing of their class.
+
+### 2026-10-04T16:0xZ — the Practice defined and ratified; the folds merged; the landing next (Crucible binds Slag, 7b999c)
+
+- **State.** The review node `practice-system-review` was reshaped at two Cricket verdicts and
+  ratified by the owner's card answer of 13:3xZ; the layer pass read both estates side by side
+  and the report was written; the owner added the family layer, confirmed by a Python-family
+  instance on the host, decided the six placements, and ratified the five-layer definition as
+  canonical by card ("Ratify as canonical"). The coordination branches folded: jimcresswell.net
+  305 at `SHA:eebe40ea2` (successor `coordination/2026-10-04-eebe40`); OCE #348 through the bot.
+  This seat's five claims are closed (n=1, no peer).
+- **Next safe step.** One landing pull request per estate, cut from the folded default tip:
+  PDR-143 (Accepted, the definition in §Decision, the 2026-10-04 amendment), `practice.md`'s
+  opening definition, PDR-142's amendment entry, the report
+  `.agent/reports/agentic-engineering/practice-system-review-2026-10.md` with its README row,
+  the parent node's dated line, this node archived; the same bytes in both estates; Copilot once;
+  merged by the bot. Then the successor delivery node, written from the model: one pull request
+  per divergence class per estate.
+- **Open doors, untouched**: 312 and #350 (the ledger's revision, zero and five findings open),
+  318 (settled, unmerged), the hooks branch, the OCE implementer's unpushed lanes.
+
 ### 2026-10-03T20:0xZ — the session finished at the owner's word; direction to be evaluated before the next (Hazel tracks Trunk, 7d8b9d)
 
 - **The owner's word (verbatim)**: "We are going to hand the work to another session, but before

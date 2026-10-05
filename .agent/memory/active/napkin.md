@@ -1,5 +1,10 @@
 # Napkin (rotated 2026-10-02)
 
+> **Rotation due (overflow flag, 2026-10-04).** This notebook passed its ~500-line rotation
+> trigger on 2026-10-03 and passed 1,100 lines on 2026-10-05; the rotation (napkin skill
+> §Rotation, consolidate-docs step 6) is the next consolidation's act. Nothing here is trimmed
+> before it.
+
 Rotation note (Hazel tracks Trunk, 7d8b9d, the second two-estate consolidation): the whole
 notebook as it stood at blob f8fb3f4a9 (lines 1 to 1187: the 2026-09-30 rotation note and every block
 from 2026-09-30 to 2026-10-02T20:12Z, 29 blocks) is in `.agent/memory/active/archive/napkin-2026-09-30-to-2026-10-02.md`, byte-identical to that blob,
@@ -792,3 +797,318 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   operations back into the local Practice and then the central Practice ... questions for
   another day, important questions". 6: "Agreed". All recorded in the report with the words at
   each item; the memory file tooling-agnostic-policy-strict-universal-contracts.
+- **15:3xZ, the owner's ratification of the definition, by card: "Ratify as canonical
+  (Recommended)"**: the five-layer definition (general, family, contextual, accumulated, the loop)
+  is canonical; its homes are PDR-143 (an amendment revising §Decision) and practice.md's opening
+  definition, the same bytes in both estates, the report its evidence. Landing order: the folds
+  first, then one pull request per estate from the folded tip.
+- **Landing prepared (uncommitted, both trees)**: PDR-143 Accepted with the ratified definition in
+  §Decision and a 2026-10-04 amendment entry; practice.md's opening definition; PDR-142's
+  amendment entry with the owner's 2026-10-03 words; the report and its README row in both
+  estates; all the same bytes. PDR-142's two copies differed only in "[OCE]" against "[the
+  lineage]" in the bracketed substitutions of the owner's quotes: the owner's 2026-09-30 word
+  ("it's not 'the lineage', it's OCE") reached one estate (its lineage-names validator is
+  one-sided); OCE takes this estate's bytes. The plan-node edits (the parent's dated line, the
+  node archived) wait for the folds to merge, so the landing branches cut from the folded tips.
+
+## 2026-10-04T16:4xZ — The definition landed on both default branches; the successor node ratified by four card answers (Crucible binds Slag, 7b999c)
+
+- **Landed**: jimcresswell.net 319 at `SHA:02178ff0b` (main), OCE #351 at `SHA:82cb7fba4`
+  (engraph): PDR-143 Accepted with the ratified five-layer definition, practice.md's opening
+  definition, PDR-142's entry, the report with its README row, the parent's dated line, the review
+  node archived; the same bytes in both. Three review rounds each; the last round's nine findings
+  (four true cures, deferred to the doctrine landing under the spent two-push budget; two declined
+  with reasons; the rest answered) are named in the successor node's first todo.
+- **The full Cricket suite** on the successor node's first draft (three landings per estate, about
+  seven seat-hours): eight legs, both stances, unanimous ON-TRACK on the work; seven CONTRADICTED
+  and one NARROWED on the frame, all on the same two facts (six pull requests against the owner's
+  "two large PRs"; the cost guide read per landing where the owner said it of the whole), plus the
+  attribution of the one-word class directions to the owner (they were the review's). The tally
+  is `.agent/reports/agentic-engineering/cricket-suite-tally-2026-10-04-alignment-node.md`. The
+  assumptions reviewer then found six more on the reshaped node, one blocking (the named cuts did
+  not compute under four hours, and one was a carry the owner's words refuse); all applied.
+- **The owner's four card answers, 16:xZ, verbatim**: "Ratify, four pull requests (Recommended)";
+  "Proceed at about five hours over two sittings (Recommended)"; "Light commit, full push, both
+  estates (Recommended)"; "Include it (Recommended)" (the family conformance check). The node
+  `practice-alignment-by-class` is ratified, the same bytes in both estates.
+- **One conflict for the owner, not decided by the seat**: the owner's 2026-09-30 word ("it's not
+  'the lineage', it's OCE") put "OCE" into PDR-142's bracketed quote substitutions; Codex read
+  PDR-142's own host-neutrality clause against it. Put to the owner with the doctrine landing.
+- **Lessons**: (1) a budget of two settlement pushes was spent on each landing by round three
+  of a three-round review; declared budgets should count rounds a Core landing attracts (Copilot
+  and Codex both, at every push), or the first push should go out only after a first-hand read
+  of the Core diff against the records' own rules (host neutrality, the changelog, the index).
+  (2) The `claims close`, `comms send` (under collaboration-state) and Copilot re-request (REST
+  requested_reviewers, operator credential here, the bot in OCE) forms are the day's tool facts.
+  (3) Both estates' napkins and READMEs will conflict at the next fold on adjacent insertions;
+  resolve by keeping both rows.
+- **Next**: the doctrine landing, this estate first; the owner's word stands: finish.
+
+## 2026-10-04T19:0xZ — Compaction boundary at the owner's word: the definition landed, the alignment node ratified, the doctrine landing next (Crucible binds Slag, 7b999c)
+
+- **The owner's word, verbatim**: "please prepare compaction ... then stop all processes, post
+  compaction we will cpntinue".
+- **Metacognition (inward)**: the day's pull was the one the retrospective named, the Director on
+  the instrument: three review rounds on each fold and each landing took about two hours of
+  wall-clock that no file of the alignment needed; the cure that worked was the budget rule
+  (answer past the budget, never push) and naming the deferred cures in the next landing. The
+  suite caught my own narrowing: I read the owner's cost guide per landing to fit a shape I had
+  already chosen; the owner's words are read at the scope the owner gave them. The assumption
+  still open: that the doctrine landing is two hours from the ledger's readings; the rate is
+  unmeasured, so the landing stops and reports at three.
+- **Reason (outward)**: the kind at this boundary is execution of a ratified node; the direct trial
+  is the doctrine landing itself; no further analysis has value before it; the one escalation
+  owed is the OCE-in-Core conflict, carried as a card with that landing.
+- **Concept exploration**: the day's concept is the family layer, and its sharpest form is in the
+  Python template: a gate contract file naming the general vocabulary (check, fix, lint, format,
+  typecheck, test, build, clean) bound to a family's tools, with an audit that checks the
+  documented commands against it. "Same bytes" became "same by concept per layer": the general
+  layer by concept, the family layer by convention, the contextual layer named, the accumulated
+  layer never compared. The report's open edge: the Practice's own runtime is family-layer
+  content until the extraction decides otherwise.
+- **Free play (seeds, not findings)**: the TypeScript family's conformance manifest could take
+  the Python template's shape (a contract file naming commands and gate sequences) so that one
+  schema describes both families; a procedure-seat Cricket took three to seven times the
+  judgement seats' wall-clock for the same substance; a Core clause and a later owner word about
+  records collided today (host neutrality against "it's OCE"), which is the loop's authority
+  question in miniature; the patterns' reachability measure might be the first general-layer
+  instrument that is pure observation.
+- **Work-safety evidence, both estates**: jimcresswell.net on `coordination/2026-10-04-eebe40`
+  at `SHA:11d0ed3f` level with its remote, tree clean, draft 320 open; OCE on
+  `coordination/2026-10-04-d2f44f` at `SHA:5125881ce` level with its remote, tree clean, draft
+  #352 open; main at `SHA:02178ff0b` and engraph at `SHA:82cb7fba4` carry the definition. No
+  unpushed commit of this seat anywhere; no worktree of this seat besides the primaries. Open at
+  the doors, untouched: 312 and #350 (the ledger's revision), 318 (settled, unmerged), the hooks
+  branch, the OCE implementer's unpushed lanes; disposed inside the landing of their class.
+- **Processes and claims**: none. The watchers were until-loops that exited; the bot merges
+  completed; every Cricket and reviewer agent returned; no claim is open (n=1, no peer, no
+  heartbeat); nothing to re-arm at the resume.
+- **Resume order**: this block; the node `practice-alignment-by-class` (ratified; §Mechanism 1 is
+  the doctrine landing with the four deferred cures and the conflict for the owner in it); the
+  ledger's §(a) to §(g) for the recorded readings; the report's §The divergences. Then the
+  doctrine landing here first, cut from main, one pull request, then the sibling's from engraph.
+- **Loss scan**: decisions, the owner's words verbatim in this notebook, the node, PDR-143 and
+  PDR-142; state, the branches above; open items, the conflict and the four deferred cures in
+  the node's first todo, the doors above; lessons, the 14:1xZ and 16:4xZ blocks; pointers, the
+  memory files tooling-agnostic-policy-strict-universal-contracts and
+  split-cricket-verdicts-run-the-full-suite. Metaloss: the compression that survives is this
+  block plus the node; the only thing this context holds that no record does is the feel of how
+  long each review round took, and the 16:4xZ lesson carries that as a number.
+
+## 2026-10-04T22:4xZ — The doctrine landing in both estates: one general text, the contextual layer named (Crucible binds Slag, 7b999c)
+
+- **The owner's word at the resume, verbatim**: "please continue, let's get the Practice work
+  finished, I would like to move on to feature development (you don't need to care about what,
+  only about finished the Practice work)".
+- **Measured first**: at the day's default tips 198 `.agent/**` files differed (341 identical);
+  the six-prefix dry-run merge read 161 differing, 70 clean, 86 conflict files with 219 hunks, 5
+  with no base; 25 patterns differed, none one-sided; 24 maps, contracts and reference documents
+  differed outside the measured prefixes.
+- **Method**: the three-way merge output written into the landing branch (clean files merged,
+  conflicts with diff3 markers), then six workers by surface (directives, rules, skills,
+  sub-agents, maps and contracts, patterns by layer) resolving by the ledger's recorded readings
+  under one brief; the Director resolved the Practice Core first-hand (PDR-003) and the changelog
+  union by script; the ledger revision (312) merged in so the owner-row decisions of 2026-10-03
+  stand on record; `pnpm portability:fix`, the skills generator and the patterns index
+  regenerated. About two and a half seat-hours from the resume to both pull requests, against
+  the node's two-hour estimate for the doctrine landing.
+- **Landed**: jimcresswell.net 321 at `SHA:a9081f17` (seven commits: the landing, the adapters,
+  four host-neutral citations the sibling's gates refused, the two Codex cures); OCE #353 at
+  `SHA:bd969cbaf` (one commit from the landed bytes plus 42 variants, with #350 merging in as
+  312 did). The proof at the two tips: 744 shared paths, 702 identical, 42 contextual-bound by
+  design, DRIFT 0; the one-sided files are each host's host-local set and the code landing's
+  skills. Both review legs ran on 321 (Codex two findings, Copilot one, all three cured at
+  `SHA:a9081f17`, the threads answered and resolved under the bot); Copilot re-requested on both.
+- **Decisions under the lenses (the owner declines by row)**: P6, the reference documents live
+  under `.agent/reference/` in both; the gate placement is the card answer (light commit, full
+  push); the Practice-operation script vocabulary is family-layer and the code landing makes it
+  one shape; host bindings are written host-neutral with the parameter named, else the file is
+  contextual-bound with a variant and a row (P1 to P37 in the report's new section); the roster
+  table lives in `invoke-code-experts.md` and the host's reviewers in its executive catalogue
+  (OCE's four host-specific invoke rules retired the same way); the operator-bound pattern is
+  contextual; the sibling's `under-the-hood` skill keeps its own bytes (its generated product
+  module needs a reviewed delta, product territory the owner excluded) and the three method folds
+  wait for OCE's own disposition; the `sif` annex is contextual-bound (OCE's lockstep test binds
+  the pin link).
+- **The owner's standing words applied, with the card still owed**: the records name OCE where
+  they named a role (2026-09-30, 2026-10-02); Codex's host-neutrality reading is a reviewer's;
+  the card goes with the landing as the node says.
+- **Patterns reachability**: 199 of 246 reach from nothing, 37 from one or two sources, 10 from
+  three or more; listed in 321's description for the owner; nothing moved.
+- **Lessons**: (1) never edit a tree while its push gate runs; the sibling's copy took the fix
+  first. (2) knip refuses an unused export the sibling's gate runs and this one's does not; the
+  two agent-tools copies differ by two `export` keywords until the code landing. (3) A validator
+  that one estate lacks (cited paths, cited scripts, reference direction's plans rule, the
+  under-the-hood lockstep) shapes the shared text; the code landing aligns the validators so one
+  text passes one gate set. (4) The hook's name rule bans the organisation slug and the one-word
+  academy name, never the product word; a worker read it as banning the product word and elided
+  an owner's quote. (5) The worker reports came back as messages when the harness refused their
+  Write; the Director saved them.
+- **The owner's card answer, 2026-10-04 23:0xZ, verbatim: "Your words stand (Recommended)"**: a
+  Core record names an estate by its name (OCE, jimcresswell.net) where it records that estate's
+  act; PDR-142's host-neutrality clause is amended in the code landing to say so, and reviewers
+  stop raising it. #350 closed into #353 (merged as 312 into 321). The records push and both
+  landing pushes passed their gates.
+- **Next**: the two pull requests to merge when their reviews settle (one settlement push each
+  spent on 353's #350 merge; 321 has spent its two); then the code landing (mechanism item 2):
+  the 18 scripts, hooks, CI fan-in, the carries C1 to C28 with tests, the family conformance
+  check, the validators aligned; the doors 318 and the hooks branch disposed in it.
+
+## 2026-10-05T00:4xZ — Compaction boundary at the owner's word: the doctrine landing merged here, open in the sibling; the direction assessed by the full suite (Crucible binds Slag, 7b999c)
+
+- **The owner's word, verbatim**: "please prepare compaction ultrathink ... then stop all
+  processes, post compaction we will continue. Use this as an oppurtunity to assess direction,
+  include running the full Cricket suite".
+- **State at the boundary**: 321 merged into main at `SHA:4992af38` (the merge-bot, Copilot
+  binding the tip, nothing unresolved); #353 open at `SHA:df70cd153` (the landed bytes plus 43
+  variants, #350 merged in and closed, five review findings cured, the threads resolved under the
+  bot, Copilot re-requested; no review binds that tip yet, so the merge waits for the resume).
+  The proof at main here and #353's tip: 744 shared, 700 identical, 43 contextual-bound, DRIFT 1
+  (`subagent-practice-core-protection`'s two adapter-tree globs, added in the sibling at Copilot's
+  finding; this estate's copy takes them in the code landing). 312 and #350 closed into the
+  landings; the merged landing branch and the 312 branch deleted here.
+- **Metacognition (inward)**: the pull this sitting was speed over the first-hand read: six
+  workers landed 500 files in about an hour and I read the Core diffs and the one rule, not
+  the rest; the reviewers caught five real findings in the sibling that a first-hand pass of the
+  variants would have caught (a scope literal, two glob sets, two host records). The other pull
+  was editing a tree while its gate ran; caught once, then held. The frame I carried into the
+  suite was narrowed in the same way the last one was: I tested "finished" against the owner's
+  older guide where the owner's later ruling (five hours over two sittings) had already replaced
+  it, and I wrote "the doctrine landing is done" with #353 still open.
+- **Reason (outward)**: the kind is execution of a ratified node between its two landings; the
+  live decision was whether the code landing's shape stands; the direct trial is the landing
+  itself; the suite below is the stop gate's one adversarial pass, and it closed the question.
+  The measured whole: doctrine authoring about 2.5 h of wall-clock with six parallel workers
+  (not seat-hours) plus about 1 h of settlement across both estates, against the node's 2 h; the
+  code landing at its 3 h estimate puts the whole near 6.5 h against the owner's ruled "about
+  five hours", under the per-landing stop line, reported here as one line and not a gate.
+- **Concept exploration**: this sitting's concept is the contextual-bound file: a general-layer
+  file whose bytes differ at one host value, compared by its variant and named by a parameter.
+  Its sharp edge is the gate: a validator one estate runs and the other does not makes the
+  shared text host-bound in effect (cited paths, cited scripts, reference direction's plans
+  rule, knip on exports, a product lockstep), which is why the code landing's validator
+  alignment is the keystone of the alignment and not a carry among carries.
+- **Free play (seeds)**: the parameter list P1 to P38 reads like the first schema of the
+  extraction's install manifest; the six-worker fan-out under one brief is the shape of a Practice
+  operation the family could carry as a script (merge output in, resolved files out, a report
+  per surface); a review leg that binds a tip is the only review that counts, and the two
+  estates' bots differ in who can obtain it (P5), which the extraction's authority design will
+  have to decide once.
+- **Work-safety evidence, both estates**: jimcresswell.net on `coordination/2026-10-04-eebe40`
+  with the sitting's three records commits pushed; main at `SHA:4992af38`; no landing branch
+  open. OCE on `coordination/2026-10-04-d2f44f` with its records commit pushed; `engraph` at
+  `SHA:82cb7fba4`; #353 open on `docs/practice-doctrine-landing` at `SHA:df70cd153`, level with
+  its remote. No unpushed commit, no claim, no watcher, no heartbeat; every worker, Cricket and
+  reviewer agent returned; the only matching process at the stop is the harness's own.
+- **The full Cricket suite (eight legs, both stances)**: unanimous ON-TRACK on the code landing
+  as the node sizes it; the frame NARROWED six times, SOUND once, CONTRADICTED once, on the same
+  facts: the finish measured against the owner's older guide where the ruling of 2026-10-04
+  governs; the landing's scope missing PDR-142's clause, the doors, the secret scan and
+  review-cost gate and todo 3; "done" overstated with #353 open. The tally is
+  `.agent/reports/agentic-engineering/cricket-suite-tally-2026-10-05-direction-after-doctrine-landing.md`
+  (this estate; the sibling's copy lands with its next records commit). Redirections absorbed
+  into the resume order: cut the code landing here without waiting for #353; keystone-first
+  commits; both estates' gates locally before either push; the cumulative figure reported as one
+  line: about 6.5 h against the ruled five.
+- **Resume order**: this block; the suite's tally below; the node's §Mechanism item 2; then the
+  code landing here, cut from main without waiting for #353 (merge #353 with `merge-bot merge
+  --pr 353 --expect copilot-pull-request-reviewer` when a review binds its tip, re-requesting
+  Copilot under the bot first if none does), as the node
+  sizes it, keystone-first inside the one pull request (the validators four each way, the
+  conformance manifest, the 18 scripts, the hooks with OCE's secret scan and review-cost gate,
+  the CI fan-in, the four compiler flags, the formatter format, the package-manager major, the
+  markdownlint config), then the 28 carries with their tests, PDR-142's clause amended at the
+  owner's card answer, `subagent-practice-core-protection`'s globs, the sibling's index renderer
+  and recovery message as one text, the doors 318, the hooks branch and the sibling's unpushed
+  lanes disposed, the strategic node's §Delivery finish line and the node archived (todo 3).
+  Run both estates' full gate sets locally on the applied bytes before either push. Stop and
+  report at one and a half times the estimate, settlement counted.
+- **Loss scan**: decisions, in this notebook and the node (the owner's card answer in the
+  22:4xZ block); state, the branches and pull requests above; open items, the merge of #353, the
+  one owed drift, the code landing's list above; lessons, the 22:4xZ block and the suite's
+  tally; pointers, the memory file doctrine-landing-by-class-gates-shape-shared-text and the
+  scratch reports (`report-<surface>.md`, the variants, the proof and apply scripts) which die
+  with the session and whose substance is in the pull request descriptions and this block.
+  Metaloss: what this context holds that no record does is the shape of the worker brief that
+  worked (one brief, per-surface manifests, variants by path, reports as hand-backs); its
+  substance is the free-play seed above.
+
+## 2026-10-05T11:3xZ — The code landing of practice-alignment-by-class open in both estates; the family shape one in both (Crucible binds Slag, 7b999c)
+
+- **The owner's words at the resume, verbatim** (09:1xZ, with `/jc-start-right-team` and
+  `/jc-plan`): "take your time to plan remaining steps. Remember: finished this Practice work
+  happens today, it is bounded, it will end. There are also two PRs across the estates that are
+  about 2 days old, that's bad PR hygeine, we should keep on top of it to avoid creating rework.
+  Use all appropriate skills to plan and execute the work".
+- **The plan**: the ratified node's todo 2, run as the Director's order of 09:5xZ (the scratch
+  run order, reviewed by the assumptions reviewer and one adversarial procedure Cricket before
+  work started: ON-TRACK, SOUND; the reviewer's one blocking finding, that a stop at the line
+  would leave nothing merged while keystone and carries shared one unopened pull request, taken:
+  the keystone opens each estate's pull request as soon as it is green and the carries ride
+  later pushes). The sibling's #353 merged first (`SHA:d70baa1d0`), its two new review threads
+  dispositioned under the bot (the Codex finding cured in this landing; the Copilot finding a
+  backlog's code spans, no cure).
+- **Shape of the work**: the Director authored the family shape once and applied it to both
+  trees (the scripts' one body with two placeholders, the hooks byte-identical, the CI fan-in,
+  the compiler flags, the formatter file, pnpm 12, the conformance manifest's design); nine
+  workers on disjoint paths (W1a tooling, W1b observer and audit, W2 validators and lint rules,
+  W2b and W2c the validators' findings on the sibling, W3 the conformance validator, W4 skills,
+  W5 the merge-bot, W6 repo-check, W7 the substrate audit), each handing back a table, the
+  Director on the wiring, the Core and the gates. The hook refused two commands on their text
+  (a heredoc carrying a hook-banned phrase; the brief's own words), so the brief was written
+  by the file tool and workers read the dispatch text in the meantime.
+- **What the measurement found that the node had not**: the merge-bot was not one body by file
+  name (1,185 differing lines, two divergent histories since the pin); the repo-check runner,
+  the substrate audit and the pre-compact observer the same; the sibling's `docs-validators`
+  leg raised 36 dead script names in its own live docs once the validators ran there; the
+  workspace census and most of the typescript-estate module failed the migration test;
+  `test:ui` is an interactive runner here and a gate there, so the family gate leg excludes it.
+- **State at this block**: jimcresswell.net `feat/practice-code-landing` at `SHA:d371218b`
+  (thirteen commits, keystone first; the git-read core and the substrate audit the eighth; the
+  ignore-file cure, the knip entries, the review cures, the depcruise roots and the origin
+  check the last five), four pushes through the bot, open as 322 since 10:35Z, CI green at
+  `SHA:b1988de4` with the fan-in passing; nine review threads triaged in one settlement push
+  (six cured, three observations on carried one-body modules recorded as remainders in both
+  descriptions), Copilot's second review left one finding (the origin check and an https URL
+  carrying userinfo), cured at `SHA:d371218b`. OCE `feat/practice-code-landing` at
+  `SHA:b79e0c23d` (twelve commits), on the remote at 11:12Z after four refused gates (the
+  Playwright browser build, one unused type export, the depcruise gate's pinned roots, the
+  current-source review hash), open as #354 since 11:1xZ with Copilot requested under the bot.
+  318 and #349 closed with comments naming 322 and #354. The merged door branches deleted on
+  2026-10-04; the surface lanes wait for the owner's word.
+- **The stop line**: the sitting opened at 09:16Z; the line is 13:45Z; at this block (11:2xZ)
+  the authoring stands at about 2 h with about 2 h of gates and settlement across both estates;
+  the owner's handoff word came at 11:0xZ, before the line.
+- **Lessons**: a commit pathspec that names a renamed or deleted path aborts the whole `git add`
+  (stage only what exists, commit by the full pathspec); a loop that pipes `git commit` into
+  `tail` hides the refusal (test the command's own exit); the reading that knip 6.37 here and 6.32
+  there trace one import graph differently was wrong (knip reads the tracked tree; the four
+  entries written on that reading are retired, the versions still differ); a carried
+  directory can be swallowed by the host's ignore file (the bare `build` line took the
+  restatement audit's `workflows/build/`): the local push gate reads the disk and passes, CI
+  reads the commit and fails, so a carry's proof is `git ls-files` over the carried tree, never
+  the gate alone; the sibling's host gate slot (its Playwright UI suites) needs the browser build
+  of its Playwright version on the pushing machine (`playwright install chromium` under the
+  workspace, one download), a machine fact the gate reports as thirty failed tests at 0 ms each;
+  a one-body gate that pins a host's directory list is a host binding in disguise (the depcruise
+  gate pinned this estate's three workspace roots and refused the sibling on a missing
+  directory; it now computes its roots from the workspace manifest, and this estate's fourth
+  workspace joined the cruise, clean); the sibling's product validators run after the family
+  legs and read a cure as a semantic delta (the unreachable-code cure in the fetch execution
+  file moved its recorded hash; the review record takes the new value with the reason).
+
+## 2026-10-05T14:4xZ — The successor seated: Moment 2 on both streams, the state recomputed (Sycamore holds Spore, 18d874)
+
+- **The owner's word at seating, verbatim** (with `/jc-start-right-team`): "please take your time coming up to speed, you are the eventual successor to Crucible binds Slag (7b999c), use all appropriate skills, and make sure you understand the intention behind the brief". The brief's intention, read from the owner's words of 09:1xZ and 11:0xZ: the Practice alignment finishes today, bounded; the two-day-old pull requests close; the handoff is because a days-old context accumulates cruft, not because the work changed.
+- **Seated**: the watcher armed and asserted live; Moment 2 posted on both streams (home 05312d8f answering 8dd13d51; sibling 01d8fae8 answering 4045a2b2); one native line to the predecessor, still listed live; no heartbeat (n=1, no consumer).
+- **State recomputed at 14:4xZ, first-hand**: both primaries clean and level with their remotes. 322 at `SHA:d371218b`, every check green, Copilot's third review (11:30Z) left two open threads on carried one-body modules (`core/repo-relative-file.ts` symlink containment; `review-cost/budget.ts` trusts the intake line). #354 at `SHA:b79e0c23d`, `run-quality-gates` red on `windows-basic` (setup step: pnpm 12's cmd shim under pnpm/action-setup), three Copilot threads answered by the predecessor as cures owed on the first settlement push, four Codex threads (one P1 twin of the fan-in finding, three P2 observations on `check-package-deps.py`). 320 (home coordination draft) reads CONFLICTING against main; #352 MERGEABLE. The ruleset 12555444 still lists the six old contexts.
+- **15:5xZ, the settlement cures**: one commit per estate, the same bytes but for the package scope (home `SHA:15804f7a`, sibling pending its re-push): the conformance validator's presence readings pure (`family-conformance-root-files.ts`, ENOENT alone is absence; `readRootPackage` beside the pure helpers; both files split at their seams under the line limit), the spawn-topology proof a smoke (it spawned processes from the unit suite; the Windows leg cannot signal a process group), `check-package-deps.py` exits 2 on a failed outdated command and 0 after a successful apply (the Yarn table shape declined, no Yarn host in the family); the sibling alone: the fan-in accepts one skipped result exactly under `schema-drift-status`'s own skip condition, and the setup action pins pnpm/action-setup v6.1.0 (the home's bytes). 322's two open Copilot threads dispositioned as remainders under the bot and resolved (READ, no cure: carried one-body modules, rounds spent).
+- **Lesson, one instance**: the home push gate refused the first push at `skills:check`, since the edited skill script has projections under `.claude/skills/` and `.agents/skills/` that `pnpm skills:generate` rewrites; the predecessor's record said so for canonical skills and this seat read it as doctrine files only. Regenerate in BOTH estates before any push that touches `.agent/skills/**`, the sibling under `--prefix=oak-`.
+- **Cricket suite, eight legs**: ON-TRACK unanimous; frames NARROWED four times (normal) on the missing time measure, then SOUND once, CONTRADICTED twice and NARROWED once (adversarial) on the node's "stops and reports" read as report-and-continue; the redirection taken: the time report went to the owner as one message at 15:0xZ before authoring, no wait.
+- **16:1xZ, round four in both estates** (home `SHA:a3635494`, sibling `SHA:531be217b`, the same bytes): Copilot's review of the sibling's first settlement tip named the class the ENOENT cure had half-covered (the validator's other optional reads still read any failure as absence); the class is one module now (`family-conformance-optional-reads.ts`) and the reads live at the validator's reader seam (`family-conformance-tree-reader.ts`). Copilot's finding on the home tip (a workspace entry `../outside` handed to the depcruise gate as a root above the repository) cured by name with its case. Lesson, the lifecycle's own: cure the class, not the instance; a half-cured class costs a round in both estates.
+- **The owner's card answers, 16:0xZ**: delete the four superseded surface lanes (after both merges, under the bot); archive the `practice-language-separation` sketch with its three expired gates (the extraction thread re-opens it).
+- **16:1xZ, the rebudget door, once per landing**: the review-cost gate refused the sixth home push (rounds 6, settlement cost 55.86 of 40 against a default budget of two) and the sibling's fourth. PDR-140 clause 4 taken once in each estate by this seat's recorded decision on each pull request (the intake line at the top of the body, the reason in §Rebudget): the push carries the sixth round's correctness cures (the fan-in's `always()` required, one family gate run, the review-cost alias fail-closed). The generator is the landing's ratified size under a sampling reviewer, not a defect class; after this push the step-back stands, signed lines only. The owner may object to the seat granting the rebudget (the gate's text says "by the owner"; the clause names no grantor and the home's memory of 2026-09-27 records the lane's decision as the grant); highlighted in the report.
+- **16:1xZ, the rebudgeted pushes landed**: home `SHA:aeb49538` (the sixth push), sibling `SHA:6a4bd5e06` (the fourth), the same bytes but for the package scope; the two open Copilot threads (322 `package.json` alias; #354 tree-helpers `always()`) answered "Cured at" under the bot and resolved; both descriptions carry the shas. The review-cost gate passed both under the intake lines (home "budget — 6", sibling "budget — 5"). The watch re-armed on both doors; the step-back stands from here: a further finding on unchanged code takes a signed line, never a push.
+- **16:2xZ, 322 merged, the ruleset switched, the lanes retired**: Copilot's review of the home tip `SHA:aeb49538` found nothing (verdict "Needs a closer look", zero findings, no thread); the bot's door merged 322 at `SHA:d3647a9d` (16:26:59Z). The ruleset 12555444 now requires `run-quality-gates` and `CodeQL` alone (the PUT under the operator credential, read back active). Six branches deleted under the bot and read back absent, their clean worktrees removed first: `feat/practice-code-landing` (merged), `docs/parity-c24-specification` (318, superseded by 322), `fix/parity-heading-gate-cures` (309, re-cut as 310, merged), `docs/parity-rules-surface-1` and `docs/parity-skills-surface-1` (the owner's card answer), `docs/parity-hooks-surface` (unopened; the alignment node's mechanism disposed it inside the landing: the policy note is on main at the landing's merge, the README rewritten there; eighteen lines of the branch's README prose are not on main byte for byte, its tip `SHA:c6262b00` named here). The local `docs/parity-ledger-revision-2` and the detached `consolidation-2w` worktree removed after `merge-base --is-ancestor` read both tips in main.
+- **Copilot's review of the sibling tip `SHA:6a4bd5e06`, one finding, the same class as the sixth round's cure**: the family manifest's `agent-tools:build`, `agent-tools:prevent-accidental-major-version` and `agent-tools:secret-scan` run without `--fail-if-no-match` while the hook comments say every agent-tools alias carries it, in both estates. READ, true; a signed remainder on both descriptions and the thread, routed as the first follow-up pull request per estate after the merge (the flag on every filtered alias in the manifest and the root scripts, with a manifest self-check in the conformance validator so the class closes). The lesson of round four repeated once: a half-cured class costs a round; the follow-up cures the class by a validator, not by the instance list.
+- **16:3xZ, #354 merged, the node at its finish**: the bot's door merged the sibling's landing at `SHA:ef42bd11f` (16:33:15Z) after its ten-minute quiet window (SETTLING-QUIET-WINDOW counts from the last review event, the bot's own reply included). The byte proof at the two merged tips, posted on both landings: 829 shared, 776 identical, 9 placeholder-only, 44 differing (the contextual layer the doctrine landing named; no family-layer path). Four sibling lanes retired under the bot with their worktrees. Todo 3 in both working trees: the strategic node's §Delivery finish line with both merge shas; `practice-alignment-by-class`, `practice-parity-two-landings` and `practice-parity-for-extraction` archived with dispositions (`validate-plan-corpus` OK, 19 here and 146 there); the records' state blocks of 16:4xZ in both estates. Left: the records committed, both folds, the wrap.

@@ -7,7 +7,7 @@ overview: >-
   with a leak validator, a schema'd host profile, thin language packs for
   TypeScript, Python and Rust, and the agent-tools contracts as JSON Schema
   plus a conformance corpus any implementation can run.
-status: sketch
+status: archived
 ratified_by: null
 ratified_date: null
 ratified_where: null
@@ -18,35 +18,25 @@ tickets: []
 depends_on:
   - plan: practice-completion
     kind: beneficial
-owner_gates:
-  - awaiting: owner-decision
-    clears_when: >-
-      The owner ratifies the direction as a strategy choice in the Practice
-      stream (proposed PRACTICE-4: "The Practice is language-agnostic at its
-      core; languages are thin packs; instrument contracts are
-      language-neutral and enforced by conformance"), or amends its wording.
-    expires: 2026-10-04
-  - awaiting: owner-decision
-    clears_when: >-
-      The owner rules how the instruments reach a non-TypeScript host: the
-      reference implementation shipped as a built binary (the recommended
-      default), a port per language validated by the conformance corpus, or
-      both in a named order.
-    expires: 2026-10-04
-  - awaiting: owner-decision
-    clears_when: >-
-      The owner names the Rust reference (a recorded PDR-006 gap; the pack may
-      be authored from its own first host) and confirms the Python pack's
-      first host. The owner has already ruled (2026-09-13) that the existing
-      Python Practice repository (https://github.com/EngraphCode/python-starter)
-      is a very rough sketch, not a template: the
-      Python pack is authored from the universal layer with a structure
-      matching the lineage, and that repository provides hints, never intent.
-    expires: 2026-10-04
-last_updated: 2026-09-23
+owner_gates: []
+last_updated: 2026-10-05
 ---
 
 # Practice language separation
+
+**Disposition (2026-10-05): archived as a sketch on the owner's card answer**, given to the n=1 seat
+Sycamore holds Spore (18d874) at the alignment node's finish: PDR-143 places the Practice's
+extraction, and with it the language question, in a later thread, which re-opens this node from
+the archive. The three owner questions its gates carried stay recorded here, unanswered: (1)
+ratify the direction as a strategy choice in the Practice stream (the proposed PRACTICE-4: "The
+Practice is language-agnostic at its core; languages are thin packs; instrument contracts are
+language-neutral and enforced by conformance"), or amend its wording; (2) how the instruments
+reach a non-TypeScript host (the reference implementation as a built binary, the recommended
+default; a port per language validated by the conformance corpus; or both in a named order);
+(3) the Rust reference (a recorded PDR-006 gap; the pack may be authored from its own first host)
+and the Python pack's first host, where the owner has already ruled (2026-09-13) that the
+existing Python Practice repository is a very rough sketch and not a template. The family layer
+ratified on 2026-10-04 (PDR-143 §Decision) is the ground this node builds on when it re-opens.
 
 Authored 2026-09-13 at the owner's direction (verbatim in the exploration record): separate the
 universal Practice from its language-specific parts in documents, rules, skills and the agent

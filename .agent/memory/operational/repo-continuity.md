@@ -21,6 +21,26 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-05T16:4xZ: the code landing merged in both estates; `practice-alignment-by-class`
+  at its finish** (Sycamore holds Spore, 18d874). 322 merged here at `SHA:d3647a9d` after six
+  settlement pushes (the last under the one PDR-140 rebudget), the sibling's #354 at
+  `SHA:ef42bd11f` after four; the byte proof at the merged tips on each landing. The ruleset
+  requires the fan-in and CodeQL alone; the six parity lanes retired under the bot. The strategic
+  node's §Delivery carries the finish line; the three nodes are archived. Named for ordinary
+  work: the fail-closed flag on the family manifest's filtered aliases with a validator case.
+  moved for the sites: nothing / moved for the Practice: the family layer is one shape in both
+  estates, merged and proved.
+
+- **2026-10-05T11:3xZ: the code landing open in both estates; the seat handed off at the owner's
+  word** (Crucible binds Slag, 7b999c). 322 here at `SHA:d371218b` (thirteen commits; the family
+  shape, the carries with their tests, the conformance check; CI green at the previous tip; nine
+  threads triaged, one cure awaiting its reply); the sibling's #354 at `SHA:b79e0c23d` (twelve
+  commits, Copilot requested under the bot). 318 and #349 closed into the landings. The
+  coordination branches of 2026-10-04 carry the records and are DUE to fold. moved for the sites:
+  nothing / moved for the Practice: the family layer is one shape in both estates with a validator
+  that recomputes it; the Practice-operation scripts, hooks, CI contract and configs no longer
+  differ but by two placeholders and the sibling's two product slots.
+
 - **2026-10-02T23:12Z: pull request 300 folded into `main` as SHA:24fc052e9** (Hazel tracks Trunk,
   7d8b9d; the day's second fold of this estate's coordination branch under the owner's
   twice-a-day word; `coordination/2026-10-02-f19bed` carried the Director's records of the
@@ -231,8 +251,10 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   tracks Trunk, finished at the owner's word 2026-10-03) at the owner's word, JC.net the home
   and OCE worked non-resident, with Crucible binds Slag (7b999c) the Director across both
   estates from 2026-10-02 and the n=1 seat from the 2026-10-04 resume; the consolidation flow is
-  paused at the owner's word of 2026-10-03, the live plan is `practice-system-review` (ratified
-  2026-10-04), and the record's newest state block governs.
+  paused at the owner's word of 2026-10-03; the delivery node `practice-alignment-by-class`
+  (ratified 2026-10-04) reached its finish on 2026-10-05 with both landings merged in both
+  estates (321 and 322 here, #353 and #354 in the sibling) and is archived; the record's newest
+  state block governs.
 
 ## Paused Threads
 
@@ -240,6 +262,30 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-05T16:4xZ (Sycamore holds Spore, 18d874, the n=1 seat, at the alignment node's finish):
+both landings are merged (322 at `SHA:d3647a9d`, #354 at `SHA:ef42bd11f`); the node is archived
+with the finish line on the strategic node. Next safe steps, in order:
+
+1. `git status --branch` in both primaries, first-hand; the coordination branches fold next.
+2. The first follow-up pull request per estate: `--fail-if-no-match` on every filtered alias in
+   `.agent/family/typescript/practice-operations.json` and the root scripts, with the manifest
+   self-check in `validate-family-conformance`; the same bytes in both estates.
+3. The napkin rotation here (over 1,000 lines).
+
+STATE, 2026-10-05T11:3xZ (Crucible binds Slag, 7b999c, the n=1 seat, at the owner's handoff word):
+the code landing is open in both estates (322 here, #354 in the sibling); the doctrine landing is
+merged in both; 318 and #349 are closed into the landings. The live detail is `director-handoff.md`
+§STATE of this hour and the thread record's block of the same hour. Next safe steps, in order:
+
+1. `git status --branch` in both primaries and the two landing branches' remote tips, first-hand.
+2. Settle and merge 322 and the sibling's code landing through the bot (`--expect
+   copilot-pull-request-reviewer`); switch this estate's ruleset to the fan-in after the merge.
+3. Delete the merged and absorbed branches under the bot; post the byte proof on both; the one
+   owner card (surface lanes; `practice-language-separation`'s gates).
+4. Todo 3 of `practice-alignment-by-class`: the strategic node's §Delivery finish line; the three
+   nodes archived in both estates with inbound links swept.
+5. Fold both coordination branches (DUE); wrap; the napkin rotation is due (over 1,000 lines).
 
 STATE, 2026-10-03T21:0xZ (Crucible binds Slag, 7b999c, at the owner's compaction word, n=1 from
 here until the owner says otherwise): the parity frame is set aside. The parity node reads

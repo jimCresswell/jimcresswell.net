@@ -166,6 +166,82 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-05 16:4xZ (Sycamore holds Spore, `18d874`, the n=1 seat, at the alignment node's
+finish; this block supersedes the 11:3xZ block below where they differ).** The delivery node
+`practice-alignment-by-class` is at its finish: the doctrine landing merged in both estates (321 and #353)
+and the code landing merged in both (322 at `SHA:d3647a9d`, 16:26Z; the sibling's #354 at
+`SHA:ef42bd11f`, 16:33Z), each through the bot's door with Copilot's review binding the tip; the
+byte proof at the merged tips is a comment on each landing (829 shared, 776 identical, 9
+placeholder-only, 44 differing, the contextual layer). The ruleset 12555444 requires
+`run-quality-gates` and `CodeQL` alone. Six branches retired here under the bot with their
+worktrees, four in the sibling. Todo 3 is done in both working trees: the strategic node's
+§Delivery finish line, the three nodes archived with their dispositions. What remains for this
+seat: the records committed, both coordination branches folded (DUE), the wrap. Named for the
+next seat, ordinary work: the first follow-up pull request per estate puts `--fail-if-no-match`
+on every filtered alias in the family manifest and the root scripts with a manifest self-check
+in the conformance validator (Copilot's finding on the final sibling tip, true in both estates);
+the remainders on the two landings' descriptions. For the owner: this seat took the PDR-140
+clause 4 rebudget once per landing by its own recorded decision (the gate's text says "by the
+owner"); the ruleset edit ran under the operator credential. Until the wrap the comms watcher (a
+Monitor) and the implementer claim in this registry are live; the wrap closes the claim, posts the
+closeout and stops the watcher, so that none survives it.
+
+**§STATE, 2026-10-05 11:3xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's handoff
+word; this block supersedes the §POINTER blocks below where they differ).** The code landing of
+`practice-alignment-by-class` is open in both estates: 322 here (thirteen commits, CI green, one
+review finding cured and awaiting its reply), the sibling's #354 (twelve commits, Copilot
+requested under the bot). The doctrine landing is merged in both (321, #353). 318 and #349 are
+closed into the landings. What remains is settlement, the two merges, the ruleset switch here, the
+branch deletions and the byte proof, todo 3 (the strategic node's finish line, the three nodes
+archived), the fold of both coordination branches (DUE), and one owner card (the four superseded
+surface lanes; the three expired gates of `practice-language-separation`). The live reading is
+the thread record `threads/two-estate-consolidation.next-session.md`'s block of this hour and the
+napkin's block of the same hour; the next seat rehydrates from those two, then `repo-continuity.md`
+§Current State. No claim, watcher, heartbeat or background agent survives this seat; the re-arm is
+the role pickup procedure above.
+
+**§STATE, 2026-10-05 00:4xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's
+compaction word).** 321 merged into main at `SHA:4992af38`; #353 open at `SHA:df70cd153` with its
+reviews cured and no review binding the tip yet; the proof at the two tips DRIFT 1 (one rule's
+globs, owed to the code landing here). The full Cricket suite: unanimous ON-TRACK on the code
+landing as sized; the frame narrowed on the finish measure and the landing's scope. Next safe
+step: the code landing here, cut from main, keystone-first, without waiting for #353; merge #353
+when a review binds its tip. The live record is the napkin block of 2026-10-05T00:4xZ.
+
+**§STATE, 2026-10-04 22:4xZ (Crucible binds Slag, `7b999c`, the n=1 seat).** The doctrine
+landing of `practice-alignment-by-class` is open in both estates: jimcresswell.net 321 at
+`SHA:a9081f17` (reviews cured at the tip, Copilot re-requested) and OCE #353 at `SHA:bd969cbaf`;
+the byte proof at the two tips reads DRIFT 0 (744 shared, 702 identical, 42 contextual-bound by
+design). The next safe step is to merge both when their reviews settle, then the code landing
+(mechanism item 2), here first. The live record is the two-estate thread's block of
+2026-10-04T22:4xZ; the napkin block of the same hour carries the lessons.
+
+**§STATE, 2026-10-04 19:0xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's
+compaction word; this block supersedes the blocks below where they differ).** The definition's
+landings merged: 319 at `SHA:02178ff0b` on main, OCE #351 at `SHA:82cb7fba4` on engraph, the
+same bytes. The successor delivery node `practice-alignment-by-class` is ratified (the owner's
+four card answers of 16:xZ: four pull requests, two per estate; proceed at about five hours over
+two sittings; a light commit and a full push as the family's convention; the conformance check
+included) and sits on both successor coordination branches with the Cricket suite's tally (eight
+legs, unanimous). The live record is the two-estate thread's block of 2026-10-04T19:0xZ, whose
+next safe step is the doctrine landing here first. One conflict is the owner's, carried with that
+landing: the owner's 2026-09-30 word ("it's OCE") against PDR-142's host-neutrality clause. No
+claim, no process, no unpushed commit of this seat; nothing to re-arm at the resume.
+
+**§STATE, 2026-10-04 16:0xZ (Crucible binds Slag, `7b999c`, the n=1 seat; this block supersedes
+the blocks below where they differ).** The Practice has a canonical definition: five layers
+(general; family; contextual; accumulated; the loop), ratified by the owner's card answer of
+2026-10-04 and recorded in PDR-143 §Decision (Accepted) and `practice.md`, with the report
+`practice-system-review-2026-10` as evidence; the owner's direction, verbatim, "tooling agnostic
+policy, strict universal contracts, tooling specific implementations where a universal approach
+is not efficient or appropriate". The six placements are decided (the report records the words).
+The folds merged: 305 at `SHA:eebe40ea2`, successor `coordination/2026-10-04-eebe40`; OCE #348
+through the bot, its successor cut after. The live record is the two-estate thread's block of
+2026-10-04T16:0xZ, which names the next safe step: one landing pull request per estate from the
+folded tip, the same bytes; then the successor delivery node from the model, one pull request
+per divergence class per estate. Claims: none (n=1, no peer). The parity doors (312, #350, 318,
+the hooks branch, the OCE lanes) wait for the successor node.
+
 **§STATE, 2026-10-02 10:5xZ (Crucible binds Slag, `7b999c`, the Director seat across both
 estates).** Licence: the owner's word in this seat's own session, 2026-10-02 ("when it makes sense,
 take on the Director role … context preservation over longer timescales … strategic decisions are
