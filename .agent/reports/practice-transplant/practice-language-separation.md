@@ -20,7 +20,8 @@ Typescript, Python, Rust. For the agent tools specifically, how can we define th
 contracts and interactions in a language agnostic way, and still enforce them: JSON schema?
 Something else?" Run as metacognition, free play, concept exploration and reason; the plan node
 that sequences the answer is
-[`practice-language-separation`](../../plans/delivery/archive/practice-language-separation.plan.md)
+`practice-language-separation` (archived at
+`.agent/plans/delivery/archive/practice-language-separation.plan.md`)
 (born sketch; archived 2026-10-05 on the owner's word, for the extraction thread to re-open).
 Companion: the [installable-thing report](practice-as-installable-thing.md), whose
 ecosystem frame (install, learn, contribute, update) this record presupposes.
