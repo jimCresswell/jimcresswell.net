@@ -13,7 +13,7 @@ reviewer for the independent truthfulness and cross-reference pass.
 ## Read in order
 
 1. `.agent/sub-agents/templates/docs-adr-expert.md`
-2. `.agent/rules/invoke-docs-adr-expert.md`
+2. The `docs-adr-expert` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. Relevant changed files in `docs/`, `.agent/`, or project README surfaces
 4. `docs/architecture/README.md` when architecture records or cross-links are
    involved

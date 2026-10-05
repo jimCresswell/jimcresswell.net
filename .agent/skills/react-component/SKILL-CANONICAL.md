@@ -14,7 +14,7 @@ independent runtime and composition pass.
 ## Read in order
 
 1. `.agent/sub-agents/templates/react-component-expert.md`
-2. `.agent/rules/invoke-react-component-expert.md`
+2. The `react-component-expert` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. Relevant changed files in `app/`, `components/`, and supporting helpers in
    `lib/`
 4. `docs/architecture/README.md` when server or client responsibility is part

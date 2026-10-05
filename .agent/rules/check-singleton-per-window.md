@@ -12,16 +12,24 @@ coordination window. Multiple parallel runs in one tree duplicate ~30s+
 of work per run, produce no marginal signal, and can collide on
 advisory-orchestrator file outputs. The sharpest hazard: a whole-repo
 sweep rebuilds the tree's shared build output (e.g. `agent-tools/dist/`)
-under every concurrent session that reads it (a session working a
-sibling worktree from the primary checkout among them), and where the
-`check` script runs a `clean` step it deletes that output first — the
-peers' CLIs (heartbeats, comms, marshal commands) and watchers then die
-for the rebuild window (~90s). A whole-repo sweep is a shared-substrate
+under every concurrent session that reads it (a session working a sibling
+worktree from the primary checkout among them), and where the `check` script
+runs a `clean` step it deletes that output first — the peers' CLIs
+(heartbeats, comms, marshal commands) and watchers then die for the
+rebuild window (~90s). A whole-repo sweep is a shared-substrate
 mutation, not a private read.
 
-This rule complements `session-handoff` step §11 (which directs every
-closing agent to run `pnpm check`) by adding an N-agent constraint:
-the *team* in one working tree runs check once, not N times.
+This rule complements `session-handoff` step §11 by adding an N-agent
+constraint: the *team* in one working tree runs a whole-repo gate at most
+once per window, not N times. The stronger constraint sits above it: the commit ceremony's
+pre-commit hook already runs the local gates (the validators, build,
+type-check, lint and unit tests) and the pull request's checks run the
+wider suites, so a gate run beside or after a commit is never warranted
+(owner, 2026-09-14, verbatim: "the
+commit triggers the gates, there is no point and a fair amount of cost
+running the gates separately as well, never, ever do that"). The
+singleton discipline below governs the residue: a whole-repo run that no
+commit triggers.
 
 ## The Invariant
 

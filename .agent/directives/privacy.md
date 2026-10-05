@@ -4,8 +4,8 @@ fitness_line_limit: 240
 fitness_char_limit: 16000
 fitness_line_length: 100
 fitness_rationale: >-
-  Limits raised 2026-09-12 when the PII-estate and machine-local-paths doctrine from the retired
-  governance safety document was folded in; knowledge preservation outranks fitness warnings.
+  Sized for the Practice-wide privacy doctrine (PII in the estate, machine-local paths, public
+  history) plus the host's own bindings; knowledge preservation outranks fitness warnings.
 split_strategy: Split by responsibility — extract PII handling from psychological safety
 ---
 
@@ -13,115 +13,8 @@ split_strategy: Split by responsibility — extract PII handling from psychologi
 
 Rules for handling psychologically sensitive and personally identifiable content in this repository,
 including the machine-local paths that carry it. These rules apply to all contributors — human and
-AI.
-
-## Categories
-
-### Private (ignored local boundary)
-
-- Psychological context that reveals inner states or personal vulnerabilities
-- Raw personal quotes
-- Career breadth details: specific roles, employers, and biographical items not already visible on
-  the published site, outside the LinkedIn workspace authorisation below
-- Third-party names without explicit consent, beyond the bibliographic attribution rule 2 allows
-- Biographical details that narrow physical location beyond what is publicly known
-
-### Public (version-controlled)
-
-- Editorial guidance: voice register, editorial principles, audience definitions
-- Published content: positioning paragraphs, capabilities, front page narrative
-- Technical architecture, code, tests, configuration
-- Plan files (written as if they will be public — see [secops.md](secops.md))
-- Owner-authorised non-sensitive LinkedIn material in [`linkedin/`](../../linkedin/README.md), as
-  listed and limited in the dated [authorisation][linkedin-authorisation] below
-
-[linkedin-authorisation]: #linkedin-workspace-authorisation--28-september-2026
-
-## Rules
-
-1. **Never commit content that reveals psychological vulnerabilities to version control.** This
-   includes plan files, commit messages, and code comments.
-
-2. **Third-party individuals must not be named in version-controlled files without explicit
-   consent.** Reference them indirectly or store the detail in the private editorial repository.
-   Bibliographic attribution, crediting another's published work used as a source by naming its
-   authors as the work records them with a link to it, is governed on every surface by
-   [documentation-hygiene](../rules/documentation-hygiene.md); this rule governs naming a person
-   beyond a citation. Jim's co-authors on his papers are named only in `linkedin/`, in full, under
-   the LinkedIn workspace authorisation (Jim's word of 28 September 2026 for one of his papers; the
-   other follows by the same concept). LinkedIn recommendations, endorsements and posts are
-   activity, not cited works: recommenders, colleagues named otherwise, and a role, relationship,
-   member identity, correspondence or activity beyond a citation need consent.
-
-3. **Biographical details that narrow physical location beyond "UK" require explicit approval.**
-   Borough-level ("Hackney") is acceptable in published content. Year, ward, and party for political
-   activity are not.
-
-4. **Political affiliation and specific election details must be generalised.** Example: "ran for a
-   council seat in Hackney" is acceptable; year, party, and outcome are not.
-
-5. **Editorial sessions that surface private context must store it in the ignored private
-   editorial repository, not in plan files.** Plan files are public and may contain only public-safe
-   constraints, routing and status — never drafts, evidence or the backstory behind a decision.
-
-6. **Git ignore is not a complete tooling boundary.** Formatters, search tools, archives and agent
-   utilities may traverse ignored nested repositories. Exclude the private boundary explicitly
-   whenever a tool's scope is broader than tracked files.
-
-7. **A privacy review of a plan or record headed for the public repository reads the whole
-   document as prose, never only for secrets.** Editorial backstory, rejected methods, participant
-   diagnosis and custody narrative are private context under rule 5 as much as a credential is
-   (the plan-family publication, 2026-08-12; the four categories are a seat's list from that
-   day's napkin, which waits on the owner's privacy review under `unconsolidated/`).
-
-## LinkedIn workspace authorisation — 28 September 2026
-
-Jim authorised a local repository workspace for the first LinkedIn draft and all non-sensitive
-LinkedIn material. That material belongs in [`linkedin/`](../../linkedin/README.md): professional
-profile content, general research, public bibliographic attribution and editorial analysis of the
-work. This supersedes the earlier blanket private-only rule for those materials. It does not
-authorise disclosure of personal vulnerabilities, private correspondence, account details,
-third-party activity records or sensitive source material. Exact approval is still required before
-transferring proposed copy to LinkedIn. On the repository and LinkedIn, Jim's word of the same day:
-"The repo content is repo content, normal rules, commit, push, merge. Writing the content to
-linkedin is a separate activity with separate authority. Putting it in the repo is fine, linkedin
-publishing requires my request". Preserve historical source records and keep confidential material
-in its existing home.
-
-**Reach.** This file's reading of the authorisation: for `linkedin/` only, and only as far as each
-entry states, this authorisation qualifies two Private categories above: career breadth details, and
-third-party names through rule 2's `linkedin/` clause. It changes where the listed material lives,
-not the confidentiality of private editorial material: §Private editorial material below applies
-inside `linkedin/` unchanged, so private material is never quoted, summarised or identified there.
-Every other category and rule in this file applies inside `linkedin/` unchanged, and secops.md's
-public-visibility audit covers `linkedin/` too.
-
-## Private editorial material
-
-Private editorial material — source packs, evidence, drafts and their history — may exist on a
-machine as an ignored nested repository under `.agent/reference-local/`. It is optional and
-confidential. It informs writing choices only; nothing in this repository depends on its presence,
-checks for it, or changes behaviour when it is absent. Never quote, summarise or identify it, and
-never publish its remote, commit identifiers, history or custody records. The parent repository
-never tracks it as a submodule. `.agent/private/` is an ignored boundary for isolated local notes.
-
-Git ignore is not a complete tooling boundary: whole-repository tools take the tracked tree as
-their universe, so ignored material is never entered or read.
-
-## Public-history recovery
-
-If private material reaches public history, stop publication work and conserve before removing
-anything. The recovery set covers every local ref, the object database, reflogs and index;
-tracked, staged, unstaged, untracked and ignored content; all worktrees and any external local
-sources needed to reconstruct the state; pull-request records, synthetic merge refs and checks not
-present in the local clone; and checksums, read-back, bundle verification and a fresh private
-clone. Quiesce any multi-agent session before the final capture. Build the scrubbed replacement in
-an isolated clone against the exact intended parent, scan it for the disclosed path and content
-classes, run the complete gates, and sign the replacement commit. Move the public ref only with an
-exact `--force-with-lease` naming the observed old head, then verify a fresh public clone, the
-live pull request, regenerated CI and the absence of sensitive path families. A history rewrite
-reduces ordinary reachability; it is not proof of server-side erasure. The exact recovery
-inventory belongs only in a private custody record.
+AI. The Practice-wide doctrine comes first; the host's own categories, rules and authorisations are
+in §This host's bindings at the end.
 
 ## PII in the repository estate
 
@@ -171,8 +64,8 @@ path also leaks a username — the PII carrier form the section above mechanical
 
 Owner ruling 2026-06-12, whole-repo and retroactive: user-home roots, OS temp roots, and every other
 machine-local root are forbidden in version-controlled files everywhere in the repo, with no
-exceptions for any reason, ever — including historical records (the comms corpus and archives were
-swept 2026-06-12). Operational conventions from the sweep:
+exceptions for any reason, ever — including historical records (in OCE, the comms corpus and
+archives were swept 2026-06-12). Operational conventions from the sweep:
 
 - **Runnable examples** use the repo-root-relative `tmp/` directory (gitignored at the repo root)
   instead of the OS temp root.
@@ -222,16 +115,15 @@ swept 2026-06-12). Operational conventions from the sweep:
 
 **Detection.** Mechanically enforced twice over from one pattern set single-sourced in
 `.agent/hooks/policy.json` (`preToolUseContent` → `machine-local-path`): the
-`validate-no-machine-local-paths` repo-validator scans every tracked file
-(`pnpm docs-validators:check`, run by `pnpm check:docs`), and the PreToolUse content hook blocks
-such paths at Edit/Write time. The patterns catch user-home roots on all three OS families,
-flattened-project-ID segments, and the macOS private-temp and per-user cache-folder roots (named
-here in words — the literals live fanged in the policy file only). Two exemptions by
-construction, not by allowlist: portable system paths (`/usr/bin`, `/opt/homebrew/bin`, generic
-`/tmp`) resolve identically everywhere and are not machine-local; placeholder forms
-(`/Users/<user>/`) teach the pattern without the concrete segment the regexes require. Excuses are
-not exceptions: no `eslint-disable` because a path "is fine on my machine", no "fix path before
-merge" TODOs, no "it works locally" — "locally" is not the bar.
+`validate-no-machine-local-paths` validator scans every tracked file as a leg of `pnpm check`, and
+the PreToolUse content hook blocks such paths at Edit/Write time. The patterns catch user-home roots
+on all three OS families, flattened-project-ID segments, and the macOS private-temp and per-user
+cache-folder roots (named here in words — the literals live fanged in the policy file only). Two
+exemptions by construction, not by allowlist: portable system paths (`/usr/bin`,
+`/opt/homebrew/bin`, generic `/tmp`) resolve identically everywhere and are not machine-local;
+placeholder forms (`/Users/<user>/`) teach the pattern without the concrete segment the regexes
+require. Excuses are not exceptions: no `eslint-disable` because a path "is fine on my machine", no
+"fix path before merge" TODOs, no "it works locally" — "locally" is not the bar.
 
 **Worked examples:**
 
@@ -243,3 +135,116 @@ merge" TODOs, no "it works locally" — "locally" is not the bar.
 2. **Research notes about per-user memory:** templated-placeholder prose
    (`~/.claude/projects/<project>/memory/MEMORY.md`) is correct; the same sentence with an embedded
    flattened ID, or as a clickable relative link into the user home, is forbidden.
+
+## Public-history recovery
+
+If private material reaches public history, stop publication work and conserve before removing
+anything. The recovery set covers every local ref, the object database, reflogs and index;
+tracked, staged, unstaged, untracked and ignored content; all worktrees and any external local
+sources needed to reconstruct the state; pull-request records, synthetic merge refs and checks not
+present in the local clone; and checksums, read-back, bundle verification and a fresh private
+clone. Quiesce any multi-agent session before the final capture. Build the scrubbed replacement in
+an isolated clone against the exact intended parent, scan it for the disclosed path and content
+classes, run the complete gates, and sign the replacement commit. Move the public ref only with an
+exact `--force-with-lease` naming the observed old head, then verify a fresh public clone, the
+live pull request, regenerated CI and the absence of sensitive path families. A history rewrite
+reduces ordinary reachability; it is not proof of server-side erasure. The exact recovery
+inventory belongs only in a private custody record.
+
+## This host's bindings
+
+The categories, rules and authorisations of this host (jimcresswell.net). The sibling estate's copy
+of this file carries its own section here; everything above it is the same text in both.
+
+### Categories
+
+#### Private (ignored local boundary)
+
+- Psychological context that reveals inner states or personal vulnerabilities
+- Raw personal quotes
+- Career breadth details: specific roles, employers, and biographical items not already visible on
+  the published site, outside the LinkedIn workspace authorisation below
+- Third-party names without explicit consent, beyond the bibliographic attribution rule 2 allows
+- Biographical details that narrow physical location beyond what is publicly known
+
+#### Public (version-controlled)
+
+- Editorial guidance: voice register, editorial principles, audience definitions
+- Published content: positioning paragraphs, capabilities, front page narrative
+- Technical architecture, code, tests, configuration
+- Plan files (written as if they will be public — see [secops.md](secops.md))
+- Owner-authorised non-sensitive LinkedIn material in [`linkedin/`](../../linkedin/README.md), as
+  listed and limited in the dated [authorisation][linkedin-authorisation] below
+
+[linkedin-authorisation]: #linkedin-workspace-authorisation--28-september-2026
+
+### Rules
+
+1. **Never commit content that reveals psychological vulnerabilities to version control.** This
+   includes plan files, commit messages, and code comments.
+
+2. **Third-party individuals must not be named in version-controlled files without explicit
+   consent.** Reference them indirectly or store the detail in the private editorial repository.
+   Bibliographic attribution, crediting another's published work used as a source by naming its
+   authors as the work records them with a link to it, is governed on every surface by
+   [documentation-hygiene](../rules/documentation-hygiene.md); this rule governs naming a person
+   beyond a citation. Jim's co-authors on his papers are named only in `linkedin/`, in full, under
+   the LinkedIn workspace authorisation (Jim's word of 28 September 2026 for one of his papers; the
+   other follows by the same concept). LinkedIn recommendations, endorsements and posts are
+   activity, not cited works: recommenders, colleagues named otherwise, and a role, relationship,
+   member identity, correspondence or activity beyond a citation need consent.
+
+3. **Biographical details that narrow physical location beyond "UK" require explicit approval.**
+   Borough-level ("Hackney") is acceptable in published content. Year, ward, and party for political
+   activity are not.
+
+4. **Political affiliation and specific election details must be generalised.** Example: "ran for a
+   council seat in Hackney" is acceptable; year, party, and outcome are not.
+
+5. **Editorial sessions that surface private context must store it in the ignored private
+   editorial repository, not in plan files.** Plan files are public and may contain only public-safe
+   constraints, routing and status — never drafts, evidence or the backstory behind a decision.
+
+6. **Git ignore is not a complete tooling boundary.** Formatters, search tools, archives and agent
+   utilities may traverse ignored nested repositories. Exclude the private boundary explicitly
+   whenever a tool's scope is broader than tracked files.
+
+7. **A privacy review of a plan or record headed for the public repository reads the whole
+   document as prose, never only for secrets.** Editorial backstory, rejected methods, participant
+   diagnosis and custody narrative are private context under rule 5 as much as a credential is
+   (the plan-family publication, 2026-08-12; the four categories are a seat's list from that
+   day's napkin, which waits on the owner's privacy review under `unconsolidated/`).
+
+### LinkedIn workspace authorisation — 28 September 2026
+
+Jim authorised a local repository workspace for the first LinkedIn draft and all non-sensitive
+LinkedIn material. That material belongs in [`linkedin/`](../../linkedin/README.md): professional
+profile content, general research, public bibliographic attribution and editorial analysis of the
+work. This supersedes the earlier blanket private-only rule for those materials. It does not
+authorise disclosure of personal vulnerabilities, private correspondence, account details,
+third-party activity records or sensitive source material. Exact approval is still required before
+transferring proposed copy to LinkedIn. On the repository and LinkedIn, Jim's word of the same day:
+"The repo content is repo content, normal rules, commit, push, merge. Writing the content to
+linkedin is a separate activity with separate authority. Putting it in the repo is fine, linkedin
+publishing requires my request". Preserve historical source records and keep confidential material
+in its existing home.
+
+**Reach.** This file's reading of the authorisation: for `linkedin/` only, and only as far as each
+entry states, this authorisation qualifies two Private categories above: career breadth details, and
+third-party names through rule 2's `linkedin/` clause. It changes where the listed material lives,
+not the confidentiality of private editorial material: §Private editorial material below applies
+inside `linkedin/` unchanged, so private material is never quoted, summarised or identified there.
+Every other category and rule in this file applies inside `linkedin/` unchanged, and secops.md's
+public-visibility audit covers `linkedin/` too.
+
+### Private editorial material
+
+Private editorial material — source packs, evidence, drafts and their history — may exist on a
+machine as an ignored nested repository under `.agent/reference-local/`. It is optional and
+confidential. It informs writing choices only; nothing in this repository depends on its presence,
+checks for it, or changes behaviour when it is absent. Never quote, summarise or identify it, and
+never publish its remote, commit identifiers, history or custody records. The parent repository
+never tracks it as a submodule. `.agent/private/` is an ignored boundary for isolated local notes.
+
+Git ignore is not a complete tooling boundary: whole-repository tools take the tracked tree as
+their universe, so ignored material is never entered or read.

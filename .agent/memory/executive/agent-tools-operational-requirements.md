@@ -1,13 +1,15 @@
 # Agent-tools operational requirements — performance, bandwidth, latency
 
-Commissioned by the owner 2026-08-06 ("we need performance and
-bandwidth and latency requirements for agent tools") in the same hour
-as the ratified seam-defect reflection
-(`.agent/reports/agentic-engineering/agent-tools-seam-defects-reflection-2026-08-06.md`),
-whose defect corpus is this document's grounding evidence. Status:
-v1, binding on NEW front-door agent-tools commands at adoption and on
-the open PR #790 cure round; existing commands get a conformance sweep
-as a named follow-up (pointer, not scheduled here).
+Commissioned by the owner 2026-08-06, in OCE ("we need performance and
+bandwidth and latency requirements for agent tools"), in the same hour
+as the ratified seam-defect reflection (OCE's
+`agent-tools-seam-defects-reflection-2026-08-06.md` under its
+`.agent/reports/agentic-engineering/`), whose defect corpus is this
+document's grounding evidence. Status: v1, binding on NEW front-door
+agent-tools commands at adoption in every estate that carries
+`agent-tools`, and in OCE on the PR #790 cure round that was open at
+authoring; existing commands get a conformance sweep as a named
+follow-up (pointer, not scheduled here).
 
 Every requirement is testable and names its proof class. Measured
 values carry their measurement date and are re-measurable; limits

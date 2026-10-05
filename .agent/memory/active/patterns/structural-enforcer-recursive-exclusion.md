@@ -4,6 +4,7 @@ name: "Structural Enforcer Recursive Exclusion"
 polarity: anti-pattern
 use_this_when: "Designing a structural enforcer (hook, scanner, lint rule, regex matcher) that scans for a pathogen — vocabulary, file shape, prohibited construct, code smell — across a path scope; the cataloguing documents and tests inside that scope will trip the enforcer on themselves unless explicitly excluded."
 category: agent
+layer: general
 proven_in: ".agent/hooks/policy.json (preToolUseContent.scoped_blocks)"
 proven_date: 2026-05-04
 barrier:

@@ -22,7 +22,7 @@ description: >-
 → **refresh** the byte-sacred export via the claude-design MCP →
 **fidelity review** (this skill's core, below) → the tracked **divergence
 register** that ingestion tooling reads. The
-`@engraph/fidelity-review` package is the machinery; this skill is the
+`fidelity-review` package (OCE's, at `packages/libs/fidelity-review`) is the machinery; this skill is the
 judgment workflow around it.
 
 ## Fidelity review
@@ -103,7 +103,7 @@ target — absence is recorded, never silent).
 
 ## Porting to a new conversion
 
-The shared core lives in `@engraph/fidelity-review`
+The shared core lives in OCE's `fidelity-review` package
 (`packages/libs/fidelity-review` — consolidated at its second consumer,
 2026-08-09; its README's §Modules is the authoritative enumeration).
 Porting means composing it, not copying it: declare the app's own PAIR

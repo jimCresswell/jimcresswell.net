@@ -13,7 +13,7 @@ reviewer to independently assess the finished configuration surface.
 ## Read in order
 
 1. `.agent/sub-agents/templates/config-expert.md`
-2. `.agent/rules/invoke-config-expert.md`
+2. The `config-expert` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. Relevant root config files such as `package.json`, `pnpm-lock.yaml`,
    `next.config.ts`, `postcss.config.mjs`, `tsconfig.json`, `eslint.config.ts`,
    `playwright.config.ts`, `vitest.config.ts`, and `proxy.ts`

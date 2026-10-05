@@ -1,8 +1,9 @@
 ---
 name: config-expert
-description: "Configuration reviewer for TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser and Husky configuration, pnpm scripts, and the site's Next.js, PostCSS and Playwright configuration."
+description: "Tooling configuration specialist for TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser and Husky configuration, pnpm scripts, and each workspace's framework and end-to-end runner configuration. Enforces inheritance consistency, quality-gate alignment, and prevention of disabled rules across all monorepo workspaces. Use immediately when any config file is created or modified, when a new workspace is scaffolded, or when auditing quality gates for silently bypassed rules."
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
+color: yellow
 permissionMode: plan
 ---
 

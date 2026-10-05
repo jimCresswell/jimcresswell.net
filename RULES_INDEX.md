@@ -39,7 +39,7 @@ edit it by hand.
 | `.agent/rules/design-work-for-small-prs.md` | core | — |
 | `.agent/rules/directed-routing-requires-absorption-ack.md` | situational | `session:team — Team session active; a directed event carrying routing or an ask sent or absorbed` |
 | `.agent/rules/directive-file-context-budget.md` | situational | `surface:directive-files ∪ ceremony:consolidation` |
-| `.agent/rules/documentation-hygiene.md` | situational | `surface:**/*.{ts,tsx,mts}` |
+| `.agent/rules/documentation-hygiene.md` | core | — |
 | `.agent/rules/dont-break-build-without-fix-plan.md` | core | — |
 | `.agent/rules/downstream-checkout-never-writes-upstream-surfaces.md` | core | — |
 | `.agent/rules/executive-memory-drift-capture.md` | core | — |
@@ -53,25 +53,7 @@ edit it by hand.
 | `.agent/rules/hook-policy-substring-discipline.md` | core | — |
 | `.agent/rules/identify-as-agent-under-shared-credentials.md` | core | — |
 | `.agent/rules/important-state-not-in-temp-files.md` | core | — |
-| `.agent/rules/invoke-accessibility-expert.md` | situational | `surface:accessibility — Accessibility-touching change (rendered markup / semantics / interaction flow / WCAG / keyboard / focus / contrast / ARIA / motion / PDF accessibility / assistive technology)` |
-| `.agent/rules/invoke-architecture-expert.md` | situational | `surface:workspace boundaries, import direction, module structure, dependency injection, public APIs` |
-| `.agent/rules/invoke-architecture-expert-barney.md` | situational | `surface:content/, lib/ graph derivation, JSON-LD, metadata wiring, graph identity contracts` |
-| `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout composition, header and footer behaviour, user-journey architecture` |
-| `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, build-time scripts, caching, the proxy, PDF generation, Playwright against the production build, Vercel config and deployment plumbing, runtime resilience` |
-| `.agent/rules/invoke-architecture-expert-wilma.md` | situational | `surface:.agent/, Practice governance, plans, PDR and ADR wiring, cross-platform Practice surfaces, canonical workflow documentation` |
-| `.agent/rules/invoke-assumptions-expert.md` | situational | `ceremony:plan-authoring — Plan authoring, decision-complete or ready-for-execution marks, blocking claims, 3+ agents, workspace or package topology changes, third-party vendor integration, technology commitments before research, related document sets, requested assumption audits or proportionality checks` |
 | `.agent/rules/invoke-code-experts.md` | core | — |
-| `.agent/rules/invoke-config-expert.md` | situational | `surface:tsconfig, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser, Husky, package.json scripts, lockfile, env handling, next.config, postcss, Playwright config, deployment tooling` |
-| `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / global CSS / colour palette / spacing / typography / motion / layout rhythm / breakpoint / multi-surface (page and PDF) styling / shared-component styling / visual-consistency change` |
-| `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Doctrine, rule, ADR, PDR, reference, engineering or governance doc added, removed, renamed, rewritten or restructured; onboarding entry point changed; command, skill or agent renamed across files` |
-| `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces` |
-| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, LinkedIn workspace drafts, structured-data descriptions, editorial docs` |
-| `.agent/rules/invoke-pkg-expert.md` | situational | `surface:jcdotnet/content/entities.json, the graph and JSON-LD modules in jcdotnet/lib/, JSON-LD emission, Schema.org types, @id conventions, graph-backed metadata` |
-| `.agent/rules/invoke-react-component-expert.md` | situational | `surface:react-component — React component edit (hooks, render performance, prop API, composition, client or server boundaries, hydration, lifecycle)` |
-| `.agent/rules/invoke-security-expert.md` | situational | `surface:headers, CSP, secrets, env loading, middleware, proxy, dependencies, auth, public attack surface` |
-| `.agent/rules/invoke-subagent-architect.md` | situational | `surface:reviewer roster, .agent/sub-agents/, invoke-* rules, .agent/skills/, platform agent, rule and skill adapters, platform entry points` |
-| `.agent/rules/invoke-test-expert.md` | situational | `surface:test files, test helpers, proof layers, vitest and playwright config, TDD discipline` |
-| `.agent/rules/invoke-type-expert.md` | situational | `surface:types, exported types, type flow, generics, assertions, schemas and schema inference, compile-time guarantees` |
 | `.agent/rules/knowledge-preservation-over-fitness-warnings.md` | core | — |
 | `.agent/rules/lint-after-edit.md` | situational | `surface:source-authoring` |
 | `.agent/rules/liveness-heartbeat-cron.md` | situational | `session:team — Team session bootstrap` |
@@ -90,10 +72,8 @@ edit it by hand.
 | `.agent/rules/no-hedging-vocabulary.md` | core | — |
 | `.agent/rules/no-moving-targets-in-permanent-docs.md` | core | — |
 | `.agent/rules/no-parallel-long-lived-branches.md` | core | — |
-| `.agent/rules/no-skipped-tests.md` | situational | `surface:test-authoring — tests, e2e specs and the Vitest and Playwright configs` |
 | `.agent/rules/no-speed-pressure.md` | core | — |
 | `.agent/rules/no-tombstones-for-removed-ideas.md` | core | — |
-| `.agent/rules/no-type-shortcuts.md` | situational | `surface:**/*.ts,**/*.tsx` |
 | `.agent/rules/no-unbounded-host-load.md` | core | — |
 | `.agent/rules/no-verify-requires-fresh-authorisation.md` | core | — |
 | `.agent/rules/no-warning-toleration.md` | core | — |
@@ -115,7 +95,7 @@ edit it by hand.
 | `.agent/rules/read-before-asking.md` | core | — |
 | `.agent/rules/read-diagnostic-artefacts-in-full.md` | core | — |
 | `.agent/rules/read-nextjs-docs-before-coding.md` | situational | `surface:nextjs — Next.js work (routes, layouts, proxy, config, rendering/caching)` |
-| `.agent/rules/record-generalisation-moves.md` | situational | `surface:agent-tools/**, .agent/practice-core/**, .agent/rules/**, .agent/skills/**, .agent/directives/** — a change that makes a Practice element more general or portable` |
+| `.agent/rules/record-generalisation-moves.md` | situational | `surface:practice-substrate ∪ ceremony:commit` |
 | `.agent/rules/records-are-technical-not-emotional.md` | core | — |
 | `.agent/rules/register-active-areas-at-session-open.md` | core | — |
 | `.agent/rules/register-identity-on-thread-join.md` | core | — |
@@ -135,9 +115,8 @@ edit it by hand.
 | `.agent/rules/strict-validation-at-boundary.md` | situational | `surface:boundary-data — TypeScript and authored content where external data enters` |
 | `.agent/rules/subagent-practice-core-protection.md` | situational | `surface:AGENTS.md,CLAUDE.md,.agent/practice-core/**/*,.agent/directives/**/*,.agent/rules/**/*` |
 | `.agent/rules/tdd-for-refactoring.md` | core | — |
-| `.agent/rules/test-immediate-fails.md` | situational | `surface:**/*.test.ts` |
+| `.agent/rules/test-immediate-fails.md` | situational | `surface:test-authoring` |
 | `.agent/rules/third-party-skills-require-security-review.md` | situational | `ceremony:skill-vendoring` |
-| `.agent/rules/tsdoc-and-documentation-hygiene.md` | situational | `surface:**/*.ts,**/*.tsx,docs/**/*,.agent/**/*,README.md` |
 | `.agent/rules/unattended-seats-never-prompt.md` | core | — |
 | `.agent/rules/use-agent-comms-log.md` | situational | `session:team` |
 | `.agent/rules/use-built-agent-tools-cli.md` | situational | `tool:agent-tools-cli` |

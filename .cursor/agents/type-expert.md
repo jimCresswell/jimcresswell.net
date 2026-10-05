@@ -1,6 +1,6 @@
 ---
 name: type-expert
-description: 'TypeScript type safety reviewer. Traces type flow from origin through the system. Detects widening, assertions, and missed compile-time guarantees. Core principle: why solve at runtime what you can embed at compile time?.'
+description: 'TypeScript type system specialist for complex type challenges and type safety. Use proactively when type errors appear unsolvable, generics become complex, assertions seem necessary, external data requires validation, or type narrowing is non-trivial. Invoke immediately when facing compilation-time type embedding decisions.'
 readonly: true
 ---
 

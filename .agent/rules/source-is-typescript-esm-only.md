@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: 'All source is TypeScript and all JavaScript is ESM — apply when creating any source or executable file, scaffolding tooling, hooks, or scripts, or reviewing a diff that adds .js, .mjs, .cjs, or .sh. New logic goes in a .ts module; a runtime that demands JS gets it compiled from TypeScript, never hand-authored (sole carve-out: ADR-168 §4 runtime-only-scripts). CJS is banned outright; shell only where it significantly reduces effort. No lint enforces this; the bar is judgement, "high, high" — an exception never grandfathers surviving hand-authored JS, which stays a rewrite candidate.'
+description: 'All source is TypeScript and all JavaScript is ESM — apply when creating any source or executable file, scaffolding tooling, hooks, or scripts, or reviewing a diff that adds .js, .mjs, .cjs, or .sh. New logic goes in a .ts module; a runtime that demands JS gets it compiled from TypeScript, never hand-authored (sole carve-out: the runtime-only-scripts tier, OCE''s ADR-168 §4). CJS is banned outright; shell only where it significantly reduces effort. No lint enforces this; the bar is judgement, "high, high" — an exception never grandfathers surviving hand-authored JS, which stays a rewrite candidate.'
 trigger: surface:source-authoring
 globs:
   - "**/*.{js,mjs,cjs,sh}"
@@ -28,7 +28,7 @@ files.
 ## Action
 
 - New logic → a `.ts` module in a workspace `src/`, typed, linted, and
-  unit-tested.
+  unit-tested (OCE's record: ADR-168 §5).
 - A hook or command entry point → run it from TypeScript source
   (`node <source>.ts`): Node 24.18 executes a TypeScript entry directly
   under `erasableSyntaxOnly` (set repo-wide), resolving workspace
@@ -46,7 +46,7 @@ files.
   required, its extension the deliberate signal of the constrained
   environment.
 - Never author a `.cjs` file or CJS-shaped module code (`require`,
-  `module.exports`) anywhere — ESM only.
+  `module.exports`) anywhere — ESM only (OCE's record: ADR-001).
 - A dynamic `import(...)` is an error (owner, 2026-08-09: "dynamic imports
   error-with-recorded-exemptions"). The estate's ESLint plugin reports it
   (`no-dynamic-import`, at error in its recommended configuration) in every

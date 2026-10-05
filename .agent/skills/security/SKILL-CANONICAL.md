@@ -14,7 +14,7 @@ reviewer for the independent defensive review.
 ## Read in order
 
 1. `.agent/sub-agents/templates/security-expert.md`
-2. `.agent/rules/invoke-security-expert.md`
+2. The `security-expert` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. `.agent/directives/secops.md`
 4. Relevant changed files such as `next.config.ts`, `proxy.ts`, `app/api/**`,
    and any env or dependency surfaces

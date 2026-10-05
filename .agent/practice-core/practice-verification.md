@@ -46,7 +46,7 @@ After creating all files, validate:
 7. The `start-right-quick` skill references all foundation documents and
    the collaboration-state consultation surfaces used before mutation.
 8. The napkin rule points to a napkin skill that exists.
-9. **Canonical quality gates** (per PDR-008 as amended 2026-09-12) are wired
+9. **Canonical quality gates** (per PDR-008 as amended) are wired
    in `package.json` (or the host ecosystem's script-layer equivalent):
    `clean`, `build`, `dev`, `format-check:root`, `format:root`,
    `markdownlint-check:root`, `markdownlint:root`, `lint`, `lint:fix`,

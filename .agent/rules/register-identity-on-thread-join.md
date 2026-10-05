@@ -108,7 +108,7 @@ The complementary layers are, per PDR-029's 2026-04-21 Amendment Log
   on any platform performs the same walkthrough by reading the same
   markdown.
 - **Stale-identity audit** — a six-check documentation walkthrough in
-  [`/jc-consolidate-docs § Thread-register freshness`](../skills/knowledge/consolidate-docs/SKILL-CANONICAL.md#thread-register-freshness)
+  [`consolidate-docs` § Thread-register freshness](../skills/knowledge/consolidate-docs/SKILL-CANONICAL.md#thread-register-freshness)
   that the agent performs at consolidation time: stale `last_session`,
   orphan threads, missing fields, duplicate identity rows,
   active-threads ↔ next-session-file correspondence, and retired-record

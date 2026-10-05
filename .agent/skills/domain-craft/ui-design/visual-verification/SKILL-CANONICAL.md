@@ -29,7 +29,12 @@ rule demand. The design register's decision is DDR-011.
 
 ## The instrument
 
-This repository's instrument is the site's visual-regression harness
+The instrument is the host's (each estate's block names its own; the
+reading below is shared). It produces the rendered proof: a route at a
+viewport, a focus-state render where the claim is about interaction, and
+the DOM-fact echo beside it.
+
+jimcresswell.net: the site's visual-regression harness
 (`jcdotnet/visual-regression-harness/`, run from the root):
 
 ```bash
@@ -41,15 +46,12 @@ the configured routes at the configured viewports, and prints the output
 directory holding the renders and diffs. Options (`--repo-root`,
 `--output-dir`, `--base-port`, `--target-port`) are listed in
 `jcdotnet/visual-regression-harness/cli.ts`; the routes and viewports
-come from the harness configuration, never from ad-hoc flags.
-
-OCE's per-route probe (an `--origin`/`--route`/`--tabs`
-instrument that captures a focus-state render and echoes
-`document.activeElement` in-band) is not ported here. When a proof needs
-a focus-state or single-route render the harness does not produce, the
-rendered proof comes from a Playwright run against the production build
-(`pnpm test:e2e`), and porting the probe is a capability decision, not a
-default.
+come from the harness configuration, never from ad-hoc flags. When a proof
+needs a focus-state or single-route render the harness does not produce,
+the rendered proof comes from a Playwright run against the production build
+(`pnpm test:e2e`); a per-route probe with a focus-state render and an
+in-band `document.activeElement` echo is OCE's showcase instrument, and
+porting it is a capability decision, not a default.
 
 ## Reading the proof
 

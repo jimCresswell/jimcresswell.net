@@ -195,14 +195,14 @@ Four foundational rules, named here as load-bearing principles:
 
 ### a. Don't Break the Build Without a Fix Plan
 
-The active
-`gate-recovery-cadence.plan.md`
-names the non-negotiable invariant verbatim:
+The rule
+[`dont-break-build-without-fix-plan`](../rules/dont-break-build-without-fix-plan.md)
+owns the non-negotiable invariant:
 
-> Restore the invariant that build, type-check, lint, format, markdown,
-> depcruise, knip, and static checks stay green even during TDD. RED is
-> allowed only as intentional failing behavioural tests, not as missing
-> imports, broken types, lint warnings, or build failures.
+> Build, type-check, lint, format, markdown, depcruise, knip, and static
+> checks stay green even during TDD. RED is allowed only as intentional
+> failing behavioural tests — never as missing imports, broken types, lint
+> warnings, or build failures.
 
 A peer agent's pristine staged work depends on the same gates passing on
 the same working tree. Breaking the build without a fix plan converts a
@@ -297,6 +297,15 @@ Two positive complements to the scope-discipline tripwires above (PDR-026/027/02
   value is the different failure surface, so the seat's platform diversity
   is the point, not its identity — the designated seat is re-derived from
   the live roster at time of use.
+  A verdict that coincides with the seat's own interest (a budget, a
+  convenience, its own earlier position) gets one outside check before it is
+  posted; the falsifier is three such checks that merely confirm. A key
+  shared text gets one cold reader from outside the model family before the
+  owner sees it, not told which line the seats doubt; the falsifier is two
+  outside reads that find nothing the inside checks had not. Frame diversity
+  discriminates and volume does not: five conscience checks of one model
+  family found six defects and missed the largest, and one outside reader
+  found it at once (2026-09-21).
 
 ## PR Closeout Discipline
 
@@ -358,12 +367,12 @@ derive from work-state and role, never from holding a claim. Recipes live in
 
 ## Bootstrap Fast-Path
 
-The single-agent case (no other claim in the registry and no live peer
-in the comms log) pays the protocol's
+The single-agent case (no other agents present) pays the protocol's
 **minimum overhead — two reads, one write**: read active claims and the
-shared log, register the session claim, and proceed without broadcasts
-(`use-agent-comms-log` §Scale ceremony to the audience). The single write
-is load-bearing: it is the discovery seed for
+shared log; if no entries other than your own exist and the comms log shows
+no live peer, the session is solo: register the session claim and proceed
+without broadcasts (`use-agent-comms-log` §Scale ceremony to the audience).
+The single write, the claim, is load-bearing: it is the discovery seed for
 whatever sequential agent comes next. The
 [`register-active-areas-at-session-open`](../rules/register-active-areas-at-session-open.md)
 rule operationalises this early-return.

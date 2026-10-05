@@ -20,7 +20,7 @@ Pattern reference:
 In every system this repository can influence — build pipelines,
 quality gates, runtime instrumentation, monitoring, vendor SDK
 plugins, lint, type-check, test runners, dependency-cruiser, CI,
-pre-commit hooks, Vercel build output, runtime logs — a
+pre-commit hooks, the hosting platform's build output, runtime logs — a
 **warning is the cheap, early version of the failure it names.**
 
 A signal is information about an architectural tension — before any
@@ -123,7 +123,7 @@ usages are remediation candidates, not licence to add new ones.
   - depcruise / knip / typedoc: zero warnings — escalate to
     error-level in their configs.
 - Every monitoring surface MUST treat repeated warnings as a
-  signal — Vercel build and runtime logs included — and route them
+  signal — the hosting platform's build and runtime logs included — and route them
   to triage alongside errors.
 - Every PR description that mentions "build successful" or
   "quality gates green" MUST be falsifiable: a warning surfaced
@@ -199,9 +199,12 @@ validator of an AUTHORED repository surface (Markdown, links, lint, docs): its u
 tracked tree (`git ls-files`), never a disk walk; a link validator that walked a gitignored
 session directory refused commits on scratch copies (OCE F-295, 2026-10-02), so the lesson
 written once for the Markdown gate binds each later such validator at its second consumer.
-The clause binds; it does not describe: in this repository the Markdown-links validator globs
-the disk and the fitness-vocabulary walker reads directories, two cures the clause names, not
-exceptions it admits (2026-10-03). State-integrity validators of the live tier (collaboration state, the practice substrate's
+The clause binds; it does not describe every validator yet: in this estate the
+fitness-vocabulary walker reads directories (`walk.ts`, `readdir`) and the Markdown-links
+validator collects `**/*.md` by glob with the tracked set used for target checks only
+(read 2026-10-03), so each is a cure owed under this clause, never a licence for the next
+validator to walk the disk.
+State-integrity validators of the live tier (collaboration state, the practice substrate's
 instance JSON) read their untracked state by design (`important-state-not-in-temp-files`) and
 are outside this clause.
 

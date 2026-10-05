@@ -7,16 +7,16 @@ description: A seat on a downstream checkout (fork, mirror, an organisation runn
 
 Operationalises the principle that organisational identity is held below
 the tree: mechanism names no organisation, and the default branch is
-derived, never a literal. OCE records that principle in its own
-architecture decision on organisational identity below the tree; this
-estate runs as its own origin with no upstream today, so the fork clauses
-bind the moment a second remote or a fork of this tree exists, and the
+derived, never a literal. OCE records that principle as its architecture
+decision on organisational identity below the tree (ADR-231 there). An
+estate that runs as its own origin with no upstream is bound by the fork
+clauses the moment a second remote or a fork of its tree exists; the
 explicit-repository and derived-default-branch clauses bind every call now.
-One gap in this estate's own tooling is known: the spawn command's `--base`
-defaults to `origin/main` and its pull request opens against that literal;
-deriving the default branch there is a code carry of the parity queue, and
-until it lands the clause binds the seat, which passes `--base` explicitly,
-not the tool.
+One gap in jimcresswell.net's own tooling is known: its spawn command's
+`--base` defaults to `origin/main` and its pull request opens against that
+literal; deriving the default branch there is a code carry of the parity
+queue, and until it lands the clause binds the seat, which passes `--base`
+explicitly, not the tool.
 
 A checkout that runs this repository downstream of another (a fork, a
 mirror, an organisation running the tree as its own) has exactly one set
@@ -118,10 +118,11 @@ answered PRIVATE, 2026-09-05).
 
 ## Related Surfaces
 
-- OCE's architecture decision on organisational identity below the tree —
-  the identity this rule protects is configuration below the tree; the
-  mechanism above names no organisation. This estate holds no twin of that
-  record because it has no fork line; the principle binds through this rule.
+- OCE's architecture decision on organisational identity below the tree
+  (ADR-231 there) — the identity this rule protects is configuration below
+  the tree; the mechanism above names no organisation. An estate with no
+  fork line holds no twin of that record; the principle binds through this
+  rule.
 - [`bot-identity-on-third-party-systems`](bot-identity-on-third-party-systems.md)
   — the identity every write carries on the checkout's own surfaces.
 - [`never-commit-to-main`](never-commit-to-main.md) — local commits to

@@ -222,7 +222,9 @@ Four disciplines keep the heartbeat loop honest; each cures a recorded
 failure instance from the 2026-06-11 team window:
 
 - **Relabel at lane transitions.** A fixed-label loop goes stale by
-  construction: its title and typed state args are frozen at start, so a
+  construction (read the label from a file each tick, or restart the loop at
+  every state change; a peer read a stale label as a possible unread
+  direction, 2026-09-24): its title and typed state args are frozen at start, so a
   claim open, lane-terminal event, or cycle advance leaves the loop
   asserting a lane the agent no longer occupies (worked instance: a
   PDR-078 stall ping fired on a seat that was actively working, three

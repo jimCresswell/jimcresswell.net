@@ -3,6 +3,7 @@ name: "Parallel `isolation:\"worktree\"` Dispatch Is Unreliable; Prefer Sequenti
 polarity: anti-pattern
 use_this_when: "Considering a parallel `Agent` batch with `isolation:\"worktree\"` for non-trivial work that depends on a specific branch HEAD or specific repo state"
 category: agent
+layer: general
 proven_in: ".agent/plans/agentic-engineering-enhancements/current/doctrine-enforcement-quick-wins.plan.md (Pearly Snorkelling Reef 2026-05-04)"
 proven_date: 2026-05-04
 barrier:

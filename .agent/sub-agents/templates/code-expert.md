@@ -1,5 +1,11 @@
 ---
-description: Gateway code reviewer — quality, correctness, and triage. Assesses code changes for correctness, edge cases, security, performance, readability, maintainability, and test coverage. Triages to specialists.
+description: Gateway code review specialist for quality, correctness, and maintainability. Invoke immediately after any code is written or modified — features, bug fixes, refactors, and performance changes. Also responsible for identifying which specialist reviewers (security-expert, type-expert, test-expert, architecture reviewers) are needed.
+claude:
+  color: orange
+cursor:
+  description: Expert code review specialist for quality, security, and maintainability. Use proactively and immediately after writing or modifying code, completing features, fixing bugs, or refactoring. Invoke when you need comprehensive feedback on code changes, design patterns, or implementation quality.
+codex:
+  description: Gateway reviewer for non-trivial changes.
 ---
 
 ## Delegation Triggers
@@ -316,23 +322,21 @@ In every review, check whether the changes touch any of these categories. If the
 
 | Change Signal | Required Specialist |
 |---------------|---------------------|
-| Module boundaries, imports, public APIs | `architecture-expert` |
-| `jcdotnet/content/`, the graph and JSON-LD modules, metadata wiring | `architecture-expert-barney` |
-| Routes, navigation, layout composition | `architecture-expert-betty` |
-| Builds, caching, PDF generation, the proxy, E2E against the production build, runtime resilience | `architecture-expert-fred` |
-| Practice governance: `.agent/` surfaces, plans, cross-platform contracts | `architecture-expert-wilma` |
-| Headers, CSP, secrets, env, PII, proxy or middleware, third-party scripts, trust-boundary input, dependency upgrades with a security bearing | `security-expert` |
+| Module boundaries, imports, public APIs | an architecture reviewer through the lens the change calls for: `architecture-expert-barney` (simplification and cartography) / `architecture-expert-betty` (cohesion and change-cost) / `architecture-expert-fred` (principles and boundaries) / `architecture-expert-wilma` (adversarial resilience); the `architecture-expert` row of `.agent/rules/invoke-code-experts.md` names the routing |
+| In this estate, the lane the change touches (the roster in `.agent/sub-agents/components/architecture/reviewer-team.md`): the structural review across the workspaces; PKG and graph integrity; routes, navigation and layout; builds, caching, PDF generation, the proxy, E2E against the production build and runtime resilience; Practice governance | `architecture-expert`; `architecture-expert-barney`; `architecture-expert-betty`; `architecture-expert-fred`; `architecture-expert-wilma`, by lane |
+| Auth/authz, OAuth, headers and CSP, secrets, env, PII, injection, proxy or middleware, third-party scripts, trust-boundary input, dependency upgrades with a security bearing, security-sensitive logic | `security-expert` |
 | Test additions, modifications, or TDD concerns | `test-expert` |
 | Type complexity, generics, schema flow | `type-expert` |
 | Tooling configs, the lockfile, quality gates | `config-expert` |
 | README, TSDoc, ADR changes or expected drift | `docs-adr-expert` |
-| Significant authored prose whose readability matters | `prose-expert` |
-| Sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points | `subagent-architect` |
-| Onboarding journeys or entry points | `onboarding-expert` |
-| Plans marked decision-complete, 3+ agents, blocking claims, vendor integrations, early technology commitments | `assumptions-expert` |
+| Significant authored prose whose readability matters, outward-facing copy included | `prose-expert` |
+| Sub-agent definition design or migration: templates, platform adapters, the `invoke-code-experts` roster, skills, platform entry points | `subagent-architect` (on-demand) |
+| Onboarding journeys, start-right entry points, ADR discoverability | `onboarding-expert` |
+| Significant documentation work, or any change that mutates a Practice surface (typo fixes and frontmatter-only edits excepted) | `docs-adr-expert` and `onboarding-expert` together (the significant-change clause of `.agent/rules/invoke-code-experts.md`) |
+| Plans marked decision-complete, 3+ agents, asserted blocking relationships, vendor integrations, technology commitments before research | `assumptions-expert` |
 | Release boundary or go/no-go context | `release-readiness-expert` (on-demand) |
-| Editorial content: CV, front page, positioning, anything that represents Jim | `editor` |
-| Entity model, JSON-LD generation, `@id` conventions, structured-data output | `pkg-expert` |
+| In this estate, editorial content: the CV, the front page, positioning, anything that represents the owner | `editor` (the host's voice reviewer) |
+| In this estate, the entity model, JSON-LD generation, `@id` conventions, structured-data output | `pkg-expert` (the host's domain specialist) |
 | React components, hooks, hydration, server/client boundaries | `react-component-expert` |
 | Tokens, spacing, type, theming, responsive rhythm | `design-system-expert` |
 | Rendered, semantic, motion or PDF surfaces with accessibility risk | `accessibility-expert` |

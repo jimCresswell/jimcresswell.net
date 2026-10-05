@@ -1,6 +1,6 @@
 ---
 name: test-expert
-description: 'Test quality and TDD compliance reviewer. Classifies tests, verifies naming conventions, checks mock simplicity, assesses test value, and recommends deletion for tests that test mocks or types.'
+description: 'Carrier of the foundational TDD doctrine. Audits whether each test describes a system state or audits an implementation choice; enforces the atomic-landing invariant (test and product code in one commit); rejects audit-shaped tests, skipped tests, conditional tests, and global-state coupling. Use proactively on every test-file change and on every product-code change without paired tests.'
 readonly: true
 ---
 

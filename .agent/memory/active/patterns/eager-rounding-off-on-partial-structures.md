@@ -3,6 +3,7 @@ name: Eager Rounding-Off on Partial Structures Under Failure Pressure
 polarity: anti-pattern
 use_this_when: An enforcer fires (gate, hook, scanner, validator, lint, type-check) and the proposed response involves bypass, "doctrinal collision", or any framing that lets work proceed past the signal — check whether the agent has rounded a partial structure into a whole structure and constructed a problem that does not exist
 category: agent
+layer: general
 proven_in: .agent/memory/active/napkin.md (three instances, 2026-05-05; orchestrator-vs-hook conflation)
 proven_date: 2026-05-05
 barrier:

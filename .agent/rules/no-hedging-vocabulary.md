@@ -203,10 +203,16 @@ trade a known false-positive flood for no real coverage gain.
 
 ## In-Scope Surfaces
 
+The hook's own scope is the source of truth: the `scoped_blocks` entry for the
+literal group in `.agent/hooks/policy.json` names the surfaces, and this list
+restates it for the reader. In jimcresswell.net:
+
 - `.agent/practice-core/`
 - `.agent/plans/`
 - `docs/architecture/`
 - any `**/*.plan.md` anywhere in the tree
+
+OCE's hook scopes its governance documents directory as well, its elaboration-docs home.
 
 ## Excluded Surfaces (Why)
 

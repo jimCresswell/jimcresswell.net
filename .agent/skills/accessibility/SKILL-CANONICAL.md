@@ -14,7 +14,7 @@ independent read-only pass.
 ## Read in order
 
 1. `.agent/sub-agents/templates/accessibility-expert.md`
-2. `.agent/rules/invoke-accessibility-expert.md`
+2. The `accessibility-expert` row of `.agent/rules/invoke-code-experts.md` (the roster)
 3. Relevant changed files in `app/`, `components/`, `content/`, `lib/`, and
    `public/`
 4. `docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md`

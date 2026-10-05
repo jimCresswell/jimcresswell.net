@@ -3,6 +3,7 @@ name: Mechanism Without Legible Intent
 polarity: anti-pattern
 use_this_when: Landing or auditing an enforcement surface (rule, hook, gate, review lens) — ask where its system-level intent is legible; when agents comply with the letter, misattribute the why to a person, or cannot derive the next rule themselves, the mechanism has outrun its intent
 category: agent
+layer: general
 proven_in: The Claude per-user memory-buffer drain (212 feedback entries, 2026-07-03..05) and the owner-ratified reflection of 2026-07-05
 proven_date: 2026-07-05
 barrier:

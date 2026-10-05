@@ -20,9 +20,7 @@ variants:
       color: green
       model: haiku
       effort: xhigh
-      pointerTail: |-
-        ,
-        then execute its procedure exactly.
+      pointerTail: ", then execute its procedure exactly."
       note: |-
         This adapter explicitly waives the template's reading-discipline component to preserve
         the one-pass speed contract; the identity component remains mandatory. Execute and report
@@ -41,7 +39,6 @@ variants:
         fast pass, using at most its two targeted verification Reads when the speed
         contract permits them. Never explore; report only. Do not modify anything.
 ---
-
 ## Delegation Triggers
 
 Use this role for a fast, reproducible second opinion when the primary needs its current

@@ -16,11 +16,11 @@ timeout = 10
 statusMessage = "Loading Practice agent identity"
 
 [agents."accessibility-expert"]
-description = "Accessibility reviewer focusing on WCAG compliance, semantics, and assistive flows."
+description = "Accessibility specialist for both read-only review and active-workflow planning around WCAG 2.2 AA, WAI-ARIA, keyboard interaction, colour contrast, and focus management in UI-shipping workspaces."
 config_file = "agents/accessibility-expert.toml"
 
 [agents."architecture-expert"]
-description = "Structural architecture reviewer for the monorepo: module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke the named persona for the lane a change touches as well."
+description = "Structural architecture reviewer for the monorepo: module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke the named lens for the lane a change touches as well."
 config_file = "agents/architecture-expert.toml"
 
 [agents."architecture-expert-barney"]
@@ -40,15 +40,15 @@ description = "Architecture reviewer Wilma focused on practice governance and do
 config_file = "agents/architecture-expert-wilma.toml"
 
 [agents."assumptions-expert"]
-description = "Meta-level plan specialist for both read-only review and active-workflow planning support, focused on proportionality, assumption validity, and blocking legitimacy. Invoke when plans are being drafted, marked decision-complete, propose 3+ agents, assert blocking relationships, integrate a third-party vendor, or commit to technology choices before research."
+description = "Meta-level plan specialist for both read-only review and active-workflow planning support, focused on proportionality, assumption validity, and blocking legitimacy."
 config_file = "agents/assumptions-expert.toml"
 
 [agents."code-expert"]
-description = "Gateway code reviewer — quality, correctness, and triage. Assesses code changes for correctness, edge cases, security, performance, readability, maintainability, and test coverage. Triages to specialists."
+description = "Gateway reviewer for non-trivial changes."
 config_file = "agents/code-expert.toml"
 
 [agents."config-expert"]
-description = "Configuration reviewer for TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser and Husky configuration, pnpm scripts, and the site's Next.js, PostCSS and Playwright configuration."
+description = "Tooling configuration reviewer (TypeScript, ESLint, Vitest, Prettier, Turbo, knip, dependency-cruiser, Husky)."
 config_file = "agents/config-expert.toml"
 
 [agents."corpus-mapper"]
@@ -80,11 +80,11 @@ description = "Fast xhigh-effort conscience check using a compiled decision proc
 config_file = "agents/cricket-procedure-xhigh.toml"
 
 [agents."design-system-expert"]
-description = "Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm."
+description = "Design token and visual consistency specialist for both read-only review and active-workflow planning around the host's token model, CSS custom properties, tier discipline, and theming in UI-shipping workspaces."
 config_file = "agents/design-system-expert.toml"
 
 [agents."docs-adr-expert"]
-description = "Documentation and ADR reviewer for decision records and narratives."
+description = "Documentation and ADR quality reviewer."
 config_file = "agents/docs-adr-expert.toml"
 
 [agents."editor"]
@@ -92,7 +92,7 @@ description = "Editorial reviewer for Jim Cresswell's public-facing content. Rev
 config_file = "agents/editor.toml"
 
 [agents."onboarding-expert"]
-description = "Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected across the human or AI-agent onboarding flows. Invoke immediately after changes to README (especially the Getting Started section), CONTRIBUTING.md, AGENT.md, or any document that sits on an onboarding path."
+description = "Onboarding documentation quality reviewer."
 config_file = "agents/onboarding-expert.toml"
 
 [agents."pkg-expert"]
@@ -100,29 +100,29 @@ description = "PKG specialist reviewer — Schema.org, JSON-LD, and graph correc
 config_file = "agents/pkg-expert.toml"
 
 [agents."prose-expert"]
-description = "Prose craft specialist. Use proactively to review the writing of any authored document — clarity, concision, active voice, omit-needless-words, lead-with-the-point. Read-only craft review; defers Jim's editorial voice to editor, link text, headings, labels and accessible names on rendered surfaces to accessibility-expert, onboarding journeys to onboarding-expert, and documentation structure/accuracy to docs-adr-expert."
+description = "Prose craft reviewer for universal writing clarity; the editorial voice on content that represents Jim is editor's."
 config_file = "agents/prose-expert.toml"
 
 [agents."react-component-expert"]
-description = "React component reviewer checking hooks, hydration, and memoisation."
+description = "React component specialist for both read-only review and active-workflow planning around hooks, render performance, prop API design, and composition patterns in UI-shipping workspaces."
 config_file = "agents/react-component-expert.toml"
 
 [agents."release-readiness-expert"]
-description = "Release go/no-go specialist. Synthesises quality-gate evidence, breaking-change risk, migration impact, and operational readiness into an explicit GO / GO WITH CONDITIONS / NO-GO recommendation. Use at release boundaries: before merging to a release branch, before a version bump, when a change set includes contract or schema changes, or when a prior NO-GO is being re-evaluated after fixes."
+description = "Release go/no-go readiness reviewer."
 config_file = "agents/release-readiness-expert.toml"
 
 [agents."security-expert"]
-description = "Security reviewer for headers, secrets, and middleware defences."
+description = "Security and privacy reviewer for auth, headers, secrets, PII, and injection risks."
 config_file = "agents/security-expert.toml"
 
 [agents."subagent-architect"]
-description = "Subagent architect ensuring the canonical reviewer architecture stays sane."
+description = "Sub-agent creation, review, and optimisation specialist."
 config_file = "agents/subagent-architect.toml"
 
 [agents."test-expert"]
-description = "Test quality and TDD compliance reviewer. Classifies tests, verifies naming conventions, checks mock simplicity, assesses test value, and recommends deletion for tests that test mocks or types."
+description = "Carrier of the foundational TDD doctrine: describes-vs-audits screen, atomic-landing invariant, and structural compliance."
 config_file = "agents/test-expert.toml"
 
 [agents."type-expert"]
-description = "TypeScript type safety reviewer. Traces type flow from origin through the system. Detects widening, assertions, and missed compile-time guarantees. Core principle: why solve at runtime what you can embed at compile time?."
+description = "TypeScript type-safety reviewer."
 config_file = "agents/type-expert.toml"

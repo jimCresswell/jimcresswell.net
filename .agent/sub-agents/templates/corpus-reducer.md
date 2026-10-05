@@ -2,7 +2,14 @@
 description: No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call.
 # No Gemini adapter: the Gemini adapter's body is the pointer to this template, which a
 # no-tools agent cannot read; the System prompt body is the Claude adapter's alone.
-platforms: [cursor, claude, codex]
+platforms:
+  - cursor
+  - claude
+  - codex
+claude:
+  tools: none
+  maxTurns: 6
+  body: system-prompt
 cursor:
   description: Clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched by a corpus-analysis orchestrator, one call per run; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call.
   note: |-
@@ -12,10 +19,6 @@ cursor:
     part of the task — and answer with the single required structured output
     call. (On Claude this role runs zero-tools by frontmatter; Cursor cannot
     enforce that envelope, so honour it behaviourally.)
-claude:
-  tools: none
-  maxTurns: 6
-  body: system-prompt
 codex:
   description: Clustering synthesist for the corpus-analysis reduce workflow stage; clusters inlined leaf signals into mechanism-grained candidates via the schema-forced structured output.
   note: |-
@@ -27,7 +30,6 @@ codex:
     envelope behaviourally here) — and answer with the single required
     structured output call. Do not modify anything.
 ---
-
 # Corpus Reducer: No-Tools Clustering Synthesist
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper
@@ -69,7 +71,7 @@ leaf-signal inputs.
 
 ## System prompt
 
-The Claude wrapper carries this block verbatim, copied by the generator (the
+The Claude adapter carries this block verbatim, copied by the generator (the
 declaration's `body: system-prompt`), so this block is the one home: edit it
 here and run `pnpm portability:fix`.
 

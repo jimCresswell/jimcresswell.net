@@ -34,7 +34,7 @@ Read and internalise these documents:
 6. @.agent/directives/orientation.md — layering contract and authority order
 7. @.agent/memory/operational/threads/README.md — thread convention + identity discipline (PDR-027)
 8. Open any ADR whose slug matches your current work area from the
-   [ADR index](../../../../docs/architecture/decision-records/README.md).
+   the host's ADR index (the decision-record directory under `docs/architecture/`).
 
 **Plans must include regularly re-reading and re-committing to these foundation documents.**
 
@@ -149,7 +149,7 @@ that the work shape and validation path are visible before mutation.
 
 ## Practice Box
 
-Check `.agent/practice-core/incoming/` for practice-core files. If present, alert the user — incoming material may carry learnings from another repo. Full integration happens during `/jc-consolidate-docs`.
+Check `.agent/practice-core/incoming/` for practice-core files. If present, alert the user — incoming material may carry learnings from another repo. Full integration happens during the `consolidate-docs` skill.
 
 ## Commit
 
@@ -161,7 +161,8 @@ When analysing generated files, always analyse the generator code that produced 
 
 ## After Each Piece of Work
 
-1. **Run the full quality gate suite** one gate at a time
+1. **Let the hooks run the full quality gate suite** at commit and push; never run it by
+   hand beside them
 2. **Wait for all gates to complete** before analysing issues
 3. **Analysis must include**: Are there fundamental architectural issues or opportunities for improvement?
 
@@ -183,17 +184,21 @@ Invoke sub-agent reviewers per the `invoke-code-experts` rule after making chang
 
 ## Quality Gates
 
-Run after making changes, one gate at a time from the repo root. The
-sequence is the [gates skill](../../change-custody/gates/SKILL-CANONICAL.md):
-`pnpm check` unrolled one leg per line, then the gates outside it (build,
-end-to-end, visual regression, docs validators, plan gates). Caching details
-are in @docs/engineering/build-system.md.
+The hooks run the gates: the commit hook the light gate, the push hook the
+full aggregate `pnpm check` and then the host's product legs, CI the same
+legs (owner, 2026-10-04: light commit, full push, in both estates). Never run
+them by hand beside the hooks (owner, 2026-09-14, verbatim: "the commit
+triggers the gates, there is no point and a fair amount of cost running the
+gates separately as well, never, ever do that"). The sequence is the
+[gates skill](../../change-custody/gates/SKILL-CANONICAL.md): `pnpm check`
+unrolled one leg per line, then the host's gates outside it; read a failure
+there. Caching details are in @docs/engineering/build-system.md.
 
 Practice health, informational and never a gate:
 
 ```bash
 pnpm practice:fitness:informational  # four-zone report (always exit 0)
-# Consolidation-closure signal (used by /jc-consolidate-docs):
+# Consolidation-closure signal (used by the consolidate-docs skill):
 #   pnpm practice:fitness:strict-hard
 # Vocabulary consistency:
 #   pnpm practice:vocabulary

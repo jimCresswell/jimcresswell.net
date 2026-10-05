@@ -221,7 +221,8 @@ A whole profile should reveal a recognisable person without making every episode
 ## Review sequence
 
 Review from large decisions to small ones. Do not polish sentences inside a structure that has not
-earned its shape.
+earned its shape. The shared `prose-expert` reviewer carries this sequence as its review order (a
+reader pass first, a whole-piece pass last); this directive keeps the surface-specific passes.
 
 1. **Reader and purpose pass** — identify the primary decision and reading mode.
 2. **Surface pass** — define what this artefact must do differently from the CV, front page,

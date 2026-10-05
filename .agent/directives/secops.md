@@ -4,15 +4,17 @@ fitness_line_limit: 210
 fitness_char_limit: 13000
 fitness_line_length: 100
 fitness_rationale: >-
-  Limits raised 2026-09-12 when the generic security doctrine from the retired governance safety
-  document was folded in; knowledge preservation outranks fitness warnings.
+  Sized for the Practice-wide security doctrine (credentials, secret scanning, application
+  security, history rewrites) plus the host's own bindings; knowledge preservation outranks fitness
+  warnings.
 split_strategy: Split by responsibility — extract git operations from audit procedures
 ---
 
 # Security Operations
 
 Operational security practices for this repository. These rules apply to all contributors — human
-and AI.
+and AI. The Practice-wide doctrine comes first; the host's own bindings (git identity, credentials
+policy, disclosure route, audit checklist) are in §This host's bindings at the end.
 
 ## Guiding principle
 
@@ -28,29 +30,11 @@ Four engineering principles sit under it:
 - **Fail secure** — an error path lands on the safe default, never on an open one.
 - **No trust assumptions** — every external input is validated before use.
 
-## Git identity
-
-Use `git@jimcresswell.net` as the author email for commits made in a local checkout. All commits
-must carry a GitHub-verifiable cryptographic signature; GPG and SSH signatures are both accepted.
-GitHub-generated merge or squash commits may use GitHub's platform identity and GPG signature.
-
-```bash
-git config user.email "git@jimcresswell.net"
-git config commit.gpgsign true
-```
-
-For SSH signing, also configure the public key registered with GitHub as a signing key:
-
-```bash
-git config gpg.format ssh
-git config user.signingkey "$HOME/.ssh/id_ed25519.pub"
-```
-
 ## Credentials and API keys
 
 - **Environment variables only.** Credentials live in environment variables or the untracked `.env`
   and `.env.local` files — never in code, never in version control. Tracked example files carry
-  placeholders only ([SECURITY.md §Credentials Policy](../../SECURITY.md)).
+  placeholders only (the host's credentials policy; §This host's bindings).
 - **Validated on startup.** Keys are validated with Zod schemas before use, so a missing or
   malformed credential fails at boot rather than mid-request.
 - **Never logged.** A key never reaches a log line, even at debug level.
@@ -84,8 +68,8 @@ line-specific allowlist comment:
 EXAMPLE_API_KEY=example_token_value # gitleaks:allow
 ```
 
-Path-level allowlists exist only for third-party reference material (`.agent/reference/**`) and test
-files, as declared in `.gitleaks.toml`.
+Path-level allowlists exist only for third-party reference material (`.agent/reference/**`) and
+whatever else `.gitleaks.toml` declares.
 
 Escalation path:
 
@@ -119,7 +103,74 @@ Escalation path:
   ([lockfile-rebuild-survivability](../rules/lockfile-rebuild-survivability.md)).
 - **Never claim a dependency-audit CI gate that the checked workflow does not run.**
 
-## PII audit checklist
+## History-rewrite boundary
+
+A public-history rewrite is an exceptional recovery operation, not ordinary cleanup. Before any
+rewrite or force push, preserve and verify the complete live state: Git refs and object database,
+index, tracked and untracked changes, ignored sources, relevant pull-request state, and any
+out-of-repo material needed for recovery. Use a private remote and a fresh-clone check so custody is
+not single-disk.
+
+Build and test the replacement in an isolated clone. Push only with an exact `--force-with-lease`
+against the observed old ref, then verify a fresh public clone, the pull request and all regenerated
+checks. Rewriting a branch reduces ordinary reachability; it does not prove that hosting-provider
+caches or infrastructure no longer retain old objects. See
+[privacy.md](./privacy.md) §Public-history recovery.
+
+## Incident response
+
+Report security issues by following [SECURITY.md](../../SECURITY.md) at the repository root, which
+names the host's disclosure route (§This host's bindings). Never report a security issue via a
+public GitHub issue. Security patches ship as soon as possible and are disclosed through GitHub
+security advisories.
+
+## Security checklist before committing
+
+- [ ] No hardcoded secrets or API keys
+- [ ] All external inputs validated with Zod
+- [ ] Error messages do not leak internal details
+- [ ] PII scrubbed from every output ([privacy.md](privacy.md))
+- [ ] No `any` or type assertions
+- [ ] Security implications documented in the change
+- [ ] Tests cover the security edge cases: PII scrubbing, error-message leakage, input validation
+      and injection attempts
+
+## Review cadence
+
+Audit the repository against the host's PII checklist (§This host's bindings) before any change in
+public visibility. The audit should cover both the working tree and the full git history.
+
+## This host's bindings
+
+The bindings of this host (jimcresswell.net). The sibling estate's copy of this file carries its own
+section here; everything above it is the same text in both.
+
+### Git identity
+
+Use `git@jimcresswell.net` as the author email for commits made in a local checkout. All commits
+must carry a GitHub-verifiable cryptographic signature; GPG and SSH signatures are both accepted.
+GitHub-generated merge or squash commits may use GitHub's platform identity and GPG signature.
+
+```bash
+git config user.email "git@jimcresswell.net"
+git config commit.gpgsign true
+```
+
+For SSH signing, also configure the public key registered with GitHub as a signing key:
+
+```bash
+git config gpg.format ssh
+git config user.signingkey "$HOME/.ssh/id_ed25519.pub"
+```
+
+### Credentials policy and disclosure route
+
+Tracked example files carry placeholders only ([SECURITY.md §Credentials
+Policy](../../SECURITY.md)). Security issues are reported through GitHub's private vulnerability
+reporting on this repository, or the owner's published contact, as [SECURITY.md](../../SECURITY.md)
+states.
+
+### PII audit checklist
 
 Before making this repository public (or changing visibility), audit for:
 
@@ -141,7 +192,7 @@ Before making this repository public (or changing visibility), audit for:
 
 [linkedin-authorisation]: privacy.md#linkedin-workspace-authorisation--28-september-2026
 
-## Content in plan files
+### Content in plan files
 
 Plan files in `.agent/plans/` are version-controlled and will be visible if the repo is public. They
 should be written as if they will be read by anyone.
@@ -155,40 +206,3 @@ should be written as if they will be read by anyone.
   private.
 - Point only to the private repository's local routing README. Never publish the private remote,
   commit identifiers or source-level details in a public plan.
-
-## History-rewrite boundary
-
-A public-history rewrite is an exceptional recovery operation, not ordinary cleanup. Before any
-rewrite or force push, preserve and verify the complete live state: Git refs and object database,
-index, tracked and untracked changes, ignored sources, relevant pull-request state, and any
-out-of-repo material needed for recovery. Use a private remote and a fresh-clone check so custody is
-not single-disk.
-
-Build and test the replacement in an isolated clone. Push only with an exact `--force-with-lease`
-against the observed old ref, then verify a fresh public clone, the pull request and all regenerated
-checks. Rewriting a branch reduces ordinary reachability; it does not prove that hosting-provider
-caches or infrastructure no longer retain old objects. See
-[privacy.md](./privacy.md) §Public-history recovery.
-
-## Incident response
-
-Report security issues by following [SECURITY.md](../../SECURITY.md) at the repository root:
-GitHub's private vulnerability reporting on this repository, or the owner's published contact.
-Never report a security issue via a public GitHub issue. Security patches ship as soon as possible
-and are disclosed through GitHub security advisories.
-
-## Security checklist before committing
-
-- [ ] No hardcoded secrets or API keys
-- [ ] All external inputs validated with Zod
-- [ ] Error messages do not leak internal details
-- [ ] PII scrubbed from every output ([privacy.md](privacy.md))
-- [ ] No `any` or type assertions
-- [ ] Security implications documented in the change
-- [ ] Tests cover the security edge cases: PII scrubbing, error-message leakage, input validation
-      and injection attempts
-
-## Review cadence
-
-Audit the repository against the PII checklist above before any change in public visibility. The
-audit should cover both the working tree and the full git history.

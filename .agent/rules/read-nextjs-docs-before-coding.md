@@ -27,16 +27,16 @@ or debugging Next-specific behaviour.
 Before coding, find and read the relevant doc under the **consuming
 workspace's** `node_modules/next/dist/docs/` — pnpm resolves per workspace,
 so the path is the workspace's own `node_modules`, never the repo root's
-(here `jcdotnet/node_modules/next/dist/docs/`).
-Layout: `01-app/` is the App Router (this repo's default), `02-pages/` the
+(for example `<workspace>/node_modules/next/dist/docs/`).
+Layout: `01-app/` is the App Router (the default in both Practice estates), `02-pages/` the
 legacy Pages Router, `03-architecture/` the internals; start from `index.md`
 when unsure.
 
 Worked instance (OCE): Next 16 renamed `middleware.ts` to
 `proxy.ts`; earlier in-tree research predated the rename, so a plan built on
 training-data recall would have wired the wrong file — caught only because the
-live docs were checked. This site's content-negotiation proxy (ADR-009) is
-exactly such a file.
+live docs were checked. jimcresswell.net's content-negotiation proxy (its
+ADR-009) is exactly such a file.
 
 ## Related Surfaces
 

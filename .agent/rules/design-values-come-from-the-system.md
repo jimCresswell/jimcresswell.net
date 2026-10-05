@@ -68,8 +68,8 @@ slice, shows the compliant shape.
   and `jcdotnet/app/manifest.ts` (`background_color` and `theme_color`) carry
   the `:root` and `.dark` backgrounds, `#faf9f7` and `#1c1917`, as literal
   colours, because platform metadata cannot resolve a custom property.
-- [`invoke-design-system-expert`](invoke-design-system-expert.md) — the
-  reviewer dispatch that carries this axis.
+- [`invoke-code-experts`](invoke-code-experts.md) — the reviewer roster whose
+  `design-system-expert` row carries this axis.
 - [`no-moving-targets-in-permanent-docs`](no-moving-targets-in-permanent-docs.md)
   — the same single-source-of-truth principle applied to prose.
 

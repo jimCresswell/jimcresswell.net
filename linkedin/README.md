@@ -55,7 +55,8 @@ wording with Jim before any change there.
 - [Editorial strategy](../.agent/directives/editorial-strategy.md)
 - [Voice and guidance](../.agent/directives/editorial-guidance.md)
 - [Privacy](../.agent/directives/privacy.md)
-- [Editor review](../.agent/rules/invoke-editor.md) and the
+- [Editor review](../.agent/memory/executive/invoke-code-experts.md) (this host's
+  `editor` row) and the
   [editorial voice skill](../.agent/skills/editorial-voice/SKILL-CANONICAL.md)
 - [Current CV source](../jcdotnet/content/cv.content.json)
 - [Current front page source](../jcdotnet/content/frontpage.content.json)

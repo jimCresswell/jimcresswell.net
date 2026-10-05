@@ -120,7 +120,7 @@ inventory names: **79 of 79 rows closed**, 16 landed, 15 declined, 48 closed as 
 (11 with partial landings, 37 never landed): 26 of them measured in the inventory's closure table
 as the same, different and one-sided paths under their globs, and 22 (17 whose globs fall outside
 the inventory's directories, 5 with no globs) closed as difference rows on their register cells
-alone. A row is settled only by §Landings rows of its receiving estate (J rows in OCE, L and C
+alone. A row is settled only by §Landings rows of its receiving estate (J rows in OCE, L, C and O
 rows in jcnet, L34 in OCE under the ruling above), so J11 reads partial on its four OCE rows and
 L34 landed on its one. The extraction plan reads two inputs: this register for the rows and the
 inventory for the paths. The residue-unit count above (16 of 32 at 2026-09-29) is retired by this

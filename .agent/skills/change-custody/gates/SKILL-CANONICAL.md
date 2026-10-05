@@ -6,10 +6,17 @@ description: Run all quality gates and fix issues.
 
 # Quality Gates
 
-Run the quality gates one by one from the repo root. Fix any and all issues
-that arise, regardless of location or cause.
+The hooks run the quality gates: the pre-commit hook the light gate, the
+pre-push hook the full aggregate `pnpm check` under a host gate slot and then
+the host's product legs, CI the same legs (owner, 2026-10-04: light commit,
+full push, in both estates). An agent never runs the gates by hand beside the
+hooks (owner, 2026-09-14: "the commit triggers the gates, there is no point
+and a fair amount of cost running the gates separately as well, never, ever
+do that"). This skill is for reading a refusal and curing it: fix any and all
+issues that arise, regardless of location or cause, then commit or push again.
 
-After each fix, **restart the quality gate sequence from the beginning**. This prevents regressions to earlier gates from later fixes.
+After each fix the hook **re-runs the quality gate sequence from the
+beginning**. This prevents regressions to earlier gates from later fixes.
 
 Treat the gate surface as a stack, not a flat list. An upstream red gate can
 hide downstream failures because later stages do not become trustworthy until
@@ -19,22 +26,26 @@ a continue-mode turbo run (`pnpm exec turbo run lint type-check test --continue`
 stack, but final acceptance still requires the sequence below to pass cleanly
 from the beginning.
 
-This sequence is the current `pnpm check` script — the canonical read-only
-aggregate local proof gate — unrolled one leg per line, followed by the gates
-that live outside it. The pre-commit hook runs the staged subset, the pre-push
-hook runs `pnpm check` plus the site's end-to-end
-tests, and CI runs the same legs (`validate-check-ci-parity` refuses a drift
-between `check` and `.github/workflows/ci.yml`). Re-read `package.json` before
-editing this list; the root script is the source of truth when the gate graph
-changes, and the cited-scripts validator refuses a `pnpm <script>` citation
-that `package.json` does not define (its sibling, the cited-paths validator,
-refuses a code-formatted `.agent/` or `docs/` path that does not exist).
+The sequence is the current `pnpm check` script — the canonical read-only
+aggregate local proof gate — unrolled one leg per line, followed by the host's
+gates outside it. The Practice-operation legs (format, markdown, shell lint,
+lint, type-check, test, the validators) are the family's and read the same in
+every estate; the product legs are the host's, and each estate's block below
+names its own. CI runs the same legs (in jimcresswell.net
+`validate-check-ci-parity` refuses a drift between `check` and
+`.github/workflows/ci.yml`). Re-read `package.json` before editing this list;
+the root script is the source of truth when the gate graph changes, and the
+cited-scripts validator refuses a `pnpm <script>` citation that `package.json`
+does not define (its sibling, the cited-paths validator, refuses a
+code-formatted `.agent/` or `docs/` path that does not exist).
 
 ## The Sequence
 
-Run each gate in order. If a gate fails, fix the issues before proceeding.
+The hook runs each gate in order; when one refuses, fix the issue, then
+commit or push again. The legs of `check` here are jimcresswell.net's:
 
 ```bash
+# jimcresswell.net: pnpm check, as the push hook runs it
 pnpm format-check:root
 pnpm markdownlint-check:root
 pnpm lint:shell               # shellcheck over every tracked shell script
@@ -54,7 +65,9 @@ pnpm repo-validators:check     # CI parity, claim freshness, guard routing, poli
 pnpm docs-validators:check     # reference direction, machine-local paths, lineage names, core ADR citations, host names in Core headings, markdown links, cited scripts, cited paths, patterns index, exchange register
 ```
 
-Gates outside `check`, run when the work touches their surface:
+The host's gates outside `check` (jimcresswell.net: the push hook runs the
+end-to-end suite after `check`; the rest run when the work touches their
+surface):
 
 ```bash
 pnpm build                      # the site and every workspace; PDF generation is part of it
@@ -82,11 +95,11 @@ repair commands as final evidence that the tree is clean.
 
 For each gate in the sequence above:
 
-- If the gate fails, fix the issue
-- After fixing, restart from the beginning (`pnpm format-check:root`)
-- If the gate passes, proceed to the next one
+- If the gate refuses, fix the issue
+- After fixing, commit or push again: the hook restarts from the beginning
+- If the gate passes, the hook hands over to the next one
 
-The full sequence mirrors `pnpm check` in `package.json`.
+The full sequence mirrors `pnpm check` in the host's `package.json`.
 
 ## Success Criteria
 

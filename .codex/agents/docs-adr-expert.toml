@@ -1,5 +1,5 @@
 name = "docs-adr-expert"
-description = "Documentation and ADR reviewer for decision records and narratives."
+description = "Documentation and ADR quality reviewer."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"
