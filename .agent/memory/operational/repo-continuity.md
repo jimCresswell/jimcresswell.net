@@ -232,8 +232,8 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   and OCE worked non-resident, with Crucible binds Slag (7b999c) the Director across both
   estates from 2026-10-02 and the n=1 seat from the 2026-10-04 resume; the consolidation flow is
   paused at the owner's word of 2026-10-03; the live plan is `practice-alignment-by-class`
-  (ratified 2026-10-04), whose doctrine landing is open in both estates (321, #353) with the
-  byte proof green, the code landing next; the record's newest state block governs.
+  (ratified 2026-10-04), whose doctrine landing is merged here (321) and open in the sibling (#353),
+  the code landing next; the record's newest state block governs.
 
 ## Paused Threads
 

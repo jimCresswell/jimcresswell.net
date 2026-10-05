@@ -109,6 +109,17 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-05T00:4xZ — compaction boundary: 321 merged, #353 open, the suite's direction (Crucible binds Slag, 7b999c)
+
+- 321 merged into main at `SHA:4992af38`; #353 at `SHA:df70cd153`, cured and resolved, waiting
+  on a review at the tip; the proof DRIFT 1 (`subagent-practice-core-protection`'s globs, owed
+  to the code landing here). The owner's card answer: "Your words stand (Recommended)". The
+  full Cricket suite: ON-TRACK unanimous on the code landing as sized; the finish is the owner's
+  ruling of five hours over two sittings, the whole projecting near 6.5 h, reported as one line.
+- **Next safe step**: the code landing here from main, keystone-first, without waiting for
+  #353 (its merge when a review binds its tip); the napkin block of 2026-10-05T00:4xZ carries
+  the full resume order and the loss scan.
+
 ### 2026-10-04T22:4xZ — the doctrine landing open in both estates; the code landing next (Crucible binds Slag, 7b999c)
 
 - **State**: jimcresswell.net 321 (`docs/practice-doctrine-landing` at `SHA:a9081f17`, seven

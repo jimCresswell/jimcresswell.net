@@ -166,6 +166,14 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-05 00:4xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's
+compaction word).** 321 merged into main at `SHA:4992af38`; #353 open at `SHA:df70cd153` with its
+reviews cured and no review binding the tip yet; the proof at the two tips DRIFT 1 (one rule's
+globs, owed to the code landing here). The full Cricket suite: unanimous ON-TRACK on the code
+landing as sized; the frame narrowed on the finish measure and the landing's scope. Next safe
+step: the code landing here, cut from main, keystone-first, without waiting for #353; merge #353
+when a review binds its tip. The live record is the napkin block of 2026-10-05T00:4xZ.
+
 **§STATE, 2026-10-04 22:4xZ (Crucible binds Slag, `7b999c`, the n=1 seat).** The doctrine
 landing of `practice-alignment-by-class` is open in both estates: jimcresswell.net 321 at
 `SHA:a9081f17` (reviews cured at the tip, Copilot re-requested) and OCE #353 at `SHA:bd969cbaf`;

@@ -952,3 +952,82 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   spent on 353's #350 merge; 321 has spent its two); then the code landing (mechanism item 2):
   the 18 scripts, hooks, CI fan-in, the carries C1 to C28 with tests, the family conformance
   check, the validators aligned; the doors 318 and the hooks branch disposed in it.
+
+## 2026-10-05T00:4xZ — Compaction boundary at the owner's word: the doctrine landing merged here, open in the sibling; the direction assessed by the full suite (Crucible binds Slag, 7b999c)
+
+- **The owner's word, verbatim**: "please prepare compaction ultrathink ... then stop all
+  processes, post compaction we will continue. Use this as an oppurtunity to assess direction,
+  include running the full Cricket suite".
+- **State at the boundary**: 321 merged into main at `SHA:4992af38` (the merge-bot, Copilot
+  binding the tip, nothing unresolved); #353 open at `SHA:df70cd153` (the landed bytes plus 43
+  variants, #350 merged in and closed, five review findings cured, the threads resolved under the
+  bot, Copilot re-requested; no review binds that tip yet, so the merge waits for the resume).
+  The proof at main here and #353's tip: 744 shared, 700 identical, 43 contextual-bound, DRIFT 1
+  (`subagent-practice-core-protection`'s two adapter-tree globs, added in the sibling at Copilot's
+  finding; this estate's copy takes them in the code landing). 312 and #350 closed into the
+  landings; the merged landing branch and the 312 branch deleted here.
+- **Metacognition (inward)**: the pull this sitting was speed over the first-hand read: six
+  workers landed 500 files in about an hour and I read the Core diffs and the one rule, not
+  the rest; the reviewers caught five real findings in the sibling that a first-hand pass of the
+  variants would have caught (a scope literal, two glob sets, two host records). The other pull
+  was editing a tree while its gate ran; caught once, then held. The frame I carried into the
+  suite was narrowed in the same way the last one was: I tested "finished" against the owner's
+  older guide where the owner's later ruling (five hours over two sittings) had already replaced
+  it, and I wrote "the doctrine landing is done" with #353 still open.
+- **Reason (outward)**: the kind is execution of a ratified node between its two landings; the
+  live decision was whether the code landing's shape stands; the direct trial is the landing
+  itself; the suite below is the stop gate's one adversarial pass, and it closed the question.
+  The measured whole: doctrine authoring about 2.5 h of wall-clock with six parallel workers
+  (not seat-hours) plus about 1 h of settlement across both estates, against the node's 2 h; the
+  code landing at its 3 h estimate puts the whole near 6.5 h against the owner's ruled "about
+  five hours", under the per-landing stop line, reported here as one line and not a gate.
+- **Concept exploration**: this sitting's concept is the contextual-bound file: a general-layer
+  file whose bytes differ at one host value, compared by its variant and named by a parameter.
+  Its sharp edge is the gate: a validator one estate runs and the other does not makes the
+  shared text host-bound in effect (cited paths, cited scripts, reference direction's plans
+  rule, knip on exports, a product lockstep), which is why the code landing's validator
+  alignment is the keystone of the alignment and not a carry among carries.
+- **Free play (seeds)**: the parameter list P1 to P38 reads like the first schema of the
+  extraction's install manifest; the six-worker fan-out under one brief is the shape of a Practice
+  operation the family could carry as a script (merge output in, resolved files out, a report
+  per surface); a review leg that binds a tip is the only review that counts, and the two
+  estates' bots differ in who can obtain it (P5), which the extraction's authority design will
+  have to decide once.
+- **Work-safety evidence, both estates**: jimcresswell.net on `coordination/2026-10-04-eebe40`
+  with the sitting's three records commits pushed; main at `SHA:4992af38`; no landing branch
+  open. OCE on `coordination/2026-10-04-d2f44f` with its records commit pushed; `engraph` at
+  `SHA:82cb7fba4`; #353 open on `docs/practice-doctrine-landing` at `SHA:df70cd153`, level with
+  its remote. No unpushed commit, no claim, no watcher, no heartbeat; every worker, Cricket and
+  reviewer agent returned; the only matching process at the stop is the harness's own.
+- **The full Cricket suite (eight legs, both stances)**: unanimous ON-TRACK on the code landing
+  as the node sizes it; the frame NARROWED six times, SOUND once, CONTRADICTED once, on the same
+  facts: the finish measured against the owner's older guide where the ruling of 2026-10-04
+  governs; the landing's scope missing PDR-142's clause, the doors, the secret scan and
+  review-cost gate and todo 3; "done" overstated with #353 open. The tally is
+  `.agent/reports/agentic-engineering/cricket-suite-tally-2026-10-05-direction-after-doctrine-landing.md`
+  (this estate; the sibling's copy lands with its next records commit). Redirections absorbed
+  into the resume order: cut the code landing here without waiting for #353; keystone-first
+  commits; both estates' gates locally before either push; the cumulative figure reported as one
+  line: about 6.5 h against the ruled five.
+- **Resume order**: this block; the suite's tally below; the node's §Mechanism item 2; then the
+  code landing here, cut from main without waiting for #353 (merge #353 with `merge-bot merge
+  --pr 353 --expect copilot-pull-request-reviewer` when a review binds its tip, re-requesting
+  Copilot under the bot first if none does), as the node
+  sizes it, keystone-first inside the one pull request (the validators four each way, the
+  conformance manifest, the 18 scripts, the hooks with OCE's secret scan and review-cost gate,
+  the CI fan-in, the four compiler flags, the formatter format, the package-manager major, the
+  markdownlint config), then the 28 carries with their tests, PDR-142's clause amended at the
+  owner's card answer, `subagent-practice-core-protection`'s globs, the sibling's index renderer
+  and recovery message as one text, the doors 318, the hooks branch and the sibling's unpushed
+  lanes disposed, the strategic node's §Delivery finish line and the node archived (todo 3).
+  Run both estates' full gate sets locally on the applied bytes before either push. Stop and
+  report at one and a half times the estimate, settlement counted.
+- **Loss scan**: decisions, in this notebook and the node (the owner's card answer in the
+  22:4xZ block); state, the branches and pull requests above; open items, the merge of #353, the
+  one owed drift, the code landing's list above; lessons, the 22:4xZ block and the suite's
+  tally; pointers, the memory file doctrine-landing-by-class-gates-shape-shared-text and the
+  scratch reports (`report-<surface>.md`, the variants, the proof and apply scripts) which die
+  with the session and whose substance is in the pull request descriptions and this block.
+  Metaloss: what this context holds that no record does is the shape of the worker brief that
+  worked (one brief, per-surface manifests, variants by path, reports as hand-backs); its
+  substance is the free-play seed above.

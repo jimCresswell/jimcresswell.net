@@ -23,6 +23,7 @@ OCE's.
 | [2026-09-26-the-estates-programme-plan.md](2026-09-26-the-estates-programme-plan.md) | The Director's programme for both estates at the owner's word of 2026-09-26 (zero open PRs, the door, the exchange, Codex citizenship): the approved plan verbatim under a provenance header, with the owner's four card answers and the door's shape. |
 | [2026-09-30-two-estate-consolidation-retrospective.md](2026-09-30-two-estate-consolidation-retrospective.md) | The two-estate consolidation of 2026-09-30 read back by six adversarial legs; the divergence measure between the estates; the owner's decisions |
 | [cricket-suite-tally-2026-10-04-alignment-node.md](cricket-suite-tally-2026-10-04-alignment-node.md) | The full eight-leg suite on the successor delivery node before its card: eight ON-TRACK, seven CONTRADICTED and one NARROWED on the same two facts (six pull requests against the owner's two; the cost guide read per landing), and the reshape they drove |
+| [cricket-suite-tally-2026-10-05-direction-after-doctrine-landing.md](cricket-suite-tally-2026-10-05-direction-after-doctrine-landing.md) | The full eight-leg Cricket suite at the compaction after the doctrine landing: unanimous ON-TRACK on the code landing as sized, the frame narrowed on the finish measure and the landing's scope, one CONTRADICTED taken |
 
 The transplant's own process records live in
 [`../practice-transplant/`](../practice-transplant/README.md).
