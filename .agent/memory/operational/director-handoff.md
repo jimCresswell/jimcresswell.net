@@ -166,6 +166,20 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-05 11:3xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's handoff
+word; this block supersedes the §POINTER blocks below where they differ).** The code landing of
+`practice-alignment-by-class` is open in both estates: 322 here (thirteen commits, CI green, one
+review finding cured and awaiting its reply), the sibling's #354 (twelve commits, Copilot
+requested under the bot). The doctrine landing is merged in both (321, #353). 318 and #349 are
+closed into the landings. What remains is settlement, the two merges, the ruleset switch here, the
+branch deletions and the byte proof, todo 3 (the strategic node's finish line, the three nodes
+archived), the fold of both coordination branches (DUE), and one owner card (the four superseded
+surface lanes; the three expired gates of `practice-language-separation`). The live reading is
+the thread record `threads/two-estate-consolidation.next-session.md`'s block of this hour and the
+napkin's block of the same hour; the next seat rehydrates from those two, then `repo-continuity.md`
+§Current State. No claim, watcher, heartbeat or background agent survives this seat; the re-arm is
+the role pickup procedure above.
+
 **§STATE, 2026-10-05 00:4xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's
 compaction word).** 321 merged into main at `SHA:4992af38`; #353 open at `SHA:df70cd153` with its
 reviews cured and no review binding the tip yet; the proof at the two tips DRIFT 1 (one rule's

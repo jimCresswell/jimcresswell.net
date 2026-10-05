@@ -109,6 +109,74 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-05T11:3xZ — the code landing open in both estates; the handoff at the owner's word (Crucible binds Slag, 7b999c)
+
+- **The owner's words of this sitting, verbatim.** 09:1xZ: "take your time to plan remaining
+  steps. Remember: finished this Practice work happens today, it is bounded, it will end. There
+  are also two PRs across the estates that are about 2 days old, that's bad PR hygeine, we should
+  keep on top of it to avoid creating rework. Use all appropriate skills to plan and execute the
+  work". 11:0xZ: "When you reach a sensible point, please prepare for a full handoff to another
+  agent. You have been doing an excellent job, but this session is several days old and the
+  context is accumulating cruft even with compaction".
+- **State.** jimcresswell.net: 322 open on `feat/practice-code-landing` at `SHA:d371218b`
+  (thirteen commits, keystone-first; the eighth the git-read core and the substrate audit; the
+  last five the cures the gates and the reviews found), CI green at the previous tip
+  `SHA:b1988de4` with the fan-in `run-quality-gates` passing; nine review threads triaged in one
+  settlement push (six cured, three observations recorded as named remainders in the
+  description), Copilot's second review left one finding (the trusted-origin check and an https
+  URL carrying userinfo), cured at `SHA:d371218b` and awaiting its reply and a third review; 318
+  closed with a comment naming 322. OCE: `feat/practice-code-landing` at `SHA:b79e0c23d`
+  (twelve commits), pushed at 11:12Z after four refused gates (the Playwright browser build, one
+  unused type export, the depcruise roots, the current-source review hash), open as #354 with
+  Copilot requested under the bot; #349 closed with a comment naming it. The coordination
+  branches `coordination/2026-10-04-eebe40` and `coordination/2026-10-04-d2f44f` carry this
+  sitting's records and are past their 24-hour lifetime: the fold is DUE.
+- **What the landing is.** The family shape in both estates (30 Practice-operation scripts one
+  body with two placeholders, the `check` skeleton with the sibling's two host slots, the nine
+  hooks byte-identical, the CI fan-in, ten compiler flags, `prettier.config.ts`, pnpm 12, the
+  manifest `.agent/family/typescript/practice-operations.json` with `host.json` per estate and
+  `validate-family-conformance` as a leg of `repo-validators:check`); the carries each way with
+  their tests (the descriptions of 322 and the sibling's pull request list them with the
+  host-local decisions and their reasons); PDR-142's clause at the owner's card answer; the Core
+  changelog entry; the doors 318 and #349 closed into the landings.
+- **Assumptions and framing choices to treat as open** (the owner's word of 2026-10-03: a handoff
+  highlights them). (1) The three Copilot observations on carried one-body modules (the cluster
+  signature's `|` join, the review-cost base-merge exemption, the pr-watch classifiers) were
+  dispositioned as observations under PDR-140's specification reading and recorded as remainders;
+  a reader may rule them findings owed a cure before merge. (2) The sibling's 23 `.css` knip hints
+  are read as information there and would be errors here (`treatConfigHintsAsErrors`); the family
+  drift is named, not cured. (3) The sibling's current-source review hash for the fetch execution
+  file was moved by this seat for a behaviour-preserving cure (a trailing return into a `default:`
+  branch); the sibling's governance may expect a human review of that delta. (4) The home's fourth
+  workspace (`linkedin`) joined the depcruise cruise by the computed roots; it passed, but it was
+  never cruised before. (5) The landing's cumulative time: about 2 h of authoring and about 2 h of
+  gates and settlement so far, against the node's 3 h estimate and the owner's ruled "about five
+  hours over two sittings" for both landings together; the stop line of this sitting was 13:45Z.
+- The sibling's `windows-basic` job fails at setup on #354 since the pnpm 12 bump: the
+  setup-node cache step runs `pnpm store path` through pnpm/action-setup's cmd shim, which
+  resolves to a path under `global\v11\...\node_modules\pnpm\pnpm` that cmd cannot run (pnpm 12's
+  Windows shim; pnpm issue 16573 is the same family). The fan-in needs that job, so #354 cannot
+  merge until it is cured: pin a newer pnpm/action-setup or a pnpm 12.x with the shim fix, or set
+  the action's `version` and `standalone` inputs; the `engraph` run before the bump is green.
+- **Next safe step, in order.** (a) Read `git status --branch` in both primaries and the remote
+  tips of the two landing branches before any act. (b) 322: reply on the origin thread naming
+  `SHA:d371218b`, resolve it, re-request Copilot; when a review binds the tip,
+  `pnpm --silent agent-tools merge-bot merge --pr 322 --expect copilot-pull-request-reviewer
+  --json --interval 30 --max-polls 60`; then the ruleset switch (id 12555444; the payload is the
+  saved file named in the napkin block, contexts `run-quality-gates` and `CodeQL`). (c) The
+  sibling's pull request the same under the bot's token (`merge-bot mint-token --scope
+  pull-request-work`, never printed), its ruleset already on the fan-in. (d) After both merges:
+  delete the landing branches, `docs/parity-c24-specification`, `feat/parity-carry-doctrine-batch`,
+  `fix/parity-heading-gate-cures`, `docs/parity-hooks-surface` through the API under the bot; run
+  the byte proof (`proof_cmp.py` in the napkin block) at the two merged tips and post it as a
+  comment on each; one card to the owner: delete the four superseded surface lanes
+  (`docs/parity-rules-surface-1`, `docs/parity-skills-surface-1`, the sibling's two
+  `feat/parity-surface-*`) and renew or archive the three expired gates of
+  `practice-language-separation`. (e) Todo 3: the strategic node's §Delivery takes the finish
+  line; archive `practice-alignment-by-class` (it lives on this estate's coordination branch, not
+  on main), `practice-parity-two-landings`, `practice-parity-for-extraction`, sweeping inbound
+  links; the same in the sibling. (f) Fold both coordination branches (DUE), then wrap.
+
 ### 2026-10-05T00:4xZ — compaction boundary: 321 merged, #353 open, the suite's direction (Crucible binds Slag, 7b999c)
 
 - 321 merged into main at `SHA:4992af38`; #353 at `SHA:df70cd153`, cured and resolved, waiting
