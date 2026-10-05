@@ -943,6 +943,11 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
   academy name, never the product word; a worker read it as banning the product word and elided
   an owner's quote. (5) The worker reports came back as messages when the harness refused their
   Write; the Director saved them.
+- **The owner's card answer, 2026-10-04 23:0xZ, verbatim: "Your words stand (Recommended)"**: a
+  Core record names an estate by its name (OCE, jimcresswell.net) where it records that estate's
+  act; PDR-142's host-neutrality clause is amended in the code landing to say so, and reviewers
+  stop raising it. #350 closed into #353 (merged as 312 into 321). The records push and both
+  landing pushes passed their gates.
 - **Next**: the two pull requests to merge when their reviews settle (one settlement push each
   spent on 353's #350 merge; 321 has spent its two); then the code landing (mechanism item 2):
   the 18 scripts, hooks, CI fan-in, the carries C1 to C28 with tests, the family conformance
