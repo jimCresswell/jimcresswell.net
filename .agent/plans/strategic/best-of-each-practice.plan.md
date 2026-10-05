@@ -24,7 +24,7 @@ gate_expiry_default: P21D
 depends_on: []
 owner_gates: []
 tickets: []
-last_updated: 2026-10-04
+last_updated: 2026-10-05
 ---
 
 # The best of each Practice
@@ -138,7 +138,8 @@ delivery node, written from the model, lands by its own pull request after this 
 
 The owner's word on its model was given on 2026-10-04 (the five-layer definition, ratified as
 canonical and recorded in PDR-143 §Decision), and the delivery node `practice-alignment-by-class`
-carried it to the finish on 2026-10-05: the doctrine landing merged in both estates (321 at
+carried it to the finish on 2026-10-05, the classes grouped into two pull requests per estate (the
+size optimum of PDR-132, not the one-per-class minimum the re-grounding line above names): the doctrine landing merged in both estates (321 at
 SHA:4992af38 in jimcresswell.net; #353 at SHA:d70baa1d0 in OCE) and the code landing merged in both (322 at
 SHA:d3647a9d in jimcresswell.net; #354 at SHA:ef42bd11f in OCE), so the general layer is one text by concept,
 the family layer one shape (the Practice-operation scripts, the hooks, the CI fan-in, the
