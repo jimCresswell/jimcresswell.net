@@ -1123,3 +1123,46 @@ wake. The seats resume by this seat's message after the owner's word: Hazel trac
 - **Plan, the altitude stated before drafting**: the lighter altitude taken, the immediate executable step, as the born sketch `practice-alignment-conservation` (`.agent/plans/delivery/`, this estate as the sketch's home; the same bytes to OCE at ratification). The heavier altitude, the extraction's design, is named as the owner's and not drafted; what the sketch hands it is the three sets. `validate-plan-corpus` OK with the sketch in the corpus.
 - **The boundary state**: both primaries on their successor coordination branches (`coordination/2026-10-05-d72ae5` here at `SHA:5d2507b9` pushed, draft 323; `coordination/2026-10-05-efe69f` in OCE at `SHA:73664b3be` pushed, draft #355) before this block's commit; this block, the sketch, the handoff addendum and the formation letter are the boundary commit, pushed through the bot's gate. Processes: none of this seat's run (the watcher stopped at the closeout, the claim closed, the PR watches ended); re-arm after the boundary only if the owner continues the session: the watcher is `pnpm agent-tools:collaboration-state -- comms watch --platform claude --model claude-fable-5-1 --supervisor-pid $PPID --step-timeout-ms 120000 --max-events-per-drain 100` under a 1800 s timeout as a Monitor, and a new claim is opened before any new work. The resume reads `git status --branch` in both primaries first, then the handoff's §STATE of 17:3xZ.
 - **A stamp corrected on a peer's reading** (Crucible binds Slag, 7b999c, by cross-session message at this boundary): the "15:5xZ" settlement entry above corresponds to commits authored 14:55Z and committed 15:01Z; read that stamp as 14:5xZ. The stamps from 16:0xZ onward were read from `date -u` and stand.
+
+## 2026-10-05T20:5xZ — The retrospective on the alignment arc landed; the seat's close (Crucible binds Slag, 7b999c)
+
+- **The owner's words, verbatim**: at 14:3xZ, "prepare for compaction ultrathink /jc-metacognition
+  /jc-free-play /jc-concept-exploration /jc-reason /jc-plan /jc-wrap post-compaction you will run a
+  retro, then your session will be complete"; at 15:3xZ, after the compaction, "/jc-retrospective
+  Please plan then run a restrospective". The plan went to the plan file first and the owner's
+  approval released it.
+- **The record**: `.agent/reports/agentic-engineering/2026-10-05-why-the-alignment-took-four-days-after-the-owner-said-hours.md`,
+  the same bytes in both estates with its README row. Reconstructed from primary sources in
+  windows (the API for the six landings, the napkin blocks of 10-03 to 10-05, the thread record,
+  both review-cost ledgers, the two Cricket tallies, the push logs, the predecessor retrospective
+  of 2026-09-30), each window's findings written to a scratch ledger before the record. The
+  causal stack: one text against two gate sets (technical); the hunk-times-lifecycle unit twinned
+  by a second seat, with the shape cure measured at 07:1xZ on 10-03 and routed to the owner as a
+  card instead of taken (process); the frame inherited from the transplant with no definition of
+  the Practice until the owner's 21:0xZ turn (meta). The counterfactual inside the arc: the
+  code landing, one pull request per estate for 464 and 217 files, against forty-one pull
+  requests on 10-02.
+- **Proposals and lanes**: five, each with warrant and falsifier; four to the fast lane (the
+  landing unit with the byte proof, into `cross-estate-work-must-reduce-divergence` and the
+  pr-lifecycle sizing; a measured rate in every §Size; the carry proof as the tracked tree and
+  CI; the fan-out brief as a reference page), one to the slow lane (settlement under sampling
+  reviewers cures the class and counts both reviewers' rounds; prediction: the next landing over
+  two hundred files settles in at most three pushes per estate; review 2026-10-19). A sixth, that
+  a measured shape is the seat's to take without the owner, was killed by the adversarial read
+  as a broadening of authority. The predecessor's five proposals: two routed, one re-proposed
+  with a home, one left as a row for the sibling's next code session, one withdrawn. The
+  adversarial read's eight findings are in the record with their dispositions; six cures taken.
+- **Coordination**: the successor Sycamore holds Spore (18d874) named the slot natively (commit
+  nothing until their two pushes land; append after their 17:3xZ blocks); the consultation
+  events are home 89f85ec4 and sibling af7ab6cf; no claim opened (the registries held only
+  expired rows), nothing of the successor's staged.
+- **Lesson, one instance, the cost paid by the successor**: the two consultation events above,
+  posted at 20:43Z while the successor's boundary pushes ran, left each estate's generated comms
+  read model (`shared-comms-log.md`, gitignored) stale, and `practice-substrate check` refused
+  both pushes at the final gate, ten minutes in each. A comms event is an edit to a tree under a
+  running gate: the never-edit-under-a-gate rule covers the comms directory, and the push order
+  is render the read model, then push, with no event between.
+- **Work safety at this block**: home on `coordination/2026-10-05-d72ae5` at `SHA:29aa7cdf` (the successor's boundary commit, on its remote at 20:50Z) before this commit; the sibling on `coordination/2026-10-05-efe69f` at `SHA:1157bdce2`, its push in flight by the successor; this commit and its sibling twin push through the bot after the successor's word, home first.
+- **Processes**: none of this seat's live after this commit; the two inventory agents and the
+  adversarial leg returned; no monitor, watcher, cron or claim. The memory file naming the
+  compaction boundary is deleted at the close. The session completes at the owner's word.
