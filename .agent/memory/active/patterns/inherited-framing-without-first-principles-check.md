@@ -3,6 +3,7 @@ name: Inherited Framing Without First-Principles Check
 polarity: anti-pattern
 use_this_when: About to execute a plan body, rewrite an existing artefact, or translate an "old X to new X" — before writing code, tests, or doctrine, check whether the inherited shape is the right shape for the behaviour being proven
 category: process
+layer: general
 proven_in: .agent/memory/active/napkin.md (six instances, 2026-04-20/21)
 proven_date: 2026-04-21
 barrier:

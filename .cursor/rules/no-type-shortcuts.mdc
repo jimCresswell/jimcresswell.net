@@ -1,7 +1,0 @@
----
-description: Avoid type assertions, any, and non-null shortcuts except as const
-globs: '**/*.ts,**/*.tsx'
-alwaysApply: false
----
-
-Read and follow `.agent/rules/no-type-shortcuts.md`.

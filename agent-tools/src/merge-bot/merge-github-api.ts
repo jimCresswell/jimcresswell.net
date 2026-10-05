@@ -3,12 +3,18 @@ import { z } from 'zod';
 
 import { parseWithSchema } from '../core/schema-parse.js';
 import { githubJsonHeaders } from './github-fetch.js';
-import { readJsonBody, sendGithubRequest, type GithubApiFetch } from './mint-installation-token.js';
+import {
+  githubHeaders,
+  readJsonBody,
+  sendGithubRequest,
+  type GithubApiFetch,
+} from './mint-installation-token.js';
 import type { BotIdentity } from './resolve-identity.js';
 
 /**
  * The merge execution's two REST calls: the settings-gate read and the merge
- * PUT. Split from `merge.ts` to keep both files inside the size gates. Every
+ * PUT, each with the header set every bot call sends (`githubHeaders`).
+ * Split from `merge.ts` to keep both files inside the size gates. Every
  * response body goes through the Result-translating reader — an unreadable
  * answer to the PUT, and any 5xx answer readable or not, reports the merge
  * state as UNKNOWN (security D2): the call was sent, so anything firmer
@@ -31,7 +37,7 @@ export async function readMergeSettings(
   const sent = await sendGithubRequest(
     fetchImpl,
     `${GITHUB_API}/repos/${identity.owner}/${identity.repoName}`,
-    { method: 'GET', headers: githubJsonHeaders(token) },
+    { method: 'GET', headers: githubHeaders(token) },
     'repo settings read',
   );
   if (!sent.ok) {

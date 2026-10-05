@@ -2,13 +2,15 @@
 title: "Validation Strategy"
 status: active
 last_updated: 2026-09-24
-fitness_line_target: 330
-fitness_line_limit: 400
-fitness_char_limit: 24000
+fitness_line_target: 400
+fitness_line_limit: 480
+fitness_char_limit: 28000
 fitness_line_length: 100
 fitness_rationale: >-
-  Sized at the 2026-09-12 merge of the TypeScript practice into this directive;
-  substance is never trimmed to fit, and a later curation lane may split by seam.
+  Sized at the 2026-09-12 merge of the TypeScript practice into this directive and
+  again at the 2026-10-04 Practice doctrine landing (the validators section and the
+  host bindings joined the body); substance is never trimmed to fit, and a later
+  curation lane may split by seam.
 split_strategy: >-
   Split at the compile-time / runtime seam: the type-flow patterns could become a
   companion reference beside typescript-gotchas.md, leaving the spine, the tiers
@@ -38,6 +40,10 @@ suites in this repository produce real experience to write from.
   judgement-laden capability across realistic inputs, graded relative to a
   baseline. Unit of truth is a graded outcome over a corpus plus a with/without
   delta. Assertions are authored _after_ the first run (this inverts test-first).
+  For a Practice skill the delta is read from the evidence its eval runner
+  retains under the skill's `evals/results/` (the result per arm, every trace
+  and answer, a manifest of the evaluated versions); OCE's instrument is
+  `agent-tools skill-evals`, documented in its `agent-tools/README.md`.
 - **Assure** — the umbrella trust case: composes test + evaluate + conformance +
   UAT + observability + security review + human review into ongoing evidence that
   the capability is fit for the world.
@@ -53,9 +59,11 @@ keyed on surface type.
 
 | Tier | Applies to | Assurance floor |
 |---|---|---|
-| **Critical** | Asymmetric, hard-to-reverse harm — a public claim about a real person or organisation carried by the entity graph, the CV, the PDF or the JSON-LD | Tests + strict schema validation of the graph + human review of the rendered claim |
-| **Standard** | User-facing where errors are visible and correctable — page composition, navigation, metadata, media negotiation | Tests + E2E + rendered proof (the visual regression harness) |
+| **Critical** | Asymmetric, hard-to-reverse harm to a person — a public claim about a real person or organisation, evidence surfaced or summarised, advice that attributes | Tests + strict schema validation at the boundary + human review of the rendered claim; mandatory evals with a faithfulness assertion where a judgement-laden capability produces it |
+| **Standard** | User-facing where errors are visible and correctable — page composition, navigation, metadata, a search or tool surface | Tests + E2E checks + rendered proof or conformance + behavioural evals where the surface is judgement-laden |
 | **Light** | Internal / agent-facing where harm is cheap and self-correcting — formatting, scaffolding, Practice tooling | Tests + spot checks; evals optional |
+
+The host's instances of each tier are in §This host's bindings.
 
 ## Compile-time types: preserve information, never widen
 
@@ -70,7 +78,8 @@ validator, which narrows to known types; **past that boundary nothing widens**.
   concrete schema exists, `z.record(z.string(), z.unknown())`, or hand-crafted Zod
   schemas that duplicate a shape the entity schema already declares. `as const` and
   `satisfies SomeType` are permitted because they tighten compile-time information
-  instead of disabling it ([`no-type-shortcuts.md`](../rules/no-type-shortcuts.md)).
+  instead of disabling it
+  ([principles.md §Type precision](principles.md#compiler-time-types-and-runtime-validation)).
 - **`unknown` is type destruction** — `unknown`, `z.unknown()` and
   `Record<string, unknown>` erase structural type information. They are permitted
   only at named external boundaries and are forbidden as stand-ins for known
@@ -83,8 +92,8 @@ validator, which narrows to known types; **past that boundary nothing widens**.
   precise union (`Set<DeclaredPhase>`) or a zero-widening membership check
   (`ids.some((id) => id === value)`), never a `string` view.
 - **Single source of truth for types** — define each type once, preferably by
-  inference from the schema that validates it (`z.infer<typeof EntitySchema>` in
-  `jcdotnet/lib/entities.ts`) or from the library that owns it, then import it
+  inference from the schema that validates it (`z.infer<typeof Schema>` in the
+  module that owns the schema) or from the library that owns it, then import it
   everywhere. Never redefine it later as an approximation.
 - **Use library types directly** — do not invent a local type when a package
   exports the type you need; prefer official error classes and response types over
@@ -158,16 +167,16 @@ consumes — interface segregation removes the assertion pressure at source rath
 than working around it.
 
 The detailed TypeScript and tooling quirks (runtime value typing, lint
-interactions, collation, test doubles) live in
-[typescript-gotchas.md](../reference/typescript-gotchas.md).
+interactions, collation, test doubles) live in the TypeScript gotchas reference
+the host declares (§This host's bindings).
 
 ## Runtime validation at the boundary
 
 Owner ruling (2026-07-28): **strict, all the time, everywhere**. Every boundary
-this repository owns — the content JSON under `jcdotnet/content/`, environment
-values, fetched data, file reads, hook and CLI inputs — carries a schema and is
-validated to it at entry; the entity graph's validation in `jcdotnet/lib` is the
-founding instance. Official library types count as validation; use Zod
+this repository owns — authored content inputs, environment values, fetched
+data, file reads, hook and CLI inputs — carries a schema and is validated to it
+at entry; the host names its founding instance (P14; §This host's bindings).
+Official library types count as validation; use Zod
 elsewhere. Once validated, the validated type is used throughout the trusted zone
 ([`strict-validation-at-boundary.md`](../rules/strict-validation-at-boundary.md)).
 
@@ -208,7 +217,8 @@ narrows it. This is the correct exception to "Record is too generic".
 
 ### Error types
 
-Functions that can fail return `Result<T, E>` from `@engraph/result`, not thrown
+Functions that can fail return `Result<T, E>` from the Practice's `result`
+package (P2), not thrown
 exceptions ([`use-result-pattern.md`](../rules/use-result-pattern.md)). Error
 types are specific, never `Error` or `unknown`; see
 [principles.md §Handle All Cases Explicitly](principles.md#code-design-and-architectural-principles).
@@ -219,25 +229,26 @@ Each layer catches a different class of defect; the layers compose, and the
 canonical run order lives in the
 [gates skill](../skills/change-custody/gates/SKILL-CANONICAL.md).
 
-1. **Formatting** (`format`, `markdownlint:check`) — consistent style, no merge
-   noise.
-2. **Type correctness** (`type-check`) — compile-time type safety.
-3. **Linting** (`lint`, `lint:shell`, `lint:runtime-only`) — code patterns, import
-   boundaries, architectural rules. The custom rules in `@engraph/eslint` encode
-   architectural decisions as enforceable checks.
-4. **Static analysis** (`knip`, `depcruise`) — unused code, exports and
+1. **Formatting** — consistent style, no merge noise.
+2. **Type correctness** — compile-time type safety.
+3. **Linting** — code patterns, import boundaries, architectural rules. The
+   custom rules in the host's ESLint standards plugin (P19) encode architectural
+   decisions as enforceable checks.
+4. **Static analysis** (knip, dependency-cruiser) — unused code, exports and
    dependencies; circular dependencies; layer violations. Linting enforces _what
    you should do_; static analysis detects _what you forgot to clean up_.
-5. **Testing and checks** — `test` proves product behaviour at every level, with
-   no IO; the smoke runner's checks and the site's Playwright suite are
-   validation checks of the running system and its shipped form.
+5. **Testing and checks** — the test suite proves product behaviour at every
+   level, with no IO; the E2E and smoke checks are validation checks of the
+   running system and its shipped form.
 6. **Mutation checks** (§Prove the guard bites) — test-suite effectiveness: proves
    tests detect real faults, not merely exercise code paths.
-7. **Build** (`build`) — every derived surface compiles from the entity graph.
+7. **Build** — every derived surface compiles from its one authority.
 8. **Specialist review** (sub-agents) — architectural compliance, security,
    documentation.
-9. **Accessibility and rendered proof** (axe in the E2E suite;
-   `visual-regression-harness`) — WCAG 2.2 AA, both themes, zero tolerance.
+9. **Accessibility and rendered proof** — WCAG 2.2 AA, both themes, zero
+   tolerance, by the instruments the host declares (P25).
+
+The host's commands for each layer are in §This host's bindings.
 
 ## Gate integrity: a green check proves its own path, nothing more
 
@@ -268,7 +279,9 @@ estate is **strictly ESM — zero `require` statements**; the presence of a
 `require` IS the finding, never a style note. **Dynamic `import()` is strongly
 discouraged**: it errors by default, with any sanctioned use carried as a
 recorded, per-instance exemption in the rule configuration — never a silent
-allowance.
+allowance. Worked instance, in OCE (2026-08-09): its workspace-config-isolation
+containment leg's replacement with dependency-cruiser rules was ruled at the
+owner's word.
 
 **An observation is an instrument** (owner, 2026-09-14, verbatim: "sometimes
 you don't need an automated check @validation-strategy.md sometimes you need
@@ -319,6 +332,35 @@ A mutation score, where one is ever measured, is evidence, never a gate (owner
 doctrine 2026-08-05); promotion to a gate is a separate owner decision with its
 own evidence.
 
+## Validators: the fewest processes, never a change to the code, never a build
+
+The owner's words of 2026-09-29, verbatim: "tests are FORBIDDEN to create real IO and child
+processes. I don't want excuses or carve outs, we have these rules for a reason", and
+"validation scripts can start real processes, but they are to be kept to a MINIMUM, and they
+are FORBIDDEN from altering the code or triggering builds".
+
+- **Tests** use no IO and start no process, with no exception
+  ([testing-strategy.md](testing-strategy.md) §Philosophy).
+- **A validator** may start real processes, and starts only the fewest its property needs.
+- **A validator never alters the code**: no formatter or fixer in its writing mode, no repair,
+  no code generator, no install, nothing written into this repository's checkouts, worktrees or
+  their `node_modules`. A scratch directory under the system temp root is not the code.
+- **A validator never triggers a build**: it reads the artefact a separate step built, and
+  when that artefact is absent it fails and names the step.
+- What a validator cannot prove inside these bounds is proven once, by an observation made at
+  cure time and recorded (§Right tool), never by a suite.
+- A check whose purpose is a code-altering mode (a repair, a `--write`, a `--fix`) is neither a
+  test nor a validator. Its logic is proven in process against injected fakes; the real tool's
+  effect is an observation.
+- A file's directory or suffix ("smoke", "e2e") never licenses a process; its class follows what
+  it does.
+
+Worked instance (2026-09-28 to 2026-09-29): a repair "smoke" ran source through a loader,
+started seven processes a run, ran both repair modes, and linked the repository's
+`node_modules` into a scratch repository. Three review findings on its process lifecycle were
+each cured with more process handling. One run by hand reinstalled through the link and
+emptied a worktree's `node_modules`.
+
 ## Validation jurisdiction: we validate our own systems
 
 Every validator names whose system it validates, and external-system content is
@@ -362,11 +404,11 @@ Any external runner is execution only, never the source of truth.
 
 Test / evaluate / assure is an **internal-confidence triad** — every layer grades
 against an expectation _we_ authored. It only becomes trustworthy when closed
-against a real-world signal of value: how readers and consumers of the published
-surfaces (the site, the CV, the PDF, the graph) actually behave, with eval corpora
-**seeded from real usage distributions** so the loop is structural, not bolted
-on. Which instrument captures that signal for this site is an owner decision;
-until it is made, no assurance case here claims closure.
+against a real-world signal of value: how the consumers of the published
+surfaces actually behave, with eval corpora **seeded from real usage
+distributions** so the loop is structural, not bolted on. Which instrument
+captures that signal is the host's (§This host's bindings); where none is named,
+no assurance case claims closure.
 
 ## What is not eval-shaped
 
@@ -375,3 +417,31 @@ collaboration) does not decompose into `prompt → graded output`. It takes a
 different instrument (retrospective, experience corpus), not a forced
 `evals/evals.json`. Forcing eval-shape onto it is the mirror category error of
 treating evals as tests.
+
+## This host's bindings
+
+The values the shared text above names by parameter, for this host
+(jimcresswell.net). The sibling estate's copy of this file carries its own
+section here; everything above it is the same text in both.
+
+- **Assurance tier instances**: Critical — a public claim about a real person
+  or organisation carried by the entity graph, the CV, the PDF or the JSON-LD
+  (tests, strict schema validation of the graph, human review of the rendered
+  claim). Standard — page composition, navigation, metadata, media negotiation
+  (tests, the Playwright E2E suite, the visual regression harness as rendered
+  proof). Light — formatting, scaffolding, Practice tooling.
+- **P14, the founding instance of strict validation**: the entity graph's
+  validation in `jcdotnet/lib`, over the content JSON under `jcdotnet/content/`.
+- **P19, the ESLint standards plugin**: `@engraph/eslint` under `tooling/eslint/`.
+- **P25, the gate commands**: formatting `format-check:root` and
+  `markdownlint-check:root`; type correctness `type-check`; linting `lint`,
+  `lint:shell`, `lint:runtime-only`; static analysis `knip:gate`, `depcruise`;
+  testing and checks `test` and `test:e2e` (the site's Playwright suite and
+  the agent-tools end-to-end and smoke runner, one turbo task across the
+  workspaces); build `build`, deriving every surface from the entity graph;
+  accessibility and rendered proof: axe in the E2E suite and
+  `visual-regression:harness`.
+- **The real-world signal**: no instrument is named yet; it is an owner
+  decision, and until it is made no assurance case here claims closure.
+- **The TypeScript gotchas reference**:
+  [`.agent/reference/typescript-gotchas.md`](../reference/typescript-gotchas.md).

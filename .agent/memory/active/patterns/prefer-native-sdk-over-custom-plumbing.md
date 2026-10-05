@@ -2,6 +2,7 @@
 title: "Prefer Native SDK Over Custom Plumbing"
 polarity: pattern
 category: architecture
+layer: general
 barrier_met: true
 source_sessions: ["2026-04-14d", "2026-04-14g"]
 ---

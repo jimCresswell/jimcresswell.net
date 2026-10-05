@@ -5,8 +5,9 @@ description: Before committing to the shape of a build (tool, feature, schema, m
 
 # Verify the Data Supports the Shape Before Building
 
-Operationalises [ADR-020 (Entity Model as Source of Truth for Shared Atoms)](../../docs/architecture/decision-records/020-entity-model-source-of-truth-for-shared-atoms.md)
-— the data is the source of truth for what can be built — and
+Operationalises the host's record that the data is the source of truth for
+what can be built (jimcresswell.net: ADR-020, the entity model as the source
+of truth for shared atoms; OCE: ADR-038, the compilation-time revolution) and
 [PDR-085 (Definition of Delivery)](../practice-core/decision-records/PDR-085-definition-of-delivery.md)
 — value reaches a beneficiary or it has not been delivered. It is the design-time
 face of [`verify-dont-trust`](verify-dont-trust.md): a design premise is a claim
@@ -31,11 +32,12 @@ Recurring faces:
 - **Fingerprint the data before deciding the shape of a fix or migration.** Run a
   cheap scan of the actual corpus to test the premise the fix rests on *before*
   code lands. A premise the data refutes is redirected at the source, not
-  engineered around. Fingerprint the **source**, not a projection: in this
-  repository the ground truth is the entity model (`jcdotnet/content/entities.json`,
-  ADR-020); rendered surfaces, JSON-LD and the PDF are projections that can
-  flatten away structure the graph carries. Check the graph before declaring a
-  relationship "must be sourced" / "deferred" / "not present".
+  engineered around. Fingerprint the **source**, not a projection: in
+  jimcresswell.net the ground truth is the entity model, and in OCE the in-repo
+  bulk export of its curriculum data; rendered surfaces, generated corpora,
+  JSON-LD and a PDF are projections that can flatten away structure the source
+  carries. Check the source before declaring a relationship "must be sourced"
+  / "deferred" / "not present".
 - **Cite the governing assignment before adding a design surface.** Every
   contract, tool, resource, prompt, envelope field, or reviewer condition must
   cite the plan text, ADR, PDR, schema, or data fact that assigns that role. If

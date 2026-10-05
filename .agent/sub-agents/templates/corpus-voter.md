@@ -2,7 +2,14 @@
 description: Single-turn no-tools adversary voter for the corpus-analysis validate workflow. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call.
 # No Gemini adapter: the Gemini adapter's body is the pointer to this template, which a
 # no-tools agent cannot read; the System prompt body is the Claude adapter's alone.
-platforms: [cursor, claude, codex]
+platforms:
+  - cursor
+  - claude
+  - codex
+claude:
+  tools: none
+  maxTurns: 4
+  body: system-prompt
 cursor:
   description: Single-turn adversary voter for the corpus-analysis validate workflow. Dispatched by a corpus-analysis orchestrator, one call per candidate-lens vote; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call.
   note: |-
@@ -14,10 +21,6 @@ cursor:
     required structured output call. (On Claude this role runs zero-tools by
     frontmatter; Cursor cannot enforce that envelope, so honour it
     behaviourally.)
-claude:
-  tools: none
-  maxTurns: 4
-  body: system-prompt
 codex:
   description: Single-turn adversary voter for the corpus-analysis validate workflow; judges one candidate against the four conjunctive apophenia tests from supplied grounding only.
   note: |-
@@ -30,7 +33,6 @@ codex:
     envelope behaviourally here) — and answer with the single required
     structured output call. Do not modify anything.
 ---
-
 # Corpus Voter: Single-Turn No-Tools Adversary
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper
@@ -93,8 +95,8 @@ also shrinks the per-turn context the tool definitions would occupy.
 
 ## System prompt
 
-The Claude wrapper carries this block verbatim — it cannot point here because a
-no-tools agent cannot `Read`, and the role's economics forbid extra turns. The
+The Claude adapter carries this block verbatim — it cannot point here because
+a no-tools agent cannot `Read`, and the role's economics forbid extra turns. The
 declaration's `body: system-prompt` makes the generator copy it, so this block
 is the one home: edit it here and run `pnpm portability:fix`.
 

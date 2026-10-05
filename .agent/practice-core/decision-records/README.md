@@ -142,7 +142,7 @@ Practice-Core concept ↔ ADR map):
 | [PDR-005](PDR-005-wholesale-practice-transplantation.md) | Wholesale Practice Transplantation as a Third Genesis Scenario | Accepted |
 | [PDR-006](PDR-006-dev-tooling-per-ecosystem.md) | Dev Tooling Per Ecosystem — Leading-Edge Reference Repos | Accepted |
 | [PDR-007](PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md) | Promoting PDRs and Universal Patterns to First-Class Core Infrastructure | Accepted |
-| [PDR-008](PDR-008-canonical-quality-gate-naming.md) | Canonical Quality-Gate Naming | Accepted |
+| [PDR-008](PDR-008-canonical-quality-gate-naming.md) | Canonical Quality-Gate Naming | Accepted (amended 2026-09-24) |
 | [PDR-009](PDR-009-canonical-first-cross-platform-architecture.md) | Canonical-First Cross-Platform Architecture for Agent Artefacts | Accepted |
 | [PDR-010](PDR-010-domain-specialist-capability-pattern.md) | Domain Specialist Capability Pattern — Adding New Expertise to the Agent Ecosystem | Accepted |
 | [PDR-011](PDR-011-continuity-surfaces-and-surprise-pipeline.md) | Continuity Surfaces and the Surprise Pipeline | Accepted (amended 2026-04-21) |
@@ -218,7 +218,7 @@ Practice-Core concept ↔ ADR map):
 | [PDR-079](PDR-079-pdr-vs-adr-portability-distinction.md) | PDR-vs-ADR Portability Distinction | Accepted (amended 2026-09-28) |
 | [PDR-080](PDR-080-coordination-event-absorption-is-signal-driven.md) | Coordination-Event Absorption Is Signal-Driven | Accepted |
 | [PDR-081](PDR-081-curator-role-and-substrate-care-lane.md) | Curator Role and Substrate-Care Lane | Proposed |
-| [PDR-082](PDR-082-n2-collaboration-mode.md) | n=2 Collaboration Mode | Proposed |
+| [PDR-082](PDR-082-n2-collaboration-mode.md) | n=2 Collaboration Mode | Adopted (amended 2026-09-24) |
 | [PDR-083](PDR-083-director-pure-direction-only-boundary.md) | Director Pure-Direction-Only Boundary | Accepted |
 | [PDR-084](PDR-084-owner-action-is-not-a-cure.md) | Owner Action Is Not a Cure | Accepted |
 | [PDR-085](PDR-085-definition-of-delivery.md) | Definition of Delivery | Accepted |
@@ -276,5 +276,5 @@ Practice-Core concept ↔ ADR map):
 | [PDR-139](PDR-139-provider-independent-capability-composition.md) | Provider-Independent Capability Composition | Proposed |
 | [PDR-140](PDR-140-review-response-pricing.md) | Review Feedback Is Information — the Response Is What Gets Priced | Accepted (amended 2026-09-07, 2026-09-26) |
 | [PDR-141](PDR-141-operator-profile-in-the-home-directory.md) | The Operator Profile Lives in the Home Directory — the Practice's First Surface Outside a Repository | Accepted (amended 2026-09-14, 2026-09-17, 2026-09-23) |
-| [PDR-142](PDR-142-the-best-of-each-practice.md) | The Best of Each Practice — How the Practice's Instances Are Aligned, Judged and Pruned | Accepted (amended 2026-09-23, 2026-09-25) |
-| [PDR-143](PDR-143-the-practice-as-a-standalone-entity.md) | The Practice as a Standalone Entity — What Is Extracted, What Is Installed, and How It Keeps Learning | Proposed |
+| [PDR-142](PDR-142-the-best-of-each-practice.md) | The Best of Each Practice — How the Practice's Instances Are Aligned, Judged and Pruned | Accepted (amended 2026-09-23, 2026-09-25, 2026-10-04) |
+| [PDR-143](PDR-143-the-practice-as-a-standalone-entity.md) | The Practice as a Standalone Entity — What Is Extracted, What Is Installed, and How It Keeps Learning | Accepted (ratified 2026-10-04; amended 2026-10-02, 2026-10-04) |

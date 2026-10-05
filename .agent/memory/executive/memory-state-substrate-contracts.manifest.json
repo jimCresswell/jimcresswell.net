@@ -33,7 +33,10 @@
       ".agent/practice-core/decision-records/PDR-050-state-memory-substrate-contracts.md"
     ],
     "plan_roots": [],
-    "historical_roots": [],
+    "historical_roots": [
+      ".agent/memory/active/archive/",
+      ".agent/memory/operational/archive/"
+    ],
     "fixture_roots": [
       "agent-tools/tests/collaboration-state/fixtures/"
     ],

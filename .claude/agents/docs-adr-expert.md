@@ -1,8 +1,9 @@
 ---
 name: docs-adr-expert
-description: 'Documentation and ADR reviewer for decision records and narratives.'
+description: 'Documentation and ADR quality specialist. Use proactively to review README/TSDoc/ADR completeness, accuracy, and drift after behaviour or architecture changes. Invoke immediately after any commit that changes behaviour, public APIs, or architecture without a corresponding documentation update.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
+color: blue
 permissionMode: plan
 ---
 

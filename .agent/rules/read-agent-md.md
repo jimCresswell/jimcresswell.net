@@ -1,6 +1,6 @@
 ---
 classification: core
-description: Read AGENT.md as the canonical entry point
+description: Read AGENT.md and principles.md at session start.
 ---
 
 # Read AGENT.md

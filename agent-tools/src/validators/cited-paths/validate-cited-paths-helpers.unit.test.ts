@@ -97,6 +97,33 @@ describe('findMissingPathCitations', () => {
     expect(findMissingPathCitations(files, exists)).toStrictEqual([]);
   });
 
+  it('never resolves a citation that an import provenance names as a source repo-relative path, wrapped or not', () => {
+    const files = [
+      {
+        path: '.agent/skills/x/SKILL-CANONICAL.md',
+        content: [
+          'Imported from a sibling Practice (source repo-relative',
+          'path `.agent/skills/x/SKILL-CANONICAL.md`; see `.agent/rules/also-gone.md`).',
+          'See `.agent/memory/active/patterns/gone.md`.',
+        ].join('\n'),
+      },
+    ];
+    expect(findMissingPathCitations(files, () => false)).toEqual([
+      {
+        path: '.agent/skills/x/SKILL-CANONICAL.md',
+        line: 2,
+        match: '.agent/rules/also-gone.md',
+        target: '.agent/rules/also-gone.md',
+      },
+      {
+        path: '.agent/skills/x/SKILL-CANONICAL.md',
+        line: 3,
+        match: '.agent/memory/active/patterns/gone.md',
+        target: '.agent/memory/active/patterns/gone.md',
+      },
+    ]);
+  });
+
   it('reports each citation of an absent target with its source line', () => {
     const files = [
       {

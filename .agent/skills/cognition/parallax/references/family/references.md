@@ -86,13 +86,17 @@ This is a representative foundation, not a claim that Parallax is derivable from
 
 ## Embedding Practice and memory
 
-- Engraph, [`.agent` Practice root](https://github.com/jimCresswell/jimcresswell.net/tree/main/.agent)
-- Engraph, [Practice memory model](https://github.com/jimCresswell/jimcresswell.net/blob/main/.agent/memory/README.md)
-- Engraph, [Continuity Practice](https://github.com/jimCresswell/jimcresswell.net/blob/main/.agent/directives/continuity-practice.md)
-- Engraph, [PDR-051: vendor-agnostic skills standardisation](https://github.com/jimCresswell/jimcresswell.net/blob/main/.agent/practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md)
-- Engraph, [PDR-119: agent memory as an event graph with renderers](https://github.com/jimCresswell/jimcresswell.net/blob/main/.agent/practice-core/decision-records/PDR-119-agent-memory-as-an-event-graph-with-renderers.md)
-- Engraph, [ADR-125: agent artefact portability](https://github.com/jimCresswell/jimcresswell.net/blob/main/docs/architecture/architectural-decisions/125-agent-artefact-portability.md)
-- Engraph, [ADR-131: self-reinforcing improvement loop](https://github.com/jimCresswell/jimcresswell.net/blob/main/docs/architecture/architectural-decisions/131-self-reinforcing-improvement-loop.md)
+- This Practice, the `.agent` Practice root: `.agent/README.md` (repository-relative paths
+  here, never relative links: this file is copied byte for byte into every generated skill
+  adapter, where a relative link that leaves the skill directory resolves nowhere)
+- This Practice, the Practice memory model: `.agent/memory/README.md`
+- This Practice, the Continuity Practice: `.agent/directives/continuity-practice.md`
+- This Practice, PDR-051, vendor-agnostic skills standardisation:
+  `.agent/practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md`
+- This Practice, PDR-119, agent memory as an event graph with renderers:
+  `.agent/practice-core/decision-records/PDR-119-agent-memory-as-an-event-graph-with-renderers.md`
+- OCE, ADR-125: agent artefact portability (a host record in OCE's decision-record directory)
+- OCE, ADR-131: self-reinforcing improvement loop (a host record in OCE's decision-record directory)
 
 ## Citation and extension policy
 

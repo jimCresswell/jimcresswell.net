@@ -1,6 +1,6 @@
 ---
-description: Validate external data at entry boundaries
-globs: '**/*.ts,**/*.tsx,jcdotnet/content/**/*'
+description: Data arriving from an external boundary (JSON.parse, API responses, file reads, SSE, WebSocket) is unknown; validate immediately to the exact expected shape (Zod, exhaustive guard, or SDK types) and never widen — as Record<string, unknown> is widening, not validation.
+globs: '**/*.ts,**/*.tsx,**/content/**/*.json'
 alwaysApply: false
 ---
 

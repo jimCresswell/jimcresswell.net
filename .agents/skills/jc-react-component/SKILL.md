@@ -1,8 +1,8 @@
 ---
 name: jc-react-component
-description: Use when work changes App Router components, hooks, or client and server boundaries.
+description: Use when work changes React components, hooks, or client and server boundaries.
 ---
 
 # React Component (Cross-tool)
 
-Read and follow `.agent/skills/react-component/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/reviewer-companions/react-component/SKILL-CANONICAL.md`.

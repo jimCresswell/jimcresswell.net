@@ -45,9 +45,10 @@ edits within an already-landed home.
 
 ## Source channels (owner ruling 2026-08-03)
 
-Verbatim: "no skills should be vendored, we have our own skills, we have
-skills installed with `npx skills add` or `pnpm dlx skills add` that is
-it." Exactly two legitimate skill channels exist: **repo-authored
+Verbatim (given in OCE): "no skills should be vendored, we have Oak skills, we have
+skills installed with npx skills add or pnpm skills add that is
+it." (the commands as the owner typed them, in prose) Read host-neutrally: an estate's own skills, and skills the installer
+manages. Exactly two legitimate skill channels exist: **repo-authored
 skills in-repo**, and **installer-managed Vendor skills** via
 `pnpx skills add`, whose lifecycle (provenance, updates, drift)
 belongs to the external skills machinery. Content copied into the
@@ -78,10 +79,10 @@ while the procedure's substance homes in the skill.
 1. **Audience set first.** Which audience does this capability
    serve? `.agent/skills` is the Practice skills corpus — about
    creating the repo, its contents and mechanisms, and enabling
-   future mechanisms, not about the sites' content (owner
-   partition, 2026-08-02, inherited with OCE). Site- and
-   reader-facing capability is a separate domain, audience, and delivery
-   mechanism. A capability that
+   future mechanisms, not about the product's content (owner
+   partition, 2026-08-02, given in OCE). Product- and end-user-facing
+   capability is a separate domain, audience, and delivery mechanism
+   (OCE's first version: its plugin marketplace manifest). A capability that
    fits no existing audience set does not stretch one — a new set
    lands deliberately, recorded in the audience-set registry in
    [the Practice skills corpus README](../skills/README.md).
@@ -156,10 +157,11 @@ while the procedure's substance homes in the skill.
   landing introduces (a directory shape, an annotation, an index
   entry) lands WITH its mechanical consumer in the same motion —
   organisations decay without consumers.
-- **Rules land whole**: a rule mint lands all four on-disk forms
-  plus its RULES_INDEX row in one commit (the index's
-  rule-authoring contract); a trigger-loaded landing with no loader
-  entry is a deleted rule.
+- **Rules land whole**: a rule mint lands its canonical file with
+  its frontmatter declaration and the four forms rendered from it
+  (the three platform adapters and its RULES_INDEX row,
+  `pnpm portability:fix`) in one commit; a trigger-loaded landing
+  with no loader entry is a deleted rule.
 
 ## Falsifier
 

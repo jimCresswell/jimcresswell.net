@@ -26,10 +26,12 @@ check for this. The rule catches missing cause,
 cause-mismatch against a different variable, destructured-parameter
 loss, and variable shadowing. Legitimate pass-through cases use the
 standard `// eslint-disable-next-line preserve-caught-error --
-<reason>` comment (composes with `@engraph/no-eslint-disable`,
-which requires a reason).
+<reason>` comment (composes with the estate's ESLint plugin's
+`no-eslint-disable` rule, which requires a reason).
 
-The `Result` type and its helpers live in `@engraph/result` (`tooling/result/`);
-see its README. Enforcement: `@engraph/no-throw-statement` exists in
-`@engraph/eslint` and is switched off in this repository by owner ruling
-(2026-09-12); until the owner re-enables it, reviewers carry this rule.
+The `Result` type and its helpers live in the estate's result package
+(jimcresswell.net: `@engraph/result` in `tooling/result/`; OCE: the package its
+ADR-088 records); see its README. Enforcement: a `no-throw-statement` rule
+exists in the estate's ESLint plugin; in jimcresswell.net it is switched off by
+owner ruling (2026-09-12), and until the owner re-enables it reviewers carry
+this rule there.

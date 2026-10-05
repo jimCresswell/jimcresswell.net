@@ -18,8 +18,8 @@ A conditional test is any test whose registration, execution, or assertion depen
 
 ## Enforcement
 
-`skipIf` and `runIf` are enforced at the lint gate by
-`@engraph/no-conditional-tests` (added 2026-09-11), alongside
+`skipIf` and `runIf` are enforced at the lint gate by the estate's ESLint
+plugin's `no-conditional-tests` rule (in jimcresswell.net since 2026-09-11), alongside
 `vitest/no-disabled-tests` for `.skip` and `vitest/no-focused-tests` for `.only`.
 
 Until that rule existed this clause was prose only, and the gap had a cost: a

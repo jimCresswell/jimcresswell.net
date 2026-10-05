@@ -4,7 +4,6 @@ import { agentIdentityCliEnvironmentFromProcessEnv } from './agent-identity-cli-
 import { runAgentIdentityCli } from './agent-identity-cli.js';
 import {
   OutputBuffer,
-  runArcMetricsTopic,
   runBranchTouchedFilesTopic,
   runCodexExecTopic,
   runCommitQueueTopic,
@@ -15,7 +14,10 @@ import {
   runPrWatchTopic,
   runSessionMetadataTopic,
   runSpawnTopic,
+  runReviewCostTopic,
+  runSkillEvalsTopic,
 } from './agent-tools-cli-topics.js';
+import { runArcMetricsTopic } from './arc-metrics-topic.js';
 import type {
   AgentToolsCliInput,
   AgentToolsCliResult,
@@ -134,6 +136,8 @@ const UNIFORM_TOPIC_HANDLERS: Readonly<Record<string, UniformTopicHandler>> = {
   'merge-bot': runMergeBotTopic,
   pr: runPrTopic,
   'pr-watch': runPrWatchTopic,
+  'review-cost': runReviewCostTopic,
+  'skill-evals': runSkillEvalsTopic,
   spawn: runSpawnTopic,
 };
 
@@ -237,6 +241,8 @@ function usage(): string {
     '  merge-bot',
     '  pr',
     '  pr-watch',
+    '  review-cost',
+    '  skill-evals',
     '  spawn',
   ].join('\n');
 }

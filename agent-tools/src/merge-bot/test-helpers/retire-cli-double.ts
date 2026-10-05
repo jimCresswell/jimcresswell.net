@@ -1,28 +1,24 @@
-import { generateKeyPairSync } from 'node:crypto';
-
 import { err, ok, type Result } from '@engraph/result';
 
+import type { BranchArgSeams } from '../branch-arg.js';
 import { runMergeBotCli } from '../cli.js';
 import type { GithubApiFetch } from '../mint-installation-token.js';
+import type { PushMint } from '../push-mint.js';
 import type { CasOutcome, RetireReadings, TipState } from '../retire-decision.js';
 import type { RetireGitPort } from '../retire-git-port.js';
+import { mintAnswering, mintFailing } from './push-cli-double.js';
 
 /**
  * The doubles behind the `merge-bot retire` front-door tests. git is the
  * command's own port, answered by a constant world: what origin is set to,
  * what the readings are, who uses the branch, and what each ref's
  * compare-and-swap leaves, looked up by its full name. No argv, and no call
- * is recorded. GitHub is a lookup by endpoint, branch-free: the two mint
- * endpoints, and one constant GraphQL answer for the run. The mints are
- * counted, the one effect read: a credential issued. Paths that need git or
- * GitHub to change between calls run against real git in the smokes.
+ * is recorded. GitHub gives one constant GraphQL answer for the run. The
+ * mint is a fake that fails unless a case gives it one that answers, so a
+ * run that must mint nothing proves it by its outcome, never by a count.
+ * Paths that need git or GitHub to change between calls run against real
+ * git in the smokes.
  */
-
-const { privateKey } = generateKeyPairSync('rsa', {
-  modulusLength: 2048,
-  publicKeyEncoding: { type: 'spki', format: 'pem' },
-  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
-});
 
 export const TOKEN = 'sekrit-retire-token';
 export const BRANCH = 'feat/x';
@@ -60,8 +56,8 @@ function mergedEverywhere(branch: string): RetireReadings {
 /** What git holds and answers, for one run. */
 export interface GitWorld {
   readonly originUrls: Result<readonly string[], Error>;
-  /** The readings for the branch asked about. */
-  readonly readings: (branch: string) => Result<RetireReadings, Error>;
+  /** The readings of the branch. */
+  readonly readings: Result<RetireReadings, Error>;
   /** The worktrees using the branch when the check is read again before the local deletes. */
   readonly inUseBy: Result<readonly string[], Error>;
   /** What a compare-and-swap of each full ref name leaves. */
@@ -74,7 +70,7 @@ const DELETED: Result<CasOutcome, Error> = ok({ kind: 'deleted' });
 /** The identity's repository as origin, the branch merged locally, every delete taking. */
 export const LOCAL_WORLD: GitWorld = {
   originUrls: ok(['https://github.com/acme/widgets.git']),
-  readings: (branch) => ok(mergedLocally(branch)),
+  readings: ok(mergedLocally(BRANCH)),
   inUseBy: ok([]),
   swaps: new Map([
     [LOCAL_REF, DELETED],
@@ -86,13 +82,13 @@ export const LOCAL_WORLD: GitWorld = {
 /** As {@link LOCAL_WORLD}, with the branch also on the remote. */
 export const REMOTE_WORLD: GitWorld = {
   ...LOCAL_WORLD,
-  readings: (branch) => ok(mergedEverywhere(branch)),
+  readings: ok(mergedEverywhere(BRANCH)),
 };
 
 /** A git that fails every question: a run that reads nothing never notices it. */
 export const UNREADABLE: GitWorld = {
   originUrls: err(new Error('git was read')),
-  readings: () => err(new Error('git was read')),
+  readings: err(new Error('git was read')),
   inUseBy: err(new Error('git was read')),
   swaps: new Map(),
   removeConfig: err(new Error('git was written')),
@@ -102,7 +98,7 @@ export const UNREADABLE: GitWorld = {
 function portOver(world: GitWorld): RetireGitPort {
   return {
     originUrls: () => Promise.resolve(world.originUrls),
-    readings: (branch) => Promise.resolve(world.readings(branch)),
+    readings: () => Promise.resolve(world.readings),
     inUseBy: () => Promise.resolve(world.inUseBy),
     deleteRef: (target) =>
       Promise.resolve(
@@ -129,42 +125,35 @@ export const GRAPHQL_ERROR: unknown = {
   errors: [{ message: 'Something went wrong while executing your query' }],
 };
 
-/** GitHub by endpoint: the installation, the token mint (counted), and one GraphQL answer. */
-function githubAnswering(graphql: unknown): { fetchImpl: GithubApiFetch; mints: string[] } {
-  const mints: string[] = [];
-  const reply = (status: number, body: unknown): ReturnType<GithubApiFetch> =>
-    Promise.resolve({ status, json: () => Promise.resolve(body) });
-  const endpoints: Readonly<Record<string, () => ReturnType<GithubApiFetch>>> = {
-    installation: () => reply(200, { id: 55 }),
-    access_tokens: () => {
-      mints.push(TOKEN);
-      return reply(201, { token: TOKEN, expires_at: '2026-09-28T15:00:00Z' });
-    },
-    graphql: () => reply(200, graphql),
-  };
-  const fetchImpl: GithubApiFetch = (url) => {
-    const answerFor = endpoints[url.slice(url.lastIndexOf('/') + 1)];
-    return answerFor === undefined
-      ? Promise.reject(new Error(`the GitHub double has no endpoint for ${url}`))
-      : answerFor();
-  };
-  return { fetchImpl, mints };
+/** GitHub answering every call, all of them GraphQL once the mint is injected, with `graphql` at 200. */
+function githubAnswering(graphql: unknown): GithubApiFetch {
+  return () => Promise.resolve({ status: 200, json: () => Promise.resolve(graphql) });
 }
+
+/** A mint that answers `TOKEN`: what a run that must delete on the remote is given. */
+export const MINT_ANSWERING: PushMint = mintAnswering(TOKEN);
+
+/** A mint that fails, for the one case that reads what the command does then. */
+export const MINT_FAILING: PushMint = mintFailing();
+
+/** The mint every other run has: reaching it fails the run, so a refusal that reached it would not read as one. */
+const MINT_UNREACHED: PushMint = () => Promise.resolve(err(new Error('the mint was reached')));
 
 export interface RetireRun {
   readonly exit: number;
   readonly out: string;
   readonly err: string;
-  readonly minted: boolean;
 }
 
 /** What a front-door run may vary besides argv and git's world. */
 export interface RetireRunOptions {
   /** GitHub's one answer to every GraphQL call. */
   readonly graphql?: unknown;
+  /** The token mint; {@link MINT_UNREACHED} unless the run must delete on the remote. */
+  readonly mint?: PushMint;
   readonly readConfigFileImpl?: (path: string) => string;
-  /** git's ref-format grammar: whether it accepts a branch name. */
-  readonly refFormatLegal?: boolean;
+  /** The `--branch` check's seams; defaults to an oracle that accepts every name. */
+  readonly branchArgSeams?: BranchArgSeams;
 }
 
 const IDENTITY_CONFIG = JSON.stringify({
@@ -181,21 +170,18 @@ export async function runRetire(
 ): Promise<RetireRun> {
   const out: string[] = [];
   const errText: string[] = [];
-  const github = githubAnswering(options.graphql ?? {});
-  const legal = options.refFormatLegal ?? true;
   const exit = await runMergeBotCli({
     args: ['retire', ...args],
     env: { HOME: '/test-home' },
     stdout: { write: (chunk: string) => out.push(chunk) > 0 },
     stderr: { write: (chunk: string) => errText.push(chunk) > 0 },
-    fetchImpl: github.fetchImpl,
-    readFileImpl: () => Promise.resolve(privateKey),
+    fetchImpl: githubAnswering(options.graphql ?? {}),
+    mintImpl: options.mint ?? MINT_UNREACHED,
     readConfigFileImpl: options.readConfigFileImpl ?? (() => IDENTITY_CONFIG),
     repoRoot: '/srv/repo',
     runGitImpl: () => 'worktree /srv/repo\n',
-    nowEpochSeconds: () => 1_800_000_000,
     retireGitPort: portOver(world),
-    branchArgSeams: { refFormatOracle: () => legal },
+    branchArgSeams: options.branchArgSeams ?? { refFormatOracle: () => true },
   });
-  return { exit, out: out.join(''), err: errText.join(''), minted: github.mints.length > 0 };
+  return { exit, out: out.join(''), err: errText.join('') };
 }

@@ -69,11 +69,19 @@
     "commit-queue": "cd .. && node agent-tools/dist/src/bin/agent-tools.js commit-queue",
     "codex-exec": "cd .. && node agent-tools/dist/src/bin/agent-tools.js codex-exec",
     "check-encoding": "cd .. && node agent-tools/dist/src/encoding/check-encoding.js",
-    "build": "tsc -p tsconfig.build.json && chmod +x dist/src/bin/*.js dist/src/claude/statusline-identity.js && pnpm build:workflows",
+    "build": "tsc -p tsconfig.build.json && chmod +x dist/src/bin/*.js dist/src/claude/statusline-identity.js && pnpm build:workflows && pnpm build:restatement-audit-workflows",
     "build:workflows": "tsx src/corpus-analysis/workflows/build/build-workflows.ts",
     "build-run-artefact": "tsx src/corpus-analysis/workflows/build/build-run-artefact.ts",
     "post-run-driver": "tsx src/corpus-analysis/post-run/post-run-driver.ts",
-    "salvage-driver": "tsx src/corpus-analysis/post-run/salvage-driver.ts"
+    "salvage-driver": "tsx src/corpus-analysis/post-run/salvage-driver.ts",
+    "review-cost": "cd .. && node agent-tools/dist/src/bin/agent-tools.js review-cost",
+    "skill-evals": "cd .. && node agent-tools/dist/src/bin/agent-tools.js skill-evals",
+    "pr-throughput": "cd .. && pnpm exec tsx agent-tools/src/pr-throughput/cli.ts",
+    "ci-turbo-report": "cd .. && pnpm exec tsx agent-tools/src/ci/ci-turbo-report.ts",
+    "validate-family-conformance": "cd .. && pnpm exec tsx agent-tools/src/validators/family-conformance/validate-family-conformance.ts",
+    "build:restatement-audit-workflows": "tsx src/restatement-audit/workflows/build/build-workflows.ts",
+    "restatement-audit-build-run-artefact": "tsx src/restatement-audit/workflows/build/build-run-artefact.ts",
+    "restatement-audit-render-ledger": "tsx src/restatement-audit/render-ledger-cli.ts"
   },
   "devDependencies": {
     "@engraph/eslint-plugin-standards": "workspace:*",

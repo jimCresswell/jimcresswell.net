@@ -1,8 +1,9 @@
 ---
 name: subagent-architect
-description: 'Subagent architect ensuring the canonical reviewer architecture stays sane.'
+description: 'Expert at creating, reviewing, upgrading, and optimising AI subagents across the platforms the host renders adapters for (Cursor, Claude, Codex, and Gemini where a declaration admits it). Use this agent when creating new subagents, reviewing or upgrading existing subagent definitions, migrating subagents between platforms, improving subagent effectiveness, or ensuring spec compliance of agent frontmatter. Invoke immediately when discussing subagent design, system prompts, or agent orchestration patterns.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
+color: purple
 permissionMode: plan
 ---
 

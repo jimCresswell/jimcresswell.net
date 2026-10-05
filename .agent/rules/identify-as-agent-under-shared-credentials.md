@@ -133,6 +133,11 @@ visible in truncated comment lists where a trailing signature is not
   (carry PDR-027 name+UUID by construction).
 - **Not in scope:** content authored under the agent's *own* distinct account
   (where the actor is already visible) — though a marker there is harmless.
+- **Already covered, do not double-mark (OCE):** edits to OCE's knowledge-base
+  pages under its agent-managed title designation; their page-local change
+  ledger identifies the originating repository visibly and the
+  agent/session/credential chain once per coherent change set, as OCE's own
+  page-edit rule requires, so no separate marker is added there.
 - **In scope (reading side):** attributing past actions performed under shared
   credentials — use the comms stream and claim dispositions, never the GitHub
   actor field (see §Why).

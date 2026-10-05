@@ -4,9 +4,10 @@ The skill estate is infrastructure for agents: markdown files are load-bearing
 architecture, so DRY and single-source-of-truth apply to them exactly as they
 apply to code. This reference names the composition hierarchy and the two
 rules that make it an architecture rather than a taxonomy. Imported and
-adapted 2026-08-09 from the Engraph Practice (itself
-adapted from the Resonance estate, 2026-07-20), mapped onto this repo's skill
-roster.
+adapted 2026-07-20 from the Resonance estate (a private sibling Practice repo —
+no public upstream URL exists; source repo-relative path
+`.agent/reference/skill-composition.md`; the PDR-125 exchange, into OCE first),
+mapped onto each estate's skill roster.
 
 ## The three layers
 
@@ -15,19 +16,22 @@ roster.
   summarised into a checklist without ceasing to be itself. Modes have no
   steps to delegate and nothing to loop.
 - **Workflows** — bounded compositions with one purpose and (usually) one
-  sitting: `concept-exploration`, `retrospective`, `knowledge-safety-sweep`,
-  `session-handoff`, `consolidate-docs`, `plan`, `pr-lifecycle`,
-  `semantic-merge`, `undo-change`, `distillation`, `author-skills`,
-  `quality-gates`, and kin. A workflow summons modes at its judgement moments
-  and may summon sibling workflows for sub-purposes.
+  sitting: `concept-exploration`, `free-play`, `retrospective`,
+  `knowledge-safety-sweep`, `curator-pass`, `session-handoff`,
+  `consolidate-docs`, `plan`, `commit`, `pr-lifecycle`, `semantic-merge`,
+  `complex-merge`, `gates`, `tsdoc`, `undo-change`, and kin. A workflow
+  summons modes at its judgement moments and may summon sibling workflows
+  for sub-purposes.
 - **Programmes** — compositions that loop workflows toward a declared
   end-state across sittings: `wrap` (the close of every session, to the
-  metaloss fixed point), `consolidate-until-done` (grounding plus consolidation passes until
-  every buffer is drained), and the session-boot compositions
-  (`start-right-quick`, `start-right-thorough`, `start-right-team`) and the
-  cadence harness (`go`) that structure a whole session's execution. A
-  programme owns the loop, the exit contract, and the honest partial-exit; the
-  work inside each pass belongs to the summoned workflows.
+  metaloss fixed point), `consolidate-until-done` (grounding plus consolidation
+  passes until every buffer is drained), the fidelity review inside
+  `claude-design-pipeline` (capture, diff and disposition rounds), and the
+  session-boot compositions (`start-right-quick`, `start-right-thorough`,
+  `start-right-team`) and the cadence harness (`go`) that structure a whole
+  session's execution. A programme owns the loop, the exit contract, and the
+  honest partial-exit; the work inside each pass belongs to the summoned
+  workflows.
 
 ## The two rules
 
@@ -37,7 +41,8 @@ roster.
    and the REASON (what the summons is for there). Restating a summoned
    skill's steps inline is drift-by-duplication: the copies diverge, and the
    divergent copy always loses. The corollary: when a capability appears
-   inline in two skills, extract it to its own skill and summon it from both.
+   inline in two skills, extract it to its own skill and summon it from
+   both — `consolidate-at-second-consumer` applied to skills.
 2. **Modes are doors, not steps.** A summons of `metacognition` or `reason`
    is an entry into a different way of attending, with whatever presence that
    costs — never a box the invoking workflow ticks. A failed pass that merely

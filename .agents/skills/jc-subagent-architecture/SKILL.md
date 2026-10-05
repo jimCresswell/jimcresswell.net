@@ -5,4 +5,4 @@ description: "Use when work changes the reviewer estate: roster, skills, rules, 
 
 # Subagent Architecture (Cross-tool)
 
-Read and follow `.agent/skills/subagent-architecture/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/reviewer-companions/subagent-architecture/SKILL-CANONICAL.md`.

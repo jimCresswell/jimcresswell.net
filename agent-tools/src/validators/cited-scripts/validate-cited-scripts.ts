@@ -1,6 +1,6 @@
 import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
-import { collectTrackedPaths } from '../../core/repository-paths.js';
+import { describeGitReadFailure, listTrackedPathSet } from '../../core/repository-paths.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 
 import { loadCommandSurfaces } from './command-surface-files.js';
@@ -83,6 +83,13 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   'docs/explorations/',
 ];
 
+/**
+ * The host's history roots, excluded by prefix: frozen backlogs, archived
+ * records, the host's architectural decision records. Host data, so each
+ * estate declares its own; the general fragments above are shared text.
+ */
+const HOST_EXCLUDED_ROOTS: readonly string[] = [];
+
 function formatFindings(findings: readonly MissingScriptFinding[]): string {
   return findings
     .map((finding) => {
@@ -96,13 +103,23 @@ function formatFindings(findings: readonly MissingScriptFinding[]): string {
 }
 
 async function main(): Promise<void> {
-  const trackedPaths = collectTrackedPaths(repoRoot);
+  const listing = listTrackedPathSet(repoRoot);
+  if (!listing.ok) {
+    writeErrorLine(
+      `validate-cited-scripts: cannot list tracked paths — ` +
+        `${describeGitReadFailure(listing.error)}. BLOCKING.`,
+    );
+    process.exitCode = 1;
+    return;
+  }
+  const trackedPaths = listing.value;
   const [files, scripts, commandSurfaces] = await Promise.all([
     discoverAuthoredFiles(repoRoot, {
       roots: SCANNED_ROOTS,
       rootFiles: SCANNED_ROOT_FILES,
       extensions: SCANNED_EXTENSIONS,
       excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+      excludedRoots: HOST_EXCLUDED_ROOTS,
       universe: trackedPaths,
     }),
     loadWorkspaceScripts(repoRoot),

@@ -9,7 +9,7 @@ description: Author a plan node in the ratified plan-node estate.
 Create a plan node aligned with the foundation documents, the planning
 discipline in
 [PDR-018](../../../practice-core/decision-records/PDR-018-planning-discipline.md),
-and the plan-node estate this repository adopted from OCE.
+and the plan-node estate (built first in OCE; one contract in both estates).
 The machine-enforced contract is the
 [plan-node schema](../../../plans/plan-node-schema.md); the estate validator
 runs in CI and at pre-commit.
@@ -17,11 +17,27 @@ runs in CI and at pre-commit.
 ## Before Writing
 
 When use value, needs, capabilities, journeys or delivery boundaries still
-need defining, use [`user-value`](../user-value/SKILL-CANONICAL.md)
-before treating those inputs as settled. It owns their structure and
-traceability; this skill owns implementation planning. Use it for local
-engineering contracts when their consumer, usefulness or wider contribution is
-unresolved.
+need defining, define them with a use-value pass (the `user-value` skill,
+where the estate carries it) before treating those inputs as settled. That
+pass owns their structure and traceability; this skill owns implementation
+planning. Use it for local engineering contracts when their consumer,
+usefulness or wider contribution is unresolved.
+
+A contract a step depends on is no different: hand the question to the skill
+that owns it, never plan around it or invent it. "What must this thing do,
+preserve or permit?" goes to
+[`specify`](../../specification/specify/SKILL-CANONICAL.md); "can these
+individually defined things work together?" to
+[`specify-connection`](../../specification/specify-connection/SKILL-CANONICAL.md);
+"does this evidence justify this use of this specification?" to
+[`assess-specification`](../../specification/assess-specification/SKILL-CANONICAL.md).
+Invoke the owning skill before scheduling the steps that depend on its
+answer. The return is a named obligation or gap, never a certificate for
+the dependent steps; it gates only those steps, and settled steps proceed.
+Authority stays where it is: a dispute over who owns a contract is
+preserved for the authority that holds it, never decided by the plan.
+Settled work takes no compulsory value or specification pass; reopen a
+definition only at a consequential gap.
 
 1. **Design gate**: Has the design intent been explored and confirmed
    with the project owner? If the scope is ambiguous or the approach
@@ -183,7 +199,14 @@ Every non-trivial plan MUST define:
    ([PDR-132](../../../practice-core/decision-records/PDR-132-changeset-health-round-budgets-bind-at-authoring-time.md):
    round budgets bind at authoring time; slicing at plan time is free,
    slicing at the first over-budget review round is the measured
-   expensive path). Slicing at pickup CONSUMES the plan's disposition
+   expensive path). Two budgets, distinct and neither restated here: PDR-132's
+   round budget, which a slice must be stateable within, and PDR-140's
+   settlement-push budget, which the pull request's description declares at
+   PR-open and the review cost gate reads and enforces at the push, where the
+   estate carries that gate (OCE's `agent-tools review-cost`, 2026-09-12).
+   The plan's estimate is coarse by
+   design — a slice that would need more than the declared default is a slice
+   to split, not a larger number. Slicing at pickup CONSUMES the plan's disposition
    ledger
    ([PDR-140](../../../practice-core/decision-records/PDR-140-review-response-pricing.md)):
    the canonical ledger surface is a `## Review dispositions` section
@@ -286,7 +309,10 @@ genuine schedule uncertainty exists, name it as a real owner decision
 needing resolution now — that is what `owner_gates` with absolute
 expiries are for. Automatic firing conditions for maintenance/meta items
 whose timing no owner should own, and `depends_on` ordering (which IS
-the definite-sequence shape), remain legitimate.
+the definite-sequence shape), remain legitimate. A step that needs an
+obligation not yet returned from a specification handoff is sequenced
+after the return; when that handoff's work is carried by a plan node of
+its own, the dependency is a `blocking` `depends_on` edge on it.
 
 ### A Boundary Move Reshapes Every Surface It Lived On
 

@@ -78,3 +78,5 @@ export const ignores = [
   '**/test-results/',
   '**/coverage/',
 ];
+
+export { testRules } from './test-rules.js';

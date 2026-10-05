@@ -26,7 +26,8 @@ worked instance the same day: a seat's eight-leg suites every forty-five minutes
 ON-TRACK of 24 while it worked one direction of a two-way goal, and every DRIFTING reordered
 work inside the seat's own frame).
 
-Typing `$jc-cricket` asks the current seat to run the whole panel for its platform. The invoker
+Invoking the `cricket` skill by its platform adapter name (the host's skill prefix, then
+`cricket`) asks the current seat to run the whole panel for its platform. The invoker
 builds the frame from live context and starts immediately; missing information is labelled
 `MISSING`, not silently invented.
 
@@ -118,8 +119,8 @@ Supply every role with the same six fields:
 3. **INTENT** — what the invoker believes it is doing.
 4. **RECENT ACTIONS** — the last few concrete actions.
 5. **NEXT** — the next planned action or actions.
-6. **STANCE** — `normal` or `adversarial`, written into each dispatch prompt. A frame file that the
-   dispatches share carries fields 1 to 5 and no stance slot, so no role reads an unfilled
+6. **STANCE** — `normal` or `adversarial`, written into each dispatch prompt. A frame file that
+   the dispatches share carries fields 1 to 5 and no stance slot, so no role reads an unfilled
    placeholder.
 
 Quote forcing facts. Give owner rulings their author, date, and event id when available. Put the
@@ -153,7 +154,7 @@ of 2026-09-07 as Jackal wakes Nocturne recorded it, event 58b01caa).
 
 ## Codex dispatch
 
-Oak adapts [OpenAI's Codex subagent workflow](https://learn.chatgpt.com/docs/agent-configuration/subagents)
+This Practice adapts [OpenAI's Codex subagent workflow](https://learn.chatgpt.com/docs/agent-configuration/subagents)
 into a fixed registered-role panel: unlike the upstream's general orchestration pattern, role TOML
 owns model and effort here, dispatch forks no parent context, and the adversarial wave reuses the
 same agents.
@@ -222,4 +223,6 @@ inside the read-only lens: no messaging peers, no drafting, no write-access requ
 owner-invoked suites of 2026-09-03 recorded it stepping from judging into doing (messaging the
 PR B subagent; drafting the ADR and asking for write access) — a recurring instrument defect,
 so a run whose procedure seat acted is recorded in the tally's behaviour-note column and its
-verdict weighed accordingly.
+verdict weighed accordingly. Its UNGROUNDED marks are its method's floor, not findings: it
+cannot read git history, so every claim that rests on a commit reads as ungrounded to it and its
+verdict slides to DRIFTING (2026-09-23).

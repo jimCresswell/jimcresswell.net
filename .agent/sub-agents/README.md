@@ -6,31 +6,56 @@ This directory uses a three-layer structure to keep prompts simple, DRY, and mai
 
 1. `components/` - small, reusable prompt building blocks.
 2. `templates/` - assembled workflows composed from components.
-3. Consumer prompt files (for example `.cursor/agents/*.md`) - thin adapters that load templates, generated for Cursor, Claude, Codex and Gemini.
+3. Consumer prompt files (for example `.cursor/agents/*.md`) - thin adapters that load templates, generated for the platforms the host renders (Cursor, Claude, Codex and Gemini, as each template's declaration admits; §Declarations below). An inline-prompt role (PDR-009; its template has a `## System prompt` section) has a Claude adapter that carries that block verbatim instead; the generator copies it.
 
 ### Components Structure
 
 - `components/principles/` - shared principles and guardrails.
-- `components/architecture/` - shared architecture-team guidance.
+- `components/architecture/` - shared architecture-team guidance: the four lenses and the host's roster (`reviewer-team.md`).
+- `components/personas/` - the four architecture lenses (Barney, Betty, Fred, Wilma), each a leaf component a reviewer binds.
 - `components/behaviours/` - shared execution and review behaviour guidance.
   - includes `subagent-identity.md`, which templates must include so each sub-agent declares name, purpose, and a short purpose summary.
 
 ## Declarations
 
+A sub-agent is one authored file: the template, opening with a frontmatter declaration.
+`pnpm portability:fix` renders its adapters; `pnpm portability:check` recomputes them and
+refuses a hand edit ("drifted from the template's declaration") or a missing declaration.
+
 Every template carries a frontmatter declaration: the one source for its adapters on every
 platform. A role declares its `description` and, per platform (`cursor`, `claude`, `codex`,
 `gemini`), only what deviates from the standard adapter body: a Claude `tools` list off the
-default (`inherit` when the adapter carries none), `disallowedTools`, `permissionMode`,
-`color`, `model`, `effort`, `maxTurns`; a Codex `model` or `effort`; a Cursor, Codex or
-Gemini `description` where the role's own states what only another platform enforces (the
-Codex one also heads the role's registry block); a `note` where the closing prose is
-not the platform's standard one; a `pointerTail` where the pointer paragraph continues past
-the template path (verbatim, as `cricket-procedure-xhigh` carries ", then execute its
-procedure exactly."). A standard role declares one line. A fan-out (the cricket
-templates) declares `variants`, each an adapter in its own name with every field, its `title`,
-its Cursor `description` where it differs, and every `note`, because the variants differ by
-design and are never flattened. The Gemini block carries only the fields the Gemini CLI
-subagents reference names; nothing is defaulted.
+default (`inherit` when the adapter carries none), `disallowedTools`, `permissionMode`, `color`,
+`model`, `effort`, `maxTurns`; a Codex `model` or `effort`; a Cursor, Codex or Gemini
+`description` where the role's own states what only another platform enforces (the Codex one
+also heads the role's registry block); a `note` where the closing prose is not the platform's
+standard one; a `pointerTail` where the pointer paragraph continues past the template path
+(verbatim, as `cricket-procedure-xhigh` carries ", then execute its procedure exactly."). A
+standard role declares its `description`, its `platforms` and, per platform, only what
+deviates. `platforms` is the set of surfaces the adapters render on: an omitted `platforms`
+renders on every surface, Gemini included, and the set a host renders is its own (in this
+estate the declarations omit the line and `.gemini/agents/` exists; in OCE every declaration
+names `cursor`, `claude` and `codex`, and no `.gemini/agents/` surface exists there). A fan-out
+(the cricket templates; in OCE `architecture-expert` too, whose four lenses are its variants,
+where this estate binds each lens by a lane template) declares `variants`, each an adapter in
+its own name with every field, its `title`, its Cursor or Codex `description` where it differs,
+and every `note`, because the variants differ by design and are never flattened. The Gemini
+block carries only the fields the Gemini CLI subagents reference names; a role that declares no
+Gemini `tools` renders the read-only set (the Gemini renderer's one default), a variant renders
+what it declares. `code-expert`'s declaration is the whole standard shape, a Claude `color` and
+a Cursor and a Codex `description` of their own (OCE's adds its three-item `platforms` list):
+
+```yaml
+---
+description: Gateway code review specialist for quality, correctness, and maintainability. Invoke immediately after any code is written or modified — features, bug fixes, refactors, and performance changes. Also responsible for identifying which specialist reviewers (security-expert, type-expert, test-expert, architecture reviewers) are needed.
+claude:
+  color: orange
+cursor:
+  description: Expert code review specialist for quality, security, and maintainability. Use proactively and immediately after writing or modifying code, completing features, fixing bugs, or refactoring. Invoke when you need comprehensive feedback on code changes, design patterns, or implementation quality.
+codex:
+  description: Gateway reviewer for non-trivial changes.
+---
+```
 
 A role whose Claude adapter must not spend turns reading its template (a workflow role
 dispatched with its full task, such as the corpus-analysis stages) declares
@@ -62,6 +87,28 @@ adapters writes each template's declaration from what its adapters say, then let
 generator take the surfaces over. The health probe's adapter parity reads the same
 declarations, so a platform a declaration names is the one the probe expects.
 
+## Roster
+
+The templates under `templates/` are the one source for every adapter. The roster table in
+`.agent/rules/invoke-code-experts.md` (one row per general reviewer, with its trigger) and this
+host's executive catalogue, `.agent/memory/executive/invoke-code-experts.md` (the host's
+triggers and paths), carry the invocation policy:
+
+- The general reviewers, the same in every Practice instance: `accessibility-expert`,
+  `architecture-expert` read through the four shared lenses (`components/personas/`),
+  `assumptions-expert`, `code-expert`, `config-expert`, `design-system-expert`,
+  `docs-adr-expert`, `onboarding-expert`, `prose-expert`, `react-component-expert`,
+  `release-readiness-expert`, `security-expert`, `subagent-architect`, `test-expert` and
+  `type-expert`.
+- The conscience checks and workflow roles, the same in every instance: `cricket-judgement`
+  (the `cricket-judgement-low`, `-medium` and `-high` variants), `cricket-procedure`
+  (`cricket-procedure-xhigh`), and the corpus-analysis stages `corpus-mapper`,
+  `corpus-reducer`, `corpus-voter` and `corpus-meta`.
+- This host's own: `pkg-expert` (the personal knowledge graph), `editor` (the editorial voice
+  under PDR-102), and the four lane templates `architecture-expert-barney`, `-betty`, `-fred`
+  and `-wilma`, each binding a shared lens to one of this host's lanes
+  (`components/architecture/reviewer-team.md`).
+
 ## Dependency Rules
 
 - Components are leaf nodes: they MUST NOT depend on other components.
@@ -76,14 +123,14 @@ declarations, so a platform a declaration names is the one the probe expects.
 
 ## Template Consistency Checklist
 
-Before finalising changes to templates or wrappers:
+Before finalising changes to templates or their declarations:
 
 - [ ] Mandatory reading requirements are explicit where needed for quality and consistency.
 - [ ] Templates include the shared identity declaration component (`.agent/sub-agents/components/behaviours/subagent-identity.md`).
 - [ ] Shared governance references are present and current (`.agent/directives/AGENT.md`, `.agent/directives/principles.md`).
 - [ ] Domain-specific references are explicit and all paths resolve.
 - [ ] Every repo sub-agent named in active guidance is a template under `templates/` or a variant a template declares.
-- [ ] Architecture reviewer wrapper descriptions are distinct and lane-specific.
+- [ ] Architecture persona descriptions (each binding one shared lens from `components/personas/`: a `variants` entry of `architecture-expert.md`'s declaration, or a lane template where the host binds the lens to a lane) are distinct and lens-specific.
 - [ ] Standard quality roster and specialist on-demand roster are clearly separated in coordination docs.
-- [ ] Consumer wrappers keep template loading as the first action, save a Claude adapter whose declaration makes its body the template's System prompt block.
+- [ ] A role that must not read its template declares `claude.body: system-prompt`; every other adapter loads the template first (both rendered by the generator).
 - [ ] Components remain leaf nodes and templates remain the composition layer.

@@ -41,8 +41,8 @@ describe('selectLineageNameBlock', () => {
     expect(unwrap(selectLineageNameBlock([OTHER, BLOCK]))).toBe(BLOCK);
   });
 
-  it('refuses a policy with no lineage-name block', () => {
-    expect(unwrapErr(selectLineageNameBlock([OTHER]))).toContain('no `lineage-name` block');
+  it('a policy with no lineage-name block declares no lineage names: nothing to check, no refusal', () => {
+    expect(unwrap(selectLineageNameBlock([OTHER]))).toBeUndefined();
   });
 
   it('refuses a policy with two lineage-name blocks: the hook evaluates every group', () => {

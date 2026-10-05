@@ -31,8 +31,8 @@ Files under `.agent/practice-core/` MUST NOT contain:
 - Cross-Practice paths into the host adapter: `../../skills/`,
   `../../commands/`, `../../memory/`, `../../plans/`,
   `../../experience/`, `../../rules/`, etc.
-- ADR references: no `ADR-NNN`, no links into
-  `docs/architecture/decision-records/`.
+- ADR references: no `ADR-NNN`, no links into the repository's ADR
+  directory.
 - Commit references: no SHAs, no commit subjects, no
   `commit abcdef0` citations.
 - Host-local context sections, "host context note" sections, or
@@ -111,7 +111,8 @@ Three gates in `docs-validators:check` enforce parts of this rule:
   finding prints its `path:line:column` and the citation as written.
   The cure names the concept the ADR records in place of the number and
   keeps the sentence (PDR-079). Run it alone with
-  `pnpm --filter @engraph/agent-tools validate-core-adr-citations`.
+  `pnpm --filter ./agent-tools validate-core-adr-citations` (pnpm's
+  directory selector, the same in every estate whatever the package scope).
 - `validate-reference-direction` refuses a resolvable link from the
   Core to anything outside it.
 - `validate-no-host-names-in-core-headings` enforces the host-name clause
@@ -125,7 +126,7 @@ Three gates in `docs-validators:check` enforce parts of this rule:
   bridge index (PDR-079) and heads the Core entry by its date and
   subject alone. With a repository root as its one argument it reads a
   sibling estate's tree by the same rule. Run it alone with
-  `pnpm --filter @engraph/agent-tools validate-no-host-names-in-core-headings`.
+  `pnpm --filter ./agent-tools validate-no-host-names-in-core-headings`.
 
 An automated reviewer does not know this rule: it reads a Core path or a
 Core-relative link as "does not exist in this repository" and proposes

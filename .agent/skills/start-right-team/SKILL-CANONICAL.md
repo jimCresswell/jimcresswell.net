@@ -53,11 +53,10 @@ remains background.
 
 ### n=2 mode (overlay on team-member modes)
 
-1. **Open a dialogue channel** with your partner — native session messaging where both
-   seats can use it, otherwise an ArcAngel channel
-   ([`channel-by-audience-lifetime-and-consumer`](../../rules/channel-by-audience-lifetime-and-consumer.md)) — or any agent you will
-   substantively collaborate with. ArcAngel is predominantly a _pairwise_
-   channel, but it can be used for n=3 as well.
+1. **Open a dialogue channel** with your partner — s2s where both seats can use it and the
+   transcript is not itself the record, otherwise an ArcAngel channel (the [`comms-channels`](../comms-channels/SKILL-CANONICAL.md) skill) —
+   or any agent you will substantively collaborate with. ArcAngel is predominantly a
+   _pairwise_ channel, but it can be used for n=3 as well.
 2. **When the team has exactly two active participants, activate n=2 collaboration
    mode** per
    [PDR-082](../../practice-core/decision-records/PDR-082-n2-collaboration-mode.md),
@@ -73,8 +72,12 @@ lead reads silence past that as unknown, never as work (PDR-082 §Amendment
 Log, 2026-09-14); **retain** identity preflight, the
 all-channels comms watcher, claims on substantive source/doctrine edits,
 commit-queue intents, the substantive cross-agent broadcasts (tree-green,
-push-landed, gate-state, merge-ready, blocker), mid-cycle retirement, and
-closeout broadcasts. A third agent joining re-activates the full protocol
+push-landed, gate-state, merge-ready, blocker), mid-cycle retirement,
+closeout broadcasts, and your own state line to your partner: at least every
+120 s during a long turn, one line naming the state, any blocker and the next
+action, by the channel `comms-channels` names for one live reader. Silence past
+that interval is unknown state: ping, never escalate (PDR-082 §What changes at
+n=2). A third agent joining re-activates the full protocol
 atomically; declare the mode in your team-start broadcast. The n=2 lead is
 accountable for the second seat's judgement, not only for the split of work
 (owner to the lead, 2026-09-03: "You are the lead, you are responsible for
@@ -627,8 +630,9 @@ substrate-care work
 graduations buffer, surfacing home-gaps as structural-cure proposals).
 A session may run a curator lane in parallel with implementer /
 reviewer / marshal lanes; the curator's traceability surface is the
-commit plus the homed substance, with the close-of-pass broadcast
-(PDR-081 §Amendment Log; the `curator-pass` skill's Step 8).
+commit plus the homed substance
+(`permanent-doc-is-the-consolidation-record`), with the close-of-pass
+broadcast (PDR-081 §Amendment Log; the `curator-pass` skill's Step 8).
 
 **The `marshal` / commit-warden runs the team's awareness surface.**
 In a multi-agent window only ONE agent owns `git:index/head`, runs the
@@ -998,8 +1002,8 @@ Coordinator role transitions have two distinct moments per
 [PDR-064](../../practice-core/decision-records/PDR-064-coordinator-handoff-two-moments.md);
 conflating them creates a coordinator-less window the team cannot
 detect. Inside the authority window, from Moment 2 of acquiring the role to
-Moment 1 of releasing it, what the coordinator writes to the stream as it
-happens is
+Moment 1 of releasing it, what a coordinator holding the Director role
+writes to the stream as it happens is
 [PDR-075](../../practice-core/decision-records/PDR-075-director-substrate-writing-discipline.md)'s
 discipline: rulings and owner-decision answers go on the stream when they
 occur, so a successor reads the stream and the handoff record stays small.

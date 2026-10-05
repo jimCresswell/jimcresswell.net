@@ -1,6 +1,6 @@
 ---
 name: architecture-expert
-description: 'Structural architecture reviewer for the monorepo: module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke the named persona for the lane a change touches as well.'
+description: 'Structural architecture reviewer for the monorepo: module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke the named lens for the lane a change touches as well.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
 permissionMode: plan

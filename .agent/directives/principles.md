@@ -115,6 +115,19 @@ risk-of-loss operations (`never-use-git-to-remove-work` §A Safety Proof
 Never Licenses the Class): a discipline's value is that it holds
 precisely when a locally-sound argument says it could bend.
 
+**No change freezes.** Owner, 2026-07-30, on submission day, declining a
+proposed merge freeze, verbatim: "we don't do change freezes, we do absolutely
+world class observability and the ability to respond quickly and safely to
+issues." The freeze instinct treats change as the risk; this estate treats
+blindness and slow response as the risk. A freeze buys nothing a well-observed,
+fast-response system lacks, costs throughput, and normalises fear of the deploy
+path on the day confidence matters. Never propose a change freeze, code freeze
+or merge moratorium as a risk control, on launch days included; when the
+instinct fires, the question is whether the surface's observability is
+world-class and whether a break can be answered quickly and safely, and a "no"
+there is the work to surface. Full-condition gates on every merge stay: that is
+structure, not a freeze.
+
 ## Architectural Excellence Over Expediency
 
 We **always, ALWAYS** choose long-term architectural excellence
@@ -235,6 +248,20 @@ only while the architecture keeps it extractable. A component whose
 licence cannot be named in one word is one where general mechanism and
 product identity cohabit.
 
+Open source and public is the Oak and UK Government standard (owner,
+2026-08-12, verbatim, on a proposal that framed opening a private Oak
+repository as a licensing cost: "open source and public is the Oak and UK Gov
+standard, forcing that change is actually a huge positive"). This is Oak
+policy as the owner states it. Its external root is the Government Service
+Standard's point 12,
+[Make new source code open](https://www.gov.uk/service-manual/service-standard/point-12-make-new-source-code-open),
+which binds the services in that standard's scope and names its own exceptions;
+Oak, a public body, holds the same default for its own surfaces. So a proposal
+that makes a private Oak surface public is aligned with standing policy, and
+the framing burden is on staying private. File the open-sourcing itself under
+benefits and policy alignment; only the transitional work (a security review
+before exposure, secrets-in-history hygiene) is a cost.
+
 A mechanism built to prove a capability is a consumer of the
 framework, never the framework: check its warrant when it outlives its
 demonstration. An identity built as an override sheet to prove live
@@ -278,7 +305,7 @@ named Capability Foundations (the owner, 2026-10-02, verbatim: "the
 Reliable Atoms concept has been replaced by the Capability Foundations
 concept"; OCE's foundations records under its architecture docs define
 the concept and carry the owner's September 2026 direction); the
-quotation stands as spoken. The 2026-09-08 decision bounds the class
+quotation stands as spoken. The 2026-09-08 decision (OCE's ADR-230) bounds the class
 (language/runtime, protocol, storage, transport and platform capabilities
 and standards conformance stay under the sentence above), owns the
 provenance discipline that keeps learning distinct from adapting, and
@@ -490,6 +517,11 @@ this way produces cleaner boundaries and simpler classification.
   of responsibility, keeping boundaries and public API clear with
   index.ts files, using TDD. Run lint after every substantive edit
   to catch violations early.
+  The limits exist to "enforce thoughtful code design and clear
+  public APIs and proper encapsulation, not to ask if the bucket
+  has enough room left" (owner, 2026-09-24): a module's room under
+  its limit is never the question, where the responsibility
+  belongs is.
 - **Never trim documentation to fit a limit** — size and complexity
   limits exist for developer experience, and documentation IS
   developer experience; a file over its limit is a signal of an
@@ -673,17 +705,18 @@ paths, setup files) don't apply.
   [`no-warning-toleration` §Problem-hiding patterns](../rules/no-warning-toleration.md#problem-hiding-patterns).
 - **Quality gates** - Run ALL gates after changes. From the repo root,
   `pnpm check` runs every gate, writing no tracked file (`pnpm fix` runs the
-  auto-fixers first): format, markdownlint, shell and runtime-only
-  lint, lint, type-check, test, `agent-tools:test:e2e` (the agent-tools
-  end-to-end and smoke suite, which builds `agent-tools/dist`), `knip`,
-  `depcruise`, `secrets:scan`, `portability:check`, `subagents:check`,
-  `skills:check`, `encoding:check`, `repo-validators:check` (whose legs
-  include the wire-contract check and the substrate audit),
-  `docs-validators:check`.
-  The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
-  production build — ADR-019). Run `check` and the E2E suite sequentially,
-  never in parallel: each is a full-host run (builds, test workers, the
-  Playwright web server). Across worktrees, full gates run side by side, at
+  auto-fixers first): `secrets:scan`, format, markdownlint, shell and
+  runtime-only lint, then one turbo run of build, type-check, lint, test and
+  test:e2e over every workspace (the agent-tools end-to-end and smoke suite
+  among them), `knip:gate`, `depcruise`, `portability:check`,
+  `subagents:check`, `skills:check`, `encoding:check`,
+  `repo-validators:check` (whose legs include the wire-contract check, the
+  family conformance check and the substrate audit), `docs-validators:check`.
+  The sequence is the TypeScript family's, declared in the family's
+  practice-operations manifest and recomputed by `validate-family-conformance`.
+  The site's Playwright suite (`test:e2e` against a production build,
+  ADR-019) runs inside that turbo leg, so `check` is the one full-host run
+  (builds, test workers, the Playwright web server). Across worktrees, full gates run side by side, at
   most two at once (item 6's ceiling of three is the hard stop of the
   mechanism it names, never a seat's allowance), and inside one worktree
   gate runs are sequential
@@ -695,7 +728,7 @@ paths, setup files) don't apply.
   fixed port, and it reuses no existing server, so a gate can only ever prove
   its own build. Git hooks enforce this — pre-commit runs
   prettier on staged files and lint on changed workspaces; pre-push runs
-  `check` and the site E2E suite.
+  `check`.
 - **Restart on fix** — After any quality-gate fix, restart the full sequence
   from the top. Fixes can introduce new issues downstream.
 - **Visual regression harness is blocking proof for rendering-risk changes**
@@ -764,8 +797,10 @@ mapping.
 Type precision is one expression of strict, complete, schema-driven practice.
 Operational detail lives in [Validation Strategy][ts-practice].
 
-- **No type shortcuts** — Never use `as`, `any`, or `!`; they disable the type
-  system ([`no-type-shortcuts.md`](../rules/no-type-shortcuts.md)).
+- **No type shortcuts** — Never use `as` (except `as const`), `any`, or a
+  non-null `!`; they disable the type system. Prefer explicit modelling,
+  labelled type imports, and runtime constants that derive the types and
+  guards you need.
 - **Type imports must be labelled** — `import type { T } from 'x'` or
   `import { type T } from 'x'`.
 - **Prefer runtime constants as type sources** — When types and predicate

@@ -2,11 +2,13 @@
 
 Curated, owner-vetted read-to-learn material for agents and the humans working
 with them (the Reference tier in `orientation.md`; promotion-gated per
-PDR-032). These files are local support docs, not part of the travelling
-Practice Core. Each entry is consulted on demand, never read at session open.
-When a file is added, moved or dropped, this index changes in the same commit.
+PDR-032). These are the Practice's reference documents, the same set in every
+estate that runs it, and this directory is their home; they are read on
+demand, never at session open, and are not part of the travelling Practice
+Core. When a file is added, moved or dropped, this index changes in the same
+commit.
 
-## Engineering practice (host guides)
+## Engineering practice
 
 | File                              | Purpose                                                                                            |
 | --------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -42,9 +44,6 @@ When a file is added, moved or dropped, this index changes in the same commit.
 | `cross-machine-collaboration.md`  | Worked instance: a Director seat and a sibling checkout on a second host                           |
 
 ## Boundaries
-
-| File                              | Purpose                                                                                            |
-| --------------------------------- | -------------------------------------------------------------------------------------------------- |
 
 The cross-platform surface matrix lives in
 `.agent/memory/executive/cross-platform-agent-surface-matrix.md` (executive

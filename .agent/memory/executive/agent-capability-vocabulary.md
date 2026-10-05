@@ -96,8 +96,13 @@ If answers 1 and 3 differ, name by answer 1 and document answer 3 as packaging.
 
 ## Related Doctrine
 
-- The audience-led capability taxonomy was ratified in OCE; this
-  repository carries it by adoption.
+- The audience-led capability taxonomy was ratified in OCE (its ADR-189); every
+  Practice instance carries it. The two product-facing categories are named
+  from OCE's audiences; in a host without those audiences they read as the
+  host's developer-facing and end-user-facing capability classes.
+- In OCE, the curriculum tools guidance and playbooks document
+  (`docs/governance/`) owns the deterministic guidance, playbook and
+  command-registry vocabulary for curriculum-facing MCP surfaces.
 - [PDR-051](../../practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md)
   owns platform skill standardisation and adapter mechanics.
 - [PDR-010](../../practice-core/decision-records/PDR-010-domain-specialist-capability-pattern.md)

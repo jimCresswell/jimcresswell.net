@@ -35,7 +35,7 @@ import { z } from 'zod';
 import { trustedShellPath } from './trusted-shell-directories.js';
 
 /** This repository's root: where the linked hook scripts and sources live. */
-export const repoRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '..', '..');
+const repoRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '..', '..');
 
 /** The throwaway project's scratch `bin/`: wrappers for the running Node and the host's `bash`. */
 const SCRATCH_BIN = 'bin';
@@ -138,7 +138,7 @@ export function inThrowawayProject(
 }
 
 /** The hook's stdin: text the harness writes, or a descriptor the hook inherits. */
-export type HookStdin = { readonly input: string } | { readonly stdio: [number, 'pipe', 'pipe'] };
+type HookStdin = { readonly input: string } | { readonly stdio: [number, 'pipe', 'pipe'] };
 
 /** How to run one hook command. */
 export interface HookRun {

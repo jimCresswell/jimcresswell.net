@@ -40,6 +40,14 @@ const PROBE_0_11_0: RepoCheckCommandResult = {
   stderr: '',
 };
 
+/** What `--version` answers for a command that is not installed. */
+const NOT_INSTALLED: RepoCheckCommandResult = {
+  status: 127,
+  signal: null,
+  stdout: '',
+  stderr: 'command not found\n',
+};
+
 const GUARDED_BASH = `#!/usr/bin/env bash\n${BASH_FLOOR_GUARD}\n  exit 1\nfi\necho run\n`;
 
 const VENDORED_SCRIPT = '.agents/skills/vendored-skill/scripts/run.sh';
@@ -83,7 +91,8 @@ function readingOf(
 
 interface GateFixture {
   readonly installer: string;
-  readonly probe: RepoCheckCommandResult;
+  /** What `--version` answers for each shellcheck command, the one on PATH and the repo-scoped one. */
+  readonly probes: ReadonlyMap<string, RepoCheckCommandResult>;
   /** Each file's text in the working tree. */
   readonly tree: ReadonlyMap<string, string>;
   readonly trackedTree: Result<TrackedTreeReading, string>;
@@ -96,7 +105,10 @@ interface GateFixture {
 
 const DEFAULTS: GateFixture = {
   installer: INSTALLER,
-  probe: PROBE_0_11_0,
+  probes: new Map([
+    ['shellcheck', PROBE_0_11_0],
+    [REPO_SHELLCHECK, PROBE_0_11_0],
+  ]),
   tree: TREE,
   trackedTree: readingOf(TREE),
   findings: new Set(),
@@ -121,7 +133,7 @@ function gateRuntime(overrides: Partial<GateFixture> = {}) {
   const runtime: ShellcheckGateRuntime = {
     readInstaller: () => fixture.installer,
     hasRepoShellcheck: () => fixture.repoShellcheck,
-    probeVersion: () => fixture.probe,
+    probeVersion: (command) => fixture.probes.get(command) ?? NOT_INSTALLED,
     trackedTree: () => fixture.trackedTree,
     readSkillsLock: () => fixture.tree.get(SKILLS_LOCK),
     readHead: (file, bytes) => (fixture.tree.get(file) ?? '').slice(0, bytes),
@@ -145,8 +157,13 @@ describe('runShellcheckTracked', () => {
     expect(failures).toStrictEqual([]);
   });
 
-  it('reports the repo-scoped shellcheck when the installer has put one in .tools/bin', async () => {
-    const { runtime, lines } = gateRuntime({ repoShellcheck: true });
+  it('runs the repo-scoped shellcheck when the installer has put one in .tools/bin, whatever PATH holds', async () => {
+    // The shellcheck on PATH is the wrong version: only the repo-scoped one passes the pin.
+    const probes = new Map([
+      [REPO_SHELLCHECK, PROBE_0_11_0],
+      ['shellcheck', { ...PROBE_0_11_0, stdout: 'version: 0.9.0\n' }],
+    ]);
+    const { runtime, lines } = gateRuntime({ repoShellcheck: true, probes });
 
     await expect(runShellcheckTracked(runtime)).resolves.toBe(0);
 
@@ -309,8 +326,8 @@ describe('runShellcheckTracked before it lints', () => {
   });
 
   it('fails before linting when the shellcheck it resolved is another version', async () => {
-    const probe = { ...PROBE_0_11_0, stdout: 'version: 0.9.0\n' };
-    const { runtime, lines, failures } = gateRuntime({ probe });
+    const probes = new Map([['shellcheck', { ...PROBE_0_11_0, stdout: 'version: 0.9.0\n' }]]);
+    const { runtime, lines, failures } = gateRuntime({ probes });
 
     await expect(runShellcheckTracked(runtime)).resolves.toBe(1);
 

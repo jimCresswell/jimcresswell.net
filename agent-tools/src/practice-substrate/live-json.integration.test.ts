@@ -1,5 +1,7 @@
+import { ok } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
+import { type InstanceTierProbe } from './instance-tier.js';
 import { evaluateCollaborationJsonSurfaces } from './live-json.js';
 import { collaborationAjv, validateWithAjv } from './live-json-support.js';
 import {
@@ -18,13 +20,16 @@ import {
  * the test-helpers surface (the injected-seams rule).
  */
 
+/** Every registry here is present, so the leg never consults the probe. */
+const NOTHING_IGNORED: InstanceTierProbe = ok(new Set());
+
 describe('evaluateCollaborationJsonSurfaces contract-parser leg', () => {
   it('passes a clean estate', async () => {
     const root = await makeTempSubstrateRepo({
       activeClaims: { schema_version: '1.4.0', claims: [] },
     });
     try {
-      expect(await evaluateCollaborationJsonSurfaces(root)).toStrictEqual([]);
+      expect(await evaluateCollaborationJsonSurfaces(root, NOTHING_IGNORED)).toStrictEqual([]);
     } finally {
       await removeTempSubstrateRepo(root);
     }
@@ -36,7 +41,7 @@ describe('evaluateCollaborationJsonSurfaces contract-parser leg', () => {
       commsEventFiles: { 'broken-event.json': 'not json at all' },
     });
     try {
-      const findings = await evaluateCollaborationJsonSurfaces(root);
+      const findings = await evaluateCollaborationJsonSurfaces(root, NOTHING_IGNORED);
       const commsFindings = findings.filter((finding) => finding.surface === 'collaboration-comms');
       expect(commsFindings.map((finding) => finding.id)).toStrictEqual(['invalid-json']);
     } finally {
@@ -54,7 +59,7 @@ describe('evaluateCollaborationJsonSurfaces contract-parser leg', () => {
       commsEventFiles: { 'wrong-shape.json': JSON.stringify({ kind: 'narrative' }) },
     });
     try {
-      const findings = await evaluateCollaborationJsonSurfaces(root);
+      const findings = await evaluateCollaborationJsonSurfaces(root, NOTHING_IGNORED);
       const commsFindings = findings.filter((finding) => finding.surface === 'collaboration-comms');
       expect(commsFindings.map((finding) => finding.id)).toStrictEqual(['schema-incoherence']);
     } finally {
@@ -80,7 +85,7 @@ describe('evaluateCollaborationJsonSurfaces contract-parser leg', () => {
           { schema_version: '1.2.0', commit_queue: [], claims: [] },
         ),
       ).toStrictEqual([]);
-      expect(await evaluateCollaborationJsonSurfaces(root)).toStrictEqual([
+      expect(await evaluateCollaborationJsonSurfaces(root, NOTHING_IGNORED)).toStrictEqual([
         {
           id: 'schema-incoherence',
           surface: 'collaboration-active-claims',

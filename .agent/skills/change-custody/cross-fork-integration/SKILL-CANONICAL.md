@@ -24,9 +24,11 @@ description: >-
 
 ## Why this exists
 
-This line is a fork that syncs from its upstream by merge, forever. Each sync
-leaves a merge commit upstream never sees, so the fork's tree is upstream's
-tree plus a deliberate, enumerated, regenerable diff — and the check that it
+This line is a fork that syncs from its upstream by merge until it merges back.
+Each sync leaves a merge commit the Oak fork does not carry until the merge-back
+fast-forwards it, so the fork's tree is upstream's tree plus a deliberate,
+enumerated diff (the regenerable fork diffs and the local cures of carried
+code) — and the check that it
 still is so is a tree diff, never an ancestry test. Git proves that the text of
 two histories combines. It has no conception of meaning, and an integration
 changes meaning in four places git cannot see:
@@ -66,7 +68,7 @@ no conception of meaning."
   arriving through a sync is a fact about upstream, not a constraint here,
   unless the owner adopts it.
 - **Fork diffs are deliberate, enumerated and regenerable.** Organisational
-  identity lives below the tree (ADR-228); a hand-carried prose divergence that
+  identity lives below the tree (ADR-231); a hand-carried prose divergence that
   upstream also edits conflicts at every sync and is a defect to remove.
 - **Numbering across lineages.** ADRs, PDRs and plan ids are minted
   sequentially from the highest existing record on the lineage being edited.
@@ -128,7 +130,29 @@ carrier merge and landing proof names the first.
   --json number`); a `--search` head-name query returns nothing, silently,
   and any listing read as "the full open list" carries an explicit
   `--limit`, because the default page is thirty. A second carrier for the same
-  lineage is a defect; close it on the record.
+  lineage is a defect; close it on the record. A carrier the mirror has moved past is
+  replaced by the seat taking it up, never by automation (the carrier workflow
+  closes and deletes nothing, so it can never act on a carrier a seat is taking
+  up). Where the open carrier is unworked (a draft the carrier workflow's bot app
+  opened, read from the pull request's author, whose head is still the sha in its
+  branch name, with no review round), the seat, holding the claim on the
+  carrier branch pattern so that exactly one seat acts, replaces it in an order
+  that the carrier workflow's own schedule cannot break, because that workflow
+  opens nothing while any carrier is open. First, with the stale carrier still
+  open, the mirror: where it is behind the upstream tip, dispatch the mirror
+  workflow under the merge-bot's `upstream-mirror-dispatch` scope, wait for that
+  run to conclude `success` (a dispatch returns at once and orders nothing), and
+  re-read the mirror's tip as equal to the upstream tip. Second, as the bot,
+  comment the reason on the stale carrier, close it and delete its branch. Third,
+  dispatch the carrier workflow under `workflow-dispatch` and wait for it; a
+  scheduled run may have opened the carrier first, and either is accepted. Take
+  up the one open carrier, confirming its head is the mirror's tip
+  (worked instance: the carrier at
+  release 1.181.4, replaced by hand on 2026-09-17 after sitting 76 commits
+  stale). A carrier holding a seat's commits or a review round is never
+  replaced: a newer tip queues as the next carrier. A pull request on the carrier
+  branch pattern by any other author is never closed or deleted by a seat,
+  whatever its state: it is raised to the owner.
 - Exclusive counts both ways, from fetched history, and the merge base.
 
 ### 2. Recompute the merge against the live tip, not the PR's cached base
@@ -469,5 +493,8 @@ declared" (Finch binds Sundog's panel-refuted frame of 2026-09-06, events 4382df
   here — the reference direction runs plan → doctrine).
 - `.agent/skills/set-up-worktree-lane/SKILL-CANONICAL.md` — the identity
   check and the build; step 3 above says why its branch cut does not apply.
-- OCE's ADR "organisational identity below the tree" (at the OCE pin, not carried here)
+- the host's decision record on organisational identity below the tree, where
+  it has one (OCE: ADR-231, `231-organisational-identity-below-the-tree.md` in
+  its decision-record directory; jimcresswell.net states the rule in this
+  skill's step 3 and holds no record)
   — why the fork diff is enumerated and identity-free.

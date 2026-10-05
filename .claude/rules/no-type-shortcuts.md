@@ -1,7 +1,0 @@
----
-paths:
-  - "**/*.ts"
-  - "**/*.tsx"
----
-
-Read and follow `.agent/rules/no-type-shortcuts.md`.

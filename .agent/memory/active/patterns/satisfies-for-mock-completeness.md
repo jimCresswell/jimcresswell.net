@@ -3,6 +3,7 @@ name: "satisfies for Mock Completeness"
 polarity: pattern
 use_this_when: "A test mock implements an interface and you need compile-time proof that all methods are present"
 category: testing
+layer: family
 proven_in: "apps/oak-curriculum-mcp-stdio/src/app/startup.integration.test.ts"
 proven_date: 2026-03-03
 barrier:

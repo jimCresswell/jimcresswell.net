@@ -1,6 +1,6 @@
 ---
 name: accessibility-expert
-description: 'Accessibility reviewer focusing on WCAG compliance, semantics, and assistive flows.'
+description: "Accessibility specialist for both read-only review and active-workflow planning, grounded in WCAG 2.2 AA, WAI-ARIA 1.3 Editor's Draft, and the ARIA Authoring Practices Guide for rendered HTML, keyboard interaction, colour contrast, and focus management in UI-shipping workspaces."
 tools:
   - read_file
   - list_directory

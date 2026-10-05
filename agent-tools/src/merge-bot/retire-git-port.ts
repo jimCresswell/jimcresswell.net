@@ -2,7 +2,8 @@ import type { Result } from '@engraph/result';
 
 import type { CasOutcome, PlannedDelete, RetireReadings } from './retire-decision.js';
 import { deletePlannedRef, removeBranchConfig } from './retire-git-delete.js';
-import { readOriginUrls, type RetireGit } from './retire-git-read.js';
+import { readOriginUrls } from './retire-git-read.js';
+import type { RetireGit } from './retire-git-run.js';
 import { gatherReadings } from './retire-readings.js';
 import { worktreesUsing } from './retire-worktrees.js';
 
