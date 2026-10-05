@@ -166,6 +166,25 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-05 16:4xZ (Sycamore holds Spore, `18d874`, the n=1 seat, at the alignment node's
+finish; this block supersedes the 11:3xZ block below where they differ).** The delivery node
+`practice-alignment-by-class` is at its finish: the doctrine landing merged in both estates (321 and #353)
+and the code landing merged in both (322 at `SHA:d3647a9d`, 16:26Z; the sibling's #354 at
+`SHA:ef42bd11f`, 16:33Z), each through the bot's door with Copilot's review binding the tip; the
+byte proof at the merged tips is a comment on each landing (829 shared, 776 identical, 9
+placeholder-only, 44 differing, the contextual layer). The ruleset 12555444 requires
+`run-quality-gates` and `CodeQL` alone. Six branches retired here under the bot with their
+worktrees, four in the sibling. Todo 3 is done in both working trees: the strategic node's
+§Delivery finish line, the three nodes archived with their dispositions. What remains for this
+seat: the records committed, both coordination branches folded (DUE), the wrap. Named for the
+next seat, ordinary work: the first follow-up pull request per estate puts `--fail-if-no-match`
+on every filtered alias in the family manifest and the root scripts with a manifest self-check
+in the conformance validator (Copilot's finding on the final sibling tip, true in both estates);
+the remainders on the two landings' descriptions. For the owner: this seat took the PDR-140
+clause 4 rebudget once per landing by its own recorded decision (the gate's text says "by the
+owner"); the ruleset edit ran under the operator credential. No claim, watcher, heartbeat or
+background agent survives this seat.
+
 **§STATE, 2026-10-05 11:3xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's handoff
 word; this block supersedes the §POINTER blocks below where they differ).** The code landing of
 `practice-alignment-by-class` is open in both estates: 322 here (thirteen commits, CI green, one

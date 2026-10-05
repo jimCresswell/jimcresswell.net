@@ -21,6 +21,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-05T16:4xZ: the code landing merged in both estates; `practice-alignment-by-class`
+  at its finish** (Sycamore holds Spore, 18d874). 322 merged here at `SHA:d3647a9d` after six
+  settlement pushes (the last under the one PDR-140 rebudget), the sibling's #354 at
+  `SHA:ef42bd11f` after four; the byte proof at the merged tips on each landing. The ruleset
+  requires the fan-in and CodeQL alone; the six parity lanes retired under the bot. The strategic
+  node's §Delivery carries the finish line; the three nodes are archived. Named for ordinary
+  work: the fail-closed flag on the family manifest's filtered aliases with a validator case.
+  moved for the sites: nothing / moved for the Practice: the family layer is one shape in both
+  estates, merged and proved.
+
 - **2026-10-05T11:3xZ: the code landing open in both estates; the seat handed off at the owner's
   word** (Crucible binds Slag, 7b999c). 322 here at `SHA:d371218b` (thirteen commits; the family
   shape, the carries with their tests, the conformance check; CI green at the previous tip; nine
@@ -251,6 +261,16 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-05T16:4xZ (Sycamore holds Spore, 18d874, the n=1 seat, at the alignment node's finish):
+both landings are merged (322 at `SHA:d3647a9d`, #354 at `SHA:ef42bd11f`); the node is archived
+with the finish line on the strategic node. Next safe steps, in order:
+
+1. `git status --branch` in both primaries, first-hand; the coordination branches fold next.
+2. The first follow-up pull request per estate: `--fail-if-no-match` on every filtered alias in
+   `.agent/family/typescript/practice-operations.json` and the root scripts, with the manifest
+   self-check in `validate-family-conformance`; the same bytes in both estates.
+3. The napkin rotation here (over 1,000 lines).
 
 STATE, 2026-10-05T11:3xZ (Crucible binds Slag, 7b999c, the n=1 seat, at the owner's handoff word):
 the code landing is open in both estates (322 here, #354 in the sibling); the doctrine landing is

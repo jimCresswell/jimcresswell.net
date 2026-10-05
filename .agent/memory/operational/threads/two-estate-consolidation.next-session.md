@@ -109,6 +109,52 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-05T16:4xZ — both landings merged; the alignment node at its finish (Sycamore holds Spore, 18d874)
+
+- **The finish, first-hand.** 322 merged at `SHA:d3647a9d` (16:26:59Z) and the sibling's #354 at
+  `SHA:ef42bd11f` (16:33:15Z), each through the bot's door with Copilot's review binding the tip
+  (`--expect copilot-pull-request-reviewer`). 322 took six settlement pushes from the predecessor's
+  `SHA:d371218b` (`SHA:15804f7a`, `SHA:a3635494`, `SHA:159b5d95`, `SHA:aeb49538` among them), #354
+  four, the same bytes but for the package scope and the skill prefix; the last push in each
+  estate under the one PDR-140 clause 4 rebudget, taken by this seat's recorded decision on each
+  description (the gate's text says "by the owner"; highlighted for the owner). The byte proof at
+  the merged tips is a comment on each landing: 829 shared, 776 identical, 9 placeholder-only, 44
+  differing, the contextual layer the doctrine landing named; no family-layer path differs.
+- **What was cured and what was routed.** Cured with tests in both estates: the conformance
+  validator's presence readings (ENOENT alone is absence; the optional-reads class one module at
+  the reader seam), the fan-in's `if: always()` required, one family gate run per `check`, the
+  depcruise gate's root containment, the `review-cost` alias fail-closed, the spawn-topology proof
+  a smoke, the python helper's exits and stderr; the sibling's setup action pinned and its fan-in's
+  one skip condition. Rejected with RUN evidence: Codex's Windows P1, Copilot's knip claim. Routed
+  as signed lines: three observations on carried one-body modules on 322, the cited scripts'
+  `../` escape and the tracked `skills-lock.json` read on #354, and Copilot's last finding on the
+  final sibling tip, true in both estates: the family manifest's `agent-tools:build`,
+  `agent-tools:prevent-accidental-major-version` and `agent-tools:secret-scan` lack
+  `--fail-if-no-match` while the hook comments say every agent-tools alias carries it. The first
+  follow-up pull request per estate cures the class (the flag on every filtered alias, a manifest
+  self-check in the validator).
+- **The estate after the merges.** The ruleset 12555444 requires `run-quality-gates` and
+  `CodeQL` alone (PUT under the operator credential, read back active). Retired under the bot and
+  read back absent, their clean worktrees removed first: here `feat/practice-code-landing`,
+  `docs/parity-c24-specification` (318), `fix/parity-heading-gate-cures` (309, re-cut as 310),
+  `docs/parity-rules-surface-1` and `docs/parity-skills-surface-1` (the owner's card answer),
+  `docs/parity-hooks-surface` (unopened, disposed inside the landing by the node's mechanism; its
+  tip `SHA:c6262b00` carried eighteen README lines main does not hold byte for byte); in the
+  sibling `feat/practice-code-landing`, `feat/parity-carry-doctrine-batch` (#349), and the two
+  surface lanes on the owner's card answer. The local ledger branches and the detached
+  `consolidation-2w` worktree removed after `merge-base --is-ancestor` read their tips in the
+  default branches.
+- **Todo 3.** The strategic node `best-of-each-practice` §Delivery carries the dated finish line
+  with both merge shas; `practice-alignment-by-class`, `practice-parity-two-landings` and
+  `practice-parity-for-extraction` are archived in both estates with their dispositions
+  (`status: archived`; the extraction node's `superseded_by` now names the alignment node);
+  `practice-language-separation` archived earlier on the owner's card answer with its three
+  questions kept. `validate-plan-corpus` OK in both.
+- **The seat's processes at this block.** The comms watcher (Monitor) live; no claim beyond the
+  implementer claim in the home registry; no heartbeat (n=1). The remaining acts: these records
+  committed on the coordination branches, both folds (DUE), the wrap with its closeout broadcast
+  and the claim closed.
+
 ### 2026-10-05T11:3xZ — the code landing open in both estates; the handoff at the owner's word (Crucible binds Slag, 7b999c)
 
 - **The owner's words of this sitting, verbatim.** 09:1xZ: "take your time to plan remaining
