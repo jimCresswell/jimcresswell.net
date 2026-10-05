@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 
 import { isJsonObject } from '../../core/json.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
-import { listTrackedFiles } from '../../core/tracked-file-scan.js';
+import { describeGitReadFailure, listTrackedFiles } from '../../core/repository-paths.js';
 import { readRegularFileTextNoFollow } from '../../skills-adapter-generate/read-regular-file.js';
 import { claudeCommandQuotingIssues } from './claude-hook-quoting.js';
 import {
@@ -109,8 +109,9 @@ writtenPaths.push(...ruleProjections.written);
 // Every declared rule glob must match a tracked file: a glob naming a root the tree does not
 // have renders exactly and loads its rule nowhere, and nothing else would report it.
 let globStats = '';
-try {
-  const trackedPaths = listTrackedFiles(repoRoot);
+const trackedListing = listTrackedFiles(repoRoot);
+if (trackedListing.ok) {
+  const trackedPaths = trackedListing.value;
   issues.push(...ruleGlobResolutionIssues(ruleProjections.declarations, trackedPaths));
   const globCount = ruleProjections.declarations.reduce(
     (count, declaration) =>
@@ -118,9 +119,9 @@ try {
     0,
   );
   globStats = `, ${globCount} rule globs resolved against ${trackedPaths.length} tracked files`;
-} catch (error) {
+} else {
   issues.push(
-    `Rule glob resolution failed: ${error instanceof Error ? error.message : 'Unknown failure listing the tracked files.'}`,
+    `Rule glob resolution failed: cannot list tracked files — ${describeGitReadFailure(trackedListing.error)}.`,
   );
 }
 

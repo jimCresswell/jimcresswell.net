@@ -28,12 +28,9 @@
  */
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
+import { describeGitReadFailure, listTrackedFiles } from '../../core/repository-paths.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import {
-  describeUnreadable,
-  listTrackedFiles,
-  readScanFiles,
-} from '../../core/tracked-file-scan.js';
+import { describeUnreadable, readScanFiles } from '../../core/tracked-file-scan.js';
 import { loadScopedContentBlocks } from '../../hook-policy/policy-loader.js';
 import { type ScopedContentBlockGroup } from '../../hook-policy/types.js';
 
@@ -122,7 +119,11 @@ async function main(): Promise<number> {
     return resolved;
   }
   const { block, needles } = resolved;
-  const scan = readScanFiles(repoRoot, listTrackedFiles(repoRoot));
+  const listing = listTrackedFiles(repoRoot);
+  if (!listing.ok) {
+    return refuse(`cannot list tracked files — ${describeGitReadFailure(listing.error)}`);
+  }
+  const scan = readScanFiles(repoRoot, listing.value);
   if (!scan.ok) {
     return refuse(describeUnreadable(scan.error));
   }

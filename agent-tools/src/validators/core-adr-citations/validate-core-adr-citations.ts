@@ -10,8 +10,9 @@
  * is strict: nothing exempts a citation.
  *
  * Wired into root `docs-validators:check`, which runs in `pnpm check`,
- * `pnpm check:docs` and CI. Exit 0 = clean; 1 = findings; 2 = refusal (no
- * tracked Core file, or a Core file unreadable or not scannable as text). The
+ * `pnpm check:docs` and CI. Exit 0 = clean; 1 = findings; 2 = refusal (a
+ * listing git could not give, no tracked Core file, or a Core file unreadable
+ * or not scannable as text). The
  * status is returned from `main` and set on `process.exitCode`, so buffered
  * diagnostics reach a pipe before the process ends.
  *
@@ -22,11 +23,8 @@ import { err, ok, type Result } from '@engraph/result';
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import {
-  describeUnreadable,
-  listTrackedFiles,
-  readScanFiles,
-} from '../../core/tracked-file-scan.js';
+import { describeGitReadFailure, listTrackedFiles } from '../../core/repository-paths.js';
+import { describeUnreadable, readScanFiles } from '../../core/tracked-file-scan.js';
 
 import {
   findCoreCitations,
@@ -44,7 +42,11 @@ function refuse(reason: string): number {
 
 /** The tracked Core files as text; a refusal reason when any cannot be read as text. */
 function readCore(repoRoot: string): Result<ScanFile[], string> {
-  const corePaths = listTrackedFiles(repoRoot).filter(isCorePath);
+  const listing = listTrackedFiles(repoRoot);
+  if (!listing.ok) {
+    return err(`cannot list tracked files — ${describeGitReadFailure(listing.error)}`);
+  }
+  const corePaths = listing.value.filter(isCorePath);
   if (corePaths.length === 0) {
     return err('zero tracked Core files found — refusing a vacuous pass');
   }
