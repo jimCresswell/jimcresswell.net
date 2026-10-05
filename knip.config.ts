@@ -76,17 +76,6 @@ const config: KnipConfig = {
         // `tsx src/...` from the workspace directory, which knip reads as entries.
         'src/corpus-analysis/workflows/*.workflow.ts',
         'src/restatement-audit/workflows/*.workflow.ts',
-        // The restatement-audit build and ledger commands run through their
-        // package scripts (`tsx src/...`); listed so the stage metas and the
-        // gazetteer projection they import are traced from the real entry.
-        'src/restatement-audit/workflows/build/build-workflows.ts',
-        'src/restatement-audit/workflows/build/build-run-artefact.ts',
-        // knip 6.37 here does not trace the stage registry and the run-data
-        // deriver through the two build entries above (the sibling estate's
-        // 6.32 does); listed so the stage metas and the gazetteer projection
-        // they import are audited as used. Retire when the knip versions align.
-        'src/restatement-audit/workflows/build/build-config.ts',
-        'src/restatement-audit/workflows/build/derive-stage-run-data.ts',
         // Smoke checks: the smoke runner (`src/bin/run-smoke-tests.ts`)
         // discovers and spawns every `smoke-tests/*.smoke.ts`, so no import or
         // package script names them; each is an entry so what it imports from
