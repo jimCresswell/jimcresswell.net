@@ -182,8 +182,9 @@ on every filtered alias in the family manifest and the root scripts with a manif
 in the conformance validator (Copilot's finding on the final sibling tip, true in both estates);
 the remainders on the two landings' descriptions. For the owner: this seat took the PDR-140
 clause 4 rebudget once per landing by its own recorded decision (the gate's text says "by the
-owner"); the ruleset edit ran under the operator credential. No claim, watcher, heartbeat or
-background agent survives this seat.
+owner"); the ruleset edit ran under the operator credential. Until the wrap the comms watcher (a
+Monitor) and the implementer claim in this registry are live; the wrap closes the claim, posts the
+closeout and stops the watcher, so that none survives it.
 
 **§STATE, 2026-10-05 11:3xZ (Crucible binds Slag, `7b999c`, the n=1 seat, at the owner's handoff
 word; this block supersedes the §POINTER blocks below where they differ).** The code landing of

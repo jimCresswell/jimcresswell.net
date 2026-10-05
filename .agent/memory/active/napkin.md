@@ -1,8 +1,9 @@
 # Napkin (rotated 2026-10-02)
 
 > **Rotation due (overflow flag, 2026-10-04).** This notebook passed its ~500-line rotation
-> trigger on 2026-10-03 and holds about 810 lines; the rotation (napkin skill §Rotation,
-> consolidate-docs step 6) is the next consolidation's act. Nothing here is trimmed before it.
+> trigger on 2026-10-03 and passed 1,100 lines on 2026-10-05; the rotation (napkin skill
+> §Rotation, consolidate-docs step 6) is the next consolidation's act. Nothing here is trimmed
+> before it.
 
 Rotation note (Hazel tracks Trunk, 7d8b9d, the second two-estate consolidation): the whole
 notebook as it stood at blob f8fb3f4a9 (lines 1 to 1187: the 2026-09-30 rotation note and every block
