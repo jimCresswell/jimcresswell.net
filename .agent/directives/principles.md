@@ -714,10 +714,9 @@ paths, setup files) don't apply.
   family conformance check and the substrate audit), `docs-validators:check`.
   The sequence is the TypeScript family's, declared in the family's
   practice-operations manifest and recomputed by `validate-family-conformance`.
-  The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
-  production build — ADR-019). Run `check` and the E2E suite sequentially,
-  never in parallel: each is a full-host run (builds, test workers, the
-  Playwright web server). Across worktrees, full gates run side by side, at
+  The site's Playwright suite (`test:e2e` against a production build,
+  ADR-019) runs inside that turbo leg, so `check` is the one full-host run
+  (builds, test workers, the Playwright web server). Across worktrees, full gates run side by side, at
   most two at once (item 6's ceiling of three is the hard stop of the
   mechanism it names, never a seat's allowance), and inside one worktree
   gate runs are sequential
@@ -729,7 +728,7 @@ paths, setup files) don't apply.
   fixed port, and it reuses no existing server, so a gate can only ever prove
   its own build. Git hooks enforce this — pre-commit runs
   prettier on staged files and lint on changed workspaces; pre-push runs
-  `check` and the site E2E suite.
+  `check`.
 - **Restart on fix** — After any quality-gate fix, restart the full sequence
   from the top. Fixes can introduce new issues downstream.
 - **Visual regression harness is blocking proof for rendering-risk changes**

@@ -157,7 +157,7 @@ And the host's design-system records; in this estate:
 
 | Document | Purpose |
 |----------|---------|
-| `.agent/skills/design-system/SKILL-CANONICAL.md` | The design-system skill: the reading order and how to use the system |
+| `.agent/skills/domain-craft/ui-design/design-system-usage/SKILL-CANONICAL.md` | The design-system skill: the reading order and how to use the system |
 | `docs/architecture/decision-records/006-header-responsive-layout.md` | Repository precedent for responsive layout and header rhythm |
 | `docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md` | Rendering risk needs blocking visual proof |
 | `jcdotnet/app/globals.css` | The token source: the `@theme` block and the custom properties |

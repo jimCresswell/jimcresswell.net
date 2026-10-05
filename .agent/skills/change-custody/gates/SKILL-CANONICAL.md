@@ -64,13 +64,12 @@ pnpm repo-validators:check     # CI parity, claim freshness, guard routing, poli
 pnpm docs-validators:check     # reference direction, machine-local paths, lineage names, core ADR citations, host names in Core headings, markdown links, cited scripts, cited paths, patterns index, exchange register
 ```
 
-The host's gates outside `check` (jimcresswell.net: the push hook runs the
-end-to-end suite after `check`; the rest run when the work touches their
-surface):
+The host's gates outside `check` (jimcresswell.net; each runs when the work
+touches its surface):
 
 ```bash
 pnpm build                      # the site and every workspace; PDF generation is part of it
-pnpm test:e2e                   # Playwright against a production build (pre-push runs this)
+pnpm test:e2e                   # Playwright against a production build (check's turbo leg runs it)
 pnpm test:ui                # the same suite in Playwright's UI mode
 pnpm visual-regression:harness  # rendered-proof comparison for visual work
 pnpm check:docs                 # format + markdownlint + the docs validators (a subset of check)
