@@ -125,9 +125,9 @@ live in `jcdotnet/app/globals.css` as a `@theme` block plus custom properties; c
 consume them through utility classes and `var()` references. Light and dark themes are
 switched by `jcdotnet/components/theme-provider.tsx` and `jcdotnet/components/theme-toggle.tsx`. The generated
 PDF renders from the same components in the same build, so a token change reaches the PDF.
-Rendered proof comes from the visual-regression harness
-(`pnpm visual-regression:harness <base-ref> <target-ref>`), and per ADR-022 a visual verdict
-without rendered proof is not a verdict.
+Rendered proof comes from the host's rendered-proof instrument (its visual-regression harness
+over a base and a target ref, or its visual probe, named in its gates skill), and per the
+host's rendered-proof record a visual verdict without rendered proof is not a verdict.
 
 ## Authoritative Sources (MUST CONSULT)
 
@@ -157,7 +157,7 @@ And the host's design-system records; in this estate:
 
 | Document | Purpose |
 |----------|---------|
-| `.agent/skills/design-system/SKILL-CANONICAL.md` | The design-system skill: the reading order and how to use the system |
+| `.agent/skills/domain-craft/ui-design/design-system-usage/SKILL-CANONICAL.md` | The design-system skill: the reading order and how to use the system |
 | `docs/architecture/decision-records/006-header-responsive-layout.md` | Repository precedent for responsive layout and header rhythm |
 | `docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md` | Rendering risk needs blocking visual proof |
 | `jcdotnet/app/globals.css` | The token source: the `@theme` block and the custom properties |

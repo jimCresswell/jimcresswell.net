@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -8,7 +7,6 @@ import { typeSafeEntries } from '@engraph/type-helpers';
 
 import { SCHEMA_FILENAMES } from '../../collaboration-state/collaboration-json-validation.js';
 import { CLOSED_CLAIMS_SCHEMA_VERSION } from '../../collaboration-state/types.js';
-import { type InstanceTierProbes } from '../instance-tier.js';
 
 /**
  * Real-IO temp-repo builder for practice-substrate integration tests
@@ -18,22 +16,6 @@ import { type InstanceTierProbes } from '../instance-tier.js';
  */
 
 const SCHEMAS_DIR = fileURLToPath(new URL('../../collaboration-state/schemas/', import.meta.url));
-
-/**
- * Presence probes for a temp tree that is not a git repository: the disk is
- * real, the ignore verdict is fixed. `ignoredTierProbes` models the instance
- * tier (the repository's rules ignore the path); `trackedTierProbes` models a
- * surface git would track.
- */
-export const ignoredTierProbes: InstanceTierProbes = {
-  exists: existsSync,
-  isIgnored: () => true,
-};
-
-export const trackedTierProbes: InstanceTierProbes = {
-  exists: existsSync,
-  isIgnored: () => false,
-};
 
 /** What the temp repository holds. Every surface is absent unless named. */
 export interface TempSubstrateRepoContents {

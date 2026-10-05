@@ -85,8 +85,8 @@ jobs:
         run: pnpm docs-validators:check
       - name: Repo validators
         run: pnpm repo-validators:check
-      - name: Unused code (knip)
-        run: pnpm knip
+      - name: Unused code (knip gate; a crash can never read as a pass)
+        run: pnpm knip:gate
       - name: Dependency boundaries (depcruise)
         run: pnpm depcruise
 
@@ -130,16 +130,8 @@ jobs:
           To share a cache, configure an optional remote Turbo cache: a TURBO_TEAM
           repository variable and a Vercel OIDC policy for this repository
           (docs/engineering/build-system.md, Caching)."
-      - name: Build
-        run: pnpm build
-      - name: Lint
-        run: pnpm lint
-      - name: Type-check
-        run: pnpm type-check
-      - name: Unit and integration tests
-        run: pnpm test
-      - name: Agent-tools end-to-end and smoke suite
-        run: pnpm agent-tools:test:e2e
+      - name: Build, type-check, lint, unit and integration tests
+        run: pnpm exec turbo run build type-check lint test --continue --log-order=grouped
 
   e2e:
     name: e2e
@@ -153,5 +145,41 @@ jobs:
         run: pnpm --filter @jimcresswell/www exec puppeteer browsers install chrome
       - name: Install Playwright browser
         run: pnpm --filter @jimcresswell/www exec playwright install --with-deps chromium
-      - name: Site end-to-end suite
-        run: pnpm --filter @jimcresswell/www test:e2e
+      - name: End-to-end suites (the site under Playwright, the agent tooling's end-to-end and smoke suite)
+        run: pnpm exec turbo run test:e2e --continue --log-order=grouped
+
+  # The one required status check (with CodeQL): every gate above feeds this
+  # fan-in, so branch protection names one context and a job added to this
+  # workflow is gated the moment it is listed here. The TypeScript family's
+  # one CI shape (the owner's decision of 2026-10-04); the family conformance
+  # validator checks that every job in this workflow is in the needs list.
+  run-quality-gates:
+    name: run-quality-gates
+    permissions: {}
+    needs:
+      - secret-scan
+      - install
+      - static-checks
+      - build-and-test
+      - e2e
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Require EVERY gate result to be `success`. This is fail-closed: failure,
+      # cancelled, and skipped all block, and any future GitHub result value is
+      # treated as non-passing without another edit. The expression is read via an
+      # env var so no `${{ }}` value is interpolated into the shell.
+      - name: Verify every quality gate passed
+        env:
+          RESULTS: ${{ join(needs.*.result, ',') }}
+        run: |
+          echo "Gate results: $RESULTS"
+          IFS=',' read -ra results <<< "$RESULTS"
+          for result in "${results[@]}"; do
+            if [ "$result" != "success" ]; then
+              echo "::error::Quality gate result '$result' is not 'success' — blocking merge."
+              exit 1
+            fi
+          done
+          echo "All quality gates passed."

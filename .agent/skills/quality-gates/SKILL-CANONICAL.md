@@ -14,11 +14,12 @@ The definitive gate list with all command names lives in
 `.agent/directives/principles.md` (Code Quality section). The summary:
 
 - `pnpm check` runs the blocking gate sequence read-only; `pnpm fix` runs the auto-fixers first
-  (format, markdownlint, shell and runtime-only lint, lint, type-check, test, knip, depcruise, gitleaks, the Practice validators).
-- The pre-push hook runs `pnpm check` and the site's end-to-end suite; pre-commit is light (staged-file format and markdown checks, lint on changed workspaces).
-- `pnpm test:e2e` and `pnpm test:ui` are separate Playwright surfaces.
-  `pnpm test:e2e` runs the full suite (journeys, behaviour, a11y, PDF)
-  against a production build; the build is run by Playwright's web server.
+  (format, markdownlint, shell and runtime-only lint, lint, type-check, test, the dead-code and
+  dependency-graph checks, the secret scan, the Practice validators).
+- The pre-push hook runs `pnpm check` and then the host's product legs; pre-commit is light
+  (staged-file format and markdown checks, lint on changed workspaces).
+- `pnpm test:e2e` and `pnpm test:ui` are separate Playwright surfaces; `pnpm test:e2e` runs
+  the host's end-to-end suite against a production build.
 - When changing Practice Core or directive docs, run
   `pnpm practice:fitness:informational` and
   `pnpm practice:vocabulary` as advisory companion checks.
@@ -26,11 +27,11 @@ The definitive gate list with all command names lives in
 When running gates individually for restart-on-fix, start from
 `pnpm format:root`, then `pnpm markdownlint:root`.
 
-For rendering-risk changes, the visual regression harness is also blocking
-proof even though it is not part of `pnpm check`. Run
-`pnpm visual-regression:harness <base-ref> <target-ref>` during implementation
-once a slice could affect rendered output, and rerun it after later slices as
-needed. Do not leave all harness review until the end.
+For rendering-risk changes, rendered proof is also blocking even though it is
+not part of `pnpm check` (`.agent/rules/visual-verdicts-require-rendered-proof.md`).
+Run the `visual-verification` skill's instrument during implementation once a
+slice could affect rendered output, and rerun it after later slices as needed.
+Do not leave all rendered-proof review until the end.
 
 ## Restart-on-fix discipline
 

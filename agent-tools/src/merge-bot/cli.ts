@@ -11,6 +11,7 @@ import { runPushAction, type PushActionInput } from './push-cli.js';
 import { RETIRE_USAGE } from './retire-args.js';
 import { runRetireAction, type RetireActionInput } from './retire-cli.js';
 import type { BranchArgSeams } from './branch-arg.js';
+import type { GitActionInput } from './git-action-input.js';
 import type { GitExecutor } from './git-executor.js';
 import type { PushGitReads, TokenFileStore } from './push-git.js';
 import type { PushMint } from './push-mint.js';
@@ -35,6 +36,11 @@ import { permissionLevelsFor, TOKEN_SCOPE_NAMES } from './token-scopes.js';
  * child environment (never the token itself: hooks inherit that
  * environment), no force, no `--no-verify`, default-branch targets refused
  * by name.
+ *
+ * `merge-bot retire` deletes a merged branch's names (local, cached
+ * tracking, remote) once each is proven an ancestor of the remote default
+ * branch's tip: the remote one as the bot by compare-and-swap, under the
+ * `branch-retire` scope, minted only when that delete is due.
  *
  * `merge-bot mint-token` prints a short-lived GitHub App installation token
  * to stdout (and nothing else there), for the OTHER bot writes
@@ -86,7 +92,7 @@ export interface MergeBotCliInput {
   readonly tokenFiles?: TokenFileStore;
   /** Push seam: git's answers about HEAD and origin. */
   readonly gitReads?: PushGitReads;
-  /** Push seam: the push's token mint. Unset, the push mints with `mintForConfig` over `fetchImpl`, `readFileImpl` and `nowEpochSeconds`; set, those three never reach the push. */
+  /** Push and retire seam: the token mint. Unset, each mints with `mintForConfig` over `fetchImpl`, `readFileImpl` and `nowEpochSeconds`; set, the mint's seams never reach them, though `fetchImpl` still carries the retire's GraphQL calls. `mint-token` and `merge` never read it. */
   readonly mintImpl?: PushMint;
   /** Retire-action seam: git as the command asks of it. */
   readonly retireGitPort?: RetireGitPort;
@@ -143,11 +149,10 @@ function mergeActionInputFrom(input: MergeBotCliInput): MergeActionInput {
   };
 }
 
-/** The injection seams the push and retire actions share: everything retire takes but its mint and its git port. */
-type GitActionInput = Omit<RetireActionInput, keyof MintSeams | 'gitPort'>;
-
+/** Forward the seams the push and retire actions share (`git-action-input.ts`), composing the mint. */
 function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
   return {
+    mint: input.mintImpl ?? ((config) => mintForConfig(config, mintSeamsFrom(input))),
     identityInput: {
       envHome: input.env.HOME,
       repoRoot: input.repoRoot,
@@ -164,11 +169,10 @@ function gitActionInputFrom(input: MergeBotCliInput): GitActionInput {
   };
 }
 
-/** Forward the CLI's injection seams to the push action, composing its mint. */
+/** Forward the CLI's injection seams to the push action. */
 function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
   return {
     ...gitActionInputFrom(input),
-    mint: input.mintImpl ?? ((config) => mintForConfig(config, mintSeamsFrom(input))),
     sleepImpl: input.sleepImpl,
     nowIsoImpl: input.nowIsoImpl,
     tokenFiles: input.tokenFiles,
@@ -176,11 +180,11 @@ function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
   };
 }
 
-/** Forward the CLI's injection seams to the retire action. */
+/** Forward the CLI's injection seams to the retire action: the shared set, GitHub for its GraphQL calls, its git port. */
 function retireActionInputFrom(input: MergeBotCliInput): RetireActionInput {
   return {
     ...gitActionInputFrom(input),
-    ...mintSeamsFrom(input),
+    fetchImpl: input.fetchImpl,
     gitPort: input.retireGitPort,
   };
 }

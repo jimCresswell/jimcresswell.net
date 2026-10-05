@@ -153,7 +153,9 @@ authority to be obeyed.
 ## Annex A — binding: `codex mcp-server` (stdio)
 
 **Probe-verified 2026-08-02** (first in OCE), against the pinned
-`codex_cli_version` in `the-codex-dialogues`' probe record (the record
+`codex_cli_version` in
+[`the-codex-dialogues/probe-record.md`](../the-codex-dialogues/references/probe-record.md)
+(the record
 is the sole holder of the version literal; the runnable probe lives
 beside it, `scripts/probe-codex-mcp-server.mjs`); by plank 2 an
 instrument opens on this binding only in a host that carries the record

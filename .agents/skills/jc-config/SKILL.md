@@ -1,8 +1,8 @@
 ---
 name: jc-config
-description: Use when work changes Next.js, pnpm, env, or tooling configuration surfaces.
+description: Use when work changes Turbo, pnpm, env, or tooling configuration surfaces.
 ---
 
 # Config (Cross-tool)
 
-Read and follow `.agent/skills/config/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/reviewer-companions/config/SKILL-CANONICAL.md`.

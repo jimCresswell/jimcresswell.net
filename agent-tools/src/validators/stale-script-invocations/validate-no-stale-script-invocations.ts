@@ -1,6 +1,6 @@
 import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
-import { collectTrackedPaths } from '../../core/repository-paths.js';
+import { describeGitReadFailure, listTrackedPathSet } from '../../core/repository-paths.js';
 import { writeLine, writeErrorLine } from '../../core/terminal-output.js';
 
 import {
@@ -63,13 +63,16 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/'];
  * Surfaces may be optional (e.g. `.agent/research` exists in some checkouts
  * and not others); the shared walker treats a missing root as empty.
  */
-function discoverScannableFiles(): Promise<readonly { path: string; content: string }[]> {
+function discoverScannableFiles(
+  universe: ReadonlySet<string>,
+): Promise<readonly { path: string; content: string }[]> {
   return discoverAuthoredFiles(repoRoot, {
     roots: SCANNED_ROOTS,
     rootFiles: [],
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
-    universe: collectTrackedPaths(repoRoot),
+    excludedRoots: [],
+    universe,
   });
 }
 
@@ -80,7 +83,15 @@ function formatFindings(findings: readonly StaleScriptInvocationFinding[]): stri
 }
 
 async function main(): Promise<void> {
-  const files = await discoverScannableFiles();
+  const listing = listTrackedPathSet(repoRoot);
+  if (!listing.ok) {
+    writeErrorLine(
+      `validate-no-stale-script-invocations: cannot list tracked paths — ` +
+        `${describeGitReadFailure(listing.error)}. BLOCKING.`,
+    );
+    process.exit(1);
+  }
+  const files = await discoverScannableFiles(listing.value);
   const findings = findStaleScriptInvocations(files);
 
   if (findings.length === 0) {

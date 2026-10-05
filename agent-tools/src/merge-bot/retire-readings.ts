@@ -8,8 +8,8 @@ import {
   probeRemoteBranch,
   readSymbolicRefs,
   readDefaultBranch,
-  type RetireGit,
 } from './retire-git-read.js';
+import type { RetireGit } from './retire-git-run.js';
 import { caseCollisionsOf, type ListedRef } from './retire-parse.js';
 import { worktreesUsing } from './retire-worktrees.js';
 

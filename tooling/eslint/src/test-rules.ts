@@ -1,3 +1,9 @@
+/**
+ * The shared test-file rules, in a module with no import-time IO: `shared.ts` builds
+ * import-resolver settings when it loads (a working-directory read), and a test that
+ * imports these rules must not consume that. `shared.ts` re-exports them, so every
+ * workspace keeps its import path.
+ */
 import type { Linter } from 'eslint';
 
 /**

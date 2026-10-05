@@ -1,124 +1,118 @@
-import { existsSync } from 'node:fs';
-
-import { collectIgnoredPaths, collectTrackedPaths } from '../core/repository-paths.js';
-import { finding } from './finding.js';
-import { absolutePath } from './live-types.js';
-import { type SubstrateFinding } from './types.js';
-
 /**
- * Presence of an instance-tier substrate surface.
+ * The substrate audit's instance tier: whether a surface the audit reads is
+ * absent by design, asked of the repository and never of a hand-kept list.
  *
- * The collaboration state's instance tier (the claims registries, the comms
- * events, the generated shared-comms-log render) is untracked by design: one
- * checkout's live coordination, preserved on disk and never carried in git
- * (`.agent/state/README.md`). A fresh checkout — a worktree, CI — therefore
- * has none of it, and a gate that read absence as failure would prove the
- * local disk, not the repository. The tier is derived from the repository's
- * own declaration, its ignore rules, never from a hand-kept list: an absent
- * surface that git ignores is absent by design and is reported as
- * informational; an absent surface that git would track is a real gap and
- * falls through to the reader, which fails loudly.
- *
- * The probes are injectable so the evaluators stay testable over a temp tree
- * that is not a git repository.
+ * @remarks
+ * A surface is instance tier exactly when the repository's ignore rules ignore
+ * it and git does not track it, which is what `listIgnoredPaths` in
+ * `core/repository-paths.ts` asks git; a fresh checkout, a worktree and CI
+ * carry none of it. The disk is asked first: a surface the read found is
+ * present and validated in full whatever the rules say, so the tier never
+ * excuses content. Only an absent surface consults the probe. A probe git
+ * could not answer fails closed: every absent surface then earns a blocking
+ * finding of its own, and no other reader's findings are hidden.
  *
  * @packageDocumentation
  */
 
-/** Filesystem and ignore-rule probes the presence classifier asks. */
-export interface InstanceTierProbes {
-  /** Whether the absolute path exists on disk. */
-  readonly exists: (path: string) => boolean;
-  /**
-   * Whether the repo-relative path is instance tier by the repository's own
-   * declaration: ignored by its rules and not tracked.
-   */
-  readonly isIgnored: (repoRoot: string, repoRelativePath: string) => boolean;
-}
+import { map, ok, type Result } from '@engraph/result';
+
+import { describeGitReadFailure, type GitReadFailure } from '../core/repository-paths.js';
+import { finding } from './finding.js';
+import { type SubstrateFinding } from './types.js';
 
 /**
- * The live probes: the disk, and the repository's own tier declaration.
- *
- * A surface is instance tier when the repository's rules ignore it AND git
- * does not track it. The ignore probe alone runs without the index
- * (`--no-index`) and answers "would the rules ignore this path", so a tracked
- * file that matched a pattern and was deleted locally would otherwise read
- * absent-by-design; the tracked-tree check closes that hole structurally
- * rather than by assumption.
+ * The classified surfaces git keeps out of every checkout (ignored and
+ * untracked), or why git gave no answer.
  */
-export const liveInstanceTierProbes: InstanceTierProbes = {
-  exists: existsSync,
-  isIgnored: (repoRoot, repoRelativePath) =>
-    !collectTrackedPaths(repoRoot).has(repoRelativePath) &&
-    collectIgnoredPaths(repoRoot, [repoRelativePath]).has(repoRelativePath),
-};
+export type InstanceTierProbe = Result<ReadonlySet<string>, GitReadFailure>;
 
-/** Where a surface stands on this checkout. */
+/**
+ * Where one surface stands: on disk (`present`); absent, and the repository
+ * keeps it out of every checkout (`absent-by-design`); or absent where the
+ * repository would track it (`absent`).
+ */
 export type SurfacePresence = 'present' | 'absent-by-design' | 'absent';
 
 /**
- * Classify a surface's presence on this checkout.
- *
- * @param repoRoot - Repository root the surface path is relative to.
- * @param repoRelativePath - The surface's repo-relative POSIX path.
- * @param probes - The disk and ignore-rule probes.
- * @returns `present` when the file exists; `absent-by-design` when it does not
- * and the repository's ignore rules ignore it (instance tier); `absent`
- * otherwise.
+ * Classify one surface from whether its read found it and from the report's
+ * probe; the probe's failure only when the surface is absent.
  */
-export function classifySurfacePresence(
-  repoRoot: string,
-  repoRelativePath: string,
-  probes: InstanceTierProbes,
-): SurfacePresence {
-  if (probes.exists(absolutePath(repoRoot, repoRelativePath))) {
-    return 'present';
+export function classifySurfacePresence(input: {
+  readonly path: string;
+  readonly found: boolean;
+  readonly probe: InstanceTierProbe;
+}): Result<SurfacePresence, GitReadFailure> {
+  if (input.found) {
+    return ok('present');
   }
-  return probes.isIgnored(repoRoot, repoRelativePath) ? 'absent-by-design' : 'absent';
+  return map(input.probe, (instanceTier) =>
+    instanceTier.has(input.path) ? 'absent-by-design' : 'absent',
+  );
 }
 
 /**
- * The blocking finding for a surface the repository would track and which is
- * nonetheless absent: a real gap, named with its path, never an errno
- * escaping the evaluator. Repair carries provenance because the surface is
- * shared state, not a generated artefact.
- *
- * @param surface - The substrate surface id.
- * @param repoRelativePath - The absent surface's repo-relative path.
- * @returns The finding.
+ * The findings a surface's presence earns on its own: none when present (its
+ * content is validated instead); one informational finding when absent by
+ * design; one blocking finding when absent where the repository would track
+ * it, or when the probe failed.
  */
-export function missingSurfaceFinding(surface: string, repoRelativePath: string): SubstrateFinding {
-  return finding({
-    id: 'missing-surface',
-    surface,
-    severity: 'blocking',
-    repair: 'manual-with-provenance',
-    message: `Surface ${repoRelativePath} is absent and the repository's rules would track it; restore it from history or the writer that owns it.`,
-    evidence: [repoRelativePath],
-  });
-}
-
-/**
- * The informational finding for an instance-tier surface this checkout does
- * not carry. Repair is deterministic: seeding (the registries) or the first
- * write (the render) creates it.
- *
- * @param surface - The substrate surface id.
- * @param repoRelativePath - The absent surface's repo-relative path.
- * @returns The finding.
- */
-export function instanceTierAbsentFinding(
+export function presenceFindings(
   surface: string,
-  repoRelativePath: string,
-): SubstrateFinding {
+  path: string,
+  presence: Result<SurfacePresence, GitReadFailure>,
+): readonly SubstrateFinding[] {
+  if (!presence.ok) {
+    return [probeFailureFinding(surface, path, presence.error)];
+  }
+  if (presence.value === 'absent-by-design') {
+    return [instanceTierSurfaceAbsentFinding(surface, path)];
+  }
+  return presence.value === 'absent' ? [missingSurfaceFinding(surface, path)] : [];
+}
+
+function instanceTierSurfaceAbsentFinding(surface: string, path: string): SubstrateFinding {
   return finding({
     id: 'instance-tier-surface-absent',
     surface,
     severity: 'informational',
     repair: 'deterministic',
     message:
-      `Instance-tier surface ${repoRelativePath} is absent on this checkout: untracked by the ` +
-      "repository's ignore rules, created by seeding or the first write, validated when present.",
-    evidence: [repoRelativePath],
+      `Instance-tier surface ${path} is absent by design: the ignore rules keep it out of ` +
+      'every checkout and git tracks none of it, so a fresh checkout or a linked worktree ' +
+      'carries none. Nothing to repair in this checkout: the live state belongs to the ' +
+      'coordination home (the registry contract), where the collaboration-state CLI seeds the ' +
+      'claim registries once the path is verified, and the first comms write creates the render.',
+    evidence: [path],
+  });
+}
+
+function missingSurfaceFinding(surface: string, path: string): SubstrateFinding {
+  return finding({
+    id: 'missing-surface',
+    surface,
+    severity: 'blocking',
+    repair: 'manual-with-provenance',
+    message:
+      `Surface ${path} is absent, but the repository would track it. Restore it from ` +
+      'history or from the writer that owns it.',
+    evidence: [path],
+  });
+}
+
+function probeFailureFinding(
+  surface: string,
+  path: string,
+  failure: GitReadFailure,
+): SubstrateFinding {
+  return finding({
+    id: 'live-reader-failure',
+    surface,
+    severity: 'blocking',
+    repair: 'manual-with-provenance',
+    message:
+      `Live substrate reader failed: ${path} is absent, and git could not say whether by ` +
+      `design: ${describeGitReadFailure(failure)}.`,
+    evidence: [path],
   });
 }

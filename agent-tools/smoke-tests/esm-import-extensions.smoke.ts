@@ -45,9 +45,9 @@ const RELATIVE_SPECIFIER_PATTERN = /(?:from\s*|import\s*\(\s*)['"](\.[^'"]*)['"]
  * source. `.ts` and `.tsx` are accepted anywhere: `rewriteRelativeImportExtensions`
  * (set in `agent-tools/tsconfig.json`) rewrites them to `.js` on emit, so they
  * resolve from `dist`, and Node 24 resolves them literally when it runs the
- * source directly, as it does for the `PreCompact` observer and its modules.
- * Whether a source-run module graph actually resolves — a `.js` specifier there
- * does not — is proven by running it, in `pre-compact-observe-hook.smoke.ts`.
+ * source directly. No registered hook runs from source any more (the
+ * `PreCompact` observer runs from `dist` like the other hooks); the one `.ts`
+ * specifier left, in `hook-error-logs.smoke.ts`, runs under `tsx`.
  */
 const EXPLICIT_EXTENSION_PATTERN = /\.(?:js|mjs|cjs|json|ts|tsx)$/u;
 

@@ -21,8 +21,8 @@ export const PATTERNS_README = 'README.md';
 const PATTERN_INDEX_HEADING = '## Pattern Index';
 
 /** The Practice layer a pattern is placed in (PDR-143 §Decision); every pattern declares one. */
-export const PATTERN_LAYERS = ['general', 'family', 'contextual'] as const;
-export type PatternLayer = (typeof PATTERN_LAYERS)[number];
+const PATTERN_LAYERS = ['general', 'family', 'contextual'] as const;
+type PatternLayer = (typeof PATTERN_LAYERS)[number];
 
 function isPatternLayer(value: string): value is PatternLayer {
   return PATTERN_LAYERS.some((layer) => layer === value);

@@ -5,4 +5,4 @@ description: Use when work changes rendered, semantic, motion, or PDF surfaces w
 
 # Accessibility (Cross-tool)
 
-Read and follow `.agent/skills/accessibility/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/reviewer-companions/accessibility/SKILL-CANONICAL.md`.

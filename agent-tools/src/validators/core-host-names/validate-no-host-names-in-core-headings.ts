@@ -43,11 +43,8 @@ import { err, ok, type Result } from '@engraph/result';
 import { parseGitRemoteUrl, type GitRemoteRepository } from '../../core/git-remote-url.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import {
-  describeUnreadable,
-  listTrackedFiles,
-  readScanFiles,
-} from '../../core/tracked-file-scan.js';
+import { describeGitReadFailure, listTrackedFiles } from '../../core/repository-paths.js';
+import { describeUnreadable, readScanFiles } from '../../core/tracked-file-scan.js';
 import { resolveTrustedGit } from '../../core/trusted-git.js';
 
 import {
@@ -137,7 +134,11 @@ function readOrigin(repoRoot: string): Result<GitRemoteRepository, string> {
 
 /** The tracked Core documents as text; a refusal reason when any cannot be read as text. */
 function readCoreDocuments(repoRoot: string): Result<ScanFile[], string> {
-  const corePaths = listTrackedFiles(repoRoot).filter(isScannedCorePath);
+  const listing = listTrackedFiles(repoRoot);
+  if (!listing.ok) {
+    return err(`cannot list tracked files — ${describeGitReadFailure(listing.error)}`);
+  }
+  const corePaths = listing.value.filter(isScannedCorePath);
   if (corePaths.length === 0) {
     return err('zero tracked Core documents found — refusing a vacuous pass');
   }

@@ -74,6 +74,7 @@ const spec = {
   rootFiles: ['AGENTS.md', 'MISSING.md'],
   extensions: new Set(['.md']),
   excludedPathFragments: ['/archive/', 'nested/CHANGELOG.md'],
+  excludedRoots: [],
   universe,
 };
 
@@ -111,6 +112,24 @@ describe('discoverAuthoredFiles', () => {
     await discoverAuthoredFiles(REPO, { ...spec, rootFiles: [] }, recording);
 
     expect(reads).toStrictEqual([`${REPO}/.agent/rules/a.md`, `${REPO}/.agent/rules/nested/b.md`]);
+  });
+
+  it('prunes an excluded root by prefix: the history roots the entry file declares as host data', async () => {
+    const files = await discoverAuthoredFiles(
+      REPO,
+      {
+        ...spec,
+        rootFiles: [],
+        excludedPathFragments: [],
+        excludedRoots: ['.agent/rules/nested/'],
+      },
+      fakeFs(tree),
+    );
+
+    expect(files.map((file) => file.path)).toStrictEqual([
+      '.agent/rules/a.md',
+      '.agent/rules/archive/old.md',
+    ]);
   });
 
   it('propagates a file-system error that is not a missing path', async () => {

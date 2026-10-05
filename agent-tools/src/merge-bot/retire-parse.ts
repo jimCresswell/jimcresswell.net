@@ -5,9 +5,9 @@ import { err, ok, type Result } from '@engraph/result';
 import { printable } from '../pr-watch/printable.js';
 
 /**
- * The text parsers behind `merge-bot retire`: what git and a remote URL
- * print, turned into typed readings. Pure, so every reading the command
- * decides on is proven here without a git process.
+ * The text parsers behind `merge-bot retire`: what git prints, turned into
+ * typed readings. Pure, so every reading the command decides on is proven
+ * here without a git process.
  *
  * Exactness is the point of each. `git ls-remote` matches any ref ENDING in
  * its pattern, and a case-insensitive filesystem lets `rev-parse` resolve
@@ -170,38 +170,6 @@ export function parseWorktrees(porcelain: string): readonly WorktreeEntry[] {
     }
   }
   return entries;
-}
-
-/** A GitHub repository named by a remote URL. */
-export interface GithubRepo {
-  readonly owner: string;
-  readonly repo: string;
-}
-
-const GITHUB_URL_FORMS: readonly RegExp[] = [
-  /^https:\/\/(?:[^@/]+@)?github\.com\/([A-Za-z0-9-]+)\/([A-Za-z0-9._-]+?)(?:\.git)?\/?$/,
-  /^git@github\.com:([A-Za-z0-9-]+)\/([A-Za-z0-9._-]+?)(?:\.git)?$/,
-  /^ssh:\/\/git@github\.com\/([A-Za-z0-9-]+)\/([A-Za-z0-9._-]+?)(?:\.git)?$/,
-];
-
-/**
- * The owner and repository a GitHub remote URL names, in the https (with or
- * without credentials in it), scp-like and ssh forms, held to the characters
- * GitHub allows in each; undefined for anything else, a query or a fragment
- * included. The URL itself is never echoed: an https URL can carry a token. Read from the RAW configured
- * URL: `git remote get-url` applies `insteadOf` rewriting, which would bind
- * the check to whatever a rewrite made of it.
- */
-export function githubRepoOf(url: string): GithubRepo | undefined {
-  for (const form of GITHUB_URL_FORMS) {
-    const match = form.exec(url.trim());
-    const owner = match?.[1];
-    const repo = match?.[2];
-    if (owner !== undefined && repo !== undefined) {
-      return { owner, repo };
-    }
-  }
-  return undefined;
 }
 
 /** A local absolute path in git's words: after the line's start, a space or a quote. */

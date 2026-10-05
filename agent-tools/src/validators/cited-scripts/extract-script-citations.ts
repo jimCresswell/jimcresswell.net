@@ -9,11 +9,20 @@
  * directory, a recursive run, a path or glob filter, a placeholder name, an
  * unfiltered pnpm built-in) are omitted rather than guessed at. A filtered
  * built-in is kept so its filter is checked, and a `pnpm` that an `echo` or
- * `printf` prints is text, not a command.
+ * `printf` prints is text, not a command. Inside a fenced block a `cd` line
+ * makes its directory current for the lines that follow (`command-context.ts`),
+ * so a bare `pnpm <script>` after `cd agent-tools` carries that directory.
  *
  * @packageDocumentation
  */
 
+import {
+  AT_ROOT,
+  advance,
+  COMMAND_TERMINATORS,
+  lineStart,
+  type CommandContext,
+} from './command-context.js';
 import { PNPM_BUILTINS } from './pnpm-builtins.js';
 
 /** One `pnpm` command found in a code span or fenced block. */
@@ -28,6 +37,12 @@ export interface ScriptCitation {
   readonly workspaceFilter?: string;
   /** Set when the command is a pnpm built-in: only its filter is checked, never a script. */
   readonly builtin?: true;
+  /**
+   * The repo-relative directory a preceding `cd` in the same block made
+   * current, normalised (`./x/` is `x`); absent when the command runs at the
+   * root.
+   */
+  readonly workingDirectory?: string;
 }
 
 /** Flags that consume the next token. */
@@ -48,12 +63,8 @@ const UNRESOLVABLE_FLAGS: ReadonlySet<string> = new Set([
   '--recursive',
 ]);
 
-/** Tokens that end a shell command. */
-const COMMAND_TERMINATORS: ReadonlySet<string> = new Set(['&&', '||', '|', ';']);
 /** The terminators, split off a token they touch (`check&&echo`); `||` before `|`. */
 const TERMINATOR_SPLIT = /(&&|\|\||\||;)/;
-/** Commands whose arguments are printed text, so a `pnpm` among them is not run. */
-const HINT_COMMANDS: ReadonlySet<string> = new Set(['echo', 'printf']);
 
 /** A script name: word characters and dots, with colon-separated segments that never end bare. */
 const SCRIPT_NAME_PATTERN = /^[A-Za-z][\w.-]*(?::[\w.-]+)*$/;
@@ -71,16 +82,23 @@ const INLINE_CODE_PATTERN = /`([^`\n]+)`/g;
 export function extractScriptCitations(content: string): readonly ScriptCitation[] {
   const citations: ScriptCitation[] = [];
   let inFence = false;
+  let context = AT_ROOT;
   const lines = content.split('\n');
   for (let index = 0; index < lines.length; index += 1) {
     const lineText = lines[index] ?? '';
     if (FENCE_PATTERN.test(lineText)) {
       inFence = !inFence;
+      context = AT_ROOT;
       continue;
     }
-    const candidates = inFence ? [lineText] : inlineCodeSpans(lineText);
-    for (const candidate of candidates) {
-      citations.push(...citationsInCommandText(candidate, index + 1));
+    if (inFence) {
+      const read = citationsInCommandText(lineText, index + 1, context);
+      citations.push(...read.citations);
+      context = read.context;
+      continue;
+    }
+    for (const span of inlineCodeSpans(lineText)) {
+      citations.push(...citationsInCommandText(span, index + 1, AT_ROOT).citations);
     }
   }
   return citations;
@@ -125,28 +143,37 @@ export function citationsInWords(
 
 /**
  * The `pnpm` script citations in one line of prose command text, numbered
- * `line`. Every invocation on the line is read, up to a shell comment.
+ * `line`, read in `context`, with the context the line leaves for the next
+ * one. Every invocation on the line is read, up to a shell comment; a `cd`
+ * that opens a command changes the directory for what follows it.
  */
-function citationsInCommandText(text: string, line: number): readonly ScriptCitation[] {
+function citationsInCommandText(
+  text: string,
+  line: number,
+  context: CommandContext,
+): { readonly citations: readonly ScriptCitation[]; readonly context: CommandContext } {
   const tokens = commandTokens(text);
   const citations: ScriptCitation[] = [];
-  let printing = false;
+  let state = lineStart(context);
   for (let index = 0; index < tokens.length; index += 1) {
     const token = tokens[index] ?? '';
-    if (COMMAND_TERMINATORS.has(token)) {
-      printing = false;
-    } else if (HINT_COMMANDS.has(token)) {
-      printing = true;
-    }
-    if (token !== 'pnpm' || printing) {
+    state = advance(state, token, tokens[index + 1]);
+    if (token !== 'pnpm' || state.printing || state.context.lost) {
       continue;
     }
     const citation = parseInvocation(tokens, index + 1, line);
     if (citation !== undefined) {
-      citations.push(citation);
+      citations.push(inDirectory(citation, state.context));
     }
   }
-  return citations;
+  return { citations, context: state.context };
+}
+
+/** The citation as read in `context`: carrying its directory when a `cd` named one. */
+function inDirectory(citation: ScriptCitation, context: CommandContext): ScriptCitation {
+  return context.directory === undefined
+    ? citation
+    : { ...citation, workingDirectory: context.directory };
 }
 
 interface ParseState {

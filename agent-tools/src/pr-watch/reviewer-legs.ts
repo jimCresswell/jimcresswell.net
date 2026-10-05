@@ -58,11 +58,12 @@ export interface ComputeReviewerLegsInput {
 }
 
 /**
- * SKILL item 3: the checks-green timeout (more than 10 min) that ends a leg
- * nobody serves. The only clock in settlement: item 4 reads measured state
- * (every leg landed, no expected reviewer requested, no run live).
+ * SKILL item 3/4: the checks-green timeout and the settled quiet window (more
+ * than 10 min) that ends a leg nobody serves. The only clock in settlement:
+ * item 4 reads measured state (every leg landed, no expected reviewer
+ * requested, no run live); the pull-request tally reads the same window.
  */
-const REVIEW_TIMEOUT_MS = 10 * 60 * 1000;
+export const QUIET_WINDOW_MS = 10 * 60 * 1000;
 
 // Skip-marker classification (SKILL: substantive reviews vs SKIPPED markers).
 // A skip phrase alone declares NO REVIEW OCCURRED — such a body must never
@@ -166,10 +167,7 @@ function legFor(input: ComputeReviewerLegsInput, reviewer: string): ReviewerLeg 
     };
   }
   const unevaluableMarker = tipBound.some((review) => isSkipMarker(review.body));
-  if (
-    input.checksGreenAt !== null &&
-    elapsedMs(input.checksGreenAt, input.now) > REVIEW_TIMEOUT_MS
-  ) {
+  if (input.checksGreenAt !== null && elapsedMs(input.checksGreenAt, input.now) > QUIET_WINDOW_MS) {
     return {
       reviewer,
       state: 'SKIPPED',

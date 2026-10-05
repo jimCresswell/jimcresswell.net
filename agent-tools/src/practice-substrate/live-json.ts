@@ -1,42 +1,23 @@
 import { readFile } from 'node:fs/promises';
 
-import type Ajv from 'ajv/dist/2020.js';
-
-import {
-  checkCollaborationSurfaceContract,
-  isContractSchemaId,
-} from '../collaboration-state/surface-contract.js';
-import { type CollaborationSchemaId } from '../collaboration-state/collaboration-json-validation.js';
-import {
-  classifySurfacePresence,
-  instanceTierAbsentFinding,
-  liveInstanceTierProbes,
-  missingSurfaceFinding,
-  type InstanceTierProbes,
-} from './instance-tier.js';
+import { type InstanceTierProbe } from './instance-tier.js';
+import { evaluateCollaborationRecords } from './live-collaboration-records.js';
 import { readCommsEventFiles } from './live-comms-events.js';
+import { liveSubstrateReads } from './live-reads.js';
 import {
-  ACTIVE_CLAIMS_PATH,
-  CLOSED_CLAIMS_PATH,
-  CONVERSATIONS_ROOT,
-  ESCALATIONS_ROOT,
   MANIFEST_PATH,
   MANIFEST_SCHEMA_PATH,
   absolutePath,
   parseFailureFinding,
   parseManifestDocument,
-  surfaceContractFinding,
   parseMigrationLedgerDocument,
   type ManifestDocument,
   type ManifestReadResult,
 } from './live-types.js';
 import {
   collaborationAjv,
-  listJsonFiles,
-  parseJsonText,
   schemaValidationFindings,
   toMigrationLedgerEntry,
-  validateWithAjv,
 } from './live-json-support.js';
 import { evaluateMigrationLedgerSnapshot, type JsonFieldMap } from './report-evaluators.js';
 import { type SubstrateFinding } from './types.js';
@@ -91,90 +72,22 @@ export async function evaluateMigrationLedgers(
 }
 
 /**
- * Evaluate the collaboration JSON surfaces. The claim registries are
- * instance tier: absent by design on a fresh checkout, validated when
- * present (`instance-tier.ts`); `probes` is injectable for tests over a temp
- * tree that is not a git repository.
+ * The collaboration JSON surfaces of the repository at `repoRoot`: the claim
+ * registries and threads ({@link evaluateCollaborationRecords}), classified by
+ * `probe`, then the comms events.
  */
 export async function evaluateCollaborationJsonSurfaces(
   repoRoot: string,
-  probes: InstanceTierProbes = liveInstanceTierProbes,
+  probe: InstanceTierProbe,
 ): Promise<readonly SubstrateFinding[]> {
-  const ajv = await collaborationAjv(repoRoot);
-
   return [
-    ...(await evaluateClaimSurfaces(repoRoot, ajv, probes)),
-    ...(await evaluateThreadDirectory(repoRoot, ajv, CONVERSATIONS_ROOT)),
-    ...(await evaluateThreadDirectory(repoRoot, ajv, ESCALATIONS_ROOT)),
+    ...(await evaluateCollaborationRecords({
+      reads: liveSubstrateReads(repoRoot),
+      schemas: await collaborationAjv(repoRoot),
+      probe,
+    })),
     ...(await evaluateCommsEvents(repoRoot)),
   ];
-}
-
-async function evaluateClaimSurfaces(
-  repoRoot: string,
-  ajv: Ajv,
-  probes: InstanceTierProbes,
-): Promise<readonly SubstrateFinding[]> {
-  return [
-    ...(await evaluateInstanceTierJsonFile({
-      repoRoot,
-      ajv,
-      probes,
-      surface: 'collaboration-active-claims',
-      path: ACTIVE_CLAIMS_PATH,
-      schemaId: 'active-claims.schema.json',
-    })),
-    ...(await evaluateInstanceTierJsonFile({
-      repoRoot,
-      ajv,
-      probes,
-      surface: 'collaboration-closed-claims',
-      path: CLOSED_CLAIMS_PATH,
-      schemaId: 'closed-claims.schema.json',
-    })),
-  ];
-}
-
-/**
- * An instance-tier JSON surface: reported informational when absent by
- * design, validated against its schema and contract when present, and a
- * blocking `missing-surface` finding when absent although the repository
- * would track it.
- */
-async function evaluateInstanceTierJsonFile(input: {
-  readonly repoRoot: string;
-  readonly ajv: Ajv;
-  readonly probes: InstanceTierProbes;
-  readonly surface: string;
-  readonly path: string;
-  readonly schemaId: CollaborationSchemaId;
-}): Promise<readonly SubstrateFinding[]> {
-  const presence = classifySurfacePresence(input.repoRoot, input.path, input.probes);
-  if (presence === 'absent-by-design') {
-    return [instanceTierAbsentFinding(input.surface, input.path)];
-  }
-  if (presence === 'absent') {
-    return [missingSurfaceFinding(input.surface, input.path)];
-  }
-  return evaluateJsonFileWithSchema(input);
-}
-
-async function evaluateThreadDirectory(
-  repoRoot: string,
-  ajv: Ajv,
-  root: string,
-): Promise<readonly SubstrateFinding[]> {
-  const surface =
-    root === CONVERSATIONS_ROOT ? 'collaboration-conversations' : 'collaboration-escalations';
-  const schemaId =
-    root === CONVERSATIONS_ROOT ? 'conversation.schema.json' : 'escalation.schema.json';
-  const files = await listJsonFiles(repoRoot, root);
-  const liveFiles = files.filter((file) => !file.endsWith('.example.json'));
-  const findings = await Promise.all(
-    liveFiles.map((path) => evaluateJsonFileWithSchema({ repoRoot, ajv, surface, path, schemaId })),
-  );
-
-  return findings.flat();
 }
 
 async function evaluateMigrationLedger(
@@ -195,34 +108,6 @@ async function evaluateMigrationLedger(
 
 async function evaluateCommsEvents(repoRoot: string): Promise<readonly SubstrateFinding[]> {
   return (await readCommsEventFiles(repoRoot)).findings;
-}
-
-async function evaluateJsonFileWithSchema(input: {
-  readonly repoRoot: string;
-  readonly ajv: Ajv;
-  readonly surface: string;
-  readonly path: string;
-  // One schemaId, one vocabulary — isContractSchemaId decides which
-  // surfaces carry a runtime contract; the shared check owns the dispatch.
-  readonly schemaId: CollaborationSchemaId;
-}): Promise<readonly SubstrateFinding[]> {
-  const text = await readFile(absolutePath(input.repoRoot, input.path), 'utf8');
-  const parsed = parseJsonText(input.surface, input.path, text);
-  if (parsed.value === undefined) {
-    return parsed.findings;
-  }
-  if (isContractSchemaId(input.schemaId)) {
-    const checked = checkCollaborationSurfaceContract({
-      schemaId: input.schemaId,
-      path: input.path,
-      text,
-    });
-    if (!checked.ok) {
-      return [surfaceContractFinding(input.surface, input.path, checked.error)];
-    }
-  }
-
-  return validateWithAjv(input.ajv, input.schemaId, input.surface, input.path, parsed.value);
 }
 
 async function readJsonFile(

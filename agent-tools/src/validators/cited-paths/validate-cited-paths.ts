@@ -1,6 +1,13 @@
+import { map, ok, type Result } from '@engraph/result';
+
 import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
-import { collectIgnoredPaths, collectTrackedPaths } from '../../core/repository-paths.js';
+import {
+  describeGitReadFailure,
+  type GitReadFailure,
+  listIgnoredPaths,
+  listTrackedPathSet,
+} from '../../core/repository-paths.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 
 import {
@@ -62,19 +69,44 @@ const SCANNED_ROOT_FILES: readonly string[] = [
 
 const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md']);
 
-/** Scope exclusions: archives and the pre-transplant snapshot are history, not live doctrine. */
-const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/'];
+/**
+ * Scope exclusions: archives and the pre-transplant snapshot are history, not
+ * live doctrine, and an eval run's captures are history, not doctrine.
+ */
+const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/', '/evals/results/'];
 
-/** Whether the repository itself says the target belongs: tracked, or ignored by its rules. */
+/**
+ * The host's history roots, excluded by prefix: frozen backlogs, archived
+ * records, the host's architectural decision records. Host data, so each
+ * estate declares its own; the general fragments above are shared text.
+ */
+const HOST_EXCLUDED_ROOTS: readonly string[] = [];
+
+/**
+ * Whether the repository itself says the target belongs: tracked, or ignored
+ * by its rules. A citation names its target without a trailing slash, and the
+ * ignore probe reads a candidate without one as a file, so every untracked
+ * candidate is asked about twice: as written and as a directory.
+ */
 function repositoryResolver(
   tracked: ReadonlySet<string>,
   candidates: readonly string[],
-): (target: string) => boolean {
-  const ignored = collectIgnoredPaths(
-    repoRoot,
-    candidates.filter((candidate) => !tracked.has(candidate)),
+): Result<(target: string) => boolean, GitReadFailure> {
+  const untracked = candidates.filter((candidate) => !tracked.has(candidate));
+  if (untracked.length === 0) {
+    return ok((target) => tracked.has(target));
+  }
+  const probes = untracked.flatMap((candidate) => [candidate, `${candidate}/`]);
+  return map(
+    listIgnoredPaths(repoRoot, probes),
+    (ignored) => (target) =>
+      tracked.has(target) || ignored.has(target) || ignored.has(`${target}/`),
   );
-  return (target) => tracked.has(target) || ignored.has(target);
+}
+
+function refuse(reason: string): void {
+  writeErrorLine(`validate-cited-paths: ${reason}. BLOCKING.`);
+  process.exitCode = 1;
 }
 
 function formatFindings(findings: readonly MissingPathFinding[]): string {
@@ -84,18 +116,31 @@ function formatFindings(findings: readonly MissingPathFinding[]): string {
 }
 
 async function main(): Promise<void> {
-  const tracked = collectTrackedPaths(repoRoot);
+  const listing = listTrackedPathSet(repoRoot);
+  if (!listing.ok) {
+    refuse(`cannot list tracked paths — ${describeGitReadFailure(listing.error)}`);
+    return;
+  }
+  const tracked = listing.value;
   const files = await discoverAuthoredFiles(repoRoot, {
     roots: SCANNED_ROOTS,
     rootFiles: SCANNED_ROOT_FILES,
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+    excludedRoots: HOST_EXCLUDED_ROOTS,
     universe: tracked,
   });
   const candidates = [
     ...new Set(files.flatMap((file) => extractPathCitations(file.content).map((c) => c.target))),
   ];
-  const findings = findMissingPathCitations(files, repositoryResolver(tracked, candidates));
+  const resolver = repositoryResolver(tracked, candidates);
+  if (!resolver.ok) {
+    refuse(
+      `cannot ask git which cited paths it ignores — ${describeGitReadFailure(resolver.error)}`,
+    );
+    return;
+  }
+  const findings = findMissingPathCitations(files, resolver.value);
 
   if (findings.length === 0) {
     writeLine(

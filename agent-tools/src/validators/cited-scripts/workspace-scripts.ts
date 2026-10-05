@@ -12,7 +12,8 @@ import { type WorkspaceScripts } from './validate-cited-scripts-helpers.js';
 /**
  * Load the script tables the cited-scripts validator resolves against: the
  * root `package.json` scripts and, for every workspace `pnpm-workspace.yaml`
- * names, that package's scripts keyed by package name.
+ * names, that package's scripts keyed by package name, with each workspace's
+ * repo-relative directory keyed to its name.
  *
  * @packageDocumentation
  */
@@ -83,9 +84,9 @@ export async function workspaceDirectories(repoRoot: string): Promise<readonly s
 
 /**
  * The executables installed at the root: `pnpm <bin>` runs one of these when
- * no script has that name (`pnpm turbo run build`, `pnpm tsx …`), so they
- * resolve like root scripts. An unbuilt checkout has no `.bin`; that is an
- * empty set, never an error.
+ * no script has that name (`pnpm turbo run build`, `pnpm tsx …`), from the
+ * root or from a workspace directory. An unbuilt checkout has no `.bin`; that
+ * is an empty set, never an error.
  */
 async function rootBins(repoRoot: string): Promise<ReadonlySet<string>> {
   try {
@@ -99,19 +100,21 @@ async function rootBins(repoRoot: string): Promise<ReadonlySet<string>> {
 }
 
 /**
- * Load the root and workspace script tables from the repository at
- * `repoRoot`. The root table also carries the root-installed executables.
+ * Load the root and workspace script tables and the root-installed
+ * executables from the repository at `repoRoot`.
  */
 export async function loadWorkspaceScripts(repoRoot: string): Promise<WorkspaceScripts> {
   const rootManifest = await readManifest(repoRoot);
   const workspaces = new Map<string, ReadonlySet<string>>();
+  const directories = new Map<string, string>();
   for (const directory of await workspaceDirectories(repoRoot)) {
     const manifest = await readManifest(directory);
     const name = manifest === undefined ? undefined : nonBlankString(manifest.name);
     if (manifest !== undefined && name !== undefined) {
       workspaces.set(name, scriptNames(manifest));
+      directories.set(path.relative(repoRoot, directory).split(path.sep).join('/'), name);
     }
   }
   const rootScripts = rootManifest === undefined ? new Set<string>() : scriptNames(rootManifest);
-  return { root: new Set([...rootScripts, ...(await rootBins(repoRoot))]), workspaces };
+  return { root: rootScripts, bins: await rootBins(repoRoot), workspaces, directories };
 }

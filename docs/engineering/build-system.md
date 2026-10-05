@@ -235,12 +235,12 @@ missing ones fall through to the generic inputs and produce stale cache hits.
 Quality is enforced through four surfaces, each triggered at a different point
 in the development lifecycle:
 
-| Surface        | Runs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD` (`repo-check lint-changed`, which skips the run when turbo plans no task, as for a commit that changes no workspace; its planning dry run reads the local cache only, so a commit needs neither the network nor a cache token). Light by design (owner ruling 2026-09-12: light commit, full push).                                                |
-| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **pre-push**   | `pnpm check`, then the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`), each holding a host gate slot for its run (`pnpm agent-tools:gate-slot run pnpm ...`): at most two full gates on the host at once and one in a working tree, so a push may wait, naming the gates it waits for (`pnpm agent-tools:gate-slot status` lists them); a step past thirty minutes is stopped and fails. The slot needs POSIX process groups, so a push from a Windows host is refused; push from WSL. |
-| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite; the Turbo remote cache reached by OIDC, see §Caching), `e2e`.                                                                                                               |
+| Surface        | Runs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD` (`repo-check lint-changed`, which skips the run when turbo plans no task, as for a commit that changes no workspace; its planning dry run reads the local cache only, so a commit needs neither the network nor a cache token). Light by design (owner ruling 2026-09-12: light commit, full push).                                                                            |
+| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **pre-push**   | The pushed-ref secret scan, the review cost gate, then `pnpm check` (the site's end-to-end suite runs inside its turbo leg) holding a host gate slot for its run (`pnpm agent-tools:gate-slot run pnpm check`): at most two full gates on the host at once and one in a working tree, so a push may wait, naming the gates it waits for (`pnpm agent-tools:gate-slot status` lists them); a step past thirty minutes is stopped and fails. The slot needs POSIX process groups, so a push from a Windows host is refused; push from WSL. |
+| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite; the Turbo remote cache reached by OIDC, see §Caching), `e2e`; then the fan-in `run-quality-gates`, which needs every job and is the one required context.                                               |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.
@@ -312,12 +312,12 @@ model, an editor's workspace file — and prove that machine, not the repository
 `.prettierignore` and `.markdownlint-cli2.jsonc` therefore declare **ownership**
 only (which tracked surfaces each tool governs), never existence.
 
-`pnpm check` does not build the site or run its browser suites; those run on
-their own surfaces (`pnpm build`, `pnpm test:e2e`). It does run the
-agent-tools end-to-end and smoke suite (`pnpm agent-tools:test:e2e`): the
-in-process end-to-end tests, then every `smoke-tests/*.smoke.ts`, discovered
-from the directory rather than listed, so a new smoke is gated the moment it
-exists.
+`pnpm check` runs one turbo invocation of build, type-check, lint, test and
+test:e2e over every workspace (the TypeScript family's gate leg, declared in
+the family's practice-operations manifest): the site's build and its Playwright
+suite, and the agent-tools end-to-end and smoke suite (the in-process
+end-to-end tests, then every `smoke-tests/*.smoke.ts`, discovered from the
+directory rather than listed, so a new smoke is gated the moment it exists).
 
 ### `pnpm fix` and `pnpm fix:docs` — the mutating repairs
 
@@ -633,10 +633,10 @@ artefacts it actually resolved:
   loads on install alone, but the site's `.next/` waits for `pnpm build`.
   Until then the site's `type-check` passes without the generated route
   types its `tsconfig.json` includes; CI checks them after its build step.
-- **`pnpm check` does not run every suite** (the site's `test:e2e` and `build`
-  are outside it; the agent-tools smoke suite is inside it through
-  `agent-tools:test:e2e`) — verify the aggregate actually exercises
-  the suites your change touches before citing it as proof. When reporting,
+- **`pnpm check` runs every workspace's build, type-check, lint, test and
+  test:e2e task through turbo** (the interactive `test:ui` runner is outside
+  it) — verify the aggregate actually exercised the suites your change
+  touches before citing it as proof. When reporting,
   distinguish **run-verified** (the gate exercised the change) from
   **construction-verified** (a behaviour-preserving no-op the gate never
   ran) — a green aggregate says nothing about the latter.

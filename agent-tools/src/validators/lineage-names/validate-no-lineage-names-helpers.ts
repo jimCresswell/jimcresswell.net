@@ -51,17 +51,19 @@ const LINEAGE_NAME_CONCEPT = 'lineage-name';
 /**
  * Select the one lineage-name block from the policy's scoped content blocks.
  *
- * @returns the block; an error naming the refusal when the policy defines
- *   none or more than one (the hook evaluates every group, so a second block
- *   would guard writes the gate never scans)
+ * @returns the block; `undefined` when the policy defines none (an estate
+ *   not transplanted from another declares no lineage names, so there is
+ *   nothing to check); an error naming the refusal when it defines more than
+ *   one (the hook evaluates every group, so a second block would guard writes
+ *   the gate never scans)
  */
 export function selectLineageNameBlock(
   blocks: readonly ScopedContentBlockGroup[],
-): Result<ScopedContentBlockGroup, string> {
+): Result<ScopedContentBlockGroup | undefined, string> {
   const matching = blocks.filter((block) => block.concept === LINEAGE_NAME_CONCEPT);
   const [block] = matching;
   if (block === undefined) {
-    return err('no `lineage-name` block in .agent/hooks/policy.json');
+    return ok(undefined);
   }
   if (matching.length > 1) {
     return err(

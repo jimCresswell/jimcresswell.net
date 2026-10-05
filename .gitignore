@@ -134,6 +134,8 @@ out
 build
 # The corpus-analysis workflow build sources are not build output (closure item 4, row 3).
 !agent-tools/src/corpus-analysis/workflows/build/
+# The restatement-audit workflow build sources the same (received from OCE in the code landing).
+!agent-tools/src/restatement-audit/workflows/build/
 
 # Vercel
 .vercel

@@ -1,18 +1,18 @@
 import { noRealIoInTestsRule } from './no-real-io-in-tests.js';
 import { ruleTester } from '../test-support/rule-tester.js';
 
-const TEST_FILE = 'jcdotnet/src/handlers/example.test.ts';
-const SPEC_FILE = 'jcdotnet/src/handlers/example.spec.ts';
-const UNIT_TEST_FILE = 'jcdotnet/src/handlers/example.unit.test.ts';
-const INTEGRATION_TEST_FILE = 'jcdotnet/src/handlers/example.integration.test.ts';
-const E2E_TEST_FILE = 'jcdotnet/e2e-tests/example.e2e.test.ts';
-const NON_TEST_FILE = 'jcdotnet/src/handlers/example.ts';
+const TEST_FILE = 'packages/example/src/handlers/example.test.ts';
+const SPEC_FILE = 'packages/example/src/handlers/example.spec.ts';
+const UNIT_TEST_FILE = 'packages/example/src/handlers/example.unit.test.ts';
+const INTEGRATION_TEST_FILE = 'packages/example/src/handlers/example.integration.test.ts';
+const E2E_TEST_FILE = 'packages/example/e2e-tests/example.e2e.test.ts';
+const NON_TEST_FILE = 'packages/example/src/handlers/example.ts';
 
-const TEST_HELPERS_TEST = 'jcdotnet/src/test-helpers/loader.test.ts';
+const TEST_HELPERS_TEST = 'packages/example/src/test-helpers/loader.test.ts';
 const TEST_FAKES_TEST = 'packages/libs/sentry-node/src/test-fakes/sentry-fake.test.ts';
-const VITEST_CONFIG = 'jcdotnet/vitest.config.ts';
-const VITEST_NAMED_CONFIG = 'jcdotnet/vitest.unit.config.ts';
-const VITEST_SETUP = 'jcdotnet/vitest.setup.ts';
+const VITEST_CONFIG = 'packages/example/vitest.config.ts';
+const VITEST_NAMED_CONFIG = 'packages/example/vitest.unit.config.ts';
+const VITEST_SETUP = 'packages/example/vitest.setup.ts';
 
 ruleTester.run('no-real-io-in-tests', noRealIoInTestsRule, {
   valid: [
@@ -88,7 +88,7 @@ ruleTester.run('no-real-io-in-tests', noRealIoInTestsRule, {
     // Allowlisted by the caller-supplied allowlistPathShapes option.
     // ────────────────────────────────────────────────────────────────────
     {
-      filename: 'jcdotnet/src/legacy/legacy.test.ts',
+      filename: 'packages/example/src/legacy/legacy.test.ts',
       options: [{ allowlistPathShapes: ['**/legacy/**'] }],
       code: `import { readFileSync } from 'node:fs';\nreadFileSync('legacy-fixture.json');`,
     },

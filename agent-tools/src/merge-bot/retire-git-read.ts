@@ -1,9 +1,8 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import type { GitCommandResult } from './git-executor.js';
-import { describeGitChildEnd, type GitContext } from './push-git.js';
+import { gitFailure, runGit, type RetireGit } from './retire-git-run.js';
 import {
-  gitWords,
   parseExactRemoteRef,
   parseRefListing,
   parseSymrefHead,
@@ -21,54 +20,26 @@ import {
  * here, both of the DEFAULT branch: its tracking ref, by a non-forced fetch
  * that can only fast-forward, and `origin/HEAD`, by `set-head --auto`, which
  * needs that tracking ref to exist. No fetch follows tags (`--no-tags`).
- *
- * Every read runs under the operator's own `origin` credential: these are
- * reads, not writes, so the bot-identity rule does not apply. Prompting is
- * off (the caller's environment carries `GIT_TERMINAL_PROMPT=0` and
- * `GCM_INTERACTIVE=never`), so an unattended seat fails rather than asks.
- * Output volume is git's answer to a named query, which this command bounds,
- * so the capturing arm is sound.
+ * Every read reaches git through `retire-git-run.ts`, which binds the
+ * environment and bounds the network reads.
  */
-
-/** The git binary, its cwd, and the child environment for every retire read and write. */
-export interface RetireGit {
-  readonly git: GitContext;
-  readonly cwd: string;
-  readonly env: Readonly<Record<string, string | undefined>>;
-}
-
-/** Network reads get a bound, so an unattended seat can never hang on one. */
-const NETWORK_TIMEOUT_MS = 120_000;
-
-/** Run one git command in the retire context. */
-export async function runGit(
-  retire: RetireGit,
-  args: readonly string[],
-  network = false,
-): Promise<GitCommandResult> {
-  return retire.git.exec(retire.git.file, args, {
-    cwd: retire.cwd,
-    env: retire.env,
-    ...(network ? { timeoutMs: NETWORK_TIMEOUT_MS } : {}),
-  });
-}
-
-/** A failed git call as an Error that names the question and git's own words. */
-export function gitFailure(question: string, result: GitCommandResult): Error {
-  return new Error(`${question}: git ${describeGitChildEnd(result)}: ${gitWords(result.stderr)}`);
-}
 
 /**
  * The RAW configured URLs of `origin`, every one, in config order. Not
  * `git remote get-url`, which applies `insteadOf` rewriting: the front door
  * binds the configured name, and the mint-time read binds the proofs to that
- * repository by sha. Any non-zero exit (the key unset, or a config git
- * cannot read) reads as no URL, and the front door then fails the run.
+ * repository by sha. Exit 1 is git's answer for a key that is not set and
+ * reads as no URL, which the front door then fails; any other failure (a
+ * config git cannot read, exit 3) is a failure in git's words, never an
+ * absent origin.
  */
 export async function readOriginUrls(retire: RetireGit): Promise<Result<readonly string[], Error>> {
   const result = await runGit(retire, ['config', '--get-all', 'remote.origin.url']);
-  if (result.status !== 0) {
+  if (result.status === 1) {
     return ok([]);
+  }
+  if (result.status !== 0) {
+    return err(gitFailure("reading origin's URLs", result));
   }
   return ok(
     result.stdout

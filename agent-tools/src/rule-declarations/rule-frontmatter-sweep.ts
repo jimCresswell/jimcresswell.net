@@ -16,11 +16,13 @@
 import path from 'node:path';
 import { argv, stderr, stdout } from 'node:process';
 
-import { listTrackedFiles } from '../core/tracked-file-scan.js';
+import { err, ok, type Result } from '@engraph/result';
+
+import { describeGitReadFailure, listTrackedFiles } from '../core/repository-paths.js';
 import { resolveRepoRoot } from '../core/repo-root.js';
 
 import { renderReconciliationReport } from './render-reconciliation-report.js';
-import { sweepRuleFrontmatter } from './sweep-rule-frontmatter.js';
+import { sweepRuleFrontmatter, type SweepOutcome } from './sweep-rule-frontmatter.js';
 
 const USAGE = [
   'Usage: rule-frontmatter-sweep [--write]',
@@ -50,11 +52,17 @@ function parseFlags(args: readonly string[]): Flags {
   return { kind: 'run', write };
 }
 
-function trackedRuleNames(repoRoot: string): readonly string[] {
-  return listTrackedFiles(repoRoot)
-    .filter((file) => file.startsWith(RULES_DIR) && file.endsWith('.md'))
-    .filter((file) => !file.slice(RULES_DIR.length).includes('/'))
-    .map((file) => path.basename(file, '.md'));
+function trackedRuleNames(repoRoot: string): Result<readonly string[], string> {
+  const tracked = listTrackedFiles(repoRoot);
+  if (!tracked.ok) {
+    return err(describeGitReadFailure(tracked.error));
+  }
+  return ok(
+    tracked.value
+      .filter((file) => file.startsWith(RULES_DIR) && file.endsWith('.md'))
+      .filter((file) => !file.slice(RULES_DIR.length).includes('/'))
+      .map((file) => path.basename(file, '.md')),
+  );
 }
 
 async function main(): Promise<number> {
@@ -72,7 +80,22 @@ async function main(): Promise<number> {
   // primary checkout and silently sweep the wrong estate.
   const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
   const ruleNames = trackedRuleNames(repoRoot);
-  const outcome = await sweepRuleFrontmatter({ repoRoot, ruleNames, write: flags.write });
+  if (!ruleNames.ok) {
+    stderr.write(
+      `Sweep refused; nothing written: cannot list tracked files — ${ruleNames.error}\n`,
+    );
+    return 1;
+  }
+  const outcome = await sweepRuleFrontmatter({
+    repoRoot,
+    ruleNames: ruleNames.value,
+    write: flags.write,
+  });
+  return reportOutcome(outcome, flags.write);
+}
+
+/** Write the sweep's report and return the exit code: 1 when it refused, else 0. */
+function reportOutcome(outcome: SweepOutcome, write: boolean): number {
   if (outcome.refused.length > 0) {
     stderr.write(`Sweep refused; nothing written (${String(outcome.refused.length)} reasons):\n`);
     for (const reason of outcome.refused) {
@@ -89,7 +112,7 @@ async function main(): Promise<number> {
     `\n${String(outcome.declarations.length)} rule declarations derived, ` +
       `${String(outcome.reconciliations.length)} reconciliations, ` +
       `${String(outcome.alreadyDeclared.length)} rules already declared, ` +
-      `${String(outcome.written.length)} files written${flags.write ? '' : ' (dry run)'}.\n`,
+      `${String(outcome.written.length)} files written${write ? '' : ' (dry run)'}.\n`,
   );
   return 0;
 }

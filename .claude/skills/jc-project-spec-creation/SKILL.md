@@ -5,4 +5,4 @@ description: Create project definition documents for generative UI handoff (v0, 
 
 # Project Spec Creation (Claude Code)
 
-Read and follow `.agent/skills/project-spec-creation/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/domain-craft/project-spec-creation/SKILL-CANONICAL.md`.

@@ -50,6 +50,10 @@ const config: KnipConfig = {
       // so knip traces the graph from the real entry.
       entry: [
         'src/bin/**/*.ts',
+        // The CI step summary renderer and the throughput register's CLI run through
+        // their package scripts (`tsx src/...`), not through an import.
+        'src/ci/ci-turbo-report.ts',
+        'src/pr-throughput/cli.ts',
         'src/claude/**/*.ts',
         'src/codex/**/*.ts',
         'src/cursor/**/*.ts',
@@ -71,6 +75,7 @@ const config: KnipConfig = {
         // post-run drivers need no pattern: their package scripts run them as
         // `tsx src/...` from the workspace directory, which knip reads as entries.
         'src/corpus-analysis/workflows/*.workflow.ts',
+        'src/restatement-audit/workflows/*.workflow.ts',
         // Smoke checks: the smoke runner (`src/bin/run-smoke-tests.ts`)
         // discovers and spawns every `smoke-tests/*.smoke.ts`, so no import or
         // package script names them; each is an entry so what it imports from

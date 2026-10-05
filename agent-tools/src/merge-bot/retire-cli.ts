@@ -1,22 +1,18 @@
 import { err, ok, type Result } from '@engraph/result';
 
-import { DEFAULT_BRANCH_NAMES, type BranchArgSeams } from './branch-arg.js';
-import type { GitExecutor } from './git-executor.js';
+import { DEFAULT_BRANCH_NAMES } from './branch-arg.js';
+import type { GitActionInput } from './git-action-input.js';
+import { scrubbedCredentialEnv } from './git-credential-chain.js';
 import { realFetch } from './github-fetch.js';
-import { mintForConfig, type MintSeams } from './mint-for-config.js';
 import type { GithubApiFetch } from './mint-installation-token.js';
+import { namesGithubRepository, trustedOriginRepository } from './origin-repository.js';
 import { resolveGitContext } from './push-git.js';
 import { RefFormatOracleUnavailableError } from './ref-format.js';
-import {
-  resolveBotIdentity,
-  type BotIdentity,
-  type MergeBotResolveInput,
-} from './resolve-identity.js';
+import { resolveBotIdentity, type BotIdentity } from './resolve-identity.js';
 import { parseRetireArgs, RETIRE_USAGE } from './retire-args.js';
 import { decideRetirement } from './retire-decision.js';
 import { executePlan } from './retire-execute.js';
 import { gitRetirePort, type RetireGitPort } from './retire-git-port.js';
-import { githubRepoOf } from './retire-parse.js';
 import { exitCodeFor, writeRetireOutcome, type RetireOutcome } from './retire-report.js';
 
 /**
@@ -44,53 +40,34 @@ function isReservedBranch(branch: string): boolean {
   return DEFAULT_BRANCH_NAMES.has(folded) || folded === 'head';
 }
 
-/** The action's composition surface; `cli.ts` forwards its own injection seams. */
-export interface RetireActionInput {
-  readonly identityInput: MergeBotResolveInput;
-  /** The invoking repository's root: the cwd every git call runs in. */
-  readonly repoRoot: string;
-  readonly stdout: Pick<NodeJS.WriteStream, 'write'>;
-  readonly stderr: Pick<NodeJS.WriteStream, 'write'>;
+/**
+ * The action's composition surface: the seams every git action shares
+ * (`git-action-input.ts`), GitHub for the reads and the delete the minted
+ * token carries, and git as this command asks of it.
+ */
+export interface RetireActionInput extends GitActionInput {
+  /** GitHub's GraphQL endpoint; defaults to the real fetch. */
   readonly fetchImpl?: GithubApiFetch;
-  readonly readFileImpl?: (path: string) => Promise<string>;
-  readonly nowEpochSeconds?: () => number;
-  readonly gitExecutor?: GitExecutor;
-  readonly gitPath?: string;
-  /** Base environment for git; defaults to `process.env` at the leaf, with prompting turned off. */
-  readonly baseEnv?: Readonly<Record<string, string | undefined>>;
   /** git, as the command asks of it; defaults to real git in `repoRoot`. */
   readonly gitPort?: RetireGitPort;
-  readonly branchArgSeams?: BranchArgSeams;
 }
 
-function mintSeamsFrom(input: RetireActionInput): MintSeams {
-  return {
-    ...(input.fetchImpl === undefined ? {} : { fetchImpl: input.fetchImpl }),
-    ...(input.readFileImpl === undefined ? {} : { readFileImpl: input.readFileImpl }),
-    ...(input.nowEpochSeconds === undefined ? {} : { nowEpochSeconds: input.nowEpochSeconds }),
-  };
-}
-
-/** Mint the `branch-retire` token; an empty token is a failure before any call carries it. */
+/** Mint the `branch-retire` token: contents alone, asked for only when a remote delete is due. */
 async function mintToken(
   identity: BotIdentity,
   input: RetireActionInput,
 ): Promise<Result<string, Error>> {
-  const minted = await mintForConfig({ ...identity, scope: 'branch-retire' }, mintSeamsFrom(input));
-  if (!minted.ok) {
-    return minted;
-  }
-  return minted.value.token === ''
-    ? err(new Error('the minted token is empty'))
-    : ok(minted.value.token);
+  const minted = await input.mint({ ...identity, scope: 'branch-retire' });
+  return minted.ok ? ok(minted.value.token) : minted;
 }
 
 /**
  * Refuse unless `origin` has exactly one configured URL and it names the bot
- * identity's repository. Several URLs fail: fetch reads the first, and a
- * single `config --get` the last, so a check of one would not bind the
- * other. The URL itself is never echoed, only the repository parsed from it:
- * an https URL can carry a token.
+ * identity's repository on github.com over https or ssh, as `merge-bot push`
+ * trusts its origin (`origin-repository.ts`). No URL, or several, fails the
+ * run before any read: several would not bind, since fetch reads the first
+ * and a single `config --get` the last. Neither the URL nor anything parsed
+ * from it is echoed: an https URL can carry a token.
  */
 async function originMismatch(
   port: RetireGitPort,
@@ -100,29 +77,26 @@ async function originMismatch(
   if (!urls.ok) {
     return urls;
   }
-  const [url, ...others] = urls.value;
-  if (url === undefined) {
+  if (urls.value.length === 0) {
     return err(new Error('this checkout has no origin URL configured'));
   }
-  if (others.length > 0) {
+  if (urls.value.length > 1) {
     return err(
       new Error(`origin has ${urls.value.length} URLs configured; this command binds exactly one`),
     );
   }
-  const repo = githubRepoOf(url);
-  const wanted = `${identity.owner}/${identity.repoName}`;
-  if (repo === undefined) {
-    return ok(`origin is not a github.com URL; the bot deletes only in ${wanted}`);
-  }
-  const named = `${repo.owner}/${repo.repo}`;
-  return named.toLowerCase() === wanted.toLowerCase()
+  return namesGithubRepository(trustedOriginRepository(urls.value), identity)
     ? ok(undefined)
-    : ok(`origin names ${named}, not ${wanted}, the repository the bot would delete in`);
+    : ok(
+        `origin does not name github.com/${identity.owner}/${identity.repoName}, the one repository the bot would delete in, as the bot binds to it: one URL, https or ssh, no plain http, no credential in the URL`,
+      );
 }
 
 /**
  * The injected port, or real git in the invoking repository with prompting
- * turned off, and with replacement refs and grafts turned off: either can
+ * turned off and no askpass program in its environment (the push's scrub,
+ * `git-credential-chain.ts`; the runner clears the config arm on each call),
+ * and with replacement refs and grafts turned off: either can
  * give a commit parents it does not have, and `merge-base` follows them, so a
  * planted one would make an unmerged tip read as merged.
  */
@@ -136,6 +110,7 @@ function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
   }
   const env = {
     ...(input.baseEnv ?? process.env),
+    ...scrubbedCredentialEnv(),
     GIT_TERMINAL_PROMPT: '0',
     GCM_INTERACTIVE: 'never',
     GIT_NO_REPLACE_OBJECTS: '1',
