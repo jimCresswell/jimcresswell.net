@@ -5,4 +5,4 @@ description: Use when work changes headers, secrets, env, proxies, middleware, o
 
 # Security (Claude Code)
 
-Read and follow `.agent/skills/security/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/reviewer-companions/security/SKILL-CANONICAL.md`.

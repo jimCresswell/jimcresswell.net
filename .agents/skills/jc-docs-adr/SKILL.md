@@ -5,4 +5,4 @@ description: Use when work changes ADRs, durable docs, or README contract surfac
 
 # Docs Adr (Cross-tool)
 
-Read and follow `.agent/skills/docs-adr/SKILL-CANONICAL.md`.
+Read and follow `.agent/skills/reviewer-companions/docs-adr/SKILL-CANONICAL.md`.

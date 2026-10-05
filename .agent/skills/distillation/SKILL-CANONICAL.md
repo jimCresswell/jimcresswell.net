@@ -26,8 +26,8 @@ directly during consolidation:
 napkin.md ──────────┐
                     ├──► distilled.md ──► permanent docs
 AGENTS.md ──────────┘    (staging)        (principles.md, AGENT.md,
-(learning-loop                             editorial-guidance.md,
- landing pad)                              ADRs, EDRs, docs/)
+(learning-loop                             the host's directives,
+ landing pad)                              ADRs, PDRs, docs/)
                                                ▲
 plans & prompts ───────────────────────────────┘
 (ephemeral — mined during consolidation)
@@ -46,10 +46,10 @@ same insights from being rediscovered and re-added.
 
 **Feed 3 — plans and prompts**: Ephemeral work documents
 that accumulate settled knowledge during collaborative
-sessions. Mined during consolidation (`/jc-consolidate-docs`);
+sessions. Mined during consolidation (the `consolidate-docs` skill);
 settled content moves directly to permanent docs.
 
-**Graduation**: During consolidation (`/jc-consolidate-docs`),
+**Graduation**: During consolidation (the `consolidate-docs` skill),
 entries in `distilled.md` that have become settled, and
 content in plans that now functions as permanent
 documentation, are moved to their canonical homes.
@@ -59,7 +59,7 @@ permanent documentation.
 ## File Layout
 
 ```text
-.agent/memory/
+.agent/memory/active/
   distilled.md                    # Staging area (read every session)
   napkin.md                       # Current session log
   archive/
@@ -113,8 +113,9 @@ Remove from `distilled.md` anything that is now captured in
 permanent repo documentation:
 
 - Rules codified in `.agent/directives/principles.md`
-- Patterns documented in ADRs or EDRs
-- Editorial principles in `.agent/directives/editorial-guidance.md`
+- Patterns documented in ADRs or PDRs
+- Editorial principles in the host's editorial guidance directive, where it
+  keeps one
 - Architecture documented in `docs/architecture/`
 
 The distilled file should contain only what is NOT already
@@ -126,7 +127,7 @@ Move the outgoing napkin to the archive:
 
 ```bash
 cp .agent/memory/active/napkin.md \
-   .agent/memory/archive/napkin-YYYY-MM-DD.md
+   .agent/memory/active/archive/napkin-YYYY-MM-DD.md
 ```
 
 Use the current date for the filename.
