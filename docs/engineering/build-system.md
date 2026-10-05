@@ -312,12 +312,12 @@ model, an editor's workspace file — and prove that machine, not the repository
 `.prettierignore` and `.markdownlint-cli2.jsonc` therefore declare **ownership**
 only (which tracked surfaces each tool governs), never existence.
 
-`pnpm check` does not build the site or run its browser suites; those run on
-their own surfaces (`pnpm build`, `pnpm test:e2e`). It does run the
-agent-tools end-to-end and smoke suite (`pnpm agent-tools:test:e2e`): the
-in-process end-to-end tests, then every `smoke-tests/*.smoke.ts`, discovered
-from the directory rather than listed, so a new smoke is gated the moment it
-exists.
+`pnpm check` runs one turbo invocation of build, type-check, lint, test and
+test:e2e over every workspace (the TypeScript family's gate leg, declared in
+the family's practice-operations manifest): the site's build and its Playwright
+suite, and the agent-tools end-to-end and smoke suite (the in-process
+end-to-end tests, then every `smoke-tests/*.smoke.ts`, discovered from the
+directory rather than listed, so a new smoke is gated the moment it exists).
 
 ### `pnpm fix` and `pnpm fix:docs` — the mutating repairs
 
@@ -633,10 +633,10 @@ artefacts it actually resolved:
   loads on install alone, but the site's `.next/` waits for `pnpm build`.
   Until then the site's `type-check` passes without the generated route
   types its `tsconfig.json` includes; CI checks them after its build step.
-- **`pnpm check` does not run every suite** (the site's `test:e2e` and `build`
-  are outside it; the agent-tools smoke suite is inside it through
-  `agent-tools:test:e2e`) — verify the aggregate actually exercises
-  the suites your change touches before citing it as proof. When reporting,
+- **`pnpm check` runs every workspace's build, type-check, lint, test and
+  test:e2e task through turbo** (the interactive `test:ui` runner is outside
+  it) — verify the aggregate actually exercised the suites your change
+  touches before citing it as proof. When reporting,
   distinguish **run-verified** (the gate exercised the change) from
   **construction-verified** (a behaviour-preserving no-op the gate never
   ran) — a green aggregate says nothing about the latter.

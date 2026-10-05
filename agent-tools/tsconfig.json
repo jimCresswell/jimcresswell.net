@@ -5,14 +5,14 @@
     "types": ["node", "vitest/globals"],
     "jsx": "react-jsx",
     "noEmit": true,
-    // The PreCompact observer (src/bin/claude-pre-compact-observe-hook.ts) is
-    // run by the harness as `node <source>.ts`, so it and the modules it loads
-    // carry `.ts` relative specifiers, which Node resolves literally; tsc
-    // rewrites them to `.js` on emit so the same files still resolve from dist.
-    // Both options are stated: the first follows from the second in TypeScript
-    // 6, and stating it keeps the intent explicit across compiler versions.
-    // Scoped to this workspace because the source-run hook lives here — Node
-    // ignores tsconfig entirely when stripping types.
+    // One smoke (smoke-tests/hook-error-logs.smoke.ts) still runs a source
+    // file as `node <source>.ts` under type stripping, so that file carries a
+    // `.ts` relative specifier, which Node resolves literally; tsc rewrites
+    // it to `.js` on emit so the same file still resolves from dist. Both
+    // options are stated: the first follows from the second in TypeScript 6,
+    // and stating it keeps the intent explicit across compiler versions.
+    // Scoped to this workspace because the source-run smoke lives here; the
+    // hooks themselves run from dist.
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true
   },

@@ -705,13 +705,15 @@ paths, setup files) don't apply.
   [`no-warning-toleration` §Problem-hiding patterns](../rules/no-warning-toleration.md#problem-hiding-patterns).
 - **Quality gates** - Run ALL gates after changes. From the repo root,
   `pnpm check` runs every gate, writing no tracked file (`pnpm fix` runs the
-  auto-fixers first): format, markdownlint, shell and runtime-only
-  lint, lint, type-check, test, `agent-tools:test:e2e` (the agent-tools
-  end-to-end and smoke suite, which builds `agent-tools/dist`), `knip`,
-  `depcruise`, `secrets:scan`, `portability:check`, `subagents:check`,
-  `skills:check`, `encoding:check`, `repo-validators:check` (whose legs
-  include the wire-contract check and the substrate audit),
-  `docs-validators:check`.
+  auto-fixers first): `secrets:scan`, format, markdownlint, shell and
+  runtime-only lint, then one turbo run of build, type-check, lint, test and
+  test:e2e over every workspace (the agent-tools end-to-end and smoke suite
+  among them), `knip:gate`, `depcruise`, `portability:check`,
+  `subagents:check`, `skills:check`, `encoding:check`,
+  `repo-validators:check` (whose legs include the wire-contract check, the
+  family conformance check and the substrate audit), `docs-validators:check`.
+  The sequence is the TypeScript family's, declared in the family's
+  practice-operations manifest and recomputed by `validate-family-conformance`.
   The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
   production build — ADR-019). Run `check` and the E2E suite sequentially,
   never in parallel: each is a full-host run (builds, test workers, the

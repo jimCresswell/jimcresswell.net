@@ -45,18 +45,17 @@ The hook runs each gate in order; when one refuses, fix the issue, then
 commit or push again. The legs of `check` here are jimcresswell.net's:
 
 ```bash
-# jimcresswell.net: pnpm check, as the push hook runs it
+# jimcresswell.net: pnpm check, as the push hook runs it (the TypeScript family's sequence)
+pnpm secrets:scan
 pnpm format-check:root
 pnpm markdownlint-check:root
 pnpm lint:shell               # shellcheck over every tracked shell script
 pnpm lint:runtime-only
-pnpm lint
-pnpm type-check
-pnpm test
-pnpm agent-tools:test:e2e      # in-process e2e, then every agent-tools smoke-tests/*.smoke.ts
-pnpm knip
+turbo run --continue build type-check lint test test:e2e   # every workspace; test:e2e is the site's
+                                                           # Playwright suite and the agent-tools
+                                                           # in-process e2e plus smoke-tests/*.smoke.ts
+pnpm knip:gate
 pnpm depcruise
-pnpm secrets:scan
 pnpm portability:check
 pnpm subagents:check
 pnpm skills:check

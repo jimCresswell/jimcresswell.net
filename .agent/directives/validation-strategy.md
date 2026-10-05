@@ -435,10 +435,10 @@ section here; everything above it is the same text in both.
 - **P19, the ESLint standards plugin**: `@engraph/eslint` under `tooling/eslint/`.
 - **P25, the gate commands**: formatting `format-check:root` and
   `markdownlint-check:root`; type correctness `type-check`; linting `lint`,
-  `lint:shell`, `lint:runtime-only`; static analysis `knip`, `depcruise`;
-  testing and checks `test` and `agent-tools:test:e2e` (the smoke runner's
-  checks) with the site's Playwright suite (`pnpm --filter @jimcresswell/www
-  test:e2e`); build `build`, deriving every surface from the entity graph;
+  `lint:shell`, `lint:runtime-only`; static analysis `knip:gate`, `depcruise`;
+  testing and checks `test` and `test:e2e` (the site's Playwright suite and
+  the agent-tools end-to-end and smoke runner, one turbo task across the
+  workspaces); build `build`, deriving every surface from the entity graph;
   accessibility and rendered proof: axe in the E2E suite and
   `visual-regression:harness`.
 - **The real-world signal**: no instrument is named yet; it is an owner

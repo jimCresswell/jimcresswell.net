@@ -5,7 +5,8 @@ name: The commit as the full local gate, with a host-wide bound on concurrent ga
 overview: >-
   Bound concurrent full local gates on the host by a mechanism, then move the
   full gate from push to commit, as the owner ruled for both estates.
-status: ratified
+status: superseded
+superseded_by: practice-alignment-by-class
 ratified_by: Jim Cresswell
 ratified_date: 2026-09-24
 ratified_where: >-
@@ -19,7 +20,7 @@ impact_areas:
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-24
+last_updated: 2026-10-05
 ---
 
 # The commit as the full local gate

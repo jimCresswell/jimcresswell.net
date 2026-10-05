@@ -28,6 +28,8 @@ export {
   runPrettierTracked,
 } from './repo-check-gates.js';
 
+export { runKnipGate } from './repo-check-knip.js';
+
 import {
   runMarkdownlintStaged,
   runMarkdownlintTracked,
@@ -35,6 +37,7 @@ import {
   runPrettierTracked,
 } from './repo-check-gates.js';
 import { runDepcruiseGate } from './repo-check-depcruise.js';
+import { runKnipGate } from './repo-check-knip.js';
 import { runLintChanged } from './repo-check-lint-changed.js';
 import { runProfile } from './repo-check-runner.js';
 import { runShellcheckTracked } from './repo-check-shellcheck.js';
@@ -46,6 +49,8 @@ function usage(): string {
     'Commands:',
     '  depcruise-gate         Run dependency-cruiser; fail on any violation (error, warn, info or ignore),',
     '                         an environment issue, or a cruise without the TypeScript compiler.',
+    '  knip-gate              Run knip; fail loudly when a crash is swallowed behind exit 0 (F-147)',
+    '                         or the child dies without a verdict (F-112).',
     '  lint-changed           Run turbo lint over the workspaces changed since HEAD; skip the run',
     '                         when turbo plans no task for that scope.',
     '  markdownlint-staged    Run markdownlint on staged Markdown files only.',
@@ -76,6 +81,7 @@ const NO_FLAGS: ReadonlySet<string> = new Set();
 /** The command table: a Map, so a prototype key can never resolve to a non-command. */
 const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoCheckCommand>([
   ['depcruise-gate', { flags: NO_FLAGS, run: () => runDepcruiseGate() }],
+  ['knip-gate', { flags: NO_FLAGS, run: () => runKnipGate() }],
   ['lint-changed', { flags: NO_FLAGS, run: () => runLintChanged() }],
   ['markdownlint-staged', { flags: NO_FLAGS, run: () => runMarkdownlintStaged() }],
   [
@@ -93,7 +99,7 @@ const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoChec
       run: (args) => runPrettierTracked(args.includes('--write') ? 'write' : 'check'),
     },
   ],
-  // profile owns its own argv parsing (--dry-run, --capture-output).
+  // profile reads its own flags; they are listed here too, so a new one needs both.
   [
     'profile',
     { flags: new Set(['--dry-run', '--capture-output']), run: (args) => runProfile(args) },
@@ -120,17 +126,22 @@ function resolveCommand(
 const HELP_FLAGS: ReadonlySet<string> = new Set(['--help', '-h']);
 
 /**
- * pnpm forwards a `--` separator through `pnpm agent-tools:repo-check -- <command>`
- * to this entry unchanged, so the documented form would otherwise read `--`
- * as the command name and refuse it. One leading separator is dropped; a
- * second one is an argument like any other and is refused with usage.
+ * pnpm forwards a `--` separator to this entry unchanged: before the command
+ * (`pnpm agent-tools:repo-check -- <command>`) or after it, when a root script
+ * already names the command (`pnpm check:profile -- --dry-run`). One separator
+ * in either place is dropped; any other is an argument like any other and is
+ * refused with usage.
  */
-function withoutForwardingSeparator(argv: readonly string[]): readonly string[] {
-  return argv[0] === '--' ? argv.slice(1) : argv;
+export function withoutForwardingSeparators(argv: readonly string[]): readonly string[] {
+  const [first, ...rest] = argv[0] === '--' ? argv.slice(1) : argv;
+  if (first === undefined) {
+    return [];
+  }
+  return [first, ...(rest[0] === '--' ? rest.slice(1) : rest)];
 }
 
 async function main(): Promise<void> {
-  const argv = withoutForwardingSeparator(process.argv.slice(2));
+  const argv = withoutForwardingSeparators(process.argv.slice(2));
   if (argv.length === 1 && HELP_FLAGS.has(argv[0] ?? '')) {
     writeLine(usage());
     process.exitCode = 0;
