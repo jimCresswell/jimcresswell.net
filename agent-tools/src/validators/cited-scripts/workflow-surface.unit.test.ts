@@ -11,7 +11,9 @@ import { workflowSurface } from './workflow-surface.js';
 
 const scripts: WorkspaceScripts = {
   root: new Set(['check']),
-  workspaces: new Map([['@jimcresswell/www', new Set(['test:e2e'])]]),
+  bins: new Set(),
+  workspaces: new Map([['@example/www', new Set(['test:e2e'])]]),
+  directories: new Map(),
 };
 
 const PATH = '.github/workflows/ci.yml';

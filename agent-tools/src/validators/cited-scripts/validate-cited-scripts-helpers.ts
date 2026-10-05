@@ -23,8 +23,15 @@ export { extractScriptCitations, type ScriptCitation };
 export interface WorkspaceScripts {
   /** Root `package.json` script names. */
   readonly root: ReadonlySet<string>;
+  /**
+   * Root-installed executables: `pnpm <bin>` runs one from the root or from
+   * any workspace directory when no script has that name.
+   */
+  readonly bins: ReadonlySet<string>;
   /** Workspace package name → its script names. */
   readonly workspaces: ReadonlyMap<string, ReadonlySet<string>>;
+  /** Workspace directory (repo-relative, POSIX, no trailing slash) → its package name. */
+  readonly directories: ReadonlyMap<string, string>;
 }
 
 /** A citation that resolves to no script. */
@@ -77,26 +84,71 @@ export function findMissingScriptCitations(
 }
 
 /**
- * Resolve one citation found in the file at `path`: unfiltered against the
- * root table, filtered against the named workspace's.
+ * Resolve one citation found in the file at `path`: filtered against the
+ * named workspace's table; unfiltered against the table of the workspace
+ * whose directory contains the citation's working directory, as pnpm runs
+ * the nearest `package.json`, otherwise against the root table, and in both
+ * cases against the root-installed executables.
  */
 export function resolveCitation(
   path: string,
   citation: ScriptCitation,
   scripts: WorkspaceScripts,
 ): MissingScriptFinding | undefined {
-  if (citation.workspaceFilter === undefined) {
-    return scripts.root.has(citation.scriptName)
-      ? undefined
-      : finding(path, citation, 'root', 'missing-script');
-  }
-  const workspace = scripts.workspaces.get(citation.workspaceFilter);
+  return citation.workspaceFilter === undefined
+    ? resolveUnfiltered(path, citation, scripts)
+    : resolveFiltered(path, citation, citation.workspaceFilter, scripts);
+}
+
+const NO_SCRIPTS: ReadonlySet<string> = new Set();
+
+function resolveUnfiltered(
+  path: string,
+  citation: ScriptCitation,
+  scripts: WorkspaceScripts,
+): MissingScriptFinding | undefined {
+  const name = workspaceContaining(citation.workingDirectory, scripts);
+  const table = name === undefined ? scripts.root : (scripts.workspaces.get(name) ?? NO_SCRIPTS);
+  return table.has(citation.scriptName) || scripts.bins.has(citation.scriptName)
+    ? undefined
+    : finding(path, citation, name ?? 'root', 'missing-script');
+}
+
+function resolveFiltered(
+  path: string,
+  citation: ScriptCitation,
+  filter: string,
+  scripts: WorkspaceScripts,
+): MissingScriptFinding | undefined {
+  const workspace = scripts.workspaces.get(filter);
   if (workspace === undefined) {
-    return finding(path, citation, citation.workspaceFilter, 'unknown-workspace');
+    return finding(path, citation, filter, 'unknown-workspace');
   }
   return citation.builtin === true || workspace.has(citation.scriptName)
     ? undefined
-    : finding(path, citation, citation.workspaceFilter, 'missing-script');
+    : finding(path, citation, filter, 'missing-script');
+}
+
+/**
+ * The package name of the deepest workspace whose directory is `directory`
+ * or an ancestor of it; `undefined` at the root or under no workspace.
+ */
+function workspaceContaining(
+  directory: string | undefined,
+  scripts: WorkspaceScripts,
+): string | undefined {
+  if (directory === undefined) {
+    return undefined;
+  }
+  let nearest: { readonly depth: number; readonly name: string } | undefined;
+  for (const [workspaceDirectory, name] of scripts.directories) {
+    const contains =
+      directory === workspaceDirectory || directory.startsWith(`${workspaceDirectory}/`);
+    if (contains && (nearest === undefined || workspaceDirectory.length > nearest.depth)) {
+      nearest = { depth: workspaceDirectory.length, name };
+    }
+  }
+  return nearest?.name;
 }
 
 function finding(

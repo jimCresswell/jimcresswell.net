@@ -62,8 +62,18 @@ const SCANNED_ROOT_FILES: readonly string[] = [
 
 const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md']);
 
-/** Scope exclusions: archives and the pre-transplant snapshot are history, not live doctrine. */
-const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/'];
+/**
+ * Scope exclusions: archives and the pre-transplant snapshot are history, not
+ * live doctrine, and an eval run's captures are history, not doctrine.
+ */
+const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/', '/evals/results/'];
+
+/**
+ * The host's history roots, excluded by prefix: frozen backlogs, archived
+ * records, the host's architectural decision records. Host data, so each
+ * estate declares its own; the general fragments above are shared text.
+ */
+const HOST_EXCLUDED_ROOTS: readonly string[] = [];
 
 /** Whether the repository itself says the target belongs: tracked, or ignored by its rules. */
 function repositoryResolver(
@@ -90,6 +100,7 @@ async function main(): Promise<void> {
     rootFiles: SCANNED_ROOT_FILES,
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+    excludedRoots: HOST_EXCLUDED_ROOTS,
     universe: tracked,
   });
   const candidates = [

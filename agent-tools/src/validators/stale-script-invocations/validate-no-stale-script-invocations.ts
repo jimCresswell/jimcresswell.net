@@ -69,6 +69,7 @@ function discoverScannableFiles(): Promise<readonly { path: string; content: str
     rootFiles: [],
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+    excludedRoots: [],
     universe: collectTrackedPaths(repoRoot),
   });
 }

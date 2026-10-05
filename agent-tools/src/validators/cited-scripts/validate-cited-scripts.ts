@@ -83,6 +83,13 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   'docs/explorations/',
 ];
 
+/**
+ * The host's history roots, excluded by prefix: frozen backlogs, archived
+ * records, the host's architectural decision records. Host data, so each
+ * estate declares its own; the general fragments above are shared text.
+ */
+const HOST_EXCLUDED_ROOTS: readonly string[] = [];
+
 function formatFindings(findings: readonly MissingScriptFinding[]): string {
   return findings
     .map((finding) => {
@@ -103,6 +110,7 @@ async function main(): Promise<void> {
       rootFiles: SCANNED_ROOT_FILES,
       extensions: SCANNED_EXTENSIONS,
       excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+      excludedRoots: HOST_EXCLUDED_ROOTS,
       universe: trackedPaths,
     }),
     loadWorkspaceScripts(repoRoot),

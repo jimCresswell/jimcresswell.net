@@ -16,10 +16,12 @@ import type { WorkspaceScripts } from './validate-cited-scripts-helpers.js';
 
 const scripts: WorkspaceScripts = {
   root: new Set(['check']),
+  bins: new Set(),
   workspaces: new Map([
-    ['@jimcresswell/www', new Set(['test:e2e'])],
-    ['@engraph/agent-tools', new Set(['repo-check'])],
+    ['@example/www', new Set(['test:e2e'])],
+    ['@example/agent-tools', new Set(['repo-check'])],
   ]),
+  directories: new Map(),
 };
 
 function surface(...lines: readonly string[]): {
@@ -50,16 +52,16 @@ describe('scriptLinesOfManifest', () => {
   it('reads each script with the line it is declared on', () => {
     const manifest = [
       '{',
-      '  "name": "@jimcresswell/root",',
+      '  "name": "@example/root",',
       '  "scripts": {',
-      '    "e2e": "pnpm --filter @jimcresswell/www test:e2e",',
+      '    "e2e": "pnpm --filter @example/www test:e2e",',
       '    "types": "tsc"',
       '  }',
       '}',
     ].join('\n');
 
     expect(scriptLinesOfManifest(manifest)).toStrictEqual([
-      { line: 4, text: 'pnpm --filter @jimcresswell/www test:e2e' },
+      { line: 4, text: 'pnpm --filter @example/www test:e2e' },
       { line: 5, text: 'tsc' },
     ]);
   });
@@ -69,13 +71,13 @@ describe('scriptLinesOfManifest', () => {
       '{',
       '  "config": { "e2e": "headless" },',
       '  "scripts": {',
-      '    "e2e": "pnpm --filter @jimcresswell/www test:e2e"',
+      '    "e2e": "pnpm --filter @example/www test:e2e"',
       '  }',
       '}',
     ].join('\n');
 
     expect(scriptLinesOfManifest(manifest)).toStrictEqual([
-      { line: 4, text: 'pnpm --filter @jimcresswell/www test:e2e' },
+      { line: 4, text: 'pnpm --filter @example/www test:e2e' },
     ]);
   });
 
@@ -88,7 +90,7 @@ describe('findMissingFilteredCommands', () => {
   it('passes a filtered call that names a real workspace and script, a semicolon included', () => {
     expect(
       findMissingFilteredCommands(
-        [surface('if ! pnpm --filter @jimcresswell/www test:e2e; then')],
+        [surface('if ! pnpm --filter @example/www test:e2e; then')],
         scripts,
       ),
     ).toStrictEqual([]);
@@ -96,7 +98,7 @@ describe('findMissingFilteredCommands', () => {
 
   it('reports a filter that names no workspace, where it is', () => {
     const findings = findMissingFilteredCommands(
-      [surface('', '        run: pnpm --filter @jimcresswell/wwwx test:e2e')],
+      [surface('', '        run: pnpm --filter @example/wwwx test:e2e')],
       scripts,
     );
 
@@ -104,9 +106,9 @@ describe('findMissingFilteredCommands', () => {
       {
         path: '.husky/pre-push',
         line: 2,
-        match: 'pnpm --filter @jimcresswell/wwwx test:e2e',
+        match: 'pnpm --filter @example/wwwx test:e2e',
         scriptName: 'test:e2e',
-        scope: '@jimcresswell/wwwx',
+        scope: '@example/wwwx',
         reason: 'unknown-workspace',
       },
     ]);
@@ -114,7 +116,7 @@ describe('findMissingFilteredCommands', () => {
 
   it('reports a script the filtered workspace does not define', () => {
     const findings = findMissingFilteredCommands(
-      [surface('pnpm --filter @engraph/agent-tools gate-slot run pnpm check')],
+      [surface('pnpm --filter @example/agent-tools gate-slot run pnpm check')],
       scripts,
     );
 
@@ -125,12 +127,12 @@ describe('findMissingFilteredCommands', () => {
 
   it('reports a missing script that a semicolon closes, named without the semicolon', () => {
     const findings = findMissingFilteredCommands(
-      [surface('if ! pnpm --filter @engraph/agent-tools nope; then')],
+      [surface('if ! pnpm --filter @example/agent-tools nope; then')],
       scripts,
     );
 
     expect(findings.map((finding) => [finding.match, finding.reason])).toStrictEqual([
-      ['pnpm --filter @engraph/agent-tools nope', 'missing-script'],
+      ['pnpm --filter @example/agent-tools nope', 'missing-script'],
     ]);
   });
 
@@ -139,7 +141,7 @@ describe('findMissingFilteredCommands', () => {
       [
         surface(
           'pnpm --filter @nope/missing exec playwright install',
-          'pnpm --filter @jimcresswell/www exec playwright install',
+          'pnpm --filter @example/www exec playwright install',
         ),
       ],
       scripts,
@@ -184,7 +186,7 @@ describe('findMissingFilteredCommands', () => {
     },
     {
       name: 'a quoted filter that names a workspace',
-      line: 'pnpm --filter "@jimcresswell/www" test:e2e',
+      line: 'pnpm --filter "@example/www" test:e2e',
     },
     {
       name: 'a hint that time -p prints',
@@ -204,7 +206,7 @@ describe('findMissingFilteredCommands', () => {
     },
     {
       name: 'a quoted filter in backticks inside double quotes that names a workspace',
-      line: 'echo "`pnpm --filter \\"@jimcresswell/www\\" test:e2e`"',
+      line: 'echo "`pnpm --filter \\"@example/www\\" test:e2e`"',
     },
     {
       name: 'a filter a backtick substitution computes',

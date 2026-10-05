@@ -15,11 +15,12 @@
  * from `core/tracked-file-scan`, shared with the sibling gates.
  *
  * Wired into root `docs-validators:check`, which runs in `pnpm check` and CI.
- * Exit 0 = clean; exit 1 = at least one lineage name on a live surface; exit
- * 2 = refusal — the policy cannot be loaded, defines no lineage-name block or
- * more than one, the block is malformed (non-literal, or a name the hook
- * would read differently), or a tracked file cannot be read (the scan never
- * silently skips one). The status is returned from `main` and set on
+ * Exit 0 = clean, or the policy defines no lineage-name block (an estate not
+ * transplanted from another has no lineage names to check); exit 1 = at least
+ * one lineage name on a live surface; exit 2 = refusal — the policy cannot be
+ * loaded, defines more than one lineage-name block, the block is malformed
+ * (non-literal, or a name the hook would read differently) or declares no
+ * name, or a tracked file cannot be read (the scan never silently skips one). The status is returned from `main` and set on
  * `process.exitCode`, so buffered diagnostics reach a pipe before the process
  * ends.
  *
@@ -78,9 +79,10 @@ function report(
 }
 
 /**
- * The block and its needles, or the refusal already written (exit 2) when
- * the policy cannot be loaded, defines no block or two, or the block is
- * malformed or empty.
+ * The block and its needles; the clean status (exit 0), already written, when
+ * the policy defines no block; or the refusal already written (exit 2) when
+ * the policy cannot be loaded, defines two blocks, or the block is malformed
+ * or empty.
  */
 async function resolveNeedles(): Promise<
   { readonly block: ScopedContentBlockGroup; readonly needles: readonly string[] } | number
@@ -94,6 +96,12 @@ async function resolveNeedles(): Promise<
     return refuse(selected.error);
   }
   const block = selected.value;
+  if (block === undefined) {
+    writeLine(
+      `✓ no \`lineage-name\` block in .agent/hooks/policy.json: this estate declares no lineage names to check`,
+    );
+    return 0;
+  }
   const defects = needleDefects(block);
   if (defects.length > 0) {
     // The hook reads the block raw; a block the gate would have to normalise
