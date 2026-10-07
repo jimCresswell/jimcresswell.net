@@ -59,6 +59,20 @@ authorisation.
   the two items and Projects for the public route; location and industry set as coordinates.
 - The current traffic shape is the state being changed, not a constraint; the search analytics
   after the rewrite are the measure.
+- The owner's addition, later on 7 October: Oak's official page for the MCP app is
+  <https://www.thenational.academy/ai-plugin>. Read first-hand: the product's own name is
+  **Oak Curriculum MCP**; headline "Bring Oak's curriculum into your AI tools"; live in ChatGPT
+  and Claude, Gemini and Copilot announced; teachers search curriculum plans, explore
+  progression, see prior knowledge and misconceptions, ask for scaffolding, and generate
+  retrieval questions, quizzes and knowledge organisers grounded in Oak's content; the content
+  is under the Open Government Licence v3.0; developers are pointed to GitHub. Consequences,
+  for the owner's correction at drafting: the profile uses Oak's name for the product; the
+  Featured item leads with this page, with the Claude marketplace listing beside it; the Oak
+  entry's movement says "in ChatGPT and Claude" rather than naming one vendor; the repository
+  serves developers and sits under Projects.
+- Transport, settled by the owner the same afternoon: pushes in this estate go through
+  `pnpm agent-tools merge-bot push --branch <name>` as the bot, never a plain `git push`;
+  commits here carry the owner's identity by the identity contract of 2026-09-17.
 - Next act, on the owner's word: headline and About drafted together from the sources; then the
   Oak block with the Practice movement; then the rest. Nothing on LinkedIn without his express
   request with him present.
