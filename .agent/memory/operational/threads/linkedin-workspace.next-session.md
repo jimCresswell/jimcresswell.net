@@ -3,14 +3,79 @@
 **Thread identity.** The owner's LinkedIn work: the `linkedin/` document workspace (the profile
 draft and its supporting material) and, on the owner's request only, the live profile at
 linkedin.com/in/jimcresswell. **Participating agent identities:** Galaxy binds Gravity (46de68,
-claude-code, claude-fable-5-1, implementer, 2026-09-29 to 2026-09-30). The owner's Codex agent
+claude-code, claude-fable-5-1, implementer, 2026-09-29 to 2026-09-30); Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat, 2026-10-06 to the cold pause of 2026-10-07). The owner's Codex agent
 that created the workspace on 2026-09-28 is not recorded here by identity. **Landing target for
 the next session:** the latest dated block governs. **Grounding order:** `AGENT.md`, the
 start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-09-30T09:4xZ, the latest block governs)
+## Current Continuation (2026-10-07T13:xxZ, cold pause at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+
+- The owner's word, verbatim: "Stop. If the watcher is about to rearm for a third time with no
+  events between the previous two rearms then instead make sure all context is made safe with a
+  wrap then go into a cold pause". The condition held (no stream event since 2026-10-05T20:43Z).
+  This is a PAUSE of the seat, not a close of the lane.
+- RATIFIED (2026-10-07T12:xxZ, verbatim): "I am happy to ratify as is, I think further refinements
+  should happen as part of applied work rather than theoretical refinement." The impact model and
+  the value model stand as written in the private editorial repository's handoff of 7 October,
+  with the owner's answers of 7 October and the seat's recommendations beside the four decisions
+  he still owns: the Oak entry structure (two entries recommended), the August headline (keep its
+  substance), skills (everything changes; endorsed removals by his word), About order (drafted
+  with the top). The corrections of 7 October before the ratification: his Oak work is the MCP
+  app that places the curriculum in vendor AI assistants, separate from Aila and the labs site;
+  "above the level of my job title, not above the level I operate at"; reading permission on
+  LinkedIn is anything but messages.
+- Records at the pause: this block, the napkin blocks of 6 and 7 October and the napkin close
+  block, the `repo-continuity.md` entry, all committed on `coordination/2026-10-05-d72ae5` by
+  pathspec from a linked worktree, NOT pushed (the push runs the full gate; the fold of draft 323
+  is a later seat's or the owner's act). The private handoff is committed in the private
+  repository on its archive branch, not pushed. The primary on `feat/updating-linkedin` holds the
+  same two record edits unstaged, the owner's to discard once the coordination commit reaches
+  `main`. Nothing on LinkedIn, in `linkedin/` or on the site changed.
+- Next safe steps for the successor, in order: read the private handoff of 7 October first; the
+  owner's four decisions and his word on committing; a public-safe strategy page in `linkedin/`
+  and the LinkedIn section of `editorial-strategy.md` (the limit raised if the content needs it,
+  never trimmed); the field-by-field container replacing Draft 1 as the working object; drafting
+  by the August method (extract, the owner selects, write together), top of the profile first;
+  the pre-application checks (field limits, standard skill names, Featured's second link, the
+  notification mechanic); application in one sitting with the owner present on his express
+  request; the post-application baseline and the EDR. The eleven steps are in the private handoff.
+- Processes: the comms watcher stopped at the pause; no heartbeat ran (n=1); no claim held. The
+  Chrome tab on the owner's profile was left open for him. The formation letter is at
+  `.agent/experience/2026-10-07-cedar-turns-grove.md`.
+
+## Previous Continuation (2026-10-07T12:xxZ; Cedar turns Grove, 1950d1)
+
+- Branch: `feat/updating-linkedin`, the owner's branch, level with `main` at d72ae51d; the
+  tree carries this record, the napkin blocks of 6 and 7 October, and nothing else.
+- Controlling direction: the owner's words of 6 and 7 October, recorded in the napkin (the
+  public-safe part) and in the private editorial repository's handoff of 7 October (the
+  whole). The impact and value models were proposed at this hour and RATIFIED later the same
+  day (the block above).
+- Settled by the owner: whole replacement, everything but the photo; LinkedIn stands alone;
+  LinkedIn only (no site, CV or graph edits); edits through Chrome by the seat on his express
+  request with him present; the profile informs and never solicits; "Fractious" goes; two
+  project links (the Oak site; the Oak MCP app with the marketplace listing and the OCE
+  repository), their home on the profile open; entries with a location carry it and remote
+  entries say United Kingdom; one network notification at the end of editing.
+- Facts settled first-hand: Code Science Limited incorporated 9 February 2015, dissolved
+  2 January 2024 (Companies House 09428193); Obaith a research project, full time, Jan 2018
+  to 2020; Principal Engineer from January 2021 after Senior Developer Aug–Dec 2020,
+  employment from June 2022; the thesis spelling is Theremin.
+- The live profile, read 7 October, is identical to the 27 September baseline; public
+  visibility is on for every section; retrieval is mostly through the network and comments,
+  search a small share. The private record carries the aggregates.
+- The August 2026 material (private) was never rejected as a whole: the owner rejected two
+  drafting methods and the 8–9 August copy. Standing from August: the owner-set headline
+  (EDR-006), the extract/select/write-collaboratively method, his verbatim Oak movements and
+  the particulars sheet, the LinkedIn system model, the dossier's target effect, and his
+  8 August purpose. The next session reads the private handoff of 7 October before anything.
+- Next safe step: the owner's ratification or correction of the models; then the strategy
+  record in `linkedin/` (public-safe) and the plan for the replacement. No edit to Draft 1,
+  no LinkedIn change, until then.
+
+## Previous Continuation (2026-09-30T09:4xZ)
 
 - Branch: none. The lane is at rest; its last PR (JC.net 273) merged at b6232c77. The primary
   checkout sits on `main` at b6232c77 with a clean tree (the owner's arrangement for this lane).
