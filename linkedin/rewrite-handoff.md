@@ -2,6 +2,40 @@
 
 28 September 2026 · Current working direction
 
+## October 2026 direction (7 October; supersedes the September direction below where they differ)
+
+The working object is no longer Draft 1. Draft 1 stays as a source for the earlier entries; its
+About collapses the identity the CV positioning carries. The governing record is the thread
+record `.agent/memory/operational/threads/linkedin-workspace.next-session.md` (its latest block)
+and, for the whole, the owner's private editorial record of 7 October. Read those before this
+file.
+
+- The profile is designed as one system for one effect, never field by field; headline and About
+  are one act of drafting; the seat drafts the words with Jim by the August method (extract, he
+  selects, write together with craft). The questions are who the audience is, what to
+  communicate, and how; software design rules are not the instrument.
+- What a reader should carry away: a physicist who moved from explaining systems to changing
+  them; who creates the first options before a consequential problem has any shape and derives
+  his own frame from first principles; who sets a direction others can build against while
+  keeping it open to evidence; who commits (the Oak rebuild, its risk carried) and originates
+  (the service that puts the national curriculum inside AI assistants, a lever whose impact is
+  in what others will build); who changes the conditions of future work rather than tuning the
+  current state, the Practice being the present instance; at Oak since its founding months,
+  shaping its engineering strategy. Innovator, scientist and strategist as demonstrated facts.
+- Sources: the CV positioning, capabilities and Oak entry in `jcdotnet/content/cv.content.json`;
+  the front page's third-order line; EDR-002 and EDR-004; the September exploration here; and
+  the August material in the private editorial repository (identity theory, kernel, dossier,
+  the owner-set headline decision, his own Oak paragraphs). The Practice is defined canonically
+  in `.agent/practice-core/practice.md`; its LinkedIn movement is a translation for readers.
+- Settled: the headline the owner set in August stands; the Oak block is Senior Developer
+  (consulting) Aug to Dec 2020 then Principal Engineer from January 2021 meaning engineering
+  strategy, with no Head of DevOps entry and no entry for the 2022 employment change; earlier
+  entries brief and true; skills additive with endorsements kept; two or three recommendations
+  from senior colleagues; Open to Work off; Featured for the Oak site and the MCP app, Projects
+  for the public route; "Fractious" goes.
+- Nothing is applied to LinkedIn except on Jim's express request with him present, by the seat
+  through the browser, in one sitting, after a PDF export of the old profile.
+
 The next useful task is to edit [Draft 1](profile-draft.md) with Jim. It is a complete proposal,
 including decisions to retain or leave sections absent. Read it as a reader would, then revise
 the passages that fail to communicate the intended understanding. No new identity inquiry is

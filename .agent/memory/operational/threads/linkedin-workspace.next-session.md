@@ -10,7 +10,60 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-07T13:xxZ, cold pause at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+## Current Continuation (2026-10-07T16:xxZ, the design model after the owner's corrections; the latest block governs; Cedar turns Grove, 1950d1)
+
+- The cold pause was lifted at the owner's word. The seat is live. The owner then corrected the
+  seat in five turns; the whole of his words and the readers he named are in the private
+  editorial repository's handoff of 7 October, §Design model, second pass. That section governs.
+- What the profile is designed to do, in the owner's framing: the only questions are who the
+  audience is, what we communicate to them, and how. The profile is designed as one system for
+  one effect, never field by field. Headline and About are one act of drafting. The seat holds
+  the model of LinkedIn, of the desired impact, and of how LinkedIn delivers it, and drafts the
+  words with the owner by the August method (extract, he selects, write together with craft).
+  Software design rules are not the instrument: "we can write whatever we want about Oak".
+- What a reader should carry away (the understanding, not the copy): a physicist who moved from
+  explaining systems to changing them; who does his best work before a consequential problem has
+  any shape, before there are options, creating the first options and deriving his own frame
+  from first principles; who makes hidden structure explicit and sets a direction others can
+  build against while keeping it open to evidence; who commits (he argued for and backed Oak's
+  platform rebuild and carried its risk); who originates (he conceived the thing that puts the
+  national curriculum inside AI assistants, a lever whose impact is in what others will build);
+  who changes the conditions of future work rather than tuning the current state (quality
+  machinery at HP, whole-team specification at the Passport Office, contributing to Oak's
+  engineering function, and now the Practice, the methods and tools by which people and AI
+  agents engineer together); at Oak since its founding months, shaping its engineering strategy
+  for six years; the person you bring in when the problem matters and nobody yet knows its
+  shape. Innovator, scientist and strategist as demonstrated facts; nothing that reads as
+  delivery management.
+- Sources the drafting draws from, all read first-hand on 7 October: the CV positioning,
+  capabilities and Oak entry in `jcdotnet/content/cv.content.json`; the front page's
+  third-order line in `jcdotnet/content/frontpage.content.json`; EDR-002 and EDR-004 in
+  `docs/editorial/decision-records/`; Draft 1 and September's exploration in `linkedin/`; and,
+  in the private editorial repository, the August identity theory, kernel, dossier, EDR-006,
+  the owner's own Oak paragraphs and the particulars sheet. Draft 1 is a source for the earlier
+  entries, not the working object: its About collapses the identity.
+- The Practice is not an empty movement. It is defined canonically in
+  `.agent/practice-core/practice.md` (the five-layer definition ratified 2026-10-04, PDR-143
+  §Decision) in both estates, and in OCE's ADR-119 with its foundation narrative; the LinkedIn
+  movement translates that definition for readers, and the public OCE repository is the
+  inspectable instance.
+- Settled for the system: EDR-006's headline stands as the owner set it (the seat's reversals
+  withdrawn); the Oak block is Senior Developer (consulting) Aug to Dec 2020 then Principal
+  Engineer from Jan 2021 meaning engineering strategy, Head of DevOps dropped, no entry for the
+  2022 employment change, movements from the owner's August paragraphs with the engineering
+  function in his wording of 7 October (contributing to defining it; best practice; the first QA
+  and engineering-manager hires; collaborative approaches; long-term investment in reducing the
+  cost of innovation); earlier entries brief and true, each a concrete instance of the pattern;
+  skills additive with endorsements kept, the limit verified at pre-application, top three
+  pinned; two or three recommendations from senior colleagues; Open to Work off; Featured for
+  the two items and Projects for the public route; location and industry set as coordinates.
+- The current traffic shape is the state being changed, not a constraint; the search analytics
+  after the rewrite are the measure.
+- Next act, on the owner's word: headline and About drafted together from the sources; then the
+  Oak block with the Practice movement; then the rest. Nothing on LinkedIn without his express
+  request with him present.
+
+## Previous Continuation (2026-10-07T13:xxZ, cold pause at the owner's word, since lifted; Cedar turns Grove, 1950d1)
 
 - The owner's word, verbatim: "Stop. If the watcher is about to rearm for a third time with no
   events between the previous two rearms then instead make sure all context is made safe with a

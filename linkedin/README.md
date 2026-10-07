@@ -2,9 +2,9 @@
 
 The sole active working home for Jim Cresswell’s LinkedIn content and non-sensitive supporting material.
 
-Start with the [first profile draft](profile-draft.md). It is proposed copy for Jim’s review,
-not an approved or published profile. The immediate task is to edit that draft into the account
-Jim wants readers to understand. The [rewrite handoff](rewrite-handoff.md) preserves the current
+Start with the [rewrite handoff](rewrite-handoff.md), whose October 2026 section is the current
+direction and names the governing records. The [first profile draft](profile-draft.md) is a
+September proposal kept as a source for the earlier entries, not the working object. The [rewrite handoff](rewrite-handoff.md) preserves the current
 direction, settled corrections, remaining choices and limits for the next editor.
 
 The profile draft, editing notes, reference and research documents were prepared by AI agents
