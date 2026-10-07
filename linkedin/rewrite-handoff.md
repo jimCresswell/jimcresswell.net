@@ -35,7 +35,8 @@ file.
   for the public route; "Fractious" goes.
 - Oak's official page for the MCP app is <https://www.thenational.academy/ai-plugin>; the
   product's own name is Oak Curriculum MCP, live in ChatGPT and Claude. The Featured item leads
-  with that page; the profile uses Oak's name for the product.
+  with that page, settled by Jim as the public face of the majority of his work over the last
+  two and a half years; the profile uses Oak's name for the product.
 - Nothing is applied to LinkedIn except on Jim's express request with him present, by the seat
   through the browser, in one sitting, after a PDF export of the old profile.
 

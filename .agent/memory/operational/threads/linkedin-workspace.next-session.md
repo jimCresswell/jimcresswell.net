@@ -70,6 +70,14 @@ authorisation.
   Featured item leads with this page, with the Claude marketplace listing beside it; the Oak
   entry's movement says "in ChatGPT and Claude" rather than naming one vendor; the repository
   serves developers and sits under Projects.
+- Featured, settled by the owner later on 7 October: the Oak Curriculum MCP page IS a Featured
+  item, first among them, "the public face of the majority of my work for the last two and a
+  half years". The chronology for the Oak entry's movements, his word: the OCE repository
+  carries about the last year of that work (created 28 July 2025 with his initial commit,
+  checked first-hand; its commit-activity graph is the evidence he points at); before it, a
+  hand-written SDK for the Oak Open API and the progenitors of the Practice in various
+  repositories. The MCP and Practice movements span two and a half years, not the months since
+  the public beta.
 - Transport, settled by the owner the same afternoon: pushes in this estate go through
   `pnpm agent-tools merge-bot push --branch <name>` as the bot, never a plain `git push`;
   commits here carry the owner's identity by the identity contract of 2026-09-17.
