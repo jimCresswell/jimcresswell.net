@@ -10,7 +10,24 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-07T16:xxZ, the design model after the owner's corrections; the latest block governs; Cedar turns Grove, 1950d1)
+## Current Continuation (2026-10-07T17:xxZ, paused at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+
+- The owner's word: "Let's pause here for now". A PAUSE of the seat, not a close of the lane.
+- State: the headline and About are approved and preserved in `linkedin/profile-replacement.md`,
+  the working object; the design model and the sources are in the block below and in the private
+  editorial repository's handoff of 7 October; the MCP app is the Oak AI plugin on the profile.
+  Nothing on LinkedIn changed.
+- Records: committed on the coordination branch; GitHub reported an incident through the
+  evening, so the last commits may not have reached the remote when the seat paused; the seat
+  that resumes reads ahead/behind first-hand and pushes through the bot tooling
+  (`pnpm agent-tools merge-bot push --branch <name>`), never plain git.
+- Next act on the owner's word: the Oak entry's movements, written for the reader from the
+  understanding (his August paragraphs and the container's Oak section), verified against the
+  sources afterwards, one draft offered for his reaction; then the earlier entries, Featured,
+  Projects, skills, recommendations, settings; then the pre-application checks and the
+  application with him present.
+
+## Previous Continuation (2026-10-07T16:xxZ, the design model after the owner's corrections; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The cold pause was lifted at the owner's word. The seat is live. The owner then corrected the
   seat in five turns; the whole of his words and the readers he named are in the private

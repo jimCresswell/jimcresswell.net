@@ -21,6 +21,17 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-07T17:xxZ: the LinkedIn headline and About approved; the seat paused at the owner's
+  word** (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`). The design model was rebuilt
+  through five owner corrections in the afternoon (audience, message and means; the profile as
+  one system; the owner's insight preserved, not collapsed), then the headline (EDR-006, as he set
+  it) and a new About were approved and preserved in `linkedin/profile-replacement.md`, the
+  working object that replaces Draft 1. The MCP app is the Oak AI plugin on the profile. The
+  wrap and session-handoff skills now say work-safety evidence is reported, never recorded,
+  same bytes in both estates. GitHub's incident of the evening may have held the last commits
+  local; the resuming seat reads ahead/behind first. moved for the sites: nothing / moved for
+  the Practice: the records hygiene cure in two skills, both estates.
+
 - **2026-10-07T13:xxZ: the LinkedIn replacement's impact and value models RATIFIED; the seat in cold
   pause at the owner's word** (Cedar turns Grove, 1950d1, the n=1 seat on `linkedin-workspace`
   from 2026-10-06). The owner's rulings of 6 and 7 October (whole replacement but the photo;
@@ -277,6 +288,16 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-07T17:xxZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, paused at the
+owner's word): headline and About approved in the working object; the Oak entry is next. Next
+safe steps, in order:
+
+1. `git status --branch` first-hand in the primary and the private editorial repository; push
+   through the bot tooling where behind the remote; fold the coordination branch when due.
+2. The LinkedIn lane, on the owner's word: the Oak entry's movements written for the reader,
+   then the rest of the container; nothing on LinkedIn without his express request, him present.
+3. The steps of the 2026-10-05T16:4xZ state below stand.
 
 STATE, 2026-10-07T13:xxZ (Cedar turns Grove, 1950d1, the n=1 seat on `linkedin-workspace`, cold
 pause at the owner's word): the LinkedIn replacement's models are ratified; nothing on LinkedIn,
