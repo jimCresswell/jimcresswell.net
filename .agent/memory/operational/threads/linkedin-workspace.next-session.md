@@ -28,7 +28,8 @@ authorisation.
   LinkedIn is anything but messages.
 - Records at the pause: this block, the napkin blocks of 6 and 7 October and the napkin close
   block, the `repo-continuity.md` entry, all committed on `coordination/2026-10-05-d72ae5` by
-  pathspec from a linked worktree, NOT pushed (the push runs the full gate; the fold of draft 323
+  pathspec from a linked worktree as `SHA:2bd88031`, NOT pushed (the push runs the full gate;
+  the fold of draft 323
   is a later seat's or the owner's act). The private handoff is committed in the private
   repository on its archive branch, not pushed. The primary on `feat/updating-linkedin` holds the
   same two record edits unstaged, the owner's to discard once the coordination commit reaches
