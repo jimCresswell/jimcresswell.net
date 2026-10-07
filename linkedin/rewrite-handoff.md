@@ -4,8 +4,9 @@
 
 ## October 2026 direction (7 October; supersedes the September direction below where they differ)
 
-The working object is no longer Draft 1. Draft 1 stays as a source for the earlier entries; its
-About collapses the identity the CV positioning carries. The governing record is the thread
+The working object is [the profile replacement](profile-replacement.md), field by field with
+status; the headline and About are approved there (7 October). Draft 1 stays as a source for the
+earlier entries; its About collapses the identity the CV positioning carries. The governing record is the thread
 record `.agent/memory/operational/threads/linkedin-workspace.next-session.md` (its latest block)
 and, for the whole, the owner's private editorial record of 7 October. Read those before this
 file.

@@ -78,6 +78,14 @@ authorisation.
   hand-written SDK for the Oak Open API and the progenitors of the Practice in various
   repositories. The MCP and Practice movements span two and a half years, not the months since
   the public beta.
+- Headline and About APPROVED (the owner, 7 October, "I am very happy, with the headline and the
+  about, please preserve it"): the exact text is in `linkedin/profile-replacement.md`, the
+  working object that now replaces Draft 1, every field with a status. The MCP app is called the
+  Oak AI plugin on the profile, to align with Oak's page. The About's first draft was a collage
+  of source fragments the owner called "a dull litany of tell not show"; the second was written
+  for a reader with one through-line and one concrete moment per movement, then checked against
+  the sources; his two craft edits ("the last few years"; the Practice sentence with safely, at
+  pace and the institutional knowledge at risk) completed it. Next: the Oak entry's movements.
 - Transport, settled by the owner the same afternoon: pushes in this estate go through
   `pnpm agent-tools merge-bot push --branch <name>` as the bot, never a plain `git push`;
   commits here carry the owner's identity by the identity contract of 2026-09-17.
