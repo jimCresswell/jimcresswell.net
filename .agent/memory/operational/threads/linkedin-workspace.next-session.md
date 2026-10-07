@@ -31,11 +31,8 @@ authorisation.
   pathspec from a linked worktree as `SHA:2bd88031`, NOT pushed (the push runs the full gate;
   the fold of draft 323
   is a later seat's or the owner's act). The private handoff is committed in the private
-  repository on its archive branch, not pushed. At the owner's word after the pause, the primary
-  checkout moved to `coordination/2026-10-05-d72ae5` (its duplicate edits proved contained in the
-  commits, byte for byte, before the switch) and the linked worktree was removed; the owner's
-  `feat/updating-linkedin` remains as a branch, level with `main`, with no commit on it. Nothing
-  on LinkedIn, in `linkedin/` or on the site changed.
+  repository on its archive branch, not pushed. Nothing on LinkedIn, in `linkedin/` or on the
+  site changed.
 - Next safe steps for the successor, in order: read the private handoff of 7 October first; the
   owner's four decisions and his word on committing; a public-safe strategy page in `linkedin/`
   and the LinkedIn section of `editorial-strategy.md` (the limit raised if the content needs it,
