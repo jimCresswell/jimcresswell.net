@@ -30,10 +30,11 @@ authorisation.
   title stays Principal Engineer unless Senior Principal is the title Oak would confirm
   (LinkedIn's seniority facet buckets both the same). Next act: the Oak entry drafted as one
   piece for his reaction, with EDR-007 as its attribution rule.
-- Start here on resume, the Oak entry: the understanding is the container's Oak section in
-  `linkedin/profile-replacement.md` (the settled structure, movements and chronology) and the
-  approved About, which the entry must demonstrate and not repeat; private editorial material,
-  where present, informs the drafting and is never quoted or identified here. The method that produced the About: write for the reader from
+- Start here on resume, the Oak entry: the understanding is the owner's August paragraphs (in
+  the private editorial repository's Oak working draft, the two opening paragraphs his own), the
+  particulars sheet beside it, the container's Oak section in `linkedin/profile-replacement.md`
+  (the settled structure, movements and chronology), and the approved About, which the entry
+  must demonstrate and not repeat. The method that produced the About: write for the reader from
   the understanding, one concrete moment per movement, verify against the sources afterwards,
   offer one draft for his reaction. Two positions: Senior Developer (consulting) Aug to Dec
   2020, short; Principal Engineer from Jan 2021, engineering strategy, in labelled movements.
@@ -75,8 +76,8 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
 
 - The owner's word: "Let's pause here for now". A PAUSE of the seat, not a close of the lane.
 - State: the headline and About are approved and preserved in `linkedin/profile-replacement.md`,
-  the working object; the design model is in the block below; the MCP app is the Oak AI plugin
-  on the profile.
+  the working object; the design model and the sources are in the block below and in the private
+  editorial repository's handoff of 7 October; the MCP app is the Oak AI plugin on the profile.
   Nothing on LinkedIn changed.
 - Records: committed on the coordination branch; GitHub reported an incident through the
   evening, so the last commits may not have reached the remote when the seat paused; the seat
@@ -91,8 +92,8 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
 ## Previous Continuation (2026-10-07T16:xxZ, the design model after the owner's corrections; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The cold pause was lifted at the owner's word. The seat is live. The owner then corrected the
-  seat in five turns; his words in substance and the readers he named are in this block, which
-  governs; the owner-private parts are in the seat's per-user memory.
+  seat in five turns; the whole of his words and the readers he named are in the private
+  editorial repository's handoff of 7 October, §Design model, second pass. That section governs.
 - What the profile is designed to do, in the owner's framing: the only questions are who the
   audience is, what we communicate to them, and how. The profile is designed as one system for
   one effect, never field by field. Headline and About are one act of drafting. The seat holds
@@ -116,9 +117,9 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
 - Sources the drafting draws from, all read first-hand on 7 October: the CV positioning,
   capabilities and Oak entry in `jcdotnet/content/cv.content.json`; the front page's
   third-order line in `jcdotnet/content/frontpage.content.json`; EDR-002 and EDR-004 in
-  `docs/editorial/decision-records/`; Draft 1 and September's exploration in `linkedin/`; and
-  private editorial material where present, which informs the drafting and is never quoted,
-  summarised or identified here. Draft 1 is a source for the earlier
+  `docs/editorial/decision-records/`; Draft 1 and September's exploration in `linkedin/`; and,
+  in the private editorial repository, the August identity theory, kernel, dossier, EDR-006,
+  the owner's own Oak paragraphs and the particulars sheet. Draft 1 is a source for the earlier
   entries, not the working object: its About collapses the identity.
 - The Practice is not an empty movement. It is defined canonically in
   `.agent/practice-core/practice.md` (the five-layer definition ratified 2026-10-04, PDR-143
@@ -179,8 +180,8 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
   This is a PAUSE of the seat, not a close of the lane.
 - RATIFIED (2026-10-07T12:xxZ, verbatim): "I am happy to ratify as is, I think further refinements
   should happen as part of applied work rather than theoretical refinement." The impact model and
-  the value model stand as ratified (their substance, as later corrected, is the 16:xxZ block
-  above), with the owner's answers of 7 October and the seat's recommendations beside the four decisions
+  the value model stand as written in the private editorial repository's handoff of 7 October,
+  with the owner's answers of 7 October and the seat's recommendations beside the four decisions
   he still owns: the Oak entry structure (two entries recommended), the August headline (keep its
   substance), skills (everything changes; endorsed removals by his word), About order (drafted
   with the top). The corrections of 7 October before the ratification: his Oak work is the MCP
@@ -191,16 +192,17 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
   block, the `repo-continuity.md` entry, all committed on `coordination/2026-10-05-d72ae5` by
   pathspec from a linked worktree as `SHA:2bd88031`, NOT pushed (the push runs the full gate;
   the fold of draft 323
-  is a later seat's or the owner's act). Nothing on LinkedIn, in `linkedin/` or on the site
-  changed.
-- Next safe steps for the successor, in order: the owner's four decisions and his word on
-  committing; a public-safe strategy page in `linkedin/`
+  is a later seat's or the owner's act). The private handoff is in the private editorial
+  repository. Nothing on LinkedIn, in `linkedin/` or on the
+  site changed.
+- Next safe steps for the successor, in order: read the private handoff of 7 October first; the
+  owner's four decisions and his word on committing; a public-safe strategy page in `linkedin/`
   and the LinkedIn section of `editorial-strategy.md` (the limit raised if the content needs it,
   never trimmed); the field-by-field container replacing Draft 1 as the working object; drafting
   by the August method (extract, the owner selects, write together), top of the profile first;
   the pre-application checks (field limits, standard skill names, Featured's second link, the
   notification mechanic); application in one sitting with the owner present on his express
-  request; the post-application baseline and the EDR.
+  request; the post-application baseline and the EDR. The eleven steps are in the private handoff.
 - Processes: the comms watcher stopped at the pause; no heartbeat ran (n=1); no claim held. The
   Chrome tab on the owner's profile was left open for him. The formation letter is at
   `.agent/experience/2026-10-07-cedar-turns-grove.md`.
@@ -210,8 +212,8 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
 - Branch: `feat/updating-linkedin`, the owner's branch, level with `main` at d72ae51d; the
   tree carries this record, the napkin blocks of 6 and 7 October, and nothing else.
 - Controlling direction: the owner's words of 6 and 7 October, recorded in the napkin (the
-  public-safe part) and, for the owner-private parts, in the seat's per-user memory. The
-  impact and value models were proposed at this hour and RATIFIED later the same
+  public-safe part) and in the private editorial repository's handoff of 7 October (the
+  whole). The impact and value models were proposed at this hour and RATIFIED later the same
   day (the block above).
 - Settled by the owner: whole replacement, everything but the photo; LinkedIn stands alone;
   LinkedIn only (no site, CV or graph edits); edits through Chrome by the seat on his express
@@ -225,10 +227,12 @@ Practice: the records hygiene cure in two skills, both estates, on `main`.
   employment from June 2022; the thesis spelling is Theremin.
 - The live profile, read 7 October, is identical to the 27 September baseline; public
   visibility is on for every section; retrieval is mostly through the network and comments,
-  search a small share; the aggregates are not reproduced here.
-- The owner's earlier work on this profile stands where he has not withdrawn it: the headline
-  he set (since approved in the container) and the method of drafting with him (extract the
-  particulars, he selects, write together with craft).
+  search a small share. The private record carries the aggregates.
+- The August 2026 material (private) was never rejected as a whole: the owner rejected two
+  drafting methods and the 8–9 August copy. Standing from August: the owner-set headline
+  (EDR-006), the extract/select/write-collaboratively method, his verbatim Oak movements and
+  the particulars sheet, the LinkedIn system model, the dossier's target effect, and his
+  8 August purpose. The next session reads the private handoff of 7 October before anything.
 - Next safe step: the owner's ratification or correction of the models; then the strategy
   record in `linkedin/` (public-safe) and the plan for the replacement. No edit to Draft 1,
   no LinkedIn change, until then.

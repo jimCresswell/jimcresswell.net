@@ -348,9 +348,9 @@ unpushed. Next safe steps, in order:
 
 1. `git status --branch` in the primary and the coordination worktree, first-hand; push the
    coordination branch and fold draft 323 under the normal gate.
-2. The LinkedIn lane, on the owner's word: his four decisions; the public-safe strategy page and
-   the directive section; the field container; the drafting by the method he settled. Nothing on
-   LinkedIn without his express request, him present.
+2. The LinkedIn lane, on the owner's word: read the private handoff of 7 October; his four
+   decisions; the public-safe strategy page and the directive section; the field container; the
+   drafting by the August method. Nothing on LinkedIn without his express request, him present.
 3. The steps of the 2026-10-05T16:4xZ state below stand (the fail-if-no-match follow-up; the
    napkin rotation, now over 1,190 lines).
 
