@@ -29,7 +29,10 @@ authorisation.
   His correction the same hour: comms events are ephemeral, never a home. Open for his word: the
   title stays Principal Engineer unless Senior Principal is the title Oak would confirm
   (LinkedIn's seniority facet buckets both the same). Next act: the Oak entry drafted as one
-  piece for his reaction, with EDR-007 as its attribution rule.
+  piece for his reaction, with EDR-007 as its attribution rule, by the `write-for-the-reader` method landed the same day
+  after a first draft failed as writing (the rule `public-copy-runs-the-editorial-workflow`; the
+  `audience-reader` sub-agent; the voice check and the prose and editor reviewers before Jim, who
+  reads second).
 - Start here on resume, the Oak entry: the understanding is the owner's August paragraphs (in
   the private editorial repository's Oak working draft, the two opening paragraphs his own), the
   particulars sheet beside it, the container's Oak section in `linkedin/profile-replacement.md`
