@@ -98,10 +98,11 @@ const config: KnipConfig = {
       entry: ['src/*.ts'],
     },
     linkedin: {
-      // The profile copy's validator and the local editor run through their package scripts
-      // (`tsx src/...`); the page script is the tsup entry the editor serves from `dist/`.
-      entry: ['src/check/validate-profile.ts', 'src/editor/serve.ts', 'src/page/main.ts'],
-      project: ['src/**/*.ts'],
+      // The entries need no pattern: the validator and the editor run through package scripts
+      // (`tsx src/...`), which knip reads as entries, and the page script is the tsup entry.
+      // The css extension is in the project because the root css compiler above applies to every
+      // workspace; knip reports the gap as a hint, and a hint fails the gate.
+      project: ['src/**/*.{ts,css}'],
     },
     jcdotnet: {
       // Next.js is auto-detected; the build-time scripts are package-script entries. Test files

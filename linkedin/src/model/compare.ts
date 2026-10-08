@@ -10,7 +10,7 @@ import { bodyText } from './measure.js';
 import type { Entry, ProfileDocument, Section, StatusLine } from './types.js';
 
 /** Whether one entry's copy differs from the source's entry of the same heading. */
-export interface EntryChange {
+interface EntryChange {
   readonly heading: string;
   readonly changed: boolean;
 }

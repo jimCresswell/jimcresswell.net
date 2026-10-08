@@ -8,7 +8,7 @@
  */
 
 /** How the copy under a heading is written. */
-export type BodyKind = 'paragraphs' | 'list';
+type BodyKind = 'paragraphs' | 'list';
 
 /** One section of the profile. */
 export interface SectionSpec {

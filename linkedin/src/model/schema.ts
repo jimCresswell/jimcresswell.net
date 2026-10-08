@@ -72,7 +72,7 @@ const section = z.strictObject({
 }) satisfies z.ZodType<Section>;
 
 /** The document model as the server sends it. */
-export const profileDocumentSchema = z.strictObject({
+const profileDocumentSchema = z.strictObject({
   title: heading,
   sections: z.array(section),
 }) satisfies z.ZodType<ProfileDocument>;
