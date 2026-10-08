@@ -12,10 +12,10 @@ import { readFile, writeFile } from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
 
-import { createEditorHandler, type EditorHandler } from './handler.js';
+import { createEditorHandler, EDITOR_HOST, EDITOR_PORT, type EditorHandler } from './handler.js';
 
-const HOST = '127.0.0.1';
-const PORT = 4780;
+const HOST = EDITOR_HOST;
+const PORT = EDITOR_PORT;
 
 const workspace = path.resolve(import.meta.dirname, '..', '..');
 const sourcePath = path.join(workspace, 'profile.md');
@@ -37,6 +37,7 @@ async function answer(
   response: http.ServerResponse,
 ): Promise<void> {
   const answered = await handle({
+    host: request.headers.host ?? '',
     method: request.method ?? '',
     url: request.url ?? '/',
     body: await readBody(request),

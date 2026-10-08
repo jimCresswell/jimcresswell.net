@@ -10,6 +10,12 @@ import { createEditorHandler, type EditorSeams } from './handler.js';
 const SOURCE = '# Profile\n\n## About\n\nStatus: approved\n\nSource copy.\n';
 const REVIEW = '# Profile\n\n## About\n\nStatus: approved\n\nReview copy.\n';
 
+/** The editor's own address, as a browser sends it in the Host header. */
+const HOST = '127.0.0.1:4780';
+
+/** A request to the editor's own host; the Host check has its own test below. */
+const at = (method: string, url: string, body = '') => ({ host: HOST, method, url, body });
+
 /** The shape of an error answer. */
 const errorBody = z.strictObject({ error: z.string() });
 
@@ -35,7 +41,7 @@ const neverWrite: EditorSeams = {
 
 describe('the editor handler', () => {
   it('answers GET / with the injected page as html', async () => {
-    const response = await createEditorHandler(seams([]))({ method: 'GET', url: '/', body: '' });
+    const response = await createEditorHandler(seams([]))(at('GET', '/'));
 
     expect(response).toEqual({
       status: 200,
@@ -45,11 +51,7 @@ describe('the editor handler', () => {
   });
 
   it('answers GET /app.js with the injected page script as javascript', async () => {
-    const response = await createEditorHandler(seams([]))({
-      method: 'GET',
-      url: '/app.js',
-      body: '',
-    });
+    const response = await createEditorHandler(seams([]))(at('GET', '/app.js'));
 
     expect(response).toEqual({
       status: 200,
@@ -59,11 +61,7 @@ describe('the editor handler', () => {
   });
 
   it('answers GET /api/document with both reports, the folds, and the review model equal to its parse', async () => {
-    const response = await createEditorHandler(seams([]))({
-      method: 'GET',
-      url: '/api/document',
-      body: '',
-    });
+    const response = await createEditorHandler(seams([]))(at('GET', '/api/document'));
 
     expect(response.status).toBe(200);
     const payload = unwrap(parseWith(documentPayloadSchema, JSON.parse(response.body)));
@@ -82,11 +80,7 @@ describe('the editor handler', () => {
       readReview: () => Promise.resolve('no title here\n'),
     };
 
-    const response = await createEditorHandler(broken)({
-      method: 'GET',
-      url: '/api/document',
-      body: '',
-    });
+    const response = await createEditorHandler(broken)(at('GET', '/api/document'));
 
     const payload = unwrap(parseWith(documentPayloadSchema, JSON.parse(response.body)));
     expect(payload.source.kind).toBe('parsed');
@@ -101,11 +95,9 @@ describe('the editor handler', () => {
     const written: string[] = [];
     const text = '# Profile\n\n## About\n\nStatus: drafted\n\nEdited copy.\n';
 
-    const response = await createEditorHandler(seams(written))({
-      method: 'PUT',
-      url: '/api/review',
-      body: JSON.stringify({ text }),
-    });
+    const response = await createEditorHandler(seams(written))(
+      at('PUT', '/api/review', JSON.stringify({ text })),
+    );
 
     expect(written).toEqual([text]);
     expect(response.status).toBe(200);
@@ -117,33 +109,38 @@ describe('the editor handler', () => {
   });
 
   it('refuses a PUT body that is not JSON with 400 and writes nothing', async () => {
-    const response = await createEditorHandler(neverWrite)({
-      method: 'PUT',
-      url: '/api/review',
-      body: 'not json',
-    });
+    const response = await createEditorHandler(neverWrite)(at('PUT', '/api/review', 'not json'));
 
     expect(response.status).toBe(400);
     expect(JSON.parse(response.body)).toEqual({ error: 'the body is not JSON' });
   });
 
   it('refuses a PUT body of another shape with 400 and writes nothing', async () => {
-    const response = await createEditorHandler(neverWrite)({
-      method: 'PUT',
-      url: '/api/review',
-      body: JSON.stringify({ content: 'x' }),
-    });
+    const response = await createEditorHandler(neverWrite)(
+      at('PUT', '/api/review', JSON.stringify({ content: 'x' })),
+    );
 
     expect(response.status).toBe(400);
     expect(unwrap(parseWith(errorBody, JSON.parse(response.body))).error).toContain('text');
   });
 
+  it('refuses a request to any Host but its own with 403, reading and writing nothing', async () => {
+    const foreign = {
+      ...at('PUT', '/api/review', JSON.stringify({ text: REVIEW })),
+      host: 'attacker.example:4780',
+    };
+    const foreignRead = { ...at('GET', '/api/document'), host: 'localhost:4780' };
+
+    const write = await createEditorHandler(neverWrite)(foreign);
+    const read = await createEditorHandler(neverWrite)(foreignRead);
+
+    expect(write.status).toBe(403);
+    expect(JSON.parse(write.body)).toEqual({ error: 'host not accepted' });
+    expect(read.status).toBe(403);
+  });
+
   it('answers an unknown route with 404', async () => {
-    const response = await createEditorHandler(seams([]))({
-      method: 'GET',
-      url: '/elsewhere',
-      body: '',
-    });
+    const response = await createEditorHandler(seams([]))(at('GET', '/elsewhere'));
 
     expect(response).toMatchObject({ status: 404 });
     expect(JSON.parse(response.body)).toEqual({ error: 'not found' });
@@ -155,22 +152,14 @@ describe('the editor handler', () => {
       readSource: () => Promise.reject(new Error('disk gone')),
     };
 
-    const response = await createEditorHandler(failing)({
-      method: 'GET',
-      url: '/api/document',
-      body: '',
-    });
+    const response = await createEditorHandler(failing)(at('GET', '/api/document'));
 
     expect(response.status).toBe(500);
     expect(JSON.parse(response.body)).toEqual({ error: 'disk gone' });
   });
 
   it('ignores a query string on a known route', async () => {
-    const response = await createEditorHandler(seams([]))({
-      method: 'GET',
-      url: '/api/document?x=1',
-      body: '',
-    });
+    const response = await createEditorHandler(seams([]))(at('GET', '/api/document?x=1'));
 
     expect(response.status).toBe(200);
   });
