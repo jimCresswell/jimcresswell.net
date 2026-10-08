@@ -233,7 +233,8 @@ in its existing home.
 entry states, this authorisation qualifies two Private categories above: career breadth details, and
 third-party names through rule 2's `linkedin/` clause. It changes where the listed material lives,
 not the confidentiality of private editorial material: §Private editorial material below applies
-inside `linkedin/` unchanged, so private material is never quoted, summarised or identified there.
+inside `linkedin/` unchanged, so private content is never quoted there and the material is pointed
+at only as that section allows.
 Every other category and rule in this file applies inside `linkedin/` unchanged, and secops.md's
 public-visibility audit covers `linkedin/` too.
 
@@ -242,9 +243,13 @@ public-visibility audit covers `linkedin/` too.
 Private editorial material — source packs, evidence, drafts and their history — may exist on a
 machine as an ignored nested repository under `.agent/reference-local/`. It is optional and
 confidential. It informs writing choices only; nothing in this repository depends on its presence,
-checks for it, or changes behaviour when it is absent. Never quote, summarise or identify it, and
-never publish its remote, commit identifiers, history or custody records. The parent repository
-never tracks it as a submodule. `.agent/private/` is an ignored boundary for isolated local notes.
+checks for it, or changes behaviour when it is absent. Its content is confidential: never quote it
+or reproduce its substance in a tracked file. Its existence is not: a tracked record may say the
+repository exists, name a document in it by path and by what it is, and route a reader to it (the
+owner, 8 October 2026, after a fold had stripped every such pointer from a lane's records on a
+reviewer's reading of this section: "That was overkill, there is no problem indicating that the
+private repo exists"). Never publish its remote, commit identifiers, history or custody records.
+The parent repository never tracks it as a submodule. `.agent/private/` is an ignored boundary for isolated local notes.
 
 Git ignore is not a complete tooling boundary: whole-repository tools take the tracked tree as
 their universe, so ignored material is never entered or read.
