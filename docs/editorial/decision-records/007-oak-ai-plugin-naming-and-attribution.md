@@ -87,8 +87,9 @@ Attribution:
   "a fully sequenced, openly licensed curriculum" is already the experts' work inside Jim's
   sentence.
 - The Oak entry (Principal Engineer, January 2021 onward) is drafted with this movement as its
-  proof layer. Readers who were there, Oak colleagues and Oak's leadership, are also a funder's
-  verification path, so the attribution is what lets the claim survive inspection.
+  proof layer. Readers who were there, Oak colleagues and Oak's leadership, are also the path by
+  which any serious reader verifies the claim, so the attribution is what lets it survive
+  inspection.
 - The skills list gains Model Context Protocol (MCP). The Featured and Projects entries follow
   decision 4 under Naming.
 - Working documents that call the product "the MCP app" or "the Oak Curriculum MCP" describe the

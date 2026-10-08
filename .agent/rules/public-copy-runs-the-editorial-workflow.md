@@ -1,7 +1,7 @@
 ---
 classification: situational
-description: "Any copy that represents the owner (LinkedIn fields, CV, front page, bios, posts, letters), or prose a named reader must act on, is drafted and revised by the write-for-the-reader skill, and the owner reads it only after the voice check, the prose and editor reviewers and the audience-reader have read it and every finding carries a disposition. A reader's finding is information, never authority; copy is never cut to a character count. Fires on any request to write, draft, redraft, tighten or edit such copy, even one field. Named failures (October 2026): two drafts assembled from settled bullet points, one draft trimmed four times to a believed limit, the owner the first reader every time."
-trigger: ceremony:editorial-drafting — drafting or revising copy that represents the owner, or prose for a named reader's decision
+description: "This host's binding: any copy that represents the owner (LinkedIn fields, CV, front page, bios, posts), or prose for an external reader's decision (a letter, a bio for a third party), is drafted and revised by the write-for-the-reader skill, and the owner reads it only after the voice check, editor, prose-expert and the audience-reader have read it and every finding carries a disposition. Not for records, plans, pull-request text, commit messages, code comments or Practice prose. A reader's finding is information, never authority; copy is never cut to a character count. Fires on any request to write, draft, redraft, tighten or edit such copy, even one field. Named failures (October 2026): two drafts assembled from settled bullet points, one draft trimmed four times to a believed limit, the owner the first reader every time."
+trigger: ceremony:editorial-drafting — drafting or revising copy that represents the owner, or prose for an external reader's decision; never records, plans, pull-request text or Practice prose
 ---
 
 # Public Copy Runs the Editorial Workflow
@@ -13,9 +13,14 @@ The guidance was never the gap; the firing was. This rule fires the method.
 ## Trigger
 
 A request to write, draft, redraft, tighten, edit or "make this better" for any copy that
-represents the owner: a LinkedIn field, a CV passage, the front page, a bio, a post, a letter to
-be sent. Also any prose written for a named reader's decision. One field or one paragraph is
-enough to fire it.
+represents the owner: a LinkedIn field, a CV passage, the front page, a bio, a post. Also prose
+for an external reader's decision: a letter to be sent, a bio for a third party. One field or one
+paragraph is enough to fire it. It does not fire on records, plans, pull-request text, commit
+messages, code comments or Practice prose, which have their own conventions.
+
+This is this host's binding of a general shape: the readers it names are this estate's own
+(`editor`, `audience-reader`) beside the shared `prose-expert`; a sibling estate binds its own
+voice reviewer and audience reader in its catalogue.
 
 ## Action
 
@@ -23,8 +28,9 @@ enough to fire it.
    the reader's decision on paper, the beliefs the piece must leave, the moment that proves each,
    continuous prose by `editorial-voice`, verification against the sources, then the readers,
    then the owner.
-2. The owner reads second. No draft reaches him before the voice check, `prose-expert`, `editor`
-   and `audience-reader` have read it, and each finding carries a disposition shown with the
+2. The owner reads second. No draft reaches him before the voice check, `editor` (the
+   developmental pass), `prose-expert` (the line pass) and `audience-reader` (on the revised
+   draft) have read it, in that order, and each finding carries a disposition shown with the
    draft (reject with a reason, absorb, or name a home).
 3. A reader's finding is information the seat decides on, never an instruction. The owner's
    word, 2026-10-08, verbatim: "Copilot reviews are a source of information to consider, they

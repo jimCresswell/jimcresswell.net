@@ -1,5 +1,5 @@
 name = "audience-reader"
-description = "Audience simulation for copy that represents Jim; reports the reader's beliefs, repeatables, noise and next act."
+description = "Audience simulation for copy that represents Jim; reports what the named reader believes, would repeat, skipped and would do next."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"

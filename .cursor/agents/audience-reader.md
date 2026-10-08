@@ -1,6 +1,6 @@
 ---
 name: audience-reader
-description: 'Reads a draft that represents Jim as its named audience (an executive recruiter, a funder, a hiring manager, a colleague, a machine) and reports what that reader believes, repeats, skips and does next. Invoke after the craft reviewers and before Jim reads.'
+description: 'Reads a draft that represents Jim as the audience the brief names and reports what that reader believes, would repeat, skipped and would do next; after editor and prose-expert, before Jim reads.'
 readonly: true
 ---
 

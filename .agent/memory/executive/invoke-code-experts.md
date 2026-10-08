@@ -683,9 +683,21 @@ you apply the feedback. Editor review informs a draft and is not a landing
 gate: the owner, 2026-09-29, "I told you to commit and push and merge the
 linkedin work just like any other work, it's not special, only putting it on
 Linkedin is special, and that happens manually". `prose-expert` keeps the
-craft; `editor` keeps the register; `audience-reader` reads the draft as its
-named audience after both, so the owner reads second (the
-`public-copy-runs-the-editorial-workflow` rule, 2026-10-08).
+craft; `editor` keeps the register.
+
+### The audience reader
+
+`audience-reader` reads a draft that represents Jim as the audience the
+brief names and reports what that reader believes, would repeat, skipped and
+would do next. Its trigger is the `write-for-the-reader` skill's readers
+step, never a path glob: it runs after `editor` and `prose-expert`, on the
+revised draft, before Jim reads (the `public-copy-runs-the-editorial-workflow`
+rule, 2026-10-08). Give it items 1 to 4 of the reader's decision statement,
+the draft on its reading path and the surface's mechanics; withhold what the
+draft is meant to make clear, so the belief it reports is the draft's effect.
+The specific readers for a piece come from material the seat holds, never from
+a tracked file. It is read-only and proposes no wording; its report is
+information the seat triages.
 
 ### The domain reviewer
 

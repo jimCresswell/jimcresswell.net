@@ -111,8 +111,7 @@ After writing or editing content, ask:
 ## Reference
 
 - `.agent/directives/editorial-strategy.md` — audience, surface composition, attention, readability, length and platform fit
-
 - `.agent/directives/editorial-guidance.md` — authoritative editorial constraints, principles, and hierarchy
 - `docs/editorial/decision-records/` — specific editorial decisions with context and rationale (EDRs)
-- `content/cv.content.json` — CV content (positioning, experience, capabilities)
-- `content/frontpage.content.json` — front page narrative
+- `jcdotnet/content/cv.content.json` — CV content (positioning, experience, capabilities)
+- `jcdotnet/content/frontpage.content.json` — front page narrative

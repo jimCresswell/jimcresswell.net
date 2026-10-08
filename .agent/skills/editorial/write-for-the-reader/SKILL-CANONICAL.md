@@ -3,13 +3,14 @@ name: write-for-the-reader
 classification: active
 description: >-
   The order of work for drafting or revising any copy that represents Jim (LinkedIn fields, CV,
-  front page, bios, posts, letters) or any prose a named reader must act on: the reader's
-  decision on paper first, the two or three beliefs the piece must leave, the moment that proves
-  each, continuous prose in one voice, facts verified afterwards, then the three readers (the
-  voice check, the prose and editor reviewers, the audience-reader) before Jim reads. Load it
-  whenever asked to write, draft, redraft, tighten, edit or "make this better" for a public
-  surface, even for one field or one paragraph. Not for records, plans, commit messages or code
-  comments, which have their own conventions. Right looks like: the reader's decision shown with
+  front page, bios, posts) or prose for an external reader's decision (a letter, a bio for a
+  third party): the reader's decision on paper first, the two or three beliefs the piece must
+  leave, the moment that proves each, continuous prose in one voice, facts verified afterwards,
+  then the readers (the voice check; editor, then prose-expert; the audience-reader on the
+  revised draft) before Jim reads. Load it whenever asked to write, draft, redraft, tighten, edit
+  or "make this better" for such a surface, even for one field or one paragraph. Not for
+  records, plans, pull-request text, commit messages, code comments or Practice prose, which have
+  their own conventions. Right looks like: the reader's decision shown with
   the draft, one job per paragraph, every sentence changing what the reader believes. Wrong looks
   like: a label, a colon and a litany; a draft assembled from settled bullet points; copy cut to
   a character count.
@@ -45,7 +46,7 @@ into the prose.
 - Name the two or three things the reader must believe when they finish, in the words they would
   use to repeat them to someone else. That is the referability test, and it is the whole job.
 - For each belief, choose the one moment that proves it, at the reader's altitude. A reader
-  constructing a senior role wants scope, the decision, the cost accepted and the consequence;
+  deciding at strategy altitude wants scope, the decision, the cost accepted and the consequence;
   mechanism is noise to them however true it is. The test for every candidate sentence: what does
   the named reader believe after it that they did not before? Nothing new, or new at the wrong
   altitude, and the sentence does not earn its place.
@@ -80,20 +81,23 @@ into the prose.
 
 ## 5. The readers, before Jim
 
-Three readers in order. Each is a falsifier; none is an authority. A reader's finding is
-information the seat decides on, by the `review-feedback-defaults-to-triage` discipline: reject
-the incorrect with a reason, absorb the correct and proportionate, name a home for the rest, and
-show the dispositions with the draft.
+The readers in order, large decisions before small, as `editorial-strategy.md` §Review sequence
+sets. Each is a falsifier; none is an authority. A reader's finding is information the seat
+decides on, by the `review-feedback-defaults-to-triage` discipline: reject the incorrect with a
+reason, absorb the correct and proportionate, name a home for the rest, and show the
+dispositions with the draft.
 
 1. **The voice check**, run by the seat: `editorial-voice` §The check, all five questions, plus
    the per-sentence test from step 2.
-2. **The craft readers**: `prose-expert` at sentence level and `editor` for structure, attention,
-   evidence, register and voice, in the order `editorial-strategy.md` §Review sequence sets, large
-   decisions before small. For a revision of an existing piece, brief them by altitude (§7).
-3. **The audience**: the `audience-reader` sub-agent, given the reader's decision statement from
-   step 1 and the draft in its reading path, reporting what the reader now believes, what they
-   would repeat, what was noise, where they stopped and what they would do next. Its "what I now
-   believe" is the piece's real effect; the gap between that and step 2 is the finding.
+2. **`editor`**, the developmental pass: does the piece do the reader's job; structure, attention,
+   evidence and attribution, register and voice. Revise on its letter before any sentence work.
+3. **`prose-expert`**, the line pass: clarity, rhythm, word choice, redundancy, with its
+   before-and-after rewrites inside the register. Revise again.
+4. **`audience-reader`**, on the revised draft: give it items 1 to 4 of the reader's decision and
+   the draft in its reading path, and withhold item 5 and the beliefs from step 2, so that what it
+   reports believing is the draft's effect and not the brief's. Compare its belief with step 2
+   afterwards; the gap is the finding.
+5. **The proof pass**, the seat's own, against the sources (§7).
 
 ## 6. Then Jim
 
@@ -130,13 +134,13 @@ wasted work.
   hyphens and numerals; flag every ambiguity and never silently change a fact. Output: the
   corrected draft, the change log, the flagged ambiguities for Jim to confirm.
 
-The `editor` reviewer takes the developmental and line passes when briefed by altitude; the proof
+`editor` takes the developmental pass and `prose-expert` the line pass, in that order; the proof
 pass is the seat's own, run against the sources.
 
 ## Gotchas
 
 - A true, verifiable fact is not a reason to include it. A benchmark that scored a perfect 1.0
-  and was rewritten to score worse was true, and said nothing to a head hunter.
+  and was rewritten to score worse was true, and said nothing to the reader it was written for.
 - The About and the Experience entry draw on the same facts. The entry particularises: who, when,
   what was decided, what it cost. It never restates the About's sentences.
 - "The function. With colleagues I helped grow ... : pushing, hiring, forming, arguing" is the

@@ -1,6 +1,6 @@
 ---
 name: audience-reader
-description: "The audience as a reader. Give it the reader's decision statement (who reads, deciding what, on which surface, in which mode) and a draft that represents Jim; it reads as that reader, in that mode, and reports what it now believes, what it would repeat to someone else, what was noise or at the wrong altitude, where it stopped reading, and what it would do next. Invoke it on every draft of copy that represents Jim (LinkedIn, CV, front page, bios, posts) after the craft reviewers and before Jim reads; useful on any prose written for a named reader's decision. Read-only, never proposes wording, never an authority: its report is information the calling agent triages."
+description: "Reads a draft that represents Jim as the audience the brief names, in that reader's mode, and reports what it now believes, would repeat, skipped and would do next. Invoke on every draft of copy that represents Jim (LinkedIn fields, CV, front page, bios, posts) after editor and prose-expert, on the revised draft, before Jim reads. Not for records, plans, pull-request text, commit messages or Practice prose, and never a judge of craft. Right looks like: a belief in the reader's own words that differs from the author's intent. Wrong looks like: an edit, a rewrite, a verdict on the writing."
 tools:
   - read_file
   - list_directory

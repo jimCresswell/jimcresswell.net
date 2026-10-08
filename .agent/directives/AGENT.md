@@ -129,7 +129,7 @@ roster with each expert's purpose is in
 [practice-index.md §Experts](../practice-index.md#experts-sub-agents); the
 site-specific lanes are the four named architecture experts (Barney — data and
 graph; Betty — navigation and layout; Fred — build, caching, PDF; Wilma —
-Practice and docs), `pkg-expert`, and `editor`.
+Practice and docs), `pkg-expert`, `editor` and `audience-reader`.
 
 For a fast second opinion on whether the current work is the right work,
 invoke [`$jc-cricket`](../skills/cognition/cricket/SKILL-CANONICAL.md).
@@ -176,7 +176,9 @@ Before any writing that represents Jim — CV, front page, LinkedIn, positioning
 — read [editorial-strategy.md](./editorial-strategy.md) (audience, composition,
 attention, readability, surface fit) and
 [editorial-guidance.md](./editorial-guidance.md) (identity, voice, register),
-then apply the `editorial-voice` skill and the `editor` expert. Private
+then follow the `write-for-the-reader` skill, with `editorial-voice` at the
+prose and its readers (`editor`, `prose-expert`, `audience-reader`) before
+Jim reads, as `public-copy-runs-the-editorial-workflow` requires. Private
 editorial material, if present, is confidential and informs writing only
 ([privacy.md](./privacy.md) §Private editorial material); never quote, summarise
 or identify it on a public surface. The LinkedIn profile draft and the other
