@@ -53,8 +53,12 @@ export type StatusLine =
     }
   | { readonly kind: 'absent' };
 
-/** One source line of a paragraph: its span, and where its first character sits in the joined text. */
+/**
+ * One source line of a paragraph: its one-based line number, its span, and where its first
+ * character sits in the joined text.
+ */
 export interface SourceLine {
+  readonly line: number;
   readonly span: Span;
   readonly textOffset: number;
 }

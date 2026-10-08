@@ -65,7 +65,7 @@ function paragraphOf(run: readonly RawLine[]): Paragraph {
   const lines: SourceLine[] = [];
   let textOffset = 0;
   for (const line of run) {
-    lines.push({ span: line.span, textOffset });
+    lines.push({ line: line.line, span: line.span, textOffset });
     textOffset += line.text.length + 1;
   }
   const first = run.at(0);
