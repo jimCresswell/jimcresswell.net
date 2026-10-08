@@ -2,7 +2,28 @@
   "name": "linkedin",
   "version": "0.0.1",
   "private": true,
-  "description": "LinkedIn drafts",
+  "description": "LinkedIn drafts: the profile copy, its structure validator and its local editor",
   "license": "UNLICENSED",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "lint": "eslint --max-warnings 0 .",
+    "lint:fix": "eslint --max-warnings 0 --fix .",
+    "type-check": "tsc -p tsconfig.lint.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@engraph/result": "workspace:*"
+  },
+  "devDependencies": {
+    "@engraph/eslint-plugin-standards": "workspace:*",
+    "@engraph/workspace-config": "workspace:*",
+    "@types/node": "^24.13.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "eslint": "^10.11.0",
+    "globals": "^17.9.0",
+    "tsx": "^4.23.15",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "vitest": "^5.0.1"
+  }
 }

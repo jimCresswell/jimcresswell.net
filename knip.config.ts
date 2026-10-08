@@ -97,6 +97,12 @@ const config: KnipConfig = {
       // Subpath exports consumed via package.json "exports".
       entry: ['src/*.ts'],
     },
+    linkedin: {
+      // The profile copy's validator and the local editor run through their package scripts
+      // (`tsx src/...`); the page script is the tsup entry the editor serves from `dist/`.
+      entry: ['src/check/validate-profile.ts', 'src/editor/serve.ts', 'src/page/main.ts'],
+      project: ['src/**/*.ts'],
+    },
     jcdotnet: {
       // Next.js is auto-detected; the build-time scripts are package-script entries. Test files
       // under scripts/ are left out of this entry so they enter only through the Vitest include:

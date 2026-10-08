@@ -29,5 +29,8 @@
     ".cursor/**",
     ".agents/**",
     "**/CHANGELOG.md",
+    // The owner's raw edits of the LinkedIn profile copy, written by the local editor and read
+    // only by the seat; the source, linkedin/profile.md, stays governed.
+    "linkedin/profile.review.md",
   ],
 }
