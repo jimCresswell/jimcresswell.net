@@ -17,20 +17,21 @@ curriculum experts govern the Oak entry's plugin movement. The decisions and the
 [EDR-007](../docs/editorial/decision-records/007-oak-ai-plugin-naming-and-attribution.md)
 (8 October).
 
-The copy of every field lives in [`profile.md`](profile.md), the one home, under the LinkedIn
-section headings with a status line each; this container holds the decisions. Jim reads and
+The copy of every field lives in `profile.md` (arriving on main with PR #325), the one home,
+under the LinkedIn section headings with a status line each; this container holds the
+decisions. Jim reads and
 edits the copy in the local editor (`pnpm --filter linkedin editor`; the README's editor section),
 whose rendering reports each field's count against its believed limit and shades the 200 and 300
 character folds; his edits land in `profile.review.md`, never in the source.
 
 ## Headline — approved (Jim, 7 October 2026; set by him in August)
 
-The copy: [`profile.md` § Headline](profile.md#headline).
+The copy: `profile.md` § Headline.
 
 ## About — approved (Jim, 7 October 2026, "I am very happy")
 
-The copy: [`profile.md` § About](profile.md#about). Paragraph one is what shows before "see
-more"; the editor reports the count.
+The copy: `profile.md` § About. Paragraph one is what shows before "see more"; the editor
+reports the count.
 
 ## Experience — Oak National Academy — drafted, awaiting Jim
 
@@ -62,8 +63,8 @@ same, so the prefix buys nothing there).
 
 Written from the reader's decision and the three beliefs (the private record holds them), read by
 `editor`, `prose-expert` and the `audience-reader` before this text was set down, then proofed
-against the sources. The copy of both entries: [`profile.md` § Experience](profile.md#experience),
-the Principal Engineer entry and the Senior Developer (consulting) entry, each
+against the sources. The copy of both entries: `profile.md` § Experience, the Principal
+Engineer entry and the Senior Developer (consulting) entry, each
 `Status: drafted (8 October 2026, awaiting Jim)`. Length is information, never a target: the
 editor reports each entry's count against the believed limit of 2,000 for a position
 description, unverified until the live editor (the Principal entry stands above it). If the
