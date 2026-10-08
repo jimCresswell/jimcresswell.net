@@ -66,7 +66,8 @@ information to triage.
 
 1. The copy has one home: no field's text appears in both the decision container and
    `linkedin/profile.md`. Proof `repo-safe`: the container holds no blockquoted copy, and
-   `pnpm --filter linkedin validate-profile profile.md profile.review.md` is green.
+   `pnpm --filter linkedin validate-profile profile.md` is green (the review file is the owner's
+   raw input and is never gated).
 2. The structure is validated at the gate: a missing section, a bad status and an H3 under a
    section that takes none each fail `pnpm --filter linkedin lint`. Proof `repo-safe`: the
    validator's unit tests (`linkedin/src/model/validate.unit.test.ts`) and the check's

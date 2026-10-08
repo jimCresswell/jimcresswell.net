@@ -74,18 +74,19 @@ draft; it is not the starting point for this work.
 [`profile.md`](profile.md) is the copy's one home: one H2 per LinkedIn section in LinkedIn's
 order, an H3 per entry under the sections that hold entries, and a `Status:` line (`approved`,
 `drafted` or `open`, with an optional note) under every heading. The structure is validated by
-`pnpm --filter linkedin validate-profile profile.md profile.review.md`, which the workspace's
-`lint` script runs, so a missing section, a bad status or an entry under a section that takes
-none fails the gate. Counts and the 200 and 300 character folds are reported as notes against
-believed limits; they are information, never a target.
+`pnpm --filter linkedin validate-profile profile.md`, which the workspace's `lint` script runs,
+so a missing section, a bad status or an entry under a section that takes none fails the gate.
+Counts and the 200 and 300 character folds are reported as notes against believed limits; they
+are information, never a target.
 
 `profile.review.md` is where Jim's edits land: it starts as a copy of `profile.md` and the editor
-writes it; prettier and markdownlint leave it alone. The editor is a local two-pane page, markdown
-on the left and an easy-to-read rendering on the right, with the status, the count, the folds and
-a changed-from-source badge per field, and linked highlighting between the panes. Run it with
-`pnpm --filter linkedin editor` and open the printed loopback URL; it listens on 127.0.0.1 only
-and serves nothing but the page and the two files. Edits save after a short pause in typing. The
-seat triages the review file against the source by the editorial method; nothing publishes to
+writes it; prettier, markdownlint and the gate leave it alone, so nothing he writes there can
+fail a commit. The editor is a local two-pane page, markdown on the left and an easy-to-read
+rendering on the right, with the status, the count, the folds and a changed-from-source badge per
+field, and linked highlighting between the panes. Run it with `pnpm --filter linkedin editor` and
+open the printed URL (`localhost` on the same port also works); it listens on 127.0.0.1 only and
+serves nothing but the page and the two files. Edits save after a short pause in typing. The seat
+triages the review file against the source by the editorial method; nothing publishes to
 LinkedIn.
 
 This workspace is not an additional published website. It is a private pnpm workspace package;
