@@ -423,6 +423,9 @@ importers:
       '@engraph/result':
         specifier: workspace:*
         version: link:../tooling/result
+      zod:
+        specifier: ^4.6.5
+        version: 4.6.5
     devDependencies:
       '@engraph/eslint-plugin-standards':
         specifier: workspace:*
@@ -442,6 +445,9 @@ importers:
       globals:
         specifier: ^17.9.0
         version: 17.12.0
+      tsup:
+        specifier: ^8.5.1
+        version: 8.5.1(@typescript/typescript6@6.0.2)(jiti@2.7.0)(postcss@8.5.28)(supports-color@7.2.0)(tsx@4.23.15)(yaml@2.9.1)
       tsx:
         specifier: ^4.23.15
         version: 4.23.15

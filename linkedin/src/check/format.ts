@@ -39,7 +39,8 @@ const ERROR_TEXT: Readonly<Record<ValidationError['kind'], string>> = {
   'stray-line': 'a line that is not a list item',
 };
 
-function describeError(error: ValidationError, document: ProfileDocument): string {
+/** What an error says: the heading it is about, then the fault. */
+export function describeError(error: ValidationError, document: ProfileDocument): string {
   if (error.kind === 'missing-section') {
     return `${error.heading}: ${ERROR_TEXT[error.kind]}`;
   }
@@ -61,7 +62,8 @@ function describeNote(note: ValidationNote, document: ProfileDocument): string {
   return `${heading}: ${note.markup} markup, which LinkedIn shows as typed`;
 }
 
-function lineOf(error: ValidationError): string {
+/** The line an error points at, as `L12`, or `-` for a section the file lacks. */
+export function lineOf(error: ValidationError): string {
   return error.kind === 'missing-section' ? '-' : `L${String(error.line)}`;
 }
 
