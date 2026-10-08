@@ -42,6 +42,22 @@ authorisation.
   sitting with him present, the new baseline recorded, the decision record landed, the thread
   into maintenance). The resuming seat mints a node only at the owner's word.
 
+### 2026-10-08T10:2xZ — the 2026-10-05-d72ae5 branch folded as 323; the successor cut (Cedar turns Grove, 1950d1)
+
+Merged as `SHA:bd89f86e` at head `SHA:210c4adb` (`main` merged in content-free, proved by
+merge-tree equality, so no merge commit). Successor `coordination/2026-10-08-bd89f8` cut from
+`SHA:bd89f86e`; the folded branch deleted local and remote after both tips read merged. The
+fold's review: fifteen Copilot findings on the opening head, thirteen cured in `SHA:210c4adb`
+(the privacy class first: this record, the continuity record, the napkin, the rewrite handoff
+and the seat's letter no longer identify, summarise or carry the custody of private editorial
+material, whose pointers are in the seat's per-user memory; the identity row; two fact cures;
+the thread README's branch clause), two declined with reasons on the threads; one second-round
+finding routed to this lane: the container's opening sentence claims every field while name and
+pronouns, the top-card location and associations, portrait and banner, volunteering,
+organisations and activity and interests carry no status, and the lane's next records commit
+scopes the sentence and gives each a status. moved for the sites: nothing / moved for the
+Practice: the records hygiene cure in two skills, both estates, on `main`.
+
 ## Previous Continuation (2026-10-07T17:xxZ, paused at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's word: "Let's pause here for now". A PAUSE of the seat, not a close of the lane.

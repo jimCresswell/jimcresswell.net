@@ -166,6 +166,15 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-08 10:2xZ (Cedar turns Grove, `1950d1`, the n=1 seat, post-fold; this block
+adds to the 17:3xZ block below).** The coordination branch `2026-10-05-d72ae5` folded as 323 at
+`SHA:bd89f86e`; the successor `coordination/2026-10-08-bd89f8` carries the records from here, this
+commit its first. The live lane is `linkedin-workspace` (its thread record's latest block governs;
+the headline and About approved, the Oak entry next; one routed review finding on the container's
+opening sentence in `repo-continuity.md` §Next Safe Steps). moved for the sites: nothing / moved for
+the Practice: the records hygiene cure in two skills, both estates, on `main`. No Director seat
+is held; no watcher, heartbeat or claim runs at n=1 by the owner's word.
+
 **§STATE, 2026-10-05 17:3xZ (Sycamore holds Spore, `18d874`, the n=1 seat, the compaction boundary
 at the owner's word; this block adds to the 17:1xZ block below).** The work is finished and the
 terminal acts ran: closeouts on both comms logs, the claim closed, the watcher stopped. At the

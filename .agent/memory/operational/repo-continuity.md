@@ -21,6 +21,17 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-08T10:2xZ: the coordination branch `2026-10-05-d72ae5` folded as 323 at
+  `SHA:bd89f86e`; the successor `coordination/2026-10-08-bd89f8` cut from it** (Cedar turns
+  Grove, 1950d1, n=1; the fold run by a fork of the seat at the lifetime rule's DUE clock and the
+  owner's word that work is safe only on the remote default branch). One Copilot round of fifteen
+  findings on the opening head and one settlement push (`SHA:210c4adb`): thirteen cured on the
+  branch (the privacy class first: the lane's records no longer identify private editorial
+  material), two declined with reasons; the second round's one finding is routed to the lane seat
+  (the container's opening sentence, Next Safe Steps). moved for the sites: nothing / moved for
+  the Practice: the records hygiene cure in the wrap and session-handoff skills, both estates,
+  and the LinkedIn replacement's design model, headline and About approved, are on `main`.
+
 - **2026-10-08T09:4xZ: the seat resumed after the compaction at the owner's start-right word; the
   next steps under his review** (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`). The
   headline and About stand approved in `linkedin/profile-replacement.md`; the Oak entry is the
@@ -293,6 +304,17 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-08T10:2xZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, after the fold
+of 323): the lane's records are on `main`; the successor coordination branch carries them from
+here. Next safe steps, in order:
+
+1. The lane's next records commit scopes the opening sentence of `linkedin/profile-replacement.md`
+   ("every field") to the fields the design has settled and gives the omitted ones (name and
+   pronouns, the top-card location and associations, portrait and banner, volunteering,
+   organisations, activity and interests) an explicit retained, changed, excluded or open status
+   (the fold review's routed finding).
+2. The steps of the 2026-10-08T09:4xZ state below stand.
 
 STATE, 2026-10-08T09:4xZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, resumed at the
 owner's start-right word): headline and About approved in the working object; the Oak entry is
