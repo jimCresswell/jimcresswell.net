@@ -95,8 +95,9 @@ corpus) stay with the archived sketch `practice-language-separation`.
 Two pull requests per estate, by one seat. Authoring, as estimates and not as measured rates:
 slice 1 about half an hour (five alias lines in two manifests per estate, one validator case,
 the hook comments), slice 2 about two hours (the scratch script carried into agent-tools under its
-test discipline, the baseline file, one command surface). Under the owner's two-hour guide for the
-authoring; four pull-request lifecycles, mostly waiting. A slice whose authoring passes its
+test discipline, the baseline file, one command surface). About two and a half hours of authoring
+in all, over the owner's two-hour guide by a half, each slice under its own clock; four
+pull-request lifecycles, mostly waiting. A slice whose authoring passes its
 estimate by half stops and reports.
 
 ## Out of scope

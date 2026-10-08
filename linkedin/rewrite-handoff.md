@@ -7,12 +7,11 @@
 The working object is [the profile replacement](profile-replacement.md), field by field with
 status; the headline and About are approved there (7 October). Draft 1 stays as a source for the
 earlier entries; its About collapses the identity the CV positioning carries. The governing record is the thread
-record `.agent/memory/operational/threads/linkedin-workspace.next-session.md` (its latest block)
-and, for the whole, the owner's private editorial record of 7 October. Read those before this
-file.
+record `.agent/memory/operational/threads/linkedin-workspace.next-session.md` (its latest block).
+Read it before this file.
 
 - The profile is designed as one system for one effect, never field by field; headline and About
-  are one act of drafting; the seat drafts the words with Jim by the August method (extract, he
+  are one act of drafting; the seat drafts the words with Jim by the method he settled (extract, he
   selects, write together with craft). The questions are who the audience is, what to
   communicate, and how; software design rules are not the instrument.
 - What a reader should carry away: a physicist who moved from explaining systems to changing
@@ -25,8 +24,8 @@ file.
   shaping its engineering strategy. Innovator, scientist and strategist as demonstrated facts.
 - Sources: the CV positioning, capabilities and Oak entry in `jcdotnet/content/cv.content.json`;
   the front page's third-order line; EDR-002 and EDR-004; the September exploration here; and
-  the August material in the private editorial repository (identity theory, kernel, dossier,
-  the owner-set headline decision, his own Oak paragraphs). The Practice is defined canonically
+  private editorial material where present, which informs the drafting and is never quoted,
+  summarised or identified here. The Practice is defined canonically
   in `.agent/practice-core/practice.md`; its LinkedIn movement is a translation for readers.
 - Settled: the headline the owner set in August stands; the Oak block is Senior Developer
   (consulting) Aug to Dec 2020 then Principal Engineer from January 2021 meaning engineering
