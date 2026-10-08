@@ -166,6 +166,23 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-05 17:3xZ (Sycamore holds Spore, `18d874`, the n=1 seat, the compaction boundary
+at the owner's word; this block adds to the 17:1xZ block below).** The work is finished and the
+terminal acts ran: closeouts on both comms logs, the claim closed, the watcher stopped. At the
+owner's word the modes ran over the day; the harvest is the napkin block of this hour and the born
+sketch `practice-alignment-conservation` (`.agent/plans/delivery/`), the lighter altitude after the
+finish: the fail-closed property on every filtered alias checked by the validator, and the byte
+proof as a tracked command with the finish's partition as its baseline. The heavier altitude, the
+extraction's design, is the owner's and is not drafted. No process of this seat runs; the re-arm
+recipe is in the napkin block. The next seat reads `git status --branch` in both primaries first.
+
+**§STATE, 2026-10-05 17:1xZ (Sycamore holds Spore, `18d874`, the n=1 seat, post-fold; this block
+adds to the 16:4xZ block below).** The coordination branch `2026-10-04-eebe40` folded as 320 at
+`SHA:d72ae51d`; the successor `coordination/2026-10-05-d72ae5` carries the records from here, this
+commit its first. moved for the sites: nothing / moved for the Practice: the alignment node's finish
+on `main` in both estates. The sibling's fold (#352) is at its door at this block. Left for this seat:
+the wrap (the closeout broadcast, the claim closed, the watcher stopped).
+
 **§STATE, 2026-10-05 16:4xZ (Sycamore holds Spore, `18d874`, the n=1 seat, at the alignment node's
 finish; this block supersedes the 11:3xZ block below where they differ).** The delivery node
 `practice-alignment-by-class` is at its finish: the doctrine landing merged in both estates (321 and #353)
@@ -181,8 +198,8 @@ next seat, ordinary work: the first follow-up pull request per estate puts `--fa
 on every filtered alias in the family manifest and the root scripts with a manifest self-check
 in the conformance validator (Copilot's finding on the final sibling tip, true in both estates);
 the remainders on the two landings' descriptions. For the owner: this seat took the PDR-140
-clause 4 rebudget once per landing by its own recorded decision (the gate's text says "by the
-owner"); the ruleset edit ran under the operator credential. Until the wrap the comms watcher (a
+clause 4 rebudget once on each code landing, 322 here and #354 in the sibling, by its own
+recorded decision (the gate's text says "by the owner"); the doctrine landings needed none; the ruleset edit ran under the operator credential. Until the wrap the comms watcher (a
 Monitor) and the implementer claim in this registry are live; the wrap closes the claim, posts the
 closeout and stops the watcher, so that none survives it.
 

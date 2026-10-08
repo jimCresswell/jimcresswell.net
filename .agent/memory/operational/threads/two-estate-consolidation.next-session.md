@@ -109,6 +109,22 @@ which is the consolidation flow's record. **Grounding order:** JC.net's `AGENT.m
   primary tree was clean of it at the close. The owner-act rows among the 51 are brought as they are
   met.
 
+### 2026-10-05T17:1xZ — the 2026-10-04-eebe40 branch folded as 320; the successor cut (Sycamore holds Spore, 18d874)
+
+Merged at 17:06Z as `SHA:d72ae51d` at head `SHA:dd120a8f` (`main` at `SHA:d3647a9d` merged in first,
+never a rebase; two files changed on both sides, each resolved as a union in order). Successor
+`coordination/2026-10-05-d72ae5` cut from `SHA:d72ae51d`, pushed; the folded branch deleted
+remotely under the bot and locally after `merge-base --is-ancestor` read both tips in `main`. The
+fold took two settlement pushes (`SHA:06ae3d77`: the ledger row for 322 from the post-merge survey,
+the finish line naming each estate; `SHA:dd120a8f`: the active-thread entry at the finish, the
+handoff's liveness sentence, the napkin's dated rotation notice) against seven Copilot threads over
+two rounds, five cured, two deferred to this commit (the strategic node's `last_updated` and a
+clause on the delivery shape beside its re-grounding line); the sibling's fold carried the same
+three metadata cures, so this commit also keeps the extraction node's `superseded_by` at its
+immediate successor and names the rebudget as once on each code landing. moved for the sites:
+nothing / moved for the Practice: the alignment node's finish is on `main` in both estates, the
+parity corpus closed to archived nodes, the review-cost ledger current for the landings.
+
 ### 2026-10-05T16:4xZ — both landings merged; the alignment node at its finish (Sycamore holds Spore, 18d874)
 
 - **The finish, first-hand.** 322 merged at `SHA:d3647a9d` (16:26:59Z) and the sibling's #354 at

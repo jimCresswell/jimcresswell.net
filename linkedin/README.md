@@ -2,9 +2,10 @@
 
 The sole active working home for Jim Cresswell’s LinkedIn content and non-sensitive supporting material.
 
-Start with the [first profile draft](profile-draft.md). It is proposed copy for Jim’s review,
-not an approved or published profile. The immediate task is to edit that draft into the account
-Jim wants readers to understand. The [rewrite handoff](rewrite-handoff.md) preserves the current
+Start with the [profile replacement](profile-replacement.md), the working object, then the
+[rewrite handoff](rewrite-handoff.md), whose October 2026 section is the current direction and
+names the governing records. The [first profile draft](profile-draft.md) is a
+September proposal kept as a source for the earlier entries, not the working object. The [rewrite handoff](rewrite-handoff.md) preserves the current
 direction, settled corrections, remaining choices and limits for the next editor.
 
 The profile draft, editing notes, reference and research documents were prepared by AI agents
@@ -18,7 +19,8 @@ Jim’s request only.
 
 | Document                                                                                | Purpose                                                                                                     |
 | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [Profile draft](profile-draft.md)                                                       | One complete proposed revision, including supporting sections and retain decisions                          |
+| [Profile replacement](profile-replacement.md)                                           | The working object: every field with its status, approved text and the settled decisions                    |
+| [Profile draft](profile-draft.md)                                                       | September's complete proposal; a source for the earlier entries, not the working object                     |
 | [Rewrite handoff](rewrite-handoff.md)                                                   | Current direction, evidence boundaries and next editing action                                              |
 | [Editing notes](editing-notes.md)                                                       | Reasons for consequential changes, factual checks and remaining decisions                                   |
 | [Recorded profile](reference/current-profile-2026-09-27.md)                             | Dated professional-content baseline for comparison                                                          |

@@ -21,6 +21,34 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-08T09:4xZ: the seat resumed after the compaction at the owner's start-right word; the
+  next steps under his review** (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`). The
+  headline and About stand approved in `linkedin/profile-replacement.md`; the Oak entry is the
+  next act, then the skills list against the About and the entry. The lane's public records are
+  sufficient for resumption on their own: private editorial material informs the drafting where
+  present and is never identified in them; the owner-private parts are in the seat's per-user
+  memory. moved for the sites: nothing / moved for the Practice: nothing.
+
+- **2026-10-07T17:xxZ: the LinkedIn headline and About approved; the seat paused at the owner's
+  word** (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`). The design model was rebuilt
+  through five owner corrections in the afternoon (audience, message and means; the profile as
+  one system; the owner's insight preserved, not collapsed), then the headline (EDR-006, as he set
+  it) and a new About were approved and preserved in `linkedin/profile-replacement.md`, the
+  working object that replaces Draft 1. The MCP app is the Oak AI plugin on the profile. The
+  wrap and session-handoff skills now say work-safety evidence is reported, never recorded,
+  same bytes in both estates. moved for the sites: nothing / moved for the Practice: the records
+  hygiene cure in two skills, both estates.
+
+- **2026-10-07T13:xxZ: the LinkedIn replacement's impact and value models RATIFIED; the seat in cold
+  pause at the owner's word** (Cedar turns Grove, 1950d1, the n=1 seat on `linkedin-workspace`
+  from 2026-10-06). The owner's rulings of 6 and 7 October (whole replacement but the photo;
+  LinkedIn stands alone; LinkedIn only; edits through Chrome on his express request with him
+  present; one network notification at the end) and his ratification of 7 October are in the
+  thread record and the napkin (public-safe) and, for the owner-private parts, in the seat's
+  per-user memory. Facts settled from the public register and the repositories; the live profile
+  read read-only and identical to the 27 September baseline; the owner's earlier work on the
+  profile re-read and standing. moved for the sites: nothing / moved for the Practice: nothing.
+
 - **2026-10-05T16:4xZ: the code landing merged in both estates; `practice-alignment-by-class`
   at its finish** (Sycamore holds Spore, 18d874). 322 merged here at `SHA:d3647a9d` after six
   settlement pushes (the last under the one PDR-140 rebudget), the sibling's #354 at
@@ -236,7 +264,10 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   commits and lands by the normal path (the owner's word, 2026-09-28); publishing to LinkedIn is
   a separate act on the owner's request. 2026-09-29: PR 273 (b6232c77) made the workspace
   documents only and cured `main`'s knip gate; the lane is at rest, its seat (Galaxy binds
-  Gravity, 46de68) closed 2026-09-30, and the record's latest block governs.
+  Gravity, 46de68) closed 2026-09-30, and the record's latest block governs. From
+  2026-10-06: Cedar turns Grove (1950d1) seated to explore the platform update; the models
+  ratified 2026-10-07; the headline and About approved the same day in
+  `linkedin/profile-replacement.md`; the Oak entry next; the record's latest block governs.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
@@ -262,6 +293,44 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-08T09:4xZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, resumed at the
+owner's start-right word): headline and About approved in the working object; the Oak entry is
+next; the next steps under the owner's review. Next safe steps, in order:
+
+1. `git status --branch` first-hand in every repository the lane writes to; pushes through the
+   bot tooling; the coordination branch folds at its DUE clock.
+2. The LinkedIn lane, on the owner's word: the Oak entry's movements written for the reader from
+   the container's Oak section and the approved About, verified afterwards, one draft for his
+   reaction; then the skills list considered against the About and the Oak entry as one
+   understanding in three expressions; then the rest of the container; nothing on LinkedIn
+   without his express request, him present.
+3. The steps of the 2026-10-05T16:4xZ state below stand.
+
+STATE, 2026-10-07T17:xxZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, paused at the
+owner's word): headline and About approved in the working object; the Oak entry is next. Next
+safe steps, in order:
+
+1. `git status --branch` first-hand in every repository the lane writes to; push through the bot
+   tooling where behind the remote; fold the coordination branch when due.
+2. The LinkedIn lane, on the owner's word: the Oak entry's movements written for the reader;
+   then the skills list considered against the About and the Oak entry as one understanding in
+   three expressions; then the rest of the container; nothing on LinkedIn without his express
+   request, him present.
+3. The steps of the 2026-10-05T16:4xZ state below stand.
+
+STATE, 2026-10-07T13:xxZ (Cedar turns Grove, 1950d1, the n=1 seat on `linkedin-workspace`, cold
+pause at the owner's word): the LinkedIn replacement's models are ratified; nothing on LinkedIn,
+in `linkedin/` or on the site changed; the records are on `coordination/2026-10-05-d72ae5`,
+unpushed. Next safe steps, in order:
+
+1. `git status --branch` in the primary and the coordination worktree, first-hand; push the
+   coordination branch and fold draft 323 under the normal gate.
+2. The LinkedIn lane, on the owner's word: his four decisions; the public-safe strategy page and
+   the directive section; the field container; the drafting by the method he settled. Nothing on
+   LinkedIn without his express request, him present.
+3. The steps of the 2026-10-05T16:4xZ state below stand (the fail-if-no-match follow-up; the
+   napkin rotation, now over 1,190 lines).
 
 STATE, 2026-10-05T16:4xZ (Sycamore holds Spore, 18d874, the n=1 seat, at the alignment node's finish):
 both landings are merged (322 at `SHA:d3647a9d`, #354 at `SHA:ef42bd11f`); the node is archived

@@ -152,9 +152,11 @@ Treat this opener as a hypothesis until live grounding confirms it.
 
 Use `start-right-quick` or `start-right-thorough` instead when the session is
 not a team session. The continuation record owns current facts; the skill owns
-the routing behaviour. Keep volatile state, live commit ids, branch state, next
-safe step, and team expectation in the record rather than copying them into a
-chat opener or permanent skill text.
+the routing behaviour. Keep volatile state (live commit ids, the next safe step,
+the team expectation) in the record rather than copying it into a chat opener or
+permanent skill text. `Branch:` names the branch the lane's work lands on, a fact
+git cannot recompute; the checkout's own branch, its ahead/behind and the worktree
+list are git's state and are never recorded (the wrap skill's step 2, 2026-10-07).
 
 ### Continuation record template
 
