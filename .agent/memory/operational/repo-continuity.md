@@ -295,8 +295,10 @@ safe steps, in order:
 
 1. `git status --branch` first-hand in the primary and the private editorial repository; push
    through the bot tooling where behind the remote; fold the coordination branch when due.
-2. The LinkedIn lane, on the owner's word: the Oak entry's movements written for the reader,
-   then the rest of the container; nothing on LinkedIn without his express request, him present.
+2. The LinkedIn lane, on the owner's word: the Oak entry's movements written for the reader;
+   then the skills list considered against the About and the Oak entry as one understanding in
+   three expressions; then the rest of the container; nothing on LinkedIn without his express
+   request, him present.
 3. The steps of the 2026-10-05T16:4xZ state below stand.
 
 STATE, 2026-10-07T13:xxZ (Cedar turns Grove, 1950d1, the n=1 seat on `linkedin-workspace`, cold

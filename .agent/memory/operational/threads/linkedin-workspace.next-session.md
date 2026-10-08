@@ -10,7 +10,40 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-07T17:xxZ, paused at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+## Current Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+
+- The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+  /jc-concept-exploration /jc-reason /jc-plan /jc-wrap , on resume we start the Oak entry, and we
+  consider how it and the headline and about relate to the skills list in the context of
+  bringing about our desired impact". The seat continues after the compaction; this block is
+  its pickup.
+- Start here on resume, the Oak entry: the understanding is the owner's August paragraphs (in
+  the private editorial repository's Oak working draft, the two opening paragraphs his own), the
+  particulars sheet beside it, the container's Oak section in `linkedin/profile-replacement.md`
+  (the settled structure, movements and chronology), and the approved About, which the entry
+  must demonstrate and not repeat. The method that produced the About: write for the reader from
+  the understanding, one concrete moment per movement, verify against the sources afterwards,
+  offer one draft for his reaction. Two positions: Senior Developer (consulting) Aug to Dec
+  2020, short; Principal Engineer from Jan 2021, engineering strategy, in labelled movements.
+- The skills question, framed for resume (concept exploration at the boundary, not settled):
+  the skills list is the machine-readable index of the About and the Oak entry, one
+  understanding in a third expression; head hunters' Boolean and AI search reads explicit skills
+  as the first filter while LinkedIn also infers skills from the prose, so the two must agree.
+  Proposals, each falsifiable by the search-appearance titles after the rewrite: every pinned
+  or top skill names something a reader can point at in the About or the Oak entry; the senior
+  coordinates a search runs on (technical and engineering strategy, technical leadership, AI,
+  MCP, platform engineering, digital public services, developer experience, open data) are
+  present as explicit skills and in the prose; the earlier QA and testing skills are kept with
+  their endorsements, demoted below the fold and, if LinkedIn's per-position skill attachment
+  allows it, attached to the 2013 to 2020 positions rather than to Oak. The contradiction to
+  avoid: a QA-heavy list under an innovator's About reads as a tester who writes well.
+- Plan altitude at this boundary: the lighter one. The finish and the step sequence are in this
+  record and the container; a delivery plan node is not minted, because the owner ratified the
+  models as applied work and the lane's finish is already stated (the profile applied in one
+  sitting with him present, the new baseline recorded, the decision record landed, the thread
+  into maintenance). The resuming seat mints a node only at the owner's word.
+
+## Previous Continuation (2026-10-07T17:xxZ, paused at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's word: "Let's pause here for now". A PAUSE of the seat, not a close of the lane.
 - State: the headline and About are approved and preserved in `linkedin/profile-replacement.md`,
