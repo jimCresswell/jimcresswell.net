@@ -43,7 +43,7 @@ authorisation.
   2020, short; Principal Engineer from Jan 2021, engineering strategy, in labelled movements.
 - The skills question, framed for resume (concept exploration at the boundary, not settled):
   the skills list is the machine-readable index of the About and the Oak entry, one
-  understanding in a third expression; head hunters' Boolean and AI search reads explicit skills
+  understanding in a third expression; a senior searcher's Boolean and AI search reads explicit skills
   as the first filter while LinkedIn also infers skills from the prose, so the two must agree.
   Proposals, each falsifiable by the search-appearance titles after the rewrite: every pinned
   or top skill names something a reader can point at in the About or the Oak entry; the senior
