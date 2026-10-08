@@ -75,6 +75,21 @@ organisations and activity and interests carry no status, and the lane's next re
 scopes the sentence and gives each a status. moved for the sites: nothing / moved for the
 Practice: the records hygiene cure in two skills, both estates, on `main`.
 
+### 2026-10-08T15:xxZ — the Oak entry drafted by the method; in the container, awaiting the owner (Cedar turns Grove, 1950d1)
+
+The first run of `write-for-the-reader` on this lane: the reader's decision and the beliefs on
+paper (the private editorial repository's record of 7 October, its section of 8 October,
+afternoon, holds them with the readers by name and the dispositions); one draft read by `editor`,
+`prose-expert` and the `audience-reader`, revised once by altitude, read again by the
+`audience-reader`, proofed against the sources; the text, its length as information (2,404 and
+292 characters against a believed and unverified 2,000) and the open items for the owner are in
+the container's Oak section, status "drafted, awaiting Jim". He reads second, now. Open for his
+word there: the handover tense and "stream-aligned"; the pattern sentence's reading by Oak
+colleagues; credit for engineering colleagues on the plugin; what was not built and what it cost;
+an adoption figure; the About's "spring of 2020" beside the entry's August start; the title. Next
+act after his reading: the earlier entries, Featured, Projects, the skills list as a table, then
+the pre-application checks and the application with him present.
+
 ## Previous Continuation (2026-10-07T17:xxZ, paused at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's word: "Let's pause here for now". A PAUSE of the seat, not a close of the lane.

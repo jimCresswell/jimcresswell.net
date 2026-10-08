@@ -52,7 +52,7 @@ curriculum experts govern the Oak entry's plugin movement. The decisions and the
 
 About 1,620 characters of LinkedIn's 2,600. Paragraph one is what shows before "see more".
 
-## Experience — Oak National Academy — open
+## Experience — Oak National Academy — drafted, awaiting Jim
 
 Two positions, grouped under Oak: **Senior Developer (consulting)**, August to December 2020,
 short, "there at the beginning"; **Principal Engineer**, January 2021 to present, meaning
@@ -77,6 +77,91 @@ The entry names Model Context Protocol once: the plugin works in any AI assistan
 MCP. Title: Principal Engineer stands; Senior Principal Engineer only if it is the title Oak would
 confirm, Jim's word (8 October: LinkedIn's seniority facet reads the title and buckets both the
 same, so the prefix buys nothing there).
+
+### The draft (8 October, by the write-for-the-reader method; Jim reads second)
+
+Written from the reader's decision and the three beliefs (the private record holds them), read by
+`editor`, `prose-expert` and the `audience-reader` before this text was set down here, then
+proofed against the sources. Length is information, never a target: the Principal entry is
+2,330 characters without paragraph breaks, the Senior entry 292; the believed limit for a
+position description is 2,000, unverified until the live editor. If the field refuses the text,
+what moves to another surface is Jim's editorial choice.
+
+**Principal Engineer · Jan 2021 – Present**
+
+> Oak's engineering was four contractors when I arrived in 2020. It is now five product squads and
+> three platform groups, and I have carried its strategy throughout: the long-term technical
+> direction, what gets built and what does not, and the case for it to leaders who are not
+> engineers. I helped define the function as it grew, from its first QA engineer and first
+> engineering manager to its first platform group.
+>
+> I made the emergency platform safe to change before anything else. When change still got harder
+> and releases slower, I argued that optimising it was the wrong starting point and that Oak
+> should rebuild. Oak did; I stood behind the call and accepted its near-term delivery and
+> reputational risk. Four years on, everything Oak has built since stands on that rebuild.
+>
+> The Oak AI plugin began in 2024 as an opportunity I saw in Oak's curriculum, sequenced end to
+> end, written by curriculum experts and published under the Open Government Licence: any AI
+> assistant could reach it, if someone built the route. I made the case, built a public SDK on the
+> data by hand before the route existed, then the route itself, a service now in ChatGPT and
+> Claude and in any assistant that supports Model Context Protocol (MCP). The curriculum is the
+> experts' work; the plugin's shape, its development and its strategy came from me. As it became a
+> product the question changed, from what was possible to how Oak's values would live in it. The
+> answer is that the standards travel with the data. The plugin carries the curriculum principles
+> and the accessibility bar the lessons were written to, and an assistant building on Oak builds
+> to them too.
+>
+> The way of working came before the plugin. While the plugin was still an SDK, I was building a
+> Practice for engineering with AI agents, in which every decision is recorded with its reasons,
+> every agent works to the same written rules, and what one session learns the next one keeps.
+> Inside it the agents build; the judgement and the calls are mine. Practice and plugin alike are
+> public, in Oak's Open Curriculum Ecosystem repository.
+>
+> Zero to one is complete. The plugin has its own cross-discipline product squad now, building
+> against the direction I set, and that is the pattern: build the first version and the way of
+> working, hand them on, and go where the next problem is still unformed.
+
+**Senior Developer (consulting) · Aug 2020 – Dec 2020**
+
+> Oak had launched that April, and four contractors were keeping lessons online. I joined to get
+> the first teacher-facing service shipped, and it shipped, with the testing and engineering
+> practice behind it that the first months had left no time for. Five months later I was Principal
+> Engineer.
+
+Open for Jim, with the draft:
+
+- The handover tense. "has its own cross-discipline product squad now, building against the
+  direction I set" is true during the phased handover and after it; "stream-aligned" is dropped
+  for the reader; both are his to confirm.
+- The pattern sentence ("go where the next problem is still unformed") on a current role: Oak
+  colleagues can read it as a departure notice. His call.
+- Whether anyone else on the plugin's engineering needs credit beside the curriculum experts; no
+  source names a team size and the draft claims none.
+- What was deliberately not built, and what the plugin cost, if he wants either named; no source
+  holds them.
+- An adoption or reach figure for the plugin, if one exists and is publishable; the path proves
+  existence, not use.
+- The About's "In the spring of 2020" against the Senior entry's "launched that April" and its
+  August start; his to reconcile or leave.
+- "began in 2024" is derived from his "two and a half years" of 7 October; "Four years on" is his
+  particular and the About's, and the readers compute it against today, so the rebuild's year
+  would let the entry carry an absolute date instead.
+- "checks and continuous delivery", the two mechanism words of his pre-rebuild movement, are out
+  of the entry on the readers' word (mechanism at every reader's altitude); the movement's
+  substance stays as "made the emergency platform safe to change before anything else".
+- The readers place him as a direction-setter rather than an organisation-runner, by the shift
+  from "carried its strategy" to "helped define the function", and ask who he reported to and
+  whether he ever held people and budget. If that placement is the intended level claim it
+  worked; if a larger one is intended, this is where the entry caps it.
+- "Oak had launched that April" rests on public knowledge of April 2020; "before the plugin was
+  more than an SDK, I was building a Practice" and the Senior entry's "the first months had left
+  no time for" are the seat's readings of his chronology and the entity graph's role description.
+- The plugin carrying the curriculum principles and accessibility standards is verified for the
+  Claude plugin (0.1.6); whether the ChatGPT app carries them is not.
+- "helped define the function" is the one collaborative hedge kept on purpose; the title
+  question above; and the site's entity graph still records Head of DevOps and Quality for
+  2021–2022, so a verifier reading both sees two title histories (LinkedIn-only lane; his to
+  carry or cure on the graph later).
 
 ## Top card, photo, banner, volunteering, organisations, interests — open
 
