@@ -35,7 +35,7 @@ This is now codified as an editorial principle in `editorial-guidance.md`.
 ## Consequences
 
 - Added as a named principle in `editorial-guidance.md`.
-- Included in the editorial voice skill (`.cursor/skills/editorial-voice/SKILL.md`) as a common pitfall with examples.
+- Included in the editorial voice skill (`.agent/skills/editorial/editorial-voice/SKILL-CANONICAL.md`) as a common pitfall with examples.
 - Applied throughout the Oak P3 rewrite and should be applied to all future content work.
 - Agents should check: "Is this sentence showing or justifying?" If justifying, rewrite to show.
 

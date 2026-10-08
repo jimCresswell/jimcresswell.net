@@ -105,7 +105,8 @@ triggers and paths), carry the invocation policy:
   (`cricket-procedure-xhigh`), and the corpus-analysis stages `corpus-mapper`,
   `corpus-reducer`, `corpus-voter` and `corpus-meta`.
 - This host's own: `pkg-expert` (the personal knowledge graph), `editor` (the editorial voice
-  under PDR-102), and the four lane templates `architecture-expert-barney`, `-betty`, `-fred`
+  under PDR-102), `audience-reader` (the audience as a reader, the third reader of the
+  `write-for-the-reader` workflow before the owner), and the four lane templates `architecture-expert-barney`, `-betty`, `-fred`
   and `-wilma`, each binding a shared lens to one of this host's lanes
   (`components/architecture/reviewer-team.md`).
 

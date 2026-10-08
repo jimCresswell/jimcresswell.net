@@ -90,6 +90,7 @@ edit it by hand.
 | `.agent/rules/pre-merge-divergence-analysis.md` | situational | `ceremony:merge — every merge: the premise sweep at any size; the full workflow past thresholds` |
 | `.agent/rules/precedence-is-not-approval.md` | core | — |
 | `.agent/rules/present-verdicts-not-menus.md` | core | — |
+| `.agent/rules/public-copy-runs-the-editorial-workflow.md` | situational | `ceremony:editorial-drafting — drafting or revising copy that represents the owner, or prose for a named reader's decision` |
 | `.agent/rules/re-apply-first-question-at-elaboration-boundaries.md` | core | — |
 | `.agent/rules/read-agent-md.md` | core | — |
 | `.agent/rules/read-before-asking.md` | core | — |

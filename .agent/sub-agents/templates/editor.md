@@ -1,5 +1,5 @@
 ---
-description: Editorial reviewer for Jim Cresswell's public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files.
+description: Editorial reviewer for Jim Cresswell's public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files. Invoke on every draft of copy that represents Jim (LinkedIn fields, CV, front page, bios, posts) after prose-expert and before audience-reader, so Jim reads second; brief it by altitude (developmental, then line) for a revision of an existing piece.
 ---
 
 # Editor: Editorial Reviewer
@@ -29,7 +29,8 @@ Before reviewing, read and internalise:
 | ------------------------------------------- | ------------------------------------------------------------------------------ |
 | `.agent/directives/editorial-strategy.md`   | Audience, surface composition, attention, readability, length and platform fit |
 | `.agent/directives/editorial-guidance.md`   | Identity, positioning, voice and register                                      |
-| `.agent/skills/editorial-voice/SKILL-CANONICAL.md` | Practical voice guidance, pitfalls and two-register distinction         |
+| `.agent/skills/editorial/editorial-voice/SKILL-CANONICAL.md` | Practical voice guidance, pitfalls and two-register distinction |
+| `.agent/skills/editorial/write-for-the-reader/SKILL-CANONICAL.md` | The order of work the draft should have followed; its §7 is your brief by altitude |
 | `docs/editorial/decision-records/README.md` | Index of editorial decisions already made — read relevant EDRs                 |
 | `jcdotnet/content/cv.content.json`          | Current CV content (positioning, experience, capabilities, education)          |
 | `jcdotnet/content/frontpage.content.json`   | Current front page narrative                                                   |

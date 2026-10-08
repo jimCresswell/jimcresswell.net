@@ -43,6 +43,10 @@ config_file = "agents/architecture-expert-wilma.toml"
 description = "Meta-level plan specialist for both read-only review and active-workflow planning support, focused on proportionality, assumption validity, and blocking legitimacy."
 config_file = "agents/assumptions-expert.toml"
 
+[agents."audience-reader"]
+description = "Audience simulation for copy that represents Jim; reports the reader's beliefs, repeatables, noise and next act."
+config_file = "agents/audience-reader.toml"
+
 [agents."code-expert"]
 description = "Gateway reviewer for non-trivial changes."
 config_file = "agents/code-expert.toml"
@@ -88,7 +92,7 @@ description = "Documentation and ADR quality reviewer."
 config_file = "agents/docs-adr-expert.toml"
 
 [agents."editor"]
-description = "Editorial reviewer for Jim Cresswell's public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files."
+description = "Editorial reviewer for Jim Cresswell's public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files. Invoke on every draft of copy that represents Jim (LinkedIn fields, CV, front page, bios, posts) after prose-expert and before audience-reader, so Jim reads second; brief it by altitude (developmental, then line) for a revision of an existing piece."
 config_file = "agents/editor.toml"
 
 [agents."onboarding-expert"]

@@ -683,7 +683,9 @@ you apply the feedback. Editor review informs a draft and is not a landing
 gate: the owner, 2026-09-29, "I told you to commit and push and merge the
 linkedin work just like any other work, it's not special, only putting it on
 Linkedin is special, and that happens manually". `prose-expert` keeps the
-craft; `editor` keeps the register.
+craft; `editor` keeps the register; `audience-reader` reads the draft as its
+named audience after both, so the owner reads second (the
+`public-copy-runs-the-editorial-workflow` rule, 2026-10-08).
 
 ### The domain reviewer
 
