@@ -41,10 +41,10 @@ file.
 - Nothing is applied to LinkedIn except on Jim's express request with him present, by the seat
   through the browser, in one sitting, after a PDF export of the old profile.
 
-The next useful task is to edit [Draft 1](profile-draft.md) with Jim. It is a complete proposal,
-including decisions to retain or leave sections absent. Read it as a reader would, then revise
-the passages that fail to communicate the intended understanding. No new identity inquiry is
-required to begin.
+The next useful task is the Oak entry in [the profile replacement](profile-replacement.md),
+written for the reader by the method that produced the About, then the skills list considered
+against the About and the Oak entry as one understanding; the thread record's latest block
+carries the order. Draft 1 is read only as a source for the earlier entries.
 
 ## What the reader should understand
 
