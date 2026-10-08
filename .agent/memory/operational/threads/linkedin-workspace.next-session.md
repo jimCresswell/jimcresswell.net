@@ -17,6 +17,19 @@ authorisation.
   consider how it and the headline and about relate to the skills list in the context of
   bringing about our desired impact". The seat continues after the compaction; this block is
   its pickup.
+- After the resume (8 October, morning): the owner asked for a review of the next steps and a
+  reflection on the intended impact before any drafting; the review's findings are in the
+  napkin's block of 09:4xZ and were offered in chat. His words that followed settled the
+  product's naming (the Oak AI plugin, with MCP once as the technical term and vendor terms only
+  for vendor listings) and the Oak entry's attribution (his five contributions; content and
+  sequencing credited to Oak's curriculum experts; the zero-to-one completion and the phased
+  handover as the closing beat): both are
+  [EDR-007](../../../../docs/editorial/decision-records/007-oak-ai-plugin-naming-and-attribution.md),
+  the durable home, which the container now points to; his verbatim words are kept privately.
+  His correction the same hour: comms events are ephemeral, never a home. Open for his word: the
+  title stays Principal Engineer unless Senior Principal is the title Oak would confirm
+  (LinkedIn's seniority facet buckets both the same). Next act: the Oak entry drafted as one
+  piece for his reaction, with EDR-007 as its attribution rule.
 - Start here on resume, the Oak entry: the understanding is the container's Oak section in
   `linkedin/profile-replacement.md` (the settled structure, movements and chronology) and the
   approved About, which the entry must demonstrate and not repeat; private editorial material,

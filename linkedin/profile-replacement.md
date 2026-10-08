@@ -9,8 +9,13 @@ their drafting. Nothing here is applied to LinkedIn until Jim asks, with him pre
 sitting, after a PDF export of the old profile. The reasoning behind the design is in the thread
 record `.agent/memory/operational/threads/linkedin-workspace.next-session.md`.
 
-Naming: the MCP app is called the **Oak AI plugin** on the profile, to align with Oak's own page
-<https://www.thenational.academy/ai-plugin> (Jim, 7 October).
+Naming and attribution: the product is the **Oak AI plugin** on the profile, Oak's own language
+(its page is <https://www.thenational.academy/ai-plugin>); Model Context Protocol (MCP) appears
+once in the Oak entry as the technical term and as a skill; vendor terms (plugin, app, connector)
+appear only when naming a vendor's listing; Jim's five contributions and the credit to Oak's
+curriculum experts govern the Oak entry's plugin movement. The decisions and their context are
+[EDR-007](../docs/editorial/decision-records/007-oak-ai-plugin-naming-and-attribution.md)
+(8 October).
 
 ## Headline — approved (Jim, 7 October 2026; set by him in August)
 
@@ -51,7 +56,7 @@ About 1,620 characters of LinkedIn's 2,600. Paragraph one is what shows before "
 
 Two positions, grouped under Oak: **Senior Developer (consulting)**, August to December 2020,
 short, "there at the beginning"; **Principal Engineer**, January 2021 to present, meaning
-engineering strategy, in labelled movements drawn from Jim's own August paragraphs: joining to
+engineering strategy, in labelled movements in Jim's words: joining to
 get the first teacher-facing service over the line; contributing to defining the engineering
 function (best practice, the first QA and engineering-manager hires, collaborative approaches,
 long-term investment in reducing the cost of innovation); checks and continuous delivery before
@@ -61,6 +66,25 @@ before it a hand-written SDK for the Oak Open API and the Practice's progenitors
 what is possible to how Oak's values are embodied; the Practice. No Head of DevOps entry; no
 entry for the June 2022 employment change. Location per Jim's rule (entries with a location
 carry it; remote says United Kingdom).
+
+The plugin movement follows EDR-007: Jim's five contributions in his order (conceiving the
+opportunity; formulating and expressing the need; creating the engineering framework for rapid
+development with AI, the Practice; carrying out the development; steering the strategy
+throughout); the curriculum content and its sequencing credited to Oak's curriculum experts; and
+the completion of zero to one with the phased handover to a cross-discipline, stream-aligned
+product squad as the movement's closing beat, worded to stay true after the handover completes.
+The entry names Model Context Protocol once: the plugin works in any AI assistant that supports
+MCP. Title: Principal Engineer stands; Senior Principal Engineer only if it is the title Oak would
+confirm, Jim's word (8 October: LinkedIn's seniority facet reads the title and buckets both the
+same, so the prefix buys nothing there).
+
+## Top card, photo, banner, volunteering, organisations, interests — open
+
+The photo stays (Jim, 6 October: everything changes except the photo, for want of a better one).
+Name as now; pronouns are Jim's call. Top-card location and industry are set deliberately as
+retrieval coordinates at application, verified live. Banner: open, Jim's call. Volunteering
+(Growing Communities) and organisations (Institute of Physics, current) stay, brief and true.
+Activity and interests are not profile content and are left as they are.
 
 ## Experience — earlier entries — open
 
