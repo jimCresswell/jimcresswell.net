@@ -1,14 +1,16 @@
 /**
  * The page's wiring: load both files from the server, fill the text area with the review text,
- * render the pane, and save the text area through `PUT /api/review` after a short pause in
- * typing. Pure work (rendering, comparing) lives in modules with tests; this file only binds
- * them to the DOM and the network, and is proven by use.
+ * render the pane, save the text area through `PUT /api/review` after a short pause in typing,
+ * and bind the linked highlighting. Pure work (rendering, comparing, offsets) lives in modules
+ * with tests; this file only binds them to the DOM and the network, and is proven by use.
  */
 
 import { compareToSource, type SectionChange } from '../model/compare.js';
 import type { FileReport } from '../model/report.js';
 import { documentPayloadSchema, fileReportSchema, parseWith } from '../model/schema.js';
+import type { ProfileDocument } from '../model/types.js';
 
+import { bindHighlighting } from './highlight.js';
 import { renderDocument } from './render.js';
 
 const SAVE_DELAY_MS = 600;
@@ -17,25 +19,34 @@ interface Elements {
   readonly textarea: HTMLTextAreaElement;
   readonly rendering: HTMLElement;
   readonly saved: HTMLElement;
+  readonly notice: HTMLElement;
 }
 
 interface State {
   source: FileReport | null;
+  review: FileReport | null;
   folds: readonly number[];
+  repaint: () => void;
 }
 
 function elements(): Elements | null {
   const textarea = document.querySelector('#md');
   const rendering = document.querySelector('#rendering');
   const saved = document.querySelector('#saved');
+  const notice = document.querySelector('#highlight-notice');
   if (
     !(textarea instanceof HTMLTextAreaElement) ||
     !(rendering instanceof HTMLElement) ||
-    !(saved instanceof HTMLElement)
+    !(saved instanceof HTMLElement) ||
+    !(notice instanceof HTMLElement)
   ) {
     return null;
   }
-  return { textarea, rendering, saved };
+  return { textarea, rendering, saved, notice };
+}
+
+function currentProfile(state: State): ProfileDocument | null {
+  return state.review?.kind === 'parsed' ? state.review.document : null;
 }
 
 function changesFor(source: FileReport | null, review: FileReport): readonly SectionChange[] {
@@ -46,11 +57,13 @@ function changesFor(source: FileReport | null, review: FileReport): readonly Sec
 }
 
 function render(els: Elements, state: State, review: FileReport): void {
+  state.review = review;
   els.rendering.innerHTML = renderDocument({
     review,
     changes: changesFor(state.source, review),
     folds: state.folds,
   });
+  state.repaint();
 }
 
 function clock(): string {
@@ -98,7 +111,8 @@ function start(): void {
   if (els === null) {
     return;
   }
-  const state: State = { source: null, folds: [] };
+  const state: State = { source: null, review: null, folds: [], repaint: (): void => undefined };
+  state.repaint = bindHighlighting(els, () => currentProfile(state));
   let pending: ReturnType<typeof setTimeout> | null = null;
   els.textarea.addEventListener('input', () => {
     if (pending !== null) {
