@@ -10,7 +10,64 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+## Current Continuation (2026-10-08T18:xxZ, the profile as validated markdown and the editor landed as draft PR #325; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
+
+- The owner's asks of 2026-10-08, verbatim: "can we put the content so far into some kind of
+  structure, markdown files or json, whatever, and whip up a quick editor, a web page, two panes,
+  one for editing, one for preview ... my edits should persist to file, not the source files but a
+  file for review"; "let's keep it very MVP, and to avoid choosing data models prematurely, how
+  about we make it a markdown file instead, headings and sub-headings fixed and validated against
+  the known structure of the linkedin profile content"; on the design canvas, the linked
+  highlighting and a page run and saved locally; at plan review: "90% of the cost of a PR is the
+  feedback loop from reviewers ... You get one PR, and reviewer feedback is input to evaluate, not
+  authority to be obeyed".
+- What landed: draft PR #325 (the bot's) on `feat/linkedin-profile-editor` from the worktree
+  `.claude/worktrees/linkedin-profile-editor`, nine commits: `linkedin/profile.md` as the copy's
+  one home (the headline, the About and the two Oak entries under their headings with status
+  lines; this container now points at them and holds the decisions); the parser, the validator
+  with its notes (counts, the 200 and 300 character folds, markup sightings) and the check inside
+  the workspace `lint` (the source alone; the review file is never gated); the editor, an HTTP
+  handler proven below the listener on 127.0.0.1:4780 (`localhost` accepted too), a page bundled
+  by tsup, linked highlighting both ways; the README's editor section, the build-system row and
+  the delivery node `.agent/plans/delivery/linkedin-profile-editor.plan.md`, ratified by the
+  owner's approval and ruling above. The observation (2026-10-08 17:2xZ, Chrome): load, an edit
+  saved to `profile.review.md` with the source untouched, highlighting in both directions, a
+  second start refused on the held port; recorded on the PR.
+- The owner's correction, verbatim, after the seat ran six reviewers (accessibility included), a
+  Cricket suite and a twenty-five-finding triage on the editor: "you are building an MVP editing
+  app, which requires the basest ability to be read then changed... and you are applying the
+  a11y requirements of a public service, and thus wasting my time, my money, and your attention.
+  Finish the fucking basic editor"; then "stopping is not enough, fix the state of the editor,
+  it is supposed to be SIMPLE ... and then we get back to what we are SUPPOSED to be doing which
+  is writing my Oak entry for linkedin". The reviewers and the remaining Cricket legs were
+  stopped; the findings stand on the PR in one line each, nothing further taken. Taken before
+  the ruling: the Host check against DNS rebinding and a page content security policy. After it:
+  the review file left the gate, so nothing he writes there can fail a commit. The lesson for
+  the Practice: reviewer and accessibility depth is proportionate to the audience; a private
+  instrument gets one observation and one PR, never the public estate's fleet.
+- The Cricket suite before the ruling (his ask, "comprehensive ... latest models for each
+  clade"): five of fourteen legs returned (fable low, opus medium, sonnet high; Codex
+  gpt-6.1-sol low, gpt-5.6-terra medium): four DRIFTING, one ON-TRACK; frames two SOUND, three
+  NARROWED; every redirection the same, open the draft PR and cut the batch to defects with a
+  consequence. Codex refuses `gpt-6.1-terra` and `gpt-6.1-luna` on a ChatGPT account; only
+  `gpt-6.1-sol` of the 6.1 family runs here, so the terra and luna roles keep their 5.6 pins.
+- Gotchas kept: tsup leaves a package's declared dependencies as bare imports a browser cannot
+  resolve (`noExternal` cures it; the first browser observation found it); knip's configuration
+  hints are gate errors here (redundant entries, the css extension of the root compiler); the
+  worktree guard refuses runtime-computed values and heredocs carrying backticks, so scratch
+  scripts are written with the platform's write tool and run as one plain command; a WIP
+  reservation lapses in thirty minutes and a gate run can take longer.
+- Next act, on the owner's word: he merges #325 when he has read it (CI was running at this
+  writing); he runs `pnpm --filter linkedin editor` and reads the two Oak entries in
+  `profile.md` as the rendering shows them, editing in the left pane; his edits in
+  `profile.review.md` are the primary editorial evidence the seat triages by the
+  write-for-the-reader method, with the open items listed in this container's Oak section (the
+  handover tense, the pattern sentence, credit beside the curriculum experts, what was not built
+  and the cost, an adoption figure, the two chronology readings). Then the earlier entries,
+  Featured, Projects, skills, recommendations, settings; then the application with him present.
+  The skills question of the 00:xxZ block stands as framed.
+
+## Previous Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; Cedar turns Grove, 1950d1)
 
 - The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
   /jc-concept-exploration /jc-reason /jc-plan /jc-wrap , on resume we start the Oak entry, and we
