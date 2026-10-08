@@ -29,16 +29,19 @@ export interface EditorSeams {
   readonly pageScript: string;
 }
 
-/** The loopback address the editor listens on; a request to any other Host is refused. */
+/** The loopback address the editor listens on; a Host that is neither it nor localhost is refused. */
 export const EDITOR_HOST = '127.0.0.1';
 export const EDITOR_PORT = 4780;
-const EXPECTED_HOST = `${EDITOR_HOST}:${String(EDITOR_PORT)}`;
+const ACCEPTED_HOSTS: ReadonlySet<string> = new Set([
+  `${EDITOR_HOST}:${String(EDITOR_PORT)}`,
+  `localhost:${String(EDITOR_PORT)}`,
+]);
 
 /** The part of an HTTP request the handler reads. */
 interface EditorRequest {
   /**
    * The Host header. A browser sets it from the URL and DNS rebinding cannot change it, so
-   * refusing every value but the editor's own keeps a rebound page from reaching the files.
+   * refusing every value but the editor's own two keeps a rebound page from reaching the files.
    */
   readonly host: string;
   readonly method: string;
@@ -123,7 +126,7 @@ async function route(seams: EditorSeams, request: EditorRequest): Promise<Editor
  */
 export function createEditorHandler(seams: EditorSeams): EditorHandler {
   return async (request) => {
-    if (request.host !== EXPECTED_HOST) {
+    if (!ACCEPTED_HOSTS.has(request.host)) {
       return json(403, { error: 'host not accepted' });
     }
     try {

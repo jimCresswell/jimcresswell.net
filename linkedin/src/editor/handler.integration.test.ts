@@ -129,7 +129,7 @@ describe('the editor handler', () => {
       ...at('PUT', '/api/review', JSON.stringify({ text: REVIEW })),
       host: 'attacker.example:4780',
     };
-    const foreignRead = { ...at('GET', '/api/document'), host: 'localhost:4780' };
+    const foreignRead = { ...at('GET', '/api/document'), host: 'rebound.example:4780' };
 
     const write = await createEditorHandler(neverWrite)(foreign);
     const read = await createEditorHandler(neverWrite)(foreignRead);
@@ -137,6 +137,14 @@ describe('the editor handler', () => {
     expect(write.status).toBe(403);
     expect(JSON.parse(write.body)).toEqual({ error: 'host not accepted' });
     expect(read.status).toBe(403);
+  });
+
+  it('accepts localhost on its port as its own address', async () => {
+    const viaLocalhost = { ...at('GET', '/'), host: 'localhost:4780' };
+
+    const response = await createEditorHandler(seams([]))(viaLocalhost);
+
+    expect(response.status).toBe(200);
   });
 
   it('answers an unknown route with 404', async () => {
