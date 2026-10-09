@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Profile editor</title>
+    <style>
+      :root {
+        --ink: #1b1f23;
+        --muted: #5b6470;
+        --line: #d9dee3;
+        --pane: #f6f7f8;
+        --approved-ink: #0f6e76;
+        --approved-fill: #e3f1f2;
+        --drafted-ink: #7a4b00;
+        --drafted-fill: #fff1d6;
+        --open-ink: #5b6470;
+        --open-fill: #eef0f2;
+        --invalid-ink: #8a1c1c;
+        --invalid-fill: #fde8e8;
+        --fold-a: #e4eff0;
+        --fold-b: #f1f6f7;
+        --mirror: #ffe9a8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        color: var(--ink);
+        background: #fff;
+      }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 20px;
+        padding: 10px 24px;
+        border-bottom: 1px solid var(--line);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      header .file {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      header .spacer {
+        flex: 1 1 auto;
+      }
+      header #saved {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      main {
+        display: flex;
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+      main > section {
+        flex: 1 1 50%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .editor {
+        background: var(--pane);
+        border-right: 1px solid var(--line);
+      }
+      .pane-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 16px;
+        padding: 10px 24px;
+        border-bottom: 1px solid #e3e7eb;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .pane-head label,
+      .pane-head h2 {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      textarea {
+        flex: 1 1 auto;
+        width: 100%;
+        margin: 0;
+        border: 0;
+        padding: 20px 24px 40px;
+        background: transparent;
+        color: var(--ink);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13.5px;
+        line-height: 1.6;
+        resize: none;
+      }
+      textarea:focus {
+        outline: 2px solid var(--approved-ink);
+        outline-offset: -2px;
+      }
+      #rendering {
+        flex: 1 1 auto;
+        overflow: auto;
+        padding: 16px 40px 72px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+      #rendering > section,
+      #rendering .strip {
+        max-width: 760px;
+      }
+      #rendering h2 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 14px;
+        margin: 28px 0 8px;
+        font-family: system-ui, sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      #rendering h3 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 14px;
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      #rendering .entry {
+        border-left: 3px solid var(--line);
+        padding-left: 20px;
+        margin: 16px 0 28px;
+      }
+      #rendering .entry-meta,
+      #rendering .counts,
+      #rendering .meta {
+        font-family: system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--muted);
+      }
+      #rendering .entry-meta {
+        font-size: 14px;
+        margin-top: 4px;
+      }
+      #rendering .counts {
+        margin: 0 0 12px;
+      }
+      #rendering p {
+        margin: 0 0 14px;
+      }
+      #rendering ul {
+        padding-left: 20px;
+      }
+      .badge {
+        display: inline-block;
+        padding: 2px 9px;
+        border-radius: 999px;
+        font-family: system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .status-approved {
+        background: var(--approved-fill);
+        color: var(--approved-ink);
+      }
+      .status-drafted {
+        background: var(--drafted-fill);
+        color: var(--drafted-ink);
+      }
+      .status-open {
+        background: var(--open-fill);
+        color: var(--open-ink);
+      }
+      .status-invalid,
+      .changed {
+        background: var(--invalid-fill);
+        color: var(--invalid-ink);
+      }
+      .fold-a {
+        background: var(--fold-a);
+      }
+      .fold-b {
+        background: var(--fold-b);
+      }
+      .strip {
+        margin: 8px 0 16px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .strip ul {
+        margin: 6px 0 0;
+        padding-left: 18px;
+      }
+      .strip-ok {
+        background: var(--approved-fill);
+        color: var(--approved-ink);
+      }
+      .strip-error {
+        background: var(--invalid-fill);
+        color: var(--invalid-ink);
+      }
+      .open-list ul {
+        columns: 2;
+        list-style: none;
+        padding: 0;
+        font-family: system-ui, sans-serif;
+        font-size: 15px;
+      }
+      ::highlight(mirror) {
+        background: var(--mirror);
+      }
+      @media (max-width: 900px) {
+        main {
+          flex-direction: column;
+          overflow: auto;
+        }
+        .editor {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        textarea {
+          min-height: 60vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Profile editor</h1>
+      <span class="file">linkedin/profile.review.md</span>
+      <span class="spacer"></span>
+      <span id="saved" aria-live="polite">Loading…</span>
+    </header>
+    <main>
+      <section class="editor">
+        <div class="pane-head">
+          <label for="md">Markdown</label>
+          <span
+            >The whole file. Headings are the structure; keep them. Everything else is yours to
+            change.</span
+          >
+        </div>
+        <textarea id="md" spellcheck="false"></textarea>
+      </section>
+      <section>
+        <div class="pane-head">
+          <h2>Rendering</h2>
+          <span
+            >Counts are information, never a target. Shading marks what a scan sees before “see
+            more”: the first <span class="fold-a">200</span> and
+            <span class="fold-b">300</span> characters. Select text in either pane to find it in the
+            other.</span
+          >
+          <span id="highlight-notice" role="status"></span>
+        </div>
+        <div id="rendering"></div>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

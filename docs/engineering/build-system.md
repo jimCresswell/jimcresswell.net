@@ -16,13 +16,14 @@ The build system uses:
 
 ## Workspace layout
 
-`pnpm-workspace.yaml` declares three workspace groups:
+`pnpm-workspace.yaml` declares four workspace groups:
 
-| Group          | Package                                                                                                                           | Build                                                                    |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| `jcdotnet/`    | `@jimcresswell/www` — the Next.js 16 site and CV                                                                                  | `next build && tsx scripts/generate-pdf.ts`                              |
-| `agent-tools/` | `@engraph/agent-tools` — the Practice tooling (validators, hooks, statusline, agent CLIs)                                         | `tsc -p tsconfig.build.json`, then the executable bit on the CLI entries |
-| `tooling/*`    | `@engraph/eslint-plugin-standards`, `@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`, `@engraph/workspace-config` | `tsup` for JavaScript plus `tsc --emitDeclarationOnly` for types         |
+| Group          | Package                                                                                                                           | Build                                                                                                              |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `jcdotnet/`    | `@jimcresswell/www` — the Next.js 16 site and CV                                                                                  | `next build && tsx scripts/generate-pdf.ts`                                                                        |
+| `agent-tools/` | `@engraph/agent-tools` — the Practice tooling (validators, hooks, statusline, agent CLIs)                                         | `tsc -p tsconfig.build.json`, then the executable bit on the CLI entries                                           |
+| `linkedin/`    | `linkedin` — the LinkedIn profile copy as validated markdown, its validator and the local two-pane editor                         | `tsup` for the editor's browser bundle (`dist/app.js`); the server and the validator run from source through `tsx` |
+| `tooling/*`    | `@engraph/eslint-plugin-standards`, `@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`, `@engraph/workspace-config` | `tsup` for JavaScript plus `tsc --emitDeclarationOnly` for types                                                   |
 
 Linking and hoisting use **pnpm defaults** (no overrides for
 `linkWorkspacePackages`, `preferWorkspacePackages`, or `shamefullyHoist`), which
