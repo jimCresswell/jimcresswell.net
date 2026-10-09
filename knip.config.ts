@@ -97,6 +97,13 @@ const config: KnipConfig = {
       // Subpath exports consumed via package.json "exports".
       entry: ['src/*.ts'],
     },
+    linkedin: {
+      // The entries need no pattern: the validator and the editor run through package scripts
+      // (`tsx src/...`), which knip reads as entries, and the page script is the tsup entry.
+      // The css extension is in the project because the root css compiler above applies to every
+      // workspace; knip reports the gap as a hint, and a hint fails the gate.
+      project: ['src/**/*.{ts,css}'],
+    },
     jcdotnet: {
       // Next.js is auto-detected; the build-time scripts are package-script entries. Test files
       // under scripts/ are left out of this entry so they enter only through the Vitest include:

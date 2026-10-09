@@ -18,3 +18,7 @@ pnpm-lock.yaml
 
 # Generated surfaces
 RULES_INDEX.md
+
+# The owner's raw edits of the LinkedIn profile copy, written by the local editor and read only
+# by the seat for a diff against linkedin/profile.md (which prettier does govern).
+linkedin/profile.review.md
