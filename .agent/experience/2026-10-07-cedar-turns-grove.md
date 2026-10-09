@@ -9,8 +9,8 @@ When the owner finally said "I need you to actually read everything we have alre
 read them, and then the private editorial material behind them, and found that the two things he
 had been asking me for, a model of the impact and a model of how LinkedIn provides it, had been
 written in August in his own words and by a seat before me. The September workspace had set the
-August pack aside because the owner had rejected two drafting methods in it, and I had inherited
-September's reading as if it were the whole story. A summary is not familiarity. If the owner
+August pack aside on its own reading of it, and I had inherited that reading as if it were the
+whole story. A summary is not familiarity. If the owner
 asks you to familiarise yourself with a corpus, the corpus is read, not delegated, and the
 private material behind a public workspace is part of the corpus.
 
@@ -47,6 +47,6 @@ encounter. Measure where you can before you model.
 
 I left the models ratified, the record written in the private repository, and the four decisions
 he still owns named with my recommendations beside them. Nothing was changed on LinkedIn. If you
-are the seat that drafts with him, use the method he settled in August: extract the
-particulars, let him select, and write together with real craft. Two other methods failed in
-front of him and he remembers the failures better than the ruling.
+are the seat that drafts with him, use the method he settled in August, which the private record
+holds and the `write-for-the-reader` skill now carries at the public level, and write together
+with real craft.
