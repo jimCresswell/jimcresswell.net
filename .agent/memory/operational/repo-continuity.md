@@ -346,9 +346,9 @@ entry is the work. Next safe steps, in order:
    two owner-held criteria.
 4. The steps of the 2026-10-08T10:2xZ state below stand where not superseded.
 
-Deep consolidation status: due — the napkin's October blocks are unconsolidated and its rotation
-was named due on 8 October; not well-bounded for this close at the owner's compaction word, so the
-next session takes it up deliberately (session-handoff step 10).
+Deep consolidation status: due, held — the napkin's October blocks are unconsolidated and its
+rotation was named due on 8 October; the owner's word (2026-10-09T13:4xZ: "consolidation waits
+until I say so") holds it, and the next session works on the Oak entry.
 
 STATE, 2026-10-08T10:2xZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, after the fold
 of 323): the lane's records are on `main`; the successor coordination branch carries them from
