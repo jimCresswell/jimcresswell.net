@@ -57,9 +57,14 @@ authorisation.
   worktree guard refuses runtime-computed values and heredocs carrying backticks, so scratch
   scripts are written with the platform's write tool and run as one plain command; a WIP
   reservation lapses in thirty minutes and a gate run can take longer.
-- Next act, on the owner's word: he merges #325 when he has read it (CI was running at this
-  writing); he runs `pnpm --filter linkedin editor` and reads the two Oak entries in
-  `profile.md` as the rendering shows them, editing in the left pane; his edits in
+- 2026-10-09: #325 merged at the owner's word ("please merge the PR") at `SHA:547e7358`, through
+  the bot's REST merge path after the front door read the round as settled by timeout (a Copilot
+  review requested the next morning registered and was consumed with no review object). The
+  delivery node stays `ratified`, not archived: its owner-held criteria (his edits persisting to
+  the review file; the highlighting) are proven by the seat's observation on the PR and await
+  his own use. Then the wrap: the coordination branch folded with these records.
+- Next act, on the owner's word: he runs `pnpm --filter linkedin editor` and reads the two Oak
+  entries in `profile.md` as the rendering shows them, editing in the left pane; his edits in
   `profile.review.md` are the primary editorial evidence the seat triages by the
   write-for-the-reader method, with the open items listed in this container's Oak section (the
   handover tense, the pattern sentence, credit beside the curriculum experts, what was not built
