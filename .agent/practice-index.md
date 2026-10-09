@@ -113,7 +113,7 @@ Canonical skills live under [`skills/`](skills/), each at
 | Craft                     | `domain-craft/ui-design/*`, `domain-craft/project-spec-creation`, `tsdoc`, `dependency-currency`, `update-dependencies`, `working-with-graphs`, `orientation/working-with-agentic-ai`, `orientation/under-the-hood`  |
 | Reviewer companions       | `reviewer-companions/accessibility`, `architecture`, `config`, `docs-adr`, `react-component`, `security`, `subagent-architecture`                                                                                    |
 | Lever authoring           | `lever-authoring/author-skills`                                                                                                                                                                                      |
-| PKG and editorial (local) | `pkg`, `editorial-voice`                                                                                                                                                                                             |
+| PKG and editorial (local) | `pkg`, `editorial/editorial-voice`, `editorial/write-for-the-reader` |
 
 ### Rules
 
@@ -130,6 +130,7 @@ arrived with the transplant went through one content-grain triage (keep / adapt
 | Expert                                                                           | Purpose                                                  |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [editor](sub-agents/templates/editor.md)                                         | Editorial reviewer — strategy, voice, and fit            |
+| [audience-reader](sub-agents/templates/audience-reader.md)                       | The audience as a reader — beliefs, noise, next act      |
 | [code-expert](sub-agents/templates/code-expert.md)                               | Gateway reviewer — quality, correctness, triage          |
 | [test-expert](sub-agents/templates/test-expert.md)                               | TDD compliance and test quality                          |
 | [type-expert](sub-agents/templates/type-expert.md)                               | TypeScript type safety                                   |
@@ -182,8 +183,12 @@ from the root:
 
 - [editorial-strategy.md](directives/editorial-strategy.md),
   [editorial-guidance.md](directives/editorial-guidance.md)
-- [editorial-voice skill](skills/editorial-voice/SKILL-CANONICAL.md),
-  [editor](sub-agents/templates/editor.md)
+- [write-for-the-reader skill](skills/editorial/write-for-the-reader/SKILL-CANONICAL.md) (the
+  order of work), [editorial-voice skill](skills/editorial/editorial-voice/SKILL-CANONICAL.md),
+  [public-copy-runs-the-editorial-workflow rule](rules/public-copy-runs-the-editorial-workflow.md)
+- [editor](sub-agents/templates/editor.md),
+  [audience-reader](sub-agents/templates/audience-reader.md),
+  [prose-expert](sub-agents/templates/prose-expert.md): the readers before Jim
 - [Editorial decision records](../docs/editorial/decision-records/)
 
 ### Personal-identity defensives

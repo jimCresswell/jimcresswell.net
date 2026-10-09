@@ -10,23 +10,105 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
+## Current Continuation (2026-10-09T12:xxZ, the profile as validated markdown and the editor delivered as PR #325, merged 9 October; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
+
+- The owner's asks of 2026-10-08, verbatim: "can we put the content so far into some kind of
+  structure, markdown files or json, whatever, and whip up a quick editor, a web page, two panes,
+  one for editing, one for preview ... my edits should persist to file, not the source files but a
+  file for review"; "let's keep it very MVP, and to avoid choosing data models prematurely, how
+  about we make it a markdown file instead, headings and sub-headings fixed and validated against
+  the known structure of the linkedin profile content"; on the design canvas, the linked
+  highlighting and a page run and saved locally; at plan review: "90% of the cost of a PR is the
+  feedback loop from reviewers ... You get one PR, and reviewer feedback is input to evaluate, not
+  authority to be obeyed".
+- What landed: draft PR #325 (the bot's) on `feat/linkedin-profile-editor` from the worktree
+  `.claude/worktrees/linkedin-profile-editor`, nine commits: `linkedin/profile.md` as the copy's
+  one home (the headline, the About and the two Oak entries under their headings with status
+  lines; this container now points at them and holds the decisions); the parser, the validator
+  with its notes (counts, the 200 and 300 character folds, markup sightings) and the check inside
+  the workspace `lint` (the source alone; the review file is never gated); the editor, an HTTP
+  handler proven below the listener on 127.0.0.1:4780 (`localhost` accepted too), a page bundled
+  by tsup, linked highlighting both ways; the README's editor section, the build-system row and
+  the delivery node `.agent/plans/delivery/linkedin-profile-editor.plan.md`, ratified by the
+  owner's approval and ruling above. The observation (2026-10-08 17:2xZ, Chrome): load, an edit
+  saved to `profile.review.md` with the source untouched, highlighting in both directions, a
+  second start refused on the held port; recorded on the PR.
+- The owner's correction, verbatim, after the seat ran six reviewers (accessibility included), a
+  Cricket suite and a twenty-five-finding triage on the editor: "you are building an MVP editing
+  app, which requires the basest ability to be read then changed... and you are applying the
+  a11y requirements of a public service, and thus wasting my time, my money, and your attention.
+  Finish the fucking basic editor"; then "stopping is not enough, fix the state of the editor,
+  it is supposed to be SIMPLE ... and then we get back to what we are SUPPOSED to be doing which
+  is writing my Oak entry for linkedin". The reviewers and the remaining Cricket legs were
+  stopped; the findings stand on the PR in one line each, nothing further taken. Taken before
+  the ruling: the Host check against DNS rebinding and a page content security policy. After it:
+  the review file left the gate, so nothing he writes there can fail a commit. The lesson for
+  the Practice: reviewer and accessibility depth is proportionate to the audience; a private
+  instrument gets one observation and one PR, never the public estate's fleet.
+- The Cricket suite before the ruling (his ask, "comprehensive ... latest models for each
+  clade"): seven of fourteen legs returned before his word stopped the rest (fable low, opus
+  medium, sonnet high; Codex gpt-6.1-sol low in both stances, gpt-5.6-terra medium, gpt-5.6-luna
+  xhigh): four DRIFTING, three ON-TRACK; frames three SOUND, four NARROWED (the narrowings: no
+  measure for "very MVP", the review rounds uncounted, "plan first" absent from the reading,
+  the editorial resumption asserted by no source); every redirection the same, open the draft
+  PR and cut the batch to defects with a consequence. Codex refuses `gpt-6.1-terra` and
+  `gpt-6.1-luna` on a ChatGPT account; only `gpt-6.1-sol` of the 6.1 family runs here, so the
+  terra and luna roles keep their 5.6 pins.
+- Gotchas kept: tsup leaves a package's declared dependencies as bare imports a browser cannot
+  resolve (`noExternal` cures it; the first browser observation found it); knip's configuration
+  hints are gate errors here (redundant entries, the css extension of the root compiler); the
+  worktree guard refuses runtime-computed values and heredocs carrying backticks, so scratch
+  scripts are written with the platform's write tool and run as one plain command; a WIP
+  reservation lapses in thirty minutes and a gate run can take longer.
+- 2026-10-09: #325 merged at the owner's word ("please merge the PR") at `SHA:547e7358`, through
+  the bot's REST merge path after the front door read the round as settled by timeout (a Copilot
+  review requested the next morning registered and was consumed with no review object). The
+  delivery node stays `ratified`, not archived: its owner-held criteria (his edits persisting to
+  the review file; the highlighting) are proven by the seat's observation on the PR and await
+  his own use. Then the wrap: the coordination branch folded with these records.
+- Next act, on the owner's word: he runs `pnpm --filter linkedin editor` and reads the two Oak
+  entries in `profile.md` as the rendering shows them, editing in the left pane; his edits in
+  `profile.review.md` are the primary editorial evidence the seat triages by the
+  write-for-the-reader method, with the open items listed in this container's Oak section (the
+  handover tense, the pattern sentence, credit beside the curriculum experts, what was not built
+  and the cost, an adoption figure, the two chronology readings). Then the earlier entries,
+  Featured, Projects, skills, recommendations, settings; then the application with him present.
+  The skills question of the 00:xxZ block stands as framed.
+
+## Previous Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; Cedar turns Grove, 1950d1)
 
 - The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
   /jc-concept-exploration /jc-reason /jc-plan /jc-wrap , on resume we start the Oak entry, and we
   consider how it and the headline and about relate to the skills list in the context of
   bringing about our desired impact". The seat continues after the compaction; this block is
   its pickup.
-- Start here on resume, the Oak entry: the understanding is the container's Oak section in
-  `linkedin/profile-replacement.md` (the settled structure, movements and chronology) and the
-  approved About, which the entry must demonstrate and not repeat; private editorial material,
-  where present, informs the drafting and is never quoted or identified here. The method that produced the About: write for the reader from
+- After the resume (8 October, morning): the owner asked for a review of the next steps and a
+  reflection on the intended impact before any drafting; the review's findings are in the
+  napkin's block of 09:4xZ and were offered in chat. His words that followed settled the
+  product's naming (the Oak AI plugin, with MCP once as the technical term and vendor terms only
+  for vendor listings) and the Oak entry's attribution (his five contributions; content and
+  sequencing credited to Oak's curriculum experts; the zero-to-one completion and the phased
+  handover as the closing beat): both are
+  [EDR-007](../../../../docs/editorial/decision-records/007-oak-ai-plugin-naming-and-attribution.md),
+  the durable home, which the container now points to; his verbatim words are kept privately.
+  His correction the same hour: comms events are ephemeral, never a home. Open for his word: the
+  title stays Principal Engineer unless Senior Principal is the title Oak would confirm
+  (LinkedIn's seniority facet buckets both the same). Next act: the Oak entry drafted as one
+  piece for his reaction, with EDR-007 as its attribution rule, by the `write-for-the-reader` method landed the same day
+  after a first draft failed as writing (the rule `public-copy-runs-the-editorial-workflow`; the
+  `audience-reader` sub-agent; the voice check and the prose and editor reviewers before Jim, who
+  reads second).
+- Start here on resume, the Oak entry: the understanding is the owner's August paragraphs (in
+  the private editorial repository's Oak working draft, the two opening paragraphs his own), the
+  particulars sheet beside it, the container's Oak section in `linkedin/profile-replacement.md`
+  (the settled structure, movements and chronology), and the approved About, which the entry
+  must demonstrate and not repeat. The method that produced the About: write for the reader from
   the understanding, one concrete moment per movement, verify against the sources afterwards,
   offer one draft for his reaction. Two positions: Senior Developer (consulting) Aug to Dec
   2020, short; Principal Engineer from Jan 2021, engineering strategy, in labelled movements.
 - The skills question, framed for resume (concept exploration at the boundary, not settled):
   the skills list is the machine-readable index of the About and the Oak entry, one
-  understanding in a third expression; head hunters' Boolean and AI search reads explicit skills
+  understanding in a third expression; a senior searcher's Boolean and AI search reads explicit skills
   as the first filter while LinkedIn also infers skills from the prose, so the two must agree.
   Proposals, each falsifiable by the search-appearance titles after the rewrite: every pinned
   or top skill names something a reader can point at in the About or the Oak entry; the senior
@@ -42,12 +124,43 @@ authorisation.
   sitting with him present, the new baseline recorded, the decision record landed, the thread
   into maintenance). The resuming seat mints a node only at the owner's word.
 
+### 2026-10-08T10:2xZ — the 2026-10-05-d72ae5 branch folded as 323; the successor cut (Cedar turns Grove, 1950d1)
+
+Merged as `SHA:bd89f86e` at head `SHA:210c4adb` (`main` merged in content-free, proved by
+merge-tree equality, so no merge commit). Successor `coordination/2026-10-08-bd89f8` cut from
+`SHA:bd89f86e`; the folded branch deleted local and remote after both tips read merged. The
+fold's review: fifteen Copilot findings on the opening head, thirteen cured in `SHA:210c4adb`
+(the privacy class first: this record, the continuity record, the napkin, the rewrite handoff
+and the seat's letter no longer identify, summarise or carry the custody of private editorial
+material, whose pointers are in the seat's per-user memory; the identity row; two fact cures;
+the thread README's branch clause), two declined with reasons on the threads; one second-round
+finding routed to this lane: the container's opening sentence claims every field while name and
+pronouns, the top-card location and associations, portrait and banner, volunteering,
+organisations and activity and interests carry no status, and the lane's next records commit
+scopes the sentence and gives each a status. moved for the sites: nothing / moved for the
+Practice: the records hygiene cure in two skills, both estates, on `main`.
+
+### 2026-10-08T15:xxZ — the Oak entry drafted by the method; in the container, awaiting the owner (Cedar turns Grove, 1950d1)
+
+The first run of `write-for-the-reader` on this lane: the reader's decision and the beliefs on
+paper (the private editorial repository's record of 7 October, its section of 8 October,
+afternoon, holds them with the readers by name and the dispositions); one draft read by `editor`,
+`prose-expert` and the `audience-reader`, revised once by altitude, read again by the
+`audience-reader`, proofed against the sources; the text, its length as information (2,404 and
+292 characters against a believed and unverified 2,000) and the open items for the owner are in
+the container's Oak section, status "drafted, awaiting Jim". He reads second, now. Open for his
+word there: the handover tense and "stream-aligned"; the pattern sentence's reading by Oak
+colleagues; credit for engineering colleagues on the plugin; what was not built and what it cost;
+an adoption figure; the About's "spring of 2020" beside the entry's August start; the title. Next
+act after his reading: the earlier entries, Featured, Projects, the skills list as a table, then
+the pre-application checks and the application with him present.
+
 ## Previous Continuation (2026-10-07T17:xxZ, paused at the owner's word; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's word: "Let's pause here for now". A PAUSE of the seat, not a close of the lane.
 - State: the headline and About are approved and preserved in `linkedin/profile-replacement.md`,
-  the working object; the design model is in the block below; the MCP app is the Oak AI plugin
-  on the profile.
+  the working object; the design model and the sources are in the block below and in the private
+  editorial repository's handoff of 7 October; the MCP app is the Oak AI plugin on the profile.
   Nothing on LinkedIn changed.
 - Records: committed on the coordination branch; GitHub reported an incident through the
   evening, so the last commits may not have reached the remote when the seat paused; the seat
@@ -62,8 +175,8 @@ authorisation.
 ## Previous Continuation (2026-10-07T16:xxZ, the design model after the owner's corrections; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The cold pause was lifted at the owner's word. The seat is live. The owner then corrected the
-  seat in five turns; his words in substance and the readers he named are in this block, which
-  governs; the owner-private parts are in the seat's per-user memory.
+  seat in five turns; the whole of his words and the readers he named are in the private
+  editorial repository's handoff of 7 October, §Design model, second pass. That section governs.
 - What the profile is designed to do, in the owner's framing: the only questions are who the
   audience is, what we communicate to them, and how. The profile is designed as one system for
   one effect, never field by field. Headline and About are one act of drafting. The seat holds
@@ -87,9 +200,9 @@ authorisation.
 - Sources the drafting draws from, all read first-hand on 7 October: the CV positioning,
   capabilities and Oak entry in `jcdotnet/content/cv.content.json`; the front page's
   third-order line in `jcdotnet/content/frontpage.content.json`; EDR-002 and EDR-004 in
-  `docs/editorial/decision-records/`; Draft 1 and September's exploration in `linkedin/`; and
-  private editorial material where present, which informs the drafting and is never quoted,
-  summarised or identified here. Draft 1 is a source for the earlier
+  `docs/editorial/decision-records/`; Draft 1 and September's exploration in `linkedin/`; and,
+  in the private editorial repository, the August identity theory, kernel, dossier, EDR-006,
+  the owner's own Oak paragraphs and the particulars sheet. Draft 1 is a source for the earlier
   entries, not the working object: its About collapses the identity.
 - The Practice is not an empty movement. It is defined canonically in
   `.agent/practice-core/practice.md` (the five-layer definition ratified 2026-10-04, PDR-143
@@ -150,8 +263,8 @@ authorisation.
   This is a PAUSE of the seat, not a close of the lane.
 - RATIFIED (2026-10-07T12:xxZ, verbatim): "I am happy to ratify as is, I think further refinements
   should happen as part of applied work rather than theoretical refinement." The impact model and
-  the value model stand as ratified (their substance, as later corrected, is the 16:xxZ block
-  above), with the owner's answers of 7 October and the seat's recommendations beside the four decisions
+  the value model stand as written in the private editorial repository's handoff of 7 October,
+  with the owner's answers of 7 October and the seat's recommendations beside the four decisions
   he still owns: the Oak entry structure (two entries recommended), the August headline (keep its
   substance), skills (everything changes; endorsed removals by his word), About order (drafted
   with the top). The corrections of 7 October before the ratification: his Oak work is the MCP
@@ -162,16 +275,17 @@ authorisation.
   block, the `repo-continuity.md` entry, all committed on `coordination/2026-10-05-d72ae5` by
   pathspec from a linked worktree as `SHA:2bd88031`, NOT pushed (the push runs the full gate;
   the fold of draft 323
-  is a later seat's or the owner's act). Nothing on LinkedIn, in `linkedin/` or on the site
-  changed.
-- Next safe steps for the successor, in order: the owner's four decisions and his word on
-  committing; a public-safe strategy page in `linkedin/`
+  is a later seat's or the owner's act). The private handoff is in the private editorial
+  repository. Nothing on LinkedIn, in `linkedin/` or on the
+  site changed.
+- Next safe steps for the successor, in order: read the private handoff of 7 October first; the
+  owner's four decisions and his word on committing; a public-safe strategy page in `linkedin/`
   and the LinkedIn section of `editorial-strategy.md` (the limit raised if the content needs it,
   never trimmed); the field-by-field container replacing Draft 1 as the working object; drafting
   by the August method (extract, the owner selects, write together), top of the profile first;
   the pre-application checks (field limits, standard skill names, Featured's second link, the
   notification mechanic); application in one sitting with the owner present on his express
-  request; the post-application baseline and the EDR.
+  request; the post-application baseline and the EDR. The eleven steps are in the private handoff.
 - Processes: the comms watcher stopped at the pause; no heartbeat ran (n=1); no claim held. The
   Chrome tab on the owner's profile was left open for him. The formation letter is at
   `.agent/experience/2026-10-07-cedar-turns-grove.md`.
@@ -181,8 +295,8 @@ authorisation.
 - Branch: `feat/updating-linkedin`, the owner's branch, level with `main` at d72ae51d; the
   tree carries this record, the napkin blocks of 6 and 7 October, and nothing else.
 - Controlling direction: the owner's words of 6 and 7 October, recorded in the napkin (the
-  public-safe part) and, for the owner-private parts, in the seat's per-user memory. The
-  impact and value models were proposed at this hour and RATIFIED later the same
+  public-safe part) and in the private editorial repository's handoff of 7 October (the
+  whole). The impact and value models were proposed at this hour and RATIFIED later the same
   day (the block above).
 - Settled by the owner: whole replacement, everything but the photo; LinkedIn stands alone;
   LinkedIn only (no site, CV or graph edits); edits through Chrome by the seat on his express
@@ -196,10 +310,12 @@ authorisation.
   employment from June 2022; the thesis spelling is Theremin.
 - The live profile, read 7 October, is identical to the 27 September baseline; public
   visibility is on for every section; retrieval is mostly through the network and comments,
-  search a small share; the aggregates are not reproduced here.
-- The owner's earlier work on this profile stands where he has not withdrawn it: the headline
-  he set (since approved in the container) and the method of drafting with him (extract the
-  particulars, he selects, write together with craft).
+  search a small share. The private record carries the aggregates.
+- The August 2026 material (private) was never rejected as a whole: the owner rejected two
+  drafting methods and the 8–9 August copy. Standing from August: the owner-set headline
+  (EDR-006), the extract/select/write-collaboratively method, his verbatim Oak movements and
+  the particulars sheet, the LinkedIn system model, the dossier's target effect, and his
+  8 August purpose. The next session reads the private handoff of 7 October before anything.
 - Next safe step: the owner's ratification or correction of the models; then the strategy
   record in `linkedin/` (public-safe) and the plan for the replacement. No edit to Draft 1,
   no LinkedIn change, until then.

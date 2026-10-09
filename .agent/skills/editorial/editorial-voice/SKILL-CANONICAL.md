@@ -1,7 +1,17 @@
 ---
 name: editorial-voice
 classification: active
-description: Apply Jim Cresswell's editorial voice consistently when writing or editing content. Use when editing CV content, front page narrative, positioning, capabilities, LinkedIn preparation, or any writing that represents Jim.
+description: >-
+  Jim Cresswell's voice on every surface that represents him: the one line, the two registers (CV:
+  evidential, agentic, scannable; front page: narrative, reflective) and their overlap on LinkedIn,
+  the five pitfalls (justification, passive framing, tell sentences, hedging, unclear abstractions)
+  and the five-question check. Load it whenever writing or editing CV content, front page
+  narrative, positioning, capabilities, LinkedIn fields, bios, posts or any sentence a reader will
+  take as Jim speaking, even a one-line edit; the order of work around it is write-for-the-reader,
+  which calls this skill at the prose and at the check. Not for repository prose, records, plans or
+  code comments. Right looks like: "I conceived and built", a sentence that shows what and what it
+  creates. Wrong looks like: "my work has focused on", an explanation of why, a hedge on a true
+  claim, "ecosystem".
 ---
 
 # Editorial Voice
@@ -13,6 +23,12 @@ guidance for applying it.
 Also read `.agent/directives/editorial-strategy.md`. It separately governs audience,
 surface-specific composition, attention, readability, section weight and platform fit. Voice is one
 editorial lens, not the whole review.
+
+The order of work that puts this skill in its place is
+`.agent/skills/editorial/write-for-the-reader/SKILL-CANONICAL.md`: the reader's decision first,
+the beliefs and the moments, then this skill at the prose and at the check, then the readers
+(`prose-expert`, `editor`, `audience-reader`) before Jim. A draft that reaches for voice before
+the reader's decision exists polishes a structure that has not earned its shape.
 
 ## The voice in one line
 
@@ -95,8 +111,7 @@ After writing or editing content, ask:
 ## Reference
 
 - `.agent/directives/editorial-strategy.md` — audience, surface composition, attention, readability, length and platform fit
-
 - `.agent/directives/editorial-guidance.md` — authoritative editorial constraints, principles, and hierarchy
 - `docs/editorial/decision-records/` — specific editorial decisions with context and rationale (EDRs)
-- `content/cv.content.json` — CV content (positioning, experience, capabilities)
-- `content/frontpage.content.json` — front page narrative
+- `jcdotnet/content/cv.content.json` — CV content (positioning, experience, capabilities)
+- `jcdotnet/content/frontpage.content.json` — front page narrative

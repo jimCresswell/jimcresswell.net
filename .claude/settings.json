@@ -77,7 +77,8 @@
       "Skill(jc-visual-verification)",
       "Skill(jc-working-with-agentic-ai)",
       "Skill(jc-working-with-graphs)",
-      "Skill(jc-wrap)"
+      "Skill(jc-wrap)",
+      "Skill(jc-write-for-the-reader)"
     ]
   },
   "skillListingBudgetFraction": 0.03,

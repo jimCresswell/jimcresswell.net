@@ -1,0 +1,6 @@
+---
+description: "This host's binding: any copy that represents the owner (LinkedIn fields, CV, front page, bios, posts), or prose for an external reader's decision (a letter, a bio for a third party), is drafted and revised by the write-for-the-reader skill, and the owner reads it only after the voice check, editor, prose-expert and the audience-reader have read it and every finding carries a disposition. Not for records, plans, pull-request text, commit messages, code comments or Practice prose. A reader's finding is information, never authority; copy is never cut to a character count. Fires on any request to write, draft, redraft, tighten or edit such copy, even one field. Named failures (October 2026): two drafts assembled from settled bullet points, one draft trimmed four times to a believed limit, the owner the first reader every time."
+alwaysApply: false
+---
+
+Read and follow `.agent/rules/public-copy-runs-the-editorial-workflow.md`.

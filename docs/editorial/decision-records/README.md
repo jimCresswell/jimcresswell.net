@@ -29,3 +29,4 @@ context and alternatives that led to the decision. The directives govern; EDRs e
 | [003](003-ecosystem-language-removal.md)           | Ecosystem language removal                             | Accepted | 2026-02-18 |
 | [004](004-enabling-vision-leverage-third-order.md) | Enabling vision — leverage through third-order effects | Accepted | 2026-02-18 |
 | [005](005-oak-p3-rewrite.md)                       | Oak P3 rewrite — from passive to confident intent      | Accepted | 2026-02-18 |
+| [007](007-oak-ai-plugin-naming-and-attribution.md) | The Oak AI plugin on LinkedIn — naming and attribution | Accepted | 2026-10-08 |

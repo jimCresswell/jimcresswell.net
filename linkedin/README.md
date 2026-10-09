@@ -60,7 +60,7 @@ wording with Jim before any change there.
 - [Privacy](../.agent/directives/privacy.md)
 - [Editor review](../.agent/memory/executive/invoke-code-experts.md) (this host's
   `editor` row) and the
-  [editorial voice skill](../.agent/skills/editorial-voice/SKILL-CANONICAL.md)
+  [editorial voice skill](../.agent/skills/editorial/editorial-voice/SKILL-CANONICAL.md)
 - [Current CV source](../jcdotnet/content/cv.content.json)
 - [Current front page source](../jcdotnet/content/frontpage.content.json)
 - [Shared identity facts](../jcdotnet/content/entities.json)
