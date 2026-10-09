@@ -180,8 +180,9 @@ then follow the `write-for-the-reader` skill, with `editorial-voice` at the
 prose and its readers (`editor`, `prose-expert`, `audience-reader`) before
 Jim reads, as `public-copy-runs-the-editorial-workflow` requires. Private
 editorial material, if present, is confidential and informs writing only
-([privacy.md](./privacy.md) §Private editorial material); never quote, summarise
-or identify it on a public surface. The LinkedIn profile draft and the other
+([privacy.md](./privacy.md) §Private editorial material): never quote it or
+reproduce its substance on a public surface; its existence, and a pointer to a
+document in it, may be named, as that section says. The LinkedIn profile draft and the other
 non-sensitive LinkedIn material listed in privacy.md's
 [LinkedIn workspace authorisation][linkedin-authorisation] live in the
 [LinkedIn workspace](../../linkedin/README.md); private material stays in its

@@ -10,7 +10,7 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-08T18:xxZ, the profile as validated markdown and the editor landed as draft PR #325; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
+## Current Continuation (2026-10-09T12:xxZ, the profile as validated markdown and the editor delivered as PR #325, merged 9 October; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's asks of 2026-10-08, verbatim: "can we put the content so far into some kind of
   structure, markdown files or json, whatever, and whip up a quick editor, a web page, two panes,
@@ -46,11 +46,14 @@ authorisation.
   the Practice: reviewer and accessibility depth is proportionate to the audience; a private
   instrument gets one observation and one PR, never the public estate's fleet.
 - The Cricket suite before the ruling (his ask, "comprehensive ... latest models for each
-  clade"): five of fourteen legs returned (fable low, opus medium, sonnet high; Codex
-  gpt-6.1-sol low, gpt-5.6-terra medium): four DRIFTING, one ON-TRACK; frames two SOUND, three
-  NARROWED; every redirection the same, open the draft PR and cut the batch to defects with a
-  consequence. Codex refuses `gpt-6.1-terra` and `gpt-6.1-luna` on a ChatGPT account; only
-  `gpt-6.1-sol` of the 6.1 family runs here, so the terra and luna roles keep their 5.6 pins.
+  clade"): seven of fourteen legs returned before his word stopped the rest (fable low, opus
+  medium, sonnet high; Codex gpt-6.1-sol low in both stances, gpt-5.6-terra medium, gpt-5.6-luna
+  xhigh): four DRIFTING, three ON-TRACK; frames three SOUND, four NARROWED (the narrowings: no
+  measure for "very MVP", the review rounds uncounted, "plan first" absent from the reading,
+  the editorial resumption asserted by no source); every redirection the same, open the draft
+  PR and cut the batch to defects with a consequence. Codex refuses `gpt-6.1-terra` and
+  `gpt-6.1-luna` on a ChatGPT account; only `gpt-6.1-sol` of the 6.1 family runs here, so the
+  terra and luna roles keep their 5.6 pins.
 - Gotchas kept: tsup leaves a package's declared dependencies as bare imports a browser cannot
   resolve (`noExternal` cures it; the first browser observation found it); knip's configuration
   hints are gate errors here (redundant entries, the css extension of the root compiler); the
