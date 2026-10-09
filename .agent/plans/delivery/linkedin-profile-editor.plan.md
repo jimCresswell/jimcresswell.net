@@ -21,7 +21,7 @@ impact_areas:
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-10-08
+last_updated: 2026-10-09
 ---
 
 # The LinkedIn profile as validated markdown, and a local two-pane editor
@@ -61,6 +61,60 @@ script bundled by tsup, and a listener on 127.0.0.1:4780. The review file is out
 markdownlint by configuration; knip and dependency-cruiser know the workspace. One pull request,
 by the owner's ruling, with one TDD cycle per commit and the reviewers run once at the end as
 information to triage.
+
+### Decisions taken in planning (with the evidence)
+
+Settled on 2026-10-08 before the build, from the plan's three reviews (an exploration of the
+workspace conventions, an assumptions review, an implementation design) and the owner's rulings;
+carried here from the platform's plan surface so the next executor need not re-derive them.
+
+1. **Home: the `linkedin` workspace gains code and its own configuration**, not `agent-tools`.
+   The assumptions review proposed `agent-tools` (tsx, zod, Result, a heading parser and a bundler
+   already there). Decided against it: `agent-tools` is Practice core and is to be extracted as a
+   standalone entity, and this tool is the owner's, consumer code that belongs beside the copy it
+   serves, so the Practice core stays free of it; the page needs the DOM lib, which in a fresh
+   workspace is contained and in `agent-tools` would widen a large Node workspace's program; and
+   the workspace gains the purpose the thread record's open question asked about. The price was
+   six mechanical config files copied from `tooling/result/` and a lockfile edit, paid once. The
+   earlier documents-only commit (794c5aca) had cured a knip failure on an empty scaffold;
+   declared dependencies and real consumers are the cure here.
+2. **The grammar validates structure only, not a record schema.** H2 sections in LinkedIn's
+   order, H3 entries only under entry sections, one status line under every heading. H3 heading
+   text and the Top card's lines are free text until the earlier entries are drafted and show
+   their shape. No key schema, no four-part heading rule, no `Settings` section (application-day
+   actions, not copy).
+3. **The profile check runs inside the workspace's `lint` script**, so turbo's `lint` task runs
+   it in `pnpm check`, in CI's turbo step, and at pre-commit through `lint-changed` whenever the
+   workspace changes; `$TURBO_DEFAULT$` inputs make an edit to the markdown invalidate the cache.
+   No root script, no new turbo task (the family manifest fixes the gate leg), no CI-parity touch.
+   The command is `validate-profile`, because the root already owns a family script named
+   `profile:check`. After the owner's ruling of 8 October the check reads `profile.md` alone; the
+   review file is his raw input and nothing he writes there can fail a commit.
+4. **One parser, in TypeScript, written here.** No markdown AST dependency exists in the estate
+   and the destination is plain text, so an AST would admit what LinkedIn cannot carry; the
+   `agent-tools` heading helper cannot be imported across workspaces (no exports). Soft line
+   breaks inside a paragraph join with one space because a LinkedIn field receives one unwrapped
+   paragraph and counts are of the joined text; prettier's `proseWrap` is `preserve` here and
+   never reflows, so that was never the reason.
+5. **The page script is TypeScript bundled by tsup to `dist/app.js`.** Hand-written JavaScript is
+   forbidden by `source-is-typescript-esm-only`; Node's `module.stripTypeScriptTypes` prints an
+   ExperimentalWarning (verified on Node 24.21), so serve-time stripping is out. tsup leaves a
+   package's declared dependencies as bare imports a browser cannot resolve, so the config names
+   `@engraph/result` and `zod` under `noExternal` (found at the first browser observation). The
+   server reads the bundle at start. No smoke-check class fits a source-run local server and a
+   browser bundle; their viability is the one recorded browser observation.
+6. **Both highlighting directions in the first version.** Joined text keeps the source's length
+   (one space per newline), so a rendered paragraph's text offsets map to source offsets by one
+   addition; the rendering-to-editor direction moves focus to the text area, and the known cure
+   (a mirror layer behind it) waits until the simple version has been used.
+7. **The Host header is checked** against the editor's two names (`127.0.0.1:4780` and
+   `localhost:4780`), the one finding taken from the reviewers before the owner's ruling, with a
+   page content security policy beside it; `localhost` was added at his word.
+8. **Known and left**: `jcdotnet/scripts/built-site-server.integration.test.ts` opens loopback
+   sockets under `pnpm test`, a standing breach of the no-IO invariant; it is not a precedent here
+   and belongs to the no-IO lane (`no-io-test-boundary-and-di-recovery.plan.md`) as its own item.
+   LinkedIn's counting and its fold positions are beliefs until the live editor; every note says
+   so.
 
 ## Acceptance criteria (each with a proof — required)
 

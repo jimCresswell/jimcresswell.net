@@ -3,7 +3,7 @@
 **Thread identity.** The owner's LinkedIn work: the `linkedin/` document workspace (the profile
 draft and its supporting material) and, on the owner's request only, the live profile at
 linkedin.com/in/jimcresswell. **Participating agent identities:** Galaxy binds Gravity (46de68,
-claude-code, claude-fable-5-1, implementer, 2026-09-29 to 2026-09-30); Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat, from 2026-10-06). The owner's Codex agent
+claude-code, claude-fable-5-1, implementer, 2026-09-29 to 2026-09-30); Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat, 2026-10-06 to 2026-10-09). The owner's Codex agent
 that created the workspace on 2026-09-28 is not recorded here by identity. **Landing target for
 the next session:** the latest dated block governs. **Grounding order:** `AGENT.md`, the
 start-right skill for the session shape, this record, `linkedin/README.md`,
