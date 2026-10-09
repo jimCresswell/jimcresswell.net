@@ -166,6 +166,16 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-02, pointer-biased by design)
 
+**§STATE, 2026-10-09 13:1xZ (Cedar turns Grove, `1950d1`, the n=1 seat, post-fold; this block adds
+to the 12:xxZ block below).** The coordination branch `2026-10-08-bd89f8` folded as 324 at
+`SHA:213f9487` (the bot's merge on SETTLE-READY after three Copilot rounds); the successor
+`coordination/2026-10-09-213f94` carries the records from here, this commit its first. The live
+lane is `linkedin-workspace` (its thread record's latest block governs; the Oak entry's two drafts
+await the owner's edit in the editor). Compaction follows this fold at the owner's word; the seat
+continues after it. moved for the sites: nothing / moved for the Practice: the lane's records and
+the editorial doctrine the branch carried, on `main`. No Director seat is held; no watcher,
+heartbeat or claim runs at n=1 by the owner's word.
+
 **§STATE, 2026-10-09 12:xxZ (Cedar turns Grove, `1950d1`, the n=1 seat; this block adds to the
 10:2xZ block below).** The LinkedIn profile as validated markdown and its local editor merged as
 325 at `SHA:547e7358` on the owner's word; the copy's one home is `linkedin/profile.md`, the

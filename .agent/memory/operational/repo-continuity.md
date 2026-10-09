@@ -21,6 +21,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-09T13:1xZ: the coordination branch `2026-10-08-bd89f8` folded as 324 at
+  `SHA:213f9487`; the successor `coordination/2026-10-09-213f94` cut from it** (Cedar turns
+  Grove, 1950d1, n=1; the bot's merge on SETTLE-READY after three Copilot rounds, eleven threads:
+  eight cured, two rejected with reasons, one cured in the successor's first commit with the
+  fold's budget spent). Compaction follows at the owner's word; the seat continues after it.
+  moved for the sites: nothing / moved for the Practice: the lane's records and the editorial
+  doctrine the branch carried, on `main`.
+
 - **2026-10-09T12:xxZ: the LinkedIn profile as validated markdown and the local two-pane editor
   merged as 325 at `SHA:547e7358`; the coordination branch `2026-10-08-bd89f8` folded with the
   wrap's records** (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`). The copy has one
@@ -322,7 +330,8 @@ STATE, 2026-10-09T12:xxZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`
 of 325 and the fold of `2026-10-08-bd89f8`): the editor and the profile are on `main`; the Oak
 entry is the work. Next safe steps, in order:
 
-1. `git status --branch` first-hand on the successor coordination branch; nothing else is open.
+1. `git status --branch` first-hand on the successor `coordination/2026-10-09-213f94` (its draft
+   pull request is the bot's); nothing else is open.
 2. The LinkedIn lane, on the owner's word: he runs `pnpm --filter linkedin editor` and edits the
    two Oak entries in `profile.md`; the seat triages `profile.review.md` against the source by
    the write-for-the-reader method, with the open items in the container's Oak section; then the

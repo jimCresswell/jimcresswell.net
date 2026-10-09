@@ -75,6 +75,20 @@ authorisation.
   Featured, Projects, skills, recommendations, settings; then the application with him present.
   The skills question of the 00:xxZ block stands as framed.
 
+### 2026-10-09T13:1xZ — the 2026-10-08-bd89f8 branch folded as 324; the successor cut (Cedar turns Grove, 1950d1)
+
+Merged as `SHA:213f9487` at head `SHA:082163c3` by the bot on SETTLE-READY. Successor
+`coordination/2026-10-09-213f94` cut from `SHA:213f9487`; the folded branch retired local and
+remote after both tips read merged. The fold's review: three Copilot rounds, eleven threads,
+eight cured (five on this lane's public records naming or describing private editorial material,
+the privacy class again; two stale states on the handoff and this record; one on the fold's
+pull-request body, which now names the doctrine the branch carried), two rejected with reasons
+(the experience letter's working guidance for a successor seat; the reading-discipline template's
+scope clause, routed on 8 October), one accepted and cured in this successor's first commit
+because the fold's settlement budget was spent (the napkin's 8 October resume block no longer
+records the private repository's Git operations). moved for the sites: nothing / moved for the
+Practice: the lane's records of 8 and 9 October and the editorial doctrine on `main`.
+
 ## Previous Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; Cedar turns Grove, 1950d1)
 
 - The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
