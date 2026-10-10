@@ -413,3 +413,49 @@ tracked-source-to-untracked-target link as blocking. Nothing of the partner's fa
 once for nothing. The mechanism is the one this record describes from the other side: a gate that
 reads the disk reads every seat's edits, so at n=2 a report and its index row are committed together
 before anyone pushes, and one push then carries both seats' commits.
+
+## Owner decisions (2026-10-10)
+
+The owner, 15:18Z, on the four proposals as written: "I agree to all four". Where each landed, the
+same day, by Cedar turns Grove (1950d1) on `feat/records-class-door-and-fold-clock` (pull request
+328, cut from `main` at f436b6fc, merged at `SHA:71e8233b` after three vendor rounds: eleven threads,
+eight cured in two settlement pushes and a correctness-only third, three dispositioned without a
+cure and routed to the napkin), with the readings the seat took where the proposals left a
+choice, each named so the owner can overturn it by number:
+
+1. **Proposal 1, landed as code and doctrine.** `merge-bot merge` computes the class from the pull
+   request's changed files (`change-class.ts`: every path a Markdown file at the root or under
+   `.agent`, `docs` or `linkedin`, outside hooks, schemas, setup, src, tests, fixtures, snapshots and
+   end-to-end directories; generated adapters, hook policy and workflows stay code-class, this
+   record's path set) and merges a records-class pull request at checks green with zero unresolved
+   threads on the verdicts that differ from SETTLE-READY only by the vendor leg
+   (`RECORDS_CLASS_MERGE_STATES`), the ground named in its evidence; the door opens only for a
+   bot-authored pull request, as the ruling says, and "checks green" is by name: the base branch's
+   required contexts read from its rules, a pending check the rules do not require (the vendor's own
+   review run among them) set aside, a failed check of any name holding. The open question was read
+   **at green**, not at the ten-minute timeout: the timeout alone spends the owner's whole bound.
+   The vendor review is requested at the ready-mark and harvested after the merge (the departure
+   this record proposed). The fold skill's step 7, the lifecycle skill's docs-only clause, PDR-131
+   and PDR-140 (clause 9(e)) carry the same words.
+2. **Proposal 2, landed as code.** `agent-tools coordination fold-clock --pr <n> [--successor <sha>]`
+   prints the fold's clock as one line for the ledger row: the ready-mark, checks green on the base
+   branch's required contexts, each Bot review round, the merge, the successor's arrival on CI,
+   every interval in minutes from the ready-mark. Bound: the instants are anchored at the ready-mark;
+   "the opening push landed" and "the cut" are not instants the API carries cleanly (a coordination
+   branch's commits are pushed across a day; the cut is a local act), so the row's own opening-head
+   field and the successor's arrival stand for them. The fold skill's step 10 names the command.
+3. **Proposal 3, landed as doctrine.** The fold skill's step 3 runs the records pass beside the
+   opening push's gate, bounded to the fold's diff, briefed with the last three folds' finding
+   classes. The Director handoff's contract sentence was brought to the practice (dated STATE blocks,
+   newest first), not the practice to the sentence: the practice has held since September and the
+   sentence was the thing two reviews read against it. The thread record README states the
+   head-block rule at the template.
+4. **Proposal 4, a slow-lane row** in `pending-graduations.md` §Slow lane, review 2026-12-15, with
+   its prediction and falsifier as this record states them, noting that proposals 1 and 2 landed as
+   code on the day of the decision.
+
+Not yet done at this writing: the sibling estate's carry of the shared bytes (the two skills, the
+two PDRs, the agent-tools sources), the next step after 328 merges.
+
+The clock's own reading of 328, a code-class pull request through the SETTLE-READY door, is the
+retrospective's shape once more: `fold-clock PR 328 tip 68eed63b: ready 2026-10-10T16:28:19Z; checks green +53.3 min; rounds 3 (Copilot 8.7 min, Copilot 8.5 min, Copilot 7.3 min); merged +61.0 min`. The fold it measured: `fold-clock PR 326 tip 6c340d86: ready 2026-10-10T11:18:20Z; checks green +14.2 min; rounds 2 (Copilot 4.2 min, Copilot 3.9 min); merged +14.8 min; successor ad086c9a on CI +233.5 min`.

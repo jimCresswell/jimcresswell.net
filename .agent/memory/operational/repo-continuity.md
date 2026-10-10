@@ -21,6 +21,26 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-10T17:3xZ: the owner decided the retrospective's four proposals ("I agree to all four",
+  15:18Z) and the two that are code landed with the doctrine as pull request 328, merged at
+  `SHA:71e8233b`** (Cedar turns Grove, 1950d1, in a worktree, n=2 with Shrew rides Eventide on the
+  primary). `merge-bot merge` now computes the records class from the pull request's changed files
+  and merges a records-class pull request at checks green BY NAME (the base branch's required
+  contexts, read from its rules at run time; a pending check the rules do not require — the vendor's
+  own review run among them — is set aside and named, a failed check of any name holds) with zero
+  unresolved threads on the verdicts that differ from SETTLE-READY only by the vendor leg; the review
+  requested at the ready-mark is harvested after the merge (PDR-140 clause 9(e)). `coordination
+  fold-clock --pr <n> [--successor <sha>]` prints a fold's clock as one ledger line (live on 326:
+  rounds 4.2 and 3.9 min, merged +14.8 min from the ready-mark). The fold skill's steps 3, 7 and 10,
+  the lifecycle skill's docs-only clause, PDR-131, PDR-140, the merge-bot reference, the Director
+  handoff's contract sentence, the thread README and the register's slow lane carry the decisions;
+  the record's own "Owner decisions" section names where each landed and the readings taken (at
+  green, not at the timeout; the handoff sentence brought to the practice). The gateway code review
+  caught the door's first build waiting on the vendor's own check-run; the cure is the fold skill's
+  definition of the full condition as one shared module. Next: the sibling estate's carry of the
+  shared bytes. moved for the sites: nothing / moved for the Practice: the door, the clock and the
+  doctrine, on `main`.
+
 - **2026-10-10T14:4xZ: the retrospective on the folds of 320 to 326 and the PR mechanism they pass
   through landed as a record** (Cedar turns Grove, 1950d1, re-seated at the owner's word of 14:16Z,
   n=2 with Shrew rides Eventide on the primary):
@@ -358,6 +378,28 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-10T17:3xZ (Cedar turns Grove, 1950d1, closing after 328; Shrew rides Eventide, 371a2b,
+on the Oak entry; n=1 on the primary after this closeout): next safe steps, in order:
+
+1. The sibling estate's carry of the shared bytes 328 landed here: the fold and lifecycle skills,
+   PDR-131 and PDR-140, the agent-tools sources under `merge-bot/` (`change-class.ts`,
+   `merge-changed-files.ts`, `merge-records-checks.ts`, `merge-decision.ts`, `merge.ts`,
+   `merge-read-env.ts`, `merge-args.ts`), `coordination/fold-clock*.ts`, `pr-watch/required-checks.ts`
+   and `pr-watch/settlement.ts`, with their tests; under `cross-estate-work-must-reduce-divergence`
+   (the divergence measure at open and close) and `cross-repo-sessions-run-the-join-ceremony`; one
+   pull request per estate for code and one for doctrine is the owner's unit (2026-10-03). The
+   sibling's gate needs its Playwright browsers on the machine.
+2. The next fold runs the new door: the records pass beside the opening gate (fold skill step 3),
+   the review requested at the ready-mark and never waited on (step 7), the fold-clock line pasted
+   into the ledger row (step 10). Its clock is the first measurement of the cure against the owner's
+   ten-minute bound; the record's falsifier (two post-merge findings that would mislead a successor
+   acting on `main`) is read from then on.
+3. The Oak entry, Shrew rides Eventide's lane (the LinkedIn thread record's current block).
+4. The steps of the 2026-10-10T14:4xZ state below stand where not superseded; its step 1 is
+   answered by the owner's decisions and 328.
+
+Deep consolidation status: due, held — unchanged; the owner's word of 2026-10-09 13:4xZ holds it.
 
 STATE, 2026-10-10T14:4xZ (Cedar turns Grove, 1950d1, re-seated for the retrospective at the owner's
 word; Shrew rides Eventide, 371a2b, on the Oak entry; n=2 on the primary): next safe steps, in
