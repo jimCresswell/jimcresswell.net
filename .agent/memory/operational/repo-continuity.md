@@ -24,9 +24,9 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 - **2026-10-10T11:1xZ: the LinkedIn lane handed to Shrew rides Eventide (371a2b) at the owner's
   word; Cedar turns Grove (1950d1) closes** (n=1; the at-rest succession of PDR-063: no claim,
   nothing in flight, the tracked surfaces are the handoff, and the thread record's block of this
-  hour is the pickup). The successor folds `coordination/2026-10-09-213f94` (draft 326) at the
-  owner's word to it of the same hour, as it relayed, and the records of this hour ride that
-  fold's commit; the next session's work is the Oak entry (the owner, 2026-10-09 13:4xZ) and
+  hour is the pickup). The owner gave the fold of `coordination/2026-10-09-213f94` (326) to the
+  successor at 11:0xZ, as it relayed, and the records of this hour were written for its
+  commit; the next session's work is the Oak entry (the owner, 2026-10-09 13:4xZ) and
   consolidation waits for his word. moved for the sites: nothing / moved for the Practice: the
   handoff records.
 
@@ -361,8 +361,7 @@ STATE, 2026-10-09T12:xxZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`
 of 325 and the fold of `2026-10-08-bd89f8`): the editor and the profile are on `main`; the Oak
 entry is the work. Next safe steps, in order:
 
-1. `git status --branch` first-hand on the successor `coordination/2026-10-09-213f94` (draft
-   pull request 326, the bot's); nothing else is open. The wrap skill's new sentence on folds
+1. `git status --branch` first-hand on the successor coordination branch; nothing else is open. The wrap skill's new sentence on folds
    and compaction words (2026-10-09) is carried to the sibling estate at the next session's
    first opportunity, the same bytes.
 2. The LinkedIn lane, on the owner's word: he runs `pnpm --filter linkedin editor` and edits the
@@ -377,7 +376,7 @@ entry is the work. Next safe steps, in order:
 4. The steps of the 2026-10-08T10:2xZ state below stand where not superseded.
 
 Deep consolidation status: due, held — the napkin's October blocks are unconsolidated and its
-rotation was named due on 8 October; the owner's word (2026-10-09T13:4xZ: "consolidation waits
+rotation named due on 5 and 7 October; the owner's word (2026-10-09T13:4xZ: "consolidation waits
 until I say so") holds it, and the next session works on the Oak entry.
 
 STATE, 2026-10-08T10:2xZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, after the fold

@@ -86,7 +86,7 @@ pull-request body, which now names the doctrine the branch carried), two rejecte
 (the experience letter's working guidance for a successor seat; the reading-discipline template's
 scope clause, routed on 8 October), one accepted and cured in this successor's first commit
 because the fold's settlement budget was spent (the napkin's 8 October resume block no longer
-records the private repository's Git operations). moved for the sites: nothing / moved for the
+carries a custody line). moved for the sites: nothing / moved for the
 Practice: the lane's records of 8 and 9 October and the editorial doctrine on `main`.
 
 ### 2026-10-10T11:1xZ — the lane handed to Shrew rides Eventide (371a2b) at the owner's word; Cedar turns Grove closes (Cedar turns Grove, 1950d1)
@@ -95,15 +95,15 @@ Practice: the lane's records of 8 and 9 October and the editorial doctrine on `m
   consolidation waits until I say so"; 2026-10-10 10:5xZ, "Prepare a full handoff to Shrew rides
   Eventide (371a2b) ... then this session is complete". The successor was a live session on this
   machine at the handoff (the platform's agent list, read first-hand at 10:57Z), and by its own
-  message of 11:0xZ it is folding the coordination branch `coordination/2026-10-09-213f94` (draft
-  326) at the owner's word to it ("in the mean time, please rotate the coordination branch", the
+  message of 11:0xZ the owner had given it the fold of the coordination branch
+  `coordination/2026-10-09-213f94` (326) ("in the mean time, please rotate the coordination branch", the
   owner's word as the successor relayed it, not heard by this seat). The shape is the at-rest
   succession of PDR-063: no claim to adopt, nothing in flight, the tracked surfaces are the
   handoff, and this block is the pickup with `repo-continuity.md` §Current State and §Next Safe
   Steps, `director-handoff.md` §STATE of this hour and the napkin block of this hour. A Moment-1
   narrative event names the successor on the comms stream (untracked, local to the machine). This
   seat ran no git on the primary after the successor's word; the records of this hour were
-  written whole into the tree and ride the successor's fold commit by explicit pathspec.
+  written whole into the tree for the successor's fold commit, by explicit pathspec.
 - State at the handoff, recomputed by the successor before any act rests on it: the copy's one
   home is `linkedin/profile.md` (the headline and About approved 7 October; the two Oak entries
   drafted 8 October, status drafted, awaiting the owner's edit; every other section open); the
@@ -144,7 +144,7 @@ Practice: the lane's records of 8 and 9 October and the editorial doctrine on `m
   pushed, then stop; a DUE fold is never run inside that wrap. No `git stash`, `--no-verify` or
   force-push. The harness rewrites `.claude/settings.json` (the owner's plugin enablement); it
   stays uncommitted, his call. Two older local-only branches (`records/2026-10-02-7d8b9d`,
-  `docs/consolidation-2-routed-cures`) hold one superseded commit each, his call.
+  `docs/consolidation-2-routed-cures`) hold one commit each whose substance is on `main`, his call.
 - Acknowledgement: none is owed to this seat, which closes once the records are whole; the
   successor registers its identity row here on join and, if it answers the Moment-1 event, does
   so on the comms stream.
