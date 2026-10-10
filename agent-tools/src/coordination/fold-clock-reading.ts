@@ -2,6 +2,7 @@ import { ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
 import { parseWithSchema } from '../core/schema-parse.js';
+import { parseRequiredChecks } from '../pr-watch/required-checks.js';
 import type { CheckRunReading, FoldClockReading } from './fold-clock.js';
 import type { ReviewerEvent } from './fold-clock-rounds.js';
 
@@ -137,7 +138,7 @@ export function parseCheckRuns(value: unknown): Result<readonly CheckRunReading[
   );
 }
 
-const commitStatusSchema = z.object({
+const commitStatusPageSchema = z.object({
   statuses: z.array(
     z.object({
       context: z.string().min(1),
@@ -147,6 +148,9 @@ const commitStatusSchema = z.object({
     }),
   ),
 });
+
+/** `gh api --paginate --slurp` on a commit's combined status: one combined object per page. */
+const commitStatusSchema = z.array(commitStatusPageSchema);
 
 /**
  * The combined status of a commit (`GET /commits/{sha}/status`: the latest
@@ -165,13 +169,27 @@ export function parseCommitStatus(value: unknown): Result<readonly CheckRunReadi
     return parsed;
   }
   return ok(
-    parsed.value.statuses.map((status) => ({
-      name: status.context,
-      conclusion: status.state === 'pending' ? undefined : status.state,
-      startedAt: status.created_at,
-      completedAt: status.state === 'pending' ? undefined : status.updated_at,
-    })),
+    parsed.value
+      .flatMap((page) => page.statuses)
+      .map((status) => ({
+        name: status.context,
+        conclusion: status.state === 'pending' ? undefined : status.state,
+        startedAt: status.created_at,
+        completedAt: status.state === 'pending' ? undefined : status.updated_at,
+      })),
   );
+}
+
+/** `gh api --paginate --slurp` on the branch rules: the pages flattened into the shared parser. */
+const rulesPagesSchema = z.array(z.array(z.unknown()));
+
+export function parseRequiredChecksPages(value: unknown): Result<readonly string[], Error> {
+  const pages = parseWithSchema({
+    label: 'fold-clock branch rules pages',
+    schema: rulesPagesSchema,
+    value,
+  });
+  return pages.ok ? parseRequiredChecks(pages.value.flat()) : pages;
 }
 
 export interface AssembleReadingInput {

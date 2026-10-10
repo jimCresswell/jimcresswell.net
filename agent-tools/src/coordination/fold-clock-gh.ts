@@ -9,12 +9,13 @@ import {
   type PrTarget,
 } from '../pr-watch/gh.js';
 import type { CheckRunReading, FoldClockReading } from './fold-clock.js';
-import { isBranchName, parseRequiredChecks } from '../pr-watch/required-checks.js';
+import { isBranchName } from '../pr-watch/required-checks.js';
 import {
   assembleReading,
   parseCheckRuns,
   parseCommitStatus,
   parsePull,
+  parseRequiredChecksPages,
   parseTimeline,
   type PullReading,
 } from './fold-clock-reading.js';
@@ -98,7 +99,7 @@ function readHeadChecks(
   }
   const statuses = readSurface(
     gh,
-    ['api', `repos/${repo}/commits/${sha}/status`],
+    ['api', '--paginate', '--slurp', `repos/${repo}/commits/${sha}/status?per_page=${PER_PAGE}`],
     'head commit status',
     parseCommitStatus,
   );
@@ -151,9 +152,14 @@ function readRemaining(context: PullContext): Result<FoldClockReading, Error> {
   }
   const required = readSurface(
     gh,
-    ['api', `repos/${repo}/rules/branches/${encodeURIComponent(pull.baseRef)}`],
+    [
+      'api',
+      '--paginate',
+      '--slurp',
+      `repos/${repo}/rules/branches/${encodeURIComponent(pull.baseRef)}?per_page=${PER_PAGE}`,
+    ],
     'branch rules',
-    parseRequiredChecks,
+    parseRequiredChecksPages,
   );
   if (!required.ok) {
     return required;

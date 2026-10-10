@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { settledReading } from './test-helpers/pr-state-reading.js';
-import { narrowToRequired } from './merge-records-checks.js';
+import { isBotAuthored, narrowToRequired } from './merge-records-checks.js';
 
 /**
  * "Checks green by name" for the records class: a pending check the base
@@ -18,6 +18,15 @@ const vendorPending = () =>
     ],
     checks: { total: 3, passed: 2, failed: 0, pending: 1 },
   });
+
+describe('isBotAuthored', () => {
+  it("reads gh's app/<slug> spelling as a GitHub App and anything else as a person", () => {
+    expect(isBotAuthored('app/jimbot-of-the-devonshire-jimbots')).toBe(true);
+    expect(isBotAuthored('jimCresswell')).toBe(false);
+    expect(isBotAuthored('copilot-pull-request-reviewer[bot]')).toBe(false);
+    expect(isBotAuthored('')).toBe(false);
+  });
+});
 
 describe('narrowToRequired', () => {
   it('sets aside a pending check the rules do not require and recounts', () => {

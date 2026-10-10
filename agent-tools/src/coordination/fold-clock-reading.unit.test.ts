@@ -5,6 +5,7 @@ import {
   parseCheckRuns,
   parseCommitStatus,
   parsePull,
+  parseRequiredChecksPages,
   parseTimeline,
 } from './fold-clock-reading.js';
 
@@ -166,25 +167,33 @@ describe('parseCheckRuns', () => {
 });
 
 describe('parseCommitStatus', () => {
-  it('reads each context as a run: a terminal state is its conclusion and completion, pending is open', () => {
-    const runs = parseCommitStatus({
-      state: 'pending',
-      sha: HEAD,
-      statuses: [
-        {
-          context: 'Vercel',
-          state: 'success',
-          created_at: '2026-10-10T11:29:00Z',
-          updated_at: '2026-10-10T11:33:00Z',
-        },
-        {
-          context: 'Sonar',
-          state: 'pending',
-          created_at: '2026-10-10T11:29:10Z',
-          updated_at: '2026-10-10T11:29:10Z',
-        },
-      ],
-    });
+  it('reads each context of every page as a run: a terminal state is its conclusion and completion, pending is open', () => {
+    const runs = parseCommitStatus([
+      {
+        state: 'pending',
+        sha: HEAD,
+        statuses: [
+          {
+            context: 'Vercel',
+            state: 'success',
+            created_at: '2026-10-10T11:29:00Z',
+            updated_at: '2026-10-10T11:33:00Z',
+          },
+        ],
+      },
+      {
+        state: 'pending',
+        sha: HEAD,
+        statuses: [
+          {
+            context: 'Sonar',
+            state: 'pending',
+            created_at: '2026-10-10T11:29:10Z',
+            updated_at: '2026-10-10T11:29:10Z',
+          },
+        ],
+      },
+    ]);
 
     expect(runs).toStrictEqual({
       ok: true,
@@ -205,12 +214,29 @@ describe('parseCommitStatus', () => {
     });
   });
 
-  it('reads a commit with no statuses as no runs, and refuses a body without statuses', () => {
-    expect(parseCommitStatus({ state: 'pending', statuses: [] })).toStrictEqual({
+  it('reads a commit with no statuses as no runs, and refuses a body that is not slurped pages', () => {
+    expect(parseCommitStatus([{ state: 'pending', statuses: [] }])).toStrictEqual({
       ok: true,
       value: [],
     });
-    expect(parseCommitStatus({ message: 'Not Found' }).ok).toBe(false);
+    expect(parseCommitStatus({ state: 'pending', statuses: [] }).ok).toBe(false);
+  });
+});
+
+describe('parseRequiredChecksPages', () => {
+  it('flattens slurped rules pages into the shared parser and refuses a flat list', () => {
+    const pages = parseRequiredChecksPages([
+      [{ type: 'deletion' }],
+      [
+        {
+          type: 'required_status_checks',
+          parameters: { required_status_checks: [{ context: 'CodeQL' }] },
+        },
+      ],
+    ]);
+
+    expect(pages).toStrictEqual({ ok: true, value: ['CodeQL'] });
+    expect(parseRequiredChecksPages([{ type: 'deletion' }]).ok).toBe(false);
   });
 });
 

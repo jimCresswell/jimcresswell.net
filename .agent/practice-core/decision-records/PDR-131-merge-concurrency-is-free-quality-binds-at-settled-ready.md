@@ -97,9 +97,10 @@ worked instance that day was a catch, not a miss.
   reconciles them.
 - **2026-10-10 — Decision 1's records class merges at checks green; the door
   computes the class.** Decision 1 binds quality at settled-READY for a
-  code-class pull request. For a records-class pull request — every changed
-  path documentation or Practice prose, computed from the pull request's
-  files by `merge-bot merge` (`change-class.ts`), never declared by a seat —
+  code-class pull request. For a bot-authored records-class pull request —
+  every changed path documentation or Practice prose, computed from the pull
+  request's files by `merge-bot merge` (`change-class.ts`), never declared by
+  a seat; a person's pull request keeps the SETTLE-READY door —
   the owner's ruling of 2026-09-03 ("Change the merge policy instead") is
   the door's behaviour from this date: it merges at checks green by name
   (the base branch's required contexts, read from its rules at run time; a

@@ -28,9 +28,9 @@ export const MERGE_USAGE = `merge-bot merge --pr <number> --expect <reviewer> [-
   when — the settlement verdict is SETTLE-READY; merge-commit method always
   (refusing when repo settings disallow merge commits, never a squash
   fallback), the VERDICTED tip's sha in the body (a moved tip answers 409 — an
-  operational failure, exit 1 — never an unverdicted merge). A records-class PR
+  operational failure, exit 1 — never an unverdicted merge). A BOT-AUTHORED records-class PR
   (${RECORDS_CLASS_DESCRIPTION}; the class is read from the PR's changed
-  files, never declared) also merges on ${RECORDS_CLASS_MERGE_STATES.join(', ')}:
+  files, never declared; a person's PR keeps the SETTLE-READY door) also merges on ${RECORDS_CLASS_MERGE_STATES.join(', ')}:
   checks green BY NAME (the base branch's required contexts, read from its
   rules at run time; a pending check the rules do not require — a vendor's own
   review run among them — does not hold a records-class PR, a failed check of

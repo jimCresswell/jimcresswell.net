@@ -399,10 +399,28 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
   /** A fetch port that also serves the changed files, the base ref and the base branch's rules. */
   function makeClassPort(
     files: readonly { filename: string }[],
-    options: { readonly required?: readonly string[]; readonly failing?: string } = {},
+    options: {
+      readonly required?: readonly string[];
+      readonly failing?: string;
+      /** Rules served by page; absent, one page carrying `required`. */
+      readonly rulesPages?: readonly (readonly unknown[])[];
+    } = {},
   ): { fetchImpl: GithubApiFetch; calls: { url: string }[] } {
     const calls: { url: string }[] = [];
     const required = options.required ?? ['run-quality-gates', 'CodeQL'];
+    const defaultRules = [
+      {
+        type: 'required_status_checks',
+        parameters: { required_status_checks: required.map((context) => ({ context })) },
+      },
+    ];
+    const rulesAnswer = (url: string): unknown => {
+      const page = Number(/[&?]page=(\d+)/u.exec(url)?.[1] ?? '1');
+      if (options.rulesPages === undefined) {
+        return page === 1 ? defaultRules : [];
+      }
+      return options.rulesPages[page - 1] ?? [];
+    };
     const answer = (url: string): unknown => {
       if (url.includes('/pulls/42/files')) {
         return files;
@@ -413,15 +431,7 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
       if (url.endsWith('/pulls/42')) {
         return { base: { ref: 'main' } };
       }
-      if (url.includes('/rules/branches/main')) {
-        return [
-          {
-            type: 'required_status_checks',
-            parameters: { required_status_checks: required.map((context) => ({ context })) },
-          },
-        ];
-      }
-      return { allow_merge_commit: true };
+      return url.includes('/rules/branches/main') ? rulesAnswer(url) : { allow_merge_commit: true };
     };
     const fetchImpl: GithubApiFetch = (url) => {
       calls.push({ url });
@@ -433,13 +443,25 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
     return { fetchImpl, calls };
   }
 
-  /** The vendor leg owed: no review binds the tip and checks went green two minutes ago. */
+  /** The refusal's verdict state, or undefined when the outcome was not a refusal. */
+  const refusedState = (
+    outcome: Awaited<ReturnType<typeof runMergeExecution>>,
+  ): string | undefined =>
+    outcome.ok && outcome.value.kind === 'refused' ? outcome.value.verdictState : undefined;
+  /** The refusal's evidence lines, or none when the outcome was not a refusal. */
+  const refusedEvidence = (
+    outcome: Awaited<ReturnType<typeof runMergeExecution>>,
+  ): readonly string[] =>
+    outcome.ok && outcome.value.kind === 'refused' ? outcome.value.evidence : [];
+
+  /** The bot's own pull request (the ruling's class), the vendor leg owed: no review binds the tip and checks went green two minutes ago. */
   const owedLegReading = (): PrStateReading =>
-    makeReading({ reviews: [], checksGreenAt: '2026-08-06T08:58:00Z' });
+    makeReading({ author: 'app/acme-bot', reviews: [], checksGreenAt: '2026-08-06T08:58:00Z' });
 
   /** The real fold shape: required checks green, the vendor's own review run still pending. */
   const vendorRunPendingReading = (): PrStateReading =>
     makeReading({
+      author: 'app/acme-bot',
       reviews: [],
       checksGreenAt: null,
       namedChecks: [
@@ -591,6 +613,51 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
     }
     expect(rules.calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
     expect(files.calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+  });
+
+  it('reads every rules page: a required context on the second page still binds', async () => {
+    const filler = Array.from({ length: 100 }, () => ({ type: 'deletion' }));
+    const secondPage = [
+      {
+        type: 'required_status_checks',
+        parameters: {
+          required_status_checks: [{ context: 'run-quality-gates' }, { context: 'CodeQL' }],
+        },
+      },
+    ];
+    const { fetchImpl, calls } = makeClassPort(recordsFiles, { rulesPages: [filler, secondPage] });
+
+    const outcome = await runMergeExecution(makeInput(vendorRunPendingReading(), fetchImpl));
+
+    expect(outcome.ok && outcome.value.kind).toBe('merged');
+    expect(calls.filter((call) => call.url.includes('/rules/branches/main'))).toHaveLength(2);
+  });
+
+  it('closes the records door on a pull request a person authored, whatever its paths', async () => {
+    const pending = makeClassPort(recordsFiles);
+    const owed = makeClassPort(recordsFiles);
+    const human = { author: 'jimCresswell' };
+
+    const onPending = await runMergeExecution(
+      makeInput({ ...vendorRunPendingReading(), ...human }, pending.fetchImpl),
+    );
+    const onOwed = await runMergeExecution(
+      makeInput({ ...owedLegReading(), ...human }, owed.fetchImpl),
+    );
+
+    expect(refusedState(onPending)).toBe('CHECKS-RUNNING');
+    expect(refusedState(onOwed)).toBe('SILENT-WAIT-NO-REVIEWER');
+    for (const outcome of [onPending, onOwed]) {
+      expect(
+        refusedEvidence(outcome).some((line) =>
+          line.startsWith('records-class door closed: the author jimCresswell'),
+        ),
+      ).toBe(true);
+    }
+    for (const port of [pending, owed]) {
+      expect(port.calls.some((call) => call.url.includes('/pulls/42/files'))).toBe(false);
+      expect(port.calls.some((call) => call.url.includes('/rules/branches/'))).toBe(false);
+    }
   });
 
   it('reads no files while a code-class pull request waits on its own required checks', async () => {

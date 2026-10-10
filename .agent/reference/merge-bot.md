@@ -40,9 +40,10 @@ pnpm agent-tools merge-bot merge --pr <n> --expect <reviewer>
 ```
 
 It mints its own least-privilege token (`pull-request-merge`), reads the
-settlement verdict, and merges on SETTLE-READY — or, for a records-class
-pull request (every changed path documentation or Practice prose, computed
-from the pull request's files, never declared by a seat), on the verdicts
+settlement verdict, and merges on SETTLE-READY — or, for a bot-authored
+records-class pull request (every changed path documentation or Practice
+prose, computed from the pull request's files, never declared by a seat; a
+person's pull request keeps the SETTLE-READY door), on the verdicts
 that differ from SETTLE-READY only by the vendor leg, at checks green BY
 NAME (the base branch's required contexts, read from its rules at run time;
 a pending check the rules do not require — the vendor's own review run

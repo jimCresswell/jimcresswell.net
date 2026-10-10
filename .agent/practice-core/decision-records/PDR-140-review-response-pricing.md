@@ -256,10 +256,11 @@ scope widens by dated amendment, never by improvisation.
      residue. A residue PR that exists anyway is terminal: a
      settlement budget of one push, no rebudget, the paths of (b) and
      (c) unchanged, and no further residue PR opened from it.
-   - (e) A records-class pull request every changed path of which the
-     merge door reads as documentation or Practice prose (`merge-bot
-     merge`, `change-class.ts`; the class is computed from the diff,
-     never declared) merges at checks green by name (the base branch's
+   - (e) A bot-authored records-class pull request every changed path of
+     which the merge door reads as documentation or Practice prose
+     (`merge-bot merge`, `change-class.ts`; the class is computed from the
+     diff, never declared; a person's pull request keeps the SETTLE-READY
+     door) merges at checks green by name (the base branch's
      required contexts, read from its rules at run time; a pending check
      the rules do not require, the vendor's own review run among them,
      does not hold it, a failed check of any name does) with zero

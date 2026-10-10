@@ -106,9 +106,9 @@ function fakeGh(answers: Readonly<Record<string, unknown>>): {
 const answers = {
   'repos/acme/widgets/pulls/326': pull,
   'repos/acme/widgets/issues/326/timeline?per_page=100': timeline,
-  'repos/acme/widgets/rules/branches/main': rules,
+  'repos/acme/widgets/rules/branches/main?per_page=100': [rules],
   [`repos/acme/widgets/commits/${HEAD}/check-runs?per_page=100&filter=all`]: headRuns,
-  [`repos/acme/widgets/commits/${HEAD}/status`]: headStatus,
+  [`repos/acme/widgets/commits/${HEAD}/status?per_page=100`]: [headStatus],
   [`repos/acme/widgets/commits/${SUCCESSOR}/check-runs?per_page=100&filter=all`]: successorRuns,
 };
 
@@ -142,9 +142,9 @@ describe('readFoldClockReading', () => {
     expect(calls).toStrictEqual([
       ['api', 'repos/acme/widgets/pulls/326'],
       ['api', '--paginate', '--slurp', 'repos/acme/widgets/issues/326/timeline?per_page=100'],
-      ['api', 'repos/acme/widgets/rules/branches/main'],
+      ['api', '--paginate', '--slurp', 'repos/acme/widgets/rules/branches/main?per_page=100'],
       CHECK_RUNS_ARGS('acme/widgets', HEAD),
-      ['api', `repos/acme/widgets/commits/${HEAD}/status`],
+      ['api', '--paginate', '--slurp', `repos/acme/widgets/commits/${HEAD}/status?per_page=100`],
     ]);
   });
 
@@ -185,11 +185,13 @@ describe('readFoldClockReading', () => {
     const { exec, calls } = fakeGh({
       'repos/{owner}/{repo}/pulls/7': pull,
       'repos/{owner}/{repo}/issues/7/timeline?per_page=100': [[]],
-      'repos/{owner}/{repo}/rules/branches/main': [],
+      'repos/{owner}/{repo}/rules/branches/main?per_page=100': [[]],
       [`repos/{owner}/{repo}/commits/${HEAD}/check-runs?per_page=100&filter=all`]: [
         { check_runs: [] },
       ],
-      [`repos/{owner}/{repo}/commits/${HEAD}/status`]: { state: 'pending', statuses: [] },
+      [`repos/{owner}/{repo}/commits/${HEAD}/status?per_page=100`]: [
+        { state: 'pending', statuses: [] },
+      ],
     });
 
     const reading = readFoldClockReading({
@@ -205,7 +207,7 @@ describe('readFoldClockReading', () => {
   it('names the surface when gh answers with something other than JSON', () => {
     const { exec } = fakeGh({
       ...answers,
-      'repos/acme/widgets/rules/branches/main': 'gh: Not Found (HTTP 404)',
+      'repos/acme/widgets/rules/branches/main?per_page=100': 'gh: Not Found (HTTP 404)',
     });
 
     const reading = readFoldClockReading({ target, exists: () => true, execFileSync: exec });

@@ -1,20 +1,12 @@
-import { err, ok, type Result } from '@engraph/result';
-import { z } from 'zod';
+import { ok, type Result } from '@engraph/result';
 
-import { parseWithSchema } from '../core/schema-parse.js';
-import { isBranchName, parseRequiredChecks } from '../pr-watch/required-checks.js';
 import type { NamedCheck, PrStateReading, PrVerdict } from '../pr-watch/state-types.js';
 import { computePrVerdict } from '../pr-watch/states.js';
 import { classifyChangedPaths, type ChangeClass } from './change-class.js';
 import { classWhenItDecides, listChangedPaths } from './merge-changed-files.js';
-import { GITHUB_API } from './merge-github-api.js';
-import {
-  githubHeaders,
-  readJsonBody,
-  sendGithubRequest,
-  type GithubApiFetch,
-} from './mint-installation-token.js';
-import type { BotIdentity } from './resolve-identity.js';
+import { verdictMergesRecordsClass } from './merge-decision.js';
+import { readRequiredContexts, type RulesTarget } from './merge-required-contexts.js';
+import type { GithubApiFetch } from './mint-installation-token.js';
 
 /**
  * "Checks green by name" for the records class. The verdict core holds
@@ -36,69 +28,14 @@ import type { BotIdentity } from './resolve-identity.js';
  * the reason in its evidence, never ending the poll.
  */
 
-interface RulesTarget {
-  readonly identity: BotIdentity;
-  readonly prNumber: number;
-}
-
-const pullBaseSchema = z.object({ base: z.object({ ref: z.string().min(1) }) });
-
-async function readJson(
-  fetchImpl: GithubApiFetch,
-  token: string,
-  url: string,
-  surface: string,
-): Promise<Result<unknown, Error>> {
-  const sent = await sendGithubRequest(
-    fetchImpl,
-    url,
-    { method: 'GET', headers: githubHeaders(token) },
-    surface,
-  );
-  if (!sent.ok) {
-    return sent;
-  }
-  if (sent.value.status !== 200) {
-    return err(new Error(`${surface} answered ${sent.value.status}`));
-  }
-  return readJsonBody(sent.value, surface);
-}
-
-/** The base branch's required contexts: the pull request's base ref, then that branch's rules. */
-async function readRequiredContexts(
-  fetchImpl: GithubApiFetch,
-  token: string,
-  target: RulesTarget,
-): Promise<Result<readonly string[], Error>> {
-  const repo = `${GITHUB_API}/repos/${target.identity.owner}/${target.identity.repoName}`;
-  const pull = await readJson(
-    fetchImpl,
-    token,
-    `${repo}/pulls/${target.prNumber}`,
-    'base ref read',
-  );
-  if (!pull.ok) {
-    return pull;
-  }
-  const base = parseWithSchema({
-    label: 'pull request base',
-    schema: pullBaseSchema,
-    value: pull.value,
-  });
-  if (!base.ok) {
-    return base;
-  }
-  const ref = base.value.base.ref;
-  if (!isBranchName(ref)) {
-    return err(new Error(`the base ref '${ref}' is not a branch name`));
-  }
-  const rules = await readJson(
-    fetchImpl,
-    token,
-    `${repo}/rules/branches/${encodeURIComponent(ref)}`,
-    'branch rules read',
-  );
-  return rules.ok ? parseRequiredChecks(rules.value) : rules;
+/**
+ * The ruling of 2026-09-03 names BOT-authored pull requests; a human
+ * colleague's pull request is reviewed and never merged by the bot
+ * (pr-lifecycle, the owner's word of 2026-08-03/04). `gh pr view` spells a
+ * GitHub App author `app/<slug>`.
+ */
+export function isBotAuthored(author: string): boolean {
+  return author.startsWith('app/');
 }
 
 export interface NarrowedReading {
@@ -229,6 +166,18 @@ async function resolveChecksRunning(
  */
 export async function resolveVerdict(input: ResolveInput): Promise<Result<ResolvedVerdict, Error>> {
   const verdict = computePrVerdict(input.reading, input.nowIso);
+  if (!isBotAuthored(input.reading.author)) {
+    const classWouldMatter =
+      verdict.state === 'CHECKS-RUNNING' ||
+      (verdict.state !== 'SETTLE-READY' && verdictMergesRecordsClass(verdict.state));
+    const note =
+      `records-class door closed: the author ${input.reading.author} is not a GitHub App ` +
+      "(the ruling of 2026-09-03 names bot-authored pull requests; a colleague's pull request is reviewed, never merged by the bot)";
+    return ok({
+      verdict: classWouldMatter ? withNote(verdict, note) : verdict,
+      changeClass: undefined,
+    });
+  }
   if (verdict.state === 'CHECKS-RUNNING') {
     return ok(await resolveChecksRunning(input, verdict));
   }
