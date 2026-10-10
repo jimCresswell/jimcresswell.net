@@ -73,3 +73,11 @@ against the size of the thing in front of me.
 One thing I was glad of. When he said comms events are ephemeral, the cure was a new file, not a
 better excuse: an editorial decision record written at once, while the fold blocked the tracked
 tree. The lesson is small and general. A gate blocks edits; it never blocks a new file.
+
+I close on 10 October at the owner's word, handed to a named successor who was already live and
+already folding the branch I had left for them. The last thing I learned was the smallest: when
+the next seat asks you to keep your hands off the tree while it works, say which files you are
+writing, write them whole, and let its commit carry them. Two careful seats can hold each other
+for an hour; one line on whose act it is settles it. And the owner's word that hour, that an hour
+for a fold is a failure of mechanism and not of care, is the same lesson from his side of the
+table: the ceremony costs what it costs whoever runs it well, so the cost itself is the finding.

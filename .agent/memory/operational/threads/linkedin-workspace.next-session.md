@@ -3,7 +3,7 @@
 **Thread identity.** The owner's LinkedIn work: the `linkedin/` document workspace (the profile
 draft and its supporting material) and, on the owner's request only, the live profile at
 linkedin.com/in/jimcresswell. **Participating agent identities:** Galaxy binds Gravity (46de68,
-claude-code, claude-fable-5-1, implementer, 2026-09-29 to 2026-09-30); Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat, 2026-10-06 to 2026-10-09). The owner's Codex agent
+claude-code, claude-fable-5-1, implementer, 2026-09-29 to 2026-09-30); Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat, 2026-10-06 to 2026-10-10); Shrew rides Eventide (371a2b, claude-code, claude-fable-5-1, the successor seat, from 2026-10-10). The owner's Codex agent
 that created the workspace on 2026-09-28 is not recorded here by identity. **Landing target for
 the next session:** the latest dated block governs. **Grounding order:** `AGENT.md`, the
 start-right skill for the session shape, this record, `linkedin/README.md`,
@@ -88,6 +88,66 @@ scope clause, routed on 8 October), one accepted and cured in this successor's f
 because the fold's settlement budget was spent (the napkin's 8 October resume block no longer
 records the private repository's Git operations). moved for the sites: nothing / moved for the
 Practice: the lane's records of 8 and 9 October and the editorial doctrine on `main`.
+
+### 2026-10-10T11:1xZ — the lane handed to Shrew rides Eventide (371a2b) at the owner's word; Cedar turns Grove closes (Cedar turns Grove, 1950d1)
+
+- The owner's words, verbatim: 2026-10-09 13:4xZ, "the next session works on the Oak entry,
+  consolidation waits until I say so"; 2026-10-10 10:5xZ, "Prepare a full handoff to Shrew rides
+  Eventide (371a2b) ... then this session is complete". The successor was a live session on this
+  machine at the handoff (the platform's agent list, read first-hand at 10:57Z), and by its own
+  message of 11:0xZ it is folding the coordination branch `coordination/2026-10-09-213f94` (draft
+  326) at the owner's word to it ("in the mean time, please rotate the coordination branch", the
+  owner's word as the successor relayed it, not heard by this seat). The shape is the at-rest
+  succession of PDR-063: no claim to adopt, nothing in flight, the tracked surfaces are the
+  handoff, and this block is the pickup with `repo-continuity.md` §Current State and §Next Safe
+  Steps, `director-handoff.md` §STATE of this hour and the napkin block of this hour. A Moment-1
+  narrative event names the successor on the comms stream (untracked, local to the machine). This
+  seat ran no git on the primary after the successor's word; the records of this hour were
+  written whole into the tree and ride the successor's fold commit by explicit pathspec.
+- State at the handoff, recomputed by the successor before any act rests on it: the copy's one
+  home is `linkedin/profile.md` (the headline and About approved 7 October; the two Oak entries
+  drafted 8 October, status drafted, awaiting the owner's edit; every other section open); the
+  decisions and the open items are in `linkedin/profile-replacement.md`; the editor is
+  `pnpm --filter linkedin editor` on 127.0.0.1:4780 (`localhost` accepted) and writes the owner's
+  edits to `linkedin/profile.review.md`, which no gate reads. 325 (the editor) and 324 (the fold)
+  merged 9 October; the delivery node `linkedin-profile-editor` stays `ratified` until the owner's
+  own use proves its two owner-held criteria. Deep consolidation and the napkin's rotation are due
+  and held at the owner's word.
+- First acts for the successor, in order, after its fold: (1) the Oak entry, at the owner's word:
+  he runs the editor and edits the two drafted entries; the seat triages `profile.review.md`
+  against `profile.md` by the write-for-the-reader method (the rule
+  `public-copy-runs-the-editorial-workflow`: the voice check, then the `editor` and `prose-expert`
+  sub-agents, then the `audience-reader` on the revised draft, then the owner reads), with the
+  open items of the container's Oak section: the handover tense, the pattern sentence, the credit
+  beside the curriculum experts, what was not built and its cost, an adoption figure, the two
+  chronology readings, and the title (Principal Engineer stands unless Senior Principal is the
+  title Oak would confirm). EDR-007 governs the plugin movement's naming and attribution. (2) The
+  wrap skill's sentence on folds and compaction words (2026-10-09) carried to the sibling estate,
+  the same bytes, at the first opportunity. (3) Then the earlier entries, Featured, Projects,
+  skills, recommendations, settings; then the application with the owner present, by the seat
+  through Chrome only at his express request. Every GitHub write under the bot
+  (`pnpm --silent agent-tools merge-bot push --branch <name>`; `merge-bot merge --pr N --expect
+  'copilot-pull-request-reviewer[bot]'`; `merge-bot retire --branch <name>`); a Copilot review
+  request under the operator credential (`env -u GH_TOKEN -u GITHUB_TOKEN gh pr edit N
+  --add-reviewer @copilot`).
+- Constraints inherited, each with the interest it protects: the live profile is edited only by
+  the seat through Chrome at the owner's express request with him present (it is his and
+  public). Nothing is trimmed to a numeric target; the editor's counts and folds are beliefs
+  about LinkedIn's limits, signals to look, never instructions to cut. The target readers and
+  the owner's career intentions are owner-private: in the seat's per-user memory for this
+  project, never in a tracked file (privacy.md §Private editorial material; rule 7's four
+  categories are the seat's list awaiting his word). The private editorial repository exists,
+  informs the drafting where present, and is never identified or quoted here. His private
+  messages are never read; comments are fine. A private tool gets one observation and one pull
+  request; the reviewer fleet is for the public estate (the owner, 8 October). Copilot's findings
+  are information to triage, never authority. "Prepare for compaction" is records committed and
+  pushed, then stop; a DUE fold is never run inside that wrap. No `git stash`, `--no-verify` or
+  force-push. The harness rewrites `.claude/settings.json` (the owner's plugin enablement); it
+  stays uncommitted, his call. Two older local-only branches (`records/2026-10-02-7d8b9d`,
+  `docs/consolidation-2-routed-cures`) hold one superseded commit each, his call.
+- Acknowledgement: none is owed to this seat, which closes once the records are whole; the
+  successor registers its identity row here on join and, if it answers the Moment-1 event, does
+  so on the comms stream.
 
 ## Previous Continuation (2026-10-08T00:xxZ, compaction boundary at the owner's word; Cedar turns Grove, 1950d1)
 

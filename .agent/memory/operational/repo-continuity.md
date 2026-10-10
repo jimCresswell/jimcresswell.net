@@ -21,6 +21,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-10T11:1xZ: the LinkedIn lane handed to Shrew rides Eventide (371a2b) at the owner's
+  word; Cedar turns Grove (1950d1) closes** (n=1; the at-rest succession of PDR-063: no claim,
+  nothing in flight, the tracked surfaces are the handoff, and the thread record's block of this
+  hour is the pickup). The successor folds `coordination/2026-10-09-213f94` (draft 326) at the
+  owner's word to it of the same hour, as it relayed, and the records of this hour ride that
+  fold's commit; the next session's work is the Oak entry (the owner, 2026-10-09 13:4xZ) and
+  consolidation waits for his word. moved for the sites: nothing / moved for the Practice: the
+  handoff records.
+
 - **2026-10-09T13:1xZ: the coordination branch `2026-10-08-bd89f8` folded as 324 at
   `SHA:213f9487`; the successor `coordination/2026-10-09-213f94` cut from it** (Cedar turns
   Grove, 1950d1, n=1; the bot's merge on SETTLE-READY after three Copilot rounds, eleven threads:
@@ -300,7 +309,9 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   explore the platform update; the models
   ratified 2026-10-07; the headline and About approved the same day; 2026-10-09: the copy moved
   to `linkedin/profile.md` with the local editor (325 merged); the Oak entry's drafts await the
-  owner's edit in the editor; the record's latest block governs.
+  owner's edit in the editor; 2026-10-10: the lane handed to Shrew rides Eventide (371a2b,
+  claude-code, claude-fable-5-1) at the owner's word, Cedar turns Grove closed; the record's
+  latest block governs.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
@@ -326,6 +337,25 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 - Dev-Tooling Hygiene (dependency updates handled locally).
 
 ## Next Safe Steps
+
+STATE, 2026-10-10T11:1xZ (Cedar turns Grove, 1950d1, closing; the lane handed to Shrew rides
+Eventide, 371a2b, who folds the coordination branch at the owner's word): next safe steps, in
+order:
+
+1. `git status --branch` and `git worktree list` first-hand on the primary checkout after the
+   successor's cut; the records of this hour were written into the tree for the fold's commit, so
+   their landing is read from `git log` on `main`, never assumed.
+2. The Oak entry (the thread record's 2026-10-10 block carries the method, the open items and the
+   rulings); then the wrap-skill carry to the sibling estate, the same bytes.
+3. The fold's wall time, the owner's word of 2026-10-10 11:1xZ, verbatim: "an HOUR is a
+   ridiculous typical time for a fold, ridiculous, and a clear signal of a process and engineering
+   failure. 20 minutes would be somewhat excessive, 10 minutes would be acceptable. We have a
+   problem with our PR approaches and mechanisms". Nobody is assigned; the napkin's block of the
+   hour has the seat's reading of where the minutes go; a retrospective on the fold mechanism runs
+   at his word, by the `retrospective` skill, with the review-cost ledger's fold rows as data.
+4. The steps of the 2026-10-09T12:xxZ state below stand where not superseded.
+
+Deep consolidation status: due, held — unchanged; the owner's word of 2026-10-09 13:4xZ holds it.
 
 STATE, 2026-10-09T12:xxZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, after the merge
 of 325 and the fold of `2026-10-08-bd89f8`): the editor and the profile are on `main`; the Oak
