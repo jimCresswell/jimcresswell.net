@@ -72,7 +72,13 @@ id first (the task list, the cron list, the process table) and re-arms
 only what that verification finds absent, so a survivor is never doubled.
 The durable records are written at the lane boundary, while there is room to
 think; the wrap is the reading-and-verifying pass over records that already
-exist, so a compaction that outruns the wrap loses nothing (2026-09-25).
+exist, so a compaction that outruns the wrap loses nothing (2026-09-25). A
+coordination fold past its DUE clock is never run inside a wrap called at the
+owner's compaction word: the wrap is one records commit and one push, and the
+fold is named in the report as the next session's first act. A seat read "merge
+the PR and then prepare for compaction" as licence to fold as well; three
+Copilot rounds and four gate runs later the compaction arrived mid-ceremony and
+the owner asked what had been lost (2026-10-09).
 
 Wrap invoked non-terminally at the owner's word ("begin your wrap, this is
 not the end of your session", 2026-09-03) runs the programme's

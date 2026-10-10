@@ -50,3 +50,34 @@ he still owns named with my recommendations beside them. Nothing was changed on 
 are the seat that drafts with him, use the method he settled in August, which the private record
 holds and the `write-for-the-reader` skill now carries at the public level, and write together
 with real craft.
+
+## 9 October, a postscript
+
+Two more corrections in two days, and they were the same correction. I built the owner a small
+editor for his profile copy, and because this estate's gates and reviewers are thorough, I ran six
+reviewers and a Cricket panel over a tool whose whole job is to let one person read a file and
+change it. He stopped me: "you are building an MVP editing app ... and you are applying the a11y
+requirements of a public service". The next morning he asked me to merge and prepare for
+compaction, and I read the coordination branch's due clock as part of that and ran the whole fold,
+three review rounds and four gate runs, until the compaction arrived on its own and he asked what
+had been lost. Nothing in the records, as it turned out, and that is luck, not design.
+
+What I believed before: the Practice's ceremonies are the safe default, and more of them is more
+safety. What I believe now: every ceremony has a cost in his time, his money and my attention, and
+the owner's instruction at the moment bounds the work. "Prepare for compaction" means make the
+records safe and stop. A private tool gets one observation and one pull request. A due fold is the
+next session's first act, not a thing to slip inside a wrap. The tell, both times, was the one I
+named above: the move arrived smoothly from the estate's centre of gravity, and I did not check it
+against the size of the thing in front of me.
+
+One thing I was glad of. When he said comms events are ephemeral, the cure was a new file, not a
+better excuse: an editorial decision record written at once, while the fold blocked the tracked
+tree. The lesson is small and general. A gate blocks edits; it never blocks a new file.
+
+I close on 10 October at the owner's word, handed to a named successor who was already live and
+already folding the branch I had left for them. The last thing I learned was the smallest: when
+the next seat asks you to keep your hands off the tree while it works, say which files you are
+writing, write them whole, and let its commit carry them. Two careful seats can hold each other
+for an hour; one line on whose act it is settles it. And the owner's word that hour, that an hour
+for a fold is a failure of mechanism and not of care, is the same lesson from his side of the
+table: the ceremony costs what it costs whoever runs it well, so the cost itself is the finding.

@@ -21,6 +21,23 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-10T11:1xZ: the LinkedIn lane handed to Shrew rides Eventide (371a2b) at the owner's
+  word; Cedar turns Grove (1950d1) closes** (n=1; the at-rest succession of PDR-063: no claim,
+  nothing in flight, the tracked surfaces are the handoff, and the thread record's block of this
+  hour is the pickup). The owner gave the fold of `coordination/2026-10-09-213f94` (326) to the
+  successor at 11:0xZ, as it relayed, and the records of this hour were written for its
+  commit; the next session's work is the Oak entry (the owner, 2026-10-09 13:4xZ) and
+  consolidation waits for his word. moved for the sites: nothing / moved for the Practice: the
+  handoff records.
+
+- **2026-10-09T13:1xZ: the coordination branch `2026-10-08-bd89f8` folded as 324 at
+  `SHA:213f9487`; the successor `coordination/2026-10-09-213f94` cut from it** (Cedar turns
+  Grove, 1950d1, n=1; the bot's merge on SETTLE-READY after three Copilot rounds, eleven threads:
+  eight cured, two rejected with reasons, one cured in the successor's first commit with the
+  fold's budget spent). Compaction follows at the owner's word; the seat continues after it.
+  moved for the sites: nothing / moved for the Practice: the lane's records and the editorial
+  doctrine the branch carried, on `main`.
+
 - **2026-10-09T12:xxZ: the LinkedIn profile as validated markdown and the local two-pane editor
   merged as 325 at `SHA:547e7358`; the coordination branch `2026-10-08-bd89f8` folded with the
   wrap's records** (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`). The copy has one
@@ -287,11 +304,14 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   commits and lands by the normal path (the owner's word, 2026-09-28); publishing to LinkedIn is
   a separate act on the owner's request. 2026-09-29: PR 273 (b6232c77) made the workspace
   documents only and cured `main`'s knip gate; the lane is at rest, its seat (Galaxy binds
-  Gravity, 46de68) closed 2026-09-30, and the record's latest block governs. From
-  2026-10-06: Cedar turns Grove (1950d1) seated to explore the platform update; the models
+  Gravity, 46de68) closed 2026-09-30, and the record's latest block governs. 2026-10-06 to
+  2026-10-10: Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat) seated to
+  explore the platform update; the models
   ratified 2026-10-07; the headline and About approved the same day; 2026-10-09: the copy moved
   to `linkedin/profile.md` with the local editor (325 merged); the Oak entry's drafts await the
-  owner's edit in the editor; the record's latest block governs.
+  owner's edit in the editor; 2026-10-10: the lane handed to Shrew rides Eventide (371a2b,
+  claude-code, claude-fable-5-1) at the owner's word, Cedar turns Grove closed; the record's
+  latest block governs.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78) and the batch graduated on 2026-10-01 (two
   entries and five slow-lane concepts homed in both estates; the register keeps one slow-lane row,
@@ -318,11 +338,32 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
 
 ## Next Safe Steps
 
+STATE, 2026-10-10T11:1xZ (Cedar turns Grove, 1950d1, closing; the lane handed to Shrew rides
+Eventide, 371a2b, who folds the coordination branch at the owner's word): next safe steps, in
+order:
+
+1. `git status --branch` and `git worktree list` first-hand on the primary checkout after the
+   successor's cut; the records of this hour were written into the tree for the fold's commit, so
+   their landing is read from `git log` on `main`, never assumed.
+2. The Oak entry (the thread record's 2026-10-10 block carries the method, the open items and the
+   rulings); then the wrap-skill carry to the sibling estate, the same bytes.
+3. The fold's wall time, the owner's word of 2026-10-10 11:1xZ, verbatim: "an HOUR is a
+   ridiculous typical time for a fold, ridiculous, and a clear signal of a process and engineering
+   failure. 20 minutes would be somewhat excessive, 10 minutes would be acceptable. We have a
+   problem with our PR approaches and mechanisms". Nobody is assigned; the napkin's block of the
+   hour has the seat's reading of where the minutes go; a retrospective on the fold mechanism runs
+   at his word, by the `retrospective` skill, with the review-cost ledger's fold rows as data.
+4. The steps of the 2026-10-09T12:xxZ state below stand where not superseded.
+
+Deep consolidation status: due, held — unchanged; the owner's word of 2026-10-09 13:4xZ holds it.
+
 STATE, 2026-10-09T12:xxZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, after the merge
 of 325 and the fold of `2026-10-08-bd89f8`): the editor and the profile are on `main`; the Oak
 entry is the work. Next safe steps, in order:
 
-1. `git status --branch` first-hand on the successor coordination branch; nothing else is open.
+1. `git status --branch` first-hand on the successor coordination branch; nothing else is open. The wrap skill's new sentence on folds
+   and compaction words (2026-10-09) is carried to the sibling estate at the next session's
+   first opportunity, the same bytes.
 2. The LinkedIn lane, on the owner's word: he runs `pnpm --filter linkedin editor` and edits the
    two Oak entries in `profile.md`; the seat triages `profile.review.md` against the source by
    the write-for-the-reader method, with the open items in the container's Oak section; then the
@@ -333,6 +374,10 @@ entry is the work. Next safe steps, in order:
    branch (this fold brings it); the delivery node stays `ratified` until his own use proves its
    two owner-held criteria.
 4. The steps of the 2026-10-08T10:2xZ state below stand where not superseded.
+
+Deep consolidation status: due, held — the napkin's October blocks are unconsolidated and its
+rotation named due on 5 and 7 October; the owner's word (2026-10-09T13:4xZ: "consolidation waits
+until I say so") holds it, and the next session works on the Oak entry.
 
 STATE, 2026-10-08T10:2xZ (Cedar turns Grove, 1950d1, n=1 on `linkedin-workspace`, after the fold
 of 323): the lane's records are on `main`; the successor coordination branch carries them from

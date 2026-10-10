@@ -164,7 +164,30 @@ the owner should see the team delivering, not the Director reporting.
   words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
   2026-09-27T09:39Z and 09:52Z blocks.
 
-## Current handoff state (2026-10-02, pointer-biased by design)
+## Current handoff state (2026-10-10, pointer-biased by design)
+
+**§STATE, 2026-10-10 11:1xZ (Cedar turns Grove, `1950d1`, the n=1 seat, closing; this block is
+the pickup on its own, and the dated blocks below it are the history it rests on).** The LinkedIn lane is handed to Shrew rides Eventide (`371a2b`) at
+the owner's word of this hour, by PDR-063's at-rest succession (no claim, nothing in flight); the
+pickup is `threads/linkedin-workspace.next-session.md`, block of this hour, then
+`repo-continuity.md` §Next Safe Steps. The owner gave the fold of `coordination/2026-10-09-213f94`
+(326) to the successor at 11:0xZ, as it relayed; these records were written for its commit. The
+owner's word of the same hour on fold time (an hour is "a clear signal of a process and
+engineering failure"; ten minutes acceptable) is in §Next Safe Steps, assigned to nobody. The
+claims registry holds one stale row (Hazel tracks Trunk, `7d8b9d`, 2 October, thread
+two-estate-consolidation), named here for the next Director to archive. moved for the sites:
+nothing / moved for the Practice: the handoff records. No Director seat is held; no watcher,
+heartbeat or claim runs at n=1 by the owner's word.
+
+**§STATE, 2026-10-09 13:1xZ (Cedar turns Grove, `1950d1`, the n=1 seat, post-fold; this block adds
+to the 12:xxZ block below).** The coordination branch `2026-10-08-bd89f8` folded as 324 at
+`SHA:213f9487` (the bot's merge on SETTLE-READY after three Copilot rounds); the successor
+`coordination/2026-10-09-213f94` carries the records from here, this commit its first. The live
+lane is `linkedin-workspace` (its thread record's latest block governs; the Oak entry's two drafts
+await the owner's edit in the editor). Compaction follows this fold at the owner's word; the seat
+continues after it. moved for the sites: nothing / moved for the Practice: the lane's records and
+the editorial doctrine the branch carried, on `main`. No Director seat is held; no watcher,
+heartbeat or claim runs at n=1 by the owner's word.
 
 **§STATE, 2026-10-09 12:xxZ (Cedar turns Grove, `1950d1`, the n=1 seat; this block adds to the
 10:2xZ block below).** The LinkedIn profile as validated markdown and its local editor merged as
