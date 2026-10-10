@@ -164,10 +164,10 @@ the owner should see the team delivering, not the Director reporting.
   words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
   2026-09-27T09:39Z and 09:52Z blocks.
 
-## Current handoff state (2026-10-02, pointer-biased by design)
+## Current handoff state (2026-10-10, pointer-biased by design)
 
-**§STATE, 2026-10-10 11:1xZ (Cedar turns Grove, `1950d1`, the n=1 seat, closing; this block adds
-to the 13:1xZ block below).** The LinkedIn lane is handed to Shrew rides Eventide (`371a2b`) at
+**§STATE, 2026-10-10 11:1xZ (Cedar turns Grove, `1950d1`, the n=1 seat, closing; this block is
+the pickup on its own, and the dated blocks below it are the history it rests on).** The LinkedIn lane is handed to Shrew rides Eventide (`371a2b`) at
 the owner's word of this hour, by PDR-063's at-rest succession (no claim, nothing in flight); the
 pickup is `threads/linkedin-workspace.next-session.md`, block of this hour, then
 `repo-continuity.md` §Next Safe Steps. The owner gave the fold of `coordination/2026-10-09-213f94`

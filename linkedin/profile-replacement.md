@@ -111,8 +111,8 @@ Name as now; pronouns are Jim's call. Top-card location and industry are set del
 retrieval coordinates at application, verified live. Banner: open, Jim's call. Volunteering
 (Growing Communities) and organisations (Institute of Physics, current) stay, brief and true.
 Activity and interests are not profile content and are left as they are. The VoxQuant company
-page under Jim's account exists only to reserve the name (Jim, 7 October: a trading intelligence
-platform he was toying with) and gets no entry and no organisation line.
+page under Jim's account reserves a name only (Jim, 7 October) and gets no entry and no
+organisation line.
 
 ## Experience — earlier entries — open
 

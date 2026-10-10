@@ -305,7 +305,7 @@ The state entries from 2026-09-13 to 2026-09-28 that stood here are archived byt
   a separate act on the owner's request. 2026-09-29: PR 273 (b6232c77) made the workspace
   documents only and cured `main`'s knip gate; the lane is at rest, its seat (Galaxy binds
   Gravity, 46de68) closed 2026-09-30, and the record's latest block governs. 2026-10-06 to
-  2026-10-09: Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat) seated to
+  2026-10-10: Cedar turns Grove (1950d1, claude-code, claude-fable-5-1, the n=1 seat) seated to
   explore the platform update; the models
   ratified 2026-10-07; the headline and About approved the same day; 2026-10-09: the copy moved
   to `linkedin/profile.md` with the local editor (325 merged); the Oak entry's drafts await the
