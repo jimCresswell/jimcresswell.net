@@ -34,10 +34,13 @@ more"; the editor reports the count.
 
 ## Experience — Oak National Academy — drafted, revised by Jim, under the readers
 
-Two positions, grouped under Oak, dated by Jim on 10 October (correcting the chronology the
-8 October draft carried): **Senior Developer (consulting)**, August 2020 to May 2022, the
-consulting years, "there at the beginning", closing on the position being formalised as
-Principal Engineer; **Principal Engineer**, June 2022 to present, meaning
+Three positions, grouped under Oak, dated by Jim on 10 October (correcting the chronology the
+8 October draft carried; "a consulting Principal after the first 5 months", the dates showing
+the move from independent consultant to employee): **Senior Developer (consulting)**, August to
+December 2020, "there at the beginning", five months to ship the first teacher-facing service;
+**Principal Engineer (consulting)**, January 2021 to May 2022, the strategy through the move
+from emergency response to permanent service and from contractors to teams, closing on the
+position being formalised; **Principal Engineer**, June 2022 to present, meaning
 engineering strategy, in labelled movements in Jim's words: joining to
 get the first teacher-facing service over the line; contributing to defining the engineering
 function (best practice, the first QA and engineering-manager hires, collaborative approaches,
@@ -70,12 +73,40 @@ the Principal Engineer entry and the Senior Developer (consulting) entry, each
 10 October Jim revised both entries and the About in the local editor (the dates above, the
 squad count, the leadership audience, the Team Topologies beat, the Practice sentence, the
 consulting entry's opening and closing sentences), and the revised text went back through
-`prose-expert` and the `audience-reader`. Length is information, never a target: the
-editor reports each entry's count against the believed limit of 2,000 for a position
-description, unverified until the live editor (the Principal entry stands above it). If the
-field refuses the text, what moves to another surface is Jim's editorial choice.
+`prose-expert` and the `audience-reader`. A second round the same day, from Jim's answers to
+that read (the consulting years split into two cards; the level at Oak, Principal beside Head of
+Engineering under the Director of Engineering, one holding strategy, standard and vendor and
+partner relationships, the other budget and people; the Practice defined for a reader who has
+never met it, and its adoption by the engineers on the Open Curriculum Ecosystem repository):
+the `editor` and `prose-expert` read the new material in parallel, the structural change landed
+(the level stated as the shape of the function in the Principal card's opening, as fact and not
+as a denial; the current card keeps the arc from four contractors to nine teams and the
+consulting cards own their years), then the `audience-reader` read the whole block. Jim's
+correction of that round, kept: his answers to the seat are not copy; the reader's sentence is
+written from the fact, never pasted from the chat. One number entered the block, Oak's scale
+during the closures (over a million pupils a day at the height), sourced from a colleague's
+public profile and dated to no month, so it sits on the consulting Principal card and not the
+five-month card; Oak's own published figure replaces it if Jim wants it cited. Length is
+information, never a target: the editor reports each entry's count against the believed limit
+of 2,000 for a position description, unverified until the live editor (the Principal entry
+stands above it; Jim, 10 October: rounds of editing remain and the count comes down later). If
+the field refuses the text, what moves to another surface is Jim's editorial choice.
 
 Open for Jim, with the draft:
+
+- The rebuild's date, now load-bearing: "I made the emergency platform safe to change before
+  anything else" sits on the current card and the pre-rebuild work sits on the consulting card
+  (its dates); if the rebuild was argued before June 2022 the whole movement moves to the
+  consulting card and the current card keeps the consequence sentence.
+- "meant no child missed out on education": Jim's phrase, chosen twice; the editor's reading
+  stands beside it, that a funder discounts an absolute no reader can check.
+- "As Oak became a permanent public body, an arm's-length body of the Department for
+  Education": Oak's own description (the status from September 2022, after the June 2022
+  formalisation, so the sentence ties the two by "as", a process, not a date); Jim's "England's
+  official curriculum body" is the stronger phrase and his to restore.
+- The About's fold: the first ~200 characters carry the opener and the physics sentence and no
+  leadership signal; a proposed second sentence that states the level and the largest
+  consequence is with Jim in chat, not applied, the About being approved copy.
 
 - The handover tense. "has its own cross-discipline product squad now, building out the
   direction I set" is true during the phased handover and after it; "stream-aligned" is dropped
@@ -96,21 +127,23 @@ Open for Jim, with the draft:
 - "checks and continuous delivery", the two mechanism words of his pre-rebuild movement, are out
   of the entry on the readers' word (mechanism at every reader's altitude); the movement's
   substance stays as "made the emergency platform safe to change before anything else".
-- The readers place him as a direction-setter rather than an organisation-runner, by the shift
-  from "carried its strategy" to "helped define the function", and ask who he reported to and
-  whether he ever held people and budget. If that placement is the intended level claim it
-  worked; if a larger one is intended, this is where the entry caps it.
+- The level claim, answered by structure on 10 October: the Principal card opens on the strategy
+  he holds and the shape of the function (Principal beside Head of Engineering under the
+  Director of Engineering, the Head with budget and people, the Principal with strategy, the
+  standard and the vendor and partner relationships), so the reader has the reporting line and
+  the scope without a denial of the title; the wording is reusable across surfaces and takes an
+  EDR once it settles.
 - "Oak had launched that April" rests on public knowledge of April 2020; "before the plugin was
   more than an SDK, I was building a Practice" and the Senior entry's "the first months had left
   no time for" are the seat's readings of his chronology and the entity graph's role description.
 - The plugin carrying the curriculum principles and accessibility standards is verified for the
   Claude plugin (0.1.6); whether the ChatGPT app carries them is not.
 - "helped define the function" is the one collaborative hedge kept on purpose; the title
-  question above; and the site's entity graph records Senior Developer (Consulting) for
-  August to December 2020, Head of DevOps and Quality (Consulting) for January 2021 to June 2022
-  and Principal Engineer from June 2022, while the LinkedIn consulting card runs August 2020 to
-  May 2022 under Senior Developer, so a verifier reading both sees two title histories
-  (LinkedIn-only lane; his to carry or cure on the graph later).
+  question above. The site's entity graph was brought to the three cards on 10 October at Jim's
+  word ("fix the graph to match the linkedin data, don't overwrite the content"): the 2021 to
+  2022 role is Principal Engineer (Consulting), January 2021 to May 2022, its description kept;
+  the squad count is six in the graph and the CV content. The LinkedIn content itself reaches
+  the graph later, as new nodes, at his word.
 
 ## Top card, photo, banner, volunteering, organisations, interests — open
 

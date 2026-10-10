@@ -87,8 +87,9 @@ Attribution:
   "a fully sequenced, openly licensed curriculum" is already the experts' work inside Jim's
   sentence.
 - The Oak entry (Principal Engineer, June 2022 onward by Jim's dating of 10 October 2026; the
-  consulting years, August 2020 to May 2022, are the Senior Developer (consulting) entry) is
-  drafted with this movement as its proof layer. Readers who were there, Oak colleagues and Oak's leadership, are also the path by
+  consulting years are two entries, Senior Developer (consulting) August to December 2020 and
+  Principal Engineer (consulting) January 2021 to May 2022) is drafted with this movement as its
+  proof layer. Readers who were there, Oak colleagues and Oak's leadership, are also the path by
   which any serious reader verifies the claim, so the attribution is what lets it survive
   inspection.
 - The skills list gains Model Context Protocol (MCP). The Featured and Projects entries follow

@@ -109,6 +109,35 @@ product squads") against his edits. Next: his reading of the draft; then the ear
 Featured, Projects, skills, recommendations, settings; the application only at his express
 request with him present. moved for the sites: nothing / moved for the Practice: nothing.
 
+### 2026-10-10T15:4xZ — the Oak block as three cards at the owner's word; the level and the Practice written for the reader; the graph brought to the cards; awaiting the owner (Shrew rides Eventide, 371a2b)
+
+The owner's dispositions on the 15:1xZ report: the consulting years are two cards ("a consulting
+Principal after the first 5 months"), so the Oak block is Senior Developer (consulting) Aug to
+Dec 2020, Principal Engineer (consulting) Jan 2021 to May 2022, Principal Engineer from June 2022
+as an employee; the level at Oak (Principal beside Head of Engineering under the Director of
+Engineering; strategy, standard and vendor and partner relationships against budget and people
+through the engineering managers) is the Principal card's opening, stated as the shape of the
+function; the Practice is defined in the About for a reader who has never met it and
+particularised in the card, with its adoption by the engineers on the Open Curriculum Ecosystem
+repository; the site's entity graph is brought to the cards at his word (the 2021 to 2022 role
+Principal Engineer (Consulting), January 2021 to May 2022, description kept; six product squads
+in the graph and the CV content; the site's unit tests green). His correction of this round,
+kept as a lesson: his answers to the seat are facts, never copy; the reader's sentence is
+written from the fact. The `editor` and `prose-expert` read the new material, the editor's
+structural change landed, and the `audience-reader` read the whole block: the head hunter now
+reads a strategy peer of the Head of Engineering with the reporting line placed, approaches for
+founding-CTO and technical-director searches, and asks, with certainty now, whether he has held
+budget or people; the funder takes the conversation and asks what anyone outside Oak has built
+on the plugin. Open for the owner: the rebuild's date (which card owns the movement; decide or
+recommend); "meant no child missed out on education" (his phrase, the editor's objection
+beside it); the About's fold (a proposed second sentence in chat, not applied); the
+"arm's-length body" phrasing against his "England's official curriculum body"; the pre-Oak
+line's "testing" read as a QA pedigree; a reach figure for the plugin if publishable. Rounds of
+editing remain and the count comes down later (his word). Draft 327's body still names the
+profile and product code out of scope; the fold's ready-mark rewrites it to the branch's
+content. moved for the sites: the entity graph's Oak roles and squad count, the CV content's
+squad count / moved for the Practice: nothing.
+
 ## Previous Continuation (2026-10-09T12:xxZ, the profile as validated markdown and the editor delivered as PR #325, merged 9 October; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's asks of 2026-10-08, verbatim: "can we put the content so far into some kind of
