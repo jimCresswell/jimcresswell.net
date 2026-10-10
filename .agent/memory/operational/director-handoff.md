@@ -10,7 +10,10 @@ fitness_content_role: reference
 The single file the next Director rehydrates from (PDR-117 §Consequences). Role doctrine lives in
 [PDR-117](../../practice-core/decision-records/PDR-117-director-and-implementer-roles.md); this
 file carries the pickup procedure, the readiness self-check, the current handoff state and the
-live board. It is rewritten in place at every Director transition, never appended.
+live board. The procedure, the self-check and the board are rewritten in place at every Director
+transition; §Current handoff state carries dated STATE blocks, newest first, each a pickup on its
+own, and the blocks beneath the newest are the history it rests on, never rewritten (the practice
+since September, stated here after two folds' reviews read the old sentence against it, 2026-10-10).
 
 ## Role pickup procedure
 

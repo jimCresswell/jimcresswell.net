@@ -11,7 +11,7 @@ feedback to no action unless action is critically determined as
 worthwhile" — with the explicit constraint that auto-merge is not the
 answer, because "that just ignores feedback"; and, on sufficiency, the
 PR skill must correct its own loops without out-of-band skill pokes;
-amended 2026-09-07 and 2026-09-26 — see Amendment Log).
+amended 2026-09-07, 2026-09-26, 2026-10-01 and 2026-10-10 — see Amendment Log).
 **Date**: 2026-08-31
 
 ## Context
@@ -217,9 +217,9 @@ scope widens by dated amendment, never by improvisation.
    the owner manually invoked the proportionality skill twice in one
    day to correct the founding arc — the hack this clause retires.)
 
-9. **Records-class reading (amended 2026-09-07; the Amendment Log
-   entry of that date is the revision record, with the measurement
-   and the falsifier).** For a records-class artefact — a served
+9. **Records-class reading (amended 2026-09-07 and 2026-10-10; the
+   Amendment Log entries of those dates are the revision records, with
+   the measurements and the falsifiers).** For a records-class artefact — a served
    doc, a record, doctrine already ratified — whose declared
    verification point is merge:
    - (a) Clause 2's merge-verification sentence reads through prong
@@ -256,6 +256,20 @@ scope widens by dated amendment, never by improvisation.
      residue. A residue PR that exists anyway is terminal: a
      settlement budget of one push, no rebudget, the paths of (b) and
      (c) unchanged, and no further residue PR opened from it.
+   - (e) A records-class pull request every changed path of which the
+     merge door reads as documentation or Practice prose (`merge-bot
+     merge`, `change-class.ts`; the class is computed from the diff,
+     never declared) merges at checks green with zero unresolved threads
+     and no suppressed finding held, while a vendor review requested at
+     its ready-mark may still be in flight. That review is read after the
+     merge and each finding is dispositioned under (a): an over-bar
+     finding cures in the lane's next records commit (on a coordination
+     fold, the successor's first), a below-bar finding is rejected with
+     rationale or routed under (d); the merged pull request is never
+     reopened for the write, as (c) already says. The owner's decision of
+     2026-10-10 on the retrospective of that date (its proposal 1); the
+     Amendment Log entry of that date carries the measurement and the
+     falsifier.
 
 ## Prediction and falsifier
 
@@ -373,3 +387,20 @@ call. Recorded 2026-10-01 by the two-estate consolidation's retrospective seat a
 the owner's own word to owner-ratified text; the draft reconciliation a Director prepared on
 2026-09-28 (OCE comms events a847fc35, a3b0f6bd) is the instance, and nothing beyond the owner's
 word is carried.
+
+### 2026-10-10 — clause 9(e): a records-class pull request merges at checks green; its review is harvested after the merge
+
+The owner's ruling of 2026-09-03 ("Change the merge policy instead": a bot-authored pull request
+touching only documentation and Practice surfaces merges at checks green with no Copilot leg
+expected) became the merge door's behaviour on this date, at the owner's word on the
+retrospective's proposal 1 ("I agree to all four"). Measured before the change: the four
+coordination folds 320, 323, 324 and 326 took 25.9 to 57.8 minutes of wall time from the first
+fold commit to the successor's draft pull request against the owner's ten-minute bound; nine
+vendor rounds of 3.9 to 7.8 minutes each produced 39 findings, 31 of them cured in pushes that
+each bought a gate run and a round; the local gate on a records push landed on CI within 2.1 to
+3.8 minutes of the commit. Clause 9(e) homes the review's findings after the merge through the
+vehicle (c) already names and the 324 fold already used (over-bar cures riding the successor's
+first records commit). Falsifier, read at the register's slow-lane row of the same date
+(review 2026-12-15): two post-merge findings on records-class folds that would mislead a successor
+acting on the default branch before the next records commit, and the class returns to the
+SETTLE-READY door.

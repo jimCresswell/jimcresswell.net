@@ -95,3 +95,22 @@ worked instance that day was a catch, not a miss.
   each landing re-syncing the next. A reviewer read the skill's slot clause
   and decision 3 as a contradiction; this entry names the condition that
   reconciles them.
+- **2026-10-10 — Decision 1's records class merges at checks green; the door
+  computes the class.** Decision 1 binds quality at settled-READY for a
+  code-class pull request. For a records-class pull request — every changed
+  path documentation or Practice prose, computed from the pull request's
+  files by `merge-bot merge` (`change-class.ts`), never declared by a seat —
+  the owner's ruling of 2026-09-03 ("Change the merge policy instead") is
+  the door's behaviour from this date: it merges at checks green, zero
+  unresolved threads and no suppressed finding held, on the verdicts that
+  differ from SETTLE-READY only by the vendor leg
+  (`RECORDS_CLASS_MERGE_STATES`), naming the ground in its evidence, and the
+  vendor review requested at the ready-mark is harvested after the merge
+  (PDR-140 clause 9(e)). Measured before the change (the retrospective of
+  2026-10-10): four coordination folds of 26 to 58 minutes of wall time
+  against the owner's ten-minute bound, nine vendor rounds of 4 to 8 minutes
+  each, the local gate under four minutes on a records push. Falsifier: two
+  post-merge findings on records-class folds that would mislead a successor
+  acting on the default branch before the next records commit (clause 9(a)'s
+  reading), and the class returns to the SETTLE-READY door. The owner's
+  decision on the retrospective's proposal 1.

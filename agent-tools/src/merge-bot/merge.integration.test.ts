@@ -388,3 +388,106 @@ describe('runMergeExecution — target grammar (security H2)', () => {
     expect(calls.some((call) => call.url.endsWith('/merge'))).toBe(false);
   });
 });
+
+/**
+ * The records class at the execution level: the class is read from the diff
+ * only on a verdict where it decides, a records fold merges while its vendor
+ * leg is still owed, a code diff on the same verdict stays at the door, and a
+ * settled verdict reads no files at all.
+ */
+describe('runMergeExecution — the records class (the owner ruling of 2026-09-03)', () => {
+  /** A fetch port that also serves the pull request's changed files. */
+  function makeClassPort(files: readonly { filename: string }[]): {
+    fetchImpl: GithubApiFetch;
+    calls: { url: string }[];
+  } {
+    const calls: { url: string }[] = [];
+    const fetchImpl: GithubApiFetch = (url) => {
+      calls.push({ url });
+      if (url.includes('/pulls/42/files')) {
+        return Promise.resolve({ status: 200, json: () => Promise.resolve(files) });
+      }
+      if (url.endsWith('/pulls/42/merge')) {
+        return Promise.resolve({
+          status: 200,
+          json: () => Promise.resolve({ merged: true, sha: 'mergesha1' }),
+        });
+      }
+      return Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve({ allow_merge_commit: true }),
+      });
+    };
+    return { fetchImpl, calls };
+  }
+
+  /** The vendor leg owed: no review binds the tip and checks went green two minutes ago. */
+  const owedLegReading = (): PrStateReading =>
+    makeReading({ reviews: [], checksGreenAt: '2026-08-06T08:58:00Z' });
+
+  it('merges a records fold at checks green while the vendor leg is still owed, naming the ground', async () => {
+    const { fetchImpl, calls } = makeClassPort([
+      { filename: '.agent/memory/active/napkin.md' },
+      { filename: '.agent/memory/operational/repo-continuity.md' },
+    ]);
+
+    const outcome = await runMergeExecution(makeInput(owedLegReading(), fetchImpl));
+
+    expect(outcome.ok).toBe(true);
+    if (outcome.ok) {
+      expect(outcome.value.kind).toBe('merged');
+      expect(
+        outcome.value.evidence.some((line) => line.startsWith('records-class (2 changed paths')),
+      ).toBe(true);
+    }
+    const urls = calls.map((call) => call.url);
+    expect(urls.findIndex((url) => url.includes('/pulls/42/files'))).toBeLessThan(
+      urls.findIndex((url) => url.endsWith('/pulls/42/merge')),
+    );
+  });
+
+  it('keeps a code diff at the door on the same verdict and sends no merge', async () => {
+    const { fetchImpl, calls } = makeClassPort([
+      { filename: '.agent/memory/active/napkin.md' },
+      { filename: 'agent-tools/src/merge-bot/merge.ts' },
+    ]);
+
+    const outcome = await runMergeExecution(makeInput(owedLegReading(), fetchImpl));
+
+    expect(outcome.ok).toBe(true);
+    if (outcome.ok) {
+      expect(outcome.value.kind).toBe('refused');
+      if (outcome.value.kind === 'refused') {
+        expect(outcome.value.verdictState).toBe('SILENT-WAIT-NO-REVIEWER');
+        expect(outcome.value.reason).toContain('agent-tools/src/merge-bot/merge.ts');
+      }
+    }
+    expect(calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+  });
+
+  it('reads no files on a settled verdict: the class never decides there', async () => {
+    const { fetchImpl, calls } = makeClassPort([
+      { filename: 'agent-tools/src/merge-bot/merge.ts' },
+    ]);
+
+    const outcome = await runMergeExecution(makeInput(makeReading(), fetchImpl));
+
+    expect(outcome.ok && outcome.value.kind === 'merged').toBe(true);
+    expect(calls.some((call) => call.url.includes('/pulls/42/files'))).toBe(false);
+  });
+
+  it('reports a failed files read as an operational failure, never a merge', async () => {
+    const fetchImpl: GithubApiFetch = (url) =>
+      Promise.resolve({
+        status: url.includes('/files') ? 502 : 200,
+        json: () => Promise.resolve({ allow_merge_commit: true }),
+      });
+
+    const outcome = await runMergeExecution(makeInput(owedLegReading(), fetchImpl));
+
+    expect(outcome.ok).toBe(false);
+    if (!outcome.ok) {
+      expect(outcome.error.message).toContain('changed files read answered 502');
+    }
+  });
+});
