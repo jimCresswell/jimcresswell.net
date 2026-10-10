@@ -1480,9 +1480,13 @@ create` on such a branch exits non-zero with "a pull request for branch …
    2026-10-10 the tool knows the class: `merge-bot merge` computes it from
    the pull request's changed files (every path documentation or Practice
    prose, decided per path as above; `change-class.ts`), merges at checks
-   green with zero unresolved threads and no suppressed finding held on the
-   verdicts that differ from SETTLE-READY only by the vendor leg
-   (`RECORDS_CLASS_MERGE_STATES`), and names the ground in its evidence; a
+   green BY NAME (the base branch's required contexts, read from its rules at
+   run time; a pending check the rules do not require, the vendor's own
+   review run among them, does not hold a records-class pull request, a
+   failed check of any name does) with zero unresolved threads and no
+   suppressed finding held on the verdicts that differ from SETTLE-READY only
+   by the vendor leg (`RECORDS_CLASS_MERGE_STATES`), and names the ground in
+   its evidence; a
    vendor review requested on the tip is harvested after the merge under
    PDR-140 clause 9(e). The interim this clause carried until then ("until
    the tool learns that class, the merging seat recomputes that gate by name

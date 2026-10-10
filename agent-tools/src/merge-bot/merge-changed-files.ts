@@ -107,10 +107,17 @@ export async function listChangedPaths(
   );
 }
 
+/** Whether the class can change the outcome on this verdict by itself. */
+function classDecidesOn(state: PrVerdict['state']): boolean {
+  return state !== 'SETTLE-READY' && verdictMergesRecordsClass(state);
+}
+
 /**
  * The class, read only when it decides: a verdict the records class merges
  * (and SETTLE-READY does not) reads and classifies the files; every other
- * verdict is decided without a read, so its typed refusal stays typed.
+ * verdict is decided without a read, so its typed refusal stays typed. At
+ * CHECKS-RUNNING the class matters only once the required contexts have
+ * been read and found green (`merge-records-checks.ts` reads it there).
  */
 export async function classWhenItDecides(
   verdict: PrVerdict,
@@ -118,7 +125,7 @@ export async function classWhenItDecides(
   token: string,
   target: ChangedFilesTarget,
 ): Promise<Result<ChangeClass | undefined, Error>> {
-  if (verdict.state === 'SETTLE-READY' || !verdictMergesRecordsClass(verdict.state)) {
+  if (!classDecidesOn(verdict.state)) {
     return ok(undefined);
   }
   const paths = await listChangedPaths(fetchImpl, token, target);

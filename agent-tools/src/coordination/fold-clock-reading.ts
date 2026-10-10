@@ -13,9 +13,10 @@ import type { CheckRunReading, FoldClockReading, ReviewerEvent } from './fold-cl
  * "Bot") and `reviewed` (with `user.login` "Copilot" and `submitted_at`),
  * so requests and reviews pair on the timeline's own logins; the REST
  * reviews list names the same reviewer `copilot-pull-request-reviewer[bot]`
- * and is not read. The branch rules name the required contexts; the
- * check-runs list on a commit carries each run's name, conclusion and
- * instants.
+ * and is not read. The branch rules' required contexts parse through the
+ * merge door's own reader (`pr-watch/required-checks.ts`), one definition
+ * of "checks green by name" for both; the check-runs list on a commit
+ * carries each run's name, conclusion and instants.
  */
 
 const instant = z.iso.datetime();
@@ -100,32 +101,7 @@ export function parseTimeline(value: unknown): Result<TimelineReading, Error> {
   });
 }
 
-const rulesSchema = z.array(
-  z.object({
-    type: z.string(),
-    parameters: z
-      .object({
-        required_status_checks: z.array(z.object({ context: z.string().min(1) })).optional(),
-      })
-      .optional(),
-  }),
-);
-
-/** The contexts every `required_status_checks` rule on the branch names, in rule order. */
-export function parseRequiredChecks(value: unknown): Result<readonly string[], Error> {
-  const parsed = parseWithSchema({ label: 'fold-clock branch rules', schema: rulesSchema, value });
-  if (!parsed.ok) {
-    return parsed;
-  }
-  return ok(
-    parsed.value
-      .filter((rule) => rule.type === 'required_status_checks')
-      .flatMap((rule) => rule.parameters?.required_status_checks ?? [])
-      .map((check) => check.context),
-  );
-}
-
-const checkRunsSchema = z.object({
+const checkRunsPageSchema = z.object({
   check_runs: z.array(
     z.object({
       name: z.string().min(1),
@@ -135,6 +111,9 @@ const checkRunsSchema = z.object({
     }),
   ),
 });
+
+/** `gh api --paginate --slurp` on a commit's check-runs: one page object per element. */
+const checkRunsSchema = z.array(checkRunsPageSchema);
 
 export function parseCheckRuns(value: unknown): Result<readonly CheckRunReading[], Error> {
   const parsed = parseWithSchema({
@@ -146,12 +125,14 @@ export function parseCheckRuns(value: unknown): Result<readonly CheckRunReading[
     return parsed;
   }
   return ok(
-    parsed.value.check_runs.map((run) => ({
-      name: run.name,
-      conclusion: run.conclusion ?? undefined,
-      startedAt: run.started_at ?? undefined,
-      completedAt: run.completed_at ?? undefined,
-    })),
+    parsed.value
+      .flatMap((page) => page.check_runs)
+      .map((run) => ({
+        name: run.name,
+        conclusion: run.conclusion ?? undefined,
+        startedAt: run.started_at ?? undefined,
+        completedAt: run.completed_at ?? undefined,
+      })),
   );
 }
 

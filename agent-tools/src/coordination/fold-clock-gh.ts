@@ -9,11 +9,11 @@ import {
   type PrTarget,
 } from '../pr-watch/gh.js';
 import type { CheckRunReading, FoldClockReading } from './fold-clock.js';
+import { isBranchName, parseRequiredChecks } from '../pr-watch/required-checks.js';
 import {
   assembleReading,
   parseCheckRuns,
   parsePull,
-  parseRequiredChecks,
   parseTimeline,
   type PullReading,
 } from './fold-clock-reading.js';
@@ -37,7 +37,12 @@ export interface FoldClockSource {
 }
 
 const PER_PAGE = 100;
-const BASE_REF_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._/-]*$/u;
+const COMMIT_SHA_PATTERN = /^[0-9a-f]{7,40}$/u;
+
+/** A commit sha safe to place in a REST path: seven to forty lowercase hex characters. */
+export function isCommitSha(value: string): boolean {
+  return COMMIT_SHA_PATTERN.test(value);
+}
 
 interface Gh {
   readonly run: GhCommandExecutor;
@@ -72,7 +77,12 @@ function resolveGh(source: FoldClockSource): Result<Gh, Error> {
 }
 
 function checkRunsArgs(repo: string, sha: string): readonly string[] {
-  return ['api', `repos/${repo}/commits/${sha}/check-runs?per_page=${PER_PAGE}`];
+  return [
+    'api',
+    '--paginate',
+    '--slurp',
+    `repos/${repo}/commits/${sha}/check-runs?per_page=${PER_PAGE}`,
+  ];
 }
 
 function readSuccessor(
@@ -85,6 +95,9 @@ function readSuccessor(
 > {
   if (successorSha === undefined) {
     return ok(undefined);
+  }
+  if (!isCommitSha(successorSha)) {
+    return err(new Error(`fold-clock: the successor '${successorSha}' is not a commit sha`));
   }
   const runs = readSurface(
     gh,
@@ -167,7 +180,7 @@ export function readFoldClockReading(source: FoldClockSource): Result<FoldClockR
   if (!pull.ok) {
     return pull;
   }
-  if (!BASE_REF_PATTERN.test(pull.value.baseRef) || pull.value.baseRef.includes('..')) {
+  if (!isBranchName(pull.value.baseRef)) {
     return err(new Error(`fold-clock: the base ref '${pull.value.baseRef}' is not a branch name`));
   }
   return readRemaining({

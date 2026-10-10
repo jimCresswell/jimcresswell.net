@@ -1,12 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  assembleReading,
-  parseCheckRuns,
-  parsePull,
-  parseRequiredChecks,
-  parseTimeline,
-} from './fold-clock-reading.js';
+import { assembleReading, parseCheckRuns, parsePull, parseTimeline } from './fold-clock-reading.js';
 
 /**
  * The read boundary over the shapes the API served for pull request 326 on
@@ -111,49 +105,34 @@ describe('parseTimeline', () => {
   });
 });
 
-describe('parseRequiredChecks', () => {
-  it('names the contexts of every required_status_checks rule and no other rule', () => {
-    const required = parseRequiredChecks([
-      { type: 'deletion' },
-      { type: 'pull_request', parameters: { required_approving_review_count: 0 } },
+describe('parseCheckRuns', () => {
+  it('reads every page of runs with their nulls as absences', () => {
+    const runs = parseCheckRuns([
       {
-        type: 'required_status_checks',
-        parameters: {
-          required_status_checks: [{ context: 'run-quality-gates' }, { context: 'CodeQL' }],
-          strict_required_status_checks_policy: false,
-        },
+        total_count: 2,
+        check_runs: [
+          {
+            name: 'CodeQL',
+            status: 'completed',
+            conclusion: 'success',
+            started_at: '2026-10-10T11:29:33Z',
+            completed_at: '2026-10-10T11:29:35Z',
+          },
+        ],
+      },
+      {
+        total_count: 2,
+        check_runs: [
+          {
+            name: 'e2e',
+            status: 'in_progress',
+            conclusion: null,
+            started_at: '2026-10-10T11:29:30Z',
+            completed_at: null,
+          },
+        ],
       },
     ]);
-
-    expect(required).toStrictEqual({ ok: true, value: ['run-quality-gates', 'CodeQL'] });
-  });
-
-  it('reads an unprotected branch as requiring nothing', () => {
-    expect(parseRequiredChecks([])).toStrictEqual({ ok: true, value: [] });
-  });
-});
-
-describe('parseCheckRuns', () => {
-  it('reads each run with its nulls as absences', () => {
-    const runs = parseCheckRuns({
-      total_count: 2,
-      check_runs: [
-        {
-          name: 'CodeQL',
-          status: 'completed',
-          conclusion: 'success',
-          started_at: '2026-10-10T11:29:33Z',
-          completed_at: '2026-10-10T11:29:35Z',
-        },
-        {
-          name: 'e2e',
-          status: 'in_progress',
-          conclusion: null,
-          started_at: '2026-10-10T11:29:30Z',
-          completed_at: null,
-        },
-      ],
-    });
 
     expect(runs).toStrictEqual({
       ok: true,
@@ -174,8 +153,9 @@ describe('parseCheckRuns', () => {
     });
   });
 
-  it('refuses a body without check_runs', () => {
-    expect(parseCheckRuns({ message: 'Not Found' }).ok).toBe(false);
+  it('refuses a body that is not slurped pages of check runs', () => {
+    expect(parseCheckRuns({ check_runs: [] }).ok).toBe(false);
+    expect(parseCheckRuns([{ message: 'Not Found' }]).ok).toBe(false);
   });
 });
 

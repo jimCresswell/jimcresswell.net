@@ -259,9 +259,13 @@ scope widens by dated amendment, never by improvisation.
    - (e) A records-class pull request every changed path of which the
      merge door reads as documentation or Practice prose (`merge-bot
      merge`, `change-class.ts`; the class is computed from the diff,
-     never declared) merges at checks green with zero unresolved threads
-     and no suppressed finding held, while a vendor review requested at
-     its ready-mark may still be in flight. That review is read after the
+     never declared) merges at checks green by name (the base branch's
+     required contexts, read from its rules at run time; a pending check
+     the rules do not require, the vendor's own review run among them,
+     does not hold it, a failed check of any name does) with zero
+     unresolved threads and no suppressed finding held, while a vendor
+     review requested at its ready-mark may still be in flight. That
+     review is read after the
      merge and each finding is dispositioned under (a): an over-bar
      finding cures in the lane's next records commit (on a coordination
      fold, the successor's first), a below-bar finding is rejected with

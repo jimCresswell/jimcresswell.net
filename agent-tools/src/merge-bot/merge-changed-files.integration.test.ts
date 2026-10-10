@@ -92,10 +92,18 @@ describe('classWhenItDecides', () => {
     expect(urls).toHaveLength(1);
   });
 
-  it('reads nothing on SETTLE-READY or on a verdict the records class does not merge', async () => {
-    const { fetchImpl, urls } = filesPort([[{ filename: 'README.md' }]]);
+  it('reads nothing on SETTLE-READY, CHECKS-RUNNING or a verdict the class cannot change: a failing port is never reached', async () => {
+    const fetchImpl: GithubApiFetch = () =>
+      Promise.reject(new Error('the port must not be reached'));
 
-    for (const state of ['SETTLE-READY', 'CHECKS-RED', 'THREADS-OPEN', 'DRAFT'] as const) {
+    for (const state of [
+      'SETTLE-READY',
+      'CHECKS-RUNNING',
+      'CHECKS-RED',
+      'THREADS-OPEN',
+      'DRAFT',
+      'MERGED',
+    ] as const) {
       const changeClass = await classWhenItDecides(
         { state, evidence: [] },
         fetchImpl,
@@ -104,6 +112,5 @@ describe('classWhenItDecides', () => {
       );
       expect(changeClass, state).toStrictEqual({ ok: true, value: undefined });
     }
-    expect(urls).toHaveLength(0);
   });
 });

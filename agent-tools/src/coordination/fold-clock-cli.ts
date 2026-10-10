@@ -2,13 +2,9 @@ import { err, isErr, ok, type Result } from '@engraph/result';
 
 import { readExecutor } from '../merge-bot/merge-read-env.js';
 import { parsePrTarget, type PrTarget } from '../pr-watch/gh.js';
-import {
-  computeFoldClock,
-  formatFoldClock,
-  type FoldClock,
-  type FoldClockReading,
-} from './fold-clock.js';
-import { readFoldClockReading } from './fold-clock-gh.js';
+import { computeFoldClock, type FoldClock, type FoldClockReading } from './fold-clock.js';
+import { formatFoldClock } from './fold-clock-format.js';
+import { isCommitSha, readFoldClockReading } from './fold-clock-gh.js';
 
 /**
  * `agent-tools coordination fold-clock`: the fold's clock as one line for the
@@ -18,7 +14,6 @@ import { readFoldClockReading } from './fold-clock-gh.js';
  */
 
 const FOLD_CLOCK_ACTION = 'fold-clock';
-const SUCCESSOR_SHA_PATTERN = /^[0-9a-f]{7,40}$/u;
 
 /** What the reader needs; the CLI composes the real executor at this one edge. */
 export interface FoldClockReadInput {
@@ -48,11 +43,9 @@ interface MutableFoldClockArgs {
   positionals: string[];
 }
 
-interface ParsedFoldClockArgs {
-  readonly read: FoldClockReadInput;
-  readonly json: boolean;
-  readonly help: boolean;
-}
+type ParsedFoldClockArgs =
+  | { readonly help: true }
+  | { readonly help: false; readonly read: FoldClockReadInput; readonly json: boolean };
 
 const FLAG_HANDLERS: Readonly<Record<string, (state: MutableFoldClockArgs) => void>> = {
   '--help': (state) => {
@@ -150,12 +143,12 @@ function readInputOf(state: MutableFoldClockArgs, target: PrTarget): FoldClockRe
 
 function finalizeArgs(state: MutableFoldClockArgs): Result<ParsedFoldClockArgs, Error> {
   if (state.help) {
-    return ok({ read: { target: { number: 0 } }, json: false, help: true });
+    return ok({ help: true });
   }
   if (state.positionals.length > 0) {
     return err(usageError(`unexpected argument: ${state.positionals[0] ?? ''}`));
   }
-  if (state.successor !== undefined && !SUCCESSOR_SHA_PATTERN.test(state.successor)) {
+  if (state.successor !== undefined && !isCommitSha(state.successor)) {
     return err(
       usageError(`--successor must be a commit sha (7 to 40 hex), got '${state.successor}'`),
     );

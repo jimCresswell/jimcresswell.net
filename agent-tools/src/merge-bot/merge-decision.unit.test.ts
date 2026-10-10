@@ -251,3 +251,20 @@ describe('decideMergeAction — the timeout-skip settled round (security D1)', (
     }
   });
 });
+
+describe('the code-class suffix on an empty change set', () => {
+  it('names the absence of any changed path rather than an empty list', () => {
+    const decision = decideMergeAction({
+      verdict: { state: 'SILENT-WAIT-NO-REVIEWER', evidence: [] },
+      allowMergeCommit: true,
+      expectedDeclared: true,
+      changeClass: { kind: 'code', offenders: [] },
+    });
+
+    expect(decision).toStrictEqual({
+      kind: 'refuse',
+      reason:
+        'verdict SILENT-WAIT-NO-REVIEWER — only SETTLE-READY merges; a records-class pull request would merge here, but the diff is code-class (no changed path)',
+    });
+  });
+});

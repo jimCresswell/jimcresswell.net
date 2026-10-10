@@ -3,9 +3,8 @@ import { err, ok, type Result } from '@engraph/result';
 import { parsePrTarget, type PrTarget } from '../pr-watch/gh.js';
 import { readPrStateReading, type ReadPrStateOptions } from '../pr-watch/state-gh.js';
 import type { PrStateReading, PrVerdict } from '../pr-watch/state-types.js';
-import { computePrVerdict } from '../pr-watch/states.js';
-import { classWhenItDecides } from './merge-changed-files.js';
 import { readExecutor } from './merge-read-env.js';
+import { resolveVerdict } from './merge-records-checks.js';
 import { decideMergeAction, type MergeDecision } from './merge-decision.js';
 import { realFetch } from './github-fetch.js';
 import { readMergeSettings, putMerge } from './merge-github-api.js';
@@ -170,15 +169,18 @@ function refused(reason: string, verdict: PrVerdict): Result<MergeOutcome, Error
 /**
  * The verdict → class → eligibility → settings-gate → merge tail. The change
  * class is read from the diff only on a verdict where it decides (a records
- * class merges there, `merge-changed-files.ts`), and eligibility is classified
- * BEFORE the settings endpoint is touched: that GET is a fallible network
- * call, so asking it first turned every documented typed refusal (MERGED,
- * CHECKS-RED, …) into an operational failure whenever the read failed. The
- * decision core is untouched — `allowMergeCommit: true` asks it one question,
- * whether this verdict is mergeable at all — and the REAL setting then goes
- * through the same function, so the never-squash refusal keeps its one
- * canonical wording. A merge opened by the class carries its ground in the
- * evidence beside the verdict's own lines.
+ * class merges there, and at CHECKS-RUNNING it may set aside a pending check
+ * the rules do not require, `merge-records-checks.ts`); a failed read there
+ * is the same transient class as a failed PR-state read, so the poll loop
+ * retries it within the budget rather than ending on one 502. Eligibility is
+ * classified BEFORE the settings endpoint is touched: that GET is a fallible
+ * network call, so asking it first turned every documented typed refusal
+ * (MERGED, CHECKS-RED, …) into an operational failure whenever the read
+ * failed. The decision core is untouched — `allowMergeCommit: true` asks it
+ * one question, whether this verdict is mergeable at all — and the REAL
+ * setting then goes through the same function, so the never-squash refusal
+ * keeps its one canonical wording. A merge opened by the class carries its
+ * ground in the evidence beside the verdict's own lines.
  */
 async function gateAndMerge(context: {
   readonly input: MergeExecutionInput;
@@ -186,21 +188,24 @@ async function gateAndMerge(context: {
   readonly token: string;
 }): Promise<Result<MergeOutcome, Error>> {
   const { input, reading, token } = context;
-  const verdict = computePrVerdict(reading, input.nowIso);
   const fetchImpl = input.seams.fetchImpl ?? realFetch();
-  const changeClass = await classWhenItDecides(verdict, fetchImpl, token, {
-    identity: input.identity,
-    prNumber: input.prNumber,
+  const resolved = await resolveVerdict({
+    reading,
+    nowIso: input.nowIso,
+    fetchImpl,
+    token,
+    target: { identity: input.identity, prNumber: input.prNumber },
   });
-  if (!changeClass.ok) {
-    return changeClass;
+  if (!resolved.ok) {
+    return err(new ReadingUnavailableError(`class reading failed: ${resolved.error.message}`));
   }
+  const { verdict, changeClass } = resolved.value;
   const decide = (allowMergeCommit: boolean): MergeDecision =>
     decideMergeAction({
       verdict,
       allowMergeCommit,
       expectedDeclared: reading.expectedDeclared,
-      changeClass: changeClass.value,
+      changeClass,
     });
 
   const eligible = decide(true);

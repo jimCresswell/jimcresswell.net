@@ -40,28 +40,32 @@ const rules = [
     parameters: { required_status_checks: [{ context: 'CodeQL' }] },
   },
 ];
-const headRuns = {
-  check_runs: [
-    {
-      name: 'CodeQL',
-      status: 'completed',
-      conclusion: 'success',
-      started_at: '2026-10-10T11:29:33Z',
-      completed_at: '2026-10-10T11:29:35Z',
-    },
-  ],
-};
-const successorRuns = {
-  check_runs: [
-    {
-      name: 'install',
-      status: 'in_progress',
-      conclusion: null,
-      started_at: '2026-10-10T11:38:00Z',
-      completed_at: null,
-    },
-  ],
-};
+const headRuns = [
+  {
+    check_runs: [
+      {
+        name: 'CodeQL',
+        status: 'completed',
+        conclusion: 'success',
+        started_at: '2026-10-10T11:29:33Z',
+        completed_at: '2026-10-10T11:29:35Z',
+      },
+    ],
+  },
+];
+const successorRuns = [
+  {
+    check_runs: [
+      {
+        name: 'install',
+        status: 'in_progress',
+        conclusion: null,
+        started_at: '2026-10-10T11:38:00Z',
+        completed_at: null,
+      },
+    ],
+  },
+];
 
 /** An executor answering by the path argument, recording every argv. */
 function fakeGh(answers: Readonly<Record<string, unknown>>): {
@@ -115,7 +119,12 @@ describe('readFoldClockReading', () => {
       ['api', 'repos/acme/widgets/pulls/326'],
       ['api', '--paginate', '--slurp', 'repos/acme/widgets/issues/326/timeline?per_page=100'],
       ['api', 'repos/acme/widgets/rules/branches/main'],
-      ['api', `repos/acme/widgets/commits/${HEAD}/check-runs?per_page=100`],
+      [
+        'api',
+        '--paginate',
+        '--slurp',
+        `repos/acme/widgets/commits/${HEAD}/check-runs?per_page=100`,
+      ],
     ]);
   });
 
@@ -134,8 +143,27 @@ describe('readFoldClockReading', () => {
     expect(calls).toHaveLength(5);
     expect(calls[4]).toStrictEqual([
       'api',
+      '--paginate',
+      '--slurp',
       `repos/acme/widgets/commits/${SUCCESSOR}/check-runs?per_page=100`,
     ]);
+  });
+
+  it('refuses a successor that is not a commit sha before any path carries it', () => {
+    const { exec, calls } = fakeGh(answers);
+
+    const reading = readFoldClockReading({
+      target: { number: 326, repo: 'acme/widgets' },
+      successorSha: 'coordination/x',
+      exists: () => true,
+      execFileSync: exec,
+    });
+
+    expect(reading.ok).toBe(false);
+    if (!reading.ok) {
+      expect(reading.error.message).toContain('not a commit sha');
+    }
+    expect(calls).toHaveLength(4);
   });
 
   it('lets gh infer the repository through its placeholder when the target names none', () => {
@@ -143,7 +171,7 @@ describe('readFoldClockReading', () => {
       'repos/{owner}/{repo}/pulls/7': pull,
       'repos/{owner}/{repo}/issues/7/timeline?per_page=100': [[]],
       'repos/{owner}/{repo}/rules/branches/main': [],
-      [`repos/{owner}/{repo}/commits/${HEAD}/check-runs?per_page=100`]: { check_runs: [] },
+      [`repos/{owner}/{repo}/commits/${HEAD}/check-runs?per_page=100`]: [{ check_runs: [] }],
     });
 
     const reading = readFoldClockReading({

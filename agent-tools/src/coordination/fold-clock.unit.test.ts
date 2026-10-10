@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { computeFoldClock, formatFoldClock, type FoldClockReading } from './fold-clock.js';
+import { computeFoldClock, type FoldClockReading } from './fold-clock.js';
+import { formatFoldClock } from './fold-clock-format.js';
 
 /**
  * The clock over the instants pull request 326 carried on 2026-10-10 (read
@@ -12,6 +13,7 @@ import { computeFoldClock, formatFoldClock, type FoldClockReading } from './fold
  */
 
 const HEAD = '6c340d864683792c36e12fb43f71cddafac58bbb';
+const SUCCESSOR = 'fa74b7270000000000000000000000000000abcd';
 
 function run(name: string, completedAt: string, conclusion = 'success') {
   return { name, conclusion, startedAt: '2026-10-10T11:28:54Z', completedAt };
@@ -42,24 +44,32 @@ const fold326: FoldClockReading = {
   successor: undefined,
 };
 
+function clockOf(reading: FoldClockReading) {
+  const clock = computeFoldClock(reading);
+  if (!clock.ok) {
+    throw clock.error;
+  }
+  return clock.value;
+}
+
 describe('computeFoldClock', () => {
   it('measures the fold of 326 from its instants', () => {
-    const clock = computeFoldClock(fold326);
+    const clock = clockOf(fold326);
 
-    expect(clock.ok).toBe(true);
-    if (clock.ok) {
-      expect(clock.value.readyAt).toBe('2026-10-10T11:18:20Z');
-      expect(clock.value.checksGreenAt).toBe('2026-10-10T11:32:30Z');
-      expect(clock.value.checksMissing).toStrictEqual([]);
-      expect(clock.value.readyToGreenMinutes).toBe(14.2);
-      expect(clock.value.rounds.map((round) => round.minutes)).toStrictEqual([4.2, 3.9]);
-      expect(clock.value.readyToMergeMinutes).toBe(14.8);
-      expect(clock.value.successorLandedAt).toBeUndefined();
-    }
+    expect(clock.readyAt).toBe('2026-10-10T11:18:20Z');
+    expect(clock.checksGreenAt).toBe('2026-10-10T11:32:30Z');
+    expect(clock.checksMissing).toStrictEqual([]);
+    expect(clock.readyToGreenMinutes).toBe(14.2);
+    expect(clock.rounds.map((round) => [round.outcome, round.minutes])).toStrictEqual([
+      ['reviewed', 4.2],
+      ['reviewed', 3.9],
+    ]);
+    expect(clock.readyToMergeMinutes).toBe(14.8);
+    expect(clock.successorLandedAt).toBeUndefined();
   });
 
-  it('pairs each request with the first later review by the same login, case-insensitively, once', () => {
-    const clock = computeFoldClock({
+  it('pairs case-insensitively, ignores a review before its request, and leaves a later request in flight', () => {
+    const clock = clockOf({
       ...fold326,
       requests: [
         { at: '2026-10-10T11:18:35Z', login: 'copilot' },
@@ -71,38 +81,67 @@ describe('computeFoldClock', () => {
       ],
     });
 
-    expect(clock.ok).toBe(true);
-    if (clock.ok) {
-      expect(clock.value.rounds).toStrictEqual([
-        {
-          login: 'copilot',
-          requestedAt: '2026-10-10T11:18:35Z',
-          reviewedAt: '2026-10-10T11:22:45Z',
-          minutes: 4.2,
-        },
-        {
-          login: 'Copilot',
-          requestedAt: '2026-10-10T11:28:55Z',
-          reviewedAt: undefined,
-          minutes: undefined,
-        },
-      ]);
-    }
+    expect(clock.rounds).toStrictEqual([
+      {
+        login: 'copilot',
+        requestedAt: '2026-10-10T11:18:35Z',
+        reviewedAt: '2026-10-10T11:22:45Z',
+        minutes: 4.2,
+        outcome: 'reviewed',
+      },
+      {
+        login: 'Copilot',
+        requestedAt: '2026-10-10T11:28:55Z',
+        reviewedAt: undefined,
+        minutes: undefined,
+        outcome: 'in-flight',
+      },
+    ]);
+  });
+
+  it('answers a review with the latest request before it and marks the earlier one superseded', () => {
+    const clock = clockOf({
+      ...fold326,
+      requests: [
+        { at: '2026-10-10T11:18:35Z', login: 'Copilot' },
+        { at: '2026-10-10T11:20:00Z', login: 'Copilot' },
+      ],
+      reviews: [{ at: '2026-10-10T11:24:00Z', login: 'Copilot' }],
+    });
+
+    expect(clock.rounds.map((round) => [round.outcome, round.minutes])).toStrictEqual([
+      ['superseded', undefined],
+      ['reviewed', 4],
+    ]);
+  });
+
+  it('never answers two requests with one review', () => {
+    const clock = clockOf({
+      ...fold326,
+      requests: [
+        { at: '2026-10-10T11:18:35Z', login: 'Copilot' },
+        { at: '2026-10-10T11:28:55Z', login: 'Copilot' },
+      ],
+      reviews: [{ at: '2026-10-10T11:32:47Z', login: 'Copilot' }],
+    });
+
+    expect(clock.rounds.filter((round) => round.outcome === 'reviewed')).toHaveLength(1);
+    expect(clock.rounds[0]?.outcome).toBe('superseded');
   });
 
   it('takes the last ready-mark, and the opening when the pull request was never a draft', () => {
-    const twice = computeFoldClock({
+    const twice = clockOf({
       ...fold326,
       readyMarks: ['2026-10-10T10:00:00Z', '2026-10-10T11:18:20Z'],
     });
-    const never = computeFoldClock({ ...fold326, readyMarks: [] });
+    const never = clockOf({ ...fold326, readyMarks: [] });
 
-    expect(twice.ok && twice.value.readyAt).toBe('2026-10-10T11:18:20Z');
-    expect(never.ok && never.value.readyAt).toBe('2026-10-09T13:34:15Z');
+    expect(twice.readyAt).toBe('2026-10-10T11:18:20Z');
+    expect(never.readyAt).toBe('2026-10-09T13:34:15Z');
   });
 
-  it('names a required context with no success run and leaves green undefined', () => {
-    const clock = computeFoldClock({
+  it('names a required context with no passing run and leaves green undefined', () => {
+    const clock = clockOf({
       ...fold326,
       headCheckRuns: [
         run('run-quality-gates', '2026-10-10T11:32:30Z'),
@@ -110,16 +149,25 @@ describe('computeFoldClock', () => {
       ],
     });
 
-    expect(clock.ok).toBe(true);
-    if (clock.ok) {
-      expect(clock.value.checksGreenAt).toBeUndefined();
-      expect(clock.value.checksMissing).toStrictEqual(['CodeQL']);
-      expect(clock.value.readyToGreenMinutes).toBeUndefined();
-    }
+    expect(clock.checksGreenAt).toBeUndefined();
+    expect(clock.checksMissing).toStrictEqual(['CodeQL']);
+    expect(clock.readyToGreenMinutes).toBeUndefined();
   });
 
-  it('takes the latest success per context when a context ran more than once', () => {
-    const clock = computeFoldClock({
+  it("passes the conclusions GitHub's required gate passes: success, neutral, skipped", () => {
+    const clock = clockOf({
+      ...fold326,
+      headCheckRuns: [
+        run('run-quality-gates', '2026-10-10T11:32:30Z', 'skipped'),
+        run('CodeQL', '2026-10-10T11:29:35Z', 'neutral'),
+      ],
+    });
+
+    expect(clock.checksGreenAt).toBe('2026-10-10T11:32:30Z');
+  });
+
+  it('takes the latest passing completion per context when a context ran more than once', () => {
+    const clock = clockOf({
       ...fold326,
       headCheckRuns: [
         run('run-quality-gates', '2026-10-10T11:20:00Z', 'failure'),
@@ -129,14 +177,14 @@ describe('computeFoldClock', () => {
       ],
     });
 
-    expect(clock.ok && clock.value.checksGreenAt).toBe('2026-10-10T11:40:00Z');
+    expect(clock.checksGreenAt).toBe('2026-10-10T11:40:00Z');
   });
 
   it('reads the successor as on CI at its earliest check-run start', () => {
-    const clock = computeFoldClock({
+    const clock = clockOf({
       ...fold326,
       successor: {
-        sha: 'fa74b7270000000000000000000000000000abcd',
+        sha: SUCCESSOR,
         checkRuns: [
           {
             name: 'install',
@@ -154,11 +202,8 @@ describe('computeFoldClock', () => {
       },
     });
 
-    expect(clock.ok).toBe(true);
-    if (clock.ok) {
-      expect(clock.value.successorLandedAt).toBe('2026-10-10T11:38:00Z');
-      expect(clock.value.readyToSuccessorMinutes).toBe(19.7);
-    }
+    expect(clock.successorLandedAt).toBe('2026-10-10T11:38:00Z');
+    expect(clock.readyToSuccessorMinutes).toBe(19.7);
   });
 
   it('refuses a ready instant that is not a date', () => {
@@ -173,38 +218,36 @@ describe('computeFoldClock', () => {
 
 describe('formatFoldClock', () => {
   it('prints the fold of 326 as one line', () => {
-    const clock = computeFoldClock(fold326);
-
-    expect(clock.ok && formatFoldClock(clock.value)).toBe(
+    expect(formatFoldClock(clockOf(fold326))).toBe(
       'fold-clock PR 326 tip 6c340d86: ready 2026-10-10T11:18:20Z; checks green +14.2 min; ' +
-        'rounds 2 (Copilot 4.2, Copilot 3.9 min); merged +14.8 min',
+        'rounds 2 (Copilot 4.2 min, Copilot 3.9 min); merged +14.8 min',
     );
   });
 
-  it('names a round in flight, missing checks, an unmerged pull request and a successor not yet on CI', () => {
-    const clock = computeFoldClock({
+  it('names a round in flight, a superseded request, missing checks, an unmerged pull request and a successor not yet on CI', () => {
+    const clock = clockOf({
       ...fold326,
       mergedAt: undefined,
-      requests: [{ at: '2026-10-10T11:28:55Z', login: 'Copilot' }],
-      reviews: [],
+      requests: [
+        { at: '2026-10-10T11:18:35Z', login: 'Copilot' },
+        { at: '2026-10-10T11:20:00Z', login: 'Copilot' },
+        { at: '2026-10-10T11:28:55Z', login: 'Copilot' },
+      ],
+      reviews: [{ at: '2026-10-10T11:24:00Z', login: 'Copilot' }],
       headCheckRuns: [run('CodeQL', '2026-10-10T11:29:35Z')],
-      successor: { sha: 'fa74b7270000000000000000000000000000abcd', checkRuns: [] },
+      successor: { sha: SUCCESSOR, checkRuns: [] },
     });
 
-    expect(clock.ok && formatFoldClock(clock.value)).toBe(
+    expect(formatFoldClock(clock)).toBe(
       'fold-clock PR 326 tip 6c340d86: ready 2026-10-10T11:18:20Z; checks not green (run-quality-gates); ' +
-        'rounds 1 (Copilot in flight since 2026-10-10T11:28:55Z min); not merged; successor fa74b727 not yet on CI',
+        'rounds 3 (Copilot request at 2026-10-10T11:18:35Z superseded, Copilot 4.0 min, ' +
+        'Copilot in flight since 2026-10-10T11:28:55Z); not merged; successor fa74b727 not yet on CI',
     );
   });
 
   it('says so when the base requires no checks, and signs a green that preceded the ready-mark', () => {
-    const clock = computeFoldClock({
-      ...fold326,
-      requiredChecks: [],
-      requests: [],
-      reviews: [],
-    });
-    const early = computeFoldClock({
+    const none = clockOf({ ...fold326, requiredChecks: [], requests: [], reviews: [] });
+    const early = clockOf({
       ...fold326,
       readyMarks: ['2026-10-10T11:35:00Z'],
       requests: [],
@@ -212,10 +255,10 @@ describe('formatFoldClock', () => {
       mergedAt: undefined,
     });
 
-    expect(clock.ok && formatFoldClock(clock.value)).toBe(
+    expect(formatFoldClock(none)).toBe(
       'fold-clock PR 326 tip 6c340d86: ready 2026-10-10T11:18:20Z; checks: none required on the base; rounds 0; merged +14.8 min',
     );
-    expect(early.ok && formatFoldClock(early.value)).toBe(
+    expect(formatFoldClock(early)).toBe(
       'fold-clock PR 326 tip 6c340d86: ready 2026-10-10T11:35:00Z; checks green -2.5 min; rounds 0; not merged',
     );
   });

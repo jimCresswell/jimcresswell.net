@@ -101,8 +101,11 @@ worked instance that day was a catch, not a miss.
   path documentation or Practice prose, computed from the pull request's
   files by `merge-bot merge` (`change-class.ts`), never declared by a seat —
   the owner's ruling of 2026-09-03 ("Change the merge policy instead") is
-  the door's behaviour from this date: it merges at checks green, zero
-  unresolved threads and no suppressed finding held, on the verdicts that
+  the door's behaviour from this date: it merges at checks green by name
+  (the base branch's required contexts, read from its rules at run time; a
+  pending check the rules do not require — the vendor's own review run among
+  them — does not hold a records-class pull request, a failed check of any
+  name does), zero unresolved threads and no suppressed finding held, on the verdicts that
   differ from SETTLE-READY only by the vendor leg
   (`RECORDS_CLASS_MERGE_STATES`), naming the ground in its evidence, and the
   vendor review requested at the ready-mark is harvested after the merge

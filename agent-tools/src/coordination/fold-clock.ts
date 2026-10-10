@@ -8,13 +8,16 @@ import { err, ok, type Result } from '@engraph/result';
  * from `fold-clock-reading.ts`; this module pairs, subtracts and formats.
  *
  * Instants: the ready-mark (the last `ready_for_review`, else the pull
- * request's opening), checks green (the latest success among the base
- * branch's REQUIRED checks on the merged tip — never every check-run, since
- * a vendor's review runs as a check-run of its own), each vendor review
- * round (a Bot's `review_requested` paired with that Bot's first later
- * review), the merge, and the successor's first check-run start when a
- * successor tip is named. Every interval is minutes from the ready-mark to
- * one decimal, so a ledger row carries the fold's shape in one line.
+ * request's opening), checks green (the latest passing completion among the
+ * base branch's REQUIRED contexts on the tip — the merge door's own
+ * definition for the records class, never every check-run, since a vendor's
+ * review runs as a check-run of its own), each vendor review round (a Bot's
+ * `review_requested` answered by that Bot's first later review; a request
+ * re-made before the review lands supersedes the earlier one, so a review
+ * answers the LATEST request before it), the merge, and the successor's first
+ * check-run start when a successor tip is named. Every interval is minutes
+ * from the ready-mark to one decimal, so a ledger row carries the fold's
+ * shape in one line.
  */
 
 export interface ReviewerEvent {
@@ -47,12 +50,15 @@ export interface FoldClockReading {
     { readonly sha: string; readonly checkRuns: readonly CheckRunReading[] } | undefined;
 }
 
-interface ReviewRound {
+type RoundOutcome = 'reviewed' | 'superseded' | 'in-flight';
+
+export interface ReviewRound {
   readonly login: string;
   readonly requestedAt: string;
   readonly reviewedAt: string | undefined;
-  /** Request to review, minutes to one decimal; absent while the review is in flight. */
+  /** Request to review, minutes to one decimal; absent unless reviewed. */
   readonly minutes: number | undefined;
+  readonly outcome: RoundOutcome;
 }
 
 export interface FoldClock {
@@ -61,7 +67,7 @@ export interface FoldClock {
   readonly readyAt: string;
   readonly requiredChecks: readonly string[];
   readonly checksGreenAt: string | undefined;
-  /** Required contexts with no success run on the tip. */
+  /** Required contexts with no passing run on the tip. */
   readonly checksMissing: readonly string[];
   readonly readyToGreenMinutes: number | undefined;
   readonly rounds: readonly ReviewRound[];
@@ -74,6 +80,8 @@ export interface FoldClock {
 
 const MILLIS_PER_MINUTE = 60_000;
 const TENTHS = 10;
+/** GitHub's required-check gate passes these conclusions; the merge door reads the same set. */
+const PASSING_CONCLUSIONS: ReadonlySet<string> = new Set(['success', 'neutral', 'skipped']);
 
 /** Minutes from `from` to `to`, to one decimal; both are validated ISO instants. */
 function minutesBetween(from: string, to: string): number {
@@ -99,28 +107,68 @@ function earliest(instants: readonly string[]): string | undefined {
   );
 }
 
-/** Each Bot request paired with that Bot's first later, still unpaired review (login case-insensitive). */
+function sameLogin(a: ReviewerEvent, b: ReviewerEvent): boolean {
+  return a.login.toLowerCase() === b.login.toLowerCase();
+}
+
+/** The index of the latest request this review answers: same login, earlier, not yet answered. */
+function latestEarlierUnpaired(
+  requests: readonly ReviewerEvent[],
+  review: ReviewerEvent,
+  paired: ReadonlyMap<number, ReviewerEvent>,
+): number {
+  let chosen = -1;
+  requests.forEach((request, index) => {
+    const candidate =
+      !paired.has(index) && sameLogin(request, review) && later(review.at, request.at);
+    if (candidate && (chosen === -1 || later(request.at, requests[chosen]?.at ?? request.at))) {
+      chosen = index;
+    }
+  });
+  return chosen;
+}
+
+function roundOf(
+  request: ReviewerEvent,
+  review: ReviewerEvent | undefined,
+  reviews: readonly ReviewerEvent[],
+): ReviewRound {
+  if (review !== undefined) {
+    return {
+      login: request.login,
+      requestedAt: request.at,
+      reviewedAt: review.at,
+      minutes: minutesBetween(request.at, review.at),
+      outcome: 'reviewed',
+    };
+  }
+  const answeredLater = reviews.some((r) => sameLogin(r, request) && later(r.at, request.at));
+  return {
+    login: request.login,
+    requestedAt: request.at,
+    reviewedAt: undefined,
+    minutes: undefined,
+    outcome: answeredLater ? 'superseded' : 'in-flight',
+  };
+}
+
+/** Each review answers the latest earlier unanswered request of its login; the rest are superseded or in flight. */
 function pairRounds(
   requests: readonly ReviewerEvent[],
   reviews: readonly ReviewerEvent[],
 ): readonly ReviewRound[] {
-  const unpaired = [...reviews];
-  return requests.map((request) => {
-    const index = unpaired.findIndex(
-      (review) =>
-        review.login.toLowerCase() === request.login.toLowerCase() && later(review.at, request.at),
-    );
-    const review = index === -1 ? undefined : unpaired.splice(index, 1)[0];
-    return {
-      login: request.login,
-      requestedAt: request.at,
-      reviewedAt: review?.at,
-      minutes: review === undefined ? undefined : minutesBetween(request.at, review.at),
-    };
-  });
+  const paired = new Map<number, ReviewerEvent>();
+  const ordered = [...reviews].sort((a, b) => Date.parse(a.at) - Date.parse(b.at));
+  for (const review of ordered) {
+    const index = latestEarlierUnpaired(requests, review, paired);
+    if (index !== -1) {
+      paired.set(index, review);
+    }
+  }
+  return requests.map((request, index) => roundOf(request, paired.get(index), ordered));
 }
 
-/** The latest success completion per required context; a context with none is missing. */
+/** The latest passing completion per required context; a context with none is missing. */
 function requiredGreen(
   required: readonly string[],
   runs: readonly CheckRunReading[],
@@ -129,7 +177,7 @@ function requiredGreen(
     name,
     at: latest(
       runs
-        .filter((run) => run.name === name && run.conclusion === 'success')
+        .filter((run) => run.name === name && PASSING_CONCLUSIONS.has(run.conclusion ?? ''))
         .flatMap((run) => (run.completedAt === undefined ? [] : [run.completedAt])),
     ),
   }));
@@ -175,56 +223,4 @@ export function computeFoldClock(reading: FoldClockReading): Result<FoldClock, E
     successorLandedAt,
     readyToSuccessorMinutes: delta(readyAt, successorLandedAt),
   });
-}
-
-const SHORT_SHA = 8;
-
-function signed(minutes: number): string {
-  return `${minutes < 0 ? '-' : '+'}${Math.abs(minutes).toFixed(1)} min`;
-}
-
-function checksSegment(clock: FoldClock): string {
-  if (clock.requiredChecks.length === 0) {
-    return 'checks: none required on the base';
-  }
-  if (clock.readyToGreenMinutes === undefined) {
-    return `checks not green (${clock.checksMissing.join(', ')})`;
-  }
-  return `checks green ${signed(clock.readyToGreenMinutes)}`;
-}
-
-function roundsSegment(rounds: readonly ReviewRound[]): string {
-  if (rounds.length === 0) {
-    return 'rounds 0';
-  }
-  const described = rounds.map((round) =>
-    round.minutes === undefined
-      ? `${round.login} in flight since ${round.requestedAt}`
-      : `${round.login} ${round.minutes.toFixed(1)}`,
-  );
-  return `rounds ${rounds.length} (${described.join(', ')} min)`;
-}
-
-function successorSegment(clock: FoldClock): string | undefined {
-  if (clock.successorSha === undefined) {
-    return undefined;
-  }
-  const short = clock.successorSha.slice(0, SHORT_SHA);
-  return clock.readyToSuccessorMinutes === undefined
-    ? `successor ${short} not yet on CI`
-    : `successor ${short} on CI ${signed(clock.readyToSuccessorMinutes)}`;
-}
-
-/** The one line a ledger row carries. */
-export function formatFoldClock(clock: FoldClock): string {
-  const segments = [
-    `fold-clock PR ${clock.prNumber} tip ${clock.headSha.slice(0, SHORT_SHA)}: ready ${clock.readyAt}`,
-    checksSegment(clock),
-    roundsSegment(clock.rounds),
-    clock.readyToMergeMinutes === undefined
-      ? 'not merged'
-      : `merged ${signed(clock.readyToMergeMinutes)}`,
-    successorSegment(clock),
-  ];
-  return segments.filter((segment) => segment !== undefined).join('; ');
 }

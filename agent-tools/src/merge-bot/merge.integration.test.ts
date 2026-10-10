@@ -396,27 +396,39 @@ describe('runMergeExecution — target grammar (security H2)', () => {
  * settled verdict reads no files at all.
  */
 describe('runMergeExecution — the records class (the owner ruling of 2026-09-03)', () => {
-  /** A fetch port that also serves the pull request's changed files. */
-  function makeClassPort(files: readonly { filename: string }[]): {
-    fetchImpl: GithubApiFetch;
-    calls: { url: string }[];
-  } {
+  /** A fetch port that also serves the changed files, the base ref and the base branch's rules. */
+  function makeClassPort(
+    files: readonly { filename: string }[],
+    options: { readonly required?: readonly string[]; readonly failing?: string } = {},
+  ): { fetchImpl: GithubApiFetch; calls: { url: string }[] } {
     const calls: { url: string }[] = [];
-    const fetchImpl: GithubApiFetch = (url) => {
-      calls.push({ url });
+    const required = options.required ?? ['run-quality-gates', 'CodeQL'];
+    const answer = (url: string): unknown => {
       if (url.includes('/pulls/42/files')) {
-        return Promise.resolve({ status: 200, json: () => Promise.resolve(files) });
+        return files;
       }
       if (url.endsWith('/pulls/42/merge')) {
-        return Promise.resolve({
-          status: 200,
-          json: () => Promise.resolve({ merged: true, sha: 'mergesha1' }),
-        });
+        return { merged: true, sha: 'mergesha1' };
       }
-      return Promise.resolve({
-        status: 200,
-        json: () => Promise.resolve({ allow_merge_commit: true }),
-      });
+      if (url.endsWith('/pulls/42')) {
+        return { base: { ref: 'main' } };
+      }
+      if (url.includes('/rules/branches/main')) {
+        return [
+          {
+            type: 'required_status_checks',
+            parameters: { required_status_checks: required.map((context) => ({ context })) },
+          },
+        ];
+      }
+      return { allow_merge_commit: true };
+    };
+    const fetchImpl: GithubApiFetch = (url) => {
+      calls.push({ url });
+      if (options.failing !== undefined && url.includes(options.failing)) {
+        return Promise.resolve({ status: 502, json: () => Promise.resolve({}) });
+      }
+      return Promise.resolve({ status: 200, json: () => Promise.resolve(answer(url)) });
     };
     return { fetchImpl, calls };
   }
@@ -425,11 +437,26 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
   const owedLegReading = (): PrStateReading =>
     makeReading({ reviews: [], checksGreenAt: '2026-08-06T08:58:00Z' });
 
+  /** The real fold shape: required checks green, the vendor's own review run still pending. */
+  const vendorRunPendingReading = (): PrStateReading =>
+    makeReading({
+      reviews: [],
+      checksGreenAt: null,
+      namedChecks: [
+        { name: 'run-quality-gates', bucket: 'passed' },
+        { name: 'CodeQL', bucket: 'passed' },
+        { name: 'copilot-pull-request-reviewer', bucket: 'pending' },
+      ],
+      checks: { total: 3, passed: 2, failed: 0, pending: 1 },
+    });
+
+  const recordsFiles = [
+    { filename: '.agent/memory/active/napkin.md' },
+    { filename: '.agent/memory/operational/repo-continuity.md' },
+  ];
+
   it('merges a records fold at checks green while the vendor leg is still owed, naming the ground', async () => {
-    const { fetchImpl, calls } = makeClassPort([
-      { filename: '.agent/memory/active/napkin.md' },
-      { filename: '.agent/memory/operational/repo-continuity.md' },
-    ]);
+    const { fetchImpl, calls } = makeClassPort(recordsFiles);
 
     const outcome = await runMergeExecution(makeInput(owedLegReading(), fetchImpl));
 
@@ -446,7 +473,60 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
     );
   });
 
-  it('keeps a code diff at the door on the same verdict and sends no merge', async () => {
+  it("merges a records fold whose only pending check is the vendor's own review run, naming what was set aside", async () => {
+    const { fetchImpl, calls } = makeClassPort(recordsFiles);
+
+    const outcome = await runMergeExecution(makeInput(vendorRunPendingReading(), fetchImpl));
+
+    expect(outcome.ok).toBe(true);
+    if (outcome.ok) {
+      expect(outcome.value.kind).toBe('merged');
+      expect(
+        outcome.value.evidence.some((line) =>
+          line.includes('set aside (copilot-pull-request-reviewer)'),
+        ),
+      ).toBe(true);
+    }
+    expect(calls.some((call) => call.url.includes('/rules/branches/main'))).toBe(true);
+  });
+
+  it('keeps a code diff at the door on the same pending vendor run and sends no merge', async () => {
+    const { fetchImpl, calls } = makeClassPort([
+      { filename: '.agent/memory/active/napkin.md' },
+      { filename: 'agent-tools/src/merge-bot/merge.ts' },
+    ]);
+
+    const outcome = await runMergeExecution(makeInput(vendorRunPendingReading(), fetchImpl));
+
+    expect(outcome.ok).toBe(true);
+    if (outcome.ok) {
+      expect(outcome.value.kind).toBe('refused');
+      if (outcome.value.kind === 'refused') {
+        expect(outcome.value.verdictState).toBe('CHECKS-RUNNING');
+      }
+    }
+    expect(calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+    expect(calls.some((call) => call.url.includes('/pulls/42/files'))).toBe(true);
+  });
+
+  it('holds a records fold while a REQUIRED context is pending, whatever else is set aside', async () => {
+    const { fetchImpl, calls } = makeClassPort(recordsFiles, {
+      required: ['run-quality-gates', 'CodeQL', 'secret-scan'],
+    });
+
+    const outcome = await runMergeExecution(makeInput(vendorRunPendingReading(), fetchImpl));
+
+    expect(outcome.ok).toBe(true);
+    if (outcome.ok) {
+      expect(outcome.value.kind).toBe('refused');
+      if (outcome.value.kind === 'refused') {
+        expect(outcome.value.verdictState).toBe('CHECKS-RUNNING');
+      }
+    }
+    expect(calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+  });
+
+  it('keeps a code diff at the door on an owed leg and names the code paths', async () => {
     const { fetchImpl, calls } = makeClassPort([
       { filename: '.agent/memory/active/napkin.md' },
       { filename: 'agent-tools/src/merge-bot/merge.ts' },
@@ -465,29 +545,73 @@ describe('runMergeExecution — the records class (the owner ruling of 2026-09-0
     expect(calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
   });
 
-  it('reads no files on a settled verdict: the class never decides there', async () => {
-    const { fetchImpl, calls } = makeClassPort([
-      { filename: 'agent-tools/src/merge-bot/merge.ts' },
-    ]);
+  it('reads no files on a settled verdict: a failing files port cannot stop the merge there', async () => {
+    const { fetchImpl } = makeClassPort([{ filename: 'agent-tools/src/merge-bot/merge.ts' }], {
+      failing: '/pulls/42/files',
+    });
 
     const outcome = await runMergeExecution(makeInput(makeReading(), fetchImpl));
 
     expect(outcome.ok && outcome.value.kind === 'merged').toBe(true);
-    expect(calls.some((call) => call.url.includes('/pulls/42/files'))).toBe(false);
   });
 
-  it('reports a failed files read as an operational failure, never a merge', async () => {
-    const fetchImpl: GithubApiFetch = (url) =>
-      Promise.resolve({
-        status: url.includes('/files') ? 502 : 200,
-        json: () => Promise.resolve({ allow_merge_commit: true }),
-      });
+  it('reports a failed files read on an owed leg as a retryable reading failure, never a merge', async () => {
+    const files = makeClassPort(recordsFiles, { failing: '/pulls/42/files' });
 
-    const outcome = await runMergeExecution(makeInput(owedLegReading(), fetchImpl));
+    const onFiles = await runMergeExecution(makeInput(owedLegReading(), files.fetchImpl));
 
-    expect(outcome.ok).toBe(false);
-    if (!outcome.ok) {
-      expect(outcome.error.message).toContain('changed files read answered 502');
+    expect(onFiles.ok).toBe(false);
+    if (!onFiles.ok) {
+      expect(onFiles.error).toBeInstanceOf(ReadingUnavailableError);
+      expect(onFiles.error.message).toContain('changed files read answered 502');
     }
+    expect(files.calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+  });
+
+  it('keeps CHECKS-RUNNING as read, naming the reason, when the rules or the files cannot be read this poll', async () => {
+    const rules = makeClassPort(recordsFiles, { failing: '/rules/branches/' });
+    const files = makeClassPort(recordsFiles, { failing: '/pulls/42/files' });
+
+    const onRules = await runMergeExecution(makeInput(vendorRunPendingReading(), rules.fetchImpl));
+    const onFiles = await runMergeExecution(makeInput(vendorRunPendingReading(), files.fetchImpl));
+
+    for (const outcome of [onRules, onFiles]) {
+      expect(outcome.ok).toBe(true);
+      if (outcome.ok) {
+        expect(outcome.value.kind).toBe('refused');
+        if (outcome.value.kind === 'refused') {
+          expect(outcome.value.verdictState).toBe('CHECKS-RUNNING');
+          expect(
+            outcome.value.evidence.some((line) =>
+              line.startsWith('records-class narrowing unavailable this poll:'),
+            ),
+          ).toBe(true);
+        }
+      }
+    }
+    expect(rules.calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+    expect(files.calls.some((call) => call.url.endsWith('/pulls/42/merge'))).toBe(false);
+  });
+
+  it('reads no files while a code-class pull request waits on its own required checks', async () => {
+    const { fetchImpl, calls } = makeClassPort([
+      { filename: 'agent-tools/src/merge-bot/merge.ts' },
+    ]);
+    const requiredPending = makeReading({
+      reviews: [],
+      checksGreenAt: null,
+      namedChecks: [
+        { name: 'run-quality-gates', bucket: 'pending' },
+        { name: 'CodeQL', bucket: 'passed' },
+      ],
+      checks: { total: 2, passed: 1, failed: 0, pending: 1 },
+    });
+
+    const outcome = await runMergeExecution(makeInput(requiredPending, fetchImpl));
+
+    expect(outcome.ok && outcome.value.kind === 'refused' && outcome.value.verdictState).toBe(
+      'CHECKS-RUNNING',
+    );
+    expect(calls.some((call) => call.url.includes('/pulls/42/files'))).toBe(false);
   });
 });

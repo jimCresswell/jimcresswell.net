@@ -10,29 +10,23 @@
  * rule's test decides the other class: "is this code?" — source, workflows,
  * hooks, config-as-code, anything executable or CI-affecting. A Markdown file
  * is never executed by the estate's CI, so the records class is Markdown under
- * the documentation and Practice roots (the platform adapter directories hold
- * generated Markdown pointers), outside any directory whose Markdown a test or
- * a hook reads as an input. Everything else is code-class, conservatively: a
- * records fold that carries one code path keeps the SETTLE-READY door.
+ * the documentation and Practice roots, outside any directory whose Markdown a
+ * test or a hook reads as an input. The platform adapter directories are
+ * generated surfaces a validator recomputes, and the retrospective's ratified
+ * path set keeps generated adapters code-class with hook policy and
+ * workflows. Everything else is code-class, conservatively: a records fold
+ * that carries one code path keeps the SETTLE-READY door.
  */
 
 const MARKDOWN_SUFFIX = '.md';
 
 /** The top-level directories whose Markdown is documentation or Practice prose. */
-const RECORDS_ROOTS: ReadonlySet<string> = new Set([
-  '.agent',
-  'docs',
-  'linkedin',
-  '.claude',
-  '.codex',
-  '.cursor',
-  '.gemini',
-  '.agents',
-]);
+const RECORDS_ROOTS: ReadonlySet<string> = new Set(['.agent', 'docs', 'linkedin']);
 
 /** Path segments under which Markdown is an input to code (fixtures, hooks, schemas), never prose. */
 const CODE_SEGMENTS: ReadonlySet<string> = new Set([
   'hooks',
+  'scripts',
   'schemas',
   'setup',
   'src',
@@ -52,9 +46,8 @@ export type ChangeClass =
 /** The policy in one sentence, for usage text and the merge report. */
 export const RECORDS_CLASS_DESCRIPTION =
   'records-class: every changed path is a Markdown file at the repository root or under ' +
-  '.agent, docs, linkedin or a platform adapter directory (.claude, .codex, .cursor, .gemini, ' +
-  '.agents), outside any hooks, schemas, setup, src, tests, fixtures, snapshots or end-to-end ' +
-  'directory';
+  '.agent, docs or linkedin, outside any hooks, scripts, schemas, setup, src, tests, fixtures, snapshots ' +
+  'or end-to-end directory; generated platform adapters, hook policy and workflows are code-class';
 
 function hasOnlyPlainSegments(segments: readonly string[]): boolean {
   return segments.every((segment) => segment !== '' && segment !== '.' && segment !== '..');

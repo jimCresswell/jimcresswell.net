@@ -186,9 +186,12 @@ fold merges (a Director's ruling with the lane's agreement, 2026-09-07, events d
    fold never waits for it: `merge-bot merge` computes the class from the
    pull request's changed files (every path documentation or Practice
    prose, decided per path, `change-class.ts`; a seat never declares it) and
-   merges a records-class fold at checks green with zero unresolved threads
-   on the verdicts that differ from SETTLE-READY only by the vendor leg,
-   naming the ground in its evidence (the owner's ruling of 2026-09-03,
+   merges a records-class fold at checks green by name (the required
+   contexts above, read from the rules at run time; a pending check the
+   rules do not require — the vendor's own review run among them — does not
+   hold a records-class fold, a failed check of any name does) with zero
+   unresolved threads on the verdicts that differ from SETTLE-READY only by
+   the vendor leg, naming the ground in its evidence (the owner's ruling of 2026-09-03,
    "Change the merge policy instead", as the door's behaviour; the owner's
    decision of 2026-10-10 on the retrospective's proposal 1). The review is
    harvested after the merge under PDR-140 clause 9(e): each finding is read
@@ -306,9 +309,9 @@ fold merges (a Director's ruling with the lane's agreement, 2026-09-07, events d
     stream so every seat re-homes. Then read the fold's clock from the API,
     never from the seat's sense of time:
     `pnpm --silent agent-tools coordination fold-clock --pr <fold PR> --successor <the successor's pushed sha>`
-    prints one line (the ready-mark, checks green on the required contexts,
-    each vendor round, the merge, the successor's arrival on CI, every
-    interval in minutes from the ready-mark); paste it into the fold's
+    prints one line (the ready-mark, checks green on the same required
+    contexts the door reads, each vendor round, the merge, the successor's
+    arrival on CI, every interval in minutes from the ready-mark); paste it into the fold's
     review-cost ledger row's Notes (a seat's reading of the push gate was
     wrong by three times, the retrospective of 2026-10-10; the owner's bound
     on a fold is ten minutes of wall time, his word of that day). A fold entry is a few lines of state (the

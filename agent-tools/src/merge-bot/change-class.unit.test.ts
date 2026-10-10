@@ -18,9 +18,6 @@ describe('isRecordsPath', () => {
       '.agent/skills/coordination-fold/SKILL-CANONICAL.md',
       'docs/editorial/decision-records/007-naming.md',
       'linkedin/profile.md',
-      '.claude/skills/jc-wrap/SKILL.md',
-      '.claude/agents/audience-reader.md',
-      '.codex/agents/editor.md',
       'README.md',
       'CHANGELOG.md',
     ]) {
@@ -54,9 +51,24 @@ describe('isRecordsPath', () => {
     }
   });
 
+  it('keeps generated platform adapters code-class, Markdown or not (the ratified path set)', () => {
+    for (const path of [
+      '.claude/skills/jc-wrap/SKILL.md',
+      '.claude/agents/audience-reader.md',
+      '.claude/rules/verify-dont-trust.md',
+      '.codex/agents/editor.md',
+      '.cursor/rules/verify-dont-trust.mdc',
+      '.gemini/agents/editor.md',
+      '.agents/skills/jc-wrap/SKILL.md',
+    ]) {
+      expect(isRecordsPath(path), path).toBe(false);
+    }
+  });
+
   it('refuses Markdown a hook, a schema or a test reads as an input, even under a records root', () => {
     for (const path of [
       '.agent/hooks/README.md',
+      '.agent/scripts/README.md',
       '.agent/setup/notes.md',
       '.agent/skills/some-skill/fixtures/sample.md',
       '.agent/skills/some-skill/tests/case.md',
@@ -101,6 +113,7 @@ describe('describeOffenders', () => {
     const offenders = ['a.ts', 'b.ts', 'c.ts', 'd.ts', 'e.ts', 'f.ts', 'g.ts'];
 
     expect(describeOffenders(offenders)).toBe('a.ts, b.ts, c.ts, d.ts, e.ts and 2 more');
+    expect(describeOffenders(offenders.slice(0, 5))).toBe('a.ts, b.ts, c.ts, d.ts, e.ts');
     expect(describeOffenders(offenders.slice(0, 2))).toBe('a.ts, b.ts');
   });
 });
