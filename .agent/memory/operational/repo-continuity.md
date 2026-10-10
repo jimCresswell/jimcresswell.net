@@ -21,6 +21,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-10T11:3xZ: the coordination branch `2026-10-09-213f94` folded as 326 at
+  `SHA:f436b6fc`; the successor `coordination/2026-10-10-f436b6` cut from it** (Shrew rides
+  Eventide, 371a2b, at the owner's word; the bot's merge on SETTLE-READY after one Copilot round
+  of five findings and one settlement push, the second review on the settlement tip finding
+  nothing; the records pass before the ready-mark found eight slips, cured before the push; the
+  folded branch retired through the bot). moved for the sites: nothing / moved for the Practice:
+  Cedar turns Grove's handoff records and the wrap skill's clause on folds and compaction words,
+  on `main`.
+
 - **2026-10-10T11:1xZ: the LinkedIn lane handed to Shrew rides Eventide (371a2b) at the owner's
   word; Cedar turns Grove (1950d1) closes** (n=1; the at-rest succession of PDR-063: no claim,
   nothing in flight, the tracked surfaces are the handoff, and the thread record's block of this

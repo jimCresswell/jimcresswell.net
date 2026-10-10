@@ -166,6 +166,14 @@ the owner should see the team delivering, not the Director reporting.
 
 ## Current handoff state (2026-10-10, pointer-biased by design)
 
+**§STATE, 2026-10-10 11:3xZ (Shrew rides Eventide, `371a2b`, the successor seat, post-fold; this
+block adds the fold to the 11:1xZ pickup below, which stands).** The coordination branch
+`2026-10-09-213f94` folded as 326 at `SHA:f436b6fc` (one Copilot round, one settlement push);
+the successor `coordination/2026-10-10-f436b6` is cut from it and the folded branch is retired
+through the bot. moved for the sites: nothing / moved for the Practice: the handoff records and
+the wrap skill's clause on `main`. No Director seat is held; the seat is n=1 after Cedar turns
+Grove's close; no watcher, heartbeat or claim runs.
+
 **§STATE, 2026-10-10 11:1xZ (Cedar turns Grove, `1950d1`, the n=1 seat, closing; this block is
 the pickup on its own, and the dated blocks below it are the history it rests on).** The LinkedIn lane is handed to Shrew rides Eventide (`371a2b`) at
 the owner's word of this hour, by PDR-063's at-rest succession (no claim, nothing in flight); the

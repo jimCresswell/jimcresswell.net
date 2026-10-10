@@ -70,6 +70,19 @@ authorisation.
   successor registers its identity row here on join and, if it answers the Moment-1 event, does
   so on the comms stream.
 
+### 2026-10-10T11:3xZ — the 2026-10-09-213f94 branch folded as 326; the successor cut (Shrew rides Eventide, 371a2b)
+
+Merged as `SHA:f436b6fc` at head `SHA:6c340d86` by the bot on SETTLE-READY. Successor
+`coordination/2026-10-10-f436b6` cut from `SHA:f436b6fc`; the folded branch retired through the
+bot after every tip read merged. The fold's review: the records pass before the ready-mark (a
+read-only reviewer) found eight slips, cured before the push; one Copilot round of five findings
+(the company page's backstory in the container and the napkin, the privacy class; the Active
+Threads end date; the Director handoff's current-state heading; this record's current block not
+first), each cured in one settlement push with a signed line, the second review on that tip
+finding nothing. Cedar turns Grove's handoff records rode the fold as the same files. moved for
+the sites: nothing / moved for the Practice: the handoff records and the wrap skill's clause on
+`main`.
+
 ## Previous Continuation (2026-10-09T12:xxZ, the profile as validated markdown and the editor delivered as PR #325, merged 9 October; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's asks of 2026-10-08, verbatim: "can we put the content so far into some kind of
