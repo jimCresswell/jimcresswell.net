@@ -2,7 +2,8 @@ import { ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
 import { parseWithSchema } from '../core/schema-parse.js';
-import type { CheckRunReading, FoldClockReading, ReviewerEvent } from './fold-clock.js';
+import type { CheckRunReading, FoldClockReading } from './fold-clock.js';
+import type { ReviewerEvent } from './fold-clock-rounds.js';
 
 /**
  * The fold clock's read boundary: four GitHub surfaces parsed to the exact
@@ -133,6 +134,43 @@ export function parseCheckRuns(value: unknown): Result<readonly CheckRunReading[
         startedAt: run.started_at ?? undefined,
         completedAt: run.completed_at ?? undefined,
       })),
+  );
+}
+
+const commitStatusSchema = z.object({
+  statuses: z.array(
+    z.object({
+      context: z.string().min(1),
+      state: z.string(),
+      created_at: instant,
+      updated_at: instant,
+    }),
+  ),
+});
+
+/**
+ * The combined status of a commit (`GET /commits/{sha}/status`: the latest
+ * status per context) read as runs of their contexts, so a required context
+ * that is a commit status (Vercel publishes no check-run) is judged beside
+ * the check-runs. A terminal state is its conclusion and its update instant
+ * its completion; `pending` is a run still open.
+ */
+export function parseCommitStatus(value: unknown): Result<readonly CheckRunReading[], Error> {
+  const parsed = parseWithSchema({
+    label: 'fold-clock commit status',
+    schema: commitStatusSchema,
+    value,
+  });
+  if (!parsed.ok) {
+    return parsed;
+  }
+  return ok(
+    parsed.value.statuses.map((status) => ({
+      name: status.context,
+      conclusion: status.state === 'pending' ? undefined : status.state,
+      startedAt: status.created_at,
+      completedAt: status.state === 'pending' ? undefined : status.updated_at,
+    })),
   );
 }
 

@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { assembleReading, parseCheckRuns, parsePull, parseTimeline } from './fold-clock-reading.js';
+import {
+  assembleReading,
+  parseCheckRuns,
+  parseCommitStatus,
+  parsePull,
+  parseTimeline,
+} from './fold-clock-reading.js';
 
 /**
  * The read boundary over the shapes the API served for pull request 326 on
@@ -156,6 +162,55 @@ describe('parseCheckRuns', () => {
   it('refuses a body that is not slurped pages of check runs', () => {
     expect(parseCheckRuns({ check_runs: [] }).ok).toBe(false);
     expect(parseCheckRuns([{ message: 'Not Found' }]).ok).toBe(false);
+  });
+});
+
+describe('parseCommitStatus', () => {
+  it('reads each context as a run: a terminal state is its conclusion and completion, pending is open', () => {
+    const runs = parseCommitStatus({
+      state: 'pending',
+      sha: HEAD,
+      statuses: [
+        {
+          context: 'Vercel',
+          state: 'success',
+          created_at: '2026-10-10T11:29:00Z',
+          updated_at: '2026-10-10T11:33:00Z',
+        },
+        {
+          context: 'Sonar',
+          state: 'pending',
+          created_at: '2026-10-10T11:29:10Z',
+          updated_at: '2026-10-10T11:29:10Z',
+        },
+      ],
+    });
+
+    expect(runs).toStrictEqual({
+      ok: true,
+      value: [
+        {
+          name: 'Vercel',
+          conclusion: 'success',
+          startedAt: '2026-10-10T11:29:00Z',
+          completedAt: '2026-10-10T11:33:00Z',
+        },
+        {
+          name: 'Sonar',
+          conclusion: undefined,
+          startedAt: '2026-10-10T11:29:10Z',
+          completedAt: undefined,
+        },
+      ],
+    });
+  });
+
+  it('reads a commit with no statuses as no runs, and refuses a body without statuses', () => {
+    expect(parseCommitStatus({ state: 'pending', statuses: [] })).toStrictEqual({
+      ok: true,
+      value: [],
+    });
+    expect(parseCommitStatus({ message: 'Not Found' }).ok).toBe(false);
   });
 });
 

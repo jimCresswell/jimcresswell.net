@@ -23,6 +23,22 @@ const MARKDOWN_SUFFIX = '.md';
 /** The top-level directories whose Markdown is documentation or Practice prose. */
 const RECORDS_ROOTS: ReadonlySet<string> = new Set(['.agent', 'docs', 'linkedin']);
 
+/**
+ * The root-level Markdown that is documentation. Every other root Markdown
+ * file is a harness entry surface (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`,
+ * `skills.md`) or a generated index (`RULES_INDEX.md`) and is code-class
+ * with the platform adapters.
+ */
+const ROOT_RECORDS_FILES: ReadonlySet<string> = new Set([
+  'README.md',
+  'CHANGELOG.md',
+  'CONTRIBUTING.md',
+  'CODE_OF_CONDUCT.md',
+  'SECURITY.md',
+  'ATTRIBUTION.md',
+  'LICENSE.md',
+]);
+
 /** Path segments under which Markdown is an input to code (fixtures, hooks, schemas), never prose. */
 const CODE_SEGMENTS: ReadonlySet<string> = new Set([
   'hooks',
@@ -45,9 +61,11 @@ export type ChangeClass =
 
 /** The policy in one sentence, for usage text and the merge report. */
 export const RECORDS_CLASS_DESCRIPTION =
-  'records-class: every changed path is a Markdown file at the repository root or under ' +
-  '.agent, docs or linkedin, outside any hooks, scripts, schemas, setup, src, tests, fixtures, snapshots ' +
-  'or end-to-end directory; generated platform adapters, hook policy and workflows are code-class';
+  'records-class: every changed path is a Markdown file under .agent, docs or linkedin, outside ' +
+  'any hooks, scripts, schemas, setup, src, tests, fixtures, snapshots or end-to-end directory, or ' +
+  'one of the root documentation files (README, CHANGELOG, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, ' +
+  'ATTRIBUTION, LICENSE); generated platform adapters, the root harness entry files, hook policy ' +
+  'and workflows are code-class';
 
 function hasOnlyPlainSegments(segments: readonly string[]): boolean {
   return segments.every((segment) => segment !== '' && segment !== '.' && segment !== '..');
@@ -63,7 +81,7 @@ export function isRecordsPath(path: string): boolean {
     return false;
   }
   if (segments.length === 1) {
-    return true;
+    return ROOT_RECORDS_FILES.has(path);
   }
   if (!RECORDS_ROOTS.has(segments[0] ?? '')) {
     return false;

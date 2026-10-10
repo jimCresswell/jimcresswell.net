@@ -20,6 +20,7 @@ describe('isRecordsPath', () => {
       'linkedin/profile.md',
       'README.md',
       'CHANGELOG.md',
+      'CONTRIBUTING.md',
     ]) {
       expect(isRecordsPath(path), path).toBe(true);
     }
@@ -47,6 +48,12 @@ describe('isRecordsPath', () => {
       '.github/pull_request_template.md',
       'tooling/result/README.md',
     ]) {
+      expect(isRecordsPath(path), path).toBe(false);
+    }
+  });
+
+  it('keeps the root harness entry files and the generated rules index code-class', () => {
+    for (const path of ['CLAUDE.md', 'AGENTS.md', 'GEMINI.md', 'skills.md', 'RULES_INDEX.md']) {
       expect(isRecordsPath(path), path).toBe(false);
     }
   });

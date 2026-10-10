@@ -1,29 +1,28 @@
 import { err, ok, type Result } from '@engraph/result';
 
+import { pairRounds, type ReviewerEvent, type ReviewRound } from './fold-clock-rounds.js';
+import { earliest, latest, minutesBetween } from './fold-clock-time.js';
+
 /**
  * The fold's clock, computed from the API's instants and never read by the
  * seat (the retrospective of 2026-10-10: a seat's reading of the push gate
  * was wrong by three times; the owner's bound on a fold is wall time and
  * nothing in the estate measured it). Pure: the reading arrives validated
- * from `fold-clock-reading.ts`; this module pairs, subtracts and formats.
+ * from `fold-clock-reading.ts`; this module reduces, subtracts and formats
+ * through `fold-clock-format.ts`.
  *
  * Instants: the ready-mark (the last `ready_for_review`, else the pull
  * request's opening), checks green (the latest passing completion among the
  * base branch's REQUIRED contexts on the tip — the merge door's own
  * definition for the records class, never every check-run, since a vendor's
- * review runs as a check-run of its own), each vendor review round (a Bot's
- * `review_requested` answered by that Bot's first later review; a request
- * re-made before the review lands supersedes the earlier one, so a review
- * answers the LATEST request before it), the merge, and the successor's first
- * check-run start when a successor tip is named. Every interval is minutes
- * from the ready-mark to one decimal, so a ledger row carries the fold's
- * shape in one line.
+ * review runs as a check-run of its own; a context is judged by its LATEST
+ * run, as GitHub judges it, and a commit status counts as a run of its
+ * context because a required context may be a status that publishes no
+ * check-run), each vendor review round (`fold-clock-rounds.ts`), the merge,
+ * and the successor's first check-run start when a successor tip is named.
+ * Every interval is minutes from the ready-mark to one decimal, so a ledger
+ * row carries the fold's shape in one line.
  */
-
-export interface ReviewerEvent {
-  readonly at: string;
-  readonly login: string;
-}
 
 export interface CheckRunReading {
   readonly name: string;
@@ -45,20 +44,10 @@ export interface FoldClockReading {
   readonly reviews: readonly ReviewerEvent[];
   /** The status contexts the base branch's rules require. */
   readonly requiredChecks: readonly string[];
+  /** The tip's check-runs and commit statuses, as runs of their contexts. */
   readonly headCheckRuns: readonly CheckRunReading[];
   readonly successor:
     { readonly sha: string; readonly checkRuns: readonly CheckRunReading[] } | undefined;
-}
-
-type RoundOutcome = 'reviewed' | 'superseded' | 'in-flight';
-
-export interface ReviewRound {
-  readonly login: string;
-  readonly requestedAt: string;
-  readonly reviewedAt: string | undefined;
-  /** Request to review, minutes to one decimal; absent unless reviewed. */
-  readonly minutes: number | undefined;
-  readonly outcome: RoundOutcome;
 }
 
 export interface FoldClock {
@@ -67,7 +56,7 @@ export interface FoldClock {
   readonly readyAt: string;
   readonly requiredChecks: readonly string[];
   readonly checksGreenAt: string | undefined;
-  /** Required contexts with no passing run on the tip. */
+  /** Required contexts whose latest run is not a passing completion. */
   readonly checksMissing: readonly string[];
   readonly readyToGreenMinutes: number | undefined;
   readonly rounds: readonly ReviewRound[];
@@ -78,109 +67,32 @@ export interface FoldClock {
   readonly readyToSuccessorMinutes: number | undefined;
 }
 
-const MILLIS_PER_MINUTE = 60_000;
-const TENTHS = 10;
 /** GitHub's required-check gate passes these conclusions; the merge door reads the same set. */
 const PASSING_CONCLUSIONS: ReadonlySet<string> = new Set(['success', 'neutral', 'skipped']);
 
-/** Minutes from `from` to `to`, to one decimal; both are validated ISO instants. */
-function minutesBetween(from: string, to: string): number {
-  const raw = (Date.parse(to) - Date.parse(from)) / MILLIS_PER_MINUTE;
-  return Math.round(raw * TENTHS) / TENTHS;
+/** A run's position in execution order: its start, else its completion. */
+function anchor(run: CheckRunReading): number {
+  return Date.parse(run.startedAt ?? run.completedAt ?? '');
 }
 
-function later(a: string, b: string): boolean {
-  return Date.parse(a) > Date.parse(b);
-}
-
-function latest(instants: readonly string[]): string | undefined {
-  return instants.reduce<string | undefined>(
-    (best, instant) => (best === undefined || later(instant, best) ? instant : best),
+/** The latest run of one context (GitHub evaluates a context through its latest run). */
+function latestRun(runs: readonly CheckRunReading[]): CheckRunReading | undefined {
+  return runs.reduce<CheckRunReading | undefined>(
+    (best, run) => (best === undefined || anchor(run) > anchor(best) ? run : best),
     undefined,
   );
 }
 
-function earliest(instants: readonly string[]): string | undefined {
-  return instants.reduce<string | undefined>(
-    (best, instant) => (best === undefined || later(best, instant) ? instant : best),
-    undefined,
-  );
-}
-
-function sameLogin(a: ReviewerEvent, b: ReviewerEvent): boolean {
-  return a.login.toLowerCase() === b.login.toLowerCase();
-}
-
-/** The index of the latest request this review answers: same login, earlier, not yet answered. */
-function latestEarlierUnpaired(
-  requests: readonly ReviewerEvent[],
-  review: ReviewerEvent,
-  paired: ReadonlyMap<number, ReviewerEvent>,
-): number {
-  let chosen = -1;
-  requests.forEach((request, index) => {
-    const candidate =
-      !paired.has(index) && sameLogin(request, review) && later(review.at, request.at);
-    if (candidate && (chosen === -1 || later(request.at, requests[chosen]?.at ?? request.at))) {
-      chosen = index;
-    }
-  });
-  return chosen;
-}
-
-function roundOf(
-  request: ReviewerEvent,
-  review: ReviewerEvent | undefined,
-  reviews: readonly ReviewerEvent[],
-): ReviewRound {
-  if (review !== undefined) {
-    return {
-      login: request.login,
-      requestedAt: request.at,
-      reviewedAt: review.at,
-      minutes: minutesBetween(request.at, review.at),
-      outcome: 'reviewed',
-    };
-  }
-  const answeredLater = reviews.some((r) => sameLogin(r, request) && later(r.at, request.at));
-  return {
-    login: request.login,
-    requestedAt: request.at,
-    reviewedAt: undefined,
-    minutes: undefined,
-    outcome: answeredLater ? 'superseded' : 'in-flight',
-  };
-}
-
-/** Each review answers the latest earlier unanswered request of its login; the rest are superseded or in flight. */
-function pairRounds(
-  requests: readonly ReviewerEvent[],
-  reviews: readonly ReviewerEvent[],
-): readonly ReviewRound[] {
-  const paired = new Map<number, ReviewerEvent>();
-  const ordered = [...reviews].sort((a, b) => Date.parse(a.at) - Date.parse(b.at));
-  for (const review of ordered) {
-    const index = latestEarlierUnpaired(requests, review, paired);
-    if (index !== -1) {
-      paired.set(index, review);
-    }
-  }
-  return requests.map((request, index) => roundOf(request, paired.get(index), ordered));
-}
-
-/** The latest passing completion per required context; a context with none is missing. */
+/** The passing completion of each required context's LATEST run; a context whose latest run is not passing is missing. */
 function requiredGreen(
   required: readonly string[],
   runs: readonly CheckRunReading[],
 ): { readonly greenAt: string | undefined; readonly missing: readonly string[] } {
-  const completions = required.map((name) => ({
-    name,
-    at: latest(
-      runs
-        .filter((run) => run.name === name && PASSING_CONCLUSIONS.has(run.conclusion ?? ''))
-        .flatMap((run) => (run.completedAt === undefined ? [] : [run.completedAt])),
-    ),
-  }));
+  const completions = required.map((name) => {
+    const survivor = latestRun(runs.filter((run) => run.name === name));
+    const passing = survivor !== undefined && PASSING_CONCLUSIONS.has(survivor.conclusion ?? '');
+    return { name, at: passing ? survivor.completedAt : undefined };
+  });
   const missing = completions.filter((entry) => entry.at === undefined).map((entry) => entry.name);
   const greenAt =
     missing.length > 0 || required.length === 0

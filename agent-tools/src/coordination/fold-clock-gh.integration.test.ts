@@ -53,6 +53,17 @@ const headRuns = [
     ],
   },
 ];
+const headStatus = {
+  state: 'success',
+  statuses: [
+    {
+      context: 'Vercel',
+      state: 'success',
+      created_at: '2026-10-10T11:29:00Z',
+      updated_at: '2026-10-10T11:33:00Z',
+    },
+  ],
+};
 const successorRuns = [
   {
     check_runs: [
@@ -65,6 +76,13 @@ const successorRuns = [
       },
     ],
   },
+];
+
+const CHECK_RUNS_ARGS = (repo: string, sha: string): readonly string[] => [
+  'api',
+  '--paginate',
+  '--slurp',
+  `repos/${repo}/commits/${sha}/check-runs?per_page=100&filter=all`,
 ];
 
 /** An executor answering by the path argument, recording every argv. */
@@ -89,16 +107,19 @@ const answers = {
   'repos/acme/widgets/pulls/326': pull,
   'repos/acme/widgets/issues/326/timeline?per_page=100': timeline,
   'repos/acme/widgets/rules/branches/main': rules,
-  [`repos/acme/widgets/commits/${HEAD}/check-runs?per_page=100`]: headRuns,
-  [`repos/acme/widgets/commits/${SUCCESSOR}/check-runs?per_page=100`]: successorRuns,
+  [`repos/acme/widgets/commits/${HEAD}/check-runs?per_page=100&filter=all`]: headRuns,
+  [`repos/acme/widgets/commits/${HEAD}/status`]: headStatus,
+  [`repos/acme/widgets/commits/${SUCCESSOR}/check-runs?per_page=100&filter=all`]: successorRuns,
 };
 
+const target = { number: 326, repo: 'acme/widgets' };
+
 describe('readFoldClockReading', () => {
-  it('reads the four surfaces with the pinned argv shapes and assembles the reading', () => {
+  it('reads the five surfaces with the pinned argv shapes and assembles the reading', () => {
     const { exec, calls } = fakeGh(answers);
 
     const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
+      target,
       ghPath: '/custom/bin/gh',
       exists: () => true,
       execFileSync: exec,
@@ -112,27 +133,26 @@ describe('readFoldClockReading', () => {
         { at: '2026-10-10T11:18:35Z', login: 'Copilot' },
       ]);
       expect(reading.value.requiredChecks).toStrictEqual(['CodeQL']);
-      expect(reading.value.headCheckRuns).toHaveLength(1);
+      expect(reading.value.headCheckRuns.map((run) => run.name)).toStrictEqual([
+        'CodeQL',
+        'Vercel',
+      ]);
       expect(reading.value.successor).toBeUndefined();
     }
     expect(calls).toStrictEqual([
       ['api', 'repos/acme/widgets/pulls/326'],
       ['api', '--paginate', '--slurp', 'repos/acme/widgets/issues/326/timeline?per_page=100'],
       ['api', 'repos/acme/widgets/rules/branches/main'],
-      [
-        'api',
-        '--paginate',
-        '--slurp',
-        `repos/acme/widgets/commits/${HEAD}/check-runs?per_page=100`,
-      ],
+      CHECK_RUNS_ARGS('acme/widgets', HEAD),
+      ['api', `repos/acme/widgets/commits/${HEAD}/status`],
     ]);
   });
 
-  it('reads the successor tip as a fifth surface when one is named', () => {
+  it('reads the successor tip as a sixth surface when one is named', () => {
     const { exec, calls } = fakeGh(answers);
 
     const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
+      target,
       successorSha: SUCCESSOR,
       exists: () => true,
       execFileSync: exec,
@@ -140,20 +160,15 @@ describe('readFoldClockReading', () => {
 
     expect(reading.ok && reading.value.successor?.sha).toBe(SUCCESSOR);
     expect(reading.ok && reading.value.successor?.checkRuns).toHaveLength(1);
-    expect(calls).toHaveLength(5);
-    expect(calls[4]).toStrictEqual([
-      'api',
-      '--paginate',
-      '--slurp',
-      `repos/acme/widgets/commits/${SUCCESSOR}/check-runs?per_page=100`,
-    ]);
+    expect(calls).toHaveLength(6);
+    expect(calls[5]).toStrictEqual(CHECK_RUNS_ARGS('acme/widgets', SUCCESSOR));
   });
 
   it('refuses a successor that is not a commit sha before any path carries it', () => {
     const { exec, calls } = fakeGh(answers);
 
     const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
+      target,
       successorSha: 'coordination/x',
       exists: () => true,
       execFileSync: exec,
@@ -163,7 +178,7 @@ describe('readFoldClockReading', () => {
     if (!reading.ok) {
       expect(reading.error.message).toContain('not a commit sha');
     }
-    expect(calls).toHaveLength(4);
+    expect(calls).toHaveLength(5);
   });
 
   it('lets gh infer the repository through its placeholder when the target names none', () => {
@@ -171,7 +186,10 @@ describe('readFoldClockReading', () => {
       'repos/{owner}/{repo}/pulls/7': pull,
       'repos/{owner}/{repo}/issues/7/timeline?per_page=100': [[]],
       'repos/{owner}/{repo}/rules/branches/main': [],
-      [`repos/{owner}/{repo}/commits/${HEAD}/check-runs?per_page=100`]: [{ check_runs: [] }],
+      [`repos/{owner}/{repo}/commits/${HEAD}/check-runs?per_page=100&filter=all`]: [
+        { check_runs: [] },
+      ],
+      [`repos/{owner}/{repo}/commits/${HEAD}/status`]: { state: 'pending', statuses: [] },
     });
 
     const reading = readFoldClockReading({
@@ -190,11 +208,7 @@ describe('readFoldClockReading', () => {
       'repos/acme/widgets/rules/branches/main': 'gh: Not Found (HTTP 404)',
     });
 
-    const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
-      exists: () => true,
-      execFileSync: exec,
-    });
+    const reading = readFoldClockReading({ target, exists: () => true, execFileSync: exec });
 
     expect(reading.ok).toBe(false);
     if (!reading.ok) {
@@ -208,11 +222,7 @@ describe('readFoldClockReading', () => {
       'repos/acme/widgets/pulls/326': { ...pull, head: { sha: 'short' } },
     });
 
-    const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
-      exists: () => true,
-      execFileSync: exec,
-    });
+    const reading = readFoldClockReading({ target, exists: () => true, execFileSync: exec });
 
     expect(reading.ok).toBe(false);
     if (!reading.ok) {
@@ -226,11 +236,7 @@ describe('readFoldClockReading', () => {
       'repos/acme/widgets/pulls/326': { ...pull, base: { ref: '../main' } },
     });
 
-    const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
-      exists: () => true,
-      execFileSync: exec,
-    });
+    const reading = readFoldClockReading({ target, exists: () => true, execFileSync: exec });
 
     expect(reading.ok).toBe(false);
     if (!reading.ok) {
@@ -242,11 +248,7 @@ describe('readFoldClockReading', () => {
   it('fails loudly when gh cannot be found', () => {
     const { exec, calls } = fakeGh(answers);
 
-    const reading = readFoldClockReading({
-      target: { number: 326, repo: 'acme/widgets' },
-      exists: () => false,
-      execFileSync: exec,
-    });
+    const reading = readFoldClockReading({ target, exists: () => false, execFileSync: exec });
 
     expect(reading.ok).toBe(false);
     if (!reading.ok) {

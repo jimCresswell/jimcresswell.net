@@ -13,6 +13,7 @@ import { isBranchName, parseRequiredChecks } from '../pr-watch/required-checks.j
 import {
   assembleReading,
   parseCheckRuns,
+  parseCommitStatus,
   parsePull,
   parseTimeline,
   type PullReading,
@@ -81,8 +82,27 @@ function checkRunsArgs(repo: string, sha: string): readonly string[] {
     'api',
     '--paginate',
     '--slurp',
-    `repos/${repo}/commits/${sha}/check-runs?per_page=${PER_PAGE}`,
+    `repos/${repo}/commits/${sha}/check-runs?per_page=${PER_PAGE}&filter=all`,
   ];
+}
+
+/** The tip's check-runs and its commit statuses, as runs of their contexts. */
+function readHeadChecks(
+  gh: Gh,
+  repo: string,
+  sha: string,
+): Result<readonly CheckRunReading[], Error> {
+  const runs = readSurface(gh, checkRunsArgs(repo, sha), 'head check-runs', parseCheckRuns);
+  if (!runs.ok) {
+    return runs;
+  }
+  const statuses = readSurface(
+    gh,
+    ['api', `repos/${repo}/commits/${sha}/status`],
+    'head commit status',
+    parseCommitStatus,
+  );
+  return statuses.ok ? ok([...runs.value, ...statuses.value]) : statuses;
 }
 
 function readSuccessor(
@@ -138,12 +158,7 @@ function readRemaining(context: PullContext): Result<FoldClockReading, Error> {
   if (!required.ok) {
     return required;
   }
-  const head = readSurface(
-    gh,
-    checkRunsArgs(repo, pull.headSha),
-    'head check-runs',
-    parseCheckRuns,
-  );
+  const head = readHeadChecks(gh, repo, pull.headSha);
   if (!head.ok) {
     return head;
   }

@@ -434,9 +434,10 @@ pnpm agent-tools commit-queue status
   prints a fold's measured clock as one line for the review-cost ledger row: the
   ready-mark (the last `ready_for_review`, else the opening), checks green on the
   base branch's REQUIRED contexts (the merge door's own definition for the records
-  class; a vendor's review runs as a check-run and never counts), each Bot review
-  round (a request answered by that Bot's first later review; a request re-made
-  before the review lands supersedes the earlier one), the merge, and with
+  class; a vendor's review runs as a check-run and never counts; each context is
+  judged by its latest run, check-runs and commit statuses alike), each Bot review
+  round (a request answered by that Bot's next review; a newer request supersedes
+  an open one at once), the merge, and with
   `--successor` the successor tip's first check-run start. Every interval is minutes
   from the ready-mark. Read-only on the session's own `gh` login through the
   keyring-pinned read executor (no ambient token). Exit 0 on success, 2 on any

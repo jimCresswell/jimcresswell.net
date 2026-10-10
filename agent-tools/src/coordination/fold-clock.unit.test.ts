@@ -115,6 +115,37 @@ describe('computeFoldClock', () => {
     ]);
   });
 
+  it('supersedes an open request the moment a newer one arrives, review or no review', () => {
+    const noReview = clockOf({
+      ...fold326,
+      requests: [
+        { at: '2026-10-10T11:18:35Z', login: 'Copilot' },
+        { at: '2026-10-10T11:28:55Z', login: 'Copilot' },
+      ],
+      reviews: [],
+    });
+    const twoReviews = clockOf({
+      ...fold326,
+      requests: [
+        { at: '2026-10-10T11:18:35Z', login: 'Copilot' },
+        { at: '2026-10-10T11:20:00Z', login: 'Copilot' },
+      ],
+      reviews: [
+        { at: '2026-10-10T11:24:00Z', login: 'Copilot' },
+        { at: '2026-10-10T11:30:00Z', login: 'Copilot' },
+      ],
+    });
+
+    expect(noReview.rounds.map((round) => round.outcome)).toStrictEqual([
+      'superseded',
+      'in-flight',
+    ]);
+    expect(twoReviews.rounds.map((round) => [round.outcome, round.minutes])).toStrictEqual([
+      ['superseded', undefined],
+      ['reviewed', 4],
+    ]);
+  });
+
   it('never answers two requests with one review', () => {
     const clock = clockOf({
       ...fold326,
@@ -154,6 +185,66 @@ describe('computeFoldClock', () => {
     expect(clock.readyToGreenMinutes).toBeUndefined();
   });
 
+  it('judges a context by its LATEST run: an older success never masks a newer failure or rerun', () => {
+    const rerunFailed = clockOf({
+      ...fold326,
+      headCheckRuns: [
+        {
+          name: 'run-quality-gates',
+          conclusion: 'success',
+          startedAt: '2026-10-10T11:28:54Z',
+          completedAt: '2026-10-10T11:32:30Z',
+        },
+        {
+          name: 'run-quality-gates',
+          conclusion: 'failure',
+          startedAt: '2026-10-10T11:40:00Z',
+          completedAt: '2026-10-10T11:43:00Z',
+        },
+        run('CodeQL', '2026-10-10T11:29:35Z'),
+      ],
+    });
+    const rerunOpen = clockOf({
+      ...fold326,
+      headCheckRuns: [
+        {
+          name: 'run-quality-gates',
+          conclusion: 'success',
+          startedAt: '2026-10-10T11:28:54Z',
+          completedAt: '2026-10-10T11:32:30Z',
+        },
+        {
+          name: 'run-quality-gates',
+          conclusion: undefined,
+          startedAt: '2026-10-10T11:40:00Z',
+          completedAt: undefined,
+        },
+        run('CodeQL', '2026-10-10T11:29:35Z'),
+      ],
+    });
+
+    expect(rerunFailed.checksMissing).toStrictEqual(['run-quality-gates']);
+    expect(rerunOpen.checksMissing).toStrictEqual(['run-quality-gates']);
+  });
+
+  it('reads a commit status as a run of its context when the rules require it', () => {
+    const clock = clockOf({
+      ...fold326,
+      requiredChecks: ['run-quality-gates', 'Vercel'],
+      headCheckRuns: [
+        run('run-quality-gates', '2026-10-10T11:32:30Z'),
+        {
+          name: 'Vercel',
+          conclusion: 'success',
+          startedAt: '2026-10-10T11:29:00Z',
+          completedAt: '2026-10-10T11:33:00Z',
+        },
+      ],
+    });
+
+    expect(clock.checksGreenAt).toBe('2026-10-10T11:33:00Z');
+  });
+
   it("passes the conclusions GitHub's required gate passes: success, neutral, skipped", () => {
     const clock = clockOf({
       ...fold326,
@@ -166,13 +257,22 @@ describe('computeFoldClock', () => {
     expect(clock.checksGreenAt).toBe('2026-10-10T11:32:30Z');
   });
 
-  it('takes the latest passing completion per context when a context ran more than once', () => {
+  it('judges a rerun context by the run that started last, whatever the others concluded', () => {
     const clock = clockOf({
       ...fold326,
       headCheckRuns: [
-        run('run-quality-gates', '2026-10-10T11:20:00Z', 'failure'),
-        run('run-quality-gates', '2026-10-10T11:25:00Z'),
-        run('run-quality-gates', '2026-10-10T11:40:00Z'),
+        {
+          name: 'run-quality-gates',
+          conclusion: 'failure',
+          startedAt: '2026-10-10T11:18:00Z',
+          completedAt: '2026-10-10T11:20:00Z',
+        },
+        {
+          name: 'run-quality-gates',
+          conclusion: 'success',
+          startedAt: '2026-10-10T11:36:00Z',
+          completedAt: '2026-10-10T11:40:00Z',
+        },
         run('CodeQL', '2026-10-10T11:29:35Z'),
       ],
     });

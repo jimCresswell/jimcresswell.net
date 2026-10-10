@@ -1,4 +1,5 @@
-import type { FoldClock, ReviewRound } from './fold-clock.js';
+import type { FoldClock } from './fold-clock.js';
+import type { ReviewRound } from './fold-clock-rounds.js';
 
 /**
  * The fold clock as one line for the review-cost ledger row: the ready-mark
