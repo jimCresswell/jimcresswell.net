@@ -185,7 +185,7 @@
       "hasOccupation": [{ "@id": "https://www.jimcresswell.net/#occupation" }],
       "worksFor": [
         { "@id": "https://www.jimcresswell.net/cv/#role-oak-principal-2022-present" },
-        { "@id": "https://www.jimcresswell.net/cv/#role-oak-devops-2021-2022" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-oak-principal-consulting-2021-2022" },
         { "@id": "https://www.jimcresswell.net/cv/#role-oak-senior-2020-2020" },
         { "@id": "https://www.jimcresswell.net/cv/#role-code-science-2018-present" },
         { "@id": "https://www.jimcresswell.net/cv/#role-obaith-2018-2020" },
@@ -324,16 +324,16 @@
       "roleName": "Principal Engineer",
       "worksFor": { "@id": "https://www.jimcresswell.net/#org-oak" },
       "startDate": "2022-06",
-      "description": "Setting foundational technical and product direction inside a live national public service. Conceived and built an SDK and MCP server for Oak\u2019s fully sequenced, pedagogically rigorous curriculum data, released under the Open Government Licence and directly accessible to AI-powered services. Helped shape the Engineering function from four contractors into five product squads and three platform groups."
+      "description": "Setting foundational technical and product direction inside a live national public service. Conceived and built an SDK and MCP server for Oak\u2019s fully sequenced, pedagogically rigorous curriculum data, released under the Open Government Licence and directly accessible to AI-powered services. Helped shape the Engineering function from four contractors into six product squads and three platform groups."
     },
 
     {
       "@type": "EmployeeRole",
-      "@id": "https://www.jimcresswell.net/cv/#role-oak-devops-2021-2022",
-      "roleName": "Head of DevOps and Quality (Consulting)",
+      "@id": "https://www.jimcresswell.net/cv/#role-oak-principal-consulting-2021-2022",
+      "roleName": "Principal Engineer (Consulting)",
       "worksFor": { "@id": "https://www.jimcresswell.net/#org-oak" },
       "startDate": "2021-01",
-      "endDate": "2022-06",
+      "endDate": "2022-05",
       "description": "Set delivery infrastructure and quality culture during rapid growth from startup to national platform. Established CI/CD, testing strategy, and developer experience foundations that supported the transition to permanent engineering teams."
     },
 
@@ -638,7 +638,7 @@
       "@id": "https://www.jimcresswell.net/#cap-strategy-leadership",
       "additionalType": "https://www.jimcresswell.net/schema/Capability",
       "name": "Strategy and technical leadership at scale",
-      "description": "Helping shape Oak\u2019s Engineering function from four contractors into five product squads and three platform groups. Holding the long-term technical vision, translating direction for non-technical stakeholders, and coaching engineers through ambiguity."
+      "description": "Helping shape Oak\u2019s Engineering function from four contractors into six product squads and three platform groups. Holding the long-term technical vision, translating direction for non-technical stakeholders, and coaching engineers through ambiguity."
     },
 
     {
