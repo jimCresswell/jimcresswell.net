@@ -32,10 +32,12 @@ The copy: [`profile.md` § Headline](profile.md#headline).
 The copy: [`profile.md` § About](profile.md#about). Paragraph one is what shows before "see
 more"; the editor reports the count.
 
-## Experience — Oak National Academy — drafted, awaiting Jim
+## Experience — Oak National Academy — drafted, revised by Jim, under the readers
 
-Two positions, grouped under Oak: **Senior Developer (consulting)**, August to December 2020,
-short, "there at the beginning"; **Principal Engineer**, January 2021 to present, meaning
+Two positions, grouped under Oak, dated by Jim on 10 October (correcting the chronology the
+8 October draft carried): **Senior Developer (consulting)**, August 2020 to May 2022, the
+consulting years, "there at the beginning", closing on the position being formalised as
+Principal Engineer; **Principal Engineer**, June 2022 to present, meaning
 engineering strategy, in labelled movements in Jim's words: joining to
 get the first teacher-facing service over the line; contributing to defining the engineering
 function (best practice, the first QA and engineering-manager hires, collaborative approaches,
@@ -43,9 +45,9 @@ long-term investment in reducing the cost of innovation); checks and continuous 
 the rebuild; driving the rebuild and accepting the risk; the Oak AI plugin, with the SDK as the
 necessary step, spanning the last two and a half years (the OCE repository about the last year,
 before it a hand-written SDK for the Oak Open API and the Practice's progenitors); the shift from
-what is possible to how Oak's values are embodied; the Practice. No Head of DevOps entry; no
-entry for the June 2022 employment change. Location per Jim's rule (entries with a location
-carry it; remote says United Kingdom).
+what is possible to how Oak's values are embodied; the Practice. No Head of DevOps entry; the
+June 2022 employment change is where the Principal entry starts. Location per Jim's rule
+(entries with a location carry it; remote says United Kingdom).
 
 The plugin movement follows EDR-007: Jim's five contributions in his order (conceiving the
 opportunity; formulating and expressing the need; creating the engineering framework for rapid
@@ -64,16 +66,20 @@ Written from the reader's decision and the three beliefs (the private record hol
 `editor`, `prose-expert` and the `audience-reader` before this text was set down, then proofed
 against the sources. The copy of both entries: [`profile.md` § Experience](profile.md#experience),
 the Principal Engineer entry and the Senior Developer (consulting) entry, each
-`Status: drafted (8 October 2026, awaiting Jim)`. Length is information, never a target: the
+`Status: drafted (8 October 2026; revised by Jim, 10 October 2026, under the readers)`: on
+10 October Jim revised both entries and the About in the local editor (the dates above, the
+squad count, the leadership audience, the Team Topologies beat, the Practice sentence, the
+consulting entry's opening and closing sentences), and the revised text went back through
+`prose-expert` and the `audience-reader`. Length is information, never a target: the
 editor reports each entry's count against the believed limit of 2,000 for a position
 description, unverified until the live editor (the Principal entry stands above it). If the
 field refuses the text, what moves to another surface is Jim's editorial choice.
 
 Open for Jim, with the draft:
 
-- The handover tense. "has its own cross-discipline product squad now, building against the
+- The handover tense. "has its own cross-discipline product squad now, building out the
   direction I set" is true during the phased handover and after it; "stream-aligned" is dropped
-  for the reader; both are his to confirm.
+  for the reader; Jim's 10 October revision of that sentence kept both.
 - The pattern sentence ("go where the next problem is still unformed") on a current role: Oak
   colleagues can read it as a departure notice. His call.
 - Whether anyone else on the plugin's engineering needs credit beside the curriculum experts; no
@@ -100,9 +106,11 @@ Open for Jim, with the draft:
 - The plugin carrying the curriculum principles and accessibility standards is verified for the
   Claude plugin (0.1.6); whether the ChatGPT app carries them is not.
 - "helped define the function" is the one collaborative hedge kept on purpose; the title
-  question above; and the site's entity graph still records Head of DevOps and Quality for
-  2021–2022, so a verifier reading both sees two title histories (LinkedIn-only lane; his to
-  carry or cure on the graph later).
+  question above; and the site's entity graph records Senior Developer (Consulting) for
+  August to December 2020, Head of DevOps and Quality (Consulting) for January 2021 to June 2022
+  and Principal Engineer from June 2022, while the LinkedIn consulting card runs August 2020 to
+  May 2022 under Senior Developer, so a verifier reading both sees two title histories
+  (LinkedIn-only lane; his to carry or cure on the graph later).
 
 ## Top card, photo, banner, volunteering, organisations, interests — open
 

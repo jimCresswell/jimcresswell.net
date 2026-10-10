@@ -29,8 +29,9 @@ file.
   the owner-set headline decision, his own Oak paragraphs). The Practice is defined canonically
   in `.agent/practice-core/practice.md`; its LinkedIn movement is a translation for readers.
 - Settled: the headline the owner set in August stands; the Oak block is Senior Developer
-  (consulting) Aug to Dec 2020 then Principal Engineer from January 2021 meaning engineering
-  strategy, with no Head of DevOps entry and no entry for the 2022 employment change; earlier
+  (consulting) Aug 2020 to May 2022 then Principal Engineer from June 2022 (Jim, 10 October,
+  correcting the dates: the employment change is where the Principal entry starts) meaning
+  engineering strategy, with no Head of DevOps entry; earlier
   entries brief and true; skills additive with endorsements kept; two or three recommendations
   from senior colleagues; Open to Work off; Featured for the Oak site and the MCP app, Projects
   for the public route; "Fractious" goes.
@@ -63,8 +64,9 @@ care about them. [Contribution and distinctions](reference/contribution-analysis
 
 ## What is settled, and what is proposed
 
-- **Settled facts and direction:** Principal Engineer from January 2021; Senior Developer
-  August–December 2020. Obaith was research intended to become a startup that Jim chose to stop;
+- **Settled facts and direction:** Principal Engineer from June 2022; Senior Developer
+  (consulting) August 2020 to May 2022 (Jim, 10 October 2026, correcting the earlier January
+  2021 reading). Obaith was research intended to become a startup that Jim chose to stop;
   he learned, among other things, the importance of delivery over perfect planning. Code Science
   was the limited company through which he provided consultancy. Institute of Physics membership
   is current. Do not ask these questions again without contrary new evidence.

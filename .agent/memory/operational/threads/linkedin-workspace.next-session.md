@@ -83,6 +83,32 @@ finding nothing. Cedar turns Grove's handoff records rode the fold as the same f
 the sites: nothing / moved for the Practice: the handoff records and the wrap skill's clause on
 `main`.
 
+### 2026-10-10T15:1xZ — the owner's edits to the About and the Oak entries; the chronology corrected; the readers' second pass; awaiting the owner (Shrew rides Eventide, 371a2b)
+
+The owner edited the About and both Oak entries in the editor and "fixed one factual error with
+the Oak dates": Principal Engineer June 2022 to present; Senior Developer (consulting) August
+2020 to May 2022, closing on the position being formalised as Principal Engineer; then, in chat,
+the consulting entry's opening sentence ("Oak had launched that April as an emergency pandemic
+response ... meant no child missed out on education."). His edits are in `linkedin/profile.md`
+(the status lines say so); the container's Oak section and the rewrite handoff carry his
+chronology in place of the January 2021 reading, and EDR-007's chronology line is dated. The
+revised text went through `prose-expert` and the `audience-reader` in parallel (the `editor` not
+re-run: the structure is his from 8 October and the edits are line-level): nine of twelve line
+findings applied, three of his phrasings kept as his words, one fact corrected by the seat
+("England's official curriculum body" for "the UK's", Oak being funded by the Department for
+Education and serving England's national curriculum; reversible at his word). The editor file
+`profile.review.md` is a copy of the home after the pass, so the editor shows him the draft he
+reads second. Open for the owner, with the container's standing items: the consulting card's
+title for January 2021 to May 2022 (the seat's verdict: a second consulting card, Principal
+Engineer (consulting), consistent with his 27 September direction and his "formalised"; the head
+hunter named the title history as the client's first objection); the head hunter's reading of a
+principal who advises leadership and hands work on, with no headcount or reporting line (the
+level claim); "the Practice" read as a personal method by both readers; the About's fold carrying
+no leadership signal; the site's entity graph (Head of DevOps and Quality for 2021 to 2022, "five
+product squads") against his edits. Next: his reading of the draft; then the earlier entries,
+Featured, Projects, skills, recommendations, settings; the application only at his express
+request with him present. moved for the sites: nothing / moved for the Practice: nothing.
+
 ## Previous Continuation (2026-10-09T12:xxZ, the profile as validated markdown and the editor delivered as PR #325, merged 9 October; the owner's correction on ceremony; the Oak entry is next; the latest block governs; Cedar turns Grove, 1950d1)
 
 - The owner's asks of 2026-10-08, verbatim: "can we put the content so far into some kind of
