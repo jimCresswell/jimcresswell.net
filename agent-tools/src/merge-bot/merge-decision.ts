@@ -1,21 +1,29 @@
 import type { PrVerdict } from '../pr-watch/state-types.js';
+import { describeOffenders, type ChangeClass } from './change-class.js';
 
 /**
  * The pure verdict→action mapping for `merge-bot merge` (MCP-508 slice 1).
  *
- * The command acts on exactly one verdict state — `SETTLE-READY` — and
- * refuses everything else with the verdict's own name in the reason, so a
- * supervisor reads the outcome by name, never by inference. The two
- * additional gates carry the estate's standing rulings as behaviour:
- * merge commits must still be allowed by the repo settings (never a squash
- * fallback), and the expected reviewer set must have been DECLARED — a
- * defaulted set can omit a configured-but-never-requested reviewer, letting
- * settlement read `SETTLE-READY` on a round that owed a leg.
+ * The command acts on exactly one verdict state for a code-class pull request —
+ * `SETTLE-READY` — and refuses everything else with the verdict's own name in
+ * the reason, so a supervisor reads the outcome by name, never by inference.
+ * A records-class pull request (`change-class.ts`: every changed path
+ * documentation or Practice prose, computed from the diff) also merges on the
+ * verdicts that differ from SETTLE-READY only by the vendor leg — checks green,
+ * zero unresolved threads, no suppressed finding held, the review requested but
+ * not yet landed, or never served — the owner's ruling of 2026-09-03 ("Change
+ * the merge policy instead") as behaviour; the review, when requested, is
+ * harvested after the merge. The two additional gates carry the estate's
+ * standing rulings: merge commits must still be allowed by the repo settings
+ * (never a squash fallback), and the expected reviewer set must have been
+ * DECLARED — a defaulted set can omit a configured-but-never-requested
+ * reviewer, letting settlement read `SETTLE-READY` on a round that owed a leg.
  */
 
-/** The decision: merge, or a typed refusal whose reason names the ground. */
+/** The decision: merge (with the ground when a class, not the verdict, opened the door), or a typed refusal. */
 export type MergeDecision =
-  { readonly kind: 'merge' } | { readonly kind: 'refuse'; readonly reason: string };
+  | { readonly kind: 'merge'; readonly ground?: string }
+  | { readonly kind: 'refuse'; readonly reason: string };
 
 /**
  * The verdicts a bounded poll may legitimately outwait: each resolves by
@@ -30,18 +38,72 @@ export const SETTLEMENT_WAIT_STATES = [
   'WAITING-REVIEW-RUN-LIVE',
 ] as const satisfies readonly PrVerdict['state'][];
 
+/**
+ * The verdicts a records-class pull request merges on: SETTLE-READY and the
+ * four reviewer-leg states the verdict ladder reaches only after every check
+ * is green, every thread resolved, no suppressed finding held and the base
+ * current (`states.ts` precedence). Exported as the one authority the usage
+ * text and the skills derive from.
+ */
+export const RECORDS_CLASS_MERGE_STATES = [
+  'SETTLE-READY',
+  'SILENT-WAIT-NO-REVIEWER',
+  'WAITING-REVIEW-RUN-LIVE',
+  'SETTLED-NO-REVIEW',
+  'QUOTA-SKIPPED',
+] as const satisfies readonly PrVerdict['state'][];
+
 /** Widened at the declaration, so membership needs no assertion. */
 const WAIT_STATE_SET: ReadonlySet<PrVerdict['state']> = new Set(SETTLEMENT_WAIT_STATES);
+const RECORDS_MERGE_SET: ReadonlySet<PrVerdict['state']> = new Set(RECORDS_CLASS_MERGE_STATES);
 
 export function verdictAwaitsSettlement(state: PrVerdict['state']): boolean {
   return WAIT_STATE_SET.has(state);
 }
 
-export function decideMergeAction(input: {
+export function verdictMergesRecordsClass(state: PrVerdict['state']): boolean {
+  return RECORDS_MERGE_SET.has(state);
+}
+
+export interface MergeDecisionInput {
   readonly verdict: PrVerdict;
   readonly allowMergeCommit: boolean;
   readonly expectedDeclared: boolean;
-}): MergeDecision {
+  /** The class read from the diff, when the caller read it; absent, only SETTLE-READY merges. */
+  readonly changeClass?: ChangeClass;
+}
+
+/** The ground a records class supplies when the verdict alone would not merge. */
+function recordsGround(input: MergeDecisionInput): string | undefined {
+  const { verdict, changeClass } = input;
+  if (changeClass?.kind !== 'records' || verdict.state === 'SETTLE-READY') {
+    return undefined;
+  }
+  if (!verdictMergesRecordsClass(verdict.state)) {
+    return undefined;
+  }
+  return (
+    `records-class (${changeClass.pathCount} changed paths, all documentation or Practice prose): ` +
+    `merged at checks green with zero unresolved threads on verdict ${verdict.state}; a vendor ` +
+    'review requested on this tip is harvested after the merge (the owner ruling of 2026-09-03; ' +
+    'the retrospective of 2026-10-10)'
+  );
+}
+
+/** Why a code-class pull request stays at the door on a verdict the records class would pass. */
+function codeClassSuffix(input: MergeDecisionInput): string {
+  const { verdict, changeClass } = input;
+  if (changeClass?.kind !== 'code' || !verdictMergesRecordsClass(verdict.state)) {
+    return '';
+  }
+  const named =
+    changeClass.offenders.length === 0
+      ? 'no changed path'
+      : describeOffenders(changeClass.offenders);
+  return `; a records-class pull request would merge here, but the diff is code-class (${named})`;
+}
+
+export function decideMergeAction(input: MergeDecisionInput): MergeDecision {
   if (!input.expectedDeclared) {
     return {
       kind: 'refuse',
@@ -55,10 +117,11 @@ export function decideMergeAction(input: {
       reason: 'verdict MERGED — the PR was merged by another actor; this invocation merged nothing',
     };
   }
-  if (input.verdict.state !== 'SETTLE-READY') {
+  const ground = recordsGround(input);
+  if (input.verdict.state !== 'SETTLE-READY' && ground === undefined) {
     return {
       kind: 'refuse',
-      reason: `verdict ${input.verdict.state} — only SETTLE-READY merges`,
+      reason: `verdict ${input.verdict.state} — only SETTLE-READY merges${codeClassSuffix(input)}`,
     };
   }
   if (!input.allowMergeCommit) {
@@ -68,5 +131,5 @@ export function decideMergeAction(input: {
         'repo settings no longer allow merge commits (allow_merge_commit is false) — the never-squash ruling stands; restore the setting rather than changing method',
     };
   }
-  return { kind: 'merge' };
+  return ground === undefined ? { kind: 'merge' } : { kind: 'merge', ground };
 }

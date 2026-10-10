@@ -40,9 +40,21 @@ pnpm agent-tools merge-bot merge --pr <n> --expect <reviewer>
 ```
 
 It mints its own least-privilege token (`pull-request-merge`), reads the
-settlement verdict, and merges ONLY on SETTLE-READY — merge-commit method
+settlement verdict, and merges on SETTLE-READY — or, for a bot-authored
+records-class pull request (every changed path documentation or Practice
+prose, computed from the pull request's files, never declared by a seat; a
+person's pull request keeps the SETTLE-READY door), on the verdicts
+that differ from SETTLE-READY only by the vendor leg, at checks green BY
+NAME (the base branch's required contexts, read from its rules at run time;
+a pending check the rules do not require — the vendor's own review run
+among them — does not hold a records-class pull request, a failed check of
+any name does) with zero unresolved threads, the ground named in its
+evidence (the owner's ruling of 2026-09-03; the retrospective of
+2026-10-10; the code class is unchanged, every live check binds it) — merge-commit method
 always, the VERDICTED tip's sha pinned in the call (a moved tip answers
-409), refusing by verdict name on everything else with exit 3. `--expect`
+409), refusing by verdict name on everything else with exit 3. The fold's
+wall clock is read by `agent-tools coordination fold-clock --pr <n>`, one
+line for the review-cost ledger row. `--expect`
 is required: source it from the repository's automatic-review
 configuration, declaring the reviewers AVAILABLE — a vendor declared
 unavailable on the stream (an outage, such as the Codex connector's

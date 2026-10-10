@@ -183,6 +183,13 @@ by owner direction or live coordination. Avoid `ready to land` wording in
 continuation records unless the work is genuinely uncommitted and pending; once
 landed, cite the commit instead.
 
+The `## Current Continuation` block is the record's head and is replaced at each
+handoff: the displaced block becomes the newest `## Previous Continuation` beneath
+it, dated in its heading, and a seat appends history only below the head, so a
+reader meets the current state first and never a stack of superseded blocks above
+it (the rule two folds' reviews applied to thread records, 2026-10-08 and
+2026-10-10; stated here, at the template a seat writes from).
+
 ### Concurrent lanes — a thread is a multi-lane container
 
 A thread holds one or more **concurrent lanes**: independently pickup-able arcs, each
