@@ -314,8 +314,8 @@ build). A fresh linked worktree installs itself on its first script run and hold
 workspace package `dist`, so knip's config loader fails there until the package is built;
 knip and the dependency cruiser run inside the pre-push gate's `pnpm check`, never by hand
 beside it, so a worktree's packages are built before the push; the commit hooks run the
-formatter, markdownlint, the staged profanity check and the changed-files lint only
-(2026-10-14). From a worktree,
+formatter, markdownlint and the changed-files lint only, plus the staged profanity check
+where the estate carries it (2026-10-14). From a worktree,
 collaboration-state commands need
 the primary path passed explicitly (`comms list/watch/inbox --comms-dir`, `claims
 --active`); only `comms send` auto-anchors to the primary, and a relative path silently

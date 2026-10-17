@@ -173,6 +173,28 @@ owner is at the keyboard.
    front door; recurring watches belong in agent-tools (the
    watch-commands backlog).
 
+   **Re-tested 2026-10-17 at the owner's word (Claude Code, this estate),
+   resident by `EnterWorktree` in a lane under `.claude/worktrees`:** the
+   guard refuses what it cannot prove is not a git operation on the shared
+   checkout, never a write to the primary as such. Refused: a pnpm call
+   carrying a shell variable ("a value computed at runtime"), `git -C
+   <primary>` even read-only, a plain command whose text contained the
+   words "git -C" (a `printf` of prose), and the `Write` tool on a primary
+   path (a tool-level rule). Ran: `comms append` and `comms render` into the
+   primary's comms home with every argument a literal, and a subshell `cd`
+   with no git. **Temporary workarounds until F-298 and F-299 of the
+   frictions register land:** a records commit on the coordination branch
+   is made from the primary (`ExitWorktree` with keep, the commit by
+   pathspec, the push, `EnterWorktree` again, which never prompts under
+   `.claude/worktrees`); a timestamp for the CLI is read with a plain
+   `date -u +%Y-%m-%dT%H:%M:%SZ` and pasted as a literal; prose that names
+   git is written with the `Write` tool to a path outside the shared
+   checkout or inside the worktree, never through `printf` or `echo`. The
+   enhancements that retire the workarounds: an agent-tools records command
+   that stages the named record files by pathspec in the primary and
+   commits as a Node process (F-298); `--now` and `--created-at` defaulting
+   to the clock (F-299).
+
    **A residency switch can kill a primary-armed monitor (observed
    2026-09-01, Claude Code 2.1.25x):** `EnterWorktree` killed a comms
    watcher Monitor armed at the primary — the re-armed watcher exited

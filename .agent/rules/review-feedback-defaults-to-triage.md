@@ -109,7 +109,8 @@ finding's remedy; the observation still passes step 1.
    So one assessment per finding (risk, cost, value, home) comes before
    anything is touched; at budget exhaustion the only moves are absorb into
    work that already exists or decline with a reason, never a pull request
-   of its own; and a triage never cures all nor declines all.
+   of its own; and the outcome is the sum of those assessments, one finding
+   at a time, never a blanket cure or a blanket decline made without them.
 5. **Age-out (below-bar only)**: a below-bar finding on text unchanged
    since the last reviewed head is triaged normally but never reopens
    settled state or resets the settlement clock; an over-bar finding

@@ -40,7 +40,7 @@ and the Skills say them in LinkedIn's nouns:
   Modeling, Parameter Estimation, Scientific Writing, Science Communication, Public Speaking.
 - **Making sense of the unknown**: the About's first line; Obaith; the Passport Office. Skills:
   Systems Thinking, Scientific Research, Research and Development (R&D), Prototyping.
-- **Shaping strategy and systems**: "I set Oak's engineering strategy" and the rebuild on the
+- **Shaping strategy and systems**: "Oak's engineering strategy is my responsibility" and the rebuild on the
   Principal card. Skills: Strategic Leadership, Technology Leadership, System Architecture, Open
   Data, Open Standards, Public Sector, Digital Government, Edtech, Social Impact, Mentoring.
 
@@ -57,16 +57,34 @@ Settled with Jim on 16 October, by his dispositions on the fourteen-item dedupe 
 proposal for the About and the Oak sections: two Oak cards, the two Principal cards merged into
 one, January 2021 to present, with the function's growth inside it (Engineering the department,
 one team into cross-functional teams delivering end to end) and the formalisation sentence
-closing that paragraph; the fold shows the level by decision and the leadership as enabling,
-with guidance and coaching where needed; the plugin paragraph carries its origin and its urgency
+closing that paragraph; the fold shows the level by decision and the responsibility and
+authority carried by enabling, guiding, mentoring and coaching (his correction of the same day:
+"set" is the opposite of that); the plugin paragraph carries its origin and its urgency
 (teachers already working in the assistants); the Practice paragraph in his words (the human
 defines the vision and strategy, the agent builds with context, fast, and to the highest
 standards); the About's third paragraph's last sentence split in two; the making on the plugin
-Project card in his sentence, under his review; the Practice Project card's two phrases; the
+Project card in his sentence, verbatim at his word (the pipeline from the Open Curriculum API's
+OpenAPI specification to the SDK, the search and the MCP app is built automatically, so the
+tools follow an API change; the hand-built first SDK is off the page); the Practice Project
+card's two phrases; the
 rebuild Project card without the consequence clause; the Senior Developer card unchanged, an
 editorial review of it pending at his word; nothing cut or moved for the count, which is edited
 later across the whole profile; the plugin's impact not yet defined or measured, a soft launch,
 so no outcome is written. Each item applied only at his disposition.
+
+The editor's holistic review of the Oak content, 16 October, returned nine items; his
+dispositions the same day: the pipeline's consequence as the sentence after his on the plugin
+Project card (the whole pipeline runs from the API's OpenAPI specification, so the tools follow
+an API change); the Senior Developer card's second sentence his ("I joined to ship the first
+teacher-facing service, delivered it, then built the engineering foundations the first months
+had left no time for"); the plugin paragraph closes on where the plugin runs, the attribution
+before it; the Practice alongside the plugin on the card, as the About has it ("It was
+alongside"); the Featured caption says free and openly licensed, both; the Practice Project
+card's repetition of its mechanism kept for that section's own audience, open to discussion;
+its opener, identical to the merged card's, to be rewritten from the surface's intent rather
+than smoothed (open, for the review after the compaction of 16 October); the merged card's
+opening sentence on the strategy his to edit by hand; "the direction I set" stands, setting
+direction and holding space for the teams to deliver being about right.
 
 Settled with Jim on 12 October, in a round of self-contained questions at his request, for the
 next editable draft, which he edits in the editor: the Principal card stands alone at the fold

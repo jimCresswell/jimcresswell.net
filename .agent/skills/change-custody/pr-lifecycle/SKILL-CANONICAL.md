@@ -144,8 +144,12 @@ into the permanent record):
 
 ## Phase 1 — Before opening
 
-1. **Divergence**: `git fetch origin main`; if behind, merge `origin/main`
-   into the branch. Anything coming in from the default branch is merged,
+1. **Divergence**: fetch the default branch and, if behind, merge it into the
+   branch (`git remote set-head origin --auto`, then `git fetch origin <default>`
+   and merge `origin/<default>`, where `<default>` is what
+   `git symbolic-ref --short refs/remotes/origin/HEAD` prints less its `origin/`
+   prefix; never a hand-typed name, since the default branch differs between
+   estates). Anything coming in from the default branch is merged,
    never rebased, pushed or not, whatever a handoff or plan line says (the
    owner, 2026-10-02: "anything coming in from main must always be merged, not
    rebased, we must maintain the shared history"; a rebase rewrites commits
@@ -2049,6 +2053,10 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   automatically be taken on by the Director, analysed"; PRs from hosts that
   cannot run code "need to be checked out locally, evaluated, and then
   worked on as normal by the team"; for Dependabot, "Team lands green ones".
+  Dependabot's pull requests do not count toward the limit (the owner, 2026-10-17,
+  verbatim: "The rules is wrong, dependabot PRs don't count toward the limit"): they
+  land green at their size turn, outside the count, and a seat reads them out of the
+  count as it reads out the coordination pull request.
   The goal is "aiming for zero while useful value is still created and
   merged", because "a static zero means no useful work is happening". A seat
   the owner names alone is its own Director: it routes and it executes, and
@@ -2061,7 +2069,7 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
     coordination stream, then reads the count first-hand from the forge for
     every repository (`gh pr list --repo <owner>/<name> --state open --limit
     1000` on GitHub: the target always named, and a limit above the default
-    page of thirty), leaving out each repository's coordination PR, then reads
+    page of thirty), leaving out each repository's coordination PR and its Dependabot pull requests, then reads
     every repository's stream for reservations posted before its own that
     had not lapsed when it read the count. It opens only while the count
     plus those earlier reservations is under the limit; otherwise it

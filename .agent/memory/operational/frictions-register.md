@@ -4386,3 +4386,45 @@ Observed twice on 2026-09-29 by the Director: `.agent/rules/.logs` refused by th
 - **Target surface**: agent-tools session-metadata (both estates).
 - **Status**: open; the gotchas reference carries the workaround.
 - **Owner direction status**: unsolicited (a seat's tool friction).
+
+### F-298 — a worktree-resident seat cannot land the primary's coordination records: the guard refuses git redirected into the shared checkout and the Write tool on its paths (2026-10-17)
+
+- **Source**: the owner's word of 2026-10-17 ("Record the tooling enhancements as work that needs
+  doing, and record the temporary workarounds"); the probe events of 13:4xZ on the comms stream
+  (`c7225f51`); the napkin's block of 2026-10-17T13:xxZ.
+- **Surface**: the harness's worktree isolation guard against the records homes in the primary
+  (the napkin, the thread records, the continuity record, the rules); agent-tools has no records
+  command.
+- **Observed**: resident in `.claude/worktrees/linkedin-oak-content` by `EnterWorktree`,
+  `git -C <primary> status` was refused (read-only too) and the `Write` tool on a primary path was
+  refused, while the comms CLI's `append` and `render` into the primary ran with literal
+  arguments: the guard reads the command text and refuses what it cannot prove is not git on the
+  shared checkout.
+- **Expected**: at n=1 the one seat is the lane implementer and the coordination writer; it lands
+  a records commit on the coordination branch without leaving residency.
+- **Candidate cure**: an agent-tools command (`collaboration-state records commit`) that runs as a
+  Node process: stages only the named record files by pathspec in the primary checkout, on the
+  coordination branch it verifies by name, commits with a message file under the clone's identity
+  with the commit hooks run; refuses any path outside the records set and any other branch, so the
+  guard's purpose holds (no lane mutates the shared tree at large). A `records push` beside it.
+- **Target surface**: agent-tools collaboration-state (both estates); the residency rule's clauses
+  4 and 6 once it lands.
+- **Status**: open; the residency rule's clause 4 carries the temporary workaround (exit with
+  keep, the commit in the primary, re-enter).
+- **Owner direction status**: standing (his word of 2026-10-17).
+
+### F-299 — `comms append` and `claims heartbeat` require `--now` and `--created-at` as explicit values, and the guard refuses a shell variable in a pnpm call from a resident seat (2026-10-17)
+
+- **Source**: the probe of 13:4xZ (refused: "runs pnpm with a value computed at runtime (the
+  variable NOW) inside a construct too complex to verify"); the same event written with literal
+  timestamps ran.
+- **Surface**: `collaboration-state comms append` (and the `--now` family: `send`, `direct`,
+  `reply`, `claims heartbeat`).
+- **Observed**: `--now "$NOW"` refused by the harness from the worktree; `date` read as its own
+  plain command and pasted as a literal ran.
+- **Expected**: a resident seat posts an event or a heartbeat in one plain command.
+- **Candidate cure**: `--now` and `--created-at` default to the process clock when omitted; the
+  explicit value stays for replay and tests.
+- **Target surface**: agent-tools collaboration-state (both estates).
+- **Status**: open; the residency rule's clause 4 carries the workaround.
+- **Owner direction status**: standing (his word of 2026-10-17).

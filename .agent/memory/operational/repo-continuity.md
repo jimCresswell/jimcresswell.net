@@ -21,6 +21,35 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-10-17T15:1xZ: cold pause at the owner's word; the LinkedIn lane at `SHA:fe4823f6` on
+  draft 341 with his dispositions on the three Oak items (two applied, the merged card's opening
+  sentence his hand edit next) and his edits of the headline and the About absorbed, the closing
+  line settled in conversation** (Shrew rides Eventide, 371a2b, n=1). The coordination branch
+  rides draft 340 with the day's records; the fold at his word. No process runs. moved for the
+  sites: nothing / moved for the Practice: the guard re-test's workarounds in the residency rule
+  and F-298 and F-299 registered as work that needs doing.
+- **2026-10-17T13:xxZ: the workspace reshaped at the owner's word: the primary checkout is the
+  coordination home (the coordination branch, the comms records, the claims), every piece of work
+  in a worktree under `.claude/worktrees`, `main` the default and target branch, the coordination
+  branch brought up to date with `main` when appropriate** (Shrew rides Eventide, 371a2b; n=1
+  after Flint guards Vapor's close of 2026-10-16T16:15Z). The LinkedIn lane is
+  `.claude/worktrees/linkedin-oak-content` on `docs/linkedin-oak-content-review` from `main`, the
+  draft's two commits of 16 October carried across, unpushed under the work-in-progress limit
+  (five Dependabot pull requests open); `main` merged into the coordination branch; the fold at
+  his word, its draft pull request open from this push. moved for the sites: nothing / moved for
+  the Practice: the worktree estate at its canonical shape, one worktree per piece of work.
+- **2026-10-16T12:5xZ: the LinkedIn draft at the owner's dispositions of 16 October (the fourteen items,
+  his corrections, the editor's nine items) is on `main` through 336 and 337 and continues on the
+  coordination branch; compaction at his word, the Oak cards' review with him after** (Shrew rides
+  Eventide, 371a2b, the editorial seat; Flint guards Vapor the other seat at n=2 under his routing
+  of the day, everything beyond the editorial work theirs, pushes and merges included: the staged
+  profanity check narrowed to the Practice files on its own lane, pull request 334, then the merge
+  bot's coupling to Copilot's review configuration). moved for the sites: nothing / moved for the
+  Practice: the triage rule's outcome sentence states its intent; folds run when useful, at his
+  word, never by the clock alone (the lifetime rule's twice-a-day wording is his to amend); the
+  records-door ruling of 11 October stands until 334 lands, a records-class fold with a review in
+  flight held by hand.
+
 - **2026-10-16T11:3xZ: the coordination branch `2026-10-14-d0c995` folded as 336 at `SHA:682ad083`; the
   successor `coordination/2026-10-16-682ad0` cut from it** (Shrew rides Eventide, 371a2b; records-class, the bot's merge at
   checks green from head `SHA:2c49b7da`, 2.3 minutes from the ready-mark; the branch a day past
