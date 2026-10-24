@@ -282,8 +282,8 @@ importers:
         specifier: ^10.11.0
         version: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       globals:
-        specifier: ^17.9.0
-        version: 17.12.0
+        specifier: ^17.13.0
+        version: 17.13.0
       ink-testing-library:
         specifier: ^4.0.0
         version: 4.0.0(@types/react@19.3.0)
@@ -443,8 +443,8 @@ importers:
         specifier: ^10.11.0
         version: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       globals:
-        specifier: ^17.9.0
-        version: 17.12.0
+        specifier: ^17.13.0
+        version: 17.13.0
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@typescript/typescript6@6.0.2)(jiti@2.7.0)(postcss@8.5.28)(supports-color@7.2.0)(tsx@4.23.15)(yaml@2.9.1)
@@ -555,8 +555,8 @@ importers:
         specifier: ^10.11.0
         version: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       globals:
-        specifier: ^17.9.0
-        version: 17.12.0
+        specifier: ^17.13.0
+        version: 17.13.0
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@typescript/typescript6@6.0.2)(jiti@2.7.0)(postcss@8.5.28)(supports-color@7.2.0)(tsx@4.23.15)(yaml@2.9.1)
@@ -585,8 +585,8 @@ importers:
         specifier: ^10.11.0
         version: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       globals:
-        specifier: ^17.9.0
-        version: 17.12.0
+        specifier: ^17.13.0
+        version: 17.13.0
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@typescript/typescript6@6.0.2)(jiti@2.7.0)(postcss@8.5.28)(supports-color@7.2.0)(tsx@4.23.15)(yaml@2.9.1)
@@ -615,8 +615,8 @@ importers:
         specifier: ^10.11.0
         version: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       globals:
-        specifier: ^17.9.0
-        version: 17.12.0
+        specifier: ^17.13.0
+        version: 17.13.0
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@typescript/typescript6@6.0.2)(jiti@2.7.0)(postcss@8.5.28)(supports-color@7.2.0)(tsx@4.23.15)(yaml@2.9.1)
@@ -3557,8 +3557,8 @@ packages:
     resolution: {integrity: sha512-ob/2LcVVaVGCYN+r14cnwnoDPUufjiYgSqRhiFD0Q1iI4Odora5RE8Iv1D24hAz5oMophRGkGz+yuvQmmUMnMw==}
     engines: {node: '>=18'}
 
-  globals@17.12.0:
-    resolution: {integrity: sha512-cezEd/DTyyht9cvSSURyygXPfy04GtWO/5e6ZPvH7fCtjKz9PYOmuawphw1Ctd1f6C+5JypXfGD7ahNMXvevBA==}
+  globals@17.13.0:
+    resolution: {integrity: sha512-RwMTC61u7hrG3ZJMkZQOK4JLJrKS8QtoTii63EmWvFXHqycY9FObBJQCbsLxSO8kjKhWE5kV1GC+Vb1g3RI0Zg==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -8021,7 +8021,7 @@ snapshots:
       bytes: 3.1.2
       eslint: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       functional-red-black-tree: 1.0.1
-      globals: 17.12.0
+      globals: 17.13.0
       jsx-ast-utils-x: 0.1.0
       lodash.merge: 4.6.2
       minimatch: 10.2.6
@@ -8054,7 +8054,7 @@ snapshots:
       entities: 8.1.0
       eslint: 10.11.0(jiti@2.7.0)(supports-color@7.2.0)
       find-up-simple: 1.0.1
-      globals: 17.12.0
+      globals: 17.13.0
       identifier-regex: 1.1.0
       indent-string: 5.0.0
       is-builtin-module: 5.0.0
@@ -8378,7 +8378,7 @@ snapshots:
 
   globals@16.4.0: {}
 
-  globals@17.12.0: {}
+  globals@17.13.0: {}
 
   globalthis@1.0.4:
     dependencies:
