@@ -10,7 +10,55 @@ start-right skill for the session shape, this record, `linkedin/README.md`,
 `linkedin/rewrite-handoff.md`, then `.agent/directives/privacy.md` §LinkedIn workspace
 authorisation.
 
-## Current Continuation (2026-10-23T16:3xZ, the draft ready at the owner's word; the lane lands through 341; the application next; Shrew rides Eventide, 371a2b)
+## Current Continuation (2026-10-24T13:5xZ, the application sitting prepared; the baseline recorded; compaction at the owner's word, the sitting begins after it; Shrew rides Eventide, 371a2b)
+
+- This block is the pickup; the blocks beneath are history in time order. Recompute before
+  acting: `git status`, the claims registry, the comms stream, the Chrome tab context.
+- **Where the work is.** The branch `docs/updating-profile`, cut by the owner from `main` after
+  pull request 340 merged (`SHA:572ab039`); level with `main`; unpushed at his word ("commit
+  yes, push no"). It carries the pre-sitting baseline
+  `linkedin/reference/current-profile-2026-10-24.md` (the live profile read through Chrome in
+  his session, every details page scrolled to the end: unchanged since September except his
+  own headline, banner and location; the 63 skills in display order with the 11 October
+  endorsement counts) and this block. His PDF export of the live profile is kept locally as
+  `.agent/reference-local/linkedin/profile-2026-10-24-before.pdf`, never in the repository.
+- **The source.** `linkedin/profile.md` on `main`: the validator OK, every one of its 42 status
+  lines `approved` (his commit `SHA:0a05543c`), the Skills list of 48 names matching the
+  registry in order (`check-list-against-registry.sh`). The skill is
+  `.agent/skills/editorial/apply-linkedin-profile/SKILL-CANONICAL.md` (load it first, with
+  `linkedin-skills` for the Skills step); the container's §Settings: Open to Work off, update
+  sharing off during editing, one deliberate notification at the end if he wants it, public
+  visibility as now, the custom URL unchanged.
+- **The sitting, in the draft's order, him present and reading every field before Save:**
+  (1) update sharing off ("Share profile updates with your network") before the first Save;
+  (2) top card: the industry read at the picker (Technology, Information and Internet, his
+  choice of 12 October), headline and location already live; (3) About replaced; (4) Featured:
+  three links added, captions in their owners' words; (5) Experience: ten cards edited, four
+  live entries deleted (the second Oak role "Head of DevOps and Quality", We Predict, the second
+  FT Labs entry, Carnegie Mellon), titles, dates and locations as the cards carry them;
+  (6) Education: three edits; (7) Licences: five deleted (AgilePM, the two Johns Hopkins
+  courses, Fire Marshal, First Aid), two kept as they stand; (8) Projects: FT Web App edited if
+  LinkedIn allows (the page notes that projects from connected apps cannot be edited), the Oak
+  AI Plugin, the Practice and the rebuild added; (9) Publications: two edited, the thesis added;
+  (10) Volunteering and Organisations: one edit each; (11) Skills: 53 names removed at his
+  rulings of 11 October (the registry's removed table), 38 added, each taken from the
+  typeahead's dropdown and never typed past it, the 48 ordered, the three pins set; a card's
+  linked skills come from the list, so Skills before any card that links one; (12) Settings
+  last. A dialog nobody read is closed without saving.
+- **After the sitting:** his second PDF export beside the first; the registry updated from the
+  live list with counts; the container's statuses moved to live with the date; this record's
+  block; the records committed on this branch, pushed and merged at his word.
+- **Standing word, unchanged:** the live profile is edited only through Chrome at his express
+  request with him present; nothing trimmed to a number; no folds or ceremony until further
+  notice; the LinkedIn work the only work; a settled item never listed again; Recommendations
+  his to raise.
+- **Seat state:** n=1; the claim `3b4a1be4` with its areas, heartbeat 2026-10-24T11:25Z; no
+  watcher or heartbeat (consumer absent). The review-cost gate holds a push past a budget until
+  one decision line exists in the local note `.agent/state/collaboration/review-rebudgets.md`
+  (PDR-140's amendment of 24 October); this branch has no pull request yet, so the gate passes
+  its first push. OCE carries the same five commits on its coordination branch, unpushed.
+
+## Previous Continuation (2026-10-23T16:3xZ, the draft ready at the owner's word; the lane lands through 341; the application next; Shrew rides Eventide, 371a2b)
 
 - This block is the pickup; the blocks beneath are history in time order. Recompute before
   acting: `git status`, the claims registry, the comms stream, `gh pr list`.
